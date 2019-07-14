@@ -15,7 +15,7 @@ update and insert doesnt need get->()
 
 class Trabajadores extends Model
 {
-    public $table = 'Trabajadores';
+    public $table = 'trabajadores';
     public $timestamps = true;
     //protected $dateFormat = 'U';
     const CREATED_AT = 'created_at';

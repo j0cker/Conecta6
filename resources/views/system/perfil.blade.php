@@ -1,4 +1,3 @@
-
 @extends('system.master')
 
 {{-- lang html tag --}}
@@ -23,33 +22,37 @@
 <!--Menu Transparente
 @section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
 -->
-@section('menuActive','introduction')
+@section('menuActive','perfil')
 
 @section('raiz1', @Config::get('app.name'))
 @section('raiz1Url', '/inicio')
 @section('raiz2','Trabajadores')
 @section('raiz2Url','/inicio')
-@section('raiz3','Introduction')
-@section('raiz3Url','/introduction')
+@section('raiz3','Perfil')
+@section('raiz3Url','/perfil')
+
 
 {{-- Angular Controller --}}
 
-@section('controller','introduction')
+@section('controller','perfil')
 
 {{-- Body --}}
 
 @section('content')
 
-        <div class="page-wrapper">
+
+<div class="page-wrapper">
             <div class="page-inner">
+                
                 <!-- BEGIN Left Aside -->
                         
                         @include('system.menu')
                         
                 <!-- END Left Aside -->
-                <div class="page-content-wrapper">
 
+                <div class="page-content-wrapper">
                     <!-- BEGIN Page Header -->
+                    
                         
                     @include('system.menu2')
                     
@@ -62,119 +65,386 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='fal fa-info-circle'></i> Introduction
+                                <i class="subheader-icon fal fa-user"></i> Perfil
                                 <small>
-                                    A brief introduction to this WebApp
                                 </small>
                             </h1>
                         </div>
-                        <div class="fs-lg fw-300 p-5 bg-white border-faded rounded mb-g">
-                            <h3 class="mb-g">
-                                Hi Everyone,
-                            </h3>
-                            <p>
-                                Some time ago we asked for your input, whether you were a seasoned SmartAdmin user or just peeking around the corner, and WOW, did you deliver! After reading each and everyone of your replies on the survey, we have taken each piece of praise and criticism to heart to scope out our plans for SmartAdmin. All feedback will be used to make your favorite theme that much better, but these were some of the highlights.
-                            </p>
-                            <p>
-                                A whopping 72% of you said you were ready for a fresh new design, while SmartAdmin is and a revolutionary view on what a good bootstrap based template should be, having something new to look at can make anyone feel invigorated. And let's be honest, who doesn't like a modern update of your favorite theme! While most you are still happy with the current variations, around 50% of you have asked for vue.js support. With this framework rapidly gaining popularity it is surely one to include in the family of frameworks! And, last, but certainly not least, a very large majority of a staggering 90% wanted more plugins and regular updates.
-                            </p>
-                            <p>
-                                SmartAdmin takes great care to ensure that valuable and popular plugins are supported as much as possible on a drop-in basis, meaning without doing heavy modifications to extend the look and feel of your favorite admin template :) . And if the plugin is in demand enough, we won't hesitate to put in the hours to support the look and feel of SmartAdmin.
-                            </p>
-                            <p>
-                                But how you ask? Well in order to make the next version of SmartAdmin the best ever and to re-deliver on our promise of continued support and quality, we wrote the theme from the ground-up using the latest Bootstrap practises. As a result we are better able to support new frameworks as they come up and ensure that plugin support is quick and reliable. In addition we have partnered up with some of the communities best developers to ensure that our tailor made variations are of top-notch quality and follow the principles that we at SmartAdmin take to heart.
-                            </p>
-                            <p>
-                                We're really confident that SmartAdmin 4.0 will bring back that first theme experience while still keeping the familiarity that you have grown used to. It's a brand new theme, but with all the things you love and then some. And to ensure that you our loyal customers get this experience first-hand, we will be publishing the HTML update free-of-charge as an update to your current SmartAdmin license!
-                            </p>
-                            <p>
-                                Last but not least, we would like to thank each and everyone of you, our loyal customers, for your patience and continued support in SmartAdmin. Without you this would not have been possible!
-                            </p>
-                            <p>
-                                Sincerely,<br>
-                                The SmartAdmin Team<br>
-                            </p>
+                        <div class="row">
+                            <div class="col-lg-12 sortable-grid ui-sortable">
+                                <div id="panel-1" class="panel panel-locked panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="false" data-panel-refresh="false" data-panel-reset="false" role="widget">
+                                    <div class="panel-hdr" role="heading">
+                                        <h2 class="ui-sortable-handle">
+                                            Perfil
+                                        </h2>
+                                    <div class="panel-saving mr-2" style="display:none">
+                                        <i class="fal fa-spinner-third fa-spin-4x fs-xl"></i>
+                                    </div>
+                                </div>
+                                    <div class="panel-container show" role="content">
+                                        <div class="panel-content border-faded border-left-0 border-right-0 border-top-0">
+                                            <div class="row no-gutters">
+                                                <div class="col-lg-12 col-xl-12">
+                                                    <div class="position-relative">
+
+                                                        <div style="margin-top: 50px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div class="col-md-4 text-center">
+                                                                
+                                                                    <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com">
+                                                                        <img src="{{ url('img/avatar-admin.png') }}" style="width: 100px; height: 100px;" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+                                                                        <!-- you can also add username next to the avatar with the codes below:
+                                                                        <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
+                                                                        <i class="ni ni-chevron-down hidden-xs-down"></i> -->
+                                                                    </a>
+                                                                    <center>
+                                                                    100x100
+                                                                    </center>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="margin-top: 50px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Nombre:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                    @isset($user["usr"]->nombre)
+                                                                        {{ $user["usr"]->nombre }}
+                                                                    @endisset
+
+                                                                    @empty($user["usr"]->nombre)
+                                                                        No especificado
+                                                                    @endempty
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Apellido:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                    @isset($user["usr"]->apellido)
+                                                                        {{ $user["usr"]->apellido }}
+                                                                    @endisset
+
+                                                                    @empty($user["usr"]->apellido)
+                                                                        No especificado
+                                                                    @endempty
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Correo:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                    @isset($user["usr"]->correo)
+                                                                        {{ $user["usr"]->correo }}
+                                                                    @endisset
+
+                                                                    @empty($user["usr"]->correo)
+                                                                        No especificado
+                                                                    @endempty
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Cargo:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    @isset($user["usr"]->cargo)
+                                                                        {{ $user["usr"]->cargo }}
+                                                                    @endisset
+
+                                                                    @empty($user["usr"]->cargo)
+                                                                        No especificado
+                                                                    @endempty
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Teléfono Fijo:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    @isset($user["usr"]->telefono_fijo)
+                                                                        {{ $user["usr"]->telefono_fijo }}
+                                                                    @endisset
+
+                                                                    @empty($user["usr"]->telefono_fijo)
+                                                                        No especificado
+                                                                    @endempty
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Celular:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    @isset($user["usr"]->celular)
+                                                                        {{ $user["usr"]->celular }}
+                                                                    @endisset
+
+                                                                    @empty($user["usr"]->celular)
+                                                                        No especificado
+                                                                    @endempty
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Fecha de Creación:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    @isset($user["usr"]->created_at)
+                                                                        {{ $user["usr"]->created_at }}
+                                                                    @endisset
+
+                                                                    @empty($user["usr"]->created_at)
+                                                                        No especificado
+                                                                    @endempty
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    DNI:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    @isset($user["usr"]->dni_num)
+                                                                        {{ $user["usr"]->dni_num }}
+                                                                    @endisset
+
+                                                                    @empty($user["usr"]->dni_num)
+                                                                        No especificado
+                                                                    @endempty
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Seguro Social:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    @isset($user["usr"]->seguro_social)
+                                                                        {{ $user["usr"]->seguro_social }}
+                                                                    @endisset
+
+                                                                    @empty($user["usr"]->seguro_social)
+                                                                        No especificado
+                                                                    @endempty
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h3>
-                            SmartAdmin Team
-                            <small class="mb-0">We build cool things...</small>
-                        </h3>
-                        <div class="d-flex flex-wrap demo demo-h-spacing mt-3 mb-3">
-                            <div class="rounded-pill bg-white shadow-sm p-2 border-faded mr-3 d-flex flex-row align-items-center justify-content-center flex-shrink-0">
-                                <img src="img/avatar-admin.png" alt="Sunny A." class="img-thumbnail img-responsive rounded-circle" style="width:5rem; height: 5rem;">
-                                <div class="ml-2 mr-3">
-                                    <h5 class="m-0">
-                                        Sunny A. (UI/UX Expert)
-                                        <small class="m-0 fw-300">
-                                            Lead Author
-                                        </small>
-                                    </h5>
-                                    <a href="https://twitter.com/@myplaneticket" class="text-info fs-sm" target="_blank">@myplaneticket</a> -
-                                    <a href="https://wrapbootstrap.com/user/myorange" class="text-info fs-sm" target="_blank" title="Contact Sunny"><i class="fal fa-envelope"></i></a>
-                                </div>
-                            </div>
-                            <div class="rounded-pill bg-white shadow-sm p-2 border-faded mr-3 d-flex flex-row align-items-center justify-content-center flex-shrink-0">
-                                <img src="img/avatar-admin.png" alt="Jos K." class="img-thumbnail img-responsive rounded-circle" style="width:5rem; height: 5rem;">
-                                <div class="ml-2 mr-3">
-                                    <h5 class="m-0">
-                                        Jos K. (ASP.NET Developer)
-                                        <small class="m-0 fw-300">
-                                            Partner &amp; Contributor
-                                        </small>
-                                    </h5>
-                                    <a href="https://twitter.com/@atlantez" class="text-info fs-sm" target="_blank">@atlantez</a> -
-                                    <a href="https://wrapbootstrap.com/user/Walapa" class="text-info fs-sm" target="_blank" title="Contact Jos"><i class="fal fa-envelope"></i></a>
-                                </div>
-                            </div>
-                            <div class="rounded-pill bg-white shadow-sm p-2 border-faded mr-3 d-flex flex-row align-items-center justify-content-center flex-shrink-0">
-                                <img src="img/avatar-admin.png" alt="Jovanni Lo" class="img-thumbnail img-responsive rounded-circle" style="width:5rem; height: 5rem;">
-                                <div class="ml-2 mr-3">
-                                    <h5 class="m-0">
-                                        Jovanni L. (PHP Developer)
-                                        <small class="m-0 fw-300">
-                                            Partner &amp; Contributor
-                                        </small>
-                                    </h5>
-                                    <a href="https://twitter.com/@lodev09" class="text-info fs-sm" target="_blank">@lodev09</a> -
-                                    <a href="https://wrapbootstrap.com/user/lodev09" class="text-info fs-sm" target="_blank" title="Contact Jovanni"><i class="fal fa-envelope"></i></a>
-                                </div>
-                            </div>
-                            <div class="rounded-pill bg-white shadow-sm p-2 border-faded mr-3 d-flex flex-row align-items-center justify-content-center flex-shrink-0">
-                                <img src="img/avatar-admin.png" alt="Jovanni Lo" class="img-thumbnail img-responsive rounded-circle" style="width:5rem; height: 5rem;">
-                                <div class="ml-2 mr-3">
-                                    <h5 class="m-0">
-                                        Roberto R. (Rails Developer)
-                                        <small class="m-0 fw-300">
-                                            Partner &amp; Contributor
-                                        </small>
-                                    </h5>
-                                    <a href="https://twitter.com/@sildur" class="text-info fs-sm" target="_blank">@sildur</a> -
-                                    <a href="https://wrapbootstrap.com/user/sildur" class="text-info fs-sm" target="_blank" title="Contact Roberto"><i class="fal fa-envelope"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="fs-lg">
-                            <a href="#" class="fw-500 fs-xl">> Ready to join our dedicated team?</a><br>
-                            We are always on the lookout to expand and add unique app flavors to SmartAdmin. If you think you can contribute and create your very own flavors, get in touch with us or <a href="#" target="_blank">click here to learn more</a> about our partnership program.
-                        </p>
                     </main>
                     <!-- this overlay is activated only when mobile menu is triggered -->
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
-                    
                     
                     @include('system.footer2')
 
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
                     <!-- modal shortcut -->
-                    <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
+                    <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
                             <div class="modal-content">
                                 <div class="modal-body">
                                     <ul class="app-list w-auto h-auto p-0 text-left">
                                         <li>
-                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                                            <a href="#" class="app-list-item text-white border-0 m-0">
                                                 <div class="icon-stack">
                                                     <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
@@ -186,7 +456,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+                                            <a href="#" class="app-list-item text-white border-0 m-0">
                                                 <div class="icon-stack">
                                                     <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
@@ -198,7 +468,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                                            <a href="#" class="app-list-item text-white border-0 m-0">
                                                 <div class="icon-stack">
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
                                                     <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
@@ -228,7 +498,7 @@
                     <div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
                         <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
                             <span class="mr-2">
-                                <span class="rounded-circle profile-image d-block" style="background-image:url('img/avatar-admin.png'); background-size: cover;"></span>
+                                <span class="rounded-circle profile-image d-block" style="background-image:url(&#39;img/demo/avatars/avatar-d.png&#39;); background-size: cover;"></span>
                             </span>
                             <div class="info-card-text">
                                 <a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white" data-toggle="dropdown" aria-expanded="false">
@@ -257,12 +527,12 @@
                                 <input type="text" class="form-control bg-white" id="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FriendSearch" data-listfilter="#js-msgr-listfilter">
                             </div>
                             <div class="flex-1 h-100 custom-scroll">
-                                <div class="w-100">
-                                    <ul id="js-msgr-listfilter" class="list-unstyled m-0">
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="w-100" style="overflow: hidden; width: auto; height: 100%;">
+                                    <ul id="js-msgr-listfilter" class="list-unstyled m-0 js-list-filter">
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="tracey chang online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-admin.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-d.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -277,7 +547,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="oliver kopyuv online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-admin.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-b.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -292,7 +562,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="dr john cook phd away">
                                                 <div class="d-table-cell align-middle status status-warning status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-admin.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-e.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -307,7 +577,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-admin.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-g.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -322,7 +592,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="sarah mcbrook online">
                                                 <div class="d-table-cell align-middle status status-success status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-admin.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-h.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -337,7 +607,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
                                                 <div class="d-table-cell align-middle status status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-admin.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-a.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -352,7 +622,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney busy">
                                                 <div class="d-table-cell align-middle status status-danger status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-admin.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-j.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -367,7 +637,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
                                                 <div class="d-table-cell align-middle status status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-admin.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-c.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -382,7 +652,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney inactive">
                                                 <div class="d-table-cell align-middle">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-admin.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-m.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -396,7 +666,7 @@
                                         </li>
                                     </ul>
                                     <div class="filter-message js-filter-message"></div>
-                                </div>
+                                </div><div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.6); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 4px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(250, 250, 250); opacity: 0.2; z-index: 90; right: 4px;"></div></div>
                             </div>
                             <div>
                                 <a class="fs-xl d-flex align-items-center p-3">
@@ -409,7 +679,7 @@
                         <div class="msgr d-flex h-100 flex-column bg-white">
                             <!-- BEGIN custom-scroll -->
                             <div class="custom-scroll flex-1 h-100">
-                                <div id="chat_container" class="w-100 p-4">
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div id="chat_container" class="w-100 p-4" style="overflow: hidden; width: auto; height: 100%;">
                                     <!-- start .chat-segment -->
                                     <div class="chat-segment">
                                         <div class="time-stamp text-center mb-2 fw-400">
@@ -502,7 +772,7 @@
                                         </div>
                                     </div>
                                     <!--  end .chat-segment for timestamp -->
-                                </div>
+                                </div><div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.6); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 4px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(250, 250, 250); opacity: 0.2; z-index: 90; right: 4px;"></div></div>
                             </div>
                             <!-- END custom-scroll  -->
                             <!-- BEGIN msgr__chatinput -->
@@ -513,17 +783,17 @@
                                     </div>
                                 </div>
                                 <div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1" data-toggle="tooltip" data-original-title="More options" data-placement="top">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1 waves-effect waves-themed" data-toggle="tooltip" data-original-title="More options" data-placement="top">
                                         <i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
                                     </a>
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Attach files" data-placement="top">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1 waves-effect waves-themed" data-toggle="tooltip" data-original-title="Attach files" data-placement="top">
                                         <i class="fal fa-paperclip color-fusion-300"></i>
                                     </a>
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Insert photo" data-placement="top">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1 waves-effect waves-themed" data-toggle="tooltip" data-original-title="Insert photo" data-placement="top">
                                         <i class="fal fa-camera color-fusion-300"></i>
                                     </a>
                                     <div class="ml-auto">
-                                        <a href="javascript:void(0);" class="btn btn-info">Send</a>
+                                        <a href="javascript:void(0);" class="btn btn-info waves-effect waves-themed">Send</a>
                                     </div>
                                 </div>
                             </div>
@@ -535,7 +805,7 @@
             </div>
         </div> <!-- END Messenger -->
         <!-- BEGIN Page Settings -->
-        <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog-right modal-md">
                 <div class="modal-content">
                     <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
@@ -695,16 +965,16 @@
                             <div class="list mt-1">
                                 <span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
                                 <div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
-                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-sm" data-target="html">
+                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text-sm" data-target="html">
                                         <input type="radio" name="changeFrontSize"> SM
                                     </label>
-                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text" data-target="html">
+                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text" data-target="html">
                                         <input type="radio" name="changeFrontSize" checked=""> MD
                                     </label>
-                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-lg" data-target="html">
+                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text-lg" data-target="html">
                                         <input type="radio" name="changeFrontSize"> LG
                                     </label>
-                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-xl" data-target="html">
+                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text-xl" data-target="html">
                                         <input type="radio" name="changeFrontSize"> XL
                                     </label>
                                 </div>
@@ -722,30 +992,30 @@
                             </div>
                             <div class="expanded theme-colors pl-5 pr-3">
                                 <ul class="m-0">
-                                    <li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme="" data-toggle="tooltip" data-placement="top" title="Wisteria (base css)" data-original-title="Wisteria (base css)"></a></li>
-                                    <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
-                                    <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
-                                    <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
-                                    <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a></li>
-                                    <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
-                                    <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
-                                    <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
-                                    <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="Chetwode Blue" data-original-title="Chetwode Blue"></a></li>
-                                    <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
-                                    <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a></li>
-                                    <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a></li>
-                                    <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="Wild Blue Yonder" data-original-title="Wild Blue Yonder"></a></li>
-                                    <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
+                                    <li><a href="#" id="myapp-0" data-action="theme-update" data-themesave="" data-theme="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wisteria (base css)"></a></li>
+                                    <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tapestry"></a></li>
+                                    <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Atlantis"></a></li>
+                                    <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Indigo"></a></li>
+                                    <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dodger Blue"></a></li>
+                                    <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tradewind"></a></li>
+                                    <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cranberry"></a></li>
+                                    <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Oslo Gray"></a></li>
+                                    <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Chetwode Blue"></a></li>
+                                    <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Apricot"></a></li>
+                                    <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Blue Smoke"></a></li>
+                                    <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Green Smoke"></a></li>
+                                    <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wild Blue Yonder"></a></li>
+                                    <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Emerald"></a></li>
                                 </ul>
                             </div>
                             <hr class="mb-0 mt-4">
                             <div class="pl-5 pr-3 py-3 bg-faded">
                                 <div class="row no-gutters">
                                     <div class="col-6 pr-1">
-                                        <a href="#" class="btn btn-outline-danger fw-500 btn-block" data-action="app-reset">Reset Settings</a>
+                                        <a href="#" class="btn btn-outline-danger fw-500 btn-block waves-effect waves-themed" data-action="app-reset">Reset Settings</a>
                                     </div>
                                     <div class="col-6 pl-1">
-                                        <a href="#" class="btn btn-danger fw-500 btn-block" data-action="factory-reset">Factory Reset</a>
+                                        <a href="#" class="btn btn-danger fw-500 btn-block waves-effect waves-themed" data-action="factory-reset">Factory Reset</a>
                                     </div>
                                 </div>
                             </div>
@@ -759,6 +1029,17 @@
         
         <script src="js/vendors.bundle.js"></script>
         <script src="js/app.bundle.js"></script>
+        <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
+     
+        
+        <script>
+            $(document).ready(function()
+            {
+
+                $('#js-page-content').smartPanel(); 
+            });
+        </script>
+        
 
 
         <!-- Toastr-->
@@ -773,5 +1054,7 @@
         <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
 
         <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
+
+        
 
     @stop

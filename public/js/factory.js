@@ -12,7 +12,7 @@
 
         setTimeout(function() {
           $('#loader-wrapper').css('display','none');
-        }, 10000);
+        }, 6000);
       },
       loadingWait: function() {
         console.log("[factory.js] loading");
@@ -39,8 +39,9 @@
         console.log("correo: " + correo + " contPass: " + contPass);
 
         var url = 'api/trabajadores/ingresar';
-		  	return $http.get(url,{
-          params: { cache: false, correo:correo, contPass:contPass }
+        return $http.get(url,{
+          params: { cache: false, correo:correo, contPass:contPass },
+          cache: false
         });
 
       },
@@ -50,7 +51,8 @@
 
         var url = 'api/trabajadores/logout';
 		  	return $http.get(url,{
-          params: { cache: false }
+          params: { cache: false },
+          cache: false
         });
 
       }

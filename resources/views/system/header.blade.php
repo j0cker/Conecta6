@@ -29,7 +29,6 @@
         <link rel="shortcut icon" href="{{ url('img/icon.ico?v='.cache("js_version_number").'') }}" />
 
         <link rel="stylesheet" media="screen, print" href="{{ url('css/datatables.bundle.css?v='.cache("js_version_number").'') }}">
-        <link rel="stylesheet" media="screen, print" href="{{ url('css/materialize-system.css?v='.cache("js_version_number").'') }}">
         <link rel="stylesheet" media="screen, print" href="{{ url('fonts/font-awesome-5-pro.css?v='.cache("js_version_number").'') }}">
 
         <link rel="stylesheet" media="screen, print" href="{{ url('css/reactions.css?v='.cache("js_version_number").'') }}">

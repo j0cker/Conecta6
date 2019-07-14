@@ -13,6 +13,7 @@ use JWTAuth;
 use JWTFactory;
 use Tymon\JWTAuth\PayloadFactory;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Session;
 
 class APITrabajadores extends Controller
 {
@@ -62,6 +63,7 @@ class APITrabajadores extends Controller
         $payload = $factory->make();
         
         $jwt_token = JWTAuth::encode($payload);
+        Log::info("[APITrabajadores][ingresar] new token: ". $jwt_token->get());
 
         $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDdata'), count($trabajador));
         $responseJSON->data = $trabajador;
@@ -100,6 +102,8 @@ class APITrabajadores extends Controller
         
       $token = $request->input('token');
 
+      Log::info("[APITrabajadores][Inicio] Token: ". $token);
+
       try {
 
         // attempt to verify the credentials and create a token for the user
@@ -110,7 +114,7 @@ class APITrabajadores extends Controller
 
         //print_r($token_decrypt);
 
-        return view('system.inicio',["title" => config('app.name'), "lang" => "es"]);
+        return view('system.inicio',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
 
       } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
 
@@ -172,7 +176,7 @@ class APITrabajadores extends Controller
 
         //print_r($token_decrypt);
 
-        return view('system.marketing',["title" => config('app.name'), "lang" => "es"]);
+        return view('system.marketing',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
 
       } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
 
@@ -234,7 +238,7 @@ class APITrabajadores extends Controller
 
         //print_r($token_decrypt);
 
-        return view('system.introduction',["title" => config('app.name'), "lang" => "es"]);
+        return view('system.introduction',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
 
       } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
 
@@ -263,6 +267,128 @@ class APITrabajadores extends Controller
       }
 
 
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function Registros(Request $request){
+    
+    Log::info('[APITrabajadores][Registros]');
+
+    Log::info("[APITrabajadores][Registros] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        return view('system.registros',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APITrabajadores][Registros] Token error: token_expired');
+  
+        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APITrabajadores][Registros] Token error: token_invalid');
+  
+        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APITrabajadores][Registros] Token error: token_absent');
+  
+        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+  
+      }
+
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function Perfil(Request $request){
+    
+    Log::info('[APITrabajadores][Perfil]');
+
+    Log::info("[APITrabajadores][Perfil] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        return view('system.perfil',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APITrabajadores][Perfil] Token error: token_expired');
+  
+        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APITrabajadores][Perfil] Token error: token_invalid');
+  
+        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APITrabajadores][Perfil] Token error: token_absent');
+  
+        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+  
+      }
 
     } else {
       abort(404);

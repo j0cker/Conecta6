@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-07-2019 a las 04:39:38
+-- Tiempo de generación: 13-07-2019 a las 03:16:49
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.0.32
 
@@ -123,8 +123,9 @@ CREATE TABLE `trabajadores` (
 --
 
 INSERT INTO `trabajadores` (`id_trabajadores`, `id_empresas`, `nombre`, `apellido`, `correo`, `cargo`, `telefono_fijo`, `celular`, `created_at`, `updated_at`, `dni_num`, `seguro_social`, `pass`) VALUES
-(1, 0, '', '', 'manlioelnum1@hotmail.com', '', '', '', '2019-07-05 17:09:51', '0000-00-00 00:00:00', '', '', '8e96bd02fbcb054cca11cf8deb031562b9aaedd83f83ff7abf7c3fa787ad9bbd'),
-(2, 0, '', '', 'jocker.clown690@gmail.com', '', '', '', '2019-07-05 17:12:01', '0000-00-00 00:00:00', '', '', '002bdfc07cf583330b0d9e8002d9dddf9669e6df4b543c2d0d6c21d18544a928');
+(1, 0, 'Manlio', 'Teran', 'manlioelnum1@hotmail.com', '', '', '', '2019-07-12 01:59:55', '0000-00-00 00:00:00', '', '', '8e96bd02fbcb054cca11cf8deb031562b9aaedd83f83ff7abf7c3fa787ad9bbd'),
+(2, 0, '', '', 'jocker.clown690@gmail.com', '', '', '', '2019-07-05 17:12:01', '0000-00-00 00:00:00', '', '', '002bdfc07cf583330b0d9e8002d9dddf9669e6df4b543c2d0d6c21d18544a928'),
+(3, 0, 'Jose', 'Perez', 'jose@gmail.com', '', '', '', '2019-07-11 04:06:36', '0000-00-00 00:00:00', '', '', '1ec4ed037766aa181d8840ad04b9fc6e195fd37dedc04c98a5767a67d3758ece');
 
 --
 -- Índices para tablas volcadas
@@ -192,7 +193,7 @@ ALTER TABLE `permisos_inter`
 -- AUTO_INCREMENT de la tabla `trabajadores`
 --
 ALTER TABLE `trabajadores`
-  MODIFY `id_trabajadores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_trabajadores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

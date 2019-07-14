@@ -70,7 +70,9 @@
 
                   toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
 
-                  setCookie("token",response.data.token,1);
+                  deleteAllCookies();
+                  setCookie("token", response.data.token, 1);
+
                   $window.location.href = "/inicio";
 
                 } else {
@@ -112,6 +114,24 @@
   app.controller('introduction', function($scope, functions, $window) {
 
     console.log("[introduction]");
+
+    functions.loading();
+
+
+  });//fin controller introduction
+
+  app.controller('registros', function($scope, functions, $window) {
+
+    console.log("[registros]");
+
+    functions.loading();
+
+
+  });//fin controller introduction
+
+  app.controller('perfil', function($scope, functions, $window) {
+
+    console.log("[perfil]");
 
     functions.loading();
 

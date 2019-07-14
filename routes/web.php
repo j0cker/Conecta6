@@ -22,5 +22,7 @@ Route::get('/', 'APITrabajadores@SignIn');
 Route::get('/inicio', 'APITrabajadores@Inicio');
 Route::get('/marketing', 'APITrabajadores@Marketing');
 Route::get('/introduction', 'APITrabajadores@Introduction');
+Route::get('/registros', 'APITrabajadores@Registros');
+Route::get('/perfil', 'APITrabajadores@Perfil');
 
 
