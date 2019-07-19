@@ -26,4 +26,16 @@ Route::get('/registros', 'APITrabajadores@Registros');
 Route::get('/perfil', 'APITrabajadores@Perfil');
 Route::get('/historial', 'APITrabajadores@Historial');
 
+/*
+*********Admin***********
+*/
+
+//welcome login
+Route::get('/pAdmin', 'APIAdmin@SignIn');
+
+//Sistema Welcome
+Route::get('/inicio', 'APIAdmin@Inicio');
+
+
+
 

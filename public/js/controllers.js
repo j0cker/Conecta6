@@ -147,6 +147,71 @@
 
   });//fin controller introduction
 
+  app.controller('signInAdmin', function($scope, functions, $window) {
+
+    console.log("[signInAdmin]");
+
+    functions.loading();
+
+    $("body").css("background-image","url('img/texture.png')");
+
+    
+    console.log("[signin]");
+
+    $scope.send = function(){
+      console.log("[signin][send]");
+
+      functions.loadingWait();
+
+      var correo = "";
+      var contPass = "";
+
+      correo = $("#correo").val();
+      contPass = $("#contPass").val();
+
+      console.log("[signin][send] correo: " + correo);
+      console.log("[signin][send] contPass: " + contPass);
+
+      if(correo.indexOf("@")=="-1" || correo.indexOf(".")=="-1" || correo.indexOf(" ")!="-1" || correo.indexOf(",")!="-1"){
+        toastr["error"]("Llena correctamente<br /> tu correo electrónico", "");
+        functions.loadingEndWait();
+        $("#ingresarButton").effect( "shake" );
+      } else if(contPass==""){
+        toastr["error"]("Llena correctamente<br /> tu contraseña", "");
+        functions.loadingEndWait();
+        $("#ingresarButton").effect( "shake" );
+        
+      } else {
+
+        functions.postIngresarAdmin(correo, contPass).then(function (response) {
+
+                if(response.data.success == "TRUE"){
+                  console.log("[signin][postIngresar]");
+
+                  toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+
+                  deleteAllCookies();
+                  setCookie("token", response.data.token, 1);
+
+                  $window.location.href = "/inicio";
+
+                } else {
+                    toastr["warning"](response.data.description, "");
+                    functions.loadingEndWait();
+                }
+            }, function (response) {
+              /*ERROR*/
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+
+        });/*fin postSubscriber*/
+      
+      }
+      
+    }
+
+  });//fin controller introduction
+
   return;
 
 }).call(this);

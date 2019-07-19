@@ -13,9 +13,9 @@ update and insert doesnt need get->()
 
 */
 
-class Trabajadores extends Model
+class Admin extends Model
 {
-    public $table = 'trabajadores';
+    public $table = 'administradores';
     public $timestamps = true;
     //protected $dateFormat = 'U';
     const CREATED_AT = 'created_at';
@@ -26,11 +26,11 @@ class Trabajadores extends Model
     public function scopeLookForByEmailAndPass($query, $email, $pass)
     {
 
-        Log::info("[Trabajadores][scopeLookForByEmailAndPass]");
+        Log::info("[Admin][scopeLookForByEmailAndPass]");
 
         $pass = hash("sha256", $pass);
 
-        Log::info("[Trabajadores][scopeLookForByEmailAndPass] pass: ". $pass);
+        Log::info("[Admin][scopeLookForByEmailAndPass] pass: ". $pass);
 
         return $query->where([
           ['correo', '=', $email],

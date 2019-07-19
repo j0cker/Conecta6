@@ -55,6 +55,30 @@
           cache: false
         });
 
+      },
+      postIngresarAdmin: function(correo, contPass) {
+
+        console.log("[factory][postIngresarAdmin]");
+
+        console.log("correo: " + correo + " contPass: " + contPass);
+
+        var url = 'api/pAdmin/ingresar';
+        return $http.get(url,{
+          params: { cache: false, correo:correo, contPass:contPass },
+          cache: false
+        });
+
+      },
+      postLogoutAdmin: function() {
+
+        console.log("[factory][postLogoutAdmin]");
+
+        var url = 'api/pAdmin/logout';
+		  	return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
+
       }
     };
   });

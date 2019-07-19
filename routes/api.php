@@ -13,9 +13,23 @@ use Illuminate\Http\Request;
 |
 */
 
+/*
+*******Trabajadores******
+*/
 
 //Request API
 Route::get('/trabajadores/ingresar', 'APITrabajadores@Ingresar');
 
 //Logout
 Route::get('/trabajadores/logout', 'APITrabajadores@Logout');
+
+/*
+*******Admin******
+*/
+
+//Request API
+Route::get('/pAdmin/ingresar', 'APIAdmin@Ingresar');
+
+//Logout
+Route::get('/pAdmin/logout', 'APIAdmin@Logout');
+
