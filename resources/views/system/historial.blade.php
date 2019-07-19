@@ -1,3 +1,4 @@
+
 @extends('system.master')
 
 {{-- lang html tag --}}
@@ -22,37 +23,33 @@
 <!--Menu Transparente
 @section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
 -->
-@section('menuActive','inicio')
+@section('menuActive','historialRegistros')
 
 @section('raiz1', @Config::get('app.name'))
 @section('raiz1Url', '/inicio')
 @section('raiz2','Trabajadores')
 @section('raiz2Url','/inicio')
-@section('raiz3','Inicio')
-@section('raiz3Url','/inicio')
-
+@section('raiz3','Historial de Entradas y Salidas')
+@section('raiz3Url','/historial')
 
 {{-- Angular Controller --}}
 
-@section('controller','inicio')
+@section('controller','historial')
 
 {{-- Body --}}
 
 @section('content')
 
-
-<div class="page-wrapper">
+        <!-- BEGIN Page Wrapper -->
+        <div class="page-wrapper">
             <div class="page-inner">
-                
                 <!-- BEGIN Left Aside -->
                         
-                        @include('system.menu')
-                        
-                <!-- END Left Aside -->
+                    @include('system.menu')
 
+                <!-- END Left Aside -->
                 <div class="page-content-wrapper">
                     <!-- BEGIN Page Header -->
-                    
                         
                     @include('system.menu2')
                     
@@ -65,39 +62,15 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-chart-area"></i> Inicio <span class="fw-300">Dashboard</span>
-                                <small>
-                                </small>
+                                <i class='subheader-icon fal fa-history'></i> Historial Entradas y Salidas <span class='fw-300'>Dashboard</span>
                             </h1>
-                            <div class="subheader-block d-lg-flex align-items-center">
-                                <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                    <span class="fw-300 fs-xs d-block opacity-50">
-                                        <small>EXPENSES</small>
-                                    </span>
-                                    <span class="fw-500 fs-xl d-block color-primary-500">
-                                        $47,000
-                                    </span>
-                                </div>
-                                <span class="sparklines hidden-lg-down" sparktype="bar" sparkbarcolor="#886ab5" sparkheight="32px" sparkbarwidth="5px" values="3,4,3,6,7,3,3,6,2,6,4"><canvas width="85" height="32" style="display: inline-block; width: 85px; height: 32px; vertical-align: top;"></canvas></span>
-                            </div>
-                            <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
-                                <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                    <span class="fw-300 fs-xs d-block opacity-50">
-                                        <small>MY PROFITS</small>
-                                    </span>
-                                    <span class="fw-500 fs-xl d-block color-danger-500">
-                                        $38,500
-                                    </span>
-                                </div>
-                                <span class="sparklines hidden-lg-down" sparktype="bar" sparkbarcolor="#fe6bb0" sparkheight="32px" sparkbarwidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"><canvas width="85" height="32" style="display: inline-block; width: 85px; height: 32px; vertical-align: top;"></canvas></span>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 sortable-grid ui-sortable">
-                                <div id="panel-1" class="panel panel-locked panel-sortable" role="widget">
+                                <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr" role="heading">
-                                        <h2 class="ui-sortable-handle">
-                                            Estadísticas de tu Trabajo
+                                        <h2>
+                                            Historial Entradas y Salidas
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -107,137 +80,106 @@
                                         <div class="dropdown-multilevel dropdown-multilevel-left"><div class="dropdown-item"><span data-i18n="drpdwn.panelcolor">Panel Style</span>	</div><div class="dropdown-menu d-flex flex-wrap" style="min-width: 9.5rem; width: 9.5rem; padding: 0.5rem"><a href="#" class="btn d-inline-block bg-primary-700 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-700 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-primary-500 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-500 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-primary-600 bg-primary-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-600 bg-primary-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-600 bg-primray-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-600 bg-primray-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-600 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-600 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-700 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-700 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-900 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-900 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-700 bg-primary-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-700 bg-primary-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-600 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-600 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-danger-900 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-danger-900 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-fusion-400 bg-fusion-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-fusion-400 bg-fusion-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-faded width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-faded" style="margin:1px;"></a></div>										</div>  <div class="dropdown-divider m-0"></div>
                                         </div></div>
                                     </div>
-                                    <div class="panel-container show" role="content">
-                                        <div class="panel-content border-faded border-left-0 border-right-0 border-top-0">
-                                            <div class="row no-gutters">
-                                                <div class="col-lg-7 col-xl-8">
-                                                    <div class="position-relative">
-                                                        <div id="updating-chart" style="height: 242px; padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;" width="966" height="302"></canvas><canvas class="flot-overlay" width="966" height="302" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;"></canvas></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-5 col-xl-4 pl-lg-3">
-                                                    <div class="d-flex mt-2">
-                                                        My Tasks
-                                                        <span class="d-inline-block ml-auto">130 / 500</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-3">
-                                                        <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex">
-                                                        Transfered
-                                                        <span class="d-inline-block ml-auto">440 TB</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-3">
-                                                        <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex">
-                                                        Bugs Squashed
-                                                        <span class="d-inline-block ml-auto">77%</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-3">
-                                                        <div class="progress-bar bg-info-400" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex">
-                                                        User Testing
-                                                        <span class="d-inline-block ml-auto">7 days</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-g">
-                                                        <div class="progress-bar bg-primary-300" role="progressbar" style="width: 84%;" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="row no-gutters">
-                                                        <div class="col-6 pr-1">
-                                                            <a href="#" class="btn btn-default btn-block waves-effect waves-themed">Generate PDF</a>
-                                                        </div>
-                                                        <div class="col-6 pl-1">
-                                                            <a href="#" class="btn btn-default btn-block waves-effect waves-themed">Report a Bug</a>
+                                    <div class="panel-container show">
+                                        <div class="panel-content">
+
+                                            
+                                            <div class="form-group row">
+                                                <div class="col-12">
+                                                    <div style="margin-top: 10px; !important" class="input-group">
+                                                        <input type="text" class="form-control" placeholder="Select date" id="datepicker-2">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text fs-xl">
+                                                                <i class="fal fa-calendar"></i>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="panel-content p-0">
-                                            <div class="row row-grid no-gutters">
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                                    <div class="px-3 py-2 d-flex align-items-center">
-                                                        <div class="js-easy-pie-chart color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="75" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
-                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">75</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="d-inline-block ml-2 text-muted">
-                                                            SERVER LOAD
-                                                            <i class="fal fa-caret-up color-danger-500 ml-1"></i>
-                                                        </span>
-                                                        <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#886ab5" sparkfillcolor="false" sparklinewidth="1" values="5,6,5,3,8,6,9,7,4,2"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
-                                                            <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge badge-success opacity-50 text-center p-1 width-6">97%</span>
-                                                                <span class="d-inline-block badge bg-fusion-300 opacity-50 text-center p-1 width-6 mt-1">44%</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                                    <div class="px-3 py-2 d-flex align-items-center">
-                                                        <div class="js-easy-pie-chart color-success-500 position-relative d-inline-flex align-items-center justify-content-center" data-percent="79" data-piesize="50" data-linewidth="5" data-linecap="butt">
-                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">79</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="d-inline-block ml-2 text-muted">
-                                                            DISK SPACE
-                                                            <i class="fal fa-caret-down color-success-500 ml-1"></i>
-                                                        </span>
-                                                        <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#1dc9b7" sparkfillcolor="false" sparklinewidth="1" values="5,9,7,3,5,2,5,3,9,6"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
-                                                            <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge badge-info opacity-50 text-center p-1 width-6">76%</span>
-                                                                <span class="d-inline-block badge bg-warning-300 opacity-50 text-center p-1 width-6 mt-1">3%</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                                    <div class="px-3 py-2 d-flex align-items-center">
-                                                        <div class="js-easy-pie-chart color-info-500 position-relative d-inline-flex align-items-center justify-content-center" data-percent="23" data-piesize="50" data-linewidth="5" data-linecap="butt">
-                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">23</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="d-inline-block ml-2 text-muted">
-                                                            DATA TTF
-                                                            <i class="fal fa-caret-up color-success-500 ml-1"></i>
-                                                        </span>
-                                                        <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#51adf6" sparkfillcolor="false" sparklinewidth="1" values="3,5,2,5,3,9,6,5,9,7"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
-                                                            <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge bg-fusion-500 opacity-50 text-center p-1 width-6">10GB</span>
-                                                                <span class="d-inline-block badge bg-fusion-300 opacity-50 text-center p-1 width-6 mt-1">10%</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                                    <div class="px-3 py-2 d-flex align-items-center">
-                                                        <div class="js-easy-pie-chart color-fusion-500 position-relative d-inline-flex align-items-center justify-content-center" data-percent="36" data-piesize="50" data-linewidth="5" data-linecap="butt">
-                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">36</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="d-inline-block ml-2 text-muted">
-                                                            TEMP.
-                                                            <i class="fal fa-caret-down color-success-500 ml-1"></i>
-                                                        </span>
-                                                        <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#fd3995" sparkfillcolor="false" sparklinewidth="1" values="5,3,9,6,5,9,7,3,5,2"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
-                                                            <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge badge-danger opacity-50 text-center p-1 width-6">124</span>
-                                                                <span class="d-inline-block badge bg-info-300 opacity-50 text-center p-1 width-6 mt-1">40F</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
+
+
+                                            <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                                                <thead class="bg-warning-200">
+                                                    <tr>
+                                                        <th>Fecha</th>
+                                                        <th>Hora</th>
+                                                        <th>Entrada/Salida</th>
+                                                        <th>Comentarios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="historialTable">
+                                                    <tr>
+                                                        <td>03-13-19</td>
+                                                        <td>10:00 AM</td>
+                                                        <td>Entrada</td>
+                                                        <td>Salí Tarde</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>04-10-19</td>
+                                                        <td>10:00 AM</td>
+                                                        <td>Salida Comida</td>
+                                                        <td>Recuperé el tiempo que salí tarde</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>05-14-20</td>
+                                                        <td>10:00 AM</td>
+                                                        <td>Salida Jornada</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>11-05-18</td>
+                                                        <td>10:00 AM</td>
+                                                        <td>Salida Jornada</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>01-16-20</td>
+                                                        <td>10:00 AM</td>
+                                                        <td>Salida Comida</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>07-14-18</td>
+                                                        <td>10:00 AM</td>
+                                                        <td>Salida Comida</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>08-30-18</td>
+                                                        <td>10:00 AM</td>
+                                                        <td>Salida Jornada</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>09-19-18</td>
+                                                        <td>10:00 AM</td>
+                                                        <td>Entrada</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>12-16-19</td>
+                                                        <td>10:00 AM</td>
+                                                        <td>Entrada</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>05-30-20</td>
+                                                        <td>10:00 AM</td>
+                                                        <td>Salida Jornada</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Fecha</th>
+                                                        <th>Hora</th>
+                                                        <th>Entrada/Salida</th>
+                                                        <td>Comentarios</td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <!-- datatable end -->
                                         </div>
                                     </div>
                                 </div>
@@ -253,13 +195,13 @@
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
                     <!-- modal shortcut -->
-                    <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true" style="display: none;">
+                    <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
                             <div class="modal-content">
                                 <div class="modal-body">
                                     <ul class="app-list w-auto h-auto p-0 text-left">
                                         <li>
-                                            <a href="#" class="app-list-item text-white border-0 m-0">
+                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
                                                 <div class="icon-stack">
                                                     <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
@@ -271,7 +213,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="app-list-item text-white border-0 m-0">
+                                            <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
                                                 <div class="icon-stack">
                                                     <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
@@ -283,7 +225,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="app-list-item text-white border-0 m-0">
+                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
                                                 <div class="icon-stack">
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
                                                     <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
@@ -313,7 +255,7 @@
                     <div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
                         <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
                             <span class="mr-2">
-                                <span class="rounded-circle profile-image d-block" style="background-image:url(&#39;img/demo/avatars/avatar-d.png&#39;); background-size: cover;"></span>
+                                <span class="rounded-circle profile-image d-block" style="background-image:url('img/avatar-d.png'); background-size: cover;"></span>
                             </span>
                             <div class="info-card-text">
                                 <a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white" data-toggle="dropdown" aria-expanded="false">
@@ -342,12 +284,12 @@
                                 <input type="text" class="form-control bg-white" id="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FriendSearch" data-listfilter="#js-msgr-listfilter">
                             </div>
                             <div class="flex-1 h-100 custom-scroll">
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="w-100" style="overflow: hidden; width: auto; height: 100%;">
-                                    <ul id="js-msgr-listfilter" class="list-unstyled m-0 js-list-filter">
+                                <div class="w-100">
+                                    <ul id="js-msgr-listfilter" class="list-unstyled m-0">
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="tracey chang online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-d.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-d.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -362,7 +304,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="oliver kopyuv online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-b.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-b.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -377,7 +319,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="dr john cook phd away">
                                                 <div class="d-table-cell align-middle status status-warning status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-e.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-e.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -392,7 +334,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-g.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-g.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -407,7 +349,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="sarah mcbrook online">
                                                 <div class="d-table-cell align-middle status status-success status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-h.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-h.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -422,7 +364,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
                                                 <div class="d-table-cell align-middle status status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-a.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-a.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -437,7 +379,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney busy">
                                                 <div class="d-table-cell align-middle status status-danger status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-j.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-j.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -452,7 +394,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
                                                 <div class="d-table-cell align-middle status status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-c.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-c.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -467,7 +409,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney inactive">
                                                 <div class="d-table-cell align-middle">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-m.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-m.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -481,7 +423,7 @@
                                         </li>
                                     </ul>
                                     <div class="filter-message js-filter-message"></div>
-                                </div><div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.6); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 4px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(250, 250, 250); opacity: 0.2; z-index: 90; right: 4px;"></div></div>
+                                </div>
                             </div>
                             <div>
                                 <a class="fs-xl d-flex align-items-center p-3">
@@ -494,7 +436,7 @@
                         <div class="msgr d-flex h-100 flex-column bg-white">
                             <!-- BEGIN custom-scroll -->
                             <div class="custom-scroll flex-1 h-100">
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div id="chat_container" class="w-100 p-4" style="overflow: hidden; width: auto; height: 100%;">
+                                <div id="chat_container" class="w-100 p-4">
                                     <!-- start .chat-segment -->
                                     <div class="chat-segment">
                                         <div class="time-stamp text-center mb-2 fw-400">
@@ -587,7 +529,7 @@
                                         </div>
                                     </div>
                                     <!--  end .chat-segment for timestamp -->
-                                </div><div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.6); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 4px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(250, 250, 250); opacity: 0.2; z-index: 90; right: 4px;"></div></div>
+                                </div>
                             </div>
                             <!-- END custom-scroll  -->
                             <!-- BEGIN msgr__chatinput -->
@@ -598,17 +540,17 @@
                                     </div>
                                 </div>
                                 <div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1 waves-effect waves-themed" data-toggle="tooltip" data-original-title="More options" data-placement="top">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1" data-toggle="tooltip" data-original-title="More options" data-placement="top">
                                         <i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
                                     </a>
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1 waves-effect waves-themed" data-toggle="tooltip" data-original-title="Attach files" data-placement="top">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Attach files" data-placement="top">
                                         <i class="fal fa-paperclip color-fusion-300"></i>
                                     </a>
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1 waves-effect waves-themed" data-toggle="tooltip" data-original-title="Insert photo" data-placement="top">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Insert photo" data-placement="top">
                                         <i class="fal fa-camera color-fusion-300"></i>
                                     </a>
                                     <div class="ml-auto">
-                                        <a href="javascript:void(0);" class="btn btn-info waves-effect waves-themed">Send</a>
+                                        <a href="javascript:void(0);" class="btn btn-info">Send</a>
                                     </div>
                                 </div>
                             </div>
@@ -620,7 +562,7 @@
             </div>
         </div> <!-- END Messenger -->
         <!-- BEGIN Page Settings -->
-        <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-right modal-md">
                 <div class="modal-content">
                     <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
@@ -780,16 +722,16 @@
                             <div class="list mt-1">
                                 <span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
                                 <div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
-                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text-sm" data-target="html">
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-sm" data-target="html">
                                         <input type="radio" name="changeFrontSize"> SM
                                     </label>
-                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text" data-target="html">
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text" data-target="html">
                                         <input type="radio" name="changeFrontSize" checked=""> MD
                                     </label>
-                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text-lg" data-target="html">
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-lg" data-target="html">
                                         <input type="radio" name="changeFrontSize"> LG
                                     </label>
-                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text-xl" data-target="html">
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-xl" data-target="html">
                                         <input type="radio" name="changeFrontSize"> XL
                                     </label>
                                 </div>
@@ -807,30 +749,30 @@
                             </div>
                             <div class="expanded theme-colors pl-5 pr-3">
                                 <ul class="m-0">
-                                    <li><a href="#" id="myapp-0" data-action="theme-update" data-themesave="" data-theme="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wisteria (base css)"></a></li>
-                                    <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tapestry"></a></li>
-                                    <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Atlantis"></a></li>
-                                    <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Indigo"></a></li>
-                                    <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dodger Blue"></a></li>
-                                    <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tradewind"></a></li>
-                                    <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cranberry"></a></li>
-                                    <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Oslo Gray"></a></li>
-                                    <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Chetwode Blue"></a></li>
-                                    <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Apricot"></a></li>
-                                    <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Blue Smoke"></a></li>
-                                    <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Green Smoke"></a></li>
-                                    <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wild Blue Yonder"></a></li>
-                                    <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Emerald"></a></li>
+                                    <li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme="" data-toggle="tooltip" data-placement="top" title="Wisteria (base css)" data-original-title="Wisteria (base css)"></a></li>
+                                    <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
+                                    <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
+                                    <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
+                                    <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a></li>
+                                    <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
+                                    <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
+                                    <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+                                    <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="Chetwode Blue" data-original-title="Chetwode Blue"></a></li>
+                                    <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
+                                    <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a></li>
+                                    <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a></li>
+                                    <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="Wild Blue Yonder" data-original-title="Wild Blue Yonder"></a></li>
+                                    <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
                                 </ul>
                             </div>
                             <hr class="mb-0 mt-4">
                             <div class="pl-5 pr-3 py-3 bg-faded">
                                 <div class="row no-gutters">
                                     <div class="col-6 pr-1">
-                                        <a href="#" class="btn btn-outline-danger fw-500 btn-block waves-effect waves-themed" data-action="app-reset">Reset Settings</a>
+                                        <a href="#" class="btn btn-outline-danger fw-500 btn-block" data-action="app-reset">Reset Settings</a>
                                     </div>
                                     <div class="col-6 pl-1">
-                                        <a href="#" class="btn btn-danger fw-500 btn-block waves-effect waves-themed" data-action="factory-reset">Factory Reset</a>
+                                        <a href="#" class="btn btn-danger fw-500 btn-block" data-action="factory-reset">Factory Reset</a>
                                     </div>
                                 </div>
                             </div>
@@ -840,552 +782,91 @@
                 </div>
             </div>
         </div> <!-- END Page Settings -->
-
         
         <script src="js/vendors.bundle.js"></script>
         <script src="js/app.bundle.js"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
-     
-        
-        <script>
-            $(document).ready(function()
-            {
-
-                $('#js-page-content').smartPanel(); 
-            });
-        </script>
-     
-        <script src="js/sparkline.bundle.js"></script>
+    
         <script src="js/easypiechart.bundle.js"></script>
-        <script src="js/flot.bundle.js"></script>
-        <script src="js/jqvmap.bundle.js"></script>
-
-        <!-- Panel advanced functions
-        <script>
-            //Panel advanced functions
-            //https://www.gotbootstrap.com/themes/smartadmin/4.0.1/icons_fontawesome_light.html
-
-            console.log(initApp);
-
-            initApp.playSound("media/sound", "messagebox");
-
-            $("#mytheme").attr("href","css/themes/cust-theme-8.css");
-
-            //toastr["success"]("sdf", "sdfsf")
-
-            //tablas dinámicas
-
-
-        </script>
-        -->
+        <script src="js/flot.bundle.js"></script>        
+        
+        <script src="js/peity.bundle.js"></script>
+        <script src="js/datatables.bundle.js"></script>
+        <script src="js/moment.js"></script>
+        <script src="js/datepicker.js"></script>
 
         <script>
+
             $(document).ready(function()
             {
 
-
-                //
-                //
-                var dataSetPie = [
+                
+                /* init datatables */
+               var table = $('#dt-basic-example').dataTable(
                 {
-                    label: "Asia",
-                    data: 4119630000,
-                    color: myapp_get_color.primary_500
-                },
-                {
-                    label: "Latin America",
-                    data: 590950000,
-                    color: myapp_get_color.info_500
-                },
-                {
-                    label: "Africa",
-                    data: 1012960000,
-                    color: myapp_get_color.warning_500
-                },
-                {
-                    label: "Oceania",
-                    data: 95100000,
-                    color: myapp_get_color.danger_500
-                },
-                {
-                    label: "Europe",
-                    data: 727080000,
-                    color: myapp_get_color.success_500
-                },
-                {
-                    label: "North America",
-                    data: 344120000,
-                    color: myapp_get_color.fusion_400
-                }];
-
-
-                $.plot($("#flotPie"), dataSetPie,
-                {
-                    series:
-                    {
-                        pie:
+                    responsive: true,
+                    dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421" ] ],
+                    buttons: [
                         {
-                            innerRadius: 0.5,
-                            show: true,
-                            radius: 1,
-                            label:
-                            {
-                                show: true,
-                                radius: 2 / 3,
-                                threshold: 0.1
-                            }
-                        }
-                    },
-                    legend:
-                    {
-                        show: false
-                    }
-                });
-
-
-                $.plot('#flotBar1', [
-                {
-                    data: [
-                        [1, 0],
-                        [2, 0],
-                        [3, 0],
-                        [4, 1],
-                        [5, 3],
-                        [6, 3],
-                        [7, 10],
-                        [8, 11],
-                        [9, 10],
-                        [10, 9],
-                        [11, 12],
-                        [12, 8],
-                        [13, 10],
-                        [14, 6],
-                        [15, 3]
-                    ],
-                    bars:
-                    {
-                        show: true,
-                        lineWidth: 0,
-                        fillColor: myapp_get_color.fusion_50,
-                        barWidth: .3,
-                        order: 'left'
-                    }
-                },
-                {
-                    data: [
-                        [1, 0],
-                        [2, 0],
-                        [3, 1],
-                        [4, 2],
-                        [5, 2],
-                        [6, 5],
-                        [7, 8],
-                        [8, 12],
-                        [9, 10],
-                        [10, 11],
-                        [11, 3]
-                    ],
-                    bars:
-                    {
-                        show: true,
-                        lineWidth: 0,
-                        fillColor: myapp_get_color.success_500,
-                        barWidth: .3,
-                        align: 'right'
-                    }
-                }],
-                {
-                    grid:
-                    {
-                        borderWidth: 0,
-                    },
-                    yaxis:
-                    {
-                        min: 0,
-                        max: 15,
-                        tickColor: '#F0F0F0',
-                        ticks: [
-                            [0, ''],
-                            [5, '$5000'],
-                            [10, '$25000'],
-                            [15, '$45000']
-                        ],
-                        font:
-                        {
-                            color: '#444',
-                            size: 10
-                        }
-                    },
-                    xaxis:
-                    {
-                        mode: 'categories',
-                        tickColor: '#F0F0F0',
-                        ticks: [
-                            [0, '3am'],
-                            [1, '4am'],
-                            [2, '5am'],
-                            [3, '6am'],
-                            [4, '7am'],
-                            [5, '8am'],
-                            [6, '9am'],
-                            [7, '10am'],
-                            [8, '11am'],
-                            [9, '12nn'],
-                            [10, '1pm'],
-                            [11, '2pm'],
-                            [12, '3pm'],
-                            [13, '4pm'],
-                            [14, '5pm']
-                        ],
-                        font:
-                        {
-                            color: '#999',
-                            size: 9
-                        }
-                    }
-                });
-
-
-                /*
-                 * VECTOR MAP
-                 */
-
-                 var data_array = {
-                    "af": "16.63",
-                    "al": "0",
-                    "dz": "158.97",
-                    "ao": "85.81",
-                    "ag": "1.1",
-                    "ar": "351.02",
-                    "am": "8.83",
-                    "au": "1219.72",
-                    "at": "366.26",
-                    "az": "52.17",
-                    "bs": "7.54",
-                    "bh": "21.73",
-                    "bd": "105.4",
-                    "bb": "3.96",
-                    "by": "52.89",
-                    "be": "461.33",
-                    "bz": "1.43",
-                    "bj": "6.49",
-                    "bt": "1.4",
-                    "bo": "19.18",
-                    "ba": "16.2",
-                    "bw": "12.5",
-                    "br": "2023.53",
-                    "bn": "11.96",
-                    "bg": "44.84",
-                    "bf": "8.67",
-                    "bi": "1.47",
-                    "kh": "11.36",
-                    "cm": "21.88",
-                    "ca": "1563.66",
-                    "cv": "1.57",
-                    "cf": "2.11",
-                    "td": "7.59",
-                    "cl": "199.18",
-                    "cn": "5745.13",
-                    "co": "283.11",
-                    "km": "0.56",
-                    "cd": "12.6",
-                    "cg": "11.88",
-                    "cr": "35.02",
-                    "ci": "22.38",
-                    "hr": "59.92",
-                    "cy": "22.75",
-                    "cz": "195.23",
-                    "dk": "304.56",
-                    "dj": "1.14",
-                    "dm": "0.38",
-                    "do": "50.87",
-                    "ec": "61.49",
-                    "eg": "216.83",
-                    "sv": "21.8",
-                    "gq": "14.55",
-                    "er": "2.25",
-                    "ee": "19.22",
-                    "et": "30.94",
-                    "fj": "3.15",
-                    "fi": "231.98",
-                    "fr": "2555.44",
-                    "ga": "12.56",
-                    "gm": "1.04",
-                    "ge": "11.23",
-                    "de": "3305.9",
-                    "gh": "18.06",
-                    "gr": "305.01",
-                    "gd": "0.65",
-                    "gt": "40.77",
-                    "gn": "4.34",
-                    "gw": "0.83",
-                    "gy": "2.2",
-                    "ht": "6.5",
-                    "hn": "15.34",
-                    "hk": "226.49",
-                    "hu": "132.28",
-                    "is": "0",
-                    "in": "1430.02",
-                    "id": "695.06",
-                    "ir": "337.9",
-                    "iq": "84.14",
-                    "ie": "204.14",
-                    "il": "201.25",
-                    "it": "2036.69",
-                    "jm": "13.74",
-                    "jp": "5390.9",
-                    "jo": "27.13",
-                    "kz": "129.76",
-                    "ke": "32.42",
-                    "ki": "0.15",
-                    "kw": "117.32",
-                    "kg": "4.44",
-                    "la": "6.34",
-                    "lv": "23.39",
-                    "lb": "39.15",
-                    "ls": "1.8",
-                    "lr": "0.98",
-                    "lt": "35.73",
-                    "lu": "52.43",
-                    "mk": "9.58",
-                    "mg": "8.33",
-                    "mw": "5.04",
-                    "my": "218.95",
-                    "mv": "1.43",
-                    "ml": "9.08",
-                    "mt": "7.8",
-                    "mr": "3.49",
-                    "mu": "9.43",
-                    "mx": "1004.04",
-                    "md": "5.36",
-                    "rw": "5.69",
-                    "ws": "0.55",
-                    "st": "0.19",
-                    "sa": "434.44",
-                    "sn": "12.66",
-                    "rs": "38.92",
-                    "sc": "0.92",
-                    "sl": "1.9",
-                    "sg": "217.38",
-                    "sk": "86.26",
-                    "si": "46.44",
-                    "sb": "0.67",
-                    "za": "354.41",
-                    "es": "1374.78",
-                    "lk": "48.24",
-                    "kn": "0.56",
-                    "lc": "1",
-                    "vc": "0.58",
-                    "sd": "65.93",
-                    "sr": "3.3",
-                    "sz": "3.17",
-                    "se": "444.59",
-                    "ch": "522.44",
-                    "sy": "59.63",
-                    "tw": "426.98",
-                    "tj": "5.58",
-                    "tz": "22.43",
-                    "th": "312.61",
-                    "tl": "0.62",
-                    "tg": "3.07",
-                    "to": "0.3",
-                    "tt": "21.2",
-                    "tn": "43.86",
-                    "tr": "729.05",
-                    "tm": "0",
-                    "ug": "17.12",
-                    "ua": "136.56",
-                    "ae": "239.65",
-                    "gb": "2258.57",
-                    "us": "14624.18",
-                    "uy": "40.71",
-                    "uz": "37.72",
-                    "vu": "0.72",
-                    "ve": "285.21",
-                    "vn": "101.99",
-                    "ye": "30.02",
-                    "zm": "15.69",
-                    "zw": "0"
-                };
-
-                $('#vector-map').vectorMap(
-                {
-                    map: 'world_en',
-                    backgroundColor: 'transparent',
-                    color: myapp_get_color.warning_50,
-                    borderOpacity: 0.5,
-                    borderWidth: 1,
-                    hoverColor: myapp_get_color.success_300,
-                    hoverOpacity: null,
-                    selectedColor: myapp_get_color.success_500,
-                    selectedRegions: ['US'],
-                    enableZoom: true,
-                    showTooltip: true,
-                    scaleColors: [myapp_get_color.primary_400, myapp_get_color.primary_50],
-                    values: data_array,
-                    normalizeFunction: 'polynomial',
-                    onRegionClick: function(element, code, region)
-                    {
-                        /*var message = 'You clicked "'
-						+ region
-						+ '" which has the code: '
-						+ code.toLowerCase();
-			 
-					console.log(message);*/
-
-                        var randomNumber = Math.floor(Math.random() * 10000000);
-                        var arrow;
-
-                        if (Math.random() >= 0.5 == true)
-                        {
-                            arrow = '<div class="ml-2 d-inline-flex"><i class="fal fa-caret-up text-success fs-xs"></i></div>'
-                        }
-                        else
-                        {
-                            arrow = '<div class="ml-2 d-inline-flex"><i class="fal fa-caret-down text-danger fs-xs"></i></div>'
-                        }
-
-                        $('.js-jqvmap-flag').attr('src', 'https://lipis.github.io/flag-icon-css/flags/4x3/' + code.toLowerCase() + '.svg');
-                        $('.js-jqvmap-country').html(region + ' - ' + '$' + randomNumber.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + arrow);
-                    }
-                });
-
-
-
-
-                /* TAB 1: UPDATING CHART */
-                var data = [],
-                    totalPoints = 200;
-                var getRandomData = function()
-                {
-                    if (data.length > 0)
-                        data = data.slice(1);
-
-                    // do a random walk
-                    while (data.length < totalPoints)
-                    {
-                        var prev = data.length > 0 ? data[data.length - 1] : 50;
-                        var y = prev + Math.random() * 10 - 5;
-                        if (y < 0)
-                            y = 0;
-                        if (y > 100)
-                            y = 100;
-                        data.push(y);
-                    }
-
-                    // zip the generated y values with the x values
-                    var res = [];
-                    for (var i = 0; i < data.length; ++i)
-                        res.push([i, data[i]])
-                    return res;
-                }
-                // setup control widget
-                var updateInterval = 1500;
-                $("#updating-chart").val(updateInterval).change(function()
-                {
-
-                    var v = $(this).val();
-                    if (v && !isNaN(+v))
-                    {
-                        updateInterval = +v;
-                        $(this).val("" + updateInterval);
-                    }
-
-                });
-                // setup plot
-                var options = {
-                    colors: [myapp_get_color.primary_700],
-                    series:
-                    {
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 0.5,
-                            fill: 0.9,
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0.6
-                                },
-                                {
-                                    opacity: 0
-                                }]
-                            },
+                            extend: 'colvis',
+                            text: 'Column Visibility',
+                            titleAttr: 'Col visibility',
+                            className: 'btn-outline-default'
                         },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'print',
+                            text: '<i class="fal fa-print"></i>',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-default'
+                        }
 
-                        shadowSize: 0 // Drawing is faster without shadows
-                    },
-                    grid:
+                    ]
+
+                });
+
+                $('#datepicker-2').daterangepicker({
+                    timePicker: true,
+                    startDate: moment().startOf('hour'),
+                    endDate: moment().startOf('hour').add(32, 'hour'),
+                    locale:
                     {
-                        borderColor: '#F0F0F0',
-                        borderWidth: 1,
-                        labelMargin: 5
-                    },
-                    xaxis:
-                    {
-                        color: '#F0F0F0',
-                        font:
-                        {
-                            size: 10,
-                            color: '#999'
-                        }
-                    },
-                    yaxis:
-                    {
-                        min: 0,
-                        max: 100,
-                        color: '#F0F0F0',
-                        font:
-                        {
-                            size: 10,
-                            color: '#999'
-                        }
-                    }
-                };
-                var plot = $.plot($("#updating-chart"), [getRandomData()], options);
-                /* live switch */
-                $('input[type="checkbox"]#start_interval').click(function()
-                {
-                    if ($(this).prop('checked'))
-                    {
-                        $on = true;
-                        updateInterval = 1500;
-                        update();
-                    }
-                    else
-                    {
-                        clearInterval(updateInterval);
-                        $on = false;
+                        format: 'YY/MM/DD hh:mm A'
                     }
                 });
-                var update = function()
-                {
-                    if ($on == true)
-                    {
-                        plot.setData([getRandomData()]);
-                        plot.draw();
-                        setTimeout(update, updateInterval);
 
-                    }
-                    else
-                    {
-                        clearInterval(updateInterval)
-                    }
 
-                }
+                //array
+                //https://datatables.net/examples/ajax/simple.html
+                //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ] ],
+
+                
+
+
             });
 
         </script>
-
-        
 
 
         <!-- Toastr-->
         <script src="{{ url('js/toastr.js?v='.cache("js_version_number").'') }}"></script>
 
         <!--Angular-->
-
+        
         <script src="{{ url('js/angular.min.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/sanitize.min.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/module.js?v='.cache("js_version_number").'') }}"></script>
@@ -1395,5 +876,14 @@
         <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
 
         
+        
+        <script>
+            $(document).ready(function()
+            {
+
+                $('#js-page-content').smartPanel(); 
+            });
+        </script>
+
 
     @stop

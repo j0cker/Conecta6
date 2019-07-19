@@ -1,44 +1,40 @@
-@extends('system.master')
+<?php $__env->startSection('lang'); ?><?php echo e($lang); ?><?php $__env->stopSection(); ?>
 
-{{-- lang html tag --}}
 
-@section('lang'){{$lang}}@stop
 
-{{-- Title Head --}}
+<?php $__env->startSection('title'); ?><?php echo e($title); ?><?php $__env->stopSection(); ?>
 
-@section('title'){{$title}}@stop
 
-{{-- Metatag Head --}}
 
-@section('Content-Type','text/html; charset=UTF-8')
-@section('x-ua-compatible','ie=edge')
-@section('keywords','')
-@section('description','')
-@section('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1')
-@section('idiomaLang','es-mx')
+<?php $__env->startSection('Content-Type','text/html; charset=UTF-8'); ?>
+<?php $__env->startSection('x-ua-compatible','ie=edge'); ?>
+<?php $__env->startSection('keywords',''); ?>
+<?php $__env->startSection('description',''); ?>
+<?php $__env->startSection('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1'); ?>
+<?php $__env->startSection('idiomaLang','es-mx'); ?>
 
-{{-- Menu --}}
+
 
 <!--Menu Transparente
-@section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
+<?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-@section('menuActive','inicio')
+<?php $__env->startSection('menuActive','inicio'); ?>
 
-@section('raiz1', @Config::get('app.name'))
-@section('raiz1Url', '/inicio')
-@section('raiz2','Trabajadores')
-@section('raiz2Url','/inicio')
-@section('raiz3','Inicio')
-@section('raiz3Url','/inicio')
+<?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
+<?php $__env->startSection('raiz1Url', '/inicio'); ?>
+<?php $__env->startSection('raiz2','Trabajadores'); ?>
+<?php $__env->startSection('raiz2Url','/inicio'); ?>
+<?php $__env->startSection('raiz3','Inicio'); ?>
+<?php $__env->startSection('raiz3Url','/inicio'); ?>
 
 
-{{-- Angular Controller --}}
 
-@section('controller','inicio')
 
-{{-- Body --}}
+<?php $__env->startSection('controller','inicio'); ?>
 
-@section('content')
+
+
+<?php $__env->startSection('content'); ?>
 
 
 <div class="page-wrapper">
@@ -46,7 +42,7 @@
                 
                 <!-- BEGIN Left Aside -->
                         
-                        @include('system.menu')
+                        <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         
                 <!-- END Left Aside -->
 
@@ -54,14 +50,14 @@
                     <!-- BEGIN Page Header -->
                     
                         
-                    @include('system.menu2')
+                    <?php echo $__env->make('system.menu2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                     
                     <!-- END Page Header -->
                     <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
                     <main id="js-page-content" role="main" class="page-content">
                     
-                        @include('system.menu3')
+                        <?php echo $__env->make('system.menu3', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                         <div class="subheader">
                             <h1 class="subheader-title">
@@ -248,7 +244,7 @@
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
                     
-                    @include('system.footer2')
+                    <?php echo $__env->make('system.footer2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
@@ -304,7 +300,7 @@
         <!-- END Page Wrapper -->
         <!-- BEGIN Quick Menu -->
         <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-        @include('system.toolbar')
+        <?php echo $__env->make('system.toolbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <!-- END Quick Menu -->
         <!-- BEGIN Messenger -->
         <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1382,18 +1378,20 @@
 
 
         <!-- Toastr-->
-        <script src="{{ url('js/toastr.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <!--Angular-->
 
-        <script src="{{ url('js/angular.min.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/sanitize.min.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/module.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/controllers.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/angular.min.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/sanitize.min.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/module.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/controllers.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
 
-        <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
 
         
 
-    @stop
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('system.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

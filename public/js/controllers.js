@@ -138,6 +138,15 @@
 
   });//fin controller introduction
 
+  app.controller('historial', function($scope, functions, $window) {
+
+    console.log("[historial]");
+
+    functions.loading();
+
+
+  });//fin controller introduction
+
   return;
 
 }).call(this);

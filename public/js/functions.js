@@ -59,6 +59,23 @@ function normalize(str){
   return str.replace(/[^a-zA-Z 0-9.]+/g,' ');
 }
 
+// funcion para calcular la hora local en una ciudad dada la diferencia horaria.
+function calcTime(city, offset) {
+  // creamos el objeto Date (la selecciona de la máquina cliente)
+  d = new Date();
+
+  // lo convierte  a milisegundos
+  // añade la dirferencia horaria
+  // recupera la hora en formato UTC
+  utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+
+  // crea un nuevo objeto Date usando la diferencia dada.
+  nd = new Date(utc + (3600000*offset));
+
+  // devuelve la hora como string.
+  return nd;
+}
+
 function quitarAcentos(str){
   for (var i=0;i<str.length;i++){
     //Sustituye "ÃƒÂ¡ ÃƒÂ© ÃƒÂ­ ÃƒÂ³ ÃƒÂº"

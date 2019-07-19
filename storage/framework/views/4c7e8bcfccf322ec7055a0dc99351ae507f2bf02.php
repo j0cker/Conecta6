@@ -1,33 +1,31 @@
-@extends('sign.master')
+  
 
-  {{-- lang html tag --}}
+  <?php $__env->startSection('lang'); ?><?php echo e($lang); ?><?php $__env->stopSection(); ?>
 
-  @section('lang'){{$lang}}@stop
+  
 
-  {{-- Title Head --}}
+  <?php $__env->startSection('title'); ?><?php echo e($title); ?><?php $__env->stopSection(); ?>
 
-  @section('title'){{$title}}@stop
+  
 
-  {{-- Metatag Head --}}
-
-  @section('Content-Type','text/html; charset=UTF-8')
-  @section('x-ua-compatible','ie=edge')
-  @section('keywords','')
-  @section('description','')
-  @section('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1')
-  @section('idiomaLang','es-mx')
+  <?php $__env->startSection('Content-Type','text/html; charset=UTF-8'); ?>
+  <?php $__env->startSection('x-ua-compatible','ie=edge'); ?>
+  <?php $__env->startSection('keywords',''); ?>
+  <?php $__env->startSection('description',''); ?>
+  <?php $__env->startSection('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1'); ?>
+  <?php $__env->startSection('idiomaLang','es-mx'); ?>
 
   <!--Menu Transparente
-  @section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
+  <?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
   -->
 
-  {{-- Angular Controller --}}
+  
 
-  @section('controller','signin')
+  <?php $__env->startSection('controller','signin'); ?>
 
-  {{-- Body --}}
+  
 
-  @section('content')
+  <?php $__env->startSection('content'); ?>
 
 
     <!--Main layout-->
@@ -94,4 +92,6 @@
     </main>
     <!--Main layout-->
 
-    @stop
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('sign.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

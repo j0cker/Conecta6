@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="@yield('lang')" ng-app="myApp">
+<html lang="<?php echo $__env->yieldContent('lang'); ?>" ng-app="myApp">
         
-        <title>@yield('title')</title>
+        <title><?php echo $__env->yieldContent('title'); ?></title>
 
 
-        <meta http-equiv="Content-Type" content="@yield('Content-Type')">
-        <meta http-equiv="x-ua-compatible" content="@yield('x-ua-compatible')">
-        <meta name="keywords" content="@yield('keywords')"/>
-        <meta name="description" content="@yield('description')">
-        <meta name="viewport" content="@yield('viewport')">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta http-equiv="Content-Type" content="<?php echo $__env->yieldContent('Content-Type'); ?>">
+        <meta http-equiv="x-ua-compatible" content="<?php echo $__env->yieldContent('x-ua-compatible'); ?>">
+        <meta name="keywords" content="<?php echo $__env->yieldContent('keywords'); ?>"/>
+        <meta name="description" content="<?php echo $__env->yieldContent('description'); ?>">
+        <meta name="viewport" content="<?php echo $__env->yieldContent('viewport'); ?>">
+        <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
         <meta name="author" content="Manlio Emiliano Terán Ramos">
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,27 +20,27 @@
         <meta name="msapplication-tap-highlight" content="no">
 
         <!-- base css -->
-        <link rel="stylesheet" media="screen, print" href="{{ url('css/vendors.bundle.css?v='.cache("js_version_number").'') }}">
-        <link rel="stylesheet" media="screen, print" href="{{ url('css/app.bundle.css?v='.cache("js_version_number").'') }}">
+        <link rel="stylesheet" media="screen, print" href="<?php echo e(url('css/vendors.bundle.css?v='.cache("js_version_number").'')); ?>">
+        <link rel="stylesheet" media="screen, print" href="<?php echo e(url('css/app.bundle.css?v='.cache("js_version_number").'')); ?>">
 
         <!-- Place favicon.ico in the root directory -->
         <link rel="apple-touch-icon" sizes="180x180" href="https://www.gotbootstrap.com/themes/smartadmin/4.0.1/img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="https://www.gotbootstrap.com/themes/smartadmin/4.0.1/img/favicon/favicon-32x32.png">
-        <link rel="shortcut icon" href="{{ url('img/icon.ico?v='.cache("js_version_number").'') }}" />
+        <link rel="shortcut icon" href="<?php echo e(url('img/icon.ico?v='.cache("js_version_number").'')); ?>" />
 
-        <link rel="stylesheet" media="screen, print" href="{{ url('css/datatables.bundle.css?v='.cache("js_version_number").'') }}">
-        <link rel="stylesheet" media="screen, print" href="{{ url('fonts/font-awesome-5-pro.css?v='.cache("js_version_number").'') }}">
+        <link rel="stylesheet" media="screen, print" href="<?php echo e(url('css/datatables.bundle.css?v='.cache("js_version_number").'')); ?>">
+        <link rel="stylesheet" media="screen, print" href="<?php echo e(url('fonts/font-awesome-5-pro.css?v='.cache("js_version_number").'')); ?>">
 
-        <link rel="stylesheet" media="screen, print" href="{{ url('css/reactions.css?v='.cache("js_version_number").'') }}">
-        <link rel="stylesheet" media="screen, print" href="{{ url('css/fullcalendar.bundle.css?v='.cache("js_version_number").'') }}">
-        <link rel="stylesheet" media="screen, print" href="{{ url('css/jqvmap.bundle.css?v='.cache("js_version_number").'') }}">
-        <link rel="stylesheet" href="{{ url('css/loader.css?v='.cache("js_version_number").'') }}">
-        <link rel="stylesheet" href="{{ url('css/clock.css?v='.cache("js_version_number").'') }}">
-        <link href="{{ url('css/selects.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
-        <link href="{{ url('css/datepicker.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
+        <link rel="stylesheet" media="screen, print" href="<?php echo e(url('css/reactions.css?v='.cache("js_version_number").'')); ?>">
+        <link rel="stylesheet" media="screen, print" href="<?php echo e(url('css/fullcalendar.bundle.css?v='.cache("js_version_number").'')); ?>">
+        <link rel="stylesheet" media="screen, print" href="<?php echo e(url('css/jqvmap.bundle.css?v='.cache("js_version_number").'')); ?>">
+        <link rel="stylesheet" href="<?php echo e(url('css/loader.css?v='.cache("js_version_number").'')); ?>">
+        <link rel="stylesheet" href="<?php echo e(url('css/clock.css?v='.cache("js_version_number").'')); ?>">
+        <link href="<?php echo e(url('css/selects.css?v='.cache("js_version_number").'')); ?>" rel="stylesheet" />
+        <link href="<?php echo e(url('css/datepicker.css?v='.cache("js_version_number").'')); ?>" rel="stylesheet" />
 
         <!-- Toastr -->
-        <link rel="stylesheet" href="{{ url('css/toastr.css?v='.cache("js_version_number").'') }}">
+        <link rel="stylesheet" href="<?php echo e(url('css/toastr.css?v='.cache("js_version_number").'')); ?>">
 
         <style>
             :root {
@@ -64,7 +64,7 @@
 
 
     </head>
-    <body class="mod-bg-1 " ng-controller="@yield('controller')">
+    <body class="mod-bg-1 " ng-controller="<?php echo $__env->yieldContent('controller'); ?>">
 
         <!-- .page-loader-->
         <div id="loader-wrapper">

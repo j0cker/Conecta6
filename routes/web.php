@@ -24,5 +24,6 @@ Route::get('/marketing', 'APITrabajadores@Marketing');
 Route::get('/introduction', 'APITrabajadores@Introduction');
 Route::get('/registros', 'APITrabajadores@Registros');
 Route::get('/perfil', 'APITrabajadores@Perfil');
+Route::get('/historial', 'APITrabajadores@Historial');
 
 

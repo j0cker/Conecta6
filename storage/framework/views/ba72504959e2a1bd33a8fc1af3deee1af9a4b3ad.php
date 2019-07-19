@@ -1,44 +1,40 @@
-@extends('system.master')
+<?php $__env->startSection('lang'); ?><?php echo e($lang); ?><?php $__env->stopSection(); ?>
 
-{{-- lang html tag --}}
 
-@section('lang'){{$lang}}@stop
 
-{{-- Title Head --}}
+<?php $__env->startSection('title'); ?><?php echo e($title); ?><?php $__env->stopSection(); ?>
 
-@section('title'){{$title}}@stop
 
-{{-- Metatag Head --}}
 
-@section('Content-Type','text/html; charset=UTF-8')
-@section('x-ua-compatible','ie=edge')
-@section('keywords','')
-@section('description','')
-@section('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1')
-@section('idiomaLang','es-mx')
+<?php $__env->startSection('Content-Type','text/html; charset=UTF-8'); ?>
+<?php $__env->startSection('x-ua-compatible','ie=edge'); ?>
+<?php $__env->startSection('keywords',''); ?>
+<?php $__env->startSection('description',''); ?>
+<?php $__env->startSection('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1'); ?>
+<?php $__env->startSection('idiomaLang','es-mx'); ?>
 
-{{-- Menu --}}
+
 
 <!--Menu Transparente
-@section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
+<?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-@section('menuActive','inicio')
+<?php $__env->startSection('menuActive','perfil'); ?>
 
-@section('raiz1', @Config::get('app.name'))
-@section('raiz1Url', '/inicio')
-@section('raiz2','Trabajadores')
-@section('raiz2Url','/inicio')
-@section('raiz3','Inicio')
-@section('raiz3Url','/inicio')
+<?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
+<?php $__env->startSection('raiz1Url', '/inicio'); ?>
+<?php $__env->startSection('raiz2','Trabajadores'); ?>
+<?php $__env->startSection('raiz2Url','/inicio'); ?>
+<?php $__env->startSection('raiz3','Perfil'); ?>
+<?php $__env->startSection('raiz3Url','/perfil'); ?>
 
 
-{{-- Angular Controller --}}
 
-@section('controller','inicio')
 
-{{-- Body --}}
+<?php $__env->startSection('controller','perfil'); ?>
 
-@section('content')
+
+
+<?php $__env->startSection('content'); ?>
 
 
 <div class="page-wrapper">
@@ -46,7 +42,7 @@
                 
                 <!-- BEGIN Left Aside -->
                         
-                        @include('system.menu')
+                        <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         
                 <!-- END Left Aside -->
 
@@ -54,50 +50,30 @@
                     <!-- BEGIN Page Header -->
                     
                         
-                    @include('system.menu2')
+                    <?php echo $__env->make('system.menu2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                     
                     <!-- END Page Header -->
                     <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
                     <main id="js-page-content" role="main" class="page-content">
                     
-                        @include('system.menu3')
+                        <?php echo $__env->make('system.menu3', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-chart-area"></i> Inicio <span class="fw-300">Dashboard</span>
+                                <i class="subheader-icon fal fa-user"></i> Perfil
                                 <small>
                                 </small>
                             </h1>
-                            <div class="subheader-block d-lg-flex align-items-center">
-                                <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                    <span class="fw-300 fs-xs d-block opacity-50">
-                                        <small>EXPENSES</small>
-                                    </span>
-                                    <span class="fw-500 fs-xl d-block color-primary-500">
-                                        $47,000
-                                    </span>
-                                </div>
-                                <span class="sparklines hidden-lg-down" sparktype="bar" sparkbarcolor="#886ab5" sparkheight="32px" sparkbarwidth="5px" values="3,4,3,6,7,3,3,6,2,6,4"><canvas width="85" height="32" style="display: inline-block; width: 85px; height: 32px; vertical-align: top;"></canvas></span>
-                            </div>
-                            <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
-                                <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                    <span class="fw-300 fs-xs d-block opacity-50">
-                                        <small>MY PROFITS</small>
-                                    </span>
-                                    <span class="fw-500 fs-xl d-block color-danger-500">
-                                        $38,500
-                                    </span>
-                                </div>
-                                <span class="sparklines hidden-lg-down" sparktype="bar" sparkbarcolor="#fe6bb0" sparkheight="32px" sparkbarwidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"><canvas width="85" height="32" style="display: inline-block; width: 85px; height: 32px; vertical-align: top;"></canvas></span>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 sortable-grid ui-sortable">
-                                <div id="panel-1" class="panel panel-locked panel-sortable" role="widget">
-                                    <div class="panel-hdr" role="heading">
+                                
+                                <div id="panel-1" class="panel panel-locked panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
+
+                                    <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Estadísticas de tu Trabajo
+                                            Perfil
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -110,131 +86,369 @@
                                     <div class="panel-container show" role="content">
                                         <div class="panel-content border-faded border-left-0 border-right-0 border-top-0">
                                             <div class="row no-gutters">
-                                                <div class="col-lg-7 col-xl-8">
+                                                <div class="col-lg-12 col-xl-12">
                                                     <div class="position-relative">
-                                                        <div id="updating-chart" style="height: 242px; padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;" width="966" height="302"></canvas><canvas class="flot-overlay" width="966" height="302" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;"></canvas></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-5 col-xl-4 pl-lg-3">
-                                                    <div class="d-flex mt-2">
-                                                        My Tasks
-                                                        <span class="d-inline-block ml-auto">130 / 500</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-3">
-                                                        <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex">
-                                                        Transfered
-                                                        <span class="d-inline-block ml-auto">440 TB</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-3">
-                                                        <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex">
-                                                        Bugs Squashed
-                                                        <span class="d-inline-block ml-auto">77%</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-3">
-                                                        <div class="progress-bar bg-info-400" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex">
-                                                        User Testing
-                                                        <span class="d-inline-block ml-auto">7 days</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-g">
-                                                        <div class="progress-bar bg-primary-300" role="progressbar" style="width: 84%;" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="row no-gutters">
-                                                        <div class="col-6 pr-1">
-                                                            <a href="#" class="btn btn-default btn-block waves-effect waves-themed">Generate PDF</a>
+
+                                                        <div style="margin-top: 50px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div class="col-md-4 text-center">
+                                                                
+                                                                    <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com">
+                                                                        <img src="<?php echo e(url('img/avatar-admin.png')); ?>" style="width: 100px; height: 100px;" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre); ?> <?php echo e($user["usr"]->apellido); ?>'>
+                                                                        <!-- you can also add username next to the avatar with the codes below:
+                                                                        <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
+                                                                        <i class="ni ni-chevron-down hidden-xs-down"></i> -->
+                                                                    </a>
+                                                                    <center>
+                                                                    100x100
+                                                                    </center>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
                                                         </div>
-                                                        <div class="col-6 pl-1">
-                                                            <a href="#" class="btn btn-default btn-block waves-effect waves-themed">Report a Bug</a>
+
+                                                        <div style="margin-top: 50px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Nombre:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel-content p-0">
-                                            <div class="row row-grid no-gutters">
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                                    <div class="px-3 py-2 d-flex align-items-center">
-                                                        <div class="js-easy-pie-chart color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="75" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
-                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">75</span>
-                                                            </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                    <?php if(isset($user["usr"]->nombre)): ?>
+                                                                        <?php echo e($user["usr"]->nombre); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->nombre)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
                                                         </div>
-                                                        <span class="d-inline-block ml-2 text-muted">
-                                                            SERVER LOAD
-                                                            <i class="fal fa-caret-up color-danger-500 ml-1"></i>
-                                                        </span>
-                                                        <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#886ab5" sparkfillcolor="false" sparklinewidth="1" values="5,6,5,3,8,6,9,7,4,2"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
-                                                            <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge badge-success opacity-50 text-center p-1 width-6">97%</span>
-                                                                <span class="d-inline-block badge bg-fusion-300 opacity-50 text-center p-1 width-6 mt-1">44%</span>
-                                                            </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Apellido:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                                    <div class="px-3 py-2 d-flex align-items-center">
-                                                        <div class="js-easy-pie-chart color-success-500 position-relative d-inline-flex align-items-center justify-content-center" data-percent="79" data-piesize="50" data-linewidth="5" data-linecap="butt">
-                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">79</span>
-                                                            </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                    <?php if(isset($user["usr"]->apellido)): ?>
+                                                                        <?php echo e($user["usr"]->apellido); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->apellido)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
                                                         </div>
-                                                        <span class="d-inline-block ml-2 text-muted">
-                                                            DISK SPACE
-                                                            <i class="fal fa-caret-down color-success-500 ml-1"></i>
-                                                        </span>
-                                                        <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#1dc9b7" sparkfillcolor="false" sparklinewidth="1" values="5,9,7,3,5,2,5,3,9,6"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
-                                                            <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge badge-info opacity-50 text-center p-1 width-6">76%</span>
-                                                                <span class="d-inline-block badge bg-warning-300 opacity-50 text-center p-1 width-6 mt-1">3%</span>
-                                                            </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Correo:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                                    <div class="px-3 py-2 d-flex align-items-center">
-                                                        <div class="js-easy-pie-chart color-info-500 position-relative d-inline-flex align-items-center justify-content-center" data-percent="23" data-piesize="50" data-linewidth="5" data-linecap="butt">
-                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">23</span>
-                                                            </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                    <?php if(isset($user["usr"]->correo)): ?>
+                                                                        <?php echo e($user["usr"]->correo); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->correo)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
                                                         </div>
-                                                        <span class="d-inline-block ml-2 text-muted">
-                                                            DATA TTF
-                                                            <i class="fal fa-caret-up color-success-500 ml-1"></i>
-                                                        </span>
-                                                        <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#51adf6" sparkfillcolor="false" sparklinewidth="1" values="3,5,2,5,3,9,6,5,9,7"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
-                                                            <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge bg-fusion-500 opacity-50 text-center p-1 width-6">10GB</span>
-                                                                <span class="d-inline-block badge bg-fusion-300 opacity-50 text-center p-1 width-6 mt-1">10%</span>
-                                                            </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Cargo:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                                    <div class="px-3 py-2 d-flex align-items-center">
-                                                        <div class="js-easy-pie-chart color-fusion-500 position-relative d-inline-flex align-items-center justify-content-center" data-percent="36" data-piesize="50" data-linewidth="5" data-linecap="butt">
-                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">36</span>
-                                                            </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    <?php if(isset($user["usr"]->cargo)): ?>
+                                                                        <?php echo e($user["usr"]->cargo); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->cargo)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
                                                         </div>
-                                                        <span class="d-inline-block ml-2 text-muted">
-                                                            TEMP.
-                                                            <i class="fal fa-caret-down color-success-500 ml-1"></i>
-                                                        </span>
-                                                        <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#fd3995" sparkfillcolor="false" sparklinewidth="1" values="5,3,9,6,5,9,7,3,5,2"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
-                                                            <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge badge-danger opacity-50 text-center p-1 width-6">124</span>
-                                                                <span class="d-inline-block badge bg-info-300 opacity-50 text-center p-1 width-6 mt-1">40F</span>
-                                                            </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Teléfono Fijo:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
                                                         </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    <?php if(isset($user["usr"]->telefono_fijo)): ?>
+                                                                        <?php echo e($user["usr"]->telefono_fijo); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->telefono_fijo)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Celular:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    <?php if(isset($user["usr"]->celular)): ?>
+                                                                        <?php echo e($user["usr"]->celular); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->celular)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Fecha de Creación:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    <?php if(isset($user["usr"]->created_at)): ?>
+                                                                        <?php echo e($user["usr"]->created_at); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->created_at)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    DNI:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    <?php if(isset($user["usr"]->dni_num)): ?>
+                                                                        <?php echo e($user["usr"]->dni_num); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->dni_num)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Seguro Social:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    <?php if(isset($user["usr"]->seguro_social)): ?>
+                                                                        <?php echo e($user["usr"]->seguro_social); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->seguro_social)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                                Editar
+                                                            </button>
+
+                                                            <button style="margin-left: 25px; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                                Cambiar Contraseña
+                                                            </button>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -248,7 +462,7 @@
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
                     
-                    @include('system.footer2')
+                    <?php echo $__env->make('system.footer2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
@@ -304,7 +518,7 @@
         <!-- END Page Wrapper -->
         <!-- BEGIN Quick Menu -->
         <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-        @include('system.toolbar')
+        <?php echo $__env->make('system.toolbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <!-- END Quick Menu -->
         <!-- BEGIN Messenger -->
         <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -854,546 +1068,24 @@
                 $('#js-page-content').smartPanel(); 
             });
         </script>
-     
-        <script src="js/sparkline.bundle.js"></script>
-        <script src="js/easypiechart.bundle.js"></script>
-        <script src="js/flot.bundle.js"></script>
-        <script src="js/jqvmap.bundle.js"></script>
-
-        <!-- Panel advanced functions
-        <script>
-            //Panel advanced functions
-            //https://www.gotbootstrap.com/themes/smartadmin/4.0.1/icons_fontawesome_light.html
-
-            console.log(initApp);
-
-            initApp.playSound("media/sound", "messagebox");
-
-            $("#mytheme").attr("href","css/themes/cust-theme-8.css");
-
-            //toastr["success"]("sdf", "sdfsf")
-
-            //tablas dinámicas
-
-
-        </script>
-        -->
-
-        <script>
-            $(document).ready(function()
-            {
-
-
-                //
-                //
-                var dataSetPie = [
-                {
-                    label: "Asia",
-                    data: 4119630000,
-                    color: myapp_get_color.primary_500
-                },
-                {
-                    label: "Latin America",
-                    data: 590950000,
-                    color: myapp_get_color.info_500
-                },
-                {
-                    label: "Africa",
-                    data: 1012960000,
-                    color: myapp_get_color.warning_500
-                },
-                {
-                    label: "Oceania",
-                    data: 95100000,
-                    color: myapp_get_color.danger_500
-                },
-                {
-                    label: "Europe",
-                    data: 727080000,
-                    color: myapp_get_color.success_500
-                },
-                {
-                    label: "North America",
-                    data: 344120000,
-                    color: myapp_get_color.fusion_400
-                }];
-
-
-                $.plot($("#flotPie"), dataSetPie,
-                {
-                    series:
-                    {
-                        pie:
-                        {
-                            innerRadius: 0.5,
-                            show: true,
-                            radius: 1,
-                            label:
-                            {
-                                show: true,
-                                radius: 2 / 3,
-                                threshold: 0.1
-                            }
-                        }
-                    },
-                    legend:
-                    {
-                        show: false
-                    }
-                });
-
-
-                $.plot('#flotBar1', [
-                {
-                    data: [
-                        [1, 0],
-                        [2, 0],
-                        [3, 0],
-                        [4, 1],
-                        [5, 3],
-                        [6, 3],
-                        [7, 10],
-                        [8, 11],
-                        [9, 10],
-                        [10, 9],
-                        [11, 12],
-                        [12, 8],
-                        [13, 10],
-                        [14, 6],
-                        [15, 3]
-                    ],
-                    bars:
-                    {
-                        show: true,
-                        lineWidth: 0,
-                        fillColor: myapp_get_color.fusion_50,
-                        barWidth: .3,
-                        order: 'left'
-                    }
-                },
-                {
-                    data: [
-                        [1, 0],
-                        [2, 0],
-                        [3, 1],
-                        [4, 2],
-                        [5, 2],
-                        [6, 5],
-                        [7, 8],
-                        [8, 12],
-                        [9, 10],
-                        [10, 11],
-                        [11, 3]
-                    ],
-                    bars:
-                    {
-                        show: true,
-                        lineWidth: 0,
-                        fillColor: myapp_get_color.success_500,
-                        barWidth: .3,
-                        align: 'right'
-                    }
-                }],
-                {
-                    grid:
-                    {
-                        borderWidth: 0,
-                    },
-                    yaxis:
-                    {
-                        min: 0,
-                        max: 15,
-                        tickColor: '#F0F0F0',
-                        ticks: [
-                            [0, ''],
-                            [5, '$5000'],
-                            [10, '$25000'],
-                            [15, '$45000']
-                        ],
-                        font:
-                        {
-                            color: '#444',
-                            size: 10
-                        }
-                    },
-                    xaxis:
-                    {
-                        mode: 'categories',
-                        tickColor: '#F0F0F0',
-                        ticks: [
-                            [0, '3am'],
-                            [1, '4am'],
-                            [2, '5am'],
-                            [3, '6am'],
-                            [4, '7am'],
-                            [5, '8am'],
-                            [6, '9am'],
-                            [7, '10am'],
-                            [8, '11am'],
-                            [9, '12nn'],
-                            [10, '1pm'],
-                            [11, '2pm'],
-                            [12, '3pm'],
-                            [13, '4pm'],
-                            [14, '5pm']
-                        ],
-                        font:
-                        {
-                            color: '#999',
-                            size: 9
-                        }
-                    }
-                });
-
-
-                /*
-                 * VECTOR MAP
-                 */
-
-                 var data_array = {
-                    "af": "16.63",
-                    "al": "0",
-                    "dz": "158.97",
-                    "ao": "85.81",
-                    "ag": "1.1",
-                    "ar": "351.02",
-                    "am": "8.83",
-                    "au": "1219.72",
-                    "at": "366.26",
-                    "az": "52.17",
-                    "bs": "7.54",
-                    "bh": "21.73",
-                    "bd": "105.4",
-                    "bb": "3.96",
-                    "by": "52.89",
-                    "be": "461.33",
-                    "bz": "1.43",
-                    "bj": "6.49",
-                    "bt": "1.4",
-                    "bo": "19.18",
-                    "ba": "16.2",
-                    "bw": "12.5",
-                    "br": "2023.53",
-                    "bn": "11.96",
-                    "bg": "44.84",
-                    "bf": "8.67",
-                    "bi": "1.47",
-                    "kh": "11.36",
-                    "cm": "21.88",
-                    "ca": "1563.66",
-                    "cv": "1.57",
-                    "cf": "2.11",
-                    "td": "7.59",
-                    "cl": "199.18",
-                    "cn": "5745.13",
-                    "co": "283.11",
-                    "km": "0.56",
-                    "cd": "12.6",
-                    "cg": "11.88",
-                    "cr": "35.02",
-                    "ci": "22.38",
-                    "hr": "59.92",
-                    "cy": "22.75",
-                    "cz": "195.23",
-                    "dk": "304.56",
-                    "dj": "1.14",
-                    "dm": "0.38",
-                    "do": "50.87",
-                    "ec": "61.49",
-                    "eg": "216.83",
-                    "sv": "21.8",
-                    "gq": "14.55",
-                    "er": "2.25",
-                    "ee": "19.22",
-                    "et": "30.94",
-                    "fj": "3.15",
-                    "fi": "231.98",
-                    "fr": "2555.44",
-                    "ga": "12.56",
-                    "gm": "1.04",
-                    "ge": "11.23",
-                    "de": "3305.9",
-                    "gh": "18.06",
-                    "gr": "305.01",
-                    "gd": "0.65",
-                    "gt": "40.77",
-                    "gn": "4.34",
-                    "gw": "0.83",
-                    "gy": "2.2",
-                    "ht": "6.5",
-                    "hn": "15.34",
-                    "hk": "226.49",
-                    "hu": "132.28",
-                    "is": "0",
-                    "in": "1430.02",
-                    "id": "695.06",
-                    "ir": "337.9",
-                    "iq": "84.14",
-                    "ie": "204.14",
-                    "il": "201.25",
-                    "it": "2036.69",
-                    "jm": "13.74",
-                    "jp": "5390.9",
-                    "jo": "27.13",
-                    "kz": "129.76",
-                    "ke": "32.42",
-                    "ki": "0.15",
-                    "kw": "117.32",
-                    "kg": "4.44",
-                    "la": "6.34",
-                    "lv": "23.39",
-                    "lb": "39.15",
-                    "ls": "1.8",
-                    "lr": "0.98",
-                    "lt": "35.73",
-                    "lu": "52.43",
-                    "mk": "9.58",
-                    "mg": "8.33",
-                    "mw": "5.04",
-                    "my": "218.95",
-                    "mv": "1.43",
-                    "ml": "9.08",
-                    "mt": "7.8",
-                    "mr": "3.49",
-                    "mu": "9.43",
-                    "mx": "1004.04",
-                    "md": "5.36",
-                    "rw": "5.69",
-                    "ws": "0.55",
-                    "st": "0.19",
-                    "sa": "434.44",
-                    "sn": "12.66",
-                    "rs": "38.92",
-                    "sc": "0.92",
-                    "sl": "1.9",
-                    "sg": "217.38",
-                    "sk": "86.26",
-                    "si": "46.44",
-                    "sb": "0.67",
-                    "za": "354.41",
-                    "es": "1374.78",
-                    "lk": "48.24",
-                    "kn": "0.56",
-                    "lc": "1",
-                    "vc": "0.58",
-                    "sd": "65.93",
-                    "sr": "3.3",
-                    "sz": "3.17",
-                    "se": "444.59",
-                    "ch": "522.44",
-                    "sy": "59.63",
-                    "tw": "426.98",
-                    "tj": "5.58",
-                    "tz": "22.43",
-                    "th": "312.61",
-                    "tl": "0.62",
-                    "tg": "3.07",
-                    "to": "0.3",
-                    "tt": "21.2",
-                    "tn": "43.86",
-                    "tr": "729.05",
-                    "tm": "0",
-                    "ug": "17.12",
-                    "ua": "136.56",
-                    "ae": "239.65",
-                    "gb": "2258.57",
-                    "us": "14624.18",
-                    "uy": "40.71",
-                    "uz": "37.72",
-                    "vu": "0.72",
-                    "ve": "285.21",
-                    "vn": "101.99",
-                    "ye": "30.02",
-                    "zm": "15.69",
-                    "zw": "0"
-                };
-
-                $('#vector-map').vectorMap(
-                {
-                    map: 'world_en',
-                    backgroundColor: 'transparent',
-                    color: myapp_get_color.warning_50,
-                    borderOpacity: 0.5,
-                    borderWidth: 1,
-                    hoverColor: myapp_get_color.success_300,
-                    hoverOpacity: null,
-                    selectedColor: myapp_get_color.success_500,
-                    selectedRegions: ['US'],
-                    enableZoom: true,
-                    showTooltip: true,
-                    scaleColors: [myapp_get_color.primary_400, myapp_get_color.primary_50],
-                    values: data_array,
-                    normalizeFunction: 'polynomial',
-                    onRegionClick: function(element, code, region)
-                    {
-                        /*var message = 'You clicked "'
-						+ region
-						+ '" which has the code: '
-						+ code.toLowerCase();
-			 
-					console.log(message);*/
-
-                        var randomNumber = Math.floor(Math.random() * 10000000);
-                        var arrow;
-
-                        if (Math.random() >= 0.5 == true)
-                        {
-                            arrow = '<div class="ml-2 d-inline-flex"><i class="fal fa-caret-up text-success fs-xs"></i></div>'
-                        }
-                        else
-                        {
-                            arrow = '<div class="ml-2 d-inline-flex"><i class="fal fa-caret-down text-danger fs-xs"></i></div>'
-                        }
-
-                        $('.js-jqvmap-flag').attr('src', 'https://lipis.github.io/flag-icon-css/flags/4x3/' + code.toLowerCase() + '.svg');
-                        $('.js-jqvmap-country').html(region + ' - ' + '$' + randomNumber.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + arrow);
-                    }
-                });
-
-
-
-
-                /* TAB 1: UPDATING CHART */
-                var data = [],
-                    totalPoints = 200;
-                var getRandomData = function()
-                {
-                    if (data.length > 0)
-                        data = data.slice(1);
-
-                    // do a random walk
-                    while (data.length < totalPoints)
-                    {
-                        var prev = data.length > 0 ? data[data.length - 1] : 50;
-                        var y = prev + Math.random() * 10 - 5;
-                        if (y < 0)
-                            y = 0;
-                        if (y > 100)
-                            y = 100;
-                        data.push(y);
-                    }
-
-                    // zip the generated y values with the x values
-                    var res = [];
-                    for (var i = 0; i < data.length; ++i)
-                        res.push([i, data[i]])
-                    return res;
-                }
-                // setup control widget
-                var updateInterval = 1500;
-                $("#updating-chart").val(updateInterval).change(function()
-                {
-
-                    var v = $(this).val();
-                    if (v && !isNaN(+v))
-                    {
-                        updateInterval = +v;
-                        $(this).val("" + updateInterval);
-                    }
-
-                });
-                // setup plot
-                var options = {
-                    colors: [myapp_get_color.primary_700],
-                    series:
-                    {
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 0.5,
-                            fill: 0.9,
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0.6
-                                },
-                                {
-                                    opacity: 0
-                                }]
-                            },
-                        },
-
-                        shadowSize: 0 // Drawing is faster without shadows
-                    },
-                    grid:
-                    {
-                        borderColor: '#F0F0F0',
-                        borderWidth: 1,
-                        labelMargin: 5
-                    },
-                    xaxis:
-                    {
-                        color: '#F0F0F0',
-                        font:
-                        {
-                            size: 10,
-                            color: '#999'
-                        }
-                    },
-                    yaxis:
-                    {
-                        min: 0,
-                        max: 100,
-                        color: '#F0F0F0',
-                        font:
-                        {
-                            size: 10,
-                            color: '#999'
-                        }
-                    }
-                };
-                var plot = $.plot($("#updating-chart"), [getRandomData()], options);
-                /* live switch */
-                $('input[type="checkbox"]#start_interval').click(function()
-                {
-                    if ($(this).prop('checked'))
-                    {
-                        $on = true;
-                        updateInterval = 1500;
-                        update();
-                    }
-                    else
-                    {
-                        clearInterval(updateInterval);
-                        $on = false;
-                    }
-                });
-                var update = function()
-                {
-                    if ($on == true)
-                    {
-                        plot.setData([getRandomData()]);
-                        plot.draw();
-                        setTimeout(update, updateInterval);
-
-                    }
-                    else
-                    {
-                        clearInterval(updateInterval)
-                    }
-
-                }
-            });
-
-        </script>
-
         
 
 
         <!-- Toastr-->
-        <script src="{{ url('js/toastr.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <!--Angular-->
 
-        <script src="{{ url('js/angular.min.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/sanitize.min.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/module.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/controllers.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/angular.min.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/sanitize.min.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/module.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/controllers.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
 
-        <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
 
         
 
-    @stop
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('system.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
