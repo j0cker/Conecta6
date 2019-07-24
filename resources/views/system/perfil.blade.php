@@ -216,6 +216,8 @@
                                                             <div class="col-md-4"></div>
 
                                                         </div>
+
+                                                        @if (in_array("3", $user["permisos"]))
                                                         
                                                         <div class="row">
 
@@ -251,6 +253,41 @@
                                                             <div class="col-md-4"></div>
 
                                                         </div>
+
+                                                        @endif
+
+                                                        @if (in_array("1", $user["permisos"]))
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Rol:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                    
+                                                                    Administrador
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        @endif
                                                         
                                                         <div class="row">
 
@@ -356,6 +393,8 @@
                                                             <div class="col-md-4"></div>
 
                                                         </div>
+
+                                                        @if (in_array("3", $user["permisos"]))
                                                         
                                                         <div class="row">
 
@@ -391,6 +430,10 @@
                                                             <div class="col-md-4"></div>
 
                                                         </div>
+
+                                                        @endif
+
+                                                        @if (in_array("3", $user["permisos"]))
                                                         
                                                         <div class="row">
 
@@ -426,6 +469,8 @@
                                                             <div class="col-md-4"></div>
 
                                                         </div>
+
+                                                        @endif
 
                                                         <div class="row">
 

@@ -1,4 +1,4 @@
-@extends('sign.master')
+@extends('admin.master')
 
   {{-- lang html tag --}}
 

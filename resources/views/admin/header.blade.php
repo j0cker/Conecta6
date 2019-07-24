@@ -10,12 +10,18 @@
   <title>@yield('title')</title>
 
 <style>
+
+@php
+$hex = "#ad0a38";
+list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+@endphp
+
 :root {
   
   
-  --main-bg-color: #433191 !important;
-  --main-bg-color-transparent-5: rgba(67,49,145,0.5) !important;
-  --main-bg-color-transparent-1: rgba(67,49,145,0.1) !important;
+  --main-bg-color: @php echo $hex; @endphp !important;
+  --main-bg-color-transparent-5: rgba(@php echo $r; @endphp,@php echo $g; @endphp,@php echo $b; @endphp,0.6) !important;
+  --main-bg-color-transparent-1: rgba(@php echo $r; @endphp,@php echo $g; @endphp,@php echo $b; @endphp,0.2) !important;
   
 
   /*

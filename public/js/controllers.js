@@ -89,7 +89,6 @@
       }
 
     }//fin send ng
-    
 
   });//fin controller signin
 
@@ -102,9 +101,9 @@
 
   });//fin controller inicio
 
-  app.controller('marketing', function($scope, functions, $window) {
+  app.controller('inicioAdmin', function($scope, functions, $window) {
 
-    console.log("[marketing]");
+    console.log("[inicioAdmin]");
 
     functions.loading();
 
@@ -156,10 +155,10 @@
     $("body").css("background-image","url('img/texture.png')");
 
     
-    console.log("[signin]");
+    console.log("[signInAdmin]");
 
     $scope.send = function(){
-      console.log("[signin][send]");
+      console.log("[signInAdmin][send]");
 
       functions.loadingWait();
 
@@ -169,8 +168,8 @@
       correo = $("#correo").val();
       contPass = $("#contPass").val();
 
-      console.log("[signin][send] correo: " + correo);
-      console.log("[signin][send] contPass: " + contPass);
+      console.log("[signInAdmin][send] correo: " + correo);
+      console.log("[signInAdmin][send] contPass: " + contPass);
 
       if(correo.indexOf("@")=="-1" || correo.indexOf(".")=="-1" || correo.indexOf(" ")!="-1" || correo.indexOf(",")!="-1"){
         toastr["error"]("Llena correctamente<br /> tu correo electrónico", "");
@@ -193,7 +192,7 @@
                   deleteAllCookies();
                   setCookie("token", response.data.token, 1);
 
-                  $window.location.href = "/inicio";
+                  $window.location.href = "/inicioAdmin";
 
                 } else {
                     toastr["warning"](response.data.description, "");
@@ -209,6 +208,15 @@
       }
       
     }
+
+  });//fin controller introduction
+
+  app.controller('empresas', function($scope, functions, $window) {
+
+    console.log("[empresas]");
+
+    functions.loading();
+
 
   });//fin controller introduction
 

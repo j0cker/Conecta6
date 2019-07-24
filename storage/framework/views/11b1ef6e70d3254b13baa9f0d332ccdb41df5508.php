@@ -782,10 +782,6 @@
         <script src="js/app.bundle.js"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
     
-        <script src="js/easypiechart.bundle.js"></script>
-        <script src="js/flot.bundle.js"></script>        
-        
-        <script src="js/peity.bundle.js"></script>
         <script src="js/datatables.bundle.js"></script>
         <script src="js/moment.js"></script>
         <script src="js/datepicker.js"></script>

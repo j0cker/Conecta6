@@ -34,7 +34,10 @@ Route::get('/historial', 'APITrabajadores@Historial');
 Route::get('/pAdmin', 'APIAdmin@SignIn');
 
 //Sistema Welcome
-Route::get('/inicio', 'APIAdmin@Inicio');
+Route::get('/inicioAdmin', 'APIAdmin@Inicio');
+
+//Empresas
+Route::get('/empresas', 'APIAdmin@Empresas');
 
 
 

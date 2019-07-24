@@ -1,3 +1,3 @@
-@include('sign.header')
+@include('admin.header')
   @yield('content')
-@include('sign.footer')
+@include('admin.footer')

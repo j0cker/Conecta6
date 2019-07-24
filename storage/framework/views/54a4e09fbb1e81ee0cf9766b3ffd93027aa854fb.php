@@ -18,37 +18,33 @@
 <!--Menu Transparente
 <?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-<?php $__env->startSection('menuActive','perfil'); ?>
+<?php $__env->startSection('menuActive','inicioAdmin'); ?>
 
 <?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
-<?php $__env->startSection('raiz1Url', '/inicio'); ?>
-<?php $__env->startSection('raiz2','Trabajadores'); ?>
-<?php $__env->startSection('raiz2Url','/inicio'); ?>
-<?php $__env->startSection('raiz3','Perfil'); ?>
-<?php $__env->startSection('raiz3Url','/perfil'); ?>
+<?php $__env->startSection('raiz1Url', '/inicioAdmin'); ?>
+<?php $__env->startSection('raiz2','Administradores'); ?>
+<?php $__env->startSection('raiz2Url','/inicioAdmin'); ?>
+<?php $__env->startSection('raiz3','Inicio'); ?>
+<?php $__env->startSection('raiz3Url','/inicioAdmin'); ?>
 
 
 
-
-<?php $__env->startSection('controller','perfil'); ?>
+<?php $__env->startSection('controller','inicioAdmin'); ?>
 
 
 
 <?php $__env->startSection('content'); ?>
 
-
-<div class="page-wrapper">
+        <!-- BEGIN Page Wrapper -->
+        <div class="page-wrapper">
             <div class="page-inner">
-                
                 <!-- BEGIN Left Aside -->
                         
-                        <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-                        
-                <!-- END Left Aside -->
+                    <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
+                <!-- END Left Aside -->
                 <div class="page-content-wrapper">
                     <!-- BEGIN Page Header -->
-                    
                         
                     <?php echo $__env->make('system.menu2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                     
@@ -61,442 +57,188 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-user"></i> Perfil
+                                <i class='subheader-icon fal fa-chart-area'></i> Analytics <span class='fw-300'>Dashboard</span>
                                 <small>
                                 </small>
                             </h1>
+                            <div class="d-flex mr-4">
+                                <div class="mr-2">
+                                    <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#967bbd&quot;, &quot;#ccbfdf&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">7/10</span>
+                                </div>
+                                <div>
+                                    <label class="fs-sm mb-0 mt-2 mt-md-0">Empresas con Actividad</label>
+                                    <h4 class="font-weight-bold mb-0">70.60%</h4>
+                                </div>
+                            </div>
+                            <div class="d-flex mr-0">
+                                <div class="mr-2">
+                                    <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#2196F3&quot;, &quot;#9acffa&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">3/10</span>
+                                </div>
+                                <div>
+                                    <label class="fs-sm mb-0 mt-2 mt-md-0">Empresas sin Actividad</label>
+                                    <h4 class="font-weight-bold mb-0">14,134</h4>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12 sortable-grid ui-sortable">
-                                
-                                <div id="panel-1" class="panel panel-locked panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
-
-                                    <div class="panel-hdr">
-                                        <h2 class="ui-sortable-handle">
-                                            Perfil
-                                        </h2>
-                                        <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
-                                            <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
-                                            <a href="#" class="btn btn-panel hover-effect-dot js-panel-fullscreen waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></a>
-                                        </div>
-                                        <div class="panel-toolbar" role="menu"><a href="#" class="btn btn-toolbar-master waves-effect waves-themed" data-toggle="dropdown"><i class="fal fa-ellipsis-v"></i></a><div class="dropdown-menu dropdown-menu-animated dropdown-menu-right p-0">
-                                        <div class="dropdown-multilevel dropdown-multilevel-left"><div class="dropdown-item"><span data-i18n="drpdwn.panelcolor">Panel Style</span>	</div><div class="dropdown-menu d-flex flex-wrap" style="min-width: 9.5rem; width: 9.5rem; padding: 0.5rem"><a href="#" class="btn d-inline-block bg-primary-700 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-700 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-primary-500 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-500 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-primary-600 bg-primary-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-600 bg-primary-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-600 bg-primray-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-600 bg-primray-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-600 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-600 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-700 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-700 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-900 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-900 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-700 bg-primary-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-700 bg-primary-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-600 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-600 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-danger-900 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-danger-900 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-fusion-400 bg-fusion-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-fusion-400 bg-fusion-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-faded width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-faded" style="margin:1px;"></a></div>										</div>  <div class="dropdown-divider m-0"></div>
-                                        </div></div>
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            100
+                                            <small class="m-0 l-h-n">Total de Empresas</small>
+                                        </h3>
                                     </div>
-                                    <div class="panel-container show" role="content">
-                                        <div class="panel-content border-faded border-left-0 border-right-0 border-top-0">
-                                            <div class="row no-gutters">
-                                                <div class="col-lg-12 col-xl-12">
-                                                    <div class="position-relative">
-
-                                                        <div style="margin-top: 50px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div class="col-md-4 text-center">
-                                                                
-                                                                    <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com">
-                                                                        <img src="<?php echo e(url('img/avatar-admin.png')); ?>" style="width: 100px; height: 100px;" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre); ?> <?php echo e($user["usr"]->apellido); ?>'>
-                                                                        <!-- you can also add username next to the avatar with the codes below:
-                                                                        <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
-                                                                        <i class="ni ni-chevron-down hidden-xs-down"></i> -->
-                                                                    </a>
-                                                                    <center>
-                                                                    100x100
-                                                                    </center>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
+                                    <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            1250
+                                            <small class="m-0 l-h-n">Total de Trabajadores</small>
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-gem position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            25
+                                            <small class="m-0 l-h-n">Planes Próximos a Vencer</small>
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            10
+                                            <small class="m-0 l-h-n">Empresas Demo</small>
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-globe position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div id="panel-1" class="panel">
+                                    <div class="panel-hdr">
+                                        <h2>
+                                            Marketing profits
+                                        </h2>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content bg-subtlelight-fade">
+                                            <div id="js-checkbox-toggles" class="d-flex mb-3">
+                                                <div class="custom-control custom-switch mr-2">
+                                                    <input type="checkbox" class="custom-control-input" name="gra-0" id="gra-0" checked="checked">
+                                                    <label class="custom-control-label" for="gra-0">Target Profit</label>
+                                                </div>
+                                                <div class="custom-control custom-switch mr-2">
+                                                    <input type="checkbox" class="custom-control-input" name="gra-1" id="gra-1" checked="checked">
+                                                    <label class="custom-control-label" for="gra-1">Actual Profit</label>
+                                                </div>
+                                                <div class="custom-control custom-switch mr-2">
+                                                    <input type="checkbox" class="custom-control-input" name="gra-2" id="gra-2" checked="checked">
+                                                    <label class="custom-control-label" for="gra-2">User Signups</label>
+                                                </div>
+                                            </div>
+                                            <div id="flot-toggles" class="w-100 mt-4" style="height: 300px"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div id="panel-2" class="panel panel-locked" data-panel-sortable data-panel-collapsed data-panel-close>
+                                    <div class="panel-hdr">
+                                        <h2>
+                                            Returning <span class="fw-300"><i>Target</i></span>
+                                        </h2>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content poisition-relative">
+                                            <div class="p-1 position-absolute pos-right pos-top mt-3 mr-3 z-index-cloud d-flex align-items-center justify-content-center">
+                                                <div class="border-faded border-top-0 border-left-0 border-bottom-0 py-2 pr-4 mr-3 hidden-sm-down">
+                                                    <div class="text-right fw-500 l-h-n d-flex flex-column">
+                                                        <div class="h3 m-0 d-flex align-items-center justify-content-end">
+                                                            <div class='icon-stack mr-2'>
+                                                                <i class="base base-7 icon-stack-3x opacity-100 color-success-600"></i>
+                                                                <i class="base base-7 icon-stack-2x opacity-100 color-success-500"></i>
+                                                                <i class="fal fa-arrow-up icon-stack-1x opacity-100 color-white"></i>
+                                                            </div>
+                                                            $44.34 / GE
                                                         </div>
-
-                                                        <div style="margin-top: 50px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Nombre:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    <?php if(isset($user["usr"]->nombre)): ?>
-                                                                        <?php echo e($user["usr"]->nombre); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->nombre)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Apellido:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    <?php if(isset($user["usr"]->apellido)): ?>
-                                                                        <?php echo e($user["usr"]->apellido); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->apellido)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Correo:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    <?php if(isset($user["usr"]->correo)): ?>
-                                                                        <?php echo e($user["usr"]->correo); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->correo)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <?php if(in_array("3", $user["permisos"])): ?>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Cargo:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->cargo)): ?>
-                                                                        <?php echo e($user["usr"]->cargo); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->cargo)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <?php endif; ?>
-
-                                                        <?php if(in_array("1", $user["permisos"])): ?>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Rol:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    
-                                                                    Administrador
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <?php endif; ?>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Teléfono Fijo:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->telefono_fijo)): ?>
-                                                                        <?php echo e($user["usr"]->telefono_fijo); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->telefono_fijo)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Celular:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->celular)): ?>
-                                                                        <?php echo e($user["usr"]->celular); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->celular)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Fecha de Creación:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->created_at)): ?>
-                                                                        <?php echo e($user["usr"]->created_at); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->created_at)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <?php if(in_array("3", $user["permisos"])): ?>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    DNI:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->dni_num)): ?>
-                                                                        <?php echo e($user["usr"]->dni_num); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->dni_num)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <?php endif; ?>
-
-                                                        <?php if(in_array("3", $user["permisos"])): ?>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Seguro Social:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->seguro_social)): ?>
-                                                                        <?php echo e($user["usr"]->seguro_social); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->seguro_social)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <?php endif; ?>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                Editar
-                                                            </button>
-
-                                                            <button style="margin-left: 25px; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                Cambiar Contraseña
-                                                            </button>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        
+                                                        <span class="m-0 fs-xs text-muted">Increased Profit as per redux margins and estimates</span>
+                                                    </div>
+                                                </div>
+                                                <div class="js-easy-pie-chart color-info-400 position-relative d-inline-flex align-items-center justify-content-center" data-percent="35" data-piesize="95" data-linewidth="10" data-scalelength="5">
+                                                    <div class="js-easy-pie-chart color-success-400 position-relative position-absolute pos-left pos-right pos-top pos-bottom d-flex align-items-center justify-content-center" data-percent="65" data-piesize="60" data-linewidth="5" data-scalelength="1" data-scalecolor="#fff">
+                                                        <div class="position-absolute pos-top pos-left pos-right pos-bottom d-flex align-items-center justify-content-center fw-500 fs-xl text-dark">78%</div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div id="flot-area" style="width:100%; height:300px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div id="panel-3" class="panel panel-locked" data-panel-sortable data-panel-collapsed data-panel-close>
+                                    <div class="panel-hdr">
+                                        <h2>
+                                            Effective <span class="fw-300"><i>Marketing</i></span>
+                                        </h2>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content poisition-relative">
+                                            <div class="pb-5 pt-3">
+                                                <div class="row">
+                                                    <div class="col-6 col-xl-3 d-sm-flex align-items-center">
+                                                        <div class="p-2 mr-3 bg-info-200 rounded">
+                                                            <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">3,4,5,8,2</span>
+                                                        </div>
+                                                        <div>
+                                                            <label class="fs-sm mb-0">Bounce Rate</label>
+                                                            <h4 class="font-weight-bold mb-0">37.56%</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-xl-3 d-sm-flex align-items-center">
+                                                        <div class="p-2 mr-3 bg-info-300 rounded">
+                                                            <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">5,3,1,7,9</span>
+                                                        </div>
+                                                        <div>
+                                                            <label class="fs-sm mb-0">Sessions</label>
+                                                            <h4 class="font-weight-bold mb-0">759</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-xl-3 d-sm-flex align-items-center">
+                                                        <div class="p-2 mr-3 bg-success-300 rounded">
+                                                            <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">3,4,3,5,5</span>
+                                                        </div>
+                                                        <div>
+                                                            <label class="fs-sm mb-0">New Sessions</label>
+                                                            <h4 class="font-weight-bold mb-0">12.17%</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-xl-3 d-sm-flex align-items-center">
+                                                        <div class="p-2 mr-3 bg-success-500 rounded">
+                                                            <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">6,4,7,5,6</span>
+                                                        </div>
+                                                        <div>
+                                                            <label class="fs-sm mb-0">Clickthrough</label>
+                                                            <h4 class="font-weight-bold mb-0">19.77%</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="flotVisit" style="width:100%; height:208px;"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -512,13 +254,13 @@
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
                     <!-- modal shortcut -->
-                    <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true" style="display: none;">
+                    <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
                             <div class="modal-content">
                                 <div class="modal-body">
                                     <ul class="app-list w-auto h-auto p-0 text-left">
                                         <li>
-                                            <a href="#" class="app-list-item text-white border-0 m-0">
+                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
                                                 <div class="icon-stack">
                                                     <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
@@ -530,7 +272,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="app-list-item text-white border-0 m-0">
+                                            <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
                                                 <div class="icon-stack">
                                                     <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
@@ -542,7 +284,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="app-list-item text-white border-0 m-0">
+                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
                                                 <div class="icon-stack">
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
                                                     <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
@@ -572,7 +314,7 @@
                     <div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
                         <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
                             <span class="mr-2">
-                                <span class="rounded-circle profile-image d-block" style="background-image:url(&#39;img/demo/avatars/avatar-d.png&#39;); background-size: cover;"></span>
+                                <span class="rounded-circle profile-image d-block" style="background-image:url('img/avatar-d.png'); background-size: cover;"></span>
                             </span>
                             <div class="info-card-text">
                                 <a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white" data-toggle="dropdown" aria-expanded="false">
@@ -601,12 +343,12 @@
                                 <input type="text" class="form-control bg-white" id="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FriendSearch" data-listfilter="#js-msgr-listfilter">
                             </div>
                             <div class="flex-1 h-100 custom-scroll">
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="w-100" style="overflow: hidden; width: auto; height: 100%;">
-                                    <ul id="js-msgr-listfilter" class="list-unstyled m-0 js-list-filter">
+                                <div class="w-100">
+                                    <ul id="js-msgr-listfilter" class="list-unstyled m-0">
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="tracey chang online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-d.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-d.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -621,7 +363,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="oliver kopyuv online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-b.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-b.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -636,7 +378,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="dr john cook phd away">
                                                 <div class="d-table-cell align-middle status status-warning status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-e.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-e.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -651,7 +393,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-g.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-g.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -666,7 +408,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="sarah mcbrook online">
                                                 <div class="d-table-cell align-middle status status-success status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-h.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-h.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -681,7 +423,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
                                                 <div class="d-table-cell align-middle status status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-a.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-a.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -696,7 +438,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney busy">
                                                 <div class="d-table-cell align-middle status status-danger status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-j.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-j.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -711,7 +453,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
                                                 <div class="d-table-cell align-middle status status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-c.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-c.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -726,7 +468,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney inactive">
                                                 <div class="d-table-cell align-middle">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-m.png&#39;); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-m.png'); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -740,7 +482,7 @@
                                         </li>
                                     </ul>
                                     <div class="filter-message js-filter-message"></div>
-                                </div><div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.6); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 4px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(250, 250, 250); opacity: 0.2; z-index: 90; right: 4px;"></div></div>
+                                </div>
                             </div>
                             <div>
                                 <a class="fs-xl d-flex align-items-center p-3">
@@ -753,7 +495,7 @@
                         <div class="msgr d-flex h-100 flex-column bg-white">
                             <!-- BEGIN custom-scroll -->
                             <div class="custom-scroll flex-1 h-100">
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div id="chat_container" class="w-100 p-4" style="overflow: hidden; width: auto; height: 100%;">
+                                <div id="chat_container" class="w-100 p-4">
                                     <!-- start .chat-segment -->
                                     <div class="chat-segment">
                                         <div class="time-stamp text-center mb-2 fw-400">
@@ -846,7 +588,7 @@
                                         </div>
                                     </div>
                                     <!--  end .chat-segment for timestamp -->
-                                </div><div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.6); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 4px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(250, 250, 250); opacity: 0.2; z-index: 90; right: 4px;"></div></div>
+                                </div>
                             </div>
                             <!-- END custom-scroll  -->
                             <!-- BEGIN msgr__chatinput -->
@@ -857,17 +599,17 @@
                                     </div>
                                 </div>
                                 <div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1 waves-effect waves-themed" data-toggle="tooltip" data-original-title="More options" data-placement="top">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1" data-toggle="tooltip" data-original-title="More options" data-placement="top">
                                         <i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
                                     </a>
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1 waves-effect waves-themed" data-toggle="tooltip" data-original-title="Attach files" data-placement="top">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Attach files" data-placement="top">
                                         <i class="fal fa-paperclip color-fusion-300"></i>
                                     </a>
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1 waves-effect waves-themed" data-toggle="tooltip" data-original-title="Insert photo" data-placement="top">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Insert photo" data-placement="top">
                                         <i class="fal fa-camera color-fusion-300"></i>
                                     </a>
                                     <div class="ml-auto">
-                                        <a href="javascript:void(0);" class="btn btn-info waves-effect waves-themed">Send</a>
+                                        <a href="javascript:void(0);" class="btn btn-info">Send</a>
                                     </div>
                                 </div>
                             </div>
@@ -879,7 +621,7 @@
             </div>
         </div> <!-- END Messenger -->
         <!-- BEGIN Page Settings -->
-        <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-right modal-md">
                 <div class="modal-content">
                     <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
@@ -1039,16 +781,16 @@
                             <div class="list mt-1">
                                 <span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
                                 <div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
-                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text-sm" data-target="html">
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-sm" data-target="html">
                                         <input type="radio" name="changeFrontSize"> SM
                                     </label>
-                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text" data-target="html">
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text" data-target="html">
                                         <input type="radio" name="changeFrontSize" checked=""> MD
                                     </label>
-                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text-lg" data-target="html">
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-lg" data-target="html">
                                         <input type="radio" name="changeFrontSize"> LG
                                     </label>
-                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text-xl" data-target="html">
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-xl" data-target="html">
                                         <input type="radio" name="changeFrontSize"> XL
                                     </label>
                                 </div>
@@ -1066,30 +808,30 @@
                             </div>
                             <div class="expanded theme-colors pl-5 pr-3">
                                 <ul class="m-0">
-                                    <li><a href="#" id="myapp-0" data-action="theme-update" data-themesave="" data-theme="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wisteria (base css)"></a></li>
-                                    <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tapestry"></a></li>
-                                    <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Atlantis"></a></li>
-                                    <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Indigo"></a></li>
-                                    <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dodger Blue"></a></li>
-                                    <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tradewind"></a></li>
-                                    <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cranberry"></a></li>
-                                    <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Oslo Gray"></a></li>
-                                    <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Chetwode Blue"></a></li>
-                                    <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Apricot"></a></li>
-                                    <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Blue Smoke"></a></li>
-                                    <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Green Smoke"></a></li>
-                                    <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wild Blue Yonder"></a></li>
-                                    <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Emerald"></a></li>
+                                    <li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme="" data-toggle="tooltip" data-placement="top" title="Wisteria (base css)" data-original-title="Wisteria (base css)"></a></li>
+                                    <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
+                                    <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
+                                    <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
+                                    <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a></li>
+                                    <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
+                                    <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
+                                    <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+                                    <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="Chetwode Blue" data-original-title="Chetwode Blue"></a></li>
+                                    <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
+                                    <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a></li>
+                                    <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a></li>
+                                    <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="Wild Blue Yonder" data-original-title="Wild Blue Yonder"></a></li>
+                                    <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
                                 </ul>
                             </div>
                             <hr class="mb-0 mt-4">
                             <div class="pl-5 pr-3 py-3 bg-faded">
                                 <div class="row no-gutters">
                                     <div class="col-6 pr-1">
-                                        <a href="#" class="btn btn-outline-danger fw-500 btn-block waves-effect waves-themed" data-action="app-reset">Reset Settings</a>
+                                        <a href="#" class="btn btn-outline-danger fw-500 btn-block" data-action="app-reset">Reset Settings</a>
                                     </div>
                                     <div class="col-6 pl-1">
-                                        <a href="#" class="btn btn-danger fw-500 btn-block waves-effect waves-themed" data-action="factory-reset">Factory Reset</a>
+                                        <a href="#" class="btn btn-danger fw-500 btn-block" data-action="factory-reset">Factory Reset</a>
                                     </div>
                                 </div>
                             </div>
@@ -1099,28 +841,487 @@
                 </div>
             </div>
         </div> <!-- END Page Settings -->
-
         
         <script src="js/vendors.bundle.js"></script>
         <script src="js/app.bundle.js"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
-     
         
+        
+        
+        
+        
+        <script src="js/easypiechart.bundle.js"></script>
+        <script src="js/flot.bundle.js"></script>        
+        
+        <script src="js/peity.bundle.js"></script>
+        <script src="js/datatables.bundle.js"></script>
+
         <script>
+            $( document ).ready(function() {
+                // Handler for .ready() called.
+                $("#mytheme").attr("href","css/themes/cust-theme-6.css");
+            });
+        </script>
+
+        <script>
+            /* defined datas */
+            var dataTargetProfit = [
+                [1354586000000, 153],
+                [1364587000000, 658],
+                [1374588000000, 198],
+                [1384589000000, 663],
+                [1394590000000, 801],
+                [1404591000000, 1080],
+                [1414592000000, 353],
+                [1424593000000, 749],
+                [1434594000000, 523],
+                [1444595000000, 258],
+                [1454596000000, 688],
+                [1464597000000, 364]
+            ]
+            var dataProfit = [
+                [1354586000000, 53],
+                [1364587000000, 65],
+                [1374588000000, 98],
+                [1384589000000, 83],
+                [1394590000000, 980],
+                [1404591000000, 808],
+                [1414592000000, 720],
+                [1424593000000, 674],
+                [1434594000000, 23],
+                [1444595000000, 79],
+                [1454596000000, 88],
+                [1464597000000, 36]
+            ]
+            var dataSignups = [
+                [1354586000000, 647],
+                [1364587000000, 435],
+                [1374588000000, 784],
+                [1384589000000, 346],
+                [1394590000000, 487],
+                [1404591000000, 463],
+                [1414592000000, 479],
+                [1424593000000, 236],
+                [1434594000000, 843],
+                [1444595000000, 657],
+                [1454596000000, 241],
+                [1464597000000, 341]
+            ]
+            var dataSet1 = [
+                [0, 10],
+                [100, 8],
+                [200, 7],
+                [300, 5],
+                [400, 4],
+                [500, 6],
+                [600, 3],
+                [700, 2]
+            ];
+            var dataSet2 = [
+                [0, 9],
+                [100, 6],
+                [200, 5],
+                [300, 3],
+                [400, 3],
+                [500, 5],
+                [600, 2],
+                [700, 1]
+            ];
+
             $(document).ready(function()
             {
 
-                $('#js-page-content').smartPanel(); 
+                /* init datatables */
+                $('#dt-basic-example').dataTable(
+                {
+                    responsive: true,
+                    dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        {
+                            extend: 'colvis',
+                            text: 'Column Visibility',
+                            titleAttr: 'Col visibility',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'print',
+                            text: '<i class="fal fa-print"></i>',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-default'
+                        }
+
+                    ],
+                    columnDefs: [
+                        {
+                            targets: -1,
+                            title: '',
+                            orderable: false,
+                            render: function(data, type, full, meta)
+                            {
+
+                                /*
+                                -- ES6
+                                -- convert using https://babeljs.io online transpiler
+                                return `
+                                <a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>
+                                	<i class="fal fa-times"></i>
+                                </a>
+                                <div class='dropdown d-inline-block dropleft '>
+                                	<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>
+                                		<i class="fal fa-ellipsis-v"></i>
+                                	</a>
+                                	<div class='dropdown-menu'>
+                                		<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>
+                                		<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
+                                	</div>
+                                </div>`;
+                                	
+                                ES5 example below:	
+
+                                */
+                                return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<div class='dropdown d-inline-block dropleft'>\n\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
+                            },
+                        },
+
+                    ]
+
+                });
+
+
+                /* flot toggle example */
+                var flot_toggle = function()
+                {
+
+                    var data = [
+                    {
+                        label: "Target Profit",
+                        data: dataTargetProfit,
+                        color: myapp_get_color.info_400,
+                        bars:
+                        {
+                            show: true,
+                            align: "center",
+                            barWidth: 30 * 30 * 60 * 1000 * 80,
+                            lineWidth: 0,
+                            /*fillColor: {
+                            	colors: [myapp_get_color.primary_500, myapp_get_color.primary_900]
+                            },*/
+                            fillColor:
+                            {
+                                colors: [
+                                {
+                                    opacity: 0.9
+                                },
+                                {
+                                    opacity: 0.1
+                                }]
+                            }
+                        },
+                        highlightColor: 'rgba(255,255,255,0.3)',
+                        shadowSize: 0
+                    },
+                    {
+                        label: "Actual Profit",
+                        data: dataProfit,
+                        color: myapp_get_color.warning_500,
+                        lines:
+                        {
+                            show: true,
+                            lineWidth: 2
+                        },
+                        shadowSize: 0,
+                        points:
+                        {
+                            show: true
+                        }
+                    },
+                    {
+                        label: "User Signups",
+                        data: dataSignups,
+                        color: myapp_get_color.success_500,
+                        lines:
+                        {
+                            show: true,
+                            lineWidth: 2
+                        },
+                        shadowSize: 0,
+                        points:
+                        {
+                            show: true
+                        }
+                    }]
+
+                    var options = {
+                        grid:
+                        {
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: '#f2f2f2',
+                            borderWidth: 1,
+                            borderColor: '#f2f2f2'
+                        },
+                        tooltip: true,
+                        tooltipOpts:
+                        {
+                            cssClass: 'tooltip-inner',
+                            defaultTheme: false
+                        },
+                        xaxis:
+                        {
+                            mode: "time"
+                        },
+                        yaxes:
+                        {
+                            tickFormatter: function(val, axis)
+                            {
+                                return "$" + val;
+                            },
+                            max: 1200
+                        }
+
+                    };
+
+                    var plot2 = null;
+
+                    function plotNow()
+                    {
+                        var d = [];
+                        $("#js-checkbox-toggles").find(':checkbox').each(function()
+                        {
+                            if ($(this).is(':checked'))
+                            {
+                                d.push(data[$(this).attr("name").substr(4, 1)]);
+                            }
+                        });
+                        if (d.length > 0)
+                        {
+                            if (plot2)
+                            {
+                                plot2.setData(d);
+                                plot2.draw();
+                            }
+                            else
+                            {
+                                plot2 = $.plot($("#flot-toggles"), d, options);
+                            }
+                        }
+
+                    };
+
+                    $("#js-checkbox-toggles").find(':checkbox').on('change', function()
+                    {
+                        plotNow();
+                    });
+                    plotNow()
+                }
+                flot_toggle();
+                /* flot toggle example -- end*/
+
+                /* flot area */
+                var flotArea = $.plot($('#flot-area'), [
+                {
+                    data: dataSet1,
+                    label: 'New Customer',
+                    color: myapp_get_color.success_200
+                },
+                {
+                    data: dataSet2,
+                    label: 'Returning Customer',
+                    color: myapp_get_color.info_200
+                }],
+                {
+                    series:
+                    {
+                        lines:
+                        {
+                            show: true,
+                            lineWidth: 2,
+                            fill: true,
+                            fillColor:
+                            {
+                                colors: [
+                                {
+                                    opacity: 0
+                                },
+                                {
+                                    opacity: 0.5
+                                }]
+                            }
+                        },
+                        shadowSize: 0
+                    },
+                    points:
+                    {
+                        show: true,
+                    },
+                    legend:
+                    {
+                        noColumns: 1,
+                        position: 'nw'
+                    },
+                    grid:
+                    {
+                        hoverable: true,
+                        clickable: true,
+                        borderColor: '#ddd',
+                        tickColor: '#ddd',
+                        aboveData: true,
+                        borderWidth: 0,
+                        labelMargin: 5,
+                        backgroundColor: 'transparent'
+                    },
+                    yaxis:
+                    {
+                        tickLength: 1,
+                        min: 0,
+                        max: 15,
+                        color: '#eee',
+                        font:
+                        {
+                            size: 0,
+                            color: '#999'
+                        }
+                    },
+                    xaxis:
+                    {
+                        tickLength: 1,
+                        color: '#eee',
+                        font:
+                        {
+                            size: 10,
+                            color: '#999'
+                        }
+                    }
+
+                });
+                /* flot area -- end */
+
+                var flotVisit = $.plot('#flotVisit', [
+                {
+                    data: [
+                        [3, 0],
+                        [4, 1],
+                        [5, 3],
+                        [6, 3],
+                        [7, 10],
+                        [8, 11],
+                        [9, 12],
+                        [10, 9],
+                        [11, 12],
+                        [12, 8],
+                        [13, 5]
+                    ],
+                    color: myapp_get_color.success_200
+                },
+                {
+                    data: [
+                        [1, 0],
+                        [2, 0],
+                        [3, 1],
+                        [4, 2],
+                        [5, 2],
+                        [6, 5],
+                        [7, 8],
+                        [8, 12],
+                        [9, 9],
+                        [10, 11],
+                        [11, 5]
+                    ],
+                    color: myapp_get_color.info_200
+                }],
+                {
+                    series:
+                    {
+                        shadowSize: 0,
+                        lines:
+                        {
+                            show: true,
+                            lineWidth: 2,
+                            fill: true,
+                            fillColor:
+                            {
+                                colors: [
+                                {
+                                    opacity: 0
+                                },
+                                {
+                                    opacity: 0.12
+                                }]
+                            }
+                        }
+                    },
+                    grid:
+                    {
+                        borderWidth: 0
+                    },
+                    yaxis:
+                    {
+                        min: 0,
+                        max: 15,
+                        tickColor: '#ddd',
+                        ticks: [
+                            [0, ''],
+                            [5, '100K'],
+                            [10, '200K'],
+                            [15, '300K']
+                        ],
+                        font:
+                        {
+                            color: '#444',
+                            size: 10
+                        }
+                    },
+                    xaxis:
+                    {
+
+                        tickColor: '#eee',
+                        ticks: [
+                            [2, '2am'],
+                            [3, '3am'],
+                            [4, '4am'],
+                            [5, '5am'],
+                            [6, '6am'],
+                            [7, '7am'],
+                            [8, '8am'],
+                            [9, '9am'],
+                            [10, '1pm'],
+                            [11, '2pm'],
+                            [12, '3pm'],
+                            [13, '4pm']
+                        ],
+                        font:
+                        {
+                            color: '#999',
+                            size: 9
+                        }
+                    }
+                });
+
+
             });
+
         </script>
-        
 
 
         <!-- Toastr-->
         <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <!--Angular-->
-
+        
         <script src="<?php echo e(url('js/angular.min.js?v='.cache("js_version_number").'')); ?>"></script>
         <script src="<?php echo e(url('js/sanitize.min.js?v='.cache("js_version_number").'')); ?>"></script>
         <script src="<?php echo e(url('js/module.js?v='.cache("js_version_number").'')); ?>"></script>
@@ -1130,7 +1331,15 @@
         <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
 
         
+        
+        <script>
+            $(document).ready(function()
+            {
+
+                $('#js-page-content').smartPanel(); 
+            });
+        </script>
+
 
     <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('system.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

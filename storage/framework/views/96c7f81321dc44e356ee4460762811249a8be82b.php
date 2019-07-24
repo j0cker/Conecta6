@@ -37,6 +37,106 @@
                     </a>
                 </div>
                 
+                
+                <!--Administradores-->
+
+                <?php if(in_array("1", $user["permisos"])): ?>
+
+                <ul id="js-nav-menu" class="nav-menu">
+                                <?php if($__env->yieldContent('menuActive')=="inicioAdmin"  ||
+                                     $__env->yieldContent('menuActive')=="perfil" ||
+                                     $__env->yieldContent('menuActive')=="empresas" ||
+                                     $__env->yieldContent('menuActive')=="idiomas" ||
+                                     $__env->yieldContent('menuActive')=="planes" ||
+                                     $__env->yieldContent('menuActive')=="administradores" ||
+                                     $__env->yieldContent('menuActive')=="historial de pagos"): ?>
+                                    <li class="active open">
+                                <?php else: ?>
+                                    <li class="">
+                                <?php endif; ?>
+                                <a href="#" title="Application Intel" data-filter-tags="application intel">
+                                    <i class="fal fa-info-circle"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Administradores</span>
+                                </a>
+                                <ul>
+                                <?php if($__env->yieldContent('menuActive')=="inicioAdmin"): ?>
+                                    <li class="active">
+                                <?php else: ?>
+                                    <li class="">
+                                <?php endif; ?>
+                                        <a href="<?php echo e(url('/inicioAdmin')); ?>" title="Analytics Dashboard" data-filter-tags="application intel analytics dashboard">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Inicio</span>
+                                        </a>
+                                    </li>
+                                <?php if($__env->yieldContent('menuActive')=="perfil"): ?>
+                                    <li class="active">
+                                <?php else: ?>
+                                    <li class="">
+                                <?php endif; ?>
+                                        <a href="<?php echo e(url('/perfil')); ?>" title="Perfil" data-filter-tags="perfil">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Perfil</span>
+                                        </a>
+                                    </li>
+                                <?php if($__env->yieldContent('menuActive')=="empresas"): ?>
+                                    <li class="active">
+                                <?php else: ?>
+                                    <li class="">
+                                <?php endif; ?>
+                                        <a href="<?php echo e(url('/empresas')); ?>" title="Empresas" data-filter-tags="empresas">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Empresas</span>
+                                        </a>
+                                    </li>
+                                <?php if($__env->yieldContent('menuActive')=="idiomas"): ?>
+                                    <li class="active">
+                                <?php else: ?>
+                                    <li class="">
+                                <?php endif; ?>
+                                        <a href="<?php echo e(url('/idiomas')); ?>" title="Idiomas" data-filter-tags="idiomas">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Idiomas</span>
+                                        </a>
+                                    </li>
+                                <?php if($__env->yieldContent('menuActive')=="planes"): ?>
+                                    <li class="active">
+                                <?php else: ?>
+                                    <li class="">
+                                <?php endif; ?>
+                                        <a href="<?php echo e(url('/planes')); ?>" title="Planes" data-filter-tags="planes">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Planes</span>
+                                        </a>
+                                    </li>
+                                <?php if($__env->yieldContent('menuActive')=="administradores"): ?>
+                                    <li class="active">
+                                <?php else: ?>
+                                    <li class="">
+                                <?php endif; ?>
+                                        <a href="<?php echo e(url('/administradores')); ?>" title="Administradores" data-filter-tags="administradores">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Administradores</span>
+                                        </a>
+                                    </li>
+                                <?php if($__env->yieldContent('menuActive')=="historial de pagos"): ?>
+                                    <li class="active">
+                                <?php else: ?>
+                                    <li class="">
+                                <?php endif; ?>
+                                        <a href="<?php echo e(url('/hitsorialDePagos')); ?>" title="Historial de Pagos" data-filter-tags="historial de pagos">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Historial de Pagos</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" ng-click="logout()" title="Salir" data-filter-tags="salir">
+                                            <span class="nav-link-text" data-i18n="nav.pages_chat">Salir</span>
+                                        </a>
+                                    </li>
+                            </li>
+
+                </ul>
+                <?php endif; ?>
+                
+                
+                <!--Trabajadores-->
+
+                <?php if(in_array("3", $user["permisos"])): ?>
+
                 <ul id="js-nav-menu" class="nav-menu">
                                 <?php if($__env->yieldContent('menuActive')=="inicio"  ||
                                      $__env->yieldContent('menuActive')=="perfil" ||
@@ -56,7 +156,7 @@
                                 <?php else: ?>
                                     <li class="">
                                 <?php endif; ?>
-                                        <a href="<?php echo e(url('/inicio')); ?>" title="Analytics Dashboard" data-filter-tags="application intel analytics dashboard">
+                                        <a href="<?php echo e(url('/inicio')); ?>" title="inicio Analytics Dashboard" data-filter-tags="application intel inicio analytics dashboard">
                                             <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Inicio</span>
                                         </a>
                                     </li>
@@ -94,10 +194,11 @@
                                     </li>
                             </li>
 
-                        </ul>
+                </ul>
+                <?php endif; ?>
 
-                    <div class="filter-message js-filter-message bg-success-600"></div>
-                </nav>
+                <div class="filter-message js-filter-message bg-success-600"></div>
+            </nav>
                         
                 <!-- END PRIMARY NAVIGATION -->
                 <!-- NAV FOOTER -->
