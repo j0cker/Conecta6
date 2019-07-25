@@ -95,6 +95,7 @@
                                             <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Idiomas</span>
                                         </a>
                                     </li>
+                                <!--
                                 <?php if($__env->yieldContent('menuActive')=="planes"): ?>
                                     <li class="active">
                                 <?php else: ?>
@@ -104,6 +105,7 @@
                                             <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Planes</span>
                                         </a>
                                     </li>
+                                -->
                                 <?php if($__env->yieldContent('menuActive')=="administradores"): ?>
                                     <li class="active">
                                 <?php else: ?>
@@ -113,6 +115,7 @@
                                             <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Administradores</span>
                                         </a>
                                     </li>
+                                <!--
                                 <?php if($__env->yieldContent('menuActive')=="historial de pagos"): ?>
                                     <li class="active">
                                 <?php else: ?>
@@ -122,6 +125,7 @@
                                             <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Historial de Pagos</span>
                                         </a>
                                     </li>
+                                -->
                                     <li>
                                         <a href="#" ng-click="logout()" title="Salir" data-filter-tags="salir">
                                             <span class="nav-link-text" data-i18n="nav.pages_chat">Salir</span>

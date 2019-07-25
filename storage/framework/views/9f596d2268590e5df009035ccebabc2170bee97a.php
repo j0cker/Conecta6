@@ -77,10 +77,13 @@
                                     </div>
                                     <div class="panel-container show">
                                         <div class="panel-content">
+
+                                            <button style="margin-bottom: 20px;" class="btn btn-primary">Alta</button>
                                             
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
+                                                        <th>ID</th>
                                                         <th>Empresa</th>
                                                         <th>Empleados</th>
                                                         <th>Expiración en Días</th>
@@ -90,78 +93,57 @@
                                                 </thead>
                                                 <tbody id="historialTable">
                                                     <tr>
-                                                        <td>03-13-19</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Entrada</td>
+                                                        <td>1</td>
+                                                        <td>MC Donalds</td>
+                                                        <td>100</td>
+                                                        <td>150</td>
                                                         <td></td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>04-10-19</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Comida</td>
+                                                        <td>2</td>
+                                                        <td>MC Donalds</td>
+                                                        <td>100</td>
+                                                        <td>150</td>
                                                         <td></td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>05-14-20</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Jornada</td>
+                                                        <td>3</td>
+                                                        <td>MC Donalds</td>
+                                                        <td>100</td>
+                                                        <td>150</td>
                                                         <td></td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>11-05-18</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Jornada</td>
+                                                        <td>4</td>
+                                                        <td>MC Donalds</td>
+                                                        <td>100</td>
+                                                        <td>150</td>
                                                         <td></td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>01-16-20</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Comida</td>
+                                                        <td>5</td>
+                                                        <td>MC Donalds</td>
+                                                        <td>100</td>
+                                                        <td>150</td>
                                                         <td></td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>07-14-18</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Comida</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>08-30-18</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Jornada</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>09-19-18</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Entrada</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>12-16-19</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Entrada</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>05-30-20</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Jornada</td>
+                                                        <td>6</td>
+                                                        <td>MC Donalds</td>
+                                                        <td>100</td>
+                                                        <td>150</td>
                                                         <td></td>
                                                         <td></td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
+                                                        <th>ID</th>
                                                         <th>Empresa</th>
                                                         <th>Empleados</th>
                                                         <th>Expiración en Días</th>
@@ -781,6 +763,13 @@
         <script src="js/datatables.bundle.js"></script>
 
         <script>
+            $( document ).ready(function() {
+                // Handler for .ready() called.
+                $("#mytheme").attr("href","css/themes/cust-theme-6.css");
+            });
+        </script>
+
+        <script>
 
             $(document).ready(function()
             {
@@ -824,22 +813,59 @@
                     "columnDefs": [ {
                         "targets": -2,
                         "data": null,
-                        "defaultContent": '<center><div class="custom-control custom-switch mr-2"><input type="checkbox" class="custom-control-input" name="gra-0" id="gra-0" checked="checked"><label class="custom-control-label" for="gra-0"></label></div></center>'
+                        "render": function ( data, type, row, meta ) {
+                            //console.log(row);
+                            //console.log(type);
+                            //console.log(data);
+                            //console.log(meta);
+                            return `<center>
+                                        <div class="custom-control custom-switch mr-2">
+                                            <input type="checkbox" class="custom-control-input" name="gra-`+meta.row+`" id="gra-`+meta.row+`" checked="checked">
+                                            <label class="custom-control-label" for="gra-`+meta.row+`"></label>
+                                        </div>
+                                    </center>`;
+                        }
+                        
                     },{
                         "targets": -1,
                         "data": null,
-                        "defaultContent": '<center><button>Click!</button><button style="margin-left: 10px;">Click2!</button></center>'
+                        "defaultContent": `<center>
+                                                <button class="btn btn-primary fal fa-edit"></button>
+                                                <button class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
+                                            </center>`
                     } ]
 
                 });
 
+                $('#dt-basic-example tbody').on( 'click', 'button', function () {
+                    console.log("[dt-basic-example tbody] click");
+                    console.log($(this));
+                    console.log($(this)[0].innerHTML); //html
+                    console.log($(this)[0].attributes[0].value); //class
+                    var data = table.DataTable().row( $(this).parents('tr') ).data();
+                    if($(this)[0].attributes[0].value.indexOf("edit")!=-1){
+                        alert("Editar" + data[0]);
+                    } else {
+                        alert("Eliminar" + data[0]);
+                    }
+                });
+
+                $('#dt-basic-example tbody').on( 'change', 'input', function () {
+                    console.log("[dt-basic-example tbody] change");
+                    console.log($(this)[0].checked); //checked
+                    var data = table.DataTable().row( $(this).parents('tr') ).data();
+                    if($(this)[0].checked==true){
+                        alert("Activado " + data[0]);
+                    } else {
+                        alert("Desactivado " + data[0]);
+
+                    }
+
+                });
 
                 //array
                 //https://datatables.net/examples/ajax/simple.html
                 //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ] ],
-
-                
-
 
             });
 

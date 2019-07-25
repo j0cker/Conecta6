@@ -23,18 +23,18 @@
 <!--Menu Transparente
 @section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
 -->
-@section('menuActive','historialRegistros')
+@section('menuActive','idiomas')
 
 @section('raiz1', @Config::get('app.name'))
 @section('raiz1Url', '/inicio')
-@section('raiz2','Trabajadores')
+@section('raiz2','Administradores')
 @section('raiz2Url','/inicio')
-@section('raiz3','Historial de Entradas y Salidas')
-@section('raiz3Url','/historial')
+@section('raiz3','Idiomas')
+@section('raiz3Url','/idiomas')
 
 {{-- Angular Controller --}}
 
-@section('controller','historial')
+@section('controller','idiomas')
 
 {{-- Body --}}
 
@@ -62,7 +62,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-history'></i> Historial Entradas y Salidas <span class='fw-300'>Dashboard</span>
+                                <i class='subheader-icon fal fa-language'></i> Idiomas <span class='fw-300'>Dashboard</span>
                             </h1>
                         </div>
                         <div class="row">
@@ -70,7 +70,7 @@
                                 <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr" role="heading">
                                         <h2>
-                                            Historial Entradas y Salidas
+                                            Idiomas
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -83,99 +83,46 @@
                                     <div class="panel-container show">
                                         <div class="panel-content">
 
-                                            
-                                            <div class="form-group row">
-                                                <div class="col-12">
-                                                    <div style="margin-top: 10px; !important" class="input-group">
-                                                        <input type="text" class="form-control" placeholder="Select date" id="datepicker-2">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text fs-xl">
-                                                                <i class="fal fa-calendar"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    <input class="form-control" type="text" placeholder="Nuevo idioma" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button style="margin-bottom: 20px;" class="btn btn-primary">Agregar</button>
                                                 </div>
                                             </div>
-
-
-
+                                            
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
-                                                        <th>Fecha</th>
-                                                        <th>Hora</th>
-                                                        <th>Entrada/Salida</th>
-                                                        <th>Comentarios</th>
+                                                        <th>ID</th>
+                                                        <th>Idioma</th>
+                                                        <th>Opciones</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
                                                     <tr>
-                                                        <td>03-13-19</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Entrada</td>
-                                                        <td>Salí Tarde</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>04-10-19</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Comida</td>
-                                                        <td>Recuperé el tiempo que salí tarde</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>05-14-20</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Jornada</td>
+                                                        <td>1</td>
+                                                        <td>Español</td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>11-05-18</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Jornada</td>
+                                                        <td>2</td>
+                                                        <td>Inglés</td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>01-16-20</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Comida</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>07-14-18</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Comida</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>08-30-18</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Jornada</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>09-19-18</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Entrada</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>12-16-19</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Entrada</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>05-30-20</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Jornada</td>
+                                                        <td>3</td>
+                                                        <td>Catalán</td>
                                                         <td></td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>Fecha</th>
-                                                        <th>Hora</th>
-                                                        <th>Entrada/Salida</th>
-                                                        <td>Comentarios</td>
+                                                        <th>ID</th>
+                                                        <th>Idioma</th>
+                                                        <th>Opciones</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -788,13 +735,11 @@
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
     
         <script src="js/datatables.bundle.js"></script>
-        <script src="js/moment.js"></script>
-        <script src="js/datepicker.js"></script>
-        
+
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                $("#mytheme").attr("href","css/themes/cust-theme-16.css");
+                $("#mytheme").attr("href","css/themes/cust-theme-6.css");
             });
         </script>
 
@@ -838,27 +783,47 @@
                             className: 'btn-outline-default'
                         }
 
-                    ]
+                    ],
+                    "columnDefs": [ {
+                        "targets": -1,
+                        "data": null,
+                        "defaultContent": `<center>
+                                                <button class="btn btn-primary fal fa-edit"></button>
+                                                <button class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
+                                            </center>`
+                    } ]
 
                 });
 
-                $('#datepicker-2').daterangepicker({
-                    timePicker: true,
-                    startDate: moment().startOf('hour'),
-                    endDate: moment().startOf('hour').add(32, 'hour'),
-                    locale:
-                    {
-                        format: 'YY/MM/DD hh:mm A'
+                $('#dt-basic-example tbody').on( 'click', 'button', function () {
+                    console.log("[dt-basic-example tbody] click");
+                    console.log($(this));
+                    console.log($(this)[0].innerHTML); //html
+                    console.log($(this)[0].attributes[0].value); //class
+                    var data = table.DataTable().row( $(this).parents('tr') ).data();
+                    if($(this)[0].attributes[0].value.indexOf("edit")!=-1){
+                        alert("Editar" + data[0]);
+                    } else {
+                        alert("Eliminar" + data[0]);
                     }
                 });
 
+                $('#dt-basic-example tbody').on( 'change', 'input', function () {
+                    console.log("[dt-basic-example tbody] change");
+                    console.log($(this)[0].checked); //checked
+                    var data = table.DataTable().row( $(this).parents('tr') ).data();
+                    if($(this)[0].checked==true){
+                        alert("Activado " + data[0]);
+                    } else {
+                        alert("Desactivado " + data[0]);
+
+                    }
+
+                });
 
                 //array
                 //https://datatables.net/examples/ajax/simple.html
                 //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ] ],
-
-                
-
 
             });
 

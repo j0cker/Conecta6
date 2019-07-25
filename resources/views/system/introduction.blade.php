@@ -759,6 +759,12 @@
         
         <script src="js/vendors.bundle.js"></script>
         <script src="js/app.bundle.js"></script>
+        <script>
+            $( document ).ready(function() {
+                // Handler for .ready() called.
+                $("#mytheme").attr("href","css/themes/cust-theme-16.css");
+            });
+        </script>
 
 
         <!-- Toastr-->

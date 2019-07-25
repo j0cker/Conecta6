@@ -220,6 +220,15 @@
 
   });//fin controller introduction
 
+  app.controller('idiomas', function($scope, functions, $window) {
+
+    console.log("[idiomas]");
+
+    functions.loading();
+
+
+  });//fin controller introduction
+
   return;
 
 }).call(this);

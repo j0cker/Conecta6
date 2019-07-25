@@ -1105,6 +1105,19 @@
         <script src="js/app.bundle.js"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
      
+        <script>
+            $( document ).ready(function() {
+                // Handler for .ready() called.
+                
+                <?php if(in_array("1", $user["permisos"])): ?>
+                    $("#mytheme").attr("href","css/themes/cust-theme-6.css");
+                <?php endif; ?>
+                <?php if(in_array("3", $user["permisos"])): ?>
+                    $("#mytheme").attr("href","css/themes/cust-theme-16.css");
+                <?php endif; ?>
+
+            });
+        </script>
         
         <script>
             $(document).ready(function()

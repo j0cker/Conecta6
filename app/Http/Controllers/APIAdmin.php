@@ -303,6 +303,80 @@ class APIAdmin extends Controller
       }
   
     }
+
+    public function Idiomas(Request $request){
+      
+      Log::info('[APIAdmin][Idiomas]');
+  
+      Log::info("[APIAdmin][Idiomas] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('GET')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIAdmin][Idiomas] Token: ". $token);
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+          if(in_array("1", $token_decrypt["permisos"])==1){
+            
+            return view('system.idiomas',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
+  
+
+          } else {
+            
+            return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+            
+          }
+  
+          //print_r($token_decrypt["id"]);
+  
+          //print_r($token_decrypt);
+  
+          
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][Idiomas] Token error: token_expired');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][Idiomas] Token error: token_invalid');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][Idiomas] Token error: token_absent');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        }
+  
+  
+  
+      } else {
+        abort(404);
+      }
+  
+    }
   
     public function Logout(Request $request){
       

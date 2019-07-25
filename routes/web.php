@@ -39,6 +39,9 @@ Route::get('/inicioAdmin', 'APIAdmin@Inicio');
 //Empresas
 Route::get('/empresas', 'APIAdmin@Empresas');
 
+//Idiomas
+Route::get('/idiomas', 'APIAdmin@Idiomas');
+
 
 
 

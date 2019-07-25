@@ -19,6 +19,41 @@
         <!-- Remove Tap Highlight on Windows Phone IE -->
         <meta name="msapplication-tap-highlight" content="no">
 
+        @php
+        $hex = "#ad0a38";
+        list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+        @endphp
+
+        <style>
+        :root {
+        
+  
+              
+            
+                @if (in_array("1", $user["permisos"]))
+                    --main-bg-color: @php echo $hex; @endphp !important;
+                    --main-bg-color-transparent-5: rgba(@php echo $r; @endphp,@php echo $g; @endphp,@php echo $b; @endphp,0.6) !important;
+                    --main-bg-color-transparent-1: rgba(@php echo $r; @endphp,@php echo $g; @endphp,@php echo $b; @endphp,0.2) !important;
+    
+                @endif
+                @if (in_array("3", $user["permisos"]))
+                    --main-bg-color: #433191 !important;
+                    --main-bg-color-transparent-5: rgba(67,49,145,0.5) !important;
+                    --main-bg-color-transparent-1: rgba(67,49,145,0.1) !important;
+                @endif
+                
+
+                /*
+                --main-bg-color: red !important;
+                --main-bg-color-transparent-5: rgba(255,0,0,0.5) !important;
+                */
+
+                --main-color-text: #FFFFFF !important;
+
+            }
+        
+        </style>
+
         <!-- base css -->
         <link rel="stylesheet" media="screen, print" href="{{ url('css/vendors.bundle.css?v='.cache("js_version_number").'') }}">
         <link rel="stylesheet" media="screen, print" href="{{ url('css/app.bundle.css?v='.cache("js_version_number").'') }}">
@@ -43,25 +78,6 @@
         <!-- Toastr -->
         <link rel="stylesheet" href="{{ url('css/toastr.css?v='.cache("js_version_number").'') }}">
 
-        <style>
-            :root {
-            
-                
-                --main-bg-color: #433191 !important;
-                --main-bg-color-transparent-5: rgba(67,49,145,0.5) !important;
-                --main-bg-color-transparent-1: rgba(67,49,145,0.1) !important;
-                
-
-                /*
-                --main-bg-color: red !important;
-                --main-bg-color-transparent-5: rgba(255,0,0,0.5) !important;
-                */
-
-                --main-color-text: #FFFFFF !important;
-
-            }
-        
-        </style>
 
 
     </head>
