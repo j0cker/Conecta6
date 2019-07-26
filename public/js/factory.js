@@ -38,7 +38,7 @@
 
         console.log("correo: " + correo + " contPass: " + contPass);
 
-        var url = 'api/trabajadores/ingresar';
+        var url = '/api/trabajadores/ingresar';
         return $http.get(url,{
           params: { cache: false, correo:correo, contPass:contPass },
           cache: false
@@ -49,7 +49,7 @@
 
         console.log("[factory][postLogout]");
 
-        var url = 'api/trabajadores/logout';
+        var url = '/api/trabajadores/logout';
 		  	return $http.get(url,{
           params: { cache: false },
           cache: false
@@ -62,7 +62,7 @@
 
         console.log("correo: " + correo + " contPass: " + contPass);
 
-        var url = 'api/pAdmin/ingresar';
+        var url = '/api/pAdmin/ingresar';
         return $http.get(url,{
           params: { cache: false, correo:correo, contPass:contPass },
           cache: false
@@ -73,7 +73,7 @@
 
         console.log("[factory][postLogoutAdmin]");
 
-        var url = 'api/pAdmin/logout';
+        var url = '/api/pAdmin/logout';
 		  	return $http.get(url,{
           params: { cache: false },
           cache: false

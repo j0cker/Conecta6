@@ -770,9 +770,9 @@
             </div>
         </div> <!-- END Page Settings -->
 
+        <script src="{{ url('js/vendors.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/app.bundle.js?v='.cache("js_version_number").'') }}"></script>
         
-        <script src="js/vendors.bundle.js"></script>
-        <script src="js/app.bundle.js"></script>
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.

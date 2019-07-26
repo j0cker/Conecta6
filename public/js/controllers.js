@@ -108,7 +108,7 @@
     functions.loading();
 
 
-  });//fin controller marketing
+  });//fin controller inicioAdmin
 
   app.controller('introduction', function($scope, functions, $window) {
 
@@ -126,7 +126,7 @@
     functions.loading();
 
 
-  });//fin controller introduction
+  });//fin controller registros
 
   app.controller('perfil', function($scope, functions, $window) {
 
@@ -135,7 +135,7 @@
     functions.loading();
 
 
-  });//fin controller introduction
+  });//fin controller perfil
 
   app.controller('historial', function($scope, functions, $window) {
 
@@ -144,7 +144,7 @@
     functions.loading();
 
 
-  });//fin controller introduction
+  });//fin controller historial
 
   app.controller('signInAdmin', function($scope, functions, $window) {
 
@@ -209,7 +209,7 @@
       
     }
 
-  });//fin controller introduction
+  });//fin controller signInAdmin
 
   app.controller('empresas', function($scope, functions, $window) {
 
@@ -218,7 +218,16 @@
     functions.loading();
 
 
-  });//fin controller introduction
+  });//fin controller empresas
+
+  app.controller('nuevoempresa', function($scope, functions, $window) {
+
+    console.log("[nuevoempresa]");
+
+    functions.loading();
+
+
+  });//fin controller nuevoempresa
 
   app.controller('idiomas', function($scope, functions, $window) {
 
@@ -227,7 +236,25 @@
     functions.loading();
 
 
-  });//fin controller introduction
+  });//fin controller idiomas
+
+  app.controller('administradores', function($scope, functions, $window) {
+
+    console.log("[administradores]");
+
+    functions.loading();
+
+
+  });//fin controller administradores
+
+  app.controller('nuevoadministrador', function($scope, functions, $window) {
+
+    console.log("[nuevoadministrador]");
+
+    functions.loading();
+
+
+  });//fin controller administradores
 
   return;
 

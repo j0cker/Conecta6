@@ -847,8 +847,9 @@
             </div>
         </div> <!-- END Page Settings -->
         
-        <script src="js/vendors.bundle.js"></script>
-        <script src="js/app.bundle.js"></script>
+        <script src="{{ url('js/vendors.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/app.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
         
         

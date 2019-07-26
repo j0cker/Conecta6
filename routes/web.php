@@ -39,9 +39,17 @@ Route::get('/inicioAdmin', 'APIAdmin@Inicio');
 //Empresas
 Route::get('/empresas', 'APIAdmin@Empresas');
 
+//Agregar Nueva Empresa
+Route::get('/empresas/nueva', 'APIAdmin@NuevaEmpresa');
+
 //Idiomas
 Route::get('/idiomas', 'APIAdmin@Idiomas');
 
+//Administradores
+Route::get('/administradores', 'APIAdmin@Administradores');
+
+//Nuevo Administradores
+Route::get('/administradores/nuevo', 'APIAdmin@NuevoAdministrador');
 
 
 

@@ -778,18 +778,19 @@
             </div>
         </div> <!-- END Page Settings -->
         
-        <script src="js/vendors.bundle.js"></script>
-        <script src="js/app.bundle.js"></script>
+        <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
     
-        <script src="js/datatables.bundle.js"></script>
-        <script src="js/moment.js"></script>
-        <script src="js/datepicker.js"></script>
+        <script src="<?php echo e(url('js/datatables.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/moment.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/daterangepicker.js?v='.cache("js_version_number").'')); ?>"></script>
         
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                $("#mytheme").attr("href","css/themes/cust-theme-16.css");
+                $("#mytheme").attr("href","<?php echo e(url('css/themes/cust-theme-16.css?v='.cache("js_version_number").'')); ?>");
             });
         </script>
 

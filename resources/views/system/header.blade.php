@@ -62,7 +62,7 @@
         <link rel="apple-touch-icon" sizes="180x180" href="https://www.gotbootstrap.com/themes/smartadmin/4.0.1/img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="https://www.gotbootstrap.com/themes/smartadmin/4.0.1/img/favicon/favicon-32x32.png">
         <link rel="shortcut icon" href="{{ url('img/icon.ico?v='.cache("js_version_number").'') }}" />
-        <link id="mytheme" rel="stylesheet" href="css/themes/cust-theme-1.css">
+        <link id="mytheme" rel="stylesheet" href="{{ url('css/themes/cust-theme-1.css?v='.cache("js_version_number").'') }}">
 
         <link rel="stylesheet" media="screen, print" href="{{ url('css/datatables.bundle.css?v='.cache("js_version_number").'') }}">
         <link rel="stylesheet" media="screen, print" href="{{ url('fonts/font-awesome-5-pro.css?v='.cache("js_version_number").'') }}">
@@ -74,6 +74,7 @@
         <link rel="stylesheet" href="{{ url('css/clock.css?v='.cache("js_version_number").'') }}">
         <link href="{{ url('css/selects.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
         <link href="{{ url('css/datepicker.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
+        <link href="{{ url('css/daterangepicker.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
 
         <!-- Toastr -->
         <link rel="stylesheet" href="{{ url('css/toastr.css?v='.cache("js_version_number").'') }}">

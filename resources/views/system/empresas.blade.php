@@ -83,7 +83,9 @@
                                     <div class="panel-container show">
                                         <div class="panel-content">
 
-                                            <button style="margin-bottom: 20px;" class="btn btn-primary">Alta</button>
+                                            <a href="/empresas/nueva">
+                                                <button style="margin-bottom: 20px;" class="btn btn-primary">Alta</button>
+                                            </a>
                                             
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
