@@ -79,6 +79,17 @@
           cache: false
         });
 
+      },
+      altaEmpresa: function() {
+
+        console.log("[factory][altaEmpresa]");
+
+        var url = '/api/pAdmin/altaEmpresa';
+		  	return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
+
       }
     };
   });

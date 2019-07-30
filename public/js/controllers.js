@@ -226,6 +226,109 @@
 
     functions.loading();
 
+    var theme = $("#mytheme").attr("href").split("cust-theme-");
+    theme = theme[1].split(".css");
+
+    var color = theme[0];
+
+
+    $scope.color = (colorClicked) => {
+      console.log("[nuevoempresa][altaEmpresa] " + colorClicked);
+
+      color = colorClicked;
+
+    }
+
+    $scope.altaEmpresa = function(){
+      console.log("[nuevoempresa][altaEmpresa]");
+
+      functions.loadingWait();
+
+      var nombreEmpresa = "";
+      var nombreSolicitante = "";
+      var correoElectronico = "";
+      var telefonoFijo = "";
+      var celular = "";
+      var datepicker = ""; //vigencia
+      var empleadosPermitidos = "";
+      var activa = ""; //gra-0 cuenta activa/desactiva
+      var subdominio = "";
+      var contrasena = "";
+      var valContrasena = "";
+      color = color;
+
+      nombreEmpresa = $("#nombreEmpresa").val();
+      nombreSolicitante = $("#nombreSolicitante").val();
+      correoElectronico = $("#correoElectronico").val();
+      telefonoFijo = $("#telefonoFijo").val();
+      celular = $("#celular").val();
+      datepicker = $("#datepicker").val();
+      empleadosPermitidos = $("#empleadosPermitidos").val();
+      activa = $("#gra-0").val();
+      subdominio = $("#subdominio").val();
+      contrasena = $("#contrasena").val();
+      valContrasena = $("#valContrasena").val();
+      color = color;
+
+      console.log("[nuevoempresa][altaEmpresa] nombreEmpresa: " + nombreEmpresa);
+      console.log("[nuevoempresa][altaEmpresa] nombreSolicitante: " + nombreSolicitante);
+      console.log("[nuevoempresa][altaEmpresa] correoElectronico: " + correoElectronico);
+      console.log("[nuevoempresa][altaEmpresa] telefonoFijo: " + telefonoFijo);
+      console.log("[nuevoempresa][altaEmpresa] celular: " + celular);
+      console.log("[nuevoempresa][altaEmpresa] datepicker: " + datepicker);
+      console.log("[nuevoempresa][altaEmpresa] empleadosPermitidos: " + empleadosPermitidos);
+      console.log("[nuevoempresa][altaEmpresa] activa: " + activa);
+      console.log("[nuevoempresa][altaEmpresa] subdominio: " + subdominio);
+      console.log("[nuevoempresa][altaEmpresa] contrasena: " + contrasena);
+      console.log("[nuevoempresa][altaEmpresa] valContrasena: " + valContrasena);
+      console.log("[nuevoempresa][altaEmpresa] color: " + color);
+
+      if(nombreEmpresa==""){
+        toastr["error"]("Llena correctamente<br /> el nombre de la Empresa", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(nombreSolicitante==""){
+        toastr["error"]("Llena correctamente<br /> el nombre del Solicitante", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(correoElectronico.indexOf("@")=="-1" || correoElectronico.indexOf(".")=="-1" || correoElectronico.indexOf(" ")!="-1" || correoElectronico.indexOf(",")!="-1"){
+        toastr["error"]("Llena correctamente<br /> tu correo electrónico", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+        $("#agregar").effect( "shake" );
+      } else if(telefonoFijo=="" || celular=="" || datepicker=="" || empleadosPermitidos=="" || activa=="" || subdominio=="" || contrasena=="" || valContrasena=="" || color==""){
+        toastr["error"]("Llena correctamente<br /> todos los campos", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(contPass==""){
+        toastr["error"]("Contraseñas no<br /> coinciden", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+        
+      } else {
+
+        functions.postAltaEmpresa(correo, contPass).then(function (response) {
+
+                if(response.data.success == "TRUE"){
+                  console.log("[nuevoempresa][postIngresar]");
+
+                  toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+
+                } else {
+                    toastr["warning"](response.data.description, "");
+                    functions.loadingEndWait();
+                }
+            }, function (response) {
+              /*ERROR*/
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+
+        });/*fin postSubscriber*/
+      
+      }
+      
+    }
+
 
   });//fin controller nuevoempresa
 

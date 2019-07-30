@@ -113,7 +113,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Nombre de la empresa" />
+                                                                    <input id="nombreEmpresa" type="text" class="form-control" placeholder="Nombre de la empresa" />
 
                                                                 </div>
 
@@ -141,7 +141,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Nombre del Solicitante" />
+                                                                    <input id="nombreSolicitante" type="text" class="form-control" placeholder="Nombre del Solicitante" />
 
                                                                 </div>
 
@@ -169,7 +169,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Correo Electrónico" />
+                                                                    <input id="correoElectronico" type="text" class="form-control" placeholder="Correo Electrónico" />
 
                                                                 </div>
 
@@ -197,7 +197,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Teléfono Fijo" />
+                                                                    <input id="telefonoFijo" type="text" class="form-control" placeholder="Teléfono Fijo" />
 
                                                                 </div>
 
@@ -225,7 +225,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Celular" />
+                                                                    <input id="celular" type="text" class="form-control" placeholder="Celular" />
 
                                                                 </div>
 
@@ -288,7 +288,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Empleados Permitidos" />
+                                                                    <input id="empleadosPermitidos" type="text" class="form-control" placeholder="10" />
 
                                                                 </div>
 
@@ -342,7 +342,7 @@
                                                             <div class="col-md-4"></div>
 
                                                             <div class="input-group mb-3 col-md-4">
-                                                                <input type="text" class="form-control" placeholder="Nombre de la Empresa" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                                <input id="subdominio" type="text" class="form-control" placeholder="Nombre de la Empresa" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                                                 <div class="input-group-append">
                                                                     <span class="input-group-text" id="basic-addon2">.dominio.com</span>
                                                                 </div>
@@ -372,7 +372,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="password" class="form-control" placeholder="Contraseña" />
+                                                                    <input id="contrasena" type="password" class="form-control" placeholder="Contraseña" />
 
                                                                 </div>
 
@@ -400,7 +400,59 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="password" class="form-control" placeholder="Comprobar Contraseña" />
+                                                                    <input id="valContrasena" type="password" class="form-control" placeholder="Comprobar Contraseña" />
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="margin-top: 25px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Selecciona el Color:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="margin-top: 25px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+
+                                                                    <div class="settings-panel">
+                                                                                                                            
+                                                                        <div class="expanded theme-colors pl-5 pr-3">
+                                                                            <ul class="m-0">
+                                                                                <li><a ng-click="color(0);" name="myapp-0" href="#" id="myapp-0" data-action="theme-update" data-themesave="" data-theme="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wisteria (base css)"></a></li>
+                                                                                <li><a ng-click="color(1);" name="myapp-1" href="#" id="myapp-1" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-1.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tapestry"></a></li>
+                                                                                <li><a ng-click="color(2);" href="#" id="myapp-2" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-2.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Atlantis"></a></li>
+                                                                                <li><a ng-click="color(3);" href="#" id="myapp-3" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-3.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Indigo"></a></li>
+                                                                                <li><a ng-click="color(4);" href="#" id="myapp-4" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-4.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dodger Blue"></a></li>
+                                                                                <li><a ng-click="color(5);" href="#" id="myapp-5" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-5.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tradewind"></a></li>
+                                                                                <li><a ng-click="color(6);" href="#" id="myapp-6" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-6.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cranberry"></a></li>
+                                                                            </ul>
+                                                                        </div> 
+                                                                        <div class="expanded theme-colors pl-5 pr-3">
+                                                                            <ul class="m-0">
+                                                                                <li><a ng-click="color(7);" href="#" id="myapp-7" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-7.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Oslo Gray"></a></li>
+                                                                                <li><a ng-click="color(8);" href="#" id="myapp-8" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-8.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Chetwode Blue"></a></li>
+                                                                                <li><a ng-click="color(9);" href="#" id="myapp-9" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-9.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Apricot"></a></li>
+                                                                                <li><a ng-click="color(10);" href="#" id="myapp-10" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-10.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Blue Smoke"></a></li>
+                                                                                <li><a ng-click="color(11);" href="#" id="myapp-11" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-11.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Green Smoke"></a></li>
+                                                                                <li><a ng-click="color(12);" href="#" id="myapp-12" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-12.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wild Blue Yonder"></a></li>
+                                                                                <li><a ng-click="color(13);" href="#" id="myapp-13" data-action="theme-update" data-themesave="" data-theme="{{ url('css/themes/cust-theme-13.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Emerald"></a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
 
                                                                 </div>
 
@@ -410,7 +462,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="#" class="btn btn-danger btn-block waves-effect waves-themed">Agregar</a>
+                                                                <a id="agregar" ng-click="altaEmpresa();" style="width: 200px;" href="#" class="btn btn-danger btn-block waves-effect waves-themed">Agregar</a>
                                                             </div>
                                                         </div>
 
@@ -987,19 +1039,19 @@
                             <div class="expanded theme-colors pl-5 pr-3">
                                 <ul class="m-0">
                                     <li><a href="#" id="myapp-0" data-action="theme-update" data-themesave="" data-theme="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wisteria (base css)"></a></li>
-                                    <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tapestry"></a></li>
-                                    <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Atlantis"></a></li>
-                                    <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Indigo"></a></li>
-                                    <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dodger Blue"></a></li>
-                                    <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tradewind"></a></li>
-                                    <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cranberry"></a></li>
-                                    <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Oslo Gray"></a></li>
-                                    <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Chetwode Blue"></a></li>
-                                    <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Apricot"></a></li>
-                                    <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Blue Smoke"></a></li>
-                                    <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Green Smoke"></a></li>
-                                    <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wild Blue Yonder"></a></li>
-                                    <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Emerald"></a></li>
+                                    <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-1.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tapestry"></a></li>
+                                    <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-2.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Atlantis"></a></li>
+                                    <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-3.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Indigo"></a></li>
+                                    <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-4.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dodger Blue"></a></li>
+                                    <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-5.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tradewind"></a></li>
+                                    <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-6.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cranberry"></a></li>
+                                    <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-7.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Oslo Gray"></a></li>
+                                    <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-8.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Chetwode Blue"></a></li>
+                                    <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-9.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Apricot"></a></li>
+                                    <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-10.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Blue Smoke"></a></li>
+                                    <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-11.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Green Smoke"></a></li>
+                                    <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-12.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wild Blue Yonder"></a></li>
+                                    <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-13.css') }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Emerald"></a></li>
                                 </ul>
                             </div>
                             <hr class="mb-0 mt-4">
@@ -1027,6 +1079,8 @@
      
         <script src="{{ url('js/moment.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/datepicker.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/jquery.mask.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/jquery.masknumber.js?v='.cache("js_version_number").'') }}"></script>
         
         <script>
             $( document ).ready(function() {
@@ -1070,6 +1124,13 @@
             {
 
                 $('#js-page-content').smartPanel(); 
+
+                $('#empleadosPermitidos').maskNumber({
+
+                  integer: true,
+
+                });
+
             });
         </script>
         
