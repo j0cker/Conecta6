@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-07-2019 a las 03:16:49
+-- Tiempo de generación: 26-07-2019 a las 23:28:38
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.0.32
 
@@ -29,19 +29,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `administradores` (
-  `id_empresas` int(11) NOT NULL,
+  `id_administradores` int(11) NOT NULL,
   `nombre` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `apellido` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `correo` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `cargo` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `telefono_fijo` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
   `celular` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  `created_at` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  `updated_at` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  `dni_num` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
-  `seguro_social` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `pass` varchar(200) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `administradores`
+--
+
+INSERT INTO `administradores` (`id_administradores`, `nombre`, `apellido`, `correo`, `cargo`, `telefono_fijo`, `celular`, `created_at`, `updated_at`, `pass`) VALUES
+(1, 'Manlio', 'Teran', 'manlioelnum1@hotmail.com', 'Administrador', '56713835', '5510800291', '2019-07-19 19:23:07', '0000-00-00 00:00:00', '8e96bd02fbcb054cca11cf8deb031562b9aaedd83f83ff7abf7c3fa787ad9bbd'),
+(2, 'jose', 'Perez', 'jose@gmail.com', 'Administrador', '56736465', '3345454545', '2019-07-26 21:16:02', '0000-00-00 00:00:00', 'b8b9b90248616b9e6e3db1c619da7a6a83ae9001b74ecfb5d3041fbbdffa8958');
 
 -- --------------------------------------------------------
 
@@ -80,7 +86,9 @@ CREATE TABLE `permisos` (
 --
 
 INSERT INTO `permisos` (`id_permisos`, `permiso`) VALUES
-(1, 'panel de administración empresas');
+(1, 'panel de administración empresas'),
+(2, 'menu empresas'),
+(3, 'menu trabajadores');
 
 -- --------------------------------------------------------
 
@@ -90,11 +98,23 @@ INSERT INTO `permisos` (`id_permisos`, `permiso`) VALUES
 
 CREATE TABLE `permisos_inter` (
   `id` int(11) NOT NULL,
-  `id_usuarios` int(11) NOT NULL DEFAULT '0',
+  `id_trabajadores` int(11) NOT NULL DEFAULT '0',
   `id_empresas` int(11) NOT NULL DEFAULT '0',
   `id_administradores` int(11) NOT NULL DEFAULT '0',
-  `id_permisos` int(11) NOT NULL
+  `id_permisos` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `permisos_inter`
+--
+
+INSERT INTO `permisos_inter` (`id`, `id_trabajadores`, `id_empresas`, `id_administradores`, `id_permisos`, `created_at`) VALUES
+(1, 0, 0, 1, 1, '2019-07-21 02:19:47'),
+(2, 1, 0, 0, 3, '2019-07-21 07:36:52'),
+(3, 2, 0, 0, 3, '2019-07-21 07:36:55'),
+(4, 0, 0, 2, 1, '2019-07-26 21:16:21'),
+(5, 3, 0, 0, 3, '2019-07-26 21:19:47');
 
 -- --------------------------------------------------------
 
@@ -135,7 +155,7 @@ INSERT INTO `trabajadores` (`id_trabajadores`, `id_empresas`, `nombre`, `apellid
 -- Indices de la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  ADD PRIMARY KEY (`id_empresas`);
+  ADD PRIMARY KEY (`id_administradores`);
 
 --
 -- Indices de la tabla `empresas`
@@ -169,7 +189,7 @@ ALTER TABLE `trabajadores`
 -- AUTO_INCREMENT de la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  MODIFY `id_empresas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_administradores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `empresas`
@@ -181,13 +201,13 @@ ALTER TABLE `empresas`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `id_permisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_permisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos_inter`
 --
 ALTER TABLE `permisos_inter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `trabajadores`

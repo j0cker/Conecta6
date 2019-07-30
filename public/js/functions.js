@@ -61,11 +61,11 @@ function normalize(str){
 
 // funcion para calcular la hora local en una ciudad dada la diferencia horaria.
 function calcTime(city, offset) {
-  // creamos el objeto Date (la selecciona de la máquina cliente)
+  // creamos el objeto Date (la selecciona de la mÃ¡quina cliente)
   d = new Date();
 
   // lo convierte  a milisegundos
-  // añade la dirferencia horaria
+  // aÃ±ade la dirferencia horaria
   // recupera la hora en formato UTC
   utc = d.getTime() + (d.getTimezoneOffset() * 60000);
 
@@ -74,23 +74,68 @@ function calcTime(city, offset) {
 
   // devuelve la hora como string.
   return nd;
+}			
+function substractDaysDates(date){
+  //recibe parametro del tipo date()
+  var days = 1;
+
+  date.setDate(date.getDate()-days);
+
+  return date;
+}
+function quitarAcentos(str){		
+  for (var i=0;i<str.length;i++){		  
+    //Sustituye "Ã¡ Ã© Ã­ Ã³ Ãº"		  
+    if (str.charAt(i)=="Ã¡") str = str.replace(/Ã¡/,"a");		   
+    if (str.charAt(i)=="Ã©") str = str.replace(/Ã©/,"e");		   
+    if (str.charAt(i)=="Ã­") str = str.replace(/Ã­/,"i");		   
+    if (str.charAt(i)=="Ã³") str = str.replace(/Ã³/,"o");		    
+    if (str.charAt(i)=="Ãº") str = str.replace(/Ãº/,"u");		   
+    if (str.charAt(i)=="Ã") str = str.replace(/Ã/,"A");		    
+    if (str.charAt(i)=="Ã‰") str = str.replace(/Ã‰/,"E");		    
+    if (str.charAt(i)=="Ã") str = str.replace(/Ã/,"I");		   
+    if (str.charAt(i)=="Ã“") str = str.replace(/Ã“/,"O");		    
+    if (str.charAt(i)=="Ãš") str = str.replace(/Ãš/,"U");		  
+  } //fin for		 
+  return str;		
+}
+function tiempoRelativo(time_value) {
+  /* Twitter Covertion Date */
+  var values = time_value.split(" ");
+  time_value = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
+  var parsed_date = Date.parse(time_value);
+  var relative_to = (arguments.length > 1) ? arguments[1] : new Date();
+  var delta = parseInt((relative_to.getTime() - parsed_date) / 1000);
+  var shortdate = time_value.substr(4,2) + " " + time_value.substr(0,3);
+  delta = delta + (relative_to.getTimezoneOffset() * 60);
+
+  if (delta < 60) {
+  return '1m';
+  } else if(delta < 120) {
+  return '1m';
+  } else if(delta < (60*60)) {
+  return (parseInt(delta / 60)).toString() + 'm';
+  } else if(delta < (120*60)) {
+  return '1h';
+  } else if(delta < (24*60*60)) {
+  return (parseInt(delta / 3600)).toString() + 'h';
+  } else if(delta < (48*60*60)) {
+  //return '1 day';
+  return shortdate;
+  } else {
+  return shortdate;
+  }
 }
 
-function quitarAcentos(str){
-  for (var i=0;i<str.length;i++){
-    //Sustituye "ÃƒÂ¡ ÃƒÂ© ÃƒÂ­ ÃƒÂ³ ÃƒÂº"
-    if (str.charAt(i)=="ÃƒÂ¡") str = str.replace(/ÃƒÂ¡/,"a");
-    if (str.charAt(i)=="ÃƒÂ©") str = str.replace(/ÃƒÂ©/,"e");
-    if (str.charAt(i)=="ÃƒÂ­") str = str.replace(/ÃƒÂ­/,"i");
-    if (str.charAt(i)=="ÃƒÂ³") str = str.replace(/ÃƒÂ³/,"o");
-    if (str.charAt(i)=="ÃƒÂº") str = str.replace(/ÃƒÂº/,"u");
-    if (str.charAt(i)=="ÃƒÂ") str = str.replace(/ÃƒÂ/,"A");
-    if (str.charAt(i)=="Ãƒâ€°") str = str.replace(/Ãƒâ€°/,"E");
-    if (str.charAt(i)=="ÃƒÂ") str = str.replace(/ÃƒÂ/,"I");
-    if (str.charAt(i)=="Ãƒâ€œ") str = str.replace(/Ãƒâ€œ/,"O");
-    if (str.charAt(i)=="ÃƒÅ¡") str = str.replace(/ÃƒÅ¡/,"U");
-  } //fin for
-  return str;
+function restaFechas(f1,f2){
+/* DD/MM/YYYY */
+var aFecha1 = f1.split('-');
+var aFecha2 = f2.split('-');
+var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]);
+var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
+var dif = fFecha2 - fFecha1;
+var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+return dias;
 }
 function agregarLinksEnCadena(data) {
 		//Add link to all http:// links within tweets
@@ -108,47 +153,8 @@ function agregarLinksEnCadena(data) {
 		});
 		return data;
 }
-
-function tiempoRelativo(time_value) {
-    /* Twitter Covertion Date */
-	  var values = time_value.split(" ");
-	  time_value = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
-	  var parsed_date = Date.parse(time_value);
-	  var relative_to = (arguments.length > 1) ? arguments[1] : new Date();
-	  var delta = parseInt((relative_to.getTime() - parsed_date) / 1000);
-	  var shortdate = time_value.substr(4,2) + " " + time_value.substr(0,3);
-	  delta = delta + (relative_to.getTimezoneOffset() * 60);
-
-	  if (delta < 60) {
-		return '1m';
-	  } else if(delta < 120) {
-		return '1m';
-	  } else if(delta < (60*60)) {
-		return (parseInt(delta / 60)).toString() + 'm';
-	  } else if(delta < (120*60)) {
-		return '1h';
-	  } else if(delta < (24*60*60)) {
-		return (parseInt(delta / 3600)).toString() + 'h';
-	  } else if(delta < (48*60*60)) {
-		//return '1 day';
-		return shortdate;
-	  } else {
-		return shortdate;
-	  }
-}
-
-function restaFechas(f1,f2){
-  /* DD/MM/YYYY */
-  var aFecha1 = f1.split('-');
-  var aFecha2 = f2.split('-');
-  var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]);
-  var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
-  var dif = fFecha2 - fFecha1;
-  var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
-  return dias;
-}
 function deleteAllCookies() {
-    /* NOTA: revisa si el dominio coincide ya que si no no se borrarán */
+    /* NOTA: revisa si el dominio coincide ya que si no no se borrarÃ¡n */
     console.log("Show Cookies");
     console.log(document.cookie);
     var cookies = document.cookie.split(";");
