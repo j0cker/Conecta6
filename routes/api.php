@@ -24,6 +24,13 @@ Route::get('/trabajadores/ingresar', 'APITrabajadores@Ingresar');
 Route::get('/trabajadores/logout', 'APITrabajadores@Logout');
 
 /*
+*******Empresas******
+*/
+
+//validar que no exista ese subdominio solicitado
+Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
+
+/*
 *******Admin******
 */
 

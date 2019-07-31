@@ -239,6 +239,43 @@
 
     }
 
+    $scope.validarSubdominio = function(subdominio){
+
+      console.log("[controllers][nuevoempresa][validarSubdominio]");
+      
+      console.log("[controllers][nuevoempresa][validarSubdominio] subdominio: " + subdominio);
+      
+      functions.validarSubdominio(subdominio).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][nuevoempresa][validarSubdominio]");
+
+          $(".fal.fa-check-circle").css("display","");
+
+          $(".fal.fa-times-circle").css("display","none");
+
+          functions.loadingEndWait();
+          
+        } else {
+
+          $(".fal.fa-check-circle").css("display","none");
+
+          $(".fal.fa-times-circle").css("display","");
+
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin validarSubdominio*/
+      
+    };
+    
+    validarSubdominio = $scope.validarSubdominio;
+
     $scope.altaEmpresa = function(){
       console.log("[nuevoempresa][altaEmpresa]");
 
@@ -264,7 +301,7 @@
       celular = $("#celular").val();
       datepicker = $("#datepicker").val();
       empleadosPermitidos = $("#empleadosPermitidos").val();
-      activa = $("#gra-0").val();
+      activa = $("#gra-0").prop('checked');
       subdominio = $("#subdominio").val();
       contrasena = $("#contrasena").val();
       valContrasena = $("#valContrasena").val();

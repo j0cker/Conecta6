@@ -55,6 +55,7 @@ return [
     'BDempty' => "Base de datos vacía",
     'BDdataCheck' => "Todo se revisó correctamente",
     'BDdata' => "Hay datos en la base de datos",
+    'BDnoData' => "No hay datos iguales en la base de datos",
     'BDsuccess' => "La información se actualizó correctamente",
     'errorsBD' => "Hubo un error por favor contacte al administrador o revise su conexión a internet",
     'errorsBDFail' => "Correo o Contraseña incorrecta",

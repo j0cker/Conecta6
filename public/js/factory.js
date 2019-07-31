@@ -12,7 +12,7 @@
 
         setTimeout(function() {
           $('#loader-wrapper').css('display','none');
-        }, 6000);
+        }, 4000);
       },
       loadingWait: function() {
         console.log("[factory.js] loading");
@@ -87,6 +87,20 @@
         var url = '/api/pAdmin/altaEmpresa';
 		  	return $http.get(url,{
           params: { cache: false },
+          cache: false
+        });
+
+      },
+      validarSubdominio: function(subdominio) {
+
+        console.log("[factory][postIngresarAdmin]");
+
+        console.log("[factory][postIngresarAdmin] subdominio: " + subdominio);
+
+        var url = '/api/empresas/subdominioValidar';
+
+		  	return $http.get(url,{
+          params: { cache: false, subdominio:subdominio },
           cache: false
         });
 
