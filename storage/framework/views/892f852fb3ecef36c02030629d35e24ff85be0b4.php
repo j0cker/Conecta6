@@ -340,7 +340,7 @@
                                                             <div class="input-group mb-3 col-md-4">
                                                                 <input id="subdominio" type="text" class="form-control" placeholder="Nombre de la Empresa" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                                                 <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">.dominio.com <i style="margin-left: 15px; color: green; display: none;" class="fal fa-check-circle"></i><i style="color: red; display: none;" class="fal fa-times-circle"></i></span>
+                                                                    <span class="input-group-text" id="basic-addon2">.dominio.com <i style="margin-left: 15px; color: green; display: none;" class="fal fa-check-circle"></i><i style="margin-left: 15px; color: red; display: none;" class="fal fa-times-circle"></i></span>
                                                                 </div>
                                                             </div>
 

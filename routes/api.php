@@ -27,6 +27,9 @@ Route::get('/trabajadores/logout', 'APITrabajadores@Logout');
 *******Empresas******
 */
 
+//Alta de nueva Empresa
+Route::post('/empresas/altaEmpresa', 'APIEmpresas@AltaEmpresa');
+
 //validar que no exista ese subdominio solicitado
 Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
 

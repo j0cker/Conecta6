@@ -22,7 +22,30 @@ class Empresas extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    //agrega nueva empresa
+    public function scopeAddNewEnterprise($query, $nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $subdominio, $contrasena, $color)
+    {
 
+        Log::info("[Empresas][scopeAddNewEnterprise]");
+
+        $empresas = new Empresas;
+        $empresas->nombre_empresa = $nombreEmpresa;
+        $empresas->nombre_solicitante = $nombreSolicitante;
+        $empresas->correo = $correoElectronico;
+        $empresas->telefono_fijo = $telefonoFijo;
+        $empresas->celular = $celular;
+        $empresas->vigencia = $datepicker;
+        $empresas->empleados_permitidos = $empleadosPermitidos;
+        $empresas->activo = $activa;
+        $empresas->subdominio = $subdominio;
+        $empresas->pass = hash("sha256", $contrasena);
+        $empresas->color = $color;
+
+        return $empresas->save();
+
+    }
+
+    //login
     public function scopeLookForByEmailAndPass($query, $email, $pass)
     {
 

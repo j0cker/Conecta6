@@ -337,19 +337,22 @@
         toastr["error"]("Llena correctamente<br /> todos los campos", "");
         functions.loadingEndWait();
         $("#agregar").effect( "shake" );
-      } else if(contPass==""){
+      } else if(valContrasena!=contrasena){
         toastr["error"]("Contraseñas no<br /> coinciden", "");
         functions.loadingEndWait();
         $("#agregar").effect( "shake" );
         
       } else {
 
-        functions.postAltaEmpresa(correo, contPass).then(function (response) {
+        functions.altaEmpresa(nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, subdominio, contrasena, color).then(function (response) {
 
                 if(response.data.success == "TRUE"){
-                  console.log("[nuevoempresa][postIngresar]");
+                  console.log("[nuevoempresa][altaEmpresa]");
 
                   toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+                  functions.loadingEndWait();
+
+                  alert("Tu subdominio estará listo hasta un máximo de 48 horas debido, a la propagación de DNS, mientras puedes entrar a tu nueva empresa agregando /"+subdominio);
 
                 } else {
                     toastr["warning"](response.data.description, "");

@@ -80,15 +80,12 @@
         });
 
       },
-      altaEmpresa: function() {
+      altaEmpresa: function(nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, subdominio, contrasena, color) {
 
         console.log("[factory][altaEmpresa]");
 
-        var url = '/api/pAdmin/altaEmpresa';
-		  	return $http.get(url,{
-          params: { cache: false },
-          cache: false
-        });
+        var url = '/api/empresas/altaEmpresa';
+		  	return $http.post(url, {cache: false, nombreEmpresa:nombreEmpresa, nombreSolicitante:nombreSolicitante, correoElectronico:correoElectronico, telefonoFijo:telefonoFijo, celular:celular, datepicker:datepicker, empleadosPermitidos:empleadosPermitidos, activa:activa, subdominio:subdominio, contrasena:contrasena, color:color });
 
       },
       validarSubdominio: function(subdominio) {

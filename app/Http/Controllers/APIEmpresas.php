@@ -8,6 +8,7 @@ use App\Library\VO\ResponseJSON;
 use App\Library\DAO\Trabajadores;
 use App\Library\DAO\Permisos_inter;
 use App\Library\DAO\Empresas;
+use App\Library\UTIL\Functions;
 use Auth;
 use carbon\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -19,6 +20,112 @@ use Session;
 
 class APIEmpresas extends Controller
 {
+
+  public function AltaEmpresa(Request $request){
+  
+    Log::info('[AltaEmpresa]');
+
+    Log::info("[AltaEmpresa] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APITrabajadores][Inicio] Token: ". $token);
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        
+        $nombreEmpresa = $request->input('nombreEmpresa');
+        $nombreSolicitante = $request->input('nombreSolicitante');
+        $correoElectronico = $request->input('correoElectronico');
+        $telefonoFijo = $request->input('telefonoFijo');
+        $celular = $request->input('celular');
+        $datepicker = $request->input('datepicker');
+        $empleadosPermitidos = $request->input('empleadosPermitidos');
+        $activa = $request->input('activa');
+        $subdominio = $request->input('subdominio');
+        $contrasena = $request->input('contrasena');
+        $color = $request->input('color');
+
+        Log::info("[AltaEmpresa] nombreEmpresa: " .$nombreEmpresa);
+        Log::info("[AltaEmpresa] nombreSolicitante: " .$nombreSolicitante);
+        Log::info("[AltaEmpresa] correoElectronico: " .$correoElectronico);
+        Log::info("[AltaEmpresa] telefonoFijo: " .$telefonoFijo);
+        Log::info("[AltaEmpresa] celular: " .$celular);
+        Log::info("[AltaEmpresa] datepicker: " .$datepicker);
+        Log::info("[AltaEmpresa] empleadosPermitidos: " .$empleadosPermitidos);
+        Log::info("[AltaEmpresa] activa: " .$activa);
+        Log::info("[AltaEmpresa] subdominio: " .$subdominio);
+        Log::info("[AltaEmpresa] contrasena: " .$contrasena);
+        Log::info("[AltaEmpresa] color: " .$color);
+
+        $empresas = Empresas::addNewEnterprise($nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $subdominio, $contrasena, $color);
+        
+        if($empresas==1){
+          
+          $result = Functions::cPanelAddSubdomain(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), $subdominio, env('CPANEL_DOMAIN'));
+
+          Log::info("[AltaEmpresa] Cpanel API");
+          Log::info($result);
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($empresas));
+          $responseJSON->data = $empresas;
+          return json_encode($responseJSON);
+
+        } else {
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($empresas));
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
+        }
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APITrabajadores][Inicio] Token error: token_expired');
+  
+        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APITrabajadores][Inicio] Token error: token_invalid');
+  
+        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APITrabajadores][Inicio] Token error: token_absent');
+  
+        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+  
+      }
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+  
 
     public function SubdominioValidar(Request $request){
     
