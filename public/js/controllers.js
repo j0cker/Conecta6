@@ -231,6 +231,8 @@
 
     var color = theme[0];
 
+    var validarSubdominioBD = 0;
+
 
     $scope.color = (colorClicked) => {
       console.log("[nuevoempresa][altaEmpresa] " + colorClicked);
@@ -256,6 +258,8 @@
           $(".fal.fa-times-circle").css("display","none");
 
           functions.loadingEndWait();
+
+          validarSubdominioBD = 1;
           
         } else {
 
@@ -264,6 +268,8 @@
           $(".fal.fa-times-circle").css("display","");
 
             functions.loadingEndWait();
+
+            validarSubdominioBD = -1;
         }
       }, function (response) {
         /*ERROR*/
@@ -342,6 +348,11 @@
         functions.loadingEndWait();
         $("#agregar").effect( "shake" );
         
+      } else if (validarSubdominioBD!=1) {
+        toastr["error"]("Subdominio no<br /> Disponible", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+
       } else {
 
         functions.altaEmpresa(nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, subdominio, contrasena, color).then(function (response) {
@@ -353,6 +364,8 @@
                   functions.loadingEndWait();
 
                   alert("Tu subdominio estará listo hasta un máximo de 48 horas debido, a la propagación de DNS, mientras puedes entrar a tu nueva empresa agregando /"+subdominio);
+
+                  $window.location.href = "/empresas";
 
                 } else {
                     toastr["warning"](response.data.description, "");

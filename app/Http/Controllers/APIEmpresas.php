@@ -8,6 +8,7 @@ use App\Library\VO\ResponseJSON;
 use App\Library\DAO\Trabajadores;
 use App\Library\DAO\Permisos_inter;
 use App\Library\DAO\Empresas;
+use App\Library\DAO\Colores;
 use App\Library\UTIL\Functions;
 use Auth;
 use carbon\Carbon;
@@ -20,6 +21,50 @@ use Session;
 
 class APIEmpresas extends Controller
 {
+
+  public function SignInPersonalizado(Request $request){
+  
+    Log::info('[SignInPersonalizado]');
+
+    Log::info("[SignInPersonalizado] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $path = $request->path();
+
+      $subdominio = Empresas::lookForBySubdominio($path)->get();
+    
+      Log::info('[SignInPersonalizado] subdominio size: ' . count($subdominio));
+
+      Log::info($subdominio);
+
+      if(count($subdominio)>0){
+
+        $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDData'), count($subdominio));
+        $responseJSON->data = [];
+        
+        $colores = Colores::lookForById($subdominio->first()->color)->get();
+
+        Log::info($subdominio->first()->color);
+        Log::info($colores->first()->hex);
+  
+        return view('sign.login',["title" => config('app.name'), "lang" => "es", "color" => $subdominio->first()->color, "colorHex" => $colores->first()->hex]);
+
+      } else {
+
+        abort(404);
+
+      }
+        
+      return ;
+
+    } else {
+
+      abort(404);
+    
+    }
+
+  }
 
   public function AltaEmpresa(Request $request){
   

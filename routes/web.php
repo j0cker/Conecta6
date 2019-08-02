@@ -27,6 +27,10 @@ Route::get('/perfil', 'APITrabajadores@Perfil');
 Route::get('/historial', 'APITrabajadores@Historial');
 
 /*
+*********Empresas***********
+*/
+
+/*
 *********Admin***********
 */
 
@@ -51,5 +55,11 @@ Route::get('/administradores', 'APIAdmin@Administradores');
 //Nuevo Administradores
 Route::get('/administradores/nuevo', 'APIAdmin@NuevoAdministrador');
 
+/*
+*********Empresas***********
+*/
+
+//sign in personalizado (URL a evaluación)
+Route::get('/{any}', 'APIEmpresas@SignInPersonalizado');
 
 

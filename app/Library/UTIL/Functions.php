@@ -30,6 +30,9 @@ class Functions
 
         {"cpanelresult":{"apiversion":"2","error":"Access denied","data":{"reason":"Access denied","result":"0"},"type":"text"}}
   
+        Cuando no encuentra el dominio devuelven vacíos [] y un error en artisan:
+
+        "Could not resolve host: boogapp.info5" for https://boogapp.info5:2083/json-api/cpanel?cpanel_jsonapi_func=addsubdomain&cpanel_jsonapi_module=SubDomain&cpanel_jsonapi_version=2&domain=wqwwq&rootdomain=boogapp.info5&dir=/public_html/wqwwq
 
         */
 

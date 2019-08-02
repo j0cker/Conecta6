@@ -11,12 +11,18 @@
   <title><?php echo $__env->yieldContent('title'); ?></title>
 
 <style>
+
+<?php
+$hex = "".$colorHex."";
+list($r, $g, $b) = sscanf($colorHex, "#%02x%02x%02x");
+?>
+
 :root {
   
   
-  --main-bg-color: #433191 !important;
-  --main-bg-color-transparent-5: rgba(67,49,145,0.5) !important;
-  --main-bg-color-transparent-1: rgba(67,49,145,0.1) !important;
+  --main-bg-color: <?php echo $colorHex; ?> !important;
+  --main-bg-color-transparent-5: rgba(<?php echo $r; ?>,<?php echo $g; ?>,<?php echo $b; ?>,0.6) !important;
+  --main-bg-color-transparent-1: rgba(<?php echo $r; ?>,<?php echo $g; ?>,<?php echo $b; ?>,0.2) !important;
   
 
   /*
