@@ -32,15 +32,15 @@
           $('#loader-wrapper').css('display','none');
         }, x);
       },
-      postIngresar: function(correo, contPass) {
+      postIngresar: function(correo, contPass, color, colorHex, subdominio) {
 
         console.log("[factory][postIngresar]");
 
-        console.log("correo: " + correo + " contPass: " + contPass);
+        console.log("correo: " + correo + " contPass: " + contPass + " color: " + color + " colorHex: " + colorHex + " subdominio: " + subdominio);
 
         var url = '/api/trabajadores/ingresar';
         return $http.get(url,{
-          params: { cache: false, correo:correo, contPass:contPass },
+          params: { cache: false, correo:correo, contPass:contPass, color:color,  colorHex:colorHex, subdominio:subdominio },
           cache: false
         });
 

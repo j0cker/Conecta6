@@ -1113,9 +1113,6 @@
                 <?php if(in_array("1", $user["permisos"])): ?>
                     $("#mytheme").attr("href","css/themes/cust-theme-6.css");
                 <?php endif; ?>
-                <?php if(in_array("3", $user["permisos"])): ?>
-                    $("#mytheme").attr("href","css/themes/cust-theme-16.css");
-                <?php endif; ?>
 
             });
         </script>

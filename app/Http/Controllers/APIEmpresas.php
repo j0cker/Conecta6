@@ -48,7 +48,13 @@ class APIEmpresas extends Controller
         Log::info($subdominio->first()->color);
         Log::info($colores->first()->hex);
   
-        return view('sign.login',["title" => config('app.name'), "lang" => "es", "color" => $subdominio->first()->color, "colorHex" => $colores->first()->hex]);
+        return view('sign.login',["title" => config('app.name'), 
+                                  "lang" => "es", 
+                                  "color" => $subdominio->first()->color, 
+                                  "colorHex" => $colores->first()->hex, 
+                                  "subdominio" => $subdominio->first()->subdominio
+                                  ]
+                      );
 
       } else {
 

@@ -12,23 +12,30 @@
 */
 
 /*
-********Trabajadores*******
+**********Landing*********
 */
 
 //Welcome Login
-Route::get('/', 'APITrabajadores@SignIn');
+Route::get('/', 'APILanding@Landing');
+
+/*
+********Trabajadores*******
+*/
 
 //Sistema Welcome
 Route::get('/inicio', 'APITrabajadores@Inicio');
 Route::get('/marketing', 'APITrabajadores@Marketing');
 Route::get('/introduction', 'APITrabajadores@Introduction');
 Route::get('/registros', 'APITrabajadores@Registros');
-Route::get('/perfil', 'APITrabajadores@Perfil');
+Route::get('/perfilTrabajadores', 'APITrabajadores@Perfil');
 Route::get('/historial', 'APITrabajadores@Historial');
 
 /*
 *********Empresas***********
 */
+
+//sign in personalizado (URL a evaluación)
+Route::get('/{any}/pAdmin', 'APIEmpresas@SignInPersonalizado');
 
 /*
 *********Admin***********
@@ -39,6 +46,9 @@ Route::get('/pAdmin', 'APIAdmin@SignIn');
 
 //Sistema Welcome
 Route::get('/inicioAdmin', 'APIAdmin@Inicio');
+
+//Perfil
+Route::get('/perfilAdministradores', 'APIAdministradores@Perfil');
 
 //Empresas
 Route::get('/empresas', 'APIAdmin@Empresas');
@@ -56,7 +66,7 @@ Route::get('/administradores', 'APIAdmin@Administradores');
 Route::get('/administradores/nuevo', 'APIAdmin@NuevoAdministrador');
 
 /*
-*********Empresas***********
+*********Trabajadores***********
 */
 
 //sign in personalizado (URL a evaluación)

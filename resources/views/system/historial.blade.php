@@ -795,7 +795,6 @@
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                $("#mytheme").attr("href","{{ url('css/themes/cust-theme-16.css?v='.cache("js_version_number").'') }}");
             });
         </script>
 

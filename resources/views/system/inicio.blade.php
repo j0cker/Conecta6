@@ -879,12 +879,6 @@
 
         </script>
         -->
-        <script>
-            $( document ).ready(function() {
-                // Handler for .ready() called.
-                $("#mytheme").attr("href","css/themes/cust-theme-16.css");
-            });
-        </script>
 
         <script>
             $(document).ready(function()

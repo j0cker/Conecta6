@@ -19,27 +19,37 @@
         <!-- Remove Tap Highlight on Windows Phone IE -->
         <meta name="msapplication-tap-highlight" content="no">
 
-        @php
-        $hex = "#ad0a38";
-        list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
-        @endphp
-
         <style>
         :root {
         
   
               
-            
+
                 @if (in_array("1", $user["permisos"]))
+
+                    @php
+                    $hex = "#ad0a38";
+                    list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+                    @endphp
+
                     --main-bg-color: @php echo $hex; @endphp !important;
                     --main-bg-color-transparent-5: rgba(@php echo $r; @endphp,@php echo $g; @endphp,@php echo $b; @endphp,0.6) !important;
                     --main-bg-color-transparent-1: rgba(@php echo $r; @endphp,@php echo $g; @endphp,@php echo $b; @endphp,0.2) !important;
     
                 @endif
+                
+
                 @if (in_array("3", $user["permisos"]))
-                    --main-bg-color: #433191 !important;
-                    --main-bg-color-transparent-5: rgba(67,49,145,0.5) !important;
-                    --main-bg-color-transparent-1: rgba(67,49,145,0.1) !important;
+
+                    @php
+                    $hex = "".$colorHex."";
+                    list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+                    @endphp
+
+                    --main-bg-color: @php echo $hex; @endphp !important;
+                    --main-bg-color-transparent-5: rgba(@php echo $r; @endphp,@php echo $g; @endphp,@php echo $b; @endphp,0.6) !important;
+                    --main-bg-color-transparent-1: rgba(@php echo $r; @endphp,@php echo $g; @endphp,@php echo $b; @endphp,0.2) !important;
+
                 @endif
                 
 
@@ -62,7 +72,7 @@
         <link rel="apple-touch-icon" sizes="180x180" href="https://www.gotbootstrap.com/themes/smartadmin/4.0.1/img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="https://www.gotbootstrap.com/themes/smartadmin/4.0.1/img/favicon/favicon-32x32.png">
         <link rel="shortcut icon" href="{{ url('img/icon.ico?v='.cache("js_version_number").'') }}" />
-        <link id="mytheme" rel="stylesheet" href="{{ url('css/themes/cust-theme-1.css?v='.cache("js_version_number").'') }}">
+        <link id="mytheme" rel="stylesheet" href="{{ url('css/themes/cust-theme-'.$color.'.css?v='.cache("js_version_number").'') }}">
 
         <link rel="stylesheet" media="screen, print" href="{{ url('css/datatables.bundle.css?v='.cache("js_version_number").'') }}">
         <link rel="stylesheet" media="screen, print" href="{{ url('fonts/font-awesome-5-pro.css?v='.cache("js_version_number").'') }}">

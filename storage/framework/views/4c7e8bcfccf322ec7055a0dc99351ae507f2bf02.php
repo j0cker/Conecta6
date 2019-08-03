@@ -61,6 +61,11 @@
                     <div class="input-group resaltar">
                       <span class="input-group-addon"><span class="fa fa-lock"></span></span>
                       <input id="contPass" type="password" placeholder="Contraseña" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
+
+                      <input id="color" value="<?php echo e($color); ?>" style="display: none;" type="hidden">
+                      <input id="colorHex" value="<?php echo e($colorHex); ?>" style="display: none;" type="hidden">
+                      <input id="subdominio" value="<?php echo e($subdominio); ?>" style="display: none;" type="hidden">
+
                     </div>
 
                     <button ng-click="send()" id="ingresarButton" style="margin-top: 40px; margin-bottom: 40px;" class="btn waves-effect waves-light resaltar" type="submit" name="action">Ingresar

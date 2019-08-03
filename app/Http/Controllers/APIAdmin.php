@@ -65,7 +65,10 @@ class APIAdmin extends Controller
             'nbf'   => Carbon::now()->timestamp,
             'jti'   => uniqid(),
             'usr'   => $administrador->first(),
-            'permisos' => $permisos_inter
+            'permisos' => $permisos_inter,
+            'color' => 6,
+            'colorHex' => "#ad0a38",
+            "subdominio" => "pAdmin",
           ]);
           
           $payload = $factory->make();
@@ -122,7 +125,14 @@ class APIAdmin extends Controller
 
           if(in_array("1", $token_decrypt["permisos"])==1){
             
-            return view('system.inicioAdmin',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
+            return view('system.inicioAdmin',["title" => config('app.name'), 
+                                              "lang" => "es", 
+                                              "user" => $token_decrypt, 
+                                              "color" => $token_decrypt['color'], 
+                                              "colorHex" => $token_decrypt['colorHex'],
+                                              "subdominio" => $token_decrypt['subdominio'],
+                                            ]
+                                    );
   
 
           } else {
@@ -196,7 +206,14 @@ class APIAdmin extends Controller
   
           //print_r($token_decrypt);
   
-          return view('system.perfil',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
+          return view('system.perfil',["title" => config('app.name'), 
+                                        "lang" => "es", 
+                                        "user" => $token_decrypt, 
+                                        "color" => $token_decrypt['color'], 
+                                        "colorHex" => $token_decrypt['colorHex'],
+                                        "subdominio" => $token_decrypt['subdominio'],
+                                      ]
+                              );
   
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
   
@@ -256,7 +273,14 @@ class APIAdmin extends Controller
 
           if(in_array("1", $token_decrypt["permisos"])==1){
             
-            return view('system.empresas',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
+            return view('system.empresas',["title" => config('app.name'), 
+                                          "lang" => "es", 
+                                          "user" => $token_decrypt, 
+                                          "color" => $token_decrypt['color'], 
+                                          "colorHex" => $token_decrypt['colorHex'],
+                                          "subdominio" => $token_decrypt['subdominio'],
+                                        ]
+                                );
   
 
           } else {
@@ -330,7 +354,14 @@ class APIAdmin extends Controller
 
           if(in_array("1", $token_decrypt["permisos"])==1){
             
-            return view('system.nuevaempresa',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
+            return view('system.nuevaempresa',["title" => config('app.name'), 
+                                              "lang" => "es", 
+                                              "user" => $token_decrypt, 
+                                              "color" => $token_decrypt['color'], 
+                                              "colorHex" => $token_decrypt['colorHex'],
+                                              "subdominio" => $token_decrypt['subdominio'],
+                                            ]
+                                    );
   
 
           } else {
@@ -404,7 +435,14 @@ class APIAdmin extends Controller
 
           if(in_array("1", $token_decrypt["permisos"])==1){
             
-            return view('system.administradores',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
+            return view('system.administradores',["title" => config('app.name'), 
+                                                  "lang" => "es", 
+                                                  "user" => $token_decrypt, 
+                                                  "color" => $token_decrypt['color'], 
+                                                  "colorHex" => $token_decrypt['colorHex'],
+                                                  "subdominio" => $token_decrypt['subdominio'],
+                                                ]
+                                        );
   
 
           } else {
@@ -478,7 +516,14 @@ class APIAdmin extends Controller
 
           if(in_array("1", $token_decrypt["permisos"])==1){
             
-            return view('system.nuevoadministrador',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
+            return view('system.nuevoadministrador',["title" => config('app.name'), 
+                                                      "lang" => "es", 
+                                                      "user" => $token_decrypt, 
+                                                      "color" => $token_decrypt['color'], 
+                                                      "colorHex" => $token_decrypt['colorHex'],
+                                                      "subdominio" => $token_decrypt['subdominio'],
+                                                    ]
+                                            );
   
 
           } else {
@@ -552,7 +597,14 @@ class APIAdmin extends Controller
 
           if(in_array("1", $token_decrypt["permisos"])==1){
             
-            return view('system.idiomas',["title" => config('app.name'), "lang" => "es", "user" => $token_decrypt]);
+            return view('system.idiomas',["title" => config('app.name'), 
+                                          "lang" => "es", 
+                                          "user" => $token_decrypt, 
+                                          "color" => $token_decrypt['color'], 
+                                          "colorHex" => $token_decrypt['colorHex'],
+                                          "subdominio" => $token_decrypt['subdominio'],
+                                        ]
+                                );
   
 
           } else {
@@ -617,6 +669,10 @@ class APIAdmin extends Controller
         $token = $request->input('token');
   
         try {
+
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
   
           // attempt to verify the credentials and create a token for the user
           JWTAuth::parseToken()->invalidate();
@@ -626,6 +682,7 @@ class APIAdmin extends Controller
           //print_r($token_decrypt);
   
           $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),"Token Invalidado Exitosamente", 0);
+          $responseJSON->subdominio = $token_decrypt['subdominio'];
           return json_encode($responseJSON);
   
   

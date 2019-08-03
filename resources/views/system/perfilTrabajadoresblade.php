@@ -22,7 +22,7 @@
 <!--Menu Transparente
 @section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
 -->
-@section('menuActive','perfil')
+@section('menuActive','perfilTrabajadores')
 
 @section('raiz1', @Config::get('app.name'))
 @section('raiz1Url', '/inicio')
@@ -34,7 +34,7 @@
 
 {{-- Angular Controller --}}
 
-@section('controller','perfil')
+@section('controller','perfilTrabajadores')
 
 {{-- Body --}}
 
@@ -1107,9 +1107,6 @@
                 
                 @if (in_array("1", $user["permisos"]))
                     $("#mytheme").attr("href","css/themes/cust-theme-6.css");
-                @endif
-                @if (in_array("3", $user["permisos"]))
-                    $("#mytheme").attr("href","css/themes/cust-theme-16.css");
                 @endif
 
             });

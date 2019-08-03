@@ -8,24 +8,24 @@
 
         functions.postLogout().then(function (response) {
 
-                if(response.data.success == "TRUE"){
-                  console.log("[run][postLogout]");
+          if(response.data.success == "TRUE"){
+            console.log("[run][postLogout]");
 
-                  toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+            toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
 
-                  deleteAllCookies();
-                  $window.location.href = "/inicio";
-                  
-                } else {
-                    toastr["warning"](response.data.description, "");
-                    functions.loadingEndWait();
-                }
-            }, function (response) {
-              /*ERROR*/
-              toastr["error"]("Inténtelo de nuevo más tarde", "");
+            deleteAllCookies();
+            $window.location.href = "/" + response.data.subdominio;
+            
+          } else {
+              toastr["warning"](response.data.description, "");
               functions.loadingEndWait();
+          }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
 
-            });/*fin postLogout*/
+        });/*fin postLogout*/
       };
   });
 
@@ -45,12 +45,21 @@
 
       var correo = "";
       var contPass = "";
+      var color = "";
+      var colorHex = "";
+      var subdominio = "";
 
       correo = $("#correo").val();
       contPass = $("#contPass").val();
+      color = $("#color").val();
+      colorHex = $("#colorHex").val();
+      subdominio = $("#subdominio").val();
 
       console.log("[signin][send] correo: " + correo);
       console.log("[signin][send] contPass: " + contPass);
+      console.log("[signin][send] color: " + color);
+      console.log("[signin][send] colorHex: " + colorHex);
+      console.log("[signin][send] subdominio: " + subdominio);
 
       if(correo.indexOf("@")=="-1" || correo.indexOf(".")=="-1" || correo.indexOf(" ")!="-1" || correo.indexOf(",")!="-1"){
         toastr["error"]("Llena correctamente<br /> tu correo electrónico", "");
@@ -63,28 +72,28 @@
         
       } else {
 
-        functions.postIngresar(correo, contPass).then(function (response) {
+        functions.postIngresar(correo, contPass, color, colorHex, subdominio).then(function (response) {
 
-                if(response.data.success == "TRUE"){
-                  console.log("[signin][postIngresar]");
+            if(response.data.success == "TRUE"){
+              console.log("[signin][postIngresar]");
 
-                  toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+              toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
 
-                  deleteAllCookies();
-                  setCookie("token", response.data.token, 1);
+              deleteAllCookies();
+              setCookie("token", response.data.token, 1);
 
-                  $window.location.href = "/inicio";
+              $window.location.href = "/inicio";
 
-                } else {
-                    toastr["warning"](response.data.description, "");
-                    functions.loadingEndWait();
-                }
-            }, function (response) {
-              /*ERROR*/
-              toastr["error"]("Inténtelo de nuevo más tarde", "");
-              functions.loadingEndWait();
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
 
-            });/*fin postSubscriber*/
+        });/*fin postSubscriber*/
       
       }
 
@@ -184,26 +193,26 @@
 
         functions.postIngresarAdmin(correo, contPass).then(function (response) {
 
-                if(response.data.success == "TRUE"){
-                  console.log("[signin][postIngresar]");
+          if(response.data.success == "TRUE"){
+            console.log("[signin][postIngresar]");
 
-                  toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+            toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
 
-                  deleteAllCookies();
-                  setCookie("token", response.data.token, 1);
+            deleteAllCookies();
+            setCookie("token", response.data.token, 1);
 
-                  $window.location.href = "/inicioAdmin";
+            $window.location.href = "/inicioAdmin";
 
-                } else {
-                    toastr["warning"](response.data.description, "");
-                    functions.loadingEndWait();
-                }
-            }, function (response) {
-              /*ERROR*/
-              toastr["error"]("Inténtelo de nuevo más tarde", "");
+          } else {
+              toastr["warning"](response.data.description, "");
               functions.loadingEndWait();
+          }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
 
-        });/*fin postSubscriber*/
+        });/*fin postIngresarAdmin*/
       
       }
       
