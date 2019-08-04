@@ -44,7 +44,7 @@
 
                 <ul id="js-nav-menu" class="nav-menu">
                                 <?php if($__env->yieldContent('menuActive')=="inicioAdmin"  ||
-                                     $__env->yieldContent('menuActive')=="perfil" ||
+                                     $__env->yieldContent('menuActive')=="perfilAdministradores" ||
                                      $__env->yieldContent('menuActive')=="empresas" ||
                                      $__env->yieldContent('menuActive')=="idiomas" ||
                                      $__env->yieldContent('menuActive')=="planes" ||
@@ -68,12 +68,12 @@
                                             <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Inicio</span>
                                         </a>
                                     </li>
-                                <?php if($__env->yieldContent('menuActive')=="perfil"): ?>
+                                <?php if($__env->yieldContent('menuActive')=="perfilAdministradores"): ?>
                                     <li class="active">
                                 <?php else: ?>
                                     <li class="">
                                 <?php endif; ?>
-                                        <a href="<?php echo e(url('/perfil')); ?>" title="Perfil" data-filter-tags="perfil">
+                                        <a href="<?php echo e(url('/perfilAdministradores')); ?>" title="Perfil" data-filter-tags="perfil">
                                             <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Perfil</span>
                                         </a>
                                     </li>
@@ -143,7 +143,7 @@
 
                 <ul id="js-nav-menu" class="nav-menu">
                                 <?php if($__env->yieldContent('menuActive')=="inicio"  ||
-                                     $__env->yieldContent('menuActive')=="perfil" ||
+                                     $__env->yieldContent('menuActive')=="perfilTrabajadores" ||
                                      $__env->yieldContent('menuActive')=="historialRegistros" ||
                                      $__env->yieldContent('menuActive')=="registros"): ?>
                                     <li class="active open">
@@ -164,12 +164,12 @@
                                             <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Inicio</span>
                                         </a>
                                     </li>
-                                <?php if($__env->yieldContent('menuActive')=="perfil"): ?>
+                                <?php if($__env->yieldContent('menuActive')=="perfilTrabajadores"): ?>
                                     <li class="active">
                                 <?php else: ?>
                                     <li class="">
                                 <?php endif; ?>
-                                        <a href="<?php echo e(url('/perfil')); ?>" title="Perfil" data-filter-tags="perfil">
+                                        <a href="<?php echo e(url('/perfilTrabajadores')); ?>" title="Perfil" data-filter-tags="perfil">
                                             <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Perfil</span>
                                         </a>
                                     </li>

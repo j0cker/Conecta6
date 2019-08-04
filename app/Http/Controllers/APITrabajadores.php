@@ -54,13 +54,15 @@ class APITrabajadores extends Controller
       Log::info("[APITrabajadores][ingresar] subdominio: ". $subdominio);
 
       $trabajador = Trabajadores::lookForByEmailAndPass($correo, $contPass)->get();
-      $permisos_inter_object = Permisos_inter::lookForByIdTrabajadores($trabajador->first()->id_trabajadores)->get();
-      $permisos_inter = array();
-      foreach($permisos_inter_object as $permiso){
-        $permisos_inter[] = $permiso["id_permisos"];
-      }
+      
 
       if(count($trabajador)>0){
+
+        $permisos_inter_object = Permisos_inter::lookForByIdTrabajadores($trabajador->first()->id_trabajadores)->get();
+        $permisos_inter = array();
+        foreach($permisos_inter_object as $permiso){
+          $permisos_inter[] = $permiso["id_permisos"];
+        }
 
         $jwt_token = null;
 

@@ -47,13 +47,15 @@ class APIAdmin extends Controller
         Log::info("[APIAdmin][ingresar] contPass: ". $contPass);
   
         $administrador = Admin::lookForByEmailAndPass($correo, $contPass)->get();
-        $permisos_inter_object = Permisos_inter::lookForByIdAdministradores($administrador->first()->id_administradores)->get();
-        $permisos_inter = array();
-        foreach($permisos_inter_object as $permiso){
-          $permisos_inter[] = $permiso["id_permisos"];
-        }
+        
   
         if(count($administrador)>0){
+
+          $permisos_inter_object = Permisos_inter::lookForByIdAdministradores($administrador->first()->id_administradores)->get();
+          $permisos_inter = array();
+          foreach($permisos_inter_object as $permiso){
+            $permisos_inter[] = $permiso["id_permisos"];
+          }
   
           $jwt_token = null;
   
