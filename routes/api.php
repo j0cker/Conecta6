@@ -33,9 +33,6 @@ Route::get('/empresas/ingresar', 'APIEmpresas@Ingresar');
 //Alta de nueva Empresa
 Route::post('/empresas/altaEmpresa', 'APIEmpresas@AltaEmpresa');
 
-//Alta de nueva Empresa
-Route::post('/empresas/altaEmpresa', 'APIEmpresas@AltaEmpresa');
-
 //validar que no exista ese subdominio solicitado
 Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
 
