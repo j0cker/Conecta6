@@ -293,7 +293,7 @@ class APIEmpresas extends Controller
         
         Log::info($empresas);
 
-        $Permisos_inter = Permisos_inter::addNewEmpresa($empresas->first()->id);
+        $Permisos_inter = Permisos_inter::addNewEmpresa($empresas[0]->id);
 
         if($empresas->save==1 && $Permisos_inter->save==1){
           
