@@ -28,7 +28,7 @@ class Permisos_inter extends Model
         Log::info("[Permisos_inter][scopeAddNewEmpresa] idEmpresa: ". $idEmpresa);
 
         $permisos_inter = new Permisos_inter;
-        $permisos_inter->id_empresas = $id_empresas;
+        $permisos_inter->id_empresas = $idEmpresa;
         $permisos_inter->id_permisos = 2;
 
         $obj = array();
