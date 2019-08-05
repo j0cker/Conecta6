@@ -296,7 +296,7 @@ class APIEmpresas extends Controller
           $result = Functions::cPanelAddSubdomain(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), $subdominio, env('CPANEL_DOMAIN'));
           
           $body = "<?PHP
-                     header('Location: ".env('APP_URL')."/'.$subdominio.'/index.php');
+                     header('Location: ".env('APP_URL')."/".$subdominio."/index.php');
                    ?>";
 
           $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../public_html/cocacola/index.php', $body);
