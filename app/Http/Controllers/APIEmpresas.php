@@ -299,7 +299,7 @@ class APIEmpresas extends Controller
                      header('Location: ".env('APP_URL')."/".$subdominio."/index.php');
                    ?>";
 
-          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../public_html/cocacola/index.php', $body);
+          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../public_html/'.$subdominio.'/index.php', $body);
 
           Log::info("[AltaEmpresa] Cpanel API");
           Log::info($result);
