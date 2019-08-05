@@ -59,6 +59,39 @@ class Functions
         return $result;
     }
 
+    public static function createArchive($nombre_archivo, $body)
+    {
+        /*
+        crea un archvo
+
+        parametro 1: ruta y nombre del archivo
+        parametro 2: body of the document
+        */
+    
+        if(file_exists($nombre_archivo))
+        {
+            $body = $body;
+        }
+    
+        else
+        {
+            $body = $body;
+        }
+    
+        if($archivo = fopen($nombre_archivo, "a"))
+        {
+            if(fwrite($archivo, $body))
+            {
+                return 1;
+            }
+            else
+            {   return -1;
+            }
+    
+            fclose($archivo);
+        }
+    }
+
     /*Creamos una función que detecte el idioma del navegador del cliente.*/
     public function getUserLanguage() {
         $idioma = "es";

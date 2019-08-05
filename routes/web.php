@@ -71,6 +71,8 @@ Route::get('/administradores/nuevo', 'APIAdmin@NuevoAdministrador');
 /*
 *********Trabajadores***********
 */
+//sign in personalizado (URL a evaluación)
+Route::get('/test', 'APITest@Test');
 
 //sign in personalizado (URL a evaluación)
 Route::get('/{any}', 'APITrabajadores@SignIn');

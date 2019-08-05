@@ -294,6 +294,12 @@ class APIEmpresas extends Controller
         if($empresas==1){
           
           $result = Functions::cPanelAddSubdomain(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), $subdominio, env('CPANEL_DOMAIN'));
+          
+          $body = "<?PHP
+                     header('".env('APP_URL')."/cocacola/index.php');
+                   ?>";
+
+          Functions::createArchive(dirname(__FILE__).'/../../../../public_html/cocacola/index.php', $body);
 
           Log::info("[AltaEmpresa] Cpanel API");
           Log::info($result);
@@ -316,24 +322,24 @@ class APIEmpresas extends Controller
         //token_expired
     
         Log::info('[APITrabajadores][Inicio] Token error: token_expired');
-  
-        return view('trabajadores.login',["title" => config('app.name'), "lang" => "es"]);
+
+        return redirect('/');
   
       } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
 
         //token_invalid
     
         Log::info('[APITrabajadores][Inicio] Token error: token_invalid');
-  
-        return view('trabajadores.login',["title" => config('app.name'), "lang" => "es"]);
+
+        return redirect('/');
   
       } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
 
         //token_absent
     
         Log::info('[APITrabajadores][Inicio] Token error: token_absent');
-  
-        return view('trabajadores.login',["title" => config('app.name'), "lang" => "es"]);
+
+        return redirect('/');
   
       }
 

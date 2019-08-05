@@ -425,14 +425,7 @@ class APITrabajadores extends Controller
 
         } else {
           
-          return view('trabajadores.login',["title" => config('app.name'), 
-                                            "lang" => "es", 
-                                            "user" => $token_decrypt, 
-                                            "color" => $token_decrypt['color'], 
-                                            "colorHex" => $token_decrypt['colorHex'],
-                                            "subdominio" => $token_decrypt['subdominio'],
-                                          ]
-                                    );
+          return redirect('/');
           
         }
 
@@ -441,45 +434,24 @@ class APITrabajadores extends Controller
         //token_expired
     
         Log::info('[APITrabajadores][Historial] Token error: token_expired');
-  
-        return view('trabajadores.login',["title" => config('app.name'), 
-                                          "lang" => "es", 
-                                          "user" => $token_decrypt, 
-                                          "color" => $token_decrypt['color'], 
-                                          "colorHex" => $token_decrypt['colorHex'],
-                                          "subdominio" => $token_decrypt['subdominio'],
-                                        ]
-                                  );
+
+        return redirect('/');
   
       } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
 
         //token_invalid
     
         Log::info('[APITrabajadores][Historial] Token error: token_invalid');
-  
-        return view('trabajadores.login',["title" => config('app.name'), 
-                                          "lang" => "es", 
-                                          "user" => $token_decrypt, 
-                                          "color" => $token_decrypt['color'], 
-                                          "colorHex" => $token_decrypt['colorHex'],
-                                          "subdominio" => $token_decrypt['subdominio'],
-                                        ]
-                                  );
+
+        return redirect('/');
                                     
       } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
 
         //token_absent
     
         Log::info('[APITrabajadores][Historial] Token error: token_absent');
-  
-        return view('trabajadores.login',["title" => config('app.name'), 
-                                          "lang" => "es", 
-                                          "user" => $token_decrypt, 
-                                          "color" => $token_decrypt['color'], 
-                                          "colorHex" => $token_decrypt['colorHex'],
-                                          "subdominio" => $token_decrypt['subdominio'],
-                                        ]
-                                  );
+
+        return redirect('/');
   
       }
 
