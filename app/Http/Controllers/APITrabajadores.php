@@ -8,6 +8,7 @@ use App\Library\VO\ResponseJSON;
 use App\Library\DAO\Trabajadores;
 use App\Library\DAO\Permisos_inter;
 use App\Library\DAO\Colores;
+use App\Library\DAO\Empresas;
 use Auth;
 use carbon\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -22,12 +23,51 @@ class APITrabajadores extends Controller
 
   public function SignIn(Request $request){
   
-    Log::info('[SignIn]');
+    Log::info('[APITrabajadores][SignIn]');
 
-    Log::info("[SignIn] Método Recibido: ". $request->getMethod());
+    Log::info("[APITrabajadores][SignIn] Método Recibido: ". $request->getMethod());
 
-    return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+    if($request->isMethod('GET')) {
 
+      $path = $request->path();
+
+      $subdominio = Empresas::lookForBySubdominio($path)->get();
+    
+      Log::info('[APITrabajadores][SignIn] subdominio size: ' . count($subdominio));
+
+      Log::info($subdominio);
+
+      if(count($subdominio)>0){
+
+        $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDData'), count($subdominio));
+        $responseJSON->data = [];
+        
+        $colores = Colores::lookForById($subdominio->first()->color)->get();
+
+        Log::info($subdominio->first()->color);
+        Log::info($colores->first()->hex);
+
+        return view('trabajadores.login',["title" => config('app.name'), 
+                                        "lang" => "es", 
+                                        "color" => $subdominio->first()->color, 
+                                        "colorHex" => $colores->first()->hex, 
+                                        "subdominio" => $subdominio->first()->subdominio
+                                        ]
+                                    );
+
+      } else {
+
+        abort(404);
+
+      }
+        
+      return ;
+
+    } else {
+
+      abort(404);
+    
+    }
 
   }
 
@@ -53,7 +93,9 @@ class APITrabajadores extends Controller
       Log::info("[APITrabajadores][ingresar] colorHex: ". $colorHex);
       Log::info("[APITrabajadores][ingresar] subdominio: ". $subdominio);
 
-      $trabajador = Trabajadores::lookForByEmailAndPass($correo, $contPass)->get();
+      $empresa = Empresas::lookForBySubdominio($subdominio)->get();
+
+      $trabajador = Trabajadores::lookForByEmailAndPassAndIdEmpresa($correo, $contPass, $empresa->first()->id_empresas)->get();
       
 
       if(count($trabajador)>0){
@@ -137,22 +179,22 @@ class APITrabajadores extends Controller
 
         //print_r($token_decrypt);
 
-        if(in_array("3", $token_decrypt["permisos"])!=1){
+        if(in_array(3, $token_decrypt["permisos"]) || in_array(2, $token_decrypt["permisos"])){
 
-          Log::info("[APITrabajadores][Inicio] Permiso dif");
+          Log::info("[APITrabajadores][Inicio] Permiso Existente");
           
-          return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+          return view('system.inicio',["title" => config('app.name'), 
+                                            "lang" => "es", 
+                                            "user" => $token_decrypt, 
+                                            "color" => $token_decrypt['color'], 
+                                            "colorHex" => $token_decrypt['colorHex'],
+                                            "subdominio" => $token_decrypt['subdominio']
+                                          ]
+          );
           
         }
 
-        return view('system.inicio',["title" => config('app.name'), 
-                                       "lang" => "es", 
-                                       "user" => $token_decrypt, 
-                                       "color" => $token_decrypt['color'], 
-                                       "colorHex" => $token_decrypt['colorHex'],
-                                       "subdominio" => $token_decrypt['subdominio'],
-                                      ]
-                      );
+        return redirect('/');
 
 
       } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
@@ -184,8 +226,8 @@ class APITrabajadores extends Controller
         //Errores
     
         Log::info('[APITrabajadores][Inicio] ' . $e);
-  
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+
+        return redirect('/');
 
       }
 
@@ -237,24 +279,24 @@ class APITrabajadores extends Controller
         //token_expired
     
         Log::info('[APITrabajadores][Registros] Token error: token_expired');
-  
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+
+        return redirect('/');
   
       } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
 
         //token_invalid
     
         Log::info('[APITrabajadores][Registros] Token error: token_invalid');
-  
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+
+        return redirect('/');
   
       } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
 
         //token_absent
     
         Log::info('[APITrabajadores][Registros] Token error: token_absent');
-  
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+
+        return redirect('/');
   
       }
 
@@ -292,7 +334,9 @@ class APITrabajadores extends Controller
 
         //print_r($token_decrypt);
 
-        return view('system.perfil',["title" => config('app.name'), 
+
+
+        return view('system.perfilTrabajadores',["title" => config('app.name'), 
                                       "lang" => "es", 
                                       "user" => $token_decrypt, 
                                       "color" => $token_decrypt['color'], 
@@ -306,32 +350,34 @@ class APITrabajadores extends Controller
         //token_expired
     
         Log::info('[APITrabajadores][Perfil] Token error: token_expired');
-  
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+
+        return redirect('/');
   
       } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
 
         //token_invalid
     
         Log::info('[APITrabajadores][Perfil] Token error: token_invalid');
-  
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
-  
+
+        return redirect('/');
+                                    
       } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
 
         //token_absent
     
         Log::info('[APITrabajadores][Perfil] Token error: token_absent');
-  
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+
+        return redirect('/');
   
       } catch(Exception $e){
         
         //other errors
     
         Log::info('[APITrabajadores][Perfil]');
-  
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+
+        return redirect('/');
+
+                                  
       }
 
     } else {
@@ -379,7 +425,14 @@ class APITrabajadores extends Controller
 
         } else {
           
-          return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+          return view('trabajadores.login',["title" => config('app.name'), 
+                                            "lang" => "es", 
+                                            "user" => $token_decrypt, 
+                                            "color" => $token_decrypt['color'], 
+                                            "colorHex" => $token_decrypt['colorHex'],
+                                            "subdominio" => $token_decrypt['subdominio'],
+                                          ]
+                                    );
           
         }
 
@@ -389,7 +442,14 @@ class APITrabajadores extends Controller
     
         Log::info('[APITrabajadores][Historial] Token error: token_expired');
   
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+        return view('trabajadores.login',["title" => config('app.name'), 
+                                          "lang" => "es", 
+                                          "user" => $token_decrypt, 
+                                          "color" => $token_decrypt['color'], 
+                                          "colorHex" => $token_decrypt['colorHex'],
+                                          "subdominio" => $token_decrypt['subdominio'],
+                                        ]
+                                  );
   
       } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
 
@@ -397,15 +457,29 @@ class APITrabajadores extends Controller
     
         Log::info('[APITrabajadores][Historial] Token error: token_invalid');
   
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
-  
+        return view('trabajadores.login',["title" => config('app.name'), 
+                                          "lang" => "es", 
+                                          "user" => $token_decrypt, 
+                                          "color" => $token_decrypt['color'], 
+                                          "colorHex" => $token_decrypt['colorHex'],
+                                          "subdominio" => $token_decrypt['subdominio'],
+                                        ]
+                                  );
+                                    
       } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
 
         //token_absent
     
         Log::info('[APITrabajadores][Historial] Token error: token_absent');
   
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+        return view('trabajadores.login',["title" => config('app.name'), 
+                                          "lang" => "es", 
+                                          "user" => $token_decrypt, 
+                                          "color" => $token_decrypt['color'], 
+                                          "colorHex" => $token_decrypt['colorHex'],
+                                          "subdominio" => $token_decrypt['subdominio'],
+                                        ]
+                                  );
   
       }
 

@@ -38,5 +38,27 @@ class Trabajadores extends Model
         ]);
 
     }
+
+    //login
+    public function scopeLookForByEmailAndPassAndIdEmpresa($query, $email, $pass, $id_empresas)
+    {
+
+        Log::info("[Empresas][scopeLookForByEmailAndPassAndIdEmpresa]");
+
+        $pass = hash("sha256", $pass);
+
+        Log::info("[Empresas][scopeLookForByEmailAndPassAndIdEmpresa] email: ". $email);
+
+        Log::info("[Empresas][scopeLookForByEmailAndPassAndIdEmpresa] pass: ". $pass);
+
+        Log::info("[Empresas][scopeLookForByEmailAndPassAndIdEmpresa] id_empresas: ". $id_empresas);
+
+        return $query->where([
+          ['correo', '=', $email],
+          ['pass', '=', $pass],
+          ['id_empresas', '=', $id_empresas],
+        ]);
+
+    }
 }
 ?>

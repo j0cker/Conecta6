@@ -80,6 +80,19 @@
         });
 
       },
+      postIngresarEmpresas: function(correo, contPass, color, colorHex, subdominio) {
+
+        console.log("[factory][postIngresarEmpresas]");
+
+        console.log("correo: " + correo + " contPass: " + contPass + " color: " + color + " colorHex: " + colorHex + " subdominio: " + subdominio);
+
+        var url = '/api/empresas/ingresar';
+        return $http.get(url,{
+          params: { cache: false, correo:correo, contPass:contPass, color:color,  colorHex:colorHex, subdominio:subdominio },
+          cache: false
+        });
+
+      },
       altaEmpresa: function(nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, subdominio, contrasena, color) {
 
         console.log("[factory][altaEmpresa]");

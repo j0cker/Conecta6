@@ -1,44 +1,40 @@
-@extends('system.master')
+<?php $__env->startSection('lang'); ?><?php echo e($lang); ?><?php $__env->stopSection(); ?>
 
-{{-- lang html tag --}}
 
-@section('lang'){{$lang}}@stop
 
-{{-- Title Head --}}
+<?php $__env->startSection('title'); ?><?php echo e($title); ?><?php $__env->stopSection(); ?>
 
-@section('title'){{$title}}@stop
 
-{{-- Metatag Head --}}
 
-@section('Content-Type','text/html; charset=UTF-8')
-@section('x-ua-compatible','ie=edge')
-@section('keywords','')
-@section('description','')
-@section('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1')
-@section('idiomaLang','es-mx')
+<?php $__env->startSection('Content-Type','text/html; charset=UTF-8'); ?>
+<?php $__env->startSection('x-ua-compatible','ie=edge'); ?>
+<?php $__env->startSection('keywords',''); ?>
+<?php $__env->startSection('description',''); ?>
+<?php $__env->startSection('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1'); ?>
+<?php $__env->startSection('idiomaLang','es-mx'); ?>
 
-{{-- Menu --}}
+
 
 <!--Menu Transparente
-@section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
+<?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-@section('menuActive','perfilTrabajadores')
+<?php $__env->startSection('menuActive','perfilTrabajadores'); ?>
 
-@section('raiz1', @Config::get('app.name'))
-@section('raiz1Url', '/inicio')
-@section('raiz2','Trabajadores')
-@section('raiz2Url','/inicio')
-@section('raiz3','Perfil')
-@section('raiz3Url','/perfil')
+<?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
+<?php $__env->startSection('raiz1Url', '/inicio'); ?>
+<?php $__env->startSection('raiz2','Trabajadores'); ?>
+<?php $__env->startSection('raiz2Url','/inicio'); ?>
+<?php $__env->startSection('raiz3','Perfil'); ?>
+<?php $__env->startSection('raiz3Url','/perfil'); ?>
 
 
-{{-- Angular Controller --}}
 
-@section('controller','perfilTrabajadores')
 
-{{-- Body --}}
+<?php $__env->startSection('controller','perfilTrabajadores'); ?>
 
-@section('content')
+
+
+<?php $__env->startSection('content'); ?>
 
 
 <div class="page-wrapper">
@@ -46,7 +42,7 @@
                 
                 <!-- BEGIN Left Aside -->
                         
-                        @include('system.menu')
+                        <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         
                 <!-- END Left Aside -->
 
@@ -54,14 +50,14 @@
                     <!-- BEGIN Page Header -->
                     
                         
-                    @include('system.menu2')
+                    <?php echo $__env->make('system.menu2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                     
                     <!-- END Page Header -->
                     <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
                     <main id="js-page-content" role="main" class="page-content">
                     
-                        @include('system.menu3')
+                        <?php echo $__env->make('system.menu3', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                         <div class="subheader">
                             <h1 class="subheader-title">
@@ -100,7 +96,7 @@
                                                                 <div class="col-md-4 text-center">
                                                                 
                                                                     <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com">
-                                                                        <img src="{{ url('img/avatar-admin.png') }}" style="width: 100px; height: 100px;" class="profile-image rounded-circle" alt='{{ $user["usr"]->nombre }} {{ $user["usr"]->apellido }}'>
+                                                                        <img src="<?php echo e(url('img/avatar-admin.png')); ?>" style="width: 100px; height: 100px;" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre); ?> <?php echo e($user["usr"]->apellido); ?>'>
                                                                         <!-- you can also add username next to the avatar with the codes below:
                                                                         <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
                                                                         <i class="ni ni-chevron-down hidden-xs-down"></i> -->
@@ -135,13 +131,14 @@
 
                                                                 <div style="font-size: 20px;" class="col-md-4">
 
-                                                                    @isset($user["usr"]->nombre)
-                                                                        {{ $user["usr"]->nombre }}
-                                                                    @endisset
+                                                                    <?php if(isset($user["usr"]->nombre)): ?>
+                                                                        <?php echo e($user["usr"]->nombre); ?>
 
-                                                                    @empty($user["usr"]->nombre)
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->nombre)): ?>
                                                                         No especificado
-                                                                    @endempty
+                                                                    <?php endif; ?>
 
                                                                 </div>
 
@@ -169,13 +166,14 @@
 
                                                                 <div style="font-size: 20px;" class="col-md-4">
 
-                                                                    @isset($user["usr"]->apellido)
-                                                                        {{ $user["usr"]->apellido }}
-                                                                    @endisset
+                                                                    <?php if(isset($user["usr"]->apellido)): ?>
+                                                                        <?php echo e($user["usr"]->apellido); ?>
 
-                                                                    @empty($user["usr"]->apellido)
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->apellido)): ?>
                                                                         No especificado
-                                                                    @endempty
+                                                                    <?php endif; ?>
 
                                                                 </div>
 
@@ -203,21 +201,20 @@
 
                                                                 <div style="font-size: 20px;" class="col-md-4">
 
-                                                                    @isset($user["usr"]->correo)
-                                                                        {{ $user["usr"]->correo }}
-                                                                    @endisset
+                                                                    <?php if(isset($user["usr"]->correo)): ?>
+                                                                        <?php echo e($user["usr"]->correo); ?>
 
-                                                                    @empty($user["usr"]->correo)
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->correo)): ?>
                                                                         No especificado
-                                                                    @endempty
+                                                                    <?php endif; ?>
 
                                                                 </div>
 
                                                             <div class="col-md-4"></div>
 
                                                         </div>
-
-                                                        @if (in_array("3", $user["permisos"]))
                                                         
                                                         <div class="row">
 
@@ -240,54 +237,20 @@
                                                                 <div style="font-size: 20px;" class="col-md-4">
 
                                                                      
-                                                                    @isset($user["usr"]->cargo)
-                                                                        {{ $user["usr"]->cargo }}
-                                                                    @endisset
+                                                                    <?php if(isset($user["usr"]->cargo)): ?>
+                                                                        <?php echo e($user["usr"]->cargo); ?>
 
-                                                                    @empty($user["usr"]->cargo)
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->cargo)): ?>
                                                                         No especificado
-                                                                    @endempty
+                                                                    <?php endif; ?>
 
                                                                 </div>
 
                                                             <div class="col-md-4"></div>
 
                                                         </div>
-
-                                                        @endif
-
-                                                        @if (in_array("1", $user["permisos"]))
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Rol:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    
-                                                                    Administrador
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        @endif
                                                         
                                                         <div class="row">
 
@@ -310,13 +273,14 @@
                                                                 <div style="font-size: 20px;" class="col-md-4">
 
                                                                      
-                                                                    @isset($user["usr"]->telefono_fijo)
-                                                                        {{ $user["usr"]->telefono_fijo }}
-                                                                    @endisset
+                                                                    <?php if(isset($user["usr"]->telefono_fijo)): ?>
+                                                                        <?php echo e($user["usr"]->telefono_fijo); ?>
 
-                                                                    @empty($user["usr"]->telefono_fijo)
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->telefono_fijo)): ?>
                                                                         No especificado
-                                                                    @endempty
+                                                                    <?php endif; ?>
 
                                                                 </div>
 
@@ -345,13 +309,14 @@
                                                                 <div style="font-size: 20px;" class="col-md-4">
 
                                                                      
-                                                                    @isset($user["usr"]->celular)
-                                                                        {{ $user["usr"]->celular }}
-                                                                    @endisset
+                                                                    <?php if(isset($user["usr"]->celular)): ?>
+                                                                        <?php echo e($user["usr"]->celular); ?>
 
-                                                                    @empty($user["usr"]->celular)
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->celular)): ?>
                                                                         No especificado
-                                                                    @endempty
+                                                                    <?php endif; ?>
 
                                                                 </div>
 
@@ -380,21 +345,20 @@
                                                                 <div style="font-size: 20px;" class="col-md-4">
 
                                                                      
-                                                                    @isset($user["usr"]->created_at)
-                                                                        {{ $user["usr"]->created_at }}
-                                                                    @endisset
+                                                                    <?php if(isset($user["usr"]->created_at)): ?>
+                                                                        <?php echo e($user["usr"]->created_at); ?>
 
-                                                                    @empty($user["usr"]->created_at)
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->created_at)): ?>
                                                                         No especificado
-                                                                    @endempty
+                                                                    <?php endif; ?>
 
                                                                 </div>
 
                                                             <div class="col-md-4"></div>
 
                                                         </div>
-
-                                                        @if (in_array("3", $user["permisos"]))
                                                         
                                                         <div class="row">
 
@@ -417,23 +381,20 @@
                                                                 <div style="font-size: 20px;" class="col-md-4">
 
                                                                      
-                                                                    @isset($user["usr"]->dni_num)
-                                                                        {{ $user["usr"]->dni_num }}
-                                                                    @endisset
+                                                                    <?php if(isset($user["usr"]->dni_num)): ?>
+                                                                        <?php echo e($user["usr"]->dni_num); ?>
 
-                                                                    @empty($user["usr"]->dni_num)
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->dni_num)): ?>
                                                                         No especificado
-                                                                    @endempty
+                                                                    <?php endif; ?>
 
                                                                 </div>
 
                                                             <div class="col-md-4"></div>
 
                                                         </div>
-
-                                                        @endif
-
-                                                        @if (in_array("3", $user["permisos"]))
                                                         
                                                         <div class="row">
 
@@ -456,21 +417,20 @@
                                                                 <div style="font-size: 20px;" class="col-md-4">
 
                                                                      
-                                                                    @isset($user["usr"]->seguro_social)
-                                                                        {{ $user["usr"]->seguro_social }}
-                                                                    @endisset
+                                                                    <?php if(isset($user["usr"]->seguro_social)): ?>
+                                                                        <?php echo e($user["usr"]->seguro_social); ?>
 
-                                                                    @empty($user["usr"]->seguro_social)
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->seguro_social)): ?>
                                                                         No especificado
-                                                                    @endempty
+                                                                    <?php endif; ?>
 
                                                                 </div>
 
                                                             <div class="col-md-4"></div>
 
                                                         </div>
-
-                                                        @endif
 
                                                         <div class="row">
 
@@ -502,7 +462,7 @@
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
                     
-                    @include('system.footer2')
+                    <?php echo $__env->make('system.footer2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
@@ -558,7 +518,7 @@
         <!-- END Page Wrapper -->
         <!-- BEGIN Quick Menu -->
         <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-        @include('system.toolbar')
+        <?php echo $__env->make('system.toolbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <!-- END Quick Menu -->
         <!-- BEGIN Messenger -->
         <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1096,8 +1056,8 @@
         </div> <!-- END Page Settings -->
 
         
-        <script src="{{ url('js/vendors.bundle.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/app.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
         
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
      
@@ -1105,9 +1065,9 @@
             $( document ).ready(function() {
                 // Handler for .ready() called.
                 
-                @if (in_array("1", $user["permisos"]))
+                <?php if(in_array("1", $user["permisos"])): ?>
                     $("#mytheme").attr("href","css/themes/cust-theme-6.css");
-                @endif
+                <?php endif; ?>
 
             });
         </script>
@@ -1123,18 +1083,20 @@
 
 
         <!-- Toastr-->
-        <script src="{{ url('js/toastr.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <!--Angular-->
 
-        <script src="{{ url('js/angular.min.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/sanitize.min.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/module.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/controllers.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/angular.min.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/sanitize.min.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/module.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/controllers.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
 
-        <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
 
         
 
-    @stop
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('system.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

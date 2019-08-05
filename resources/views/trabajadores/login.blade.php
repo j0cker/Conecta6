@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('trabajadores.master')
 
   {{-- lang html tag --}}
 
@@ -23,7 +23,7 @@
 
   {{-- Angular Controller --}}
 
-  @section('controller','signInAdmin')
+  @section('controller','signin')
 
   {{-- Body --}}
 
@@ -43,8 +43,8 @@
 
               <div class="card">
 
-                <div style="margin-top: 35px; width: 270px !important; height: 121px !important;" class="card-image resaltar">
-                  <img style="width: 240px !important; height: 101px !important;" class="logoCompany text-center" src="{{ url('img/Conecta6-logotipo.png') }}">
+                <div class="card-image resaltar">
+                  <img class="logoCompany text-center" src="{{ url('img/logo-example.png') }}">
                 </div>
 
                 <div class="card-content">
@@ -63,6 +63,11 @@
                     <div class="input-group resaltar">
                       <span class="input-group-addon"><span class="fa fa-lock"></span></span>
                       <input id="contPass" type="password" placeholder="Contraseña" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
+
+                      <input id="color" value="{{ $color }}" style="display: none;" type="hidden">
+                      <input id="colorHex" value="{{ $colorHex }}" style="display: none;" type="hidden">
+                      <input id="subdominio" value="{{ $subdominio }}" style="display: none;" type="hidden">
+
                     </div>
 
                     <button ng-click="send()" id="ingresarButton" style="margin-top: 40px; margin-bottom: 40px;" class="btn waves-effect waves-light resaltar" type="submit" name="action">Ingresar

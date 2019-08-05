@@ -53,6 +53,8 @@ class Empresas extends Model
 
         $pass = hash("sha256", $pass);
 
+        Log::info("[Empresas][scopeLookForByEmailAndPass] email: ". $email);
+
         Log::info("[Empresas][scopeLookForByEmailAndPass] pass: ". $pass);
 
         return $query->where([

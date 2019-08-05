@@ -184,9 +184,9 @@ class APIAdmin extends Controller
 
     public function Perfil(Request $request){
       
-      Log::info('[APITrabajadores][Perfil]');
+      Log::info('[APIAdmin][Perfil]');
   
-      Log::info("[APITrabajadores][Perfil] Método Recibido: ". $request->getMethod());
+      Log::info("[APIAdmin][Perfil] Método Recibido: ". $request->getMethod());
   
       if($request->isMethod('GET')) {
   
@@ -208,7 +208,7 @@ class APIAdmin extends Controller
   
           //print_r($token_decrypt);
   
-          return view('system.perfil',["title" => config('app.name'), 
+          return view('system.perfilAdministradores',["title" => config('app.name'), 
                                         "lang" => "es", 
                                         "user" => $token_decrypt, 
                                         "color" => $token_decrypt['color'], 
@@ -221,7 +221,7 @@ class APIAdmin extends Controller
   
           //token_expired
       
-          Log::info('[APITrabajadores][Perfil] Token error: token_expired');
+          Log::info('[APIAdmin][Perfil] Token error: token_expired');
     
           return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
     
@@ -229,7 +229,7 @@ class APIAdmin extends Controller
   
           //token_invalid
       
-          Log::info('[APITrabajadores][Perfil] Token error: token_invalid');
+          Log::info('[APIAdmin][Perfil] Token error: token_invalid');
     
           return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
     
@@ -237,7 +237,7 @@ class APIAdmin extends Controller
   
           //token_absent
       
-          Log::info('[APITrabajadores][Perfil] Token error: token_absent');
+          Log::info('[APIAdmin][Perfil] Token error: token_absent');
     
           return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
     
@@ -656,9 +656,9 @@ class APIAdmin extends Controller
   
     public function Logout(Request $request){
       
-      Log::info('[APITrabajadores][Logout]');
+      Log::info('[APIAdmin][Logout]');
   
-      Log::info("[APITrabajadores][Logout] Método Recibido: ". $request->getMethod());
+      Log::info("[APIAdmin][Logout] Método Recibido: ". $request->getMethod());
   
       if($request->isMethod('GET')) {
   

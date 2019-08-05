@@ -18,7 +18,7 @@ class Sign extends Controller
   
         Log::info("[SignIn] Método Recibido: ". $request->getMethod());
 
-        return view('sign.login',["title" => "Pedidos de Cargamentos Ligeros", "lang" => "es"]);
+        return view('trabajadores.login',["title" => "Pedidos de Cargamentos Ligeros", "lang" => "es"]);
 
 
     }

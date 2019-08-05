@@ -137,14 +137,23 @@
 
   });//fin controller registros
 
-  app.controller('perfil', function($scope, functions, $window) {
+  app.controller('perfilTrabajadores', function($scope, functions, $window) {
 
-    console.log("[perfil]");
+    console.log("[perfilTrabajadores]");
 
     functions.loading();
 
 
-  });//fin controller perfil
+  });//fin controller perfilTrabajadores
+
+  app.controller('perfilAdministradores', function($scope, functions, $window) {
+
+    console.log("[perfilAdministradores]");
+
+    functions.loading();
+
+
+  });//fin controller perfilAdministradores
 
   app.controller('historial', function($scope, functions, $window) {
 
@@ -154,6 +163,80 @@
 
 
   });//fin controller historial
+
+  
+  app.controller('signinEmpresas', function($scope, functions, $window) {
+
+    functions.loading();
+
+    $("body").css("background-image","url('../img/texture.png')");
+
+    
+    console.log("[signinEmpresas]");
+
+    $scope.send = function(){
+      console.log("[signinEmpresas][send]");
+
+      functions.loadingWait();
+
+      var correo = "";
+      var contPass = "";
+      var color = "";
+      var colorHex = "";
+      var subdominio = "";
+
+      correo = $("#correo").val();
+      contPass = $("#contPass").val();
+      color = $("#color").val();
+      colorHex = $("#colorHex").val();
+      subdominio = $("#subdominio").val();
+
+      console.log("[signinEmpresas][send] correo: " + correo);
+      console.log("[signinEmpresas][send] contPass: " + contPass);
+      console.log("[signinEmpresas][send] color: " + color);
+      console.log("[signinEmpresas][send] colorHex: " + colorHex);
+      console.log("[signinEmpresas][send] subdominio: " + subdominio);
+
+      if(correo.indexOf("@")=="-1" || correo.indexOf(".")=="-1" || correo.indexOf(" ")!="-1" || correo.indexOf(",")!="-1"){
+        toastr["error"]("Llena correctamente<br /> tu correo electrónico", "");
+        functions.loadingEndWait();
+        $("#ingresarButton").effect( "shake" );
+      } else if(contPass==""){
+        toastr["error"]("Llena correctamente<br /> tu contraseña", "");
+        functions.loadingEndWait();
+        $("#ingresarButton").effect( "shake" );
+        
+      } else {
+
+        functions.postIngresarEmpresas(correo, contPass, color, colorHex, subdominio).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[signinEmpresas][postIngresar]");
+
+              toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+
+              deleteAllCookies();
+              setCookie("token", response.data.token, 1);
+
+              $window.location.href = "/inicioEmpresa";
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin postSubscriber*/
+      
+      }
+
+    }//fin send ng
+
+  });//fin controller signin
+
 
   app.controller('signInAdmin', function($scope, functions, $window) {
 
@@ -201,7 +284,7 @@
             deleteAllCookies();
             setCookie("token", response.data.token, 1);
 
-            $window.location.href = "/inicioAdmin";
+            $window.location.href = "/inicioEmpresa";
 
           } else {
               toastr["warning"](response.data.description, "");
@@ -219,6 +302,15 @@
     }
 
   });//fin controller signInAdmin
+
+  app.controller('inicioEmpresa', function($scope, functions, $window) {
+
+    console.log("[inicioEmpresa]");
+
+    functions.loading();
+
+
+  });//fin controller inicioEmpresa
 
   app.controller('empresas', function($scope, functions, $window) {
 

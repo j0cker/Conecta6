@@ -19,17 +19,39 @@
                     </div>
                 </div>
                 <div class="info-card">
-                    <a href="{{ url('/perfil') }}'">
-                        <img src="{{ url('img/avatar-admin.png') }}" class="profile-image rounded-circle" alt='{{ $user["usr"]->nombre }} {{ $user["usr"]->apellido }}'>
-                    </a>
-                    <div class="info-card-text">
-                        <a href="{{ url('/perfil') }}" class="d-flex align-items-center text-white">
-                            <span class="text-truncate text-truncate-sm d-inline-block">
-                                {{ $user["usr"]->nombre }} {{ $user["usr"]->apellido }}
-                            </span>
+
+                    @if (in_array("3", $user["permisos"]) || in_array("1", $user["permisos"]))
+
+                        <a href="{{ url('/perfilTrabajadores') }}'">
+                            <img src="{{ url('img/avatar-admin.png') }}" class="profile-image rounded-circle" alt='{{ $user["usr"]->nombre }} {{ $user["usr"]->apellido }}'>
                         </a>
-                        <span class="d-inline-block text-truncate text-truncate-sm">{{ $user["usr"]->correo }}</span>
-                    </div>
+                        <div class="info-card-text">
+                            <a href="{{ url('/perfilTrabajadores') }}" class="d-flex align-items-center text-white">
+                                <span class="text-truncate text-truncate-sm d-inline-block">
+                                    {{ $user["usr"]->nombre }} {{ $user["usr"]->apellido }}
+                                </span>
+                            </a>
+                            <span class="d-inline-block text-truncate text-truncate-sm">{{ $user["usr"]->correo }}</span>
+                        </div>
+                        
+                    @endif
+
+                    @if (in_array("2", $user["permisos"]))
+
+                        <a href="{{ url('/perfilEmpresas') }}'">
+                            <img src="{{ url('img/avatar-admin.png') }}" class="profile-image rounded-circle" alt='{{ $user["usr"]->nombre_empresa }}'>
+                        </a>
+                        <div class="info-card-text">
+                            <a href="{{ url('/perfilEmpresas') }}" class="d-flex align-items-center text-white">
+                                <span class="text-truncate text-truncate-sm d-inline-block">
+                                    {{ $user["usr"]->nombre_empresa }}
+                                </span>
+                            </a>
+                            <span class="d-inline-block text-truncate text-truncate-sm">{{ $user["usr"]->correo }}</span>
+                        </div>
+
+                    @endif
+
                     <img src="{{ url('img/cover-2-lg.png') }}" class="cover" alt="cover">
                     <a href="#" onclick="return false;" class="pull-trigger-btn" data-action="toggle" data-class="list-filter-active" data-target=".page-sidebar" data-focus="nav_filter_input">
                         <i class="fal fa-angle-down"></i>
@@ -125,6 +147,51 @@
                                         </a>
                                     </li>
                                 -->
+                                    <li>
+                                        <a href="#" ng-click="logout()" title="Salir" data-filter-tags="salir">
+                                            <span class="nav-link-text" data-i18n="nav.pages_chat">Salir</span>
+                                        </a>
+                                    </li>
+                            </li>
+
+                </ul>
+                @endif
+                
+                
+                <!--Empresas-->
+
+                @if(in_array("2", $user["permisos"]))
+
+                <ul id="js-nav-menu" class="nav-menu">
+                                @if ($__env->yieldContent('menuActive')=="inicioEmpresa" ||
+                                     $__env->yieldContent('menuActive')=="perfilEmpresas")
+                                    <li class="active open">
+                                @else
+                                    <li class="">
+                                @endif
+                                <a href="#" title="Application Intel" data-filter-tags="application intel">
+                                    <i class="fal fa-info-circle"></i>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Empresas Administración</span>
+                                </a>
+                                <ul>
+                                @if ($__env->yieldContent('menuActive')=="inicioEmpresa")
+                                    <li class="active">
+                                @else
+                                    <li class="">
+                                @endif
+                                        <a href="{{ url('/inicioEmpresa') }}" title="inicio Analytics Dashboard" data-filter-tags="application intel inicio analytics dashboard">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Inicio</span>
+                                        </a>
+                                    </li>
+                                @if ($__env->yieldContent('menuActive')=="perfilEmpresas")
+                                    <li class="active">
+                                @else
+                                    <li class="">
+                                @endif
+                                        <a href="{{ url('/perfilEmpresas') }}" title="Perfil" data-filter-tags="perfil">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Perfil</span>
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="#" ng-click="logout()" title="Salir" data-filter-tags="salir">
                                             <span class="nav-link-text" data-i18n="nav.pages_chat">Salir</span>

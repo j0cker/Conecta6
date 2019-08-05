@@ -30,9 +30,9 @@ class APIEmpresas extends Controller
 
     if($request->isMethod('GET')) {
 
-      $path = $request->path();
+      $path = explode("/", $request->path());
 
-      $subdominio = Empresas::lookForBySubdominio($path)->get();
+      $subdominio = Empresas::lookForBySubdominio($path[0])->get();
     
       Log::info('[SignInPersonalizado] subdominio size: ' . count($subdominio));
 
@@ -48,11 +48,11 @@ class APIEmpresas extends Controller
         Log::info($subdominio->first()->color);
         Log::info($colores->first()->hex);
   
-        return view('sign.login',["title" => config('app.name'), 
+        return view('empresas.login',["title" => config('app.name'), 
                                   "lang" => "es", 
                                   "color" => $subdominio->first()->color, 
                                   "colorHex" => $colores->first()->hex, 
-                                  "subdominio" => $subdominio->first()->subdominio
+                                  "subdominio" => $request->path()
                                   ]
                       );
 
@@ -68,6 +68,173 @@ class APIEmpresas extends Controller
 
       abort(404);
     
+    }
+
+  }
+
+  public function Ingresar(Request $request){
+    
+    Log::info('[APIEmpresas][ingresar]');
+
+    Log::info("[APIEmpresas][ingresar] Método Recibido: ". $request->getMethod());
+
+
+    if($request->isMethod('GET')) {
+      
+      $correo = $request->input('correo');
+      $contPass = $request->input('contPass');
+      $color = $request->input('color');
+      $colorHex = $request->input('colorHex');
+      $subdominio = $request->input('subdominio');
+
+      Log::info("[APIEmpresas][ingresar] correo: ". $correo);
+      Log::info("[APIEmpresas][ingresar] contPass: ". $contPass);
+      Log::info("[APIEmpresas][ingresar] color: ". $color);
+      Log::info("[APIEmpresas][ingresar] colorHex: ". $colorHex);
+      Log::info("[APIEmpresas][ingresar] subdominio: ". $subdominio);
+
+      $empresa = Empresas::lookForByEmailAndPass($correo, $contPass)->get();
+
+      Log::info($empresa);
+      
+      if(count($empresa)>0){
+
+        $permisos_inter_object = Permisos_inter::lookForByIdEmpresas($empresa->first()->id_empresas)->get();
+        $permisos_inter = array();
+        foreach($permisos_inter_object as $permiso){
+          $permisos_inter[] = $permiso["id_permisos"];
+        }
+
+        $jwt_token = null;
+
+        $factory = JWTFactory::customClaims([
+          'sub'   => $empresa->first()->id_empresas, //id a conciliar del usuario
+          'iss'   => config('app.name'),
+          'iat'   => Carbon::now()->timestamp,
+          'exp'   => Carbon::tomorrow()->timestamp,
+          'nbf'   => Carbon::now()->timestamp,
+          'jti'   => uniqid(),
+          'usr'   => $empresa->first(),
+          'permisos' => $permisos_inter,
+          'color' => $color,
+          'colorHex' => $colorHex,
+          'permisos' => $permisos_inter,
+          "subdominio" => $subdominio,
+        ]);
+        
+        $payload = $factory->make();
+        
+        $jwt_token = JWTAuth::encode($payload);
+        Log::info("[APIEmpresas][ingresar] new token: ". $jwt_token->get());
+        Log::info("[APIEmpresas][ingresar] Permisos: ");
+        Log::info($permisos_inter);
+
+        $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDdata'), count($empresa));
+        $responseJSON->data = $empresa;
+        $responseJSON->token = $jwt_token->get();
+        return json_encode($responseJSON);
+
+        
+
+      } else {
+        $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBDFail'), count($empresa));
+        $responseJSON->data = $empresa;
+        return json_encode($responseJSON);
+
+      }
+
+      return "";
+      
+    } else {
+      abort(404);
+    }
+  }
+
+  public function Inicio(Request $request){
+    
+    Log::info('[APIEmpresas][Inicio]');
+
+    Log::info("[APIEmpresas][Inicio] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][Inicio] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][Inicio] Permiso Existente");
+          
+          return view('system.inicioEmpresa',["title" => config('app.name'), 
+                                            "lang" => "es", 
+                                            "user" => $token_decrypt, 
+                                            "color" => $token_decrypt['color'], 
+                                            "colorHex" => $token_decrypt['colorHex'],
+                                            "subdominio" => $token_decrypt['subdominio']
+                                          ]
+          );
+          
+        }
+
+        return redirect('/');
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][Inicio] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][Inicio] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][Inicio] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APITrabajadores][Inicio] ' . $e);
+
+        return redirect('/');
+
+      }
+
+
+
+    } else {
+      abort(404);
     }
 
   }
@@ -150,7 +317,7 @@ class APIEmpresas extends Controller
     
         Log::info('[APITrabajadores][Inicio] Token error: token_expired');
   
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+        return view('trabajadores.login',["title" => config('app.name'), "lang" => "es"]);
   
       } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
 
@@ -158,7 +325,7 @@ class APIEmpresas extends Controller
     
         Log::info('[APITrabajadores][Inicio] Token error: token_invalid');
   
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+        return view('trabajadores.login',["title" => config('app.name'), "lang" => "es"]);
   
       } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
 
@@ -166,7 +333,7 @@ class APIEmpresas extends Controller
     
         Log::info('[APITrabajadores][Inicio] Token error: token_absent');
   
-        return view('sign.login',["title" => config('app.name'), "lang" => "es"]);
+        return view('trabajadores.login',["title" => config('app.name'), "lang" => "es"]);
   
       }
 

@@ -42,7 +42,7 @@
               <div class="card">
 
                 <div style="margin-top: 35px; width: 270px !important; height: 121px !important;" class="card-image resaltar">
-                  <img style="width: 240px !important; height: 101px !important;" class="logoCompany text-center" src="img/Conecta6-logotipo.png">
+                  <img style="width: 240px !important; height: 101px !important;" class="logoCompany text-center" src="<?php echo e(url('img/Conecta6-logotipo.png')); ?>">
                 </div>
 
                 <div class="card-content">

@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 *******Trabajadores******
 */
 
-//Request API
+//Ingresar Trabajadores
 Route::get('/trabajadores/ingresar', 'APITrabajadores@Ingresar');
 
 //Logout
@@ -26,6 +26,12 @@ Route::get('/trabajadores/logout', 'APITrabajadores@Logout');
 /*
 *******Empresas******
 */
+
+//Ingresar Empresas
+Route::get('/empresas/ingresar', 'APIEmpresas@Ingresar');
+
+//Alta de nueva Empresa
+Route::post('/empresas/altaEmpresa', 'APIEmpresas@AltaEmpresa');
 
 //Alta de nueva Empresa
 Route::post('/empresas/altaEmpresa', 'APIEmpresas@AltaEmpresa');
@@ -37,7 +43,7 @@ Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
 *******Admin******
 */
 
-//Request API
+//Ingresar Administradores
 Route::get('/pAdmin/ingresar', 'APIAdmin@Ingresar');
 
 //Logout

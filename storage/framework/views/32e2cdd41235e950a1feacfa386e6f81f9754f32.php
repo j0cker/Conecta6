@@ -5,6 +5,8 @@
 
     <body>
 
+        <pre>
+
         Landing Page
 
         /*Instrucciones*/
@@ -56,5 +58,8 @@
         Route::get('/pAdmin/ingresar', 'APIAdmin@Ingresar');
         //Logout
         Route::get('/pAdmin/logout', 'APIAdmin@Logout');
+
+        </pre>
+
     </body>
 </html>

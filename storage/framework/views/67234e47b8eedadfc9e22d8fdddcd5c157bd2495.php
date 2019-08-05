@@ -1,33 +1,31 @@
-@extends('admin.master')
+  
 
-  {{-- lang html tag --}}
+  <?php $__env->startSection('lang'); ?><?php echo e($lang); ?><?php $__env->stopSection(); ?>
 
-  @section('lang'){{$lang}}@stop
+  
 
-  {{-- Title Head --}}
+  <?php $__env->startSection('title'); ?><?php echo e($title); ?><?php $__env->stopSection(); ?>
 
-  @section('title'){{$title}}@stop
+  
 
-  {{-- Metatag Head --}}
-
-  @section('Content-Type','text/html; charset=UTF-8')
-  @section('x-ua-compatible','ie=edge')
-  @section('keywords','')
-  @section('description','')
-  @section('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1')
-  @section('idiomaLang','es-mx')
+  <?php $__env->startSection('Content-Type','text/html; charset=UTF-8'); ?>
+  <?php $__env->startSection('x-ua-compatible','ie=edge'); ?>
+  <?php $__env->startSection('keywords',''); ?>
+  <?php $__env->startSection('description',''); ?>
+  <?php $__env->startSection('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1'); ?>
+  <?php $__env->startSection('idiomaLang','es-mx'); ?>
 
   <!--Menu Transparente
-  @section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
+  <?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
   -->
 
-  {{-- Angular Controller --}}
+  
 
-  @section('controller','signInAdmin')
+  <?php $__env->startSection('controller','signin'); ?>
 
-  {{-- Body --}}
+  
 
-  @section('content')
+  <?php $__env->startSection('content'); ?>
 
 
     <!--Main layout-->
@@ -43,8 +41,8 @@
 
               <div class="card">
 
-                <div style="margin-top: 35px; width: 270px !important; height: 121px !important;" class="card-image resaltar">
-                  <img style="width: 240px !important; height: 101px !important;" class="logoCompany text-center" src="{{ url('img/Conecta6-logotipo.png') }}">
+                <div class="card-image resaltar">
+                  <img class="logoCompany text-center" src="<?php echo e(url('img/logo-example.png')); ?>">
                 </div>
 
                 <div class="card-content">
@@ -63,6 +61,11 @@
                     <div class="input-group resaltar">
                       <span class="input-group-addon"><span class="fa fa-lock"></span></span>
                       <input id="contPass" type="password" placeholder="Contraseña" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
+
+                      <input id="color" value="<?php echo e($color); ?>" style="display: none;" type="hidden">
+                      <input id="colorHex" value="<?php echo e($colorHex); ?>" style="display: none;" type="hidden">
+                      <input id="subdominio" value="<?php echo e($subdominio); ?>" style="display: none;" type="hidden">
+
                     </div>
 
                     <button ng-click="send()" id="ingresarButton" style="margin-top: 40px; margin-bottom: 40px;" class="btn waves-effect waves-light resaltar" type="submit" name="action">Ingresar
@@ -94,4 +97,6 @@
     </main>
     <!--Main layout-->
 
-    @stop
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('trabajadores.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

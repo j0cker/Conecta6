@@ -34,6 +34,9 @@ Route::get('/historial', 'APITrabajadores@Historial');
 *********Empresas***********
 */
 
+//Sistema Welcome
+Route::get('/inicioEmpresa', 'APIEmpresas@Inicio');
+
 //sign in personalizado (URL a evaluación)
 Route::get('/{any}/pAdmin', 'APIEmpresas@SignInPersonalizado');
 
@@ -48,7 +51,7 @@ Route::get('/pAdmin', 'APIAdmin@SignIn');
 Route::get('/inicioAdmin', 'APIAdmin@Inicio');
 
 //Perfil
-Route::get('/perfilAdministradores', 'APIAdministradores@Perfil');
+Route::get('/perfilAdministradores', 'APIAdmin@Perfil');
 
 //Empresas
 Route::get('/empresas', 'APIAdmin@Empresas');
@@ -70,6 +73,6 @@ Route::get('/administradores/nuevo', 'APIAdmin@NuevoAdministrador');
 */
 
 //sign in personalizado (URL a evaluación)
-Route::get('/{any}', 'APIEmpresas@SignInPersonalizado');
+Route::get('/{any}', 'APITrabajadores@SignIn');
 
 
