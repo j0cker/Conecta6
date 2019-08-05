@@ -299,14 +299,24 @@ class APIEmpresas extends Controller
                      header('".env('APP_URL')."/cocacola/index.php');
                    ?>";
 
-          Functions::createArchive(dirname(__FILE__).'/../../../../public_html/cocacola/index.php', $body);
+          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../public_html/cocacola/index.php', $body);
 
           Log::info("[AltaEmpresa] Cpanel API");
           Log::info($result);
 
-          $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($empresas));
-          $responseJSON->data = $empresas;
-          return json_encode($responseJSON);
+          if($result_archive==1){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($empresas));
+            $responseJSON->data = $empresas;
+            return json_encode($responseJSON);
+            
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($empresas));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
 
         } else {
 

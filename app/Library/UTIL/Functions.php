@@ -67,6 +67,8 @@ class Functions
         parametro 1: ruta y nombre del archivo
         parametro 2: body of the document
         */
+
+        $return = -1;
     
         if(file_exists($nombre_archivo))
         {
@@ -82,14 +84,16 @@ class Functions
         {
             if(fwrite($archivo, $body))
             {
-                return 1;
+                $return = 1;
             }
             else
-            {   return -1;
+            {   $return = -1;
             }
     
             fclose($archivo);
         }
+
+        return $return;
     }
 
     /*Creamos una función que detecte el idioma del navegador del cliente.*/
