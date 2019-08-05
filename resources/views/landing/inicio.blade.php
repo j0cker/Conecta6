@@ -91,7 +91,7 @@
         https://boogapp.info/inicioAdmin
         https://boogapp.info/perfilAdministradores
         https://boogapp.info/empresas
-        https://boogapp.info/empresas/nueva (ya funciona, puedes dar de altas nuevas empresas con dubdominio)
+        https://boogapp.info/empresas/nueva (ya funciona, puedes dar de alta nuevas empresas con subdominio)
         https://boogapp.info/idiomas
         https://boogapp.info/administradores
         https://boogapp.info/administradores/nuevo
