@@ -41,7 +41,12 @@ class Empresas extends Model
         $empresas->pass = hash("sha256", $contrasena);
         $empresas->color = $color;
 
-        return $empresas->save();
+        $obj = array();
+        $obj[0] = new \stdClass();
+        $obj[0]->save = $empresas->save(); //return true in the other one return 1
+        $obj[0]->id = $empresas->id;
+        
+        return $obj;
 
     }
 

@@ -291,7 +291,11 @@ class APIEmpresas extends Controller
 
         $empresas = Empresas::addNewEnterprise($nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $subdominio, $contrasena, $color);
         
-        if($empresas==1){
+        Log::info($empresas);
+
+        $Permisos_inter = Permisos_inter::addNewEmpresa($empresas->first()->id);
+
+        if($empresas->save==1 && $Permisos_inter->save==1){
           
           $result = Functions::cPanelAddSubdomain(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), $subdominio, env('CPANEL_DOMAIN'));
           

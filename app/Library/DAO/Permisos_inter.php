@@ -22,6 +22,23 @@ class Permisos_inter extends Model
     //const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    public function scopeAddNewEmpresa($query, $idEmpresa)
+    {
+
+        Log::info("[Permisos_inter][scopeAddNewEmpresa] idEmpresa: ". $idEmpresa);
+
+        $permisos_inter = new Permisos_inter;
+        $permisos_inter->id_empresas = $id_empresas;
+        $permisos_inter->id_permisos = 2;
+
+        $obj = array();
+        $obj[0] = new \stdClass();
+        $obj[0]->save = $permisos_inter->save(); //return true in the other one return 1
+        $obj[0]->id = $permisos_inter->id;
+
+        return $obj;
+
+    }
 
     public function scopeLookForByIdTrabajadores($query, $idTrabajadores)
     {
