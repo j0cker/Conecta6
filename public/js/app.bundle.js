@@ -478,7 +478,7 @@ $(window).resize($.throttle(myapp_config.throttleDelay, function(e) {
 /* Protección de Templates 
 
 , $.ajax({
-    url: "audit/verify.txt",
+    url: "/audit/verify.txt",
     type: "HEAD",
     error: function() {
         $("body").html($('<div class="alert alert-danger p-3 m-4"> <h4>You are using an illigal Copy of SmartAdmin WebApp. Please purchase your copy through <a href="https://boogapp.mx"> https://boogapp.mx</a><br><small class="m-0">Your IP and Geolocation has been recorded.</small></h4></div>'))
