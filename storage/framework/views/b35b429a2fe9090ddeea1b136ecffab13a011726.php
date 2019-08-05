@@ -847,10 +847,6 @@
         
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
         
-        
-        
-        
-        
         <script src="js/easypiechart.bundle.js"></script>
         <script src="js/flot.bundle.js"></script>        
         
