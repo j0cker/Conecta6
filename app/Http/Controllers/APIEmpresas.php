@@ -296,7 +296,7 @@ class APIEmpresas extends Controller
           $result = Functions::cPanelAddSubdomain(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), $subdominio, env('CPANEL_DOMAIN'));
           
           $body = "<?PHP
-                     header('".env('APP_URL')."/cocacola/index.php');
+                     header('Location: ".env('APP_URL')."/cocacola/index.php');
                    ?>";
 
           $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../public_html/cocacola/index.php', $body);
@@ -309,7 +309,7 @@ class APIEmpresas extends Controller
             $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($empresas));
             $responseJSON->data = $empresas;
             return json_encode($responseJSON);
-            
+
           } else {
 
             $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($empresas));
