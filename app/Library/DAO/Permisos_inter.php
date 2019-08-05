@@ -19,7 +19,7 @@ class Permisos_inter extends Model
     public $timestamps = true;
     //protected $dateFormat = 'U';
     const CREATED_AT = 'created_at';
-    //const UPDATED_AT = 'updated_at';
+    const UPDATED_AT = null;
     //public $attributes;
 
     public function scopeAddNewEmpresa($query, $idEmpresa)
