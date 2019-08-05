@@ -284,7 +284,7 @@
             deleteAllCookies();
             setCookie("token", response.data.token, 1);
 
-            $window.location.href = "/inicioEmpresa";
+            $window.location.href = "/inicioAdmin";
 
           } else {
               toastr["warning"](response.data.description, "");

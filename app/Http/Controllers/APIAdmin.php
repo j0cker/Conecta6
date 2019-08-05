@@ -48,7 +48,6 @@ class APIAdmin extends Controller
   
         $administrador = Admin::lookForByEmailAndPass($correo, $contPass)->get();
         
-  
         if(count($administrador)>0){
 
           $permisos_inter_object = Permisos_inter::lookForByIdAdministradores($administrador->first()->id_administradores)->get();
