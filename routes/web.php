@@ -37,6 +37,9 @@ Route::get('/historial', 'APITrabajadores@Historial');
 //Sistema Welcome
 Route::get('/inicioEmpresa', 'APIEmpresas@Inicio');
 
+//Perfil
+Route::get('/perfilEmpresas', 'APIEmpresas@Perfil');
+
 //sign in personalizado (URL a evaluación)
 Route::get('/{any}/pAdmin', 'APIEmpresas@SignInPersonalizado');
 

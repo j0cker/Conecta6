@@ -778,6 +778,25 @@
 
         <script>
 
+            
+
+            function checkbox(valor){
+                
+                console.log(valor);
+
+                console.log("entro: " + $("#gra-" + valor).prop('checked'));
+            }
+
+            function edit(valor){
+                
+                console.log(valor);
+            }
+
+            function del(valor){
+                
+                console.log(valor);
+            }
+
             $(document).ready(function()
             {
 
@@ -785,6 +804,7 @@
                 /* init datatables */
                var table = $('#dt-basic-example').dataTable(
                 {
+                    "pageLength": 1,
                     responsive: true,
                     dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
                         "<'row'<'col-sm-12'tr>>" +
@@ -827,8 +847,8 @@
                             //console.log(meta);
                             return `<center>
                                         <div class="custom-control custom-switch mr-2">
-                                            <input type="checkbox" class="custom-control-input" name="gra-`+meta.row+`" id="gra-`+meta.row+`" checked="checked">
-                                            <label class="custom-control-label" for="gra-`+meta.row+`"></label>
+                                            <input type="checkbox" class="custom-control-input" onclick="checkbox(`+row[0]+`);" name="gra-`+row[0]+`" id="gra-`+row[0]+`" checked="checked">
+                                            <label class="custom-control-label" for="gra-`+row[0]+`"></label>
                                         </div>
                                     </center>`;
                         }
@@ -836,13 +856,20 @@
                     },{
                         "targets": -1,
                         "data": null,
-                        "defaultContent": `<center>
-                                                <button class="btn btn-primary fal fa-edit"></button>
-                                                <button class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
-                                            </center>`
-                    } ]
+                        "render": function ( data, type, row, meta ) {
+                            return  `<center>
+                                        <button onclick="edit(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
+                                        <button onclick="del(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
+                                    </center>`;
+                        }
+                    
+                    } 
+                
+                    ]
 
                 });
+
+                /*
 
                 $('#dt-basic-example tbody').on( 'click', 'button', function () {
                     console.log("[dt-basic-example tbody] click");
@@ -869,6 +896,7 @@
                     }
 
                 });
+                */
 
                 //array
                 //https://datatables.net/examples/ajax/simple.html

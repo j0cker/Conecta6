@@ -225,13 +225,80 @@ class APIEmpresas extends Controller
 
         //Errores
     
-        Log::info('[APITrabajadores][Inicio] ' . $e);
+        Log::info('[APIEmpresas][Inicio] ' . $e);
 
         return redirect('/');
 
       }
 
 
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function Perfil(Request $request){
+    
+    Log::info('[APIEmpresas][Perfil]');
+
+    Log::info("[APIEmpresas][Perfil] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        return view('system.perfilEmpresas',["title" => config('app.name'), 
+                                      "lang" => "es", 
+                                      "user" => $token_decrypt, 
+                                      "color" => $token_decrypt['color'], 
+                                      "colorHex" => $token_decrypt['colorHex'],
+                                      "subdominio" => $token_decrypt['subdominio'],
+                                    ]
+                            );
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][Perfil] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][Perfil] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][Perfil] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
 
     } else {
       abort(404);

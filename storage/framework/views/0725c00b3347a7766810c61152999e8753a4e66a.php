@@ -18,33 +18,37 @@
 <!--Menu Transparente
 <?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-<?php $__env->startSection('menuActive','empresas'); ?>
+<?php $__env->startSection('menuActive','perfilEmpresas'); ?>
 
 <?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
 <?php $__env->startSection('raiz1Url', '/inicio'); ?>
-<?php $__env->startSection('raiz2','Administradores'); ?>
+<?php $__env->startSection('raiz2','Empresas'); ?>
 <?php $__env->startSection('raiz2Url','/inicio'); ?>
-<?php $__env->startSection('raiz3','Empresas'); ?>
-<?php $__env->startSection('raiz3Url','/empresas'); ?>
+<?php $__env->startSection('raiz3','PerfilEmpresas'); ?>
+<?php $__env->startSection('raiz3Url','/perfilEmpresas'); ?>
 
 
 
-<?php $__env->startSection('controller','empresas'); ?>
+
+<?php $__env->startSection('controller','perfilEmpresas'); ?>
 
 
 
 <?php $__env->startSection('content'); ?>
 
-        <!-- BEGIN Page Wrapper -->
-        <div class="page-wrapper">
+
+<div class="page-wrapper">
             <div class="page-inner">
+                
                 <!-- BEGIN Left Aside -->
                         
-                    <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
+                        <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        
                 <!-- END Left Aside -->
+
                 <div class="page-content-wrapper">
                     <!-- BEGIN Page Header -->
+                    
                         
                     <?php echo $__env->make('system.menu2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                     
@@ -57,15 +61,19 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-building'></i> Empresas <span class='fw-300'>Dashboard</span>
+                                <i class="subheader-icon fal fa-user"></i> Perfil
+                                <small>
+                                </small>
                             </h1>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 sortable-grid ui-sortable">
-                                <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
-                                    <div class="panel-hdr" role="heading">
-                                        <h2>
-                                            Empresas
+                                
+                                <div id="panel-1" class="panel panel-locked panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
+
+                                    <div class="panel-hdr">
+                                        <h2 class="ui-sortable-handle">
+                                            Perfil
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -75,86 +83,338 @@
                                         <div class="dropdown-multilevel dropdown-multilevel-left"><div class="dropdown-item"><span data-i18n="drpdwn.panelcolor">Panel Style</span>	</div><div class="dropdown-menu d-flex flex-wrap" style="min-width: 9.5rem; width: 9.5rem; padding: 0.5rem"><a href="#" class="btn d-inline-block bg-primary-700 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-700 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-primary-500 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-500 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-primary-600 bg-primary-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-600 bg-primary-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-600 bg-primray-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-600 bg-primray-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-600 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-600 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-700 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-700 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-900 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-900 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-700 bg-primary-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-700 bg-primary-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-600 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-600 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-danger-900 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-danger-900 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-fusion-400 bg-fusion-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-fusion-400 bg-fusion-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-faded width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-faded" style="margin:1px;"></a></div>										</div>  <div class="dropdown-divider m-0"></div>
                                         </div></div>
                                     </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content">
+                                    <div class="panel-container show" role="content">
+                                        <div class="panel-content border-faded border-left-0 border-right-0 border-top-0">
+                                            <div class="row no-gutters">
+                                                <div class="col-lg-12 col-xl-12">
+                                                    <div class="position-relative">
 
-                                            <a href="/empresas/nueva">
-                                                <button style="margin-bottom: 20px;" class="btn btn-primary">Alta</button>
-                                            </a>
-                                            
-                                            <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
-                                                <thead class="bg-warning-200">
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Empresa</th>
-                                                        <th>Empleados</th>
-                                                        <th>Expiración en Días</th>
-                                                        <th>Activa/Desactiva</th>
-                                                        <th>Opciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="historialTable">
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>MC Donalds</td>
-                                                        <td>100</td>
-                                                        <td>150</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>MC Donalds</td>
-                                                        <td>100</td>
-                                                        <td>150</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>MC Donalds</td>
-                                                        <td>100</td>
-                                                        <td>150</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>MC Donalds</td>
-                                                        <td>100</td>
-                                                        <td>150</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5</td>
-                                                        <td>MC Donalds</td>
-                                                        <td>100</td>
-                                                        <td>150</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>6</td>
-                                                        <td>MC Donalds</td>
-                                                        <td>100</td>
-                                                        <td>150</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Empresa</th>
-                                                        <th>Empleados</th>
-                                                        <th>Expiración en Días</th>
-                                                        <th>Activa/Desactiva</th>
-                                                        <th>Opciones</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-                                            <!-- datatable end -->
+                                                        <div style="margin-top: 50px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div class="col-md-4 text-center">
+                                                                
+                                                                    <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com">
+                                                                        <img src="<?php echo e(url('img/avatar-admin.png')); ?>" style="width: 100px; height: 100px;" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre_empresa); ?>'>
+                                                                        <!-- you can also add username next to the avatar with the codes below:
+                                                                        <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
+                                                                        <i class="ni ni-chevron-down hidden-xs-down"></i> -->
+                                                                    </a>
+                                                                    <center>
+                                                                    100x100
+                                                                    </center>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="margin-top: 50px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Nombre de la Empresa:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                    <?php if(isset($user["usr"]->nombre_empresa)): ?>
+                                                                        <?php echo e($user["usr"]->nombre_empresa); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->nombre_empresa)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Correo:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                    <?php if(isset($user["usr"]->correo)): ?>
+                                                                        <?php echo e($user["usr"]->correo); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->correo)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Solicitante:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                    <?php if(isset($user["usr"]->nombre_solicitante)): ?>
+                                                                        <?php echo e($user["usr"]->nombre_solicitante); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->nombre_solicitante)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Vigencia de la Licencia (mm/dd/YYYY):
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    <?php if(isset($user["usr"]->vigencia)): ?>
+                                                                        <?php echo e($user["usr"]->vigencia); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->vigencia)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Trabajadores Permitidos:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                    <?php if(isset($user["usr"]->empleados_permitidos)): ?>
+                                                                        <?php echo e($user["usr"]->empleados_permitidos); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->empleados_permitidos)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Teléfono Fijo:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    <?php if(isset($user["usr"]->telefono_fijo)): ?>
+                                                                        <?php echo e($user["usr"]->telefono_fijo); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->telefono_fijo)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Celular:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    <?php if(isset($user["usr"]->celular)): ?>
+                                                                        <?php echo e($user["usr"]->celular); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->celular)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Fecha de Creación:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 20px;" class="col-md-4">
+
+                                                                     
+                                                                    <?php if(isset($user["usr"]->created_at)): ?>
+                                                                        <?php echo e($user["usr"]->created_at); ?>
+
+                                                                    <?php endif; ?>
+
+                                                                    <?php if(empty($user["usr"]->created_at)): ?>
+                                                                        No especificado
+                                                                    <?php endif; ?>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                                Editar
+                                                            </button>
+
+                                                            <button style="margin-left: 25px; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                                Cambiar Contraseña
+                                                            </button>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -170,13 +430,13 @@
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
                     <!-- modal shortcut -->
-                    <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
+                    <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
                             <div class="modal-content">
                                 <div class="modal-body">
                                     <ul class="app-list w-auto h-auto p-0 text-left">
                                         <li>
-                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                                            <a href="#" class="app-list-item text-white border-0 m-0">
                                                 <div class="icon-stack">
                                                     <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
@@ -188,7 +448,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+                                            <a href="#" class="app-list-item text-white border-0 m-0">
                                                 <div class="icon-stack">
                                                     <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
@@ -200,7 +460,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                                            <a href="#" class="app-list-item text-white border-0 m-0">
                                                 <div class="icon-stack">
                                                     <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
                                                     <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
@@ -230,7 +490,7 @@
                     <div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
                         <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
                             <span class="mr-2">
-                                <span class="rounded-circle profile-image d-block" style="background-image:url('img/avatar-d.png'); background-size: cover;"></span>
+                                <span class="rounded-circle profile-image d-block" style="background-image:url(&#39;img/demo/avatars/avatar-d.png&#39;); background-size: cover;"></span>
                             </span>
                             <div class="info-card-text">
                                 <a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white" data-toggle="dropdown" aria-expanded="false">
@@ -259,12 +519,12 @@
                                 <input type="text" class="form-control bg-white" id="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FriendSearch" data-listfilter="#js-msgr-listfilter">
                             </div>
                             <div class="flex-1 h-100 custom-scroll">
-                                <div class="w-100">
-                                    <ul id="js-msgr-listfilter" class="list-unstyled m-0">
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="w-100" style="overflow: hidden; width: auto; height: 100%;">
+                                    <ul id="js-msgr-listfilter" class="list-unstyled m-0 js-list-filter">
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="tracey chang online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-d.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-d.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -279,7 +539,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="oliver kopyuv online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-b.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-b.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -294,7 +554,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="dr john cook phd away">
                                                 <div class="d-table-cell align-middle status status-warning status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-e.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-e.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -309,7 +569,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney online">
                                                 <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-g.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-g.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -324,7 +584,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="sarah mcbrook online">
                                                 <div class="d-table-cell align-middle status status-success status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-h.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-h.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -339,7 +599,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
                                                 <div class="d-table-cell align-middle status status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-a.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-a.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -354,7 +614,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney busy">
                                                 <div class="d-table-cell align-middle status status-danger status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-j.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-j.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -369,7 +629,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
                                                 <div class="d-table-cell align-middle status status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-c.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-c.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -384,7 +644,7 @@
                                         <li>
                                             <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney inactive">
                                                 <div class="d-table-cell align-middle">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-m.png'); background-size: cover;"></span>
+                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url(&#39;img/demo/avatars/avatar-m.png&#39;); background-size: cover;"></span>
                                                 </div>
                                                 <div class="d-table-cell w-100 align-middle pl-2 pr-2">
                                                     <div class="text-truncate text-truncate-md">
@@ -398,7 +658,7 @@
                                         </li>
                                     </ul>
                                     <div class="filter-message js-filter-message"></div>
-                                </div>
+                                </div><div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.6); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 4px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(250, 250, 250); opacity: 0.2; z-index: 90; right: 4px;"></div></div>
                             </div>
                             <div>
                                 <a class="fs-xl d-flex align-items-center p-3">
@@ -411,7 +671,7 @@
                         <div class="msgr d-flex h-100 flex-column bg-white">
                             <!-- BEGIN custom-scroll -->
                             <div class="custom-scroll flex-1 h-100">
-                                <div id="chat_container" class="w-100 p-4">
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div id="chat_container" class="w-100 p-4" style="overflow: hidden; width: auto; height: 100%;">
                                     <!-- start .chat-segment -->
                                     <div class="chat-segment">
                                         <div class="time-stamp text-center mb-2 fw-400">
@@ -504,7 +764,7 @@
                                         </div>
                                     </div>
                                     <!--  end .chat-segment for timestamp -->
-                                </div>
+                                </div><div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.6); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 4px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(250, 250, 250); opacity: 0.2; z-index: 90; right: 4px;"></div></div>
                             </div>
                             <!-- END custom-scroll  -->
                             <!-- BEGIN msgr__chatinput -->
@@ -515,17 +775,17 @@
                                     </div>
                                 </div>
                                 <div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1" data-toggle="tooltip" data-original-title="More options" data-placement="top">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1 waves-effect waves-themed" data-toggle="tooltip" data-original-title="More options" data-placement="top">
                                         <i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
                                     </a>
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Attach files" data-placement="top">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1 waves-effect waves-themed" data-toggle="tooltip" data-original-title="Attach files" data-placement="top">
                                         <i class="fal fa-paperclip color-fusion-300"></i>
                                     </a>
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Insert photo" data-placement="top">
+                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1 waves-effect waves-themed" data-toggle="tooltip" data-original-title="Insert photo" data-placement="top">
                                         <i class="fal fa-camera color-fusion-300"></i>
                                     </a>
                                     <div class="ml-auto">
-                                        <a href="javascript:void(0);" class="btn btn-info">Send</a>
+                                        <a href="javascript:void(0);" class="btn btn-info waves-effect waves-themed">Send</a>
                                     </div>
                                 </div>
                             </div>
@@ -537,7 +797,7 @@
             </div>
         </div> <!-- END Messenger -->
         <!-- BEGIN Page Settings -->
-        <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog-right modal-md">
                 <div class="modal-content">
                     <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
@@ -697,16 +957,16 @@
                             <div class="list mt-1">
                                 <span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
                                 <div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
-                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-sm" data-target="html">
+                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text-sm" data-target="html">
                                         <input type="radio" name="changeFrontSize"> SM
                                     </label>
-                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text" data-target="html">
+                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text" data-target="html">
                                         <input type="radio" name="changeFrontSize" checked=""> MD
                                     </label>
-                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-lg" data-target="html">
+                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text-lg" data-target="html">
                                         <input type="radio" name="changeFrontSize"> LG
                                     </label>
-                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-xl" data-target="html">
+                                    <label class="btn btn-default btn-sm waves-effect waves-themed" data-action="toggle-swap" data-class="root-text-xl" data-target="html">
                                         <input type="radio" name="changeFrontSize"> XL
                                     </label>
                                 </div>
@@ -724,30 +984,30 @@
                             </div>
                             <div class="expanded theme-colors pl-5 pr-3">
                                 <ul class="m-0">
-                                    <li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme="" data-toggle="tooltip" data-placement="top" title="Wisteria (base css)" data-original-title="Wisteria (base css)"></a></li>
-                                    <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
-                                    <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
-                                    <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
-                                    <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a></li>
-                                    <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
-                                    <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
-                                    <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
-                                    <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="Chetwode Blue" data-original-title="Chetwode Blue"></a></li>
-                                    <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
-                                    <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a></li>
-                                    <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a></li>
-                                    <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="Wild Blue Yonder" data-original-title="Wild Blue Yonder"></a></li>
-                                    <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
+                                    <li><a href="#" id="myapp-0" data-action="theme-update" data-themesave="" data-theme="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wisteria (base css)"></a></li>
+                                    <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tapestry"></a></li>
+                                    <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Atlantis"></a></li>
+                                    <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Indigo"></a></li>
+                                    <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dodger Blue"></a></li>
+                                    <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tradewind"></a></li>
+                                    <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cranberry"></a></li>
+                                    <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Oslo Gray"></a></li>
+                                    <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Chetwode Blue"></a></li>
+                                    <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Apricot"></a></li>
+                                    <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Blue Smoke"></a></li>
+                                    <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Green Smoke"></a></li>
+                                    <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Wild Blue Yonder"></a></li>
+                                    <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave="" data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="" data-original-title="Emerald"></a></li>
                                 </ul>
                             </div>
                             <hr class="mb-0 mt-4">
                             <div class="pl-5 pr-3 py-3 bg-faded">
                                 <div class="row no-gutters">
                                     <div class="col-6 pr-1">
-                                        <a href="#" class="btn btn-outline-danger fw-500 btn-block" data-action="app-reset">Reset Settings</a>
+                                        <a href="#" class="btn btn-outline-danger fw-500 btn-block waves-effect waves-themed" data-action="app-reset">Reset Settings</a>
                                     </div>
                                     <div class="col-6 pl-1">
-                                        <a href="#" class="btn btn-danger fw-500 btn-block" data-action="factory-reset">Factory Reset</a>
+                                        <a href="#" class="btn btn-danger fw-500 btn-block waves-effect waves-themed" data-action="factory-reset">Factory Reset</a>
                                     </div>
                                 </div>
                             </div>
@@ -757,156 +1017,39 @@
                 </div>
             </div>
         </div> <!-- END Page Settings -->
-        
-        <script src="js/vendors.bundle.js"></script>
-        <script src="js/app.bundle.js"></script>
-        <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
-    
-        <script src="js/datatables.bundle.js"></script>
 
+        
+        <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        
+        <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
+     
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                $("#mytheme").attr("href","css/themes/cust-theme-6.css");
+                
+                <?php if(in_array("1", $user["permisos"])): ?>
+                    $("#mytheme").attr("href","css/themes/cust-theme-6.css");
+                <?php endif; ?>
+
             });
         </script>
-
+        
         <script>
-
-            
-
-            function checkbox(valor){
-                
-                console.log(valor);
-
-                console.log("entro: " + $("#gra-" + valor).prop('checked'));
-            }
-
-            function edit(valor){
-                
-                console.log(valor);
-            }
-
-            function del(valor){
-                
-                console.log(valor);
-            }
-
             $(document).ready(function()
             {
 
-                
-                /* init datatables */
-               var table = $('#dt-basic-example').dataTable(
-                {
-                    "pageLength": 1,
-                    responsive: true,
-                    dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421" ] ],
-                    buttons: [
-                        {
-                            extend: 'colvis',
-                            text: 'Column Visibility',
-                            titleAttr: 'Col visibility',
-                            className: 'btn-outline-default'
-                        },
-                        {
-                            extend: 'csvHtml5',
-                            text: 'CSV',
-                            titleAttr: 'Generate CSV',
-                            className: 'btn-outline-default'
-                        },
-                        {
-                            extend: 'copyHtml5',
-                            text: 'Copy',
-                            titleAttr: 'Copy to clipboard',
-                            className: 'btn-outline-default'
-                        },
-                        {
-                            extend: 'print',
-                            text: '<i class="fal fa-print"></i>',
-                            titleAttr: 'Print Table',
-                            className: 'btn-outline-default'
-                        }
-
-                    ],
-                    "columnDefs": [ {
-                        "targets": -2,
-                        "data": null,
-                        "render": function ( data, type, row, meta ) {
-                            //console.log(row);
-                            //console.log(type);
-                            //console.log(data);
-                            //console.log(meta);
-                            return `<center>
-                                        <div class="custom-control custom-switch mr-2">
-                                            <input type="checkbox" class="custom-control-input" onclick="checkbox(`+row[0]+`);" name="gra-`+row[0]+`" id="gra-`+row[0]+`" checked="checked">
-                                            <label class="custom-control-label" for="gra-`+row[0]+`"></label>
-                                        </div>
-                                    </center>`;
-                        }
-                        
-                    },{
-                        "targets": -1,
-                        "data": null,
-                        "render": function ( data, type, row, meta ) {
-                            return  `<center>
-                                        <button onclick="edit(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
-                                        <button onclick="del(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
-                                    </center>`;
-                        }
-                    
-                    } 
-                
-                    ]
-
-                });
-
-                /*
-
-                $('#dt-basic-example tbody').on( 'click', 'button', function () {
-                    console.log("[dt-basic-example tbody] click");
-                    console.log($(this));
-                    console.log($(this)[0].innerHTML); //html
-                    console.log($(this)[0].attributes[0].value); //class
-                    var data = table.DataTable().row( $(this).parents('tr') ).data();
-                    if($(this)[0].attributes[0].value.indexOf("edit")!=-1){
-                        alert("Editar" + data[0]);
-                    } else {
-                        alert("Eliminar" + data[0]);
-                    }
-                });
-
-                $('#dt-basic-example tbody').on( 'change', 'input', function () {
-                    console.log("[dt-basic-example tbody] change");
-                    console.log($(this)[0].checked); //checked
-                    var data = table.DataTable().row( $(this).parents('tr') ).data();
-                    if($(this)[0].checked==true){
-                        alert("Activado " + data[0]);
-                    } else {
-                        alert("Desactivado " + data[0]);
-
-                    }
-
-                });
-                */
-
-                //array
-                //https://datatables.net/examples/ajax/simple.html
-                //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ] ],
-
+                $('#js-page-content').smartPanel(); 
             });
-
         </script>
+        
 
 
         <!-- Toastr-->
         <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <!--Angular-->
-        
+
         <script src="<?php echo e(url('js/angular.min.js?v='.cache("js_version_number").'')); ?>"></script>
         <script src="<?php echo e(url('js/sanitize.min.js?v='.cache("js_version_number").'')); ?>"></script>
         <script src="<?php echo e(url('js/module.js?v='.cache("js_version_number").'')); ?>"></script>
@@ -916,15 +1059,7 @@
         <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
 
         
-        
-        <script>
-            $(document).ready(function()
-            {
-
-                $('#js-page-content').smartPanel(); 
-            });
-        </script>
-
 
     <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('system.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

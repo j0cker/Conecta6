@@ -318,8 +318,16 @@
 
     functions.loading();
 
-
   });//fin controller empresas
+
+  app.controller('perfilEmpresas', function($scope, functions, $window) {
+
+    console.log("[perfilEmpresas]");
+
+    functions.loading();
+
+
+  });//fin controller perfilEmpresas
 
   app.controller('nuevoempresa', function($scope, functions, $window) {
 
