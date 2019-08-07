@@ -23,18 +23,18 @@
 <!--Menu Transparente
 @section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
 -->
-@section('menuActive','administradores')
+@section('menuActive','trabajadores')
 
 @section('raiz1', @Config::get('app.name'))
 @section('raiz1Url', '/inicio')
-@section('raiz2','Administradores')
+@section('raiz2','Empresas')
 @section('raiz2Url','/inicio')
-@section('raiz3','Administradores')
-@section('raiz3Url','/administradores')
+@section('raiz3','Trabajadores')
+@section('raiz3Url','/trabajadores')
 
 {{-- Angular Controller --}}
 
-@section('controller','administradores')
+@section('controller','trabajadores')
 
 {{-- Body --}}
 
@@ -62,7 +62,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-user'></i> Administradores <span class='fw-300'>Dashboard</span>
+                                <i class='subheader-icon fal fa-building'></i> Trabajadores <span class='fw-300'>Dashboard</span>
                             </h1>
                         </div>
                         <div class="row">
@@ -70,7 +70,7 @@
                                 <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr" role="heading">
                                         <h2>
-                                            Administradores
+                                        Trabajadores
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -83,10 +83,10 @@
                                     <div class="panel-container show">
                                         <div class="panel-content">
 
-                                            <a href="/administradores/nuevo">
+                                            <a href="/trabajadores/nuevo">
                                                 <button style="margin-bottom: 20px;" class="btn btn-primary">Alta</button>
                                             </a>
-
+                                            
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
@@ -109,18 +109,26 @@
                                                     </tr>
                                                     <tr>
                                                         <td>2</td>
-                                                        <td>Juan</td>
-                                                        <td>Sanchez</td>
-                                                        <td>juan@gmail.com</td>
-                                                        <td>5598785467</td>
+                                                        <td>Francisco Alonso</td>
+                                                        <td>Ávila Peñavera</td>
+                                                        <td>alonso@hotmail.com</td>
+                                                        <td>7839202847</td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
                                                         <td>3</td>
-                                                        <td>Fulanito</td>
-                                                        <td>Gomez</td>
-                                                        <td>fulanito@hotmail.com</td>
-                                                        <td>5593285467</td>
+                                                        <td>Juan</td>
+                                                        <td>Perez</td>
+                                                        <td>juan@cocacola.com</td>
+                                                        <td>37465722</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Jose</td>
+                                                        <td>Ramirez</td>
+                                                        <td>jose@cocacola.com</td>
+                                                        <td>454353223</td>
                                                         <td></td>
                                                     </tr>
                                                 </tbody>
@@ -739,9 +747,8 @@
             </div>
         </div> <!-- END Page Settings -->
         
-        <script src="{{ url('js/vendors.bundle.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/app.bundle.js?v='.cache("js_version_number").'') }}"></script>
-        
+        <script src="js/vendors.bundle.js"></script>
+        <script src="js/app.bundle.js"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
     
         <script src="js/datatables.bundle.js"></script>
@@ -749,12 +756,13 @@
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                $("#mytheme").attr("href","css/themes/cust-theme-6.css");
             });
         </script>
 
         <script>
-        
+
+            
+
             function checkbox(valor){
                 
                 console.log(valor);
@@ -779,6 +787,7 @@
                 /* init datatables */
                var table = $('#dt-basic-example').dataTable(
                 {
+                    "pageLength": 10,
                     responsive: true,
                     dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
                         "<'row'<'col-sm-12'tr>>" +
@@ -820,7 +829,10 @@
                                         <button onclick="del(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
                                     </center>`;
                         }
-                    } ]
+                    
+                    } 
+                
+                    ]
 
                 });
 
@@ -851,7 +863,6 @@
                     }
 
                 });
-
                 */
 
                 //array

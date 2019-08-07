@@ -179,7 +179,7 @@ class APITrabajadores extends Controller
 
         //print_r($token_decrypt);
 
-        if(in_array(3, $token_decrypt["permisos"]) || in_array(2, $token_decrypt["permisos"])){
+        if(in_array(3, $token_decrypt["permisos"])){
 
           Log::info("[APITrabajadores][Inicio] Permiso Existente");
           

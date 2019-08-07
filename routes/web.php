@@ -40,6 +40,12 @@ Route::get('/inicioEmpresa', 'APIEmpresas@Inicio');
 //Perfil
 Route::get('/perfilEmpresas', 'APIEmpresas@Perfil');
 
+//Trabajadores
+Route::get('/trabajadores', 'APIEmpresas@Trabajadores');
+
+//Nuevos Trabajadores
+Route::get('/trabajadores/nuevo', 'APIEmpresas@NuevoTrabajadores');
+
 //sign in personalizado (URL a evaluación)
 Route::get('/{any}/pAdmin', 'APIEmpresas@SignInPersonalizado');
 

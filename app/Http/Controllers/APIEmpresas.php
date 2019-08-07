@@ -239,6 +239,184 @@ class APIEmpresas extends Controller
 
   }
 
+  public function Trabajadores(Request $request){
+    
+    Log::info('[APIEmpresas][Trabajadores]');
+
+    Log::info("[APIEmpresas][Trabajadores] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][Trabajadores] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][Trabajadores] Permiso Existente");
+          
+          return view('system.trabajadores',["title" => config('app.name'), 
+                                            "lang" => "es", 
+                                            "user" => $token_decrypt, 
+                                            "color" => $token_decrypt['color'], 
+                                            "colorHex" => $token_decrypt['colorHex'],
+                                            "subdominio" => $token_decrypt['subdominio']
+                                          ]
+          );
+          
+        }
+
+        return redirect('/');
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][Trabajadores] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][Trabajadores] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][Trabajadores] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][Trabajadores] ' . $e);
+
+        return redirect('/');
+
+      }
+
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function NuevoTrabajadores(Request $request){
+    
+    Log::info('[APIEmpresas][NuevoTrabajadores]');
+
+    Log::info("[APIEmpresas][NuevoTrabajadores] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][NuevoTrabajadores] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][NuevoTrabajadores] Permiso Existente");
+          
+          return view('system.nuevotrabajador',["title" => config('app.name'), 
+                                            "lang" => "es", 
+                                            "user" => $token_decrypt, 
+                                            "color" => $token_decrypt['color'], 
+                                            "colorHex" => $token_decrypt['colorHex'],
+                                            "subdominio" => $token_decrypt['subdominio']
+                                          ]
+          );
+          
+        }
+
+        return redirect('/');
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][NuevoTrabajadores] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][NuevoTrabajadores] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][NuevoTrabajadores] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][NuevoTrabajadores] ' . $e);
+
+        return redirect('/');
+
+      }
+
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
   public function Perfil(Request $request){
     
     Log::info('[APIEmpresas][Perfil]');

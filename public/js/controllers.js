@@ -329,6 +329,24 @@
 
   });//fin controller perfilEmpresas
 
+  app.controller('trabajadores', function($scope, functions, $window) {
+
+    console.log("[trabajadores]");
+
+    functions.loading();
+
+
+  });//fin controller trabajadores
+
+  app.controller('nuevotrabajador', function($scope, functions, $window) {
+
+    console.log("[nuevotrabajador]");
+
+    functions.loading();
+
+
+  });//fin controller trabajadores
+
   app.controller('nuevoempresa', function($scope, functions, $window) {
 
     console.log("[nuevoempresa]");

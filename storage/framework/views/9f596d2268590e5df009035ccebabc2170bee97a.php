@@ -88,8 +88,8 @@
                                                         <th>ID</th>
                                                         <th>Empresa</th>
                                                         <th>Empleados</th>
-                                                        <th>Expiración en Días</th>
                                                         <th>Activa/Desactiva</th>
+                                                        <th>Expiración en Días</th>
                                                         <th>Opciones</th>
                                                     </tr>
                                                 </thead>
@@ -98,48 +98,48 @@
                                                         <td>1</td>
                                                         <td>MC Donalds</td>
                                                         <td>100</td>
-                                                        <td>150</td>
                                                         <td></td>
+                                                        <td>150</td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
                                                         <td>2</td>
                                                         <td>MC Donalds</td>
                                                         <td>100</td>
-                                                        <td>150</td>
                                                         <td></td>
+                                                        <td>150</td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
                                                         <td>3</td>
                                                         <td>MC Donalds</td>
                                                         <td>100</td>
-                                                        <td>150</td>
                                                         <td></td>
+                                                        <td>150</td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
                                                         <td>4</td>
                                                         <td>MC Donalds</td>
                                                         <td>100</td>
-                                                        <td>150</td>
                                                         <td></td>
+                                                        <td>150</td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
                                                         <td>5</td>
                                                         <td>MC Donalds</td>
                                                         <td>100</td>
-                                                        <td>150</td>
                                                         <td></td>
+                                                        <td>150</td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
                                                         <td>6</td>
                                                         <td>MC Donalds</td>
                                                         <td>100</td>
-                                                        <td>150</td>
                                                         <td></td>
+                                                        <td>150</td>
                                                         <td></td>
                                                     </tr>
                                                 </tbody>
@@ -148,8 +148,8 @@
                                                         <th>ID</th>
                                                         <th>Empresa</th>
                                                         <th>Empleados</th>
-                                                        <th>Expiración en Días</th>
                                                         <th>Activa/Desactiva</th>
+                                                        <th>Expiración en Días</th>
                                                         <th>Opciones</th>
                                                     </tr>
                                                 </tfoot>
@@ -799,7 +799,7 @@
                 /* init datatables */
                var table = $('#dt-basic-example').dataTable(
                 {
-                    "pageLength": 1,
+                    "pageLength": 10,
                     responsive: true,
                     dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
                         "<'row'<'col-sm-12'tr>>" +
@@ -833,7 +833,7 @@
 
                     ],
                     "columnDefs": [ {
-                        "targets": -2,
+                        "targets": -3,
                         "data": null,
                         "render": function ( data, type, row, meta ) {
                             //console.log(row);
@@ -864,7 +864,7 @@
 
                 });
 
-                /*
+                /* no sirve
 
                 $('#dt-basic-example tbody').on( 'click', 'button', function () {
                     console.log("[dt-basic-example tbody] click");

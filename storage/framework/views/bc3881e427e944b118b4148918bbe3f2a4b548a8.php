@@ -749,6 +749,23 @@
         </script>
 
         <script>
+        
+            function checkbox(valor){
+                
+                console.log(valor);
+
+                console.log("entro: " + $("#gra-" + valor).prop('checked'));
+            }
+
+            function edit(valor){
+                
+                console.log(valor);
+            }
+
+            function del(valor){
+                
+                console.log(valor);
+            }
 
             $(document).ready(function()
             {
@@ -792,13 +809,17 @@
                     "columnDefs": [ {
                         "targets": -1,
                         "data": null,
-                        "defaultContent": `<center>
-                                                <button class="btn btn-primary fal fa-edit"></button>
-                                                <button class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
-                                            </center>`
+                        "render": function ( data, type, row, meta ) {
+                            return  `<center>
+                                        <button onclick="edit(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
+                                        <button onclick="del(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
+                                    </center>`;
+                        }
                     } ]
 
                 });
+
+                /* no sirve
 
                 $('#dt-basic-example tbody').on( 'click', 'button', function () {
                     console.log("[dt-basic-example tbody] click");
@@ -825,6 +846,8 @@
                     }
 
                 });
+
+                */
 
                 //array
                 //https://datatables.net/examples/ajax/simple.html

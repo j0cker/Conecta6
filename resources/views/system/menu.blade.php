@@ -164,7 +164,8 @@
 
                 <ul id="js-nav-menu" class="nav-menu">
                                 @if ($__env->yieldContent('menuActive')=="inicioEmpresa" ||
-                                     $__env->yieldContent('menuActive')=="perfilEmpresas")
+                                     $__env->yieldContent('menuActive')=="perfilEmpresas" ||
+                                     $__env->yieldContent('menuActive')=="trabajadores")
                                     <li class="active open">
                                 @else
                                     <li class="">
@@ -190,6 +191,15 @@
                                 @endif
                                         <a href="{{ url('/perfilEmpresas') }}" title="Perfil" data-filter-tags="perfil">
                                             <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Perfil</span>
+                                        </a>
+                                    </li>
+                                @if ($__env->yieldContent('menuActive')=="trabajadores")
+                                    <li class="active">
+                                @else
+                                    <li class="">
+                                @endif
+                                        <a href="{{ url('/trabajadores') }}" title="Trabajadores" data-filter-tags="Trabajadores">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Trabajadores</span>
                                         </a>
                                     </li>
                                     <li>
