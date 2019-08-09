@@ -46,6 +46,9 @@ Route::get('/trabajadores', 'APIEmpresas@Trabajadores');
 //Nuevos Trabajadores
 Route::get('/trabajadores/nuevo', 'APIEmpresas@NuevoTrabajadores');
 
+//Nueva Plantilla de Horario de los Trabajadores
+Route::get('/plantilla/nueva', 'APIEmpresas@NuevaPlantilla');
+
 //sign in personalizado (URL a evaluación)
 Route::get('/{any}/pAdmin', 'APIEmpresas@SignInPersonalizado');
 

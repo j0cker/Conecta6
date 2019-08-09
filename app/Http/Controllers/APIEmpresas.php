@@ -327,6 +327,7 @@ class APIEmpresas extends Controller
     }
 
   }
+  
 
   public function NuevoTrabajadores(Request $request){
     
@@ -443,14 +444,20 @@ class APIEmpresas extends Controller
 
         //print_r($token_decrypt);
 
-        return view('system.perfilEmpresas',["title" => config('app.name'), 
-                                      "lang" => "es", 
-                                      "user" => $token_decrypt, 
-                                      "color" => $token_decrypt['color'], 
-                                      "colorHex" => $token_decrypt['colorHex'],
-                                      "subdominio" => $token_decrypt['subdominio'],
-                                    ]
-                            );
+        
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          return view('system.perfilEmpresas',["title" => config('app.name'), 
+                                        "lang" => "es", 
+                                        "user" => $token_decrypt, 
+                                        "color" => $token_decrypt['color'], 
+                                        "colorHex" => $token_decrypt['colorHex'],
+                                        "subdominio" => $token_decrypt['subdominio'],
+                                      ]
+                              );
+
+          }
 
       } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
 
@@ -580,7 +587,7 @@ class APIEmpresas extends Controller
 
         //token_expired
     
-        Log::info('[APITrabajadores][Inicio] Token error: token_expired');
+        Log::info('[AltaEmpresa][Inicio] Token error: token_expired');
 
         return redirect('/');
   
@@ -588,7 +595,7 @@ class APIEmpresas extends Controller
 
         //token_invalid
     
-        Log::info('[APITrabajadores][Inicio] Token error: token_invalid');
+        Log::info('[AltaEmpresa][Inicio] Token error: token_invalid');
 
         return redirect('/');
   
@@ -596,7 +603,78 @@ class APIEmpresas extends Controller
 
         //token_absent
     
-        Log::info('[APITrabajadores][Inicio] Token error: token_absent');
+        Log::info('[AltaEmpresa][Inicio] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function NuevaPlantilla(Request $request){
+    
+    Log::info('[NuevaPlantilla]');
+
+    Log::info("[NuevaPlantilla] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APITrabajadores][NuevaPlantilla] Token: ". $token);
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          return view('system.nuevaplantilla',["title" => config('app.name'), 
+                                        "lang" => "es", 
+                                        "user" => $token_decrypt, 
+                                        "color" => $token_decrypt['color'], 
+                                        "colorHex" => $token_decrypt['colorHex'],
+                                        "subdominio" => $token_decrypt['subdominio'],
+                                      ]
+                              );
+                            
+        }
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[AltaEmpresa][NuevaPlantilla] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[AltaEmpresa][NuevaPlantilla] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[AltaEmpresa][NuevaPlantilla] Token error: token_absent');
 
         return redirect('/');
   
@@ -610,43 +688,43 @@ class APIEmpresas extends Controller
   }
   
 
-    public function SubdominioValidar(Request $request){
-    
-      Log::info('[SubdominioValidar]');
+  public function SubdominioValidar(Request $request){
   
-      Log::info("[SubdominioValidar] Método Recibido: ". $request->getMethod());
+    Log::info('[SubdominioValidar]');
 
-      if($request->isMethod('GET')) {
-        
-        $subdominio = $request->input('subdominio');
-    
-        Log::info('[SubdominioValidar] subdominio: ' . $subdominio);
+    Log::info("[SubdominioValidar] Método Recibido: ". $request->getMethod());
 
-        $subdominios_array = Empresas::lookForBySubdominio($subdominio)->get();
-    
-        Log::info('[SubdominioValidar] subdominio size: ' . count($subdominios_array));
-
-        Log::info($subdominios_array);
-
-        if(count($subdominios_array)>0){
-
-            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.BDdata'), count($subdominios_array));
-            $responseJSON->data = $subdominios_array;
-            return json_encode($responseJSON);
-
-        } else {
-
-            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDnoData'), count($subdominios_array));
-            $responseJSON->data = [];
-            return json_encode($responseJSON);
-
-        }
+    if($request->isMethod('GET')) {
+      
+      $subdominio = $request->input('subdominio');
   
+      Log::info('[SubdominioValidar] subdominio: ' . $subdominio);
+
+      $subdominios_array = Empresas::lookForBySubdominio($subdominio)->get();
+  
+      Log::info('[SubdominioValidar] subdominio size: ' . count($subdominios_array));
+
+      Log::info($subdominios_array);
+
+      if(count($subdominios_array)>0){
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.BDdata'), count($subdominios_array));
+          $responseJSON->data = $subdominios_array;
+          return json_encode($responseJSON);
+
       } else {
-        abort(404);
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDnoData'), count($subdominios_array));
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
       }
 
+    } else {
+      abort(404);
     }
+
+  }
 }
 
 ?>

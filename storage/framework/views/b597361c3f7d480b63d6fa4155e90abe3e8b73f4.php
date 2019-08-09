@@ -39,7 +39,7 @@
                 <?php endif; ?>
                 
 
-                <?php if(in_array("3", $user["permisos"])): ?>
+                <?php if(in_array("2", $user["permisos"]) || in_array("3", $user["permisos"])): ?>
 
                     <?php
                     $hex = "".$colorHex."";
@@ -85,6 +85,8 @@
         <link href="<?php echo e(url('css/selects.css?v='.cache("js_version_number").'')); ?>" rel="stylesheet" />
         <link href="<?php echo e(url('css/datepicker.css?v='.cache("js_version_number").'')); ?>" rel="stylesheet" />
         <link href="<?php echo e(url('css/daterangepicker.css?v='.cache("js_version_number").'')); ?>" rel="stylesheet" />
+        <link href="<?php echo e(url('css/map.css?v='.cache("js_version_number").'')); ?>" rel="stylesheet" />
+        <link href="<?php echo e(url('css/slider.css?v='.cache("js_version_number").'')); ?>" rel="stylesheet" />
 
         <!-- Toastr -->
         <link rel="stylesheet" href="<?php echo e(url('css/toastr.css?v='.cache("js_version_number").'')); ?>">

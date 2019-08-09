@@ -18,19 +18,19 @@
 <!--Menu Transparente
 <?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-<?php $__env->startSection('menuActive','trabajadores'); ?>
+<?php $__env->startSection('menuActive','configuraciones'); ?>
 
 <?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
 <?php $__env->startSection('raiz1Url', '/inicio'); ?>
-<?php $__env->startSection('raiz2','Trabajadores'); ?>
-<?php $__env->startSection('raiz2Url','/trabajadores'); ?>
-<?php $__env->startSection('raiz3','Nuevo Trabajador'); ?>
-<?php $__env->startSection('raiz3Url','/nuevotrabajador'); ?>
+<?php $__env->startSection('raiz2','Empresas'); ?>
+<?php $__env->startSection('raiz2Url','/inicioEmpresa'); ?>
+<?php $__env->startSection('raiz3','Nueva Plantilla'); ?>
+<?php $__env->startSection('raiz3Url','/plantilla/nueva'); ?>
 
 
 
 
-<?php $__env->startSection('controller','nuevotrabajador'); ?>
+<?php $__env->startSection('controller','nuevoadministrador'); ?>
 
 
 
@@ -61,7 +61,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-user"></i> Nuevo Trabajador
+                                <i class="subheader-icon fal fa-user"></i> Plantilla Nueva
                                 <small>
                                 </small>
                             </h1>
@@ -73,7 +73,7 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Nuevo Trabajador
+                                            Plantilla Nueva
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -95,7 +95,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Nombre:
+                                                                    Nombre Plantilla:
 
                                                                 </div>
 
@@ -109,7 +109,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Nombre" />
+                                                                    <input type="text" class="form-control" placeholder="Nombre de la Plantilla" />
 
                                                                 </div>
 
@@ -123,231 +123,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Apellido:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input type="text" class="form-control" placeholder="Apellido" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Correo Electrónico:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input type="text" class="form-control" placeholder="Correo Electrónico" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Teléfono Fijo:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input type="text" class="form-control" placeholder="Teléfono Fijo" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Celular:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input type="text" class="form-control" placeholder="Celular" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Celular:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input type="text" class="form-control" placeholder="Celular" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Cargo:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input type="text" class="form-control" placeholder="Cargo" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Número DNI:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input type="text" class="form-control" placeholder="Número DNI" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Nº Seguro Social:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input type="text" class="form-control" placeholder="Nº Seguro Social" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Configuración de la plantilla de Horarios:
+                                                                    Días Laborales y Horas Laborales (formato 24hrs):
 
                                                                 </div>
 
@@ -357,189 +133,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="/plantilla/nueva" class="btn btn-primary btn-block waves-effect waves-themed">Agregar Nueva Plantilla</a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
-                                                                        <div class="panel-content text-center">
-                                                                            
-                                                                            <select class="select form-control w-100" id="single-default">
-                                                                                <option value="default">Selecciona una Plantilla</option>
-                                                                                <option value="AK">Plantilla Directores</option>
-                                                                                <option value="HI">Plantilla Gerentes</option>
-                                                                                <option value="HI">Crear Nueva Plantilla</option>
-                                                                            </select>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div class="col-md-4 card">
-
-                                                                    <div class="thumbnail">
-
-                                                                        <div style="margin-top: 20px;" class="caption">
-
-                                                                            <h3>Geolocalización</h3>
-                                                                            
-                                                                            <div class="custom-control custom-switch text-center">
-                                                                                <input type="checkbox" class="custom-control-input" id="geoActivated">
-                                                                                <label class="custom-control-label" for="geoActivated">¿Activar Geolocalización?</label><br /><br />
-                                                                            </div>
-
-                                                                            <div style="display: none;" id="showGeo">
-
-                                                                                <input data-error="deAddress calle" class="form-control hidden-xs" id="deAddressCalle" data-toggle="modal" data-target="#addressCalleModal" placeholder="Agregar dirección de la Empresa" type="text" name="deAddress" readonly="readonly">
-                                                                                <input id="pac-input2" type="text" class="form-control hidden-sm hidden-md hidden-lg" placeholder="Agregar dirección de la Empresa">
-                                                                                <div id="deAddressMapaCustomer" style="font-size: 10px; margin-top: 10px; display: none;"></div><br /><br />
-
-
-                                                                                <div class="panel-content">
-                                                                                    <div class="panel-tag">
-                                                                                        Metros permitidos a la redonda:
-                                                                                    </div>
-                                                                                    <input id="demo_7" type="text" value="" class="d-none" tabindex="-1" readonly="">
-                                                                                </div>
-
-                                                                                <div class="custom-control custom-switch text-center">
-                                                                                    <input type="checkbox" class="custom-control-input" id="registroApp">
-                                                                                    <label class="custom-control-label" for="registroApp">¿Activar registro automático por APPS?</label><br /><br />
-                                                                                </div>
-
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px; text-align: left;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Agregar IP<br /><br />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: left; color: black;" class="col-md-4">
-
-                                                                    <div class="custom-control custom-switch text-left">
-                                                                        <input type="checkbox" class="custom-control-input" id="ipActivated">
-                                                                        <label class="custom-control-label" for="ipActivated">¿Activar y personalizar IP?</label><br /><br />
-                                                                    </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div id="showIp" style="margin-top: 10px; display: none;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input id="ipAddress" type="text" class="form-control" placeholder="129.456.5.34" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                    
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Contraseña:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input type="password" class="form-control" placeholder="Contraseña" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Comprobar Contraseña:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input type="password" class="form-control" placeholder="Comprobar Contraseña" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
-                                                            <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Agregar</a>
+                                                                <a style="width: 200px;" href="#" class="btn btn-danger btn-block waves-effect waves-themed">Agregar</a>
                                                             </div>
                                                         </div>
 
@@ -1150,96 +744,30 @@
         </div> <!-- END Page Settings -->
 
         
-
-        <!-- Modal deAdressCalleModal google -->
-
-        <div class="modal fade" id="addressCalleModal" style="margin: 0 !important; padding: 0 !important; padding-right: 0px !important;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div style="height: 500px;" class="modal-content">
-                <div style="margin: 0 !important; padding: 12px 12px 12px 12px !important;" class="modal-header">
-                    <p style="text-align: center; font-size: 15px; margin: 0 !important; padding: 0px !important;" class="modal-title1" id="exampleModalLabel">¿Cuál es la Dirección de su Empresa?</p>
-                    <button style="margin: 0 !important; padding: 0px !important;" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div style="margin: 0 !important; padding: 0 !important;" class="modal-body">
-                    <div class="pac-card" id="pac-card">
-                        <div>
-                            <div id="title">
-                                Dirección Completa
-                            </div>
-                            <div id="type-selector" class="pac-controls">
-                            
-                            </div>
-                        </div>
-                        <div id="pac-container">
-                            <input id="pac-input" type="text" class="form-control" placeholder="Agregar dirección">
-                        </div>
-                    </div>
-                    <div id="map"></div>
-                    <div id="infowindow-content">
-                        <img src="" width="16" height="16" id="place-icon">
-                        <span id="place-name"  class="title"></span><br>
-                        <span id="place-address"></span>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div data-dismiss="modal" class="btn btn-link"><i class="fal fa-chevron-double-left"></i>
-                        ATRAS
-                    </div>
-                    <button data-dismiss="modal" id="saveDeAddress" name="final" class="btn btn-primary" style="width: 125px;" value="ACEPTAR">
-                        ACEPTAR
-                    </button>
-                </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Fin Modal deAdressCalleModal google -->
-
-        
         <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
         <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
      
-
-        <script src="<?php echo e(url('js/selects.js?v='.cache("js_version_number").'')); ?>"></script>
         <script src="<?php echo e(url('js/moment.js?v='.cache("js_version_number").'')); ?>"></script>
         <script src="<?php echo e(url('js/datepicker.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/slider.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/jquery.mask.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/jquery.masknumber.js?v='.cache("js_version_number").'')); ?>"></script>
         
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                //slider
-                //Customising Grid
-                //var ionskin = "flat", "big", "modern", "sharp", "round", "square";
-                var ionskin = "round";
-
-                $("#demo_7").ionRangeSlider(
-                {
-                    skin: ionskin,
-                    min: 0,
-                    max: 500,
-                    from: 250,
-                    step: 1, // default 1 (set step)
-                    grid: true, // default false (enable grid)
-                    grid_num: 4, // default 4 (set number of grid cells)
-                    grid_snap: false // default false (snap grid to step)
-                });
-
-                //masks
-
-                $('#ipAddress').mask('099.099.099.099');
-
+                $("#mytheme").attr("href","<?php echo e(url('css/themes/cust-theme-16.css?v='.cache("js_version_number").'')); ?>");
             });
         </script>
 
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
+                
+                <?php if(in_array("1", $user["permisos"])): ?>
+                    $("#mytheme").attr("href","<?php echo e(url('css/themes/cust-theme-6.css?v='.cache("js_version_number").'')); ?>");
+                <?php endif; ?>
+                <?php if(in_array("3", $user["permisos"])): ?>
+                    $("#mytheme").attr("href","<?php echo e(url('css/themes/cust-theme-16.css?v='.cache("js_version_number").'')); ?>");
+                <?php endif; ?>
 
                 var controls = {
                     leftArrow: '<i class="fal fa-angle-left" style="font-size: 1.25rem"></i>',
@@ -1283,124 +811,7 @@
 
         <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
 
-    <!-- maps -->
-    <script type="text/javascript">
-
-    document.write(decodeURIComponent(decodeURIComponent(decodeURIComponent(decodeURIComponent(decodeURIComponent('%252525253Cscript%2525252520src%252525253D%2525252522'))))));document.write('<?php echo e(asset('js/maps.js')); ?>');document.write(decodeURIComponent(decodeURIComponent(decodeURIComponent(decodeURIComponent(decodeURIComponent('%2525252522%252525253E%252525253C%252525252Fscript%252525253E'))))));document.write(decodeURIComponent(decodeURIComponent(decodeURIComponent(decodeURIComponent(decodeURIComponent('%252525253Cscript%2525252520src%252525253D%2525252522https%252525253A%252525252F%252525252Fmaps.googleapis.com%252525252Fmaps%252525252Fapi%252525252Fjs%252525253Fkey%252525253<?PHP echo env("GOOGLE_MAPS"); ?>%2525252526libraries%252525253Dplaces%2525252526callback%252525253DinitMap%2525252522%2525252520async%2525252520defer%252525253E%252525253C%252525252Fscript%252525253E'))))));
-    
-
-        var map = "";
-        var marker = "";
-        var directionsDisplay = "";
-
-        var deDireccion = "";
-        var deLongitud = "";
-        var deLatitud = "";
-        var dePlace = "";
-
-        var aDireccion = "";
-        var aLongitud = "";
-        var aLatitud = "";
-        var aPlace = "";
-
         
-        $(function () {
-
-            $("#geoActivated").change(function(){
-
-                console.log("[geoActivated] " + $("#geoActivated").prop("checked"));
-
-                if($("#geoActivated").prop("checked")==true){
-                    $("#showGeo").css("display","");
-                } else {
-                    $("#showGeo").css("display","none");
-                }
-
-            });
-
-            $("#ipActivated").change(function(){
-
-                console.log("[showIp] " + $("#ipActivated").prop("checked"));
-
-                if($("#ipActivated").prop("checked")==true){
-                    $("#showIp").css("display","");
-                } else {
-                    $("#showIp").css("display","none");
-                }
-
-            });
-
-
-            $("#deAddressCalle").click(function(){
-
-                console.log("[deAddressCalle]");
-                
-                $(".modal-title1").css("display","");
-                $("#pac-input").css("display","");
-                $("#saveDeAddress").css("display","");
-            });
-
-            $("#saveDeAddress").unbind().click(function() {
-
-                console.log("saveDeAddress");
-
-                $("#deAddressExt").val("");
-                $("#deAddressCP").val("");
-                $("#deAddressMapaCustomer").val("");
-                $("#deAddressMapaCustomer").css("display","none");
-
-                if($("#pac-input").val()==""){
-
-                    console.log("pac-input empty");
-
-                    deDireccion = "";
-                    deLongitud = "";
-                    deLatitud = "";
-
-                    $("#deAddressExt").val("");
-                    $("#deAddressCP").val("");
-                    $("#pac-input2").val($("#pac-input").val());
-                    $("#deAddressCalle").val($("#pac-input").val());
-                    $("#deAddressMapaCustomer").css("display","none");
-                }
-
-                if(deLongitud!="" && deLatitud!="" && deDireccion!=""){
-
-                    $("#pac-input2").val($("#pac-input").val());
-                    $("#deAddressCalle").val($("#pac-input").val());
-
-                    $("#deAddressMapaCustomer").html("<a target='_blank' href='https://www.google.com.mx/maps/@"+deLatitud+","+deLongitud+",15z'>https://www.google.com.mx/maps/@"+deLatitud+","+deLongitud+",15z</a><br /><a target='_blank' href='https://maps.google.com/maps?q="+deLatitud+","+deLongitud+"'>https://maps.google.com/maps?q="+deLatitud+","+deLongitud+"</a>");
-                    $("#deAddressMapaCustomer").css("display","block");
-
-
-                    if(deDireccion.street_number){
-
-                        $("#deAddressExt").val(deDireccion.street_number);
-
-                    }
-
-                    if(deDireccion.postal_code){
-
-                        $("#deAddressCP").val(deDireccion.postal_code);
-
-                    }
-                }
-
-            });
-
-        });
-
-        $(document).keypress(
-            function(event){
-                if (event.which == '13') {
-                    event.preventDefault();
-                }
-            }
-        );
-
-        </script>
-
-        <!-- fin maps -->
 
     <?php $__env->stopSection(); ?>
 

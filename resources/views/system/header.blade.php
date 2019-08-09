@@ -39,7 +39,7 @@
                 @endif
                 
 
-                @if (in_array("3", $user["permisos"]))
+                @if (in_array("2", $user["permisos"]) || in_array("3", $user["permisos"]))
 
                     @php
                     $hex = "".$colorHex."";
@@ -85,6 +85,8 @@
         <link href="{{ url('css/selects.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
         <link href="{{ url('css/datepicker.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
         <link href="{{ url('css/daterangepicker.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
+        <link href="{{ url('css/map.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
+        <link href="{{ url('css/slider.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
 
         <!-- Toastr -->
         <link rel="stylesheet" href="{{ url('css/toastr.css?v='.cache("js_version_number").'') }}">
