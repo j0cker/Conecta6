@@ -30,7 +30,7 @@
 
 
 
-<?php $__env->startSection('controller','nuevoadministrador'); ?>
+<?php $__env->startSection('controller','nuevaplantilla'); ?>
 
 
 

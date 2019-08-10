@@ -369,16 +369,16 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                <div style="" class="col-md-4">
                                                                 
                                                                     <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
                                                                         <div class="panel-content text-center">
                                                                             
-                                                                            <select class="select form-control w-100" id="single-default">
+                                                                            <select class="select2 form-control w-100" id="single-default">
                                                                                 <option value="default">Selecciona una Plantilla</option>
                                                                                 <option value="AK">Plantilla Directores</option>
                                                                                 <option value="HI">Plantilla Gerentes</option>
-                                                                                <option value="HI">Crear Nueva Plantilla</option>
+                                                                                <option value="Crear Nueva Plantilla">Crear Nueva Plantilla</option>
                                                                             </select>
 
                                                                         </div>
@@ -444,7 +444,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Agregar IP<br /><br />
+                                                                    Agregar IP:<br /><br />
 
                                                                 </div>
 
@@ -476,6 +476,49 @@
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
                                                                     <input id="ipAddress" type="text" class="form-control" placeholder="129.456.5.34" />
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="margin-top: 25px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Tipos de Dispositivos:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+
+
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: left; color: black;" class="col-md-4">
+
+                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
+                                                                        <input type="checkbox" class="custom-control-input" id="pcActivated">
+                                                                        <label class="custom-control-label" for="pcActivated">PC</label><br /><br />
+                                                                    </div>
+
+                                                                    <div style="margin-top: 15px;" class="custom-control custom-switch text-left">
+                                                                        <input type="checkbox" class="custom-control-input" id="tabletasActivated">
+                                                                        <label class="custom-control-label" for="tabletasActivated">Tabletas</label><br /><br />
+                                                                    </div>
+
+                                                                    <div style="margin-top: 15px;" class="custom-control custom-switch text-left">
+                                                                        <input type="checkbox" class="custom-control-input" id="movilesActivated">
+                                                                        <label class="custom-control-label" for="movilesActivated">Móviles</label><br /><br />
+                                                                    </div>
 
                                                                 </div>
 
@@ -1258,7 +1301,18 @@
                     templates: controls
                 });
 
+                //selects
+                $('.select2').select2();
 
+                $("#single-default").change(function(){
+
+                    console.log("[single-default] " + $("#single-default").val());
+
+                    if($("#single-default").val()=="Crear Nueva Plantilla"){
+                        console.log("Nueva Plantilla");
+                    }
+
+                });
 
 
             });
@@ -1309,6 +1363,8 @@
 
         
         $(function () {
+
+            
 
             $("#geoActivated").change(function(){
 
