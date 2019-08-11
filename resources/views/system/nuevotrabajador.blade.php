@@ -1310,6 +1310,8 @@
 
                     if($("#single-default").val()=="Crear Nueva Plantilla"){
                         console.log("Nueva Plantilla");
+                        $('#loader-wrapper').css('display',''); 
+                        window.location = "/plantilla/nueva";
                     }
 
                 });

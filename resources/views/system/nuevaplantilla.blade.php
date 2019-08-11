@@ -113,7 +113,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Nombre de la Plantilla" />
+                                                                    <input id="nombrePlantilla" type="text" class="form-control" placeholder="Nombre de la Plantilla" />
 
                                                                 </div>
 
@@ -135,9 +135,294 @@
 
                                                         </div>
 
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: left; color: black;" class="col-md-4">
+
+                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
+                                                                        <input type="checkbox" class="custom-control-input" id="lunesActivated">
+                                                                        <label class="custom-control-label" for="lunesActivated">Lunes</label><br /><br />
+                                                                    </div>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 lunesActivated">
+
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Lunes" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Lunes" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Lunes" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Lunes" placeholder="18:30AM" />
+                                                                   
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: left; color: black;" class="col-md-4">
+
+                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
+                                                                        <input type="checkbox" class="custom-control-input" id="martesActivated">
+                                                                        <label class="custom-control-label" for="martesActivated">Martes</label><br /><br />
+                                                                    </div>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 martesActivated">
+
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Martes" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Martes" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Martes" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Martes" placeholder="18:30AM" />
+                                                                   
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: left; color: black;" class="col-md-4">
+
+                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
+                                                                        <input type="checkbox" class="custom-control-input" id="miercolesActivated">
+                                                                        <label class="custom-control-label" for="miercolesActivated">Miercoles</label><br /><br />
+                                                                    </div>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 miercolesActivated">
+
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Miercoles" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Miercoles" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Miercoles" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Miercoles" placeholder="18:30AM" />
+                                                                   
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: left; color: black;" class="col-md-4">
+
+                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
+                                                                        <input type="checkbox" class="custom-control-input" id="juevesActivated">
+                                                                        <label class="custom-control-label" for="juevesActivated">Jueves</label><br /><br />
+                                                                    </div>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 juevesActivated">
+
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Jueves" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Jueves" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Jueves" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Jueves" placeholder="18:30AM" />
+                                                                   
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: left; color: black;" class="col-md-4">
+
+                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
+                                                                        <input type="checkbox" class="custom-control-input" id="viernesActivated">
+                                                                        <label class="custom-control-label" for="viernesActivated">Viernes</label><br /><br />
+                                                                    </div>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 viernesActivated">
+
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Viernes" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Viernes" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Viernes" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Viernes" placeholder="18:30AM" />
+                                                                   
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: left; color: black;" class="col-md-4">
+
+                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
+                                                                        <input type="checkbox" class="custom-control-input" id="sabadoActivated">
+                                                                        <label class="custom-control-label" for="sabadoActivated">Sábado</label><br /><br />
+                                                                    </div>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 sabadoActivated">
+
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Sabado" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Sabado" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2sabado" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Sabado" placeholder="18:30AM" />
+                                                                   
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: left; color: black;" class="col-md-4">
+
+                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
+                                                                        <input type="checkbox" class="custom-control-input" id="domingoActivated">
+                                                                        <label class="custom-control-label" for="domingoActivated">Domingo</label><br /><br />
+                                                                    </div>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 domingoActivated">
+
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Domingo" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Domingo" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
+                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Domingo" placeholder="10:30AM" /> 
+                                                                    <p style="display: inline-block;">a:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Domingo" placeholder="18:30AM" />
+                                                                   
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="#" class="btn btn-danger btn-block waves-effect waves-themed">Agregar</a>
+                                                                <a id="agregar" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Agregar</a>
                                                             </div>
                                                         </div>
 
@@ -754,24 +1039,22 @@
      
         <script src="{{ url('js/moment.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/datepicker.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/timepicker.js?v='.cache("js_version_number").'') }}"></script>
         
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                $("#mytheme").attr("href","{{ url('css/themes/cust-theme-16.css?v='.cache("js_version_number").'') }}");
+                $('.timepicker').mdtimepicker({
+                    
+	 	            twelveHour: false,
+                }); //Initializes the time picker
+
             });
         </script>
 
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                
-                @if (in_array("1", $user["permisos"]))
-                    $("#mytheme").attr("href","{{ url('css/themes/cust-theme-6.css?v='.cache("js_version_number").'') }}");
-                @endif
-                @if (in_array("3", $user["permisos"]))
-                    $("#mytheme").attr("href","{{ url('css/themes/cust-theme-16.css?v='.cache("js_version_number").'') }}");
-                @endif
 
                 var controls = {
                     leftArrow: '<i class="fal fa-angle-left" style="font-size: 1.25rem"></i>',
@@ -795,6 +1078,95 @@
         <script>
             $(document).ready(function()
             {
+                
+                $('#agregar').click(function() {
+                    
+                    if($('#nombrePlantilla').val()==""){
+
+                        toastr["error"]("Llena correctamente el<br />nombre de la plantilla", "");
+
+                    } else if (!$('#lunesActivated').prop("checked") &&
+                    !$('#martesActivated').prop("checked") &&
+                    !$('#miercolesActivated').prop("checked") &&
+                    !$('#juevesActivated').prop("checked") &&
+                    !$('#viernesActivated').prop("checked") &&
+                    !$('#sabadoActivated').prop("checked") &&
+                    !$('#domingoActivated').prop("checked")){
+
+                        console.log("No activado nada");
+
+                        toastr["error"]("Debes seleccionar por<br />lo menos un día.", "");
+
+                    } else if($('#lunesActivated').prop("checked") && 
+                        ($('#de1Lunes').val()=="" ||
+                        $('#a1Lunes').val()=="" ||
+                        $('#de2Lunes').val()=="" ||
+                        $('#a2Lunes').val()=="")){
+
+                        toastr["error"]("Llena correctamente los<br />horarios del día lunes.", "");
+
+                    } else {
+                        
+                        console.log("[agregar]");
+                    }
+
+                });
+
+                $('#lunesActivated').click(function() {
+                    if($('#lunesActivated').prop("checked"))
+                        $('.lunesActivated').css("display","");
+                    else
+                        $('.lunesActivated').css("display","none");
+
+                });
+
+                $('#martesActivated').click(function() {
+                    if($('#martesActivated').prop("checked"))
+                        $('.martesActivated').css("display","");
+                    else
+                        $('.martesActivated').css("display","none");
+
+                });
+
+                $('#miercolesActivated').click(function() {
+                    if($('#miercolesActivated').prop("checked"))
+                        $('.miercolesActivated').css("display","");
+                    else
+                        $('.miercolesActivated').css("display","none");
+
+                });
+
+                $('#juevesActivated').click(function() {
+                    if($('#juevesActivated').prop("checked"))
+                        $('.juevesActivated').css("display","");
+                    else
+                        $('.juevesActivated').css("display","none");
+
+                });
+
+                $('#viernesActivated').click(function() {
+                    if($('#viernesActivated').prop("checked"))
+                        $('.viernesActivated').css("display","");
+                    else
+                        $('.viernesActivated').css("display","none");
+
+                });
+
+                $('#sabadoActivated').click(function() {
+                    if($('#sabadoActivated').prop("checked"))
+                        $('.sabadoActivated').css("display","");
+                    else
+                        $('.sabadoActivated').css("display","none");
+
+                });
+
+                $('#domingoActivated').click(function() {
+                    if($('#domingoActivated').prop("checked"))
+                        $('.domingoActivated').css("display","");
+                    else
+                        $('.domingoActivated').css("display","none");
+
+                });
 
                 $('#js-page-content').smartPanel(); 
             });

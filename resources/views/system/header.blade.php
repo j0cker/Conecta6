@@ -87,6 +87,7 @@
         <link href="{{ url('css/daterangepicker.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
         <link href="{{ url('css/map.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
         <link href="{{ url('css/slider.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
+        <link href="{{ url('css/timepicker.css?v='.cache("js_version_number").'') }}" rel="stylesheet" />
 
         <!-- Toastr -->
         <link rel="stylesheet" href="{{ url('css/toastr.css?v='.cache("js_version_number").'') }}">

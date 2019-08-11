@@ -329,6 +329,79 @@
 
   });//fin controller perfilEmpresas
 
+  app.controller('nuevaplantilla', function($scope, functions, $window) {
+
+    functions.loading();
+    
+    console.log("[nuevaplantilla]");
+
+    $scope.send = function(){
+      console.log("[nuevaplantilla][send]");
+
+      functions.loadingWait();
+
+      var nombrePlantilla = "";
+      var lunesActivated = "";
+      var martesActivated = "";
+      var miercolesActivated = "";
+      var juevesActivated = "";
+      var viernesActivated = "";
+      var sabadoActivated = "";
+      var domingoActivated = "";
+
+      correo = $("#correo").val();
+      contPass = $("#contPass").val();
+      color = $("#color").val();
+      colorHex = $("#colorHex").val();
+      subdominio = $("#subdominio").val();
+
+      console.log("[nuevaplantilla][send] correo: " + correo);
+      console.log("[nuevaplantilla][send] contPass: " + contPass);
+      console.log("[nuevaplantilla][send] color: " + color);
+      console.log("[nuevaplantilla][send] colorHex: " + colorHex);
+      console.log("[nuevaplantilla][send] subdominio: " + subdominio);
+
+      if(correo.indexOf("@")=="-1" || correo.indexOf(".")=="-1" || correo.indexOf(" ")!="-1" || correo.indexOf(",")!="-1"){
+        toastr["error"]("Llena correctamente<br /> tu correo electrónico", "");
+        functions.loadingEndWait();
+        $("#ingresarButton").effect( "shake" );
+      } else if(contPass==""){
+        toastr["error"]("Llena correctamente<br /> tu contraseña", "");
+        functions.loadingEndWait();
+        $("#ingresarButton").effect( "shake" );
+        
+      } else {
+
+        functions.postIngresar(correo, contPass, color, colorHex, subdominio).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[nuevaplantilla][postIngresar]");
+
+              toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+
+              deleteAllCookies();
+              setCookie("token", response.data.token, 1);
+
+              $window.location.href = "/inicio";
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin postSubscriber*/
+      
+      }
+
+    }//fin send ng
+
+
+  });//fin controller nuevaplantilla
+
   app.controller('trabajadores', function($scope, functions, $window) {
 
     console.log("[trabajadores]");

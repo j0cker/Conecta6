@@ -87,6 +87,7 @@
         <link href="<?php echo e(url('css/daterangepicker.css?v='.cache("js_version_number").'')); ?>" rel="stylesheet" />
         <link href="<?php echo e(url('css/map.css?v='.cache("js_version_number").'')); ?>" rel="stylesheet" />
         <link href="<?php echo e(url('css/slider.css?v='.cache("js_version_number").'')); ?>" rel="stylesheet" />
+        <link href="<?php echo e(url('css/timepicker.css?v='.cache("js_version_number").'')); ?>" rel="stylesheet" />
 
         <!-- Toastr -->
         <link rel="stylesheet" href="<?php echo e(url('css/toastr.css?v='.cache("js_version_number").'')); ?>">
