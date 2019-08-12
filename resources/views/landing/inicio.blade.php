@@ -15,9 +15,20 @@
 
         Por favor verifica siempre accesar con el protocolo de seguridad https://
 
+        
+        
+        
+        
+        
         /**Landing Page**/
 
         https://boogapp.info
+
+
+
+
+
+
 
         /***Trabajadores***/
 
@@ -51,7 +62,10 @@
 
 
 
-        /*Empresas*/
+
+
+
+        /*******Empresas*******/
 
         Cocacola:
 
@@ -67,6 +81,14 @@
         User: info@danone.com
         pass: danone1
 
+        Url's
+
+        https://boogapp.info/inicioEmpresa
+        https://boogapp.info/perfilEmpresas
+        https://boogapp.info/trabajadores
+        https://boogapp.info/trabajadores/nuevo
+        https://boogapp.info/plantilla/nueva
+
         API's con Prejijo api/
 
         //Ingresar Empresas
@@ -78,7 +100,13 @@
         //validar que no exista ese subdominio solicitado
         Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
 
-        /**Panel de Administración (Dueños)**/
+
+
+
+
+
+
+        /*****Panel de Administración (Dueños)*****/
 
         https://boogapp.info/pAdmin
 
