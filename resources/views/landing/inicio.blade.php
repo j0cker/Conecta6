@@ -131,6 +131,15 @@
         //Logout
         Route::get('/pAdmin/logout', 'APIAdmin@Logout');
 
+
+
+
+
+        /****IOS en proceso de construcción****/
+
+        
+
+
         </pre>
 
     </body>
