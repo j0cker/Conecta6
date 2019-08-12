@@ -36,6 +36,9 @@ Route::post('/empresas/altaEmpresa', 'APIEmpresas@AltaEmpresa');
 //validar que no exista ese subdominio solicitado
 Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
 
+//alta nueva plantilla
+Route::post('/empresas/plantilla/nueva', 'APIEmpresas@AltaPlantilla');
+
 /*
 *******Admin******
 */

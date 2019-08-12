@@ -341,48 +341,238 @@
       functions.loadingWait();
 
       var nombrePlantilla = "";
+
       var lunesActivated = "";
+      var de1Lunes = "";
+      var a1Lunes = "";
+      var de2Lunes = "";
+      var a2Lunes = "";
+
       var martesActivated = "";
+      var de1Martes = "";
+      var a1Martes = "";
+      var de2Martes = "";
+      var a2Martes = "";
+
       var miercolesActivated = "";
+      var de1Miercoles = "";
+      var a1Miercoles = "";
+      var de2Miercoles = "";
+      var a2Miercoles = "";
+
       var juevesActivated = "";
+      var de1Jueves = "";
+      var a1Jueves = "";
+      var de2Jueves = "";
+      var a2Jueves = "";
+
       var viernesActivated = "";
+      var de1Viernes = "";
+      var a1Viernes = "";
+      var de2Viernes = "";
+      var a2Viernes = "";
+
       var sabadoActivated = "";
+      var de1Sabado = "";
+      var a1Sabado = "";
+      var de2Sabado = "";
+      var a2Sabado = "";
+
       var domingoActivated = "";
+      var de1Domingo = "";
+      var a1Domingo = "";
+      var de2Domingo = "";
+      var a2Domingo = "";
 
-      correo = $("#correo").val();
-      contPass = $("#contPass").val();
-      color = $("#color").val();
-      colorHex = $("#colorHex").val();
-      subdominio = $("#subdominio").val();
+      nombrePlantilla = $("#nombrePlantilla").val();
 
-      console.log("[nuevaplantilla][send] correo: " + correo);
-      console.log("[nuevaplantilla][send] contPass: " + contPass);
-      console.log("[nuevaplantilla][send] color: " + color);
-      console.log("[nuevaplantilla][send] colorHex: " + colorHex);
-      console.log("[nuevaplantilla][send] subdominio: " + subdominio);
+      lunesActivated = $("#lunesActivated").prop("checked");
+      de1Lunes = $("#de1Lunes").val();
+      a1Lunes = $("#a1Lunes").val();
+      de2Lunes = $("#de2Lunes").val();
+      a2Lunes = $("#a2Lunes").val();
 
-      if(correo.indexOf("@")=="-1" || correo.indexOf(".")=="-1" || correo.indexOf(" ")!="-1" || correo.indexOf(",")!="-1"){
-        toastr["error"]("Llena correctamente<br /> tu correo electrónico", "");
+      martesActivated = $("#martesActivated").prop("checked");
+      de1Martes = $("#de1Martes").val();
+      a1Martes = $("#a1Martes").val();
+      de2Martes = $("#de2Martes").val();
+      a2Martes = $("#a2Martes").val();
+
+      miercolesActivated = $("#miercolesActivated").prop("checked");
+      de1Miercoles = $("#de1Miercoles").val();
+      a1Miercoles = $("#a1Miercoles").val();
+      de2Miercoles = $("#de2Miercoles").val();
+      a2Miercoles = $("#a2Miercoles").val();
+
+      juevesActivated = $("#juevesActivated").prop("checked");
+      de1Jueves = $("#de1Jueves").val();
+      a1Jueves = $("#a1Jueves").val();
+      de2Jueves = $("#de2Jueves").val();
+      a2Jueves = $("#a2Jueves").val();
+
+      viernesActivated = $("#viernesActivated").prop("checked");
+      de1Viernes = $("#de1Viernes").val();
+      a1Viernes = $("#a1Viernes").val();
+      de2Viernes = $("#de2Viernes").val();
+      a2Viernes = $("#a2Viernes").val();
+
+      sabadoActivated = $("#sabadoActivated").prop("checked");
+      de1Sabado = $("#de1Sabado").val();
+      a1Sabado = $("#a1Sabado").val();
+      de2Sabado = $("#de2Sabado").val();
+      a2Sabado = $("#a2Sabado").val();
+
+      domingoActivated = $("#domingoActivated").prop("checked");
+      de1Domingo = $("#de1Domingo").val();
+      a1Domingo = $("#a1Domingo").val();
+      de2Domingo = $("#de2Domingo").val();
+      a2Domingo = $("#a2Domingo").val();
+
+      console.log("[nuevaplantilla][send] nombrePlantilla: " + nombrePlantilla);
+      
+      console.log("[nuevaplantilla][send] lunesActivated: " + lunesActivated);
+      console.log("[nuevaplantilla][send] de1Lunes: " + de1Lunes);
+      console.log("[nuevaplantilla][send] a1Lunes: " + a1Lunes);
+      console.log("[nuevaplantilla][send] de2Lunes: " + de2Lunes);
+      console.log("[nuevaplantilla][send] a2Lunes: " + a2Lunes);
+      
+      console.log("[nuevaplantilla][send] martesActivated: " + martesActivated);
+      console.log("[nuevaplantilla][send] de1Martes: " + de1Martes);
+      console.log("[nuevaplantilla][send] a1Martes: " + a1Martes);
+      console.log("[nuevaplantilla][send] de2Martes: " + de2Martes);
+      console.log("[nuevaplantilla][send] a2Martes: " + a2Martes);
+      
+      console.log("[nuevaplantilla][send] miercolesActivated: " + miercolesActivated);
+      console.log("[nuevaplantilla][send] de1Miercoles: " + de1Miercoles);
+      console.log("[nuevaplantilla][send] a1Miercoles: " + a1Miercoles);
+      console.log("[nuevaplantilla][send] de2Miercoles: " + de2Miercoles);
+      console.log("[nuevaplantilla][send] a2Miercoles: " + a2Miercoles);
+      
+      console.log("[nuevaplantilla][send] juevesActivated: " + juevesActivated);
+      console.log("[nuevaplantilla][send] de1Jueves: " + de1Jueves);
+      console.log("[nuevaplantilla][send] a1Jueves: " + a1Jueves);
+      console.log("[nuevaplantilla][send] de2Jueves: " + de2Jueves);
+      console.log("[nuevaplantilla][send] a2Jueves: " + a2Jueves);
+      
+      console.log("[nuevaplantilla][send] viernesActivated: " + viernesActivated);
+      console.log("[nuevaplantilla][send] de1Viernes: " + de1Viernes);
+      console.log("[nuevaplantilla][send] a1Viernes: " + a1Viernes);
+      console.log("[nuevaplantilla][send] de2Viernes: " + de2Viernes);
+      console.log("[nuevaplantilla][send] a2Viernes: " + a2Viernes);
+      
+      console.log("[nuevaplantilla][send] sabadoActivated: " + sabadoActivated);
+      console.log("[nuevaplantilla][send] de1Sabado: " + de1Sabado);
+      console.log("[nuevaplantilla][send] a1Sabado: " + a1Sabado);
+      console.log("[nuevaplantilla][send] de2Sabado: " + de2Sabado);
+      console.log("[nuevaplantilla][send] a2Sabado: " + a2Sabado);
+      
+      console.log("[nuevaplantilla][send] domingoActivated: " + domingoActivated);
+      console.log("[nuevaplantilla][send] de1Domingo: " + de1Domingo);
+      console.log("[nuevaplantilla][send] a1Domingo: " + a1Domingo);
+      console.log("[nuevaplantilla][send] de2Domingo: " + de2Domingo);
+      console.log("[nuevaplantilla][send] a2Domingo: " + a2Domingo);
+
+      
+      if($('#nombrePlantilla').val()==""){
+
+          toastr["error"]("Llena correctamente el<br />nombre de la plantilla", "");
+          functions.loadingEndWait();
+
+      } else if (!$('#lunesActivated').prop("checked") &&
+      !$('#martesActivated').prop("checked") &&
+      !$('#miercolesActivated').prop("checked") &&
+      !$('#juevesActivated').prop("checked") &&
+      !$('#viernesActivated').prop("checked") &&
+      !$('#sabadoActivated').prop("checked") &&
+      !$('#domingoActivated').prop("checked")){
+
+          console.log("No activado nada");
+
+          toastr["error"]("Debes seleccionar por<br />lo menos un día.", "");
+          functions.loadingEndWait();
+
+      } else if($('#lunesActivated').prop("checked") && 
+          ($('#de1Lunes').val()=="" ||
+          $('#a1Lunes').val()=="" ||
+          $('#de2Lunes').val()=="" ||
+          $('#a2Lunes').val()=="")){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día lunes.", "");
+          functions.loadingEndWait();
+
+      } else if($('#martesActivated').prop("checked") && 
+      ($('#de1Martes').val()=="" ||
+      $('#a1Martes').val()=="" ||
+      $('#de2Martes').val()=="" ||
+      $('#a2Martes').val()=="")){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día martes.", "");
         functions.loadingEndWait();
-        $("#ingresarButton").effect( "shake" );
-      } else if(contPass==""){
-        toastr["error"]("Llena correctamente<br /> tu contraseña", "");
+
+      } else if($('#miercolesActivated').prop("checked") && 
+      ($('#de1Miercoles').val()=="" ||
+      $('#a1Miercoles').val()=="" ||
+      $('#de2Miercoles').val()=="" ||
+      $('#a2Miercoles').val()=="")){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día miercoles.", "");
         functions.loadingEndWait();
-        $("#ingresarButton").effect( "shake" );
-        
+
+      } else if($('#juevesActivated').prop("checked") && 
+      ($('#de1Jueves').val()=="" ||
+      $('#a1Jueves').val()=="" ||
+      $('#de2Jueves').val()=="" ||
+      $('#a2Jueves').val()=="")){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día jueves.", "");
+        functions.loadingEndWait();
+
+      } else if($('#viernesActivated').prop("checked") && 
+      ($('#de1Viernes').val()=="" ||
+      $('#a1Viernes').val()=="" ||
+      $('#de2Viernes').val()=="" ||
+      $('#a2Viernes').val()=="")){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día viernes.", "");
+        functions.loadingEndWait();
+
+      } else if($('#sabadoActivated').prop("checked") && 
+      ($('#de1Sabado').val()=="" ||
+      $('#a1Sabado').val()=="" ||
+      $('#de2Sabado').val()=="" ||
+      $('#a2Sabado').val()=="")){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día sábado.", "");
+        functions.loadingEndWait();
+
+      } else if($('#domingoActivated').prop("checked") && 
+      ($('#de1Domingo').val()=="" ||
+      $('#a1Domingo').val()=="" ||
+      $('#de2Domingo').val()=="" ||
+      $('#a2Domingo').val()=="")){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día domingo.", "");
+        functions.loadingEndWait();
+
       } else {
+          
+          console.log("[agregar]");
+      
 
-        functions.postIngresar(correo, contPass, color, colorHex, subdominio).then(function (response) {
+        functions.postPlantilla(nombrePlantilla, 
+        lunesActivated, de1Lunes, a1Lunes, de2Lunes, a2Lunes,
+        martesActivated, de1Martes, a1Martes, de2Martes, a2Martes,
+        miercolesActivated, de1Miercoles, a1Miercoles, de2Miercoles, a2Miercoles,
+        juevesActivated, de1Jueves, a1Jueves, de2Jueves, a2Jueves,
+        viernesActivated, de1Viernes, a1Viernes, de2Viernes, a2Viernes,
+        sabadoActivated, de1Sabado, a1Sabado, de2Sabado, a2Sabado,
+        domingoActivated, de1Domingo, a1Domingo, de2Domingo, a2Domingo
+        ).then(function (response) {
 
             if(response.data.success == "TRUE"){
               console.log("[nuevaplantilla][postIngresar]");
 
               toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
-
-              deleteAllCookies();
-              setCookie("token", response.data.token, 1);
-
-              $window.location.href = "/inicio";
 
             } else {
                 toastr["warning"](response.data.description, "");
@@ -395,7 +585,7 @@
 
         });/*fin postSubscriber*/
       
-      }
+      }//fin else
 
     }//fin send ng
 

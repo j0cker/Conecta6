@@ -364,7 +364,7 @@
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Sabado" placeholder="18:30AM" />
                                                                     <p style="margin-top: 1rem !important; text-align: center;">Y</p>
                                                                     <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2sabado" placeholder="10:30AM" /> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Sabado" placeholder="10:30AM" /> 
                                                                     <p style="display: inline-block;">a:</p>
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Sabado" placeholder="18:30AM" />
                                                                    
@@ -418,7 +418,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a id="agregar" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Agregar</a>
+                                                                <a ng-click="send()" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Agregar</a>
                                                             </div>
                                                         </div>
 
@@ -1077,34 +1077,6 @@
                 
                 $('#agregar').click(function() {
                     
-                    if($('#nombrePlantilla').val()==""){
-
-                        toastr["error"]("Llena correctamente el<br />nombre de la plantilla", "");
-
-                    } else if (!$('#lunesActivated').prop("checked") &&
-                    !$('#martesActivated').prop("checked") &&
-                    !$('#miercolesActivated').prop("checked") &&
-                    !$('#juevesActivated').prop("checked") &&
-                    !$('#viernesActivated').prop("checked") &&
-                    !$('#sabadoActivated').prop("checked") &&
-                    !$('#domingoActivated').prop("checked")){
-
-                        console.log("No activado nada");
-
-                        toastr["error"]("Debes seleccionar por<br />lo menos un día.", "");
-
-                    } else if($('#lunesActivated').prop("checked") && 
-                        ($('#de1Lunes').val()=="" ||
-                        $('#a1Lunes').val()=="" ||
-                        $('#de2Lunes').val()=="" ||
-                        $('#a2Lunes').val()=="")){
-
-                        toastr["error"]("Llena correctamente los<br />horarios del día lunes.", "");
-
-                    } else {
-                        
-                        console.log("[agregar]");
-                    }
 
                 });
 
