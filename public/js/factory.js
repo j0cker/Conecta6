@@ -123,6 +123,17 @@
         });
 
       },
+      getPlantillas: function() {
+
+        console.log("[factory][getPlantillas]");
+
+        var url = '/api/empresas/plantilla/obtener';
+        return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
+
+      },
       postIngresarAdmin: function(correo, contPass) {
 
         console.log("[factory][postIngresarAdmin]");

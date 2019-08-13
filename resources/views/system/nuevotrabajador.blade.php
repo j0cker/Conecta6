@@ -376,12 +376,12 @@
                                                                             
                                                                             <select class="select2 form-control w-100" id="single-default">
                                                                                 <option value="default">Selecciona una Plantilla</option>
-                                                                                <option value="AK">Plantilla Directores</option>
-                                                                                <option value="HI">Plantilla Gerentes</option>
+                                                                                <option ng-repeat="(key, plantilla) in plantillas" value="<% plantilla.id_plantillas %>"><% plantilla.nombrePlantilla %></option>
                                                                                 <option value="Crear Nueva Plantilla">Crear Nueva Plantilla</option>
                                                                             </select>
 
                                                                         </div>
+                                                                        
                                                                     </div>
 
                                                                 </div>
@@ -1301,8 +1301,6 @@
                     templates: controls
                 });
 
-                //selects
-                $('.select2').select2();
 
                 $("#single-default").change(function(){
 
@@ -1316,6 +1314,8 @@
 
                 });
 
+                //selects
+                $('.select2').select2();
 
             });
         </script>

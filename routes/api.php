@@ -39,6 +39,9 @@ Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
 //alta nueva plantilla
 Route::post('/empresas/plantilla/nueva', 'APIEmpresas@AltaPlantilla');
 
+//get plantillas by empresas
+Route::get('/empresas/plantilla/obtener', 'APIEmpresas@GetPlantillas');
+
 /*
 *******Admin******
 */

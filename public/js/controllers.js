@@ -574,6 +574,9 @@
 
               toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
 
+              $window.location.href = "/plantilla/nueva";
+
+
             } else {
                 toastr["warning"](response.data.description, "");
                 functions.loadingEndWait();
@@ -606,6 +609,35 @@
     console.log("[nuevotrabajador]");
 
     functions.loading();
+
+    $scope.plantillas = "";
+    $scope.cars = ["Saab", "Volvo", "BMW"];
+
+    functions.getPlantillas().then(function (response) {
+
+      if(response.data.success == "TRUE"){
+        
+        console.log("[controllers][nuevotrabajador][getPlantillas]");
+
+        console.log(response.data);
+
+        $scope.plantillas = response.data.data;
+
+        console.log($scope.plantillas);
+
+        functions.loadingEndWait();
+        
+      } else {
+
+          functions.loadingEndWait();
+      }
+    }, function (response) {
+      /*ERROR*/
+      toastr["error"]("Inténtelo de nuevo más tarde", "");
+      functions.loadingEndWait();
+
+    });/*fin getPlantillas*/
+    
 
 
   });//fin controller trabajadores
