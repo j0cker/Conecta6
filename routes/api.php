@@ -42,6 +42,9 @@ Route::post('/empresas/plantilla/nueva', 'APIEmpresas@AltaPlantilla');
 //get plantillas by empresas
 Route::get('/empresas/plantilla/obtener', 'APIEmpresas@GetPlantillas');
 
+//Get Image
+Route::get('/empresas/profile/image', 'APIEmpresas@GetProfileImage');
+
 /*
 *******Admin******
 */

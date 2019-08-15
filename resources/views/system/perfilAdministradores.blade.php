@@ -99,8 +99,8 @@
 
                                                                 <div class="col-md-4 text-center">
                                                                 
-                                                                    <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com">
-                                                                        <img src="{{ url('img/avatar-admin.png') }}" style="width: 100px; height: 100px;" class="profile-image rounded-circle" alt='{{ $user["usr"]->nombre }} {{ $user["usr"]->apellido }}'>
+                                                                    <a href="#" data-toggle="dropdown" title="{{ $user['usr']->nombre }} {{ $user['usr']->apellido }}">
+                                                                        <img onerror="this.src='{{ url('img/profile-image.png') }}'" src="{{ url('img/profile-image.png') }}" style="width: 100px; height: 100px;" class="profile-image rounded-circle" alt='{{ $user["usr"]->nombre }} {{ $user["usr"]->apellido }}'>
                                                                         <!-- you can also add username next to the avatar with the codes below:
                                                                         <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
                                                                         <i class="ni ni-chevron-down hidden-xs-down"></i> -->

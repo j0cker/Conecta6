@@ -95,8 +95,8 @@
 
                                                                 <div class="col-md-4 text-center">
                                                                 
-                                                                    <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com">
-                                                                        <img src="<?php echo e(url('img/avatar-admin.png')); ?>" style="width: 100px; height: 100px;" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre_empresa); ?>'>
+                                                                    <a href="#" data-toggle="dropdown" title="<?php echo e($user['usr']->nombre_empresa); ?>">
+                                                                        <img onerror="this.src='<?php echo e(url('img/profile-image.png')); ?>'" src="<?php echo e($user['usr']->nombre_empresa); ?>" style="width: 100px; height: 100px;" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre_empresa); ?>'>
                                                                         <!-- you can also add username next to the avatar with the codes below:
                                                                         <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
                                                                         <i class="ni ni-chevron-down hidden-xs-down"></i> -->
@@ -1057,8 +1057,14 @@
         <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
-
         
+        <script>
+            $(document).ready(function()
+            {
+
+                angular.element('body').scope().getImageEmpresaClick(<?php echo e($user['usr']->foto_base64); ?>);
+            });
+        </script>
 
     <?php $__env->stopSection(); ?>
 

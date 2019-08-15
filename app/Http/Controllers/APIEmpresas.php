@@ -108,6 +108,9 @@ class APIEmpresas extends Controller
 
         $jwt_token = null;
 
+        //limpiamos imágen para que no truene el JWT Token
+        $empresa->first()->foto_base64 = "";
+
         $factory = JWTFactory::customClaims([
           'sub'   => $empresa->first()->id_empresas, //id a conciliar del usuario
           'iss'   => config('app.name'),
@@ -227,6 +230,94 @@ class APIEmpresas extends Controller
         //Errores
     
         Log::info('[APIEmpresas][Inicio] ' . $e);
+
+        return redirect('/');
+
+      }
+
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function GetProfileImage(Request $request){
+  
+    Log::info('[APIEmpresas][GetProfileImage]');
+
+    Log::info("[APIEmpresas][GetProfileImage] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][GetProfileImage] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        $image = Empresas::getImage($token_decrypt['usr']->id_empresas);
+
+        if(count($image)>0){
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($image));
+          $responseJSON->data = $image->first()->foto_base64;
+          return json_encode($responseJSON);
+
+        } else {
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($image));
+          $responseJSON->data = "";
+          return json_encode($responseJSON);
+
+        }
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][[APIEmpresas]] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][[APIEmpresas]] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][[APIEmpresas]] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][[APIEmpresas]] ' . $e);
 
         return redirect('/');
 
@@ -782,6 +873,95 @@ class APIEmpresas extends Controller
         return redirect('/');
   
       }
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function Configuraciones(Request $request){
+    
+    Log::info('[APIEmpresas][Configuraciones]');
+
+    Log::info("[APIEmpresas][Configuraciones] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][Configuraciones] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][Configuraciones] Permiso Existente");
+          
+          return view('system.configuraciones',["title" => config('app.name'), 
+                                            "lang" => "es", 
+                                            "user" => $token_decrypt, 
+                                            "color" => $token_decrypt['color'], 
+                                            "colorHex" => $token_decrypt['colorHex'],
+                                            "subdominio" => $token_decrypt['subdominio']
+                                          ]
+          );
+          
+        }
+
+        return redirect('/');
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][Configuraciones] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][Configuraciones] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][Configuraciones] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][Configuraciones] ' . $e);
+
+        return redirect('/');
+
+      }
+
+
 
     } else {
       abort(404);

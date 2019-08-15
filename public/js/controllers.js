@@ -326,6 +326,31 @@
 
     functions.loading();
 
+    $scope.getImageEmpresaClick = function(){
+
+      console.log("[perfilEmpresas] ");
+
+      functions.getImageEmpresa().then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[nuevaplantilla][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+      };
 
   });//fin controller perfilEmpresas
 
@@ -594,6 +619,15 @@
 
 
   });//fin controller nuevaplantilla
+
+  app.controller('configuraciones', function($scope, functions, $window) {
+
+    console.log("[configuraciones]");
+
+    functions.loading();
+
+
+  });//fin controller trabajadores
 
   app.controller('trabajadores', function($scope, functions, $window) {
 

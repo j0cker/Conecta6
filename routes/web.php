@@ -52,6 +52,9 @@ Route::get('/plantilla/nueva', 'APIEmpresas@NuevaPlantilla');
 //sign in personalizado (URL a evaluación)
 Route::get('/{any}/pAdmin', 'APIEmpresas@SignInPersonalizado');
 
+//configuraciones
+Route::get('/configuraciones', 'APIEmpresas@Configuraciones');
+
 /*
 *********Admin***********
 */

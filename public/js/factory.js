@@ -134,6 +134,17 @@
         });
 
       },
+      getImageEmpresa: function() {
+
+        console.log("[factory][getImageEmpresa]");
+
+        var url = '/api/empresas/profile/image';
+        return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
+
+      },
       postIngresarAdmin: function(correo, contPass) {
 
         console.log("[factory][postIngresarAdmin]");

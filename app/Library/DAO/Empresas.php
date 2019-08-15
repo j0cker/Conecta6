@@ -50,6 +50,18 @@ class Empresas extends Model
 
     }
 
+    //get enterprise image
+    public function scopeGetImage($query, $id_empresas){
+
+      Log::info("[Empresas][scopegGetImage] id_empresas: ". $id_empresas);
+
+      return $query->where([
+        ['id_empresas', '=', $id_empresas],
+      ]);
+
+
+    }
+
     //login
     public function scopeLookForByEmailAndPass($query, $email, $pass)
     {
