@@ -62,6 +62,21 @@ class Empresas extends Model
 
     }
 
+    //post enterprise image
+    public function scopeUpdateImage($query, $id_empresas, $profileImg){
+
+      Log::info("[Empresas][scopeUpdateImage] id_empresas: ". $id_empresas);
+
+      $obj = array();
+      $obj[0] = new \stdClass();
+      $obj[0]->save = $query->where('id_empresas', $id_empresas)->update(['foto_base64' => $profileImg]); //return true in the other one return 1
+      $obj[0]->id = $id_empresas;
+      
+      return $obj;
+
+
+    }
+
     //login
     public function scopeLookForByEmailAndPass($query, $email, $pass)
     {

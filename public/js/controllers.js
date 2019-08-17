@@ -174,6 +174,32 @@
     
     console.log("[signinEmpresas]");
 
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[signinEmpresas] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[nuevaplantilla][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
     $scope.send = function(){
       console.log("[signinEmpresas][send]");
 
@@ -309,28 +335,13 @@
 
     functions.loading();
 
+    
 
-  });//fin controller inicioEmpresa
+    $scope.getImageEmpresaClick = function(id_empresas){
 
-  app.controller('empresas', function($scope, functions, $window) {
+      console.log("[signinEmpresas] ");
 
-    console.log("[empresas]");
-
-    functions.loading();
-
-  });//fin controller empresas
-
-  app.controller('perfilEmpresas', function($scope, functions, $window) {
-
-    console.log("[perfilEmpresas]");
-
-    functions.loading();
-
-    $scope.getImageEmpresaClick = function(){
-
-      console.log("[perfilEmpresas] ");
-
-      functions.getImageEmpresa().then(function (response) {
+      functions.getImageEmpresa(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
               console.log("[nuevaplantilla][perfilEmpresas]");
@@ -350,7 +361,50 @@
 
         });/*fin getImageEmpresa*/
 
-      };
+    }; //fin getImageEmpresaClick
+
+
+  });//fin controller inicioEmpresa
+
+  app.controller('empresas', function($scope, functions, $window) {
+
+    console.log("[empresas]");
+
+    functions.loading();
+
+  });//fin controller empresas
+
+  app.controller('perfilEmpresas', function($scope, functions, $window) {
+
+    console.log("[perfilEmpresas]");
+
+    functions.loading();
+
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[perfilEmpresas] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[nuevaplantilla][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    };
 
   });//fin controller perfilEmpresas
 
@@ -626,6 +680,33 @@
 
     functions.loading();
 
+    
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[signinEmpresas] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[nuevaplantilla][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
 
   });//fin controller trabajadores
 
@@ -634,6 +715,32 @@
     console.log("[trabajadores]");
 
     functions.loading();
+
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[signinEmpresas] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[nuevaplantilla][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
 
 
   });//fin controller trabajadores
@@ -646,6 +753,34 @@
 
     $scope.plantillas = "";
     $scope.cars = ["Saab", "Volvo", "BMW"];
+
+    
+
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[signinEmpresas] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[nuevaplantilla][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
 
     functions.getPlantillas().then(function (response) {
 

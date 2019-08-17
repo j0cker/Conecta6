@@ -1325,6 +1325,8 @@
             {
 
                 $('#js-page-content').smartPanel(); 
+                
+                
             });
         </script>
         
@@ -1449,6 +1451,10 @@
                 }
 
             });
+
+            
+
+            angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
 
         });
 

@@ -134,13 +134,15 @@
         });
 
       },
-      getImageEmpresa: function() {
+      getImageEmpresa: function(id_empresas) {
 
         console.log("[factory][getImageEmpresa]");
 
+        console.log("[factory][getImageEmpresa] id_empresas: " + id_empresas);
+
         var url = '/api/empresas/profile/image';
         return $http.get(url,{
-          params: { cache: false },
+          params: { cache: false, id_empresas:id_empresas },
           cache: false
         });
 

@@ -33,6 +33,13 @@ toastr.options = {
   "hideMethod": "fadeOut"
 }
 
+function startLoading(){
+  //loading screen
+  console.log("[functions][Loading]");
+
+  $('#loader-wrapper').css('display','');
+}
+
 function googleAna(button){
 	console.log("[functions.js][googleAna] " + button);
 	//alert(button);

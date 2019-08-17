@@ -45,6 +45,9 @@ Route::get('/empresas/plantilla/obtener', 'APIEmpresas@GetPlantillas');
 //Get Image
 Route::get('/empresas/profile/image', 'APIEmpresas@GetProfileImage');
 
+//Update Image
+Route::post('/empresas/profile/image', 'APIEmpresas@UpdateProfilePicture');
+
 /*
 *******Admin******
 */

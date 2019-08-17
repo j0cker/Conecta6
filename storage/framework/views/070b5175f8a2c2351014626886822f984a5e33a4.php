@@ -42,7 +42,7 @@
               <div class="card">
 
                 <div class="card-image resaltar">
-                  <img class="logoCompany text-center" src="<?php echo e(url('img/logo-example.png')); ?>">
+                  <img class="profile-image logoCompany text-center" src="<?php echo e(url('img/logo-example.png')); ?>">
                 </div>
 
                 <div class="card-content">
@@ -96,6 +96,15 @@
 
     </main>
     <!--Main layout-->
+
+    
+        
+    <script>
+        $(document).ready(function(){
+
+          angular.element('body').scope().getImageEmpresaClick("<?php echo e($id_empresas); ?>");
+        });
+    </script>
 
     <?php $__env->stopSection(); ?>
 

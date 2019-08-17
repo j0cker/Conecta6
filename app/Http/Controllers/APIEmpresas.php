@@ -19,6 +19,7 @@ use JWTFactory;
 use Tymon\JWTAuth\PayloadFactory;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Session;
+use Validator;
 
 class APIEmpresas extends Controller
 {
@@ -34,6 +35,8 @@ class APIEmpresas extends Controller
       $path = explode("/", $request->path());
 
       $subdominio = Empresas::lookForBySubdominio($path[0])->get();
+
+      $subdominio->first()->foto_base64 = "";
     
       Log::info('[SignInPersonalizado] subdominio size: ' . count($subdominio));
 
@@ -53,7 +56,8 @@ class APIEmpresas extends Controller
                                   "lang" => "es", 
                                   "color" => $subdominio->first()->color, 
                                   "colorHex" => $colores->first()->hex, 
-                                  "subdominio" => $request->path()
+                                  "subdominio" => $request->path(), 
+                                  "id_empresas" => $subdominio->first()->id_empresas
                                   ]
                       );
 
@@ -95,6 +99,8 @@ class APIEmpresas extends Controller
       Log::info("[APIEmpresas][ingresar] subdominio: ". $subdominio);
 
       $empresa = Empresas::lookForByEmailAndPass($correo, $contPass)->get();
+
+      $empresa->first()->foto_base64 = "";
 
       Log::info($empresa);
       
@@ -251,6 +257,61 @@ class APIEmpresas extends Controller
 
     if($request->isMethod('GET')) {
 
+      //no token is required
+
+      $this->validate($request, [
+        'id_empresas' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+        
+      $id_empresas = $request->input('id_empresas');
+
+      Log::info("[APIEmpresas][GetProfileImage] Token: ". $token);
+
+      Log::info("[APIEmpresas][GetProfileImage] id_empresas: ". $id_empresas);
+
+
+
+      //print_r($token_decrypt["id"]);
+
+      //print_r($token_decrypt);
+
+      $image = Empresas::getImage($id_empresas);
+
+      //$image->first()->foto_base64 = "";
+
+      if(count($image)>0){
+
+        $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($image));
+        $responseJSON->data = $image->first()->foto_base64;
+        return json_encode($responseJSON);
+
+      } else {
+
+        $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($image));
+        $responseJSON->data = "";
+        return json_encode($responseJSON);
+
+      }
+
+
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function UpdateProfilePicture(Request $request)
+  {
+    Log::info('[APIEmpresas][UpdateProfilePicture]');
+
+    Log::info("[APIEmpresas][UpdateProfilePicture] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
       $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
 
       $this->validate($request, [
@@ -259,10 +320,13 @@ class APIEmpresas extends Controller
         
       $token = $request->input('token');
 
-      Log::info("[APIEmpresas][GetProfileImage] Token: ". $token);
-
+      Log::info("[APIEmpresas][UpdateProfilePicture] Token: ". $token);
 
       try {
+
+        Validator::make($request->all(), [
+          'profileimg' => 'required|image|dimensions:min_width=50,min_height=50|mimes:png,jpeg,jpg',
+        ])->validate();
 
         // attempt to verify the credentials and create a token for the user
         $token = JWTAuth::getToken();
@@ -271,20 +335,28 @@ class APIEmpresas extends Controller
         //print_r($token_decrypt["id"]);
 
         //print_r($token_decrypt);
+        
 
-        $image = Empresas::getImage($token_decrypt['usr']->id_empresas);
+        try {
 
-        if(count($image)>0){
+            $profileImg = base64_encode(file_get_contents($request->file('profileimg')));
 
-          $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($image));
-          $responseJSON->data = $image->first()->foto_base64;
-          return json_encode($responseJSON);
+            $image = Empresas::updateImage($token_decrypt['usr']->id_empresas, $profileImg);
+
+        } catch (Exception $exception) {
+    
+          Log::info('[APIEmpresas][UpdateProfilePicture] error: '. $exception);
+  
+          return redirect('/');
+        }
+
+        if($image[0]->save==1){
+
+          return redirect(url()->previous());
 
         } else {
 
-          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($image));
-          $responseJSON->data = "";
-          return json_encode($responseJSON);
+          return "ERROR Por favor contacte al administrador";
 
         }
 
@@ -293,7 +365,7 @@ class APIEmpresas extends Controller
 
         //token_expired
     
-        Log::info('[APIEmpresas][[APIEmpresas]] Token error: token_expired');
+        Log::info('[APIEmpresas][UpdateProfilePicture] Token error: token_expired');
 
         return redirect('/');
   
@@ -301,7 +373,7 @@ class APIEmpresas extends Controller
 
         //token_invalid
     
-        Log::info('[APIEmpresas][[APIEmpresas]] Token error: token_invalid');
+        Log::info('[APIEmpresas][UpdateProfilePicture] Token error: token_invalid');
 
         return redirect('/');
   
@@ -309,7 +381,7 @@ class APIEmpresas extends Controller
 
         //token_absent
     
-        Log::info('[APIEmpresas][[APIEmpresas]] Token error: token_absent');
+        Log::info('[APIEmpresas][UpdateProfilePicture] Token error: token_absent');
 
         return redirect('/');
   
@@ -317,7 +389,7 @@ class APIEmpresas extends Controller
 
         //Errores
     
-        Log::info('[APIEmpresas][[APIEmpresas]] ' . $e);
+        Log::info('[APIEmpresas][UpdateProfilePicture] ' . $e);
 
         return redirect('/');
 
@@ -1179,6 +1251,8 @@ class APIEmpresas extends Controller
       Log::info('[SubdominioValidar] subdominio: ' . $subdominio);
 
       $subdominios_array = Empresas::lookForBySubdominio($subdominio)->get();
+
+      $subdominios_array->first()->foto_base64 = "";
   
       Log::info('[SubdominioValidar] subdominio size: ' . count($subdominios_array));
 

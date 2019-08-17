@@ -156,8 +156,6 @@
                                             </table>
                                             <!-- datatable end -->
 
-                                            
-
                                             <div style="margin-top: 50px;" class="row">
 
                                                 <div class="col-md-3"></div>
@@ -217,10 +215,91 @@
 
                                                 <div style="display:inline-block;" class="col-md-6">
                                                     <input style="width: 300px; display:inline-block;" class="form-control" type="text" placeholder="Nombre de la Empresa" />
-                                                    <button style="margin-top: 20px; margin-left: 20px; margin-bottom: 20px; display: inline-block;" class="btn btn-primary">Agregar</button>
+                                                    <button style="margin-top: 20px; margin-left: 20px; margin-bottom: 20px; display: inline-block;" class="btn btn-primary">Modificar</button>
                                                 </div>
 
                                                 <div class="col-md-3"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="row">
+
+                                                <div class="col-md-3"></div>
+
+                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
+                                                    
+                                                        Logotipo que verán tus usuarios:
+
+                                                    </div>
+
+                                                <div class="col-md-3"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="row">
+
+                                                <div class="col-md-4"></div>
+
+                                                    <div class="col-md-4 text-center">
+                                                    
+                                                        
+                                                        <form method="post" action="<?php echo e(url('/api/empresas/profile/image')); ?>" enctype="multipart/form-data" id="FrmProfilePicture">
+                                                            <?php echo e(method_field('POST')); ?>
+
+
+                                                            <label for="profileimg" class="figure">
+                                                                <input type="file" id="profileimg" hidden name="profileimg">
+                                                                <img class="profile-image  rounded-circle" onerror="this.src='<?php echo e(url('img/profile-image.png')); ?>'" style="width: 120px; height: 120px;" src="<?php echo e(url('img/profile-image.png')); ?>" alt="<?php echo e($user['usr']->nombre_empresa); ?>" id="userProfilePicture">
+                                                            </label>
+
+                                                        </form>
+
+                                                        <center>
+                                                        150x150
+                                                        </center>
+
+                                                    </div>
+
+                                                <div class="col-md-4"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="row">
+
+                                                <div class="col-md-3"></div>
+
+                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
+                                                    
+                                                        Configuración de la Zona Horaria:
+
+                                                    </div>
+
+                                                <div class="col-md-3"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 25px;" class="row">
+
+                                                <div class="col-md-4"></div>
+
+                                                    <div style="" class="col-md-4">
+                                                    
+                                                        <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
+                                                            <div class="panel-content text-center">
+                                                                
+                                                                <select class="select2 form-control w-100" id="single-default">
+                                                                    <option value="default">Selecciona una Zona Horaria</option>
+                                                                    <option ng-repeat="(key, plantilla) in plantillas" value="<% plantilla.id_plantillas %>"><% plantilla.nombrePlantilla %></option>
+                                                                    <option value="Crear Nueva Plantilla">Crear una Zona Horaria</option>
+                                                                </select>
+
+                                                            </div>
+                                                            
+                                                        </div>
+
+                                                    </div>
+
+                                                <div class="col-md-4"></div>
 
                                             </div>
 
@@ -993,7 +1072,16 @@
             $(document).ready(function()
             {
 
+                $(document).on('change', '#profileimg', function () {
+                    
+                    console.log("[change]");
+
+                    startLoading();
+                    $('#FrmProfilePicture').submit();
+                });
+
                 $('#js-page-content').smartPanel(); 
+                angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
             });
         </script>
 

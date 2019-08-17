@@ -23,7 +23,7 @@
                     <?php if(in_array("3", $user["permisos"]) || in_array("1", $user["permisos"])): ?>
 
                         <a href="<?php echo e(url('/perfilTrabajadores')); ?>'">
-                            <img src="<?php echo e(url('img/avatar-admin.png')); ?>" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre); ?> <?php echo e($user["usr"]->apellido); ?>'>
+                            <img onerror="this.src='<?php echo e(url('img/profile-image.png')); ?>'" style="width: 50px; height: 50px;" src="<?php echo e(url('img/profile-image.png')); ?>" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre); ?> <?php echo e($user["usr"]->apellido); ?>'>
                         </a>
                         <div class="info-card-text">
                             <a href="<?php echo e(url('/perfilTrabajadores')); ?>" class="d-flex align-items-center text-white">
@@ -40,7 +40,7 @@
                     <?php if(in_array("2", $user["permisos"])): ?>
 
                         <a href="<?php echo e(url('/perfilEmpresas')); ?>'">
-                            <img src="<?php echo e(url('img/avatar-admin.png')); ?>" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre_empresa); ?>'>
+                            <img onerror="this.src='<?php echo e(url('img/profile-image.png')); ?>'" style="width: 50px; height: 50px;" src="<?php echo e(url('img/profile-image.png')); ?>" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre_empresa); ?>'>
                         </a>
                         <div class="info-card-text">
                             <a href="<?php echo e(url('/perfilEmpresas')); ?>" class="d-flex align-items-center text-white">

@@ -23,7 +23,7 @@
                     @if (in_array("3", $user["permisos"]) || in_array("1", $user["permisos"]))
 
                         <a href="{{ url('/perfilTrabajadores') }}'">
-                            <img src="{{ url('img/avatar-admin.png') }}" class="profile-image rounded-circle" alt='{{ $user["usr"]->nombre }} {{ $user["usr"]->apellido }}'>
+                            <img onerror="this.src='{{ url('img/profile-image.png') }}'" style="width: 50px; height: 50px;" src="{{ url('img/profile-image.png') }}" class="profile-image rounded-circle" alt='{{ $user["usr"]->nombre }} {{ $user["usr"]->apellido }}'>
                         </a>
                         <div class="info-card-text">
                             <a href="{{ url('/perfilTrabajadores') }}" class="d-flex align-items-center text-white">
@@ -39,7 +39,7 @@
                     @if (in_array("2", $user["permisos"]))
 
                         <a href="{{ url('/perfilEmpresas') }}'">
-                            <img src="{{ url('img/avatar-admin.png') }}" class="profile-image rounded-circle" alt='{{ $user["usr"]->nombre_empresa }}'>
+                            <img onerror="this.src='{{ url('img/profile-image.png') }}'" style="width: 50px; height: 50px;" src="{{ url('img/profile-image.png') }}" class="profile-image rounded-circle" alt='{{ $user["usr"]->nombre_empresa }}'>
                         </a>
                         <div class="info-card-text">
                             <a href="{{ url('/perfilEmpresas') }}" class="d-flex align-items-center text-white">

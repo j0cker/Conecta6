@@ -894,6 +894,11 @@
             {
 
                 $('#js-page-content').smartPanel(); 
+
+                
+                
+
+                angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
             });
         </script>
 
