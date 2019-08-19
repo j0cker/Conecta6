@@ -44,7 +44,7 @@
               <div class="card">
 
                 <div style="margin-top: 35px; width: 270px !important; height: 121px !important;" class="card-image resaltar">
-                  <img style="width: 240px !important; height: 101px !important;" class="logoCompany text-center" src="{{ url('img/Conecta6-logotipo.png') }}">
+                  <img onerror="this.src='{{ url('img/logo-example.png') }}'" style="width: 240px !important; height: 101px !important;" class="logoCompany text-center" src="{{ url('img/Conecta6-logotipo.png') }}">
                 </div>
 
                 <div class="card-content">
