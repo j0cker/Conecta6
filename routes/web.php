@@ -55,6 +55,9 @@ Route::get('/{any}/pAdmin', 'APIEmpresas@SignInPersonalizado');
 //configuraciones
 Route::get('/configuraciones', 'APIEmpresas@Configuraciones');
 
+//configuraciones
+Route::get('/informes', 'APIEmpresas@Informes');
+
 /*
 *********Admin***********
 */

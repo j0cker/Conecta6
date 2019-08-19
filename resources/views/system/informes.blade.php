@@ -1,63 +1,68 @@
-<?php $__env->startSection('lang'); ?><?php echo e($lang); ?><?php $__env->stopSection(); ?>
 
+@extends('system.master')
 
+{{-- lang html tag --}}
 
-<?php $__env->startSection('title'); ?><?php echo e($title); ?><?php $__env->stopSection(); ?>
+@section('lang'){{$lang}}@stop
 
+{{-- Title Head --}}
 
+@section('title'){{$title}}@stop
 
-<?php $__env->startSection('Content-Type','text/html; charset=UTF-8'); ?>
-<?php $__env->startSection('x-ua-compatible','ie=edge'); ?>
-<?php $__env->startSection('keywords',''); ?>
-<?php $__env->startSection('description',''); ?>
-<?php $__env->startSection('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1'); ?>
-<?php $__env->startSection('idiomaLang','es-mx'); ?>
+{{-- Metatag Head --}}
 
+@section('Content-Type','text/html; charset=UTF-8')
+@section('x-ua-compatible','ie=edge')
+@section('keywords','')
+@section('description','')
+@section('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1')
+@section('idiomaLang','es-mx')
 
+{{-- Menu --}}
 
 <!--Menu Transparente
-<?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
+@section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
 -->
-<?php $__env->startSection('menuActive','configuraciones'); ?>
+@section('menuActive','consultaDeInformes')
 
-<?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
-<?php $__env->startSection('raiz1Url', '/inicio'); ?>
-<?php $__env->startSection('raiz2','Empresas'); ?>
-<?php $__env->startSection('raiz2Url','/inicio'); ?>
-<?php $__env->startSection('raiz3','Configuraciones'); ?>
-<?php $__env->startSection('raiz3Url','/configuraciones'); ?>
+@section('raiz1', @Config::get('app.name'))
+@section('raiz1Url', '/inicio')
+@section('raiz2','Empresas')
+@section('raiz2Url','/inicioEmpresas')
+@section('raiz3','Consulta de Informes')
+@section('raiz3Url','/informes')
 
+{{-- Angular Controller --}}
 
+@section('controller','consultaDeInformes')
 
-<?php $__env->startSection('controller','configuraciones'); ?>
+{{-- Body --}}
 
-
-
-<?php $__env->startSection('content'); ?>
+@section('content')
 
         <!-- BEGIN Page Wrapper -->
         <div class="page-wrapper">
             <div class="page-inner">
                 <!-- BEGIN Left Aside -->
                         
-                    <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    @include('system.menu')
 
                 <!-- END Left Aside -->
                 <div class="page-content-wrapper">
                     <!-- BEGIN Page Header -->
                         
-                    <?php echo $__env->make('system.menu2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    @include('system.menu2')
                     
                     <!-- END Page Header -->
                     <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
                     <main id="js-page-content" role="main" class="page-content">
                     
-                        <?php echo $__env->make('system.menu3', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        @include('system.menu3')
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-building'></i> Configuraciones <span class='fw-300'>Dashboard</span>
+                                <i class='subheader-icon fal fa-building'></i> Informes <span class='fw-300'>Dashboard</span>
                             </h1>
                         </div>
                         <div class="row">
@@ -65,7 +70,7 @@
                                 <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr" role="heading">
                                         <h2>
-                                        Configuraciones
+                                        Informes
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -78,309 +83,69 @@
                                     <div class="panel-container show">
                                         <div class="panel-content">
 
-                                            <div style="margin-top: 50px;" class="row">
-
-                                                <div class="col-md-4"></div>
-
-                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-4">
-                                                    
-                                                        Configuraciones
-
-                                                    </div>
-
-                                                <div class="col-md-4"></div>
-
-                                            </div>
-
-                                            <div style="margin-top: 50px;" class="row">
-
-                                                <div class="col-md-3"></div>
-
-                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
-                                                    
-                                                        Configuración de las opciones de salida.
-
-                                                    </div>
-
-                                                <div class="col-md-3"></div>
-
-                                            </div>
-
-                                            <div style="margin-top: 50px;" class="text-center row">
+                                            <div class="form-group row">
 
                                                 <div class="col-md-6">
-                                                    <input class="form-control" type="text" placeholder="Nueva Salida" />
+                                                    <a href="/trabajadores/nuevo">
+                                                        <button style="margin-top: 10px;" class="btn btn-primary">Importar</button>
+                                                    </a>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <button style="margin-bottom: 20px;" class="btn btn-primary">Agregar</button>
-                                                </div>
-                                            </div>
 
+                                                <div class="col-md-6">
+                                                    <div style="margin-top: 10px; !important" class="input-group">
+                                                        <input type="text" class="form-control" placeholder="Select date" id="datepicker-2">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text fs-xl">
+                                                                <i class="fal fa-calendar"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
                                                         <th>ID</th>
-                                                        <th>Nombre de la Salida</th>
-                                                        <th>Descanso Computable</th>
+                                                        <th>Nombre</th>
+                                                        <th>Apellido</th>
+                                                        <th>Total Horas Trabajadas</th>
+                                                        <th>Faltas</th>
+                                                        <th>Horas Extras</th>
+                                                        <th>Descanzos Totales</th>
+                                                        <th>Salidas</th>
                                                         <th>Opciones</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
                                                     <tr>
                                                         <td>1</td>
-                                                        <td>Salida al Baño</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Salida por Café</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Salida de Jornada</td>
-                                                        <td></td>
+                                                        <td>Manlio Emiliano</td>
+                                                        <td>Terán Ramos</td>
+                                                        <td>150 Horas</td>
+                                                        <td>5</td>
+                                                        <td>5</td>
+                                                        <td>28 - 1680 Minutos</td>
+                                                        <td>Salidas al Baño: 51<br />Salidas por Café: 20</td>
                                                         <td></td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
                                                         <th>ID</th>
-                                                        <th>Nombre de la Salida</th>
-                                                        <th>Descanso Computable</th>
+                                                        <th>Nombre</th>
+                                                        <th>Apellido</th>
+                                                        <th>Total Horas Trabajadas</th>
+                                                        <th>Faltas</th>
+                                                        <th>Horas Extras</th>
+                                                        <th>Descanzos Totales</th>
+                                                        <th>Salidas</th>
                                                         <th>Opciones</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
                                             <!-- datatable end -->
-
-                                            <div style="margin-top: 50px;" class="row">
-
-                                                <div class="col-md-3"></div>
-
-                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
-                                                    
-                                                        Selecciona el idioma que verán tus usuarios.
-
-                                                    </div>
-
-                                                <div class="col-md-3"></div>
-
-                                            </div>
-
-                                            <div style="margin-top: 25px;" class="row">
-
-                                                <div class="col-md-4"></div>
-
-                                                    <div style="" class="col-md-4">
-                                                    
-                                                        <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
-                                                            <div class="panel-content text-center">
-                                                                
-                                                                <select class="select2 form-control w-100" id="single-label">
-                                                                    <option value="default">Selecciona un Idioma</option>
-                                                                    <option ng-repeat="(key, plantilla) in plantillas" value="<% plantilla.id_plantillas %>"><% plantilla.nombrePlantilla %></option>
-                                                                    <option value="Crear Nueva Plantilla">Crear Nuevo Idioma</option>
-                                                                </select>
-
-                                                            </div>
-                                                            
-                                                        </div>
-
-                                                    </div>
-
-                                                <div class="col-md-4"></div>
-
-                                            </div>
-
-                                            <div style="margin-top: 50px;" class="row">
-
-                                                <div class="col-md-3"></div>
-
-                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
-                                                    
-                                                        Nombre de la Empresa que verán tus usuarios.
-
-                                                    </div>
-
-                                                <div class="col-md-3"></div>
-
-                                            </div>
-
-                                            <div style="margin-top: 50px;" class="text-center row">
-
-                                                <div class="col-md-3"></div>
-
-                                                <div style="display:inline-block;" class="col-md-6">
-                                                    <input style="width: 300px; display:inline-block;" class="form-control" type="text" placeholder="Nombre de la Empresa" />
-                                                    <button style="margin-top: 20px; margin-left: 20px; margin-bottom: 20px; display: inline-block;" class="btn btn-primary">Modificar</button>
-                                                </div>
-
-                                                <div class="col-md-3"></div>
-
-                                            </div>
-
-                                            <div style="margin-top: 50px;" class="row">
-
-                                                <div class="col-md-3"></div>
-
-                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
-                                                    
-                                                        Logotipo que verán tus usuarios:
-
-                                                    </div>
-
-                                                <div class="col-md-3"></div>
-
-                                            </div>
-
-                                            <div style="margin-top: 50px;" class="row">
-
-                                                <div class="col-md-4"></div>
-
-                                                    <div class="col-md-4 text-center">
-                                                    
-                                                        
-                                                        <form method="post" action="<?php echo e(url('/api/empresas/profile/image')); ?>" enctype="multipart/form-data" id="FrmProfilePicture">
-                                                            <?php echo e(method_field('POST')); ?>
-
-
-                                                            <label for="profileimg" class="figure">
-                                                                <input type="file" id="profileimg" hidden name="profileimg">
-                                                                <img class="profile-image  rounded-circle" onerror="this.src='<?php echo e(url('img/profile-image.png')); ?>'" style="width: 120px; height: 120px;" src="<?php echo e(url('img/profile-image.png')); ?>" alt="<?php echo e($user['usr']->nombre_empresa); ?>" id="userProfilePicture">
-                                                            </label>
-
-                                                        </form>
-
-                                                        <center>
-                                                        150x150
-                                                        </center>
-
-                                                    </div>
-
-                                                <div class="col-md-4"></div>
-
-                                            </div>
-
-                                            <div style="margin-top: 50px;" class="row">
-
-                                                <div class="col-md-3"></div>
-
-                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
-                                                    
-                                                        Configuración de la Zona Horaria:
-
-                                                    </div>
-
-                                                <div class="col-md-3"></div>
-
-                                            </div>
-
-                                            <div style="margin-top: 25px;" class="row">
-
-                                                <div class="col-md-4"></div>
-
-                                                    <div style="" class="col-md-4">
-                                                    
-                                                        <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
-                                                            <div class="panel-content text-center">
-                                                                
-                                                                <select class="select2 form-control w-100" id="single-default">
-                                                                    <option value="default">Selecciona una Zona Horaria</option>
-                                                                    <option ng-repeat="(key, zonaHoraria) in zonasHorarias" value="<% zonaHoraria.id_zonas_horarias %>"><% zonaHoraria.nombre %> (<% zonaHoraria.utc %>) </option>
-                                                                </select>
-
-                                                            </div>
-                                                            
-                                                        </div>
-
-                                                    </div>
-
-                                                <div class="col-md-4"></div>
-
-                                            </div>
-
-                                            <div style="margin-top: 50px;" class="row">
-
-                                                <div class="col-md-3"></div>
-
-                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
-                                                    
-                                                        Configuración de las Plantillas:
-
-                                                    </div>
-
-                                                <div class="col-md-3"></div>
-
-                                            </div>
-
-                                            <div style="margin-top: 50px;" class="text-center row">
-
-                                                <div class="col-md-12">
-                                                    <a href="/plantilla/nueva">
-                                                        <button style="margin-bottom: 20px;" class="text-center btn btn-primary">Agregar</button>
-                                                    </a>
-                                                </div>
-
-                                            </div>
-
-                                            <table id="plantillas" class="table table-bordered table-hover table-striped w-100">
-                                                <thead class="bg-warning-200">
-                                                    <tr>
-                                                        <th>Nombre de la Plantilla</th>
-                                                        <th>Lunes</th>
-                                                        <th>Martes</th>
-                                                        <th>Miercoles</th>
-                                                        <th>Jueves</th>
-                                                        <th>Viernes</th>
-                                                        <th>Sábado</th>
-                                                        <th>Domingo</th>
-                                                        <th>Opciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="historialTable">
-                                                    <tr>
-                                                        <td>Gerentes</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Directores</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Nombre de la Plantilla</th>
-                                                        <th>Lunes</th>
-                                                        <th>Martes</th>
-                                                        <th>Miercoles</th>
-                                                        <th>Jueves</th>
-                                                        <th>Viernes</th>
-                                                        <th>Sábado</th>
-                                                        <th>Domingo</th>
-                                                        <th>Opciones</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-                                            <!-- datatable end -->
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -391,7 +156,7 @@
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
                     
-                    <?php echo $__env->make('system.footer2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    @include('system.footer2')
 
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
@@ -447,7 +212,7 @@
         <!-- END Page Wrapper -->
         <!-- BEGIN Quick Menu -->
         <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-        <?php echo $__env->make('system.toolbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        @include('system.toolbar')
         <!-- END Quick Menu -->
         <!-- BEGIN Messenger -->
         <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -988,8 +753,6 @@
         <script src="js/app.bundle.js"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
     
-        <script src="<?php echo e(url('js/selects.js?v='.cache("js_version_number").'')); ?>"></script>
-
         <script src="js/datatables.bundle.js"></script>
 
         <script>
@@ -1069,79 +832,11 @@
                                     </center>`;
                         }
                     
-                    },{
-                        "targets": -2,
-                        "data": null,
-                        "render": function ( data, type, row, meta ) {
-                            
-                            return `<center>
-                                    <div class="custom-control custom-switch mr-2">
-                                        <input type="checkbox" class="custom-control-input" onclick="checkbox(`+row[0]+`);" name="gra-`+row[0]+`" id="gra-`+row[0]+`" checked="checked">
-                                        <label class="custom-control-label" for="gra-`+row[0]+`"></label>
-                                    </div>
-                                </center>`;
-
-                        }
-                    
                     } 
                 
                     ]
 
                 });
-                /* init datatables */
-               var table = $('#plantillas').dataTable(
-                {
-                    "pageLength": 10,
-                    responsive: true,
-                    dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421" ] ],
-                    buttons: [
-                        {
-                            extend: 'colvis',
-                            text: 'Column Visibility',
-                            titleAttr: 'Col visibility',
-                            className: 'btn-outline-default'
-                        },
-                        {
-                            extend: 'csvHtml5',
-                            text: 'CSV',
-                            titleAttr: 'Generate CSV',
-                            className: 'btn-outline-default'
-                        },
-                        {
-                            extend: 'copyHtml5',
-                            text: 'Copy',
-                            titleAttr: 'Copy to clipboard',
-                            className: 'btn-outline-default'
-                        },
-                        {
-                            extend: 'print',
-                            text: '<i class="fal fa-print"></i>',
-                            titleAttr: 'Print Table',
-                            className: 'btn-outline-default'
-                        }
-
-                    ],
-                    "columnDefs": [ {
-                        "targets": -1,
-                        "data": null,
-                        "render": function ( data, type, row, meta ) {
-                            return  `<center>
-                                        <button onclick="edit(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
-                                        <button onclick="del(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
-                                    </center>`;
-                        }
-                    
-                    }
-                
-                    ]
-
-                });
-
-                //selects
-                $('.select2').select2();
 
                 /* no sirve
 
@@ -1182,17 +877,17 @@
 
 
         <!-- Toastr-->
-        <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="{{ url('js/toastr.js?v='.cache("js_version_number").'') }}"></script>
 
         <!--Angular-->
         
-        <script src="<?php echo e(url('js/angular.min.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/sanitize.min.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/module.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/controllers.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="{{ url('js/angular.min.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/sanitize.min.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/module.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/controllers.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
 
-        <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
 
         
         
@@ -1200,20 +895,14 @@
             $(document).ready(function()
             {
 
-                $(document).on('change', '#profileimg', function () {
-                    
-                    console.log("[change]");
-
-                    startLoading();
-                    $('#FrmProfilePicture').submit();
-                });
-
                 $('#js-page-content').smartPanel(); 
-                angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
-                angular.element('body').scope().getZonasHorariasClick();
+
+                
+                
+
+                angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
             });
         </script>
 
 
-    <?php $__env->stopSection(); ?>
-<?php echo $__env->make('system.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    @stop

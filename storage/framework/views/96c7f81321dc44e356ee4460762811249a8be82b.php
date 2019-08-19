@@ -168,6 +168,7 @@
                                 <?php if($__env->yieldContent('menuActive')=="inicioEmpresa" ||
                                      $__env->yieldContent('menuActive')=="perfilEmpresas" ||
                                      $__env->yieldContent('menuActive')=="trabajadores" ||
+                                     $__env->yieldContent('menuActive')=="consultaDeInformes" ||
                                      $__env->yieldContent('menuActive')=="configuraciones"): ?>
                                     <li class="active open">
                                 <?php else: ?>
@@ -203,6 +204,15 @@
                                 <?php endif; ?>
                                         <a href="<?php echo e(url('/trabajadores')); ?>" title="Trabajadores" data-filter-tags="Trabajadores">
                                             <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Trabajadores</span>
+                                        </a>
+                                    </li>
+                                <?php if($__env->yieldContent('menuActive')=="consultaDeInformes"): ?>
+                                    <li class="active">
+                                <?php else: ?>
+                                    <li class="">
+                                <?php endif; ?>
+                                        <a href="<?php echo e(url('/informes')); ?>" title="Consulta de Informes" data-filter-tags="Consulta de Informes">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Consulta de Informes</span>
                                         </a>
                                     </li>
                                 <?php if($__env->yieldContent('menuActive')=="configuraciones"): ?>

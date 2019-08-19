@@ -14,6 +14,14 @@ use Illuminate\Http\Request;
 */
 
 /*
+*******Generales******
+*/
+
+//Zonas Horarias
+Route::get('/zonasHorarias', 'APIGeneral@ZonasHorarias');
+
+
+/*
 *******Trabajadores******
 */
 

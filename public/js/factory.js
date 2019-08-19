@@ -205,6 +205,17 @@
           cache: false
         });
 
+      }, 
+      getAllZonasHorarias: function() {
+
+        console.log("[factory][getAllZonasHorarias]");
+
+        var url = '/api/zonasHorarias';
+        return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
+
       }
     };
   });

@@ -33,7 +33,7 @@
 
     functions.loading();
 
-    $("body").css("background-image","url('img/texture.png')");
+    $("body").css("background-image","url('../img/texture.png')");
 
     
     console.log("[signin]");
@@ -680,15 +680,43 @@
 
     functions.loading();
 
+    $scope.zonasHorarias = "";
+
+    $scope.getZonasHorariasClick = function(){
+
+      console.log("[configuraciones] ");
+
+      functions.getAllZonasHorarias().then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[configuraciones][getZonasHorariasClick]");
+
+              console.log(response.data.data);
+
+              $scope.zonasHorarias = response.data.data;
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getZonasHorariasClick
+
     
     $scope.getImageEmpresaClick = function(id_empresas){
 
-      console.log("[signinEmpresas] ");
+      console.log("[configuraciones] ");
 
       functions.getImageEmpresa(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[nuevaplantilla][perfilEmpresas]");
+              console.log("[configuraciones][getImageEmpresa]");
 
               console.log(response.data.data);
 
@@ -984,6 +1012,42 @@
 
 
   });//fin controller idiomas
+
+  app.controller('consultaDeInformes', function($scope, functions, $window) {
+
+    console.log("[consultaDeInformes]");
+
+    functions.loading();
+
+    
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[signinEmpresas] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[nuevaplantilla][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+
+  });//fin controller consultaDeInformes
 
   app.controller('administradores', function($scope, functions, $window) {
 

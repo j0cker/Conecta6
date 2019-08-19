@@ -184,10 +184,10 @@
                                                         <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
                                                             <div class="panel-content text-center">
                                                                 
-                                                                <select class="select2 form-control w-100" id="single-default">
+                                                                <select class="select2 form-control w-100" id="single-label">
                                                                     <option value="default">Selecciona un Idioma</option>
                                                                     <option ng-repeat="(key, plantilla) in plantillas" value="<% plantilla.id_plantillas %>"><% plantilla.nombrePlantilla %></option>
-                                                                    <option value="Crear Nueva Plantilla">Crear Nueva Plantilla</option>
+                                                                    <option value="Crear Nueva Plantilla">Crear Nuevo Idioma</option>
                                                                 </select>
 
                                                             </div>
@@ -293,8 +293,7 @@
                                                                 
                                                                 <select class="select2 form-control w-100" id="single-default">
                                                                     <option value="default">Selecciona una Zona Horaria</option>
-                                                                    <option ng-repeat="(key, plantilla) in plantillas" value="<% plantilla.id_plantillas %>"><% plantilla.nombrePlantilla %></option>
-                                                                    <option value="Crear Nueva Plantilla">Crear una Zona Horaria</option>
+                                                                    <option ng-repeat="(key, zonaHoraria) in zonasHorarias" value="<% zonaHoraria.id_zonas_horarias %>"><% zonaHoraria.nombre %> (<% zonaHoraria.utc %>) </option>
                                                                 </select>
 
                                                             </div>
@@ -306,6 +305,84 @@
                                                 <div class="col-md-4"></div>
 
                                             </div>
+
+                                            <div style="margin-top: 50px;" class="row">
+
+                                                <div class="col-md-3"></div>
+
+                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
+                                                    
+                                                        Configuración de las Plantillas:
+
+                                                    </div>
+
+                                                <div class="col-md-3"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="text-center row">
+
+                                                <div class="col-md-12">
+                                                    <a href="/plantilla/nueva">
+                                                        <button style="margin-bottom: 20px;" class="text-center btn btn-primary">Agregar</button>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+
+                                            <table id="plantillas" class="table table-bordered table-hover table-striped w-100">
+                                                <thead class="bg-warning-200">
+                                                    <tr>
+                                                        <th>Nombre de la Plantilla</th>
+                                                        <th>Lunes</th>
+                                                        <th>Martes</th>
+                                                        <th>Miercoles</th>
+                                                        <th>Jueves</th>
+                                                        <th>Viernes</th>
+                                                        <th>Sábado</th>
+                                                        <th>Domingo</th>
+                                                        <th>Opciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="historialTable">
+                                                    <tr>
+                                                        <td>Gerentes</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Directores</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Nombre de la Plantilla</th>
+                                                        <th>Lunes</th>
+                                                        <th>Martes</th>
+                                                        <th>Miercoles</th>
+                                                        <th>Jueves</th>
+                                                        <th>Viernes</th>
+                                                        <th>Sábado</th>
+                                                        <th>Domingo</th>
+                                                        <th>Opciones</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <!-- datatable end -->
 
 
                                         </div>
@@ -1015,6 +1092,57 @@
                     ]
 
                 });
+                /* init datatables */
+               var table = $('#plantillas').dataTable(
+                {
+                    "pageLength": 10,
+                    responsive: true,
+                    dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421" ] ],
+                    buttons: [
+                        {
+                            extend: 'colvis',
+                            text: 'Column Visibility',
+                            titleAttr: 'Col visibility',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'print',
+                            text: '<i class="fal fa-print"></i>',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-default'
+                        }
+
+                    ],
+                    "columnDefs": [ {
+                        "targets": -1,
+                        "data": null,
+                        "render": function ( data, type, row, meta ) {
+                            return  `<center>
+                                        <button onclick="edit(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
+                                        <button onclick="del(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
+                                    </center>`;
+                        }
+                    
+                    }
+                
+                    ]
+
+                });
 
                 //selects
                 $('.select2').select2();
@@ -1086,6 +1214,7 @@
 
                 $('#js-page-content').smartPanel(); 
                 angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+                angular.element('body').scope().getZonasHorariasClick();
             });
         </script>
 
