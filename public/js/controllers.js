@@ -781,7 +781,146 @@
 
     $scope.plantillas = "";
     $scope.cars = ["Saab", "Volvo", "BMW"];
+    $scope.latitud = "";
+    $scope.longitud = "";
 
+
+    $scope.agregarNuevoTrabajadorClick = function(id_empresas_parameter){
+
+      console.log("[agregarNuevoTrabajadorClick] ");
+
+      var id_empresas = "";
+      var nombre = "";
+      var apellido = "";
+      var correo = "";
+      var tel = "";
+      var cel = "";
+      var cargo = "";
+      var numDNI = "";
+      var numSS = "";
+      var selectPlantillaX = "";
+      var selectPlantillaY = "";
+      var plantilla = "";
+      var geoActivated = "";
+      var address = "";
+      var latitud = "";
+      var longitud = "";
+      var metros = "";
+      var registroApp = "";
+      var ipActivated = "";
+      var ipAddress = "";
+      var pcActivated = "";
+      var tabletasActivated = "";
+      var movilesActivated = "";
+      var pass = "";
+      var confPass = "";
+
+      id_empresas = id_empresas_parameter;
+      nombre = $("#nombre").val();
+      apellido = $("#apellido").val();
+      correo = $("#correo").val();
+      tel = $("#tel").val();
+      cel = $("#cel").val();
+      cargo = $("#cargo").val();
+      numDNI = $("#numDNI").val();
+      numSS = $("#numSS").val();
+
+      selectPlantillaX = document.getElementById("select-plantilla").selectedIndex;
+      selectPlantillaY = document.getElementById("select-plantilla").options;
+      plantilla = selectPlantillaY[selectPlantillaX].value ;
+
+      geoActivated = $("#geoActivated").prop("checked");
+      address = $("#pac-input2").val();
+      latitud = $scope.latitud;
+      longitud = $scope.longitud;
+      metros = $("#metros").val();
+      registroApp = $("#registroApp").prop("checked");
+      ipActivated = $("#ipActivated").prop("checked");
+      ipAddress = $("#ipAddress").val();
+      pcActivated = $("#pcActivated").prop("checked");
+      tabletasActivated = $("#tabletasActivated").prop("checked");
+      movilesActivated = $("#movilesActivated").prop("checked");
+      pass = $("#pass").val();
+      confPass = $("#confPass").val();
+
+
+      console.log("[agregarNuevoTrabajadorClick] id_empresas: " + id_empresas);
+      console.log("[agregarNuevoTrabajadorClick] nombre: " + nombre);
+      console.log("[agregarNuevoTrabajadorClick] apellido: " + apellido);
+      console.log("[agregarNuevoTrabajadorClick] correo: " + correo);
+      console.log("[agregarNuevoTrabajadorClick] tel: " + tel);
+      console.log("[agregarNuevoTrabajadorClick] cel: " + cel);
+      console.log("[agregarNuevoTrabajadorClick] cargo: " + cargo);
+      console.log("[agregarNuevoTrabajadorClick] numDNI: " + numDNI);
+      console.log("[agregarNuevoTrabajadorClick] numSS: " + numSS);
+      console.log("[agregarNuevoTrabajadorClick] selectPlantillaX: " + selectPlantillaX);
+      console.log("[agregarNuevoTrabajadorClick] selectPlantillaY: " + selectPlantillaY);
+      console.log("[agregarNuevoTrabajadorClick] selectPlantilla: " + "Index: " + selectPlantillaY[selectPlantillaX].index + " is " + selectPlantillaY[selectPlantillaX].text + " value " + selectPlantillaY[selectPlantillaX].value);
+      console.log("[agregarNuevoTrabajadorClick] plantilla: " + plantilla);
+      console.log("[agregarNuevoTrabajadorClick] geoActivated: " + geoActivated);
+      console.log("[agregarNuevoTrabajadorClick] address: " + address);
+      console.log("[agregarNuevoTrabajadorClick] latitud: " + latitud);
+      console.log("[agregarNuevoTrabajadorClick] longitud: " + longitud);
+      console.log("[agregarNuevoTrabajadorClick] metros: " + metros);
+      console.log("[agregarNuevoTrabajadorClick] registroApp: " + registroApp);
+      console.log("[agregarNuevoTrabajadorClick] ipActivated: " + ipActivated);
+      console.log("[agregarNuevoTrabajadorClick] ipAddress: " + ipAddress);
+      console.log("[agregarNuevoTrabajadorClick] pcActivated: " + pcActivated);
+      console.log("[agregarNuevoTrabajadorClick] tabletasActivated: " + tabletasActivated);
+      console.log("[agregarNuevoTrabajadorClick] movilesActivated: " + movilesActivated);
+      console.log("[agregarNuevoTrabajadorClick] pass: " + pass);
+      console.log("[agregarNuevoTrabajadorClick] confPass: " + confPass);
+
+      if(nombre==""){
+        toastr["error"]("Agregar nombre del trabajador", "");
+      } else if(apellido==""){
+        toastr["error"]("Agregar apellido del trabajador", "");
+      } else if(correo.indexOf("@")=="-1" || correo.indexOf(".")=="-1" || correo.indexOf(" ")!="-1" || correo.indexOf(",")!="-1"){
+        toastr["error"]("Agregar correo del trabajador", "");
+      } else if(tel==""){
+        toastr["error"]("Agregar teléfono fijo del trabajador", "");
+      } else if(cel==""){
+        toastr["error"]("Agregar celular del trabajador", "");
+      } else if(cargo==""){
+        toastr["error"]("Agregar cargo del trabajador", "");
+      } else if(numDNI==""){
+        toastr["error"]("Agregar Número DNI del trabajador", "");
+      } else if(numSS==""){
+        toastr["error"]("Agregar Número de Seguro Social del trabajador", "");
+      } else if(selectPlantillaY[selectPlantillaX].text=="Selecciona una Plantilla"){
+        toastr["error"]("Seleccione una Plantilla al trabajador", "");
+      } else if(pass==""){
+        toastr["error"]("Agregue una Contraseña al trabajador", "");
+      } else if(confPass==""){
+        toastr["error"]("Agregue la confirmación de la<br /> Contraseña del trabajador", "");
+      } else if(pass!=confPass){
+        toastr["error"]("Las contraseñas No Coinciden", "");
+      } else {
+
+        functions.postNuevoTrabajador(id_empresas, nombre, apellido, correo, tel, cel, cargo, numDNI, numSS, 
+          plantilla, geoActivated, address, latitud, longitud, metros, registroApp, 
+          ipActivated, ipAddress, pcActivated, tabletasActivated, 
+          movilesActivated, pass).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[agregarNuevoTrabajadorClick][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin postNuevoTrabajador*/
+      }
+
+    }; //agregarNuevoTrabajadorClick
     
 
     $scope.getImageEmpresaClick = function(id_empresas){

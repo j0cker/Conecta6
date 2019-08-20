@@ -492,6 +492,174 @@ class APIEmpresas extends Controller
 
   }
   
+  public function AltaTrabajador(Request $request){
+    
+    Log::info('[APIEmpresas][AltaTrabajador]');
+
+    Log::info("[APIEmpresas][AltaTrabajador] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][AltaTrabajador] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][AltaTrabajador] Permiso Existente");
+          
+          $this->validate($request, [
+            'id_empresas' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'correo' => 'required',
+            'tel' => 'required',
+            'cel' => 'required',
+            'cargo' => 'required',
+            'numDNI' => 'required',
+            'numSS' => 'required',
+            'plantilla' => 'required',
+            'geoActivated' => 'required',
+            //'address' => 'required',
+            //'metros' => 'required',
+            //'registroApp' => 'required',
+            //'ipActivated' => 'required',
+            //'ipAddress' => 'required',
+            'pcActivated' => 'required',
+            'tabletasActivated' => 'required',
+            'movilesActivated' => 'required',
+            'pass' => 'required'
+          ]);
+            
+          $id_empresas = $request->input('id_empresas');
+          $nombre = $request->input('nombre');
+          $apellido = $request->input('apellido');
+          $correo = $request->input('correo');
+          $tel = $request->input('tel');
+          $cel = $request->input('cel');
+          $cargo = $request->input('cargo');
+          $numDNI = $request->input('numDNI');
+          $numSS = $request->input('numSS');
+          $plantilla = $request->input('plantilla');
+          $geoActivated = $request->input('geoActivated');
+          $address = $request->input('address');
+          $latitud = $request->input('latitud');
+          $longitud = $request->input('longitud');
+          $metros = $request->input('metros');
+          $registroApp = $request->input('registroApp');
+          $ipActivated = $request->input('ipActivated');
+          $ipAddress = $request->input('ipAddress');
+          $pcActivated = $request->input('pcActivated');
+          $tabletasActivated = $request->input('tabletasActivated');
+          $movilesActivated = $request->input('movilesActivated');
+          $pass = $request->input('pass');
+
+          Log::info("[agregarNuevoTrabajadorClick] id_empresas: " . $id_empresas);
+          Log::info("[agregarNuevoTrabajadorClick] nombre: " . $nombre);
+          Log::info("[agregarNuevoTrabajadorClick] apellido: " . $apellido);
+          Log::info("[agregarNuevoTrabajadorClick] correo: " . $correo);
+          Log::info("[agregarNuevoTrabajadorClick] tel: " . $tel);
+          Log::info("[agregarNuevoTrabajadorClick] cel: " . $cel);
+          Log::info("[agregarNuevoTrabajadorClick] cargo: " . $cargo);
+          Log::info("[agregarNuevoTrabajadorClick] numDNI: " . $numDNI);
+          Log::info("[agregarNuevoTrabajadorClick] numSS: " . $numSS);
+          Log::info("[agregarNuevoTrabajadorClick] plantilla: " . $plantilla);
+          Log::info("[agregarNuevoTrabajadorClick] geoActivated: " . $geoActivated);
+          Log::info("[agregarNuevoTrabajadorClick] latitud: " . $latitud);
+          Log::info("[agregarNuevoTrabajadorClick] longitud: " . $longitud);
+          Log::info("[agregarNuevoTrabajadorClick] address: " . $address);
+          Log::info("[agregarNuevoTrabajadorClick] metros: " . $metros);
+          Log::info("[agregarNuevoTrabajadorClick] registroApp: " . $registroApp);
+          Log::info("[agregarNuevoTrabajadorClick] ipActivated: " . $ipActivated);
+          Log::info("[agregarNuevoTrabajadorClick] ipAddress: " . $ipAddress);
+          Log::info("[agregarNuevoTrabajadorClick] pcActivated: " . $pcActivated);
+          Log::info("[agregarNuevoTrabajadorClick] tabletasActivated: " . $tabletasActivated);
+          Log::info("[agregarNuevoTrabajadorClick] movilesActivated: " . $movilesActivated);
+          Log::info("[agregarNuevoTrabajadorClick] pass: " . $pass);
+
+          $trabajadores = Trabajadores::addTrabajador($id_empresas, $nombre, $apellido, $correo, $tel, $cel, $cargo, $numDNI, $numSS,
+          $plantilla, $geoActivated, $latitud, $longitud, $address, $metros, $registroApp, $ipActivated, $ipAddress, $pcActivated, 
+          $tabletasActivated, $movilesActivated, $pass);
+        
+          Log::info($trabajadores);
+          
+          if($trabajadores[0]->save==1){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($trabajadores));
+            $responseJSON->data = $trabajadores;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($trabajadores));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+          
+        }
+
+        return redirect('/');
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][AltaTrabajador] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][AltaTrabajador] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][AltaTrabajador] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][AltaTrabajador] ' . $e);
+
+        return redirect('/');
+
+      }
+
+
+
+    } else {
+      abort(404);
+    }
+
+  }
 
   public function NuevoTrabajadores(Request $request){
     

@@ -42,7 +42,7 @@
               <div class="card">
 
                 <div class="card-image resaltar">
-                  <img class="profile-image logoCompany text-center" src="<?php echo e(url('img/logo-example.png')); ?>">
+                  <img onerror="this.src='<?php echo e(url('img/logo-example.png')); ?>'" class="profile-image logoCompany text-center" src="<?php echo e(url('img/logo-example.png')); ?>">
                 </div>
 
                 <div class="card-content">

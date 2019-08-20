@@ -44,7 +44,7 @@
               <div class="card">
 
                 <div class="card-image resaltar">
-                  <img onerror="this.src='{{ url('img/profile-image.png') }}'" class="logoCompany text-center" src="{{ url('img/profile-image.png') }}">
+                  <img onerror="this.src='{{ url('img/logo-example.png') }}'" class="logoCompany text-center" src="{{ url('img/logo-example.png') }}">
                 </div>
 
                 <div class="card-content">

@@ -56,6 +56,9 @@ Route::get('/empresas/profile/image', 'APIEmpresas@GetProfileImage');
 //Update Image
 Route::post('/empresas/profile/image', 'APIEmpresas@UpdateProfilePicture');
 
+//Alta Nuevo Trabajador
+Route::post('/empresas/altaNuevoTrabajador', 'APIEmpresas@AltaTrabajador');
+
 /*
 *******Admin******
 */

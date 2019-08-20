@@ -26,6 +26,13 @@
 
 
 
+        /*
+        *******Generales******
+        */
+
+        //Zonas Horarias
+        Route::get('/zonasHorarias', 'APIGeneral@ZonasHorarias');
+
 
 
 
@@ -87,10 +94,12 @@
         https://boogapp.info/perfilEmpresas
         https://boogapp.info/trabajadores
         https://boogapp.info/trabajadores/nuevo
+        https://boogapp.info/informes
         https://boogapp.info/plantilla/nueva
+        https://boogapp.info/configuraciones
 
         API's con Prejijo api/
-
+        
         //Ingresar Empresas
         Route::get('/empresas/ingresar', 'APIEmpresas@Ingresar');
 
@@ -99,6 +108,19 @@
 
         //validar que no exista ese subdominio solicitado
         Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
+
+        //alta nueva plantilla
+        Route::post('/empresas/plantilla/nueva', 'APIEmpresas@AltaPlantilla');
+
+        //get plantillas by empresas
+        Route::get('/empresas/plantilla/obtener', 'APIEmpresas@GetPlantillas');
+
+        //Get Image
+        Route::get('/empresas/profile/image', 'APIEmpresas@GetProfileImage');
+
+        //Update Image
+        Route::post('/empresas/profile/image', 'APIEmpresas@UpdateProfilePicture');
+
 
 
 

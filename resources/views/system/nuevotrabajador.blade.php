@@ -113,7 +113,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Nombre" />
+                                                                    <input id="nombre" type="text" class="form-control" placeholder="Nombre" />
 
                                                                 </div>
 
@@ -141,7 +141,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Apellido" />
+                                                                    <input id="apellido" type="text" class="form-control" placeholder="Apellido" />
 
                                                                 </div>
 
@@ -169,7 +169,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Correo Electrónico" />
+                                                                    <input id="correo" type="text" class="form-control" placeholder="Correo Electrónico" />
 
                                                                 </div>
 
@@ -197,7 +197,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Teléfono Fijo" />
+                                                                    <input id="tel" type="text" class="form-control" placeholder="Teléfono Fijo" />
 
                                                                 </div>
 
@@ -225,35 +225,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Celular" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Celular:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input type="text" class="form-control" placeholder="Celular" />
+                                                                    <input id="cel" type="text" class="form-control" placeholder="Celular" />
 
                                                                 </div>
 
@@ -281,7 +253,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Cargo" />
+                                                                    <input id="cargo" type="text" class="form-control" placeholder="Cargo" />
 
                                                                 </div>
 
@@ -309,7 +281,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Número DNI" />
+                                                                    <input id="numDNI" type="text" class="form-control" placeholder="Número DNI" />
 
                                                                 </div>
 
@@ -337,7 +309,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Nº Seguro Social" />
+                                                                    <input id="numSS" type="text" class="form-control" placeholder="Nº Seguro Social" />
 
                                                                 </div>
 
@@ -374,7 +346,7 @@
                                                                     <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
                                                                         <div class="panel-content text-center">
                                                                             
-                                                                            <select class="select2 form-control w-100" id="single-default">
+                                                                            <select class="select2 form-control w-100" id="select-plantilla">
                                                                                 <option value="default">Selecciona una Plantilla</option>
                                                                                 <option ng-repeat="(key, plantilla) in plantillas" value="<% plantilla.id_plantillas %>"><% plantilla.nombrePlantilla %></option>
                                                                                 <option value="Crear Nueva Plantilla">Crear Nueva Plantilla</option>
@@ -418,7 +390,7 @@
                                                                                     <div class="panel-tag">
                                                                                         Metros permitidos a la redonda:
                                                                                     </div>
-                                                                                    <input id="demo_7" type="text" value="" class="d-none" tabindex="-1" readonly="">
+                                                                                    <input id="metros" type="text" value="" class="d-none" tabindex="-1" readonly="">
                                                                                 </div>
 
                                                                                 <div class="custom-control custom-switch text-center">
@@ -548,7 +520,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="password" class="form-control" placeholder="Contraseña" />
+                                                                    <input id="pass" type="password" class="form-control" placeholder="Contraseña" />
 
                                                                 </div>
 
@@ -576,7 +548,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="password" class="form-control" placeholder="Comprobar Contraseña" />
+                                                                    <input id="confPass" type="password" class="form-control" placeholder="Comprobar Contraseña" />
 
                                                                 </div>
 
@@ -586,7 +558,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Agregar</a>
+                                                                <a style="width: 200px;" href="#" ng-click="agregarNuevoTrabajadorClick('{{ $user['usr']->id_empresas }}');" class="btn btn-primary btn-block waves-effect waves-themed">Agregar</a>
                                                             </div>
                                                         </div>
 
@@ -1265,7 +1237,7 @@
                 //var ionskin = "flat", "big", "modern", "sharp", "round", "square";
                 var ionskin = "round";
 
-                $("#demo_7").ionRangeSlider(
+                $("#metros").ionRangeSlider(
                 {
                     skin: ionskin,
                     min: 0,
@@ -1302,11 +1274,11 @@
                 });
 
 
-                $("#single-default").change(function(){
+                $("#select-plantilla").change(function(){
 
-                    console.log("[single-default] " + $("#single-default").val());
+                    console.log("[select-plantilla] " + $("#select-plantilla").val());
 
-                    if($("#single-default").val()=="Crear Nueva Plantilla"){
+                    if($("#select-plantilla").val()=="Crear Nueva Plantilla"){
                         console.log("Nueva Plantilla");
                         $('#loader-wrapper').css('display',''); 
                         window.location = "/plantilla/nueva";
@@ -1368,8 +1340,6 @@
         
         $(function () {
 
-            
-
             $("#geoActivated").change(function(){
 
                 console.log("[geoActivated] " + $("#geoActivated").prop("checked"));
@@ -1426,6 +1396,9 @@
                     $("#pac-input2").val($("#pac-input").val());
                     $("#deAddressCalle").val($("#pac-input").val());
                     $("#deAddressMapaCustomer").css("display","none");
+
+                    angular.element('body').scope().latitud = deLatitud;
+                    angular.element('body').scope().longitud = deLongitud;
                 }
 
                 if(deLongitud!="" && deLatitud!="" && deDireccion!=""){
@@ -1435,6 +1408,9 @@
 
                     $("#deAddressMapaCustomer").html("<a target='_blank' href='https://www.google.com.mx/maps/@"+deLatitud+","+deLongitud+",15z'>https://www.google.com.mx/maps/@"+deLatitud+","+deLongitud+",15z</a><br /><a target='_blank' href='https://maps.google.com/maps?q="+deLatitud+","+deLongitud+"'>https://maps.google.com/maps?q="+deLatitud+","+deLongitud+"</a>");
                     $("#deAddressMapaCustomer").css("display","block");
+
+                    angular.element('body').scope().latitud = deLatitud;
+                    angular.element('body').scope().longitud = deLongitud;
 
 
                     if(deDireccion.street_number){

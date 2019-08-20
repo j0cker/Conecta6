@@ -216,6 +216,20 @@
           cache: false
         });
 
+      },
+      postNuevoTrabajador: function(id_empresas, nombre, apellido, correo, tel, cel, cargo, numDNI, numSS, 
+        plantilla, geoActivated, address, latitud, longitud, metros, registroApp, 
+        ipActivated, ipAddress, pcActivated, tabletasActivated, 
+        movilesActivated, pass) {
+
+        console.log("[factory][postNuevoTrabajador]");
+
+        var url = '/api/empresas/altaNuevoTrabajador';
+		  	return $http.post(url, {cache: false, id_empresas:id_empresas, nombre:nombre, apellido:apellido, correo:correo, tel:tel, cel:cel, cargo:cargo, numDNI:numDNI, numSS:numSS, 
+          plantilla:plantilla, geoActivated:geoActivated, address:address, latitud:latitud, longitud:longitud, metros:metros, registroApp:registroApp, 
+          ipActivated:ipActivated, ipAddress:ipAddress, pcActivated:pcActivated, tabletasActivated:tabletasActivated, 
+          movilesActivated:movilesActivated, pass:pass });
+
       }
     };
   });

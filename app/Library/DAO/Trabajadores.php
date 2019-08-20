@@ -23,6 +23,53 @@ class Trabajadores extends Model
     //public $attributes;
 
 
+
+    //agrega plantilla
+    public function scopeAddTrabajador($query, $id_empresas, $nombre, $apellido, $correo, $tel, $cel, $cargo, $numDNI, $numSS,
+    $plantilla, $geoActivated, $latitud, $longitud, $address, $metros, $registroApp, $ipActivated, $ipAddress, $pcActivated, 
+    $tabletasActivated, $movilesActivated, $pass)
+    {
+        
+
+        Log::info("[plantillas][scopeAddTrabajador]");
+
+
+        $trabajador = new Trabajadores;
+
+        $trabajador->id_empresas = $id_empresas;
+        $trabajador->nombre = $nombre;
+        $trabajador->apellido = $apellido;
+        $trabajador->correo = $correo;
+        $trabajador->telefono_fijo = $tel;
+        $trabajador->celular = $cel;
+        $trabajador->cargo = $cargo;
+        $trabajador->dni_num = $numDNI;
+        $trabajador->seguro_social = $numSS;
+        $trabajador->id_plantillas = $plantilla;
+        $trabajador->geo_activated = $geoActivated;
+        $trabajador->latitud = $latitud;
+        $trabajador->longitud = $longitud;
+        $trabajador->direccion = $address;
+        $trabajador->metros = $metros;
+        $trabajador->app_geo_activated = $registroApp;
+        $trabajador->ip_activated = $ipActivated;
+        $trabajador->ip = $ipAddress;
+        $trabajador->pc_activated = $pcActivated;
+        $trabajador->tablet_activated = $tabletasActivated;
+        $trabajador->mobile_activated = $movilesActivated;
+
+        $pass = hash("sha256", $pass);
+        $trabajador->pass = $pass;
+
+        $obj = Array();
+        $obj[0] = new \stdClass();
+        $obj[0]->save = $trabajador->save(); //return true in the other one return 1
+        $obj[0]->id = $trabajador->id;
+
+        return $obj;
+
+    }
+
     public function scopeLookForByEmailAndPass($query, $email, $pass)
     {
 
