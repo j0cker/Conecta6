@@ -524,6 +524,24 @@ class APIEmpresas extends Controller
         if(in_array(2, $token_decrypt["permisos"])){
 
           Log::info("[APIEmpresas][AltaTrabajador] Permiso Existente");
+          
+          $trabajadores = Trabajadores::getByIdEmpresas($token_decrypt['usr']->id_empresas)->get();
+
+          Log::info($trabajadores);
+
+          if(count($trabajadores)>0){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($trabajadores));
+            $responseJSON->data = $trabajadores;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($trabajadores));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
 
         }
 

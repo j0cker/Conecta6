@@ -23,6 +23,17 @@ class Trabajadores extends Model
     //public $attributes;
 
 
+    //buscar trabajadores por empess
+    public function scopeGetByIdEmpresas($query, $id_empresas)
+    {   
+        Log::info("[Empresas][scopeGetByIdEmpresas]");
+
+        Log::info("[Empresas][scopeGetByIdEmpresas] id_empresas: ". $id_empresas);
+
+        return $query->where([
+          ['id_empresas', '=', $id_empresas],
+        ]);
+    }
 
     //agrega plantilla
     public function scopeAddTrabajador($query, $id_empresas, $nombre, $apellido, $correo, $tel, $cel, $cargo, $numDNI, $numSS,

@@ -23,7 +23,7 @@ class Plantillas extends Model
     //public $attributes;
 
 
-    //agrega plantilla
+    //obtiene plantilla por empresa
     public function scopeGetByIdEmpresas($query, $id_empresas)
     {   
         Log::info("[Empresas][scopeGetByIdEmpresas]");

@@ -230,6 +230,17 @@
           ipActivated:ipActivated, ipAddress:ipAddress, pcActivated:pcActivated, tabletasActivated:tabletasActivated, 
           movilesActivated:movilesActivated, pass:pass });
 
+      },
+      getTrabajadoresByIdEmpresa: function(id_empresas) {
+
+        console.log("[factory][getTrabajadoresByIdEmpresa]");
+
+        var url = '/api/empresas/trabajadores/obtener';
+		  	return $http.get(url,{
+          params: { cache: false, id_empresas:id_empresas },
+          cache: false
+        });
+
       }
     };
   });

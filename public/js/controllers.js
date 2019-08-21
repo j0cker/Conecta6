@@ -802,6 +802,29 @@
 
     functions.loading();
 
+    $scope.getTrabajadoresByIdEmpresaClick = function(id_empresas){
+
+      functions.getTrabajadoresByIdEmpresa(id_empresas).then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            console.log("[agregarNuevoTrabajadorClick][perfilEmpresas]");
+
+            console.log(response.data.data);
+
+
+          } else {
+              toastr["warning"](response.data.description, "");
+              functions.loadingEndWait();
+          }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getTrabajadoresByIdEmpresa*/
+
+    }; //fin getTrabajadoresByIdEmpresa
+
     $scope.getImageEmpresaClick = function(id_empresas){
 
       console.log("[signinEmpresas] ");

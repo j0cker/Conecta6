@@ -894,6 +894,9 @@
                 
 
                 angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                angular.element('body').scope().getTrabajadoresByIdEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+
+                
             });
         </script>
 

@@ -899,6 +899,9 @@
                 
 
                 angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+                angular.element('body').scope().getTrabajadoresByIdEmpresaClick("{{ $user['usr']->id_empresas }}");
+
+                
             });
         </script>
 
