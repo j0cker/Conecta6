@@ -396,11 +396,11 @@
 
                             <?php if(in_array("3", $user["permisos"]) || in_array("1", $user["permisos"])): ?>
                             
-                                <!-- app user menu -->
+                                <!-- app user menu trabajadores -->
 
                                 <div>
                                     <a href="#" data-toggle="dropdown" title="<?php echo e($user['usr']->correo); ?>" class="header-icon d-flex align-items-center justify-content-center ml-2">
-                                        <img src="<?php echo e(url('img/avatar-admin.png')); ?>" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre); ?> <?php echo e($user["usr"]->apellido); ?>'>
+                                        <img src="<?php echo e(url('img/profile-image.png')); ?>" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre); ?> <?php echo e($user["usr"]->apellido); ?>'>
                                         <!-- you can also add username next to the avatar with the codes below:
                                         <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
                                         <i class="ni ni-chevron-down hidden-xs-down"></i> -->
@@ -433,11 +433,11 @@
 
                             <?php if(in_array("2", $user["permisos"])): ?>
                             
-                                <!-- app user menu -->
+                                <!-- app user menu empresas -->
 
                                 <div>
                                     <a href="#" data-toggle="dropdown" title="<?php echo e($user['usr']->correo); ?>" class="header-icon d-flex align-items-center justify-content-center ml-2">
-                                        <img onerror="this.src='<?php echo e(url('img/profile-image.png')); ?>'" src="<?php echo e(url('img/profile-image.png')); ?>" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre_empresa); ?>'>
+                                        <img onerror="this.src='<?php echo e(url('img/logo-example.png')); ?>'" src="<?php echo e(url('img/logo-example.png')); ?>" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre_empresa); ?>'>
                                         <!-- you can also add username next to the avatar with the codes below:
                                         <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
                                         <i class="ni ni-chevron-down hidden-xs-down"></i> -->
@@ -446,7 +446,7 @@
                                         <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
                                             <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
                                                 <span class="mr-2">
-                                                    <img src="<?php echo e(url('img/avatar-admin.png')); ?>" class="rounded-circle profile-image" alt='<?php echo e($user["usr"]->nombre_empresa); ?>'>
+                                                    <img onerror="this.src='<?php echo e(url('img/logo-example.png')); ?>'" src="<?php echo e(url('img/logo-example.png')); ?>" class="rounded-circle profile-image" alt='<?php echo e($user["usr"]->nombre_empresa); ?>'>
                                                 </span>
                                                 <div class="info-card-text">
                                                     <div class="fs-lg text-truncate text-truncate-lg"><?php echo e($user["usr"]->nombre_empresa); ?></div>

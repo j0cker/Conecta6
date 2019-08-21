@@ -34,10 +34,11 @@ list($r, $g, $b) = sscanf($colorHex, "#%02x%02x%02x");
 
 }
 .logoCompany{
-  width: 200px !important;
-  height: 200px !important;
+  width:150px !important;
+  height: 150px !important;
   text-align: center !important;
   display: inline-block !important;
+  margin-top: 20px;
 }
 .card-image{
   width: 200px !important;

@@ -99,16 +99,18 @@
 
                                                                 <div class="col-md-4 text-center">
                                                                 
-                                                                    
-                                                                    <form method="post" action="{{ url('/api/empresas/profile/image') }}" enctype="multipart/form-data" id="FrmProfilePicture">
+                                                                    <!--    
+                                                                    <form method="post" action="{{ url('/api/trabajadores/profile/image') }}" enctype="multipart/form-data" id="FrmProfilePicture">
                                                                         {{ method_field('POST') }}
 
                                                                         <label for="profileimg" class="figure">
                                                                             <input type="file" id="profileimg" hidden name="profileimg">
-                                                                            <img class="profile-image  rounded-circle" onerror="this.src='{{ url('img/profile-image.png') }}'" style="width: 120px; height: 120px;" src="{{ url('img/profile-image.png') }}" alt="{{ $user['usr']->nombre_empresa }}" id="userProfilePicture">
+                                                                            <img class="profile-image  rounded-circle" onerror="this.src='{{ url('img/profile-image.png') }}'" style="width: 120px; height: 120px;" src="{{ url('img/profile-image.png') }}" alt="{{ $user['usr']->nombre }} {{ $user['usr']->apellido }}" id="userProfilePicture">
                                                                         </label>
 
                                                                     </form>
+                                                                    -->
+                                                                    <img class="profile-image rounded-circle" onerror="this.src='{{ url('img/profile-image.png') }}'" style="width: 120px; height: 120px;" src="{{ url('img/profile-image.png') }}" alt="{{ $user['usr']->nombre }} {{ $user['usr']->apellido }}" id="userProfilePicture">
 
                                                                     <center>
                                                                     150x150
@@ -1096,5 +1098,11 @@
         <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
 
         
+        <script>
+            $(document).ready(function(){
+                
+                angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+            });
+        </script>
 
     @stop

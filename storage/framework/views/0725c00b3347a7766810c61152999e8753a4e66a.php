@@ -102,7 +102,7 @@
 
                                                                         <label for="profileimg" class="figure">
                                                                             <input type="file" id="profileimg" hidden name="profileimg">
-                                                                            <img class="profile-image  rounded-circle" onerror="this.src='<?php echo e(url('img/profile-image.png')); ?>'" style="width: 120px; height: 120px;" src="<?php echo e(url('img/profile-image.png')); ?>" alt="<?php echo e($user['usr']->nombre_empresa); ?>" id="userProfilePicture">
+                                                                            <img class="profile-image  rounded-circle" onerror="this.src='<?php echo e(url('img/logo-example.png')); ?>'" style="width: 120px; height: 120px;" src="<?php echo e(url('img/logo-example.png')); ?>" alt="<?php echo e($user['usr']->nombre_empresa); ?>" id="userProfilePicture">
                                                                         </label>
 
                                                                     </form>

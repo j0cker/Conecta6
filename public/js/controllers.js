@@ -38,6 +38,35 @@
     
     console.log("[signin]");
 
+    
+
+    
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[signin] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[signin][getImageEmpresa]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
     $scope.send = function(){
       console.log("[signin][send]");
 
@@ -142,6 +171,35 @@
     console.log("[perfilTrabajadores]");
 
     functions.loading();
+
+    
+
+    
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[signin] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[signin][getImageEmpresa]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
 
 
   });//fin controller perfilTrabajadores
@@ -895,6 +953,12 @@
         toastr["error"]("Agregue la confirmación de la<br /> Contraseña del trabajador", "");
       } else if(pass!=confPass){
         toastr["error"]("Las contraseñas No Coinciden", "");
+      } else if(geoActivated==1 && address==""){
+        toastr["error"]("Agregar la dirección de Geolocalización", "");
+
+      } else if(ipActivated==1 && ipAddress==""){
+        toastr["error"]("Agregar la dirección IP correctamente", "");
+
       } else {
 
         functions.postNuevoTrabajador(id_empresas, nombre, apellido, correo, tel, cel, cargo, numDNI, numSS, 
@@ -906,6 +970,7 @@
               console.log("[agregarNuevoTrabajadorClick][perfilEmpresas]");
 
               console.log(response.data.data);
+              toastr["success"]("Información enviada Exitosamente", "");
 
 
             } else {

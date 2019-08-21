@@ -40,6 +40,24 @@ class Permisos_inter extends Model
 
     }
 
+    public function scopeAddNewTrabajador($query, $idTrabajador)
+    {
+
+        Log::info("[Permisos_inter][scopeAddNewTrabajador] idEmpresa: ". $idTrabajador);
+
+        $permisos_inter = new Permisos_inter;
+        $permisos_inter->id_trabajadores = $idTrabajador;
+        $permisos_inter->id_permisos = 3;
+
+        $obj = array();
+        $obj[0] = new \stdClass();
+        $obj[0]->save = $permisos_inter->save(); //return true in the other one return 1
+        $obj[0]->id = $permisos_inter->id;
+
+        return $obj;
+
+    }
+
     public function scopeLookForByIdTrabajadores($query, $idTrabajadores)
     {
 

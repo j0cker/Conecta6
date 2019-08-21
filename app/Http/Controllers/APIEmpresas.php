@@ -491,6 +491,85 @@ class APIEmpresas extends Controller
     }
 
   }
+
+  public function GetTrabajadores(Request $request){
+    
+    Log::info('[APIEmpresas][GetTrabajadores]');
+
+    Log::info("[APIEmpresas][GetTrabajadores] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][AltaTrabajador] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][AltaTrabajador] Permiso Existente");
+
+        }
+
+        return redirect('/');
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][AltaTrabajador] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][AltaTrabajador] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][AltaTrabajador] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][AltaTrabajador] ' . $e);
+
+        return redirect('/');
+
+      }
+
+  
+  
+    } else {
+      abort(404);
+    }
+
+  }
   
   public function AltaTrabajador(Request $request){
     
@@ -602,9 +681,17 @@ class APIEmpresas extends Controller
           
           if($trabajadores[0]->save==1){
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($trabajadores));
-            $responseJSON->data = $trabajadores;
-            return json_encode($responseJSON);
+            $Permisos_inter = Permisos_inter::addNewTrabajador($trabajadores[0]->id);
+
+            if($Permisos_inter[0]->save==1){
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($trabajadores));
+              $responseJSON->data = $trabajadores;
+              return json_encode($responseJSON);
+            } else {
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($trabajadores));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+            }
 
           } else {
 

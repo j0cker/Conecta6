@@ -105,7 +105,7 @@
 
                                                                         <label for="profileimg" class="figure">
                                                                             <input type="file" id="profileimg" hidden name="profileimg">
-                                                                            <img class="profile-image  rounded-circle" onerror="this.src='{{ url('img/profile-image.png') }}'" style="width: 120px; height: 120px;" src="{{ url('img/profile-image.png') }}" alt="{{ $user['usr']->nombre_empresa }}" id="userProfilePicture">
+                                                                            <img class="profile-image  rounded-circle" onerror="this.src='{{ url('img/logo-example.png') }}'" style="width: 120px; height: 120px;" src="{{ url('img/logo-example.png') }}" alt="{{ $user['usr']->nombre_empresa }}" id="userProfilePicture">
                                                                         </label>
 
                                                                     </form>
