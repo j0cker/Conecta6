@@ -94,38 +94,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Manlio Emiliano</td>
-                                                        <td>Terán Ramos</td>
-                                                        <td>manlioelnum1@hotmail.com</td>
-                                                        <td>5510800291</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Francisco Alonso</td>
-                                                        <td>Ávila Peñavera</td>
-                                                        <td>alonso@hotmail.com</td>
-                                                        <td>7839202847</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Juan</td>
-                                                        <td>Perez</td>
-                                                        <td>juan@cocacola.com</td>
-                                                        <td>37465722</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>Jose</td>
-                                                        <td>Ramirez</td>
-                                                        <td>jose@cocacola.com</td>
-                                                        <td>454353223</td>
-                                                        <td></td>
-                                                    </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
@@ -765,14 +733,19 @@
                 console.log("entro: " + $("#gra-" + valor).prop('checked'));
             }
 
-            function edit(valor){
+            function edit(id){
                 
-                console.log(valor);
+                console.log(id);
+
+                angular.element('body').scope().editTrabajadoresByIdEmpresaClick(id, "<?php echo e($user['usr']->id_empresas); ?>");
             }
 
-            function del(valor){
+            function del(id){
                 
-                console.log(valor);
+                console.log(id);
+
+                angular.element('body').scope().delTrabajadoresByIdEmpresaClick(id, "<?php echo e($user['usr']->id_empresas); ?>");
+
             }
 
             $(document).ready(function()
@@ -787,7 +760,7 @@
                     dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421" ] ],
+                    //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421","545435435" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421", "45435435" ] ],
                     buttons: [
                         {
                             extend: 'colvis',

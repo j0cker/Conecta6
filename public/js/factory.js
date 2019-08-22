@@ -241,6 +241,15 @@
           cache: false
         });
 
+      },
+      delTrabajadoresByIdEmpresa: function(id_trabajadores, id_empresas) {
+
+        console.log("[factory][delTrabajadoresByIdEmpresa]");
+
+        var url = '/api/empresas/trabajadores/eliminar';
+
+        return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, id_empresas:id_empresas });
+
       }
     };
   });

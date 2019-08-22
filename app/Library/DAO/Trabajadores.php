@@ -22,6 +22,17 @@ class Trabajadores extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    public function scopeDelByIdEmpresas($query, $id_trabajadores, $id_empresas){
+
+      Log::info("[Trabajadores][scopeDelByIdEmpresas]");
+
+      return $query->where([
+          ['id_trabajadores', '=', $id_trabajadores],
+          ['id_empresas', '=', $id_empresas],
+        ])->delete(); //return true in the other one return 1
+
+  }
+
 
     //buscar trabajadores por empess
     public function scopeGetByIdEmpresas($query, $id_empresas)

@@ -22,6 +22,17 @@ class Permisos_inter extends Model
     const UPDATED_AT = null;
     //public $attributes;
 
+    public function scopeDelByIdEmpresas($query, $id_trabajadores, $permiso){
+
+        Log::info("[Permisos_inter][scopeDelByIdEmpresas]");
+  
+        return $query->where([
+            ['id_trabajadores', '=', $id_trabajadores],
+            ['id_permisos', '=', $permiso],
+          ])->delete(); //return true in the other one return 1
+
+    }
+
     public function scopeAddNewEmpresa($query, $idEmpresa)
     {
 

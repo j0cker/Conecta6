@@ -32,7 +32,42 @@ toastr.options = {
   "showMethod": "fadeIn",
   "hideMethod": "fadeOut"
 }
+function removeKeyFromArray(json, choice) {
+  /*
+    Remueve una llave de un array por completo
+  */
 
+  console.log("[functions][removeKeyFromArray]");
+  console.log("[functions][removeKeyFromArray] size: " + json.length);
+
+  for (var i = 0; i < json.length; i++) {
+      delete json[i][choice];
+  }
+
+}
+function addKeyToArray(data, array, choice) {
+  /*
+    agrega un array de llaves de un array a un array
+    para datatables
+  */
+
+  console.log("[functions][addKeyToArray]");
+
+  for (var x = 0; x < array.length; x++) {
+
+    var obj = Array();
+
+    for (var y= 0; y < choice.length; y++) {
+      obj[y] = array[x][choice[y]];
+    }
+
+    data.push(obj);
+    
+  }
+
+  return data;
+
+}
 function startLoading(){
   //loading screen
   console.log("[functions][Loading]");

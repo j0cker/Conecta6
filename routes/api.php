@@ -62,6 +62,9 @@ Route::post('/empresas/altaNuevoTrabajador', 'APIEmpresas@AltaTrabajador');
 //Get Trabajadores
 Route::get('/empresas/trabajadores/obtener', 'APIEmpresas@GetTrabajadores');
 
+//Eliminar Trabajador
+Route::post('/empresas/trabajadores/eliminar', 'APIEmpresas@EliminarTrabajadores');
+
 /*
 *******Admin******
 */

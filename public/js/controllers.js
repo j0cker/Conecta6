@@ -796,11 +796,47 @@
 
   });//fin controller trabajadores
 
-  app.controller('trabajadores', function($scope, functions, $window) {
+  app.controller('trabajadores', function($scope, functions, $window, $filter) {
 
     console.log("[trabajadores]");
 
     functions.loading();
+
+    $scope.delTrabajadoresByIdEmpresaClick = function(id_trabajadores, id_empresas){
+
+      functions.delTrabajadoresByIdEmpresa(id_trabajadores, id_empresas).then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            console.log("[delTrabajadoresByIdEmpresaClick][delTrabajadoresByIdEmpresa]");
+
+            console.log(response.data.data);
+
+            var data = Array();
+
+            var choices = Array();
+            choices = ["id_trabajadores", "nombre", "apellido", "correo", "telefono_fijo"];
+            
+            data = addKeyToArray(data, response.data.data, choices);
+
+            console.log(data);
+
+            $('#dt-basic-example').dataTable().fnClearTable();
+            $('#dt-basic-example').dataTable().fnAddData(data);
+
+            toastr["success"]("Información enviada Exitosamente", "");
+
+          } else {
+              toastr["warning"](response.data.description, "");
+              functions.loadingEndWait();
+          }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin delTrabajadoresByIdEmpresa*/
+
+    }; //fin delTrabajadoresByIdEmpresaClick
 
     $scope.getTrabajadoresByIdEmpresaClick = function(id_empresas){
 
@@ -811,6 +847,18 @@
 
             console.log(response.data.data);
 
+            var data = Array();
+
+            var choices = Array();
+            choices = ["id_trabajadores", "nombre", "apellido", "correo", "telefono_fijo"];
+            
+            data = addKeyToArray(data, response.data.data, choices);
+
+            console.log(data);
+
+            $('#dt-basic-example').dataTable().fnClearTable();
+            $('#dt-basic-example').dataTable().fnAddData(data);
+            
 
           } else {
               toastr["warning"](response.data.description, "");

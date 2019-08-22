@@ -22,6 +22,16 @@ class Empresas extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    public function scopeDelByIdEmpresas($query, $id_empresas){
+
+      Log::info("[Empresas][scopeDelByIdEmpresas]");
+
+      return $query->where([
+          ['id_empresas', '=', $id_empresas],
+        ])->delete(); //return true in the other one return 1
+
+  }
+
     //agrega nueva empresa
     public function scopeAddNewEnterprise($query, $nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $subdominio, $contrasena, $color)
     {
