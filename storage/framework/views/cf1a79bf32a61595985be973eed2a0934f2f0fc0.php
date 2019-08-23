@@ -737,7 +737,8 @@
                 
                 console.log(id);
 
-                angular.element('body').scope().editTrabajadoresByIdEmpresaClick(id, "<?php echo e($user['usr']->id_empresas); ?>");
+                window.location = "/trabajadores/editar?id_trabajadores=" + id;
+
             }
 
             function del(id){

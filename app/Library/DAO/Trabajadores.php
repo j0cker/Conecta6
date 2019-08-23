@@ -31,7 +31,7 @@ class Trabajadores extends Model
           ['id_empresas', '=', $id_empresas],
         ])->delete(); //return true in the other one return 1
 
-  }
+    }
 
 
     //buscar trabajadores por empess
@@ -43,6 +43,19 @@ class Trabajadores extends Model
 
         return $query->where([
           ['id_empresas', '=', $id_empresas],
+        ]);
+    }
+
+
+    //buscar trabajadores por id_trabajadore
+    public function scopeGetByIdTrabajadores($query, $id_trabajadores)
+    {   
+        Log::info("[Empresas][scopeGetByIdEmpresas]");
+
+        Log::info("[Empresas][scopeGetByIdEmpresas] id_trabajadores: ". $id_trabajadores);
+
+        return $query->where([
+          ['id_trabajadores', '=', $id_trabajadores],
         ]);
     }
 

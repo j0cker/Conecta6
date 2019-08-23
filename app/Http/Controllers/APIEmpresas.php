@@ -708,6 +708,109 @@ class APIEmpresas extends Controller
     }
 
   }
+
+  public function GetTrabajadoresIdTrabajadores(Request $request){
+    
+    Log::info('[APIEmpresas][GetTrabajadoresIdTrabajadores]');
+
+    Log::info("[APIEmpresas][GetTrabajadoresIdTrabajadores] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][GetTrabajadoresIdTrabajadores] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][GetTrabajadoresIdTrabajadores] Permiso Existente");
+
+          $this->validate($request, [
+            'id_trabajadores' => 'required'
+          ]);
+            
+          $id_trabajadores = $request->input('id_trabajadores');
+          
+          $trabajadores = Trabajadores::getByIdTrabajadores($id_trabajadores)->get();
+
+          Log::info($trabajadores);
+
+          if(count($trabajadores)>0){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($trabajadores));
+            $responseJSON->data = $trabajadores;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($trabajadores));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        }
+
+        return redirect('/');
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][GetTrabajadoresIdTrabajadores] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][GetTrabajadoresIdTrabajadores] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][GetTrabajadoresIdTrabajadores] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][GetTrabajadoresIdTrabajadores] ' . $e);
+
+        return redirect('/');
+
+      }
+
+  
+  
+    } else {
+      abort(404);
+    }
+
+  }
   
   public function AltaTrabajador(Request $request){
     
@@ -920,6 +1023,103 @@ class APIEmpresas extends Controller
           Log::info("[APIEmpresas][NuevoTrabajadores] Permiso Existente");
           
           return view('system.nuevotrabajador',["title" => config('app.name'), 
+                                            "lang" => "es", 
+                                            "user" => $token_decrypt, 
+                                            "color" => $token_decrypt['color'], 
+                                            "colorHex" => $token_decrypt['colorHex'],
+                                            "subdominio" => $token_decrypt['subdominio']
+                                          ]
+          );
+          
+        }
+
+        return redirect('/');
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][NuevoTrabajadores] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][NuevoTrabajadores] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][NuevoTrabajadores] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][NuevoTrabajadores] ' . $e);
+
+        return redirect('/');
+
+      }
+
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function ModTrabajadores(Request $request){
+    
+    Log::info('[APIEmpresas][ModTrabajadores]');
+
+    Log::info("[APIEmpresas][ModTrabajadores] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][ModTrabajadores] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][NuevoTrabajadores] Permiso Existente");
+        
+          $this->validate($request, [
+          'id_trabajadores' => 'required'
+          ]);
+            
+          $id_trabajadores = $request->input('id_trabajadores');
+
+          Log::info("[APIEmpresas][NuevoTrabajadores] id_trabajadores: " .$id_trabajadores);
+          
+          return view('system.modtrabajador',["title" => config('app.name'), 
                                             "lang" => "es", 
                                             "user" => $token_decrypt, 
                                             "color" => $token_decrypt['color'], 

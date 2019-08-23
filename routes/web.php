@@ -46,6 +46,9 @@ Route::get('/trabajadores', 'APIEmpresas@Trabajadores');
 //Nuevos Trabajadores
 Route::get('/trabajadores/nuevo', 'APIEmpresas@NuevoTrabajadores');
 
+//Nuevos Trabajadores
+Route::get('/trabajadores/editar', 'APIEmpresas@ModTrabajadores');
+
 //Nueva Plantilla de Horario de los Trabajadores
 Route::get('/plantilla/nueva', 'APIEmpresas@NuevaPlantilla');
 

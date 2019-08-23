@@ -796,6 +796,145 @@
 
   });//fin controller trabajadores
 
+  app.controller('modtrabajador', function($scope, functions, $window, $filter) {
+
+    console.log("[modtrabajador]");
+
+    functions.loading();
+
+    $scope.getTrabajadoresByIdTrabajadoresClick = function(id_trabajadores){
+
+      functions.getTrabajadoresByIdTrabajadores(id_trabajadores).then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            console.log("[getTrabajadoresByIdTrabajadoresClick][getTrabajadoresByIdTrabajadores]");
+
+            console.log(response.data.data);
+
+            var data = response.data.data;
+
+            functions.getPlantillas().then(function (response) {
+
+              if(response.data.success == "TRUE"){
+                
+                console.log("[controllers][nuevotrabajador][getPlantillas]");
+        
+                console.log(response.data);
+        
+                $scope.plantillas = response.data.data;
+
+                console.log($scope.plantillas);
+
+                
+
+                $scope.$watch('plantillas', function() {
+                  //cuando cargue en front las plantillas
+
+                  console.log("Cargar Plantilla Seleccionada");
+                  
+                  for(var i=0; i<$scope.plantillas.length; i++){
+                    if($scope.plantillas[i].id_plantillas==data[0].id_plantillas){
+                      console.log("entcontramos");
+                      document.getElementById("select-plantilla").selectedIndex = i+1;
+                    }
+                  }
+
+                });
+    
+        
+
+                
+                $("#nombre").val(data[0].nombre);
+                $("#apellido").val(data[0].apellido);
+                $("#correo").val(data[0].correo);
+                $("#tel").val(data[0].telefono_fijo);
+                $("#cel").val(data[0].cel);
+                $("#cargo").val(data[0].cargo);
+                $("#numDNI").val(data[0].dni_num);
+                $("#numSS").val(data[0].seguro_social);
+                /*
+
+                selectPlantillaX = document.getElementById("select-plantilla").selectedIndex;
+                selectPlantillaY = document.getElementById("select-plantilla").options;
+                plantilla = selectPlantillaY[selectPlantillaX].value ;
+
+                $("#geoActivated").prop("checked");
+                $("#pac-input2").val(data[0].);
+                $scope.latitud = data[0].;
+                $scope.longitud = data[0].;
+                $("#metros").val(data[0].);
+                $("#registroApp").prop("checked");
+                $("#ipActivated").prop("checked");
+                $("#ipAddress").val(data[0].);
+                $("#pcActivated").prop("checked");
+                $("#tabletasActivated").prop("checked");
+                $("#movilesActivated").prop("checked");
+                $("#pass").val(data[0].);
+                $("#confPass").val(data[0].);
+                */
+        
+                functions.loadingEndWait();
+                
+              } else {
+        
+                  functions.loadingEndWait();
+              }
+            }, function (response) {
+              /*ERROR*/
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+        
+            });/*fin getPlantillas*/
+
+            
+          } else {
+              toastr["warning"](response.data.description, "");
+              functions.loadingEndWait();
+          }
+
+          
+
+                $("#select-plantilla").val(data[0].id_plantillas);
+                $("#select2-select-plantilla-container").val("webos");
+
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getTrabajadoresByIdTrabajadores*/
+
+    }; //fin getTrabajadoresByIdTrabajadoresClick
+
+
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[signinEmpresas] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[nuevaplantilla][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+  });//fin controller modtrabajador
+
   app.controller('trabajadores', function($scope, functions, $window, $filter) {
 
     console.log("[trabajadores]");

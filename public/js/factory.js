@@ -250,7 +250,20 @@
 
         return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, id_empresas:id_empresas });
 
-      }
+      },
+      getTrabajadoresByIdTrabajadores: function(id_trabajadores) {
+
+        console.log("[factory][delTrabajadoresByIdEmpresa]");
+
+        var url = '/api/empresas/trabajadores/obtener/id_trabajadadores';
+
+        return $http.get(url,{
+          params: { cache: false, id_trabajadores:id_trabajadores },
+          cache: false
+        });
+
+
+      },
     };
   });
 
