@@ -22,6 +22,25 @@ class Empresas extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    public function scopeGetSalidasByIdEmpresas($query, $id_empresas){
+
+      Log::info("[Empresas][scopeGetSalidasByIdEmpresas]");
+
+      return $query->where([
+        ['id_empresas', '=', $id_empresas],
+      ]);
+
+    }
+
+    public function scopeModZonaHoraria($query, $id_empresas, $id_zona_horaria){
+
+      Log::info("[Empresas][scopeDelByIdEmpresas]");
+
+      return $query->where([['id_empresas', '=', $id_empresas],
+                           ])->update(['id_zona_horaria' => $id_zona_horaria]); //return true in the other one return 1
+
+  }
+
     public function scopeDelByIdEmpresas($query, $id_empresas){
 
       Log::info("[Empresas][scopeDelByIdEmpresas]");
@@ -57,6 +76,20 @@ class Empresas extends Model
         $obj[0]->id = $empresas->id;
         
         return $obj;
+
+    }
+
+    
+
+    //get enterprise
+    public function scopeGetByIdEmpresas($query, $id_empresas){
+
+      Log::info("[Empresas][scopeGetByIdEmpresas] id_empresas: ". $id_empresas);
+
+      return $query->where([
+        ['id_empresas', '=', $id_empresas],
+      ]);
+
 
     }
 

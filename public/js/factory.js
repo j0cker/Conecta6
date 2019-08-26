@@ -32,6 +32,89 @@
           $('#loader-wrapper').css('display','none');
         }, x);
       },
+      salidas: function(data) {
+        console.log("[factory.js][salidas]");
+
+        
+        for (var x = 0; x < data.length; x++) {
+
+          $("#gra-"+(x+1)+"").prop("checked", data[x].computable);
+
+        }
+
+      },
+      plantillas: function(data, array) {
+        console.log("[factory.js][plantillas]");
+
+        console.log("array: " + array.length);
+        console.log("data: " + data.length);
+
+        for (var x = 0; x < array.length; x++) {
+
+          console.log("x: " + x);
+
+          var lunes = "";
+          if(array[x]["a1Lunes"]!=""){
+            lunes = "de " + array[x]["a1Lunes"] + " a " +  array[x]["de1Lunes"] + " y de " +  array[x]["a2Lunes"] + " a " +  array[x]["de2Lunes"];
+          } else {
+            lunes = "-";
+          }
+          data[x].push(lunes);
+
+          var martes = "";
+          if(array[x]["a1Martes"]!=""){
+            martes = "de " + array[x]["a1Martes"] + " a " +  array[x]["de1Martes"] + " y de " +  array[x]["a2Martes"] + " a " +  array[x]["de2Martes"];
+          } else {
+            martes = "-";
+          }
+          data[x].push(martes);
+
+          var miercoles = "";
+          if(array[x]["a1Miercoles"]!=""){
+            miercoles = "de " + array[x]["a1Miercoles"] + " a " +  array[x]["de1Miercoles"] + " y de " +  array[x]["a2Miercoles"] + " a " +  array[x]["de2Miercoles"];
+          } else {
+            miercoles = "-";
+          }
+          data[x].push(miercoles);
+
+          var jueves = "";
+          if(array[x]["a1Jueves"]!=""){
+            jueves = "de " + array[x]["a1Jueves"] + " a " +  array[x]["de1Jueves"] + " y de " +  array[x]["a2Jueves"] + " a " +  array[x]["de2Jueves"];
+          } else {
+            jueves = "-";
+          }
+          data[x].push(jueves);
+
+          var viernes = "";
+          if(array[x]["a1Viernes"]!=""){
+            viernes = "de " + array[x]["a1Viernes"] + " a " +  array[x]["de1Viernes"] + " y de " +  array[x]["a2Viernes"] + " a " +  array[x]["de2Viernes"];
+          } else {
+            viernes = "-";
+          }
+          data[x].push(viernes);
+
+          var sabado = "";
+          if(array[x]["a1Sabado"]!=""){
+            sabado = "de " + array[x]["a1Sabado"] + " a " +  array[x]["de1Sabado"] + " y de " +  array[x]["a2Sabado"] + " a " +  array[x]["de2Sabado"];
+          } else {
+            sabado = "-";
+          }
+          data[x].push(sabado);
+
+          var domingo = "";
+          if(array[x]["a1Domingo"]!=""){
+            domingo = "de " + array[x]["a1Domingo"] + " a " +  array[x]["de1Domingo"] + " y de " +  array[x]["a2Domingo"] + " a " +  array[x]["de2Domingo"];
+          } else {
+            domingo = "-";
+          }
+          data[x].push(domingo);
+
+    
+        }
+
+        return data;
+
+      },
       postIngresar: function(correo, contPass, color, colorHex, subdominio) {
 
         console.log("[factory][postIngresar]");
@@ -134,6 +217,19 @@
         });
 
       },
+      getEmpresa: function(id_empresas) {
+
+        console.log("[factory][getEmpresa]");
+
+        console.log("[factory][getEmpresa] id_empresas: " + id_empresas);
+
+        var url = '/api/empresas/obtener';
+        return $http.get(url,{
+          params: { cache: false, id_empresas:id_empresas },
+          cache: false
+        });
+
+      },
       getImageEmpresa: function(id_empresas) {
 
         console.log("[factory][getImageEmpresa]");
@@ -205,7 +301,56 @@
           cache: false
         });
 
-      }, 
+      },
+      modSalidas: function(id_empresas, id_salidas, nombre, computable) {
+
+        console.log("[factory][modSalidas]");
+
+        var url = '/api/empresas/salidas/modificar';
+        return $http.post(url, {cache: false, id_empresas:id_empresas, id_salidas:id_salidas, nombre:nombre, computable:computable });
+
+
+      },
+      postSalidas: function(id_empresas, nombre, computable) {
+
+        console.log("[factory][postSalidas]");
+
+        var url = '/api/empresas/salidas';
+        return $http.post(url, {cache: false, id_empresas:id_empresas, nombre:nombre, computable:computable });
+
+
+      },
+      delSalidas: function(id_empresas, id_salidas) {
+
+        console.log("[factory][delSalidas]");
+
+        var url = '/api/empresas/salidas/borrar';
+        return $http.post(url, {cache: false, id_empresas:id_empresas, id_salidas:id_salidas });
+
+
+      },
+      getSalidaById: function(id_salidas) {
+
+        console.log("[factory][getSalidaById]");
+
+        var url = '/api/empresas/salidas/id';
+        return $http.get(url,{
+          params: { cache: false, id_salidas:id_salidas },
+          cache: false
+        });
+
+      },
+      getSalidas: function() {
+
+        console.log("[factory][getSalidas]");
+
+        var url = '/api/empresas/salidas';
+        return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
+
+      },
       getAllZonasHorarias: function() {
 
         console.log("[factory][getAllZonasHorarias]");
@@ -215,6 +360,28 @@
           params: { cache: false },
           cache: false
         });
+
+      },
+      postZonasHorarias: function(id_zona_horaria) {
+
+        console.log("[factory][postZonasHorarias]");
+
+        var url = '/api/empresas/zonasHorarias';
+        return $http.post(url, {cache: false, id_zona_horaria:id_zona_horaria});
+
+      },
+      postModTrabajador: function(id_trabajadores, id_empresas, nombre, apellido, correo, tel, cel, cargo, numDNI, numSS, 
+        plantilla, geoActivated, address, latitud, longitud, metros, registroApp, 
+        ipActivated, ipAddress, pcActivated, tabletasActivated, 
+        movilesActivated) {
+
+        console.log("[factory][postModTrabajador]");
+
+        var url = '/api/empresas/modTrabajador';
+		  	return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, id_empresas:id_empresas, nombre:nombre, apellido:apellido, correo:correo, tel:tel, cel:cel, cargo:cargo, numDNI:numDNI, numSS:numSS, 
+          plantilla:plantilla, geoActivated:geoActivated, address:address, latitud:latitud, longitud:longitud, metros:metros, registroApp:registroApp, 
+          ipActivated:ipActivated, ipAddress:ipAddress, pcActivated:pcActivated, tabletasActivated:tabletasActivated, 
+          movilesActivated:movilesActivated});
 
       },
       postNuevoTrabajador: function(id_empresas, nombre, apellido, correo, tel, cel, cargo, numDNI, numSS, 

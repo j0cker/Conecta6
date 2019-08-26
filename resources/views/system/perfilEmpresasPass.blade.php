@@ -1,40 +1,44 @@
-<?php $__env->startSection('lang'); ?><?php echo e($lang); ?><?php $__env->stopSection(); ?>
+@extends('system.master')
 
+{{-- lang html tag --}}
 
+@section('lang'){{$lang}}@stop
 
-<?php $__env->startSection('title'); ?><?php echo e($title); ?><?php $__env->stopSection(); ?>
+{{-- Title Head --}}
 
+@section('title'){{$title}}@stop
 
+{{-- Metatag Head --}}
 
-<?php $__env->startSection('Content-Type','text/html; charset=UTF-8'); ?>
-<?php $__env->startSection('x-ua-compatible','ie=edge'); ?>
-<?php $__env->startSection('keywords',''); ?>
-<?php $__env->startSection('description',''); ?>
-<?php $__env->startSection('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1'); ?>
-<?php $__env->startSection('idiomaLang','es-mx'); ?>
+@section('Content-Type','text/html; charset=UTF-8')
+@section('x-ua-compatible','ie=edge')
+@section('keywords','')
+@section('description','')
+@section('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1')
+@section('idiomaLang','es-mx')
 
-
+{{-- Menu --}}
 
 <!--Menu Transparente
-<?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
+@section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
 -->
-<?php $__env->startSection('menuActive','perfilEmpresas'); ?>
+@section('menuActive','configuraciones')
 
-<?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
-<?php $__env->startSection('raiz1Url', '/inicio'); ?>
-<?php $__env->startSection('raiz2','Empresas'); ?>
-<?php $__env->startSection('raiz2Url','/inicio'); ?>
-<?php $__env->startSection('raiz3','PerfilEmpresas'); ?>
-<?php $__env->startSection('raiz3Url','/perfilEmpresas'); ?>
-
-
+@section('raiz1', @Config::get('app.name'))
+@section('raiz1Url', '/inicio')
+@section('raiz2','Empresas')
+@section('raiz2Url','/inicioEmpresa')
+@section('raiz3','Contraseña Perfil')
+@section('raiz3Url','/perfil/pass')
 
 
-<?php $__env->startSection('controller','perfilEmpresas'); ?>
+{{-- Angular Controller --}}
 
+@section('controller','perfilpass')
 
+{{-- Body --}}
 
-<?php $__env->startSection('content'); ?>
+@section('content')
 
 
 <div class="page-wrapper">
@@ -42,7 +46,7 @@
                 
                 <!-- BEGIN Left Aside -->
                         
-                        <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        @include('system.menu')
                         
                 <!-- END Left Aside -->
 
@@ -50,18 +54,18 @@
                     <!-- BEGIN Page Header -->
                     
                         
-                    <?php echo $__env->make('system.menu2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    @include('system.menu2')
                     
                     <!-- END Page Header -->
                     <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
                     <main id="js-page-content" role="main" class="page-content">
                     
-                        <?php echo $__env->make('system.menu3', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        @include('system.menu3')
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-user"></i> Perfil
+                                <i class="subheader-icon fal fa-door-open"></i> Modificar Contraseña
                                 <small>
                                 </small>
                             </h1>
@@ -73,7 +77,7 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Perfil
+                                            Modificar Contraseña
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -89,41 +93,13 @@
                                                 <div class="col-lg-12 col-xl-12">
                                                     <div class="position-relative">
 
-                                                        <div style="margin-top: 50px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div class="col-md-4 text-center">
-                                                                
-                                                                    
-                                                                    <form method="post" action="<?php echo e(url('/api/empresas/profile/image')); ?>" enctype="multipart/form-data" id="FrmProfilePicture">
-                                                                        <?php echo e(method_field('POST')); ?>
-
-
-                                                                        <label for="profileimg" class="figure">
-                                                                            <input type="file" id="profileimg" hidden name="profileimg">
-                                                                            <img class="profile-image  rounded-circle" onerror="this.src='<?php echo e(url('img/logo-example.png')); ?>'" style="width: 120px; height: 120px;" src="<?php echo e(url('img/logo-example.png')); ?>" alt="<?php echo e($user['usr']->nombre_empresa); ?>" id="userProfilePicture">
-                                                                        </label>
-
-                                                                    </form>
-
-                                                                    <center>
-                                                                    150x150
-                                                                    </center>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 50px;" class="row">
+                                                        <div style="margin-top: 25px;" class="row">
 
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Nombre de la Empresa:
+                                                                    Contraseña Actual:
 
                                                                 </div>
 
@@ -131,34 +107,55 @@
 
                                                         </div>
 
-                                                        <div class="row">
+                                                        <div style="margin-top: 10px;" class="row">
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    <?php if(isset($user["usr"]->nombre_empresa)): ?>
-                                                                        <?php echo e($user["usr"]->nombre_empresa); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->nombre_empresa)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    <input id="contActual" type="text" class="form-control" placeholder="Nombre de la Salida" />
 
                                                                 </div>
 
                                                             <div class="col-md-4"></div>
 
                                                         </div>
+
+                                                        <div style="margin-top: 25px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Contraseña Nueva:
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="margin-top: 10px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    <input id="contNueva" type="text" class="form-control" placeholder="Nombre de la Salida" />
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>                                                        
                                                         
-                                                        <div class="row">
+                                                        <div style="margin-top: 25px;" class="row">
 
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Correo:
+                                                                    Confirmar Contraseña Nueva :
 
                                                                 </div>
 
@@ -166,260 +163,26 @@
 
                                                         </div>
 
-                                                        <div class="row">
+                                                        <div style="margin-top: 10px;" class="row">
 
-                                                            <div class="col-md-4"></div>
+                                                        <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                            
+                                                                <input id="contConf" type="text" class="form-control" placeholder="Nombre de la Salida" />
 
-                                                                    <?php if(isset($user["usr"]->correo)): ?>
-                                                                        <?php echo e($user["usr"]->correo); ?>
+                                                            </div>
 
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->correo)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Solicitante:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
+                                                        <div class="col-md-4"></div>
 
                                                         </div>
 
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    <?php if(isset($user["usr"]->nombre_solicitante)): ?>
-                                                                        <?php echo e($user["usr"]->nombre_solicitante); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->nombre_solicitante)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Vigencia de la Licencia (mm/dd/YYYY):
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
+                                                        <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
+                                                            <div class="col-12 text-center">
+                                                                <a ng-click="postContChangeClick('{{ $user['usr']->pass }}');" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
+                                                            </div>
                                                         </div>
 
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->vigencia)): ?>
-                                                                        <?php echo e($user["usr"]->vigencia); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->vigencia)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Trabajadores Permitidos:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    <?php if(isset($user["usr"]->empleados_permitidos)): ?>
-                                                                        <?php echo e($user["usr"]->empleados_permitidos); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->empleados_permitidos)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Teléfono Fijo:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->telefono_fijo)): ?>
-                                                                        <?php echo e($user["usr"]->telefono_fijo); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->telefono_fijo)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Celular:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->celular)): ?>
-                                                                        <?php echo e($user["usr"]->celular); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->celular)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Fecha de Creación:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->created_at)): ?>
-                                                                        <?php echo e($user["usr"]->created_at); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->created_at)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                Editar
-                                                            </button>
-
-                                                            <a href="perfilEmpresas/pass">
-                                                                <button style="margin-left: 25px; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                    Cambiar Contraseña
-                                                                </button>
-                                                            </a>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -433,7 +196,7 @@
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
                     
-                    <?php echo $__env->make('system.footer2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    @include('system.footer2')
 
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
@@ -489,7 +252,7 @@
         <!-- END Page Wrapper -->
         <!-- BEGIN Quick Menu -->
         <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-        <?php echo $__env->make('system.toolbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        @include('system.toolbar')
         <!-- END Quick Menu -->
         <!-- BEGIN Messenger -->
         <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1027,18 +790,24 @@
         </div> <!-- END Page Settings -->
 
         
-        <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
-        
+        <script src="{{ url('js/vendors.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/app.bundle.js?v='.cache("js_version_number").'') }}"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
      
+        <script src="{{ url('js/moment.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/datepicker.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/timepicker.js?v='.cache("js_version_number").'') }}"></script>
+        
+        <script>
+            $( document ).ready(function() {
+               
+            });
+        </script>
+
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                
-                <?php if(in_array("1", $user["permisos"])): ?>
-                    $("#mytheme").attr("href","css/themes/cust-theme-6.css");
-                <?php endif; ?>
+
 
             });
         </script>
@@ -1046,38 +815,40 @@
         <script>
             $(document).ready(function()
             {
+                
+                $('#agregar').click(function() {
+                    
+
+                });
+
                 $('#js-page-content').smartPanel(); 
             });
         </script>
         
+
+
         <!-- Toastr-->
-        <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="{{ url('js/toastr.js?v='.cache("js_version_number").'') }}"></script>
 
         <!--Angular-->
 
-        <script src="<?php echo e(url('js/angular.min.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/sanitize.min.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/module.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/controllers.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="{{ url('js/angular.min.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/sanitize.min.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/module.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/controllers.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
 
-        <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
-        
+        <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
+
+
         <script>
-            $(document).ready(function(){
-
-                $(document).on('change', '#profileimg', function () {
-                    
-                    console.log("[change]");
-
-                    startLoading();
-                    $('#FrmProfilePicture').submit();
-                });
+            $( document ).ready(function() {
+                // Handler for .ready() called.
                 
-            angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+                
+
             });
         </script>
 
-    <?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('system.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    @stop

@@ -65,7 +65,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-user"></i> Nuevo Trabajador
+                                <i class="subheader-icon fal fa-briefcase"></i> Nuevo Trabajador
                                 <small>
                                 </small>
                             </h1>

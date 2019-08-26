@@ -37,8 +37,11 @@ Route::get('/historial', 'APITrabajadores@Historial');
 //Sistema Welcome
 Route::get('/inicioEmpresa', 'APIEmpresas@Inicio');
 
-//Perfil
+//Perfil Empresa
 Route::get('/perfilEmpresas', 'APIEmpresas@Perfil');
+
+//Perfil cambio de contraseña
+Route::get('/perfilEmpresas/pass', 'APIEmpresas@PerfilPass');
 
 //Trabajadores
 Route::get('/trabajadores', 'APIEmpresas@Trabajadores');
@@ -52,13 +55,16 @@ Route::get('/trabajadores/editar', 'APIEmpresas@ModTrabajadores');
 //Nueva Plantilla de Horario de los Trabajadores
 Route::get('/plantilla/nueva', 'APIEmpresas@NuevaPlantilla');
 
+//Nueva Salida
+Route::get('/salidas/modificar', 'APIEmpresas@SalidasModificar');
+
 //sign in personalizado (URL a evaluación)
 Route::get('/{any}/pAdmin', 'APIEmpresas@SignInPersonalizado');
 
 //configuraciones
 Route::get('/configuraciones', 'APIEmpresas@Configuraciones');
 
-//configuraciones
+//Informes
 Route::get('/informes', 'APIEmpresas@Informes');
 
 /*

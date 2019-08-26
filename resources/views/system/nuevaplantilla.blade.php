@@ -65,7 +65,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-user"></i> Plantilla Nueva
+                                <i class="subheader-icon fal fa-clock"></i> Plantilla de Horarios Nueva
                                 <small>
                                 </small>
                             </h1>
@@ -77,7 +77,7 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Plantilla Nueva
+                                            Plantilla de Horarios Nueva
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -1070,8 +1070,6 @@
                 });
 
 
-
-
             });
         </script>
         
@@ -1159,6 +1157,13 @@
 
         <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
 
-        
+        <script>
+            $( document ).ready(function() {
+                // Handler for .ready() called.
+                
+                angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+
+            });
+        </script>
 
     @stop

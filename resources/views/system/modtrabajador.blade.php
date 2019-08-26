@@ -560,7 +560,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="#" ng-click="agregarNuevoTrabajadorClick('{{ $user['usr']->id_empresas }}');" class="btn btn-primary btn-block waves-effect waves-themed">Agregar</a>
+                                                                <a style="width: 200px;" href="#" ng-click="modTrabajadorClick('<?PHP echo $_GET['id_trabajadores']; ?>', '{{ $user['usr']->id_empresas }}');" class="btn btn-primary btn-block waves-effect waves-themed">Agregar</a>
                                                             </div>
                                                         </div>
 

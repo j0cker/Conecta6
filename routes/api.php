@@ -20,7 +20,6 @@ use Illuminate\Http\Request;
 //Zonas Horarias
 Route::get('/zonasHorarias', 'APIGeneral@ZonasHorarias');
 
-
 /*
 *******Trabajadores******
 */
@@ -37,6 +36,9 @@ Route::get('/trabajadores/logout', 'APITrabajadores@Logout');
 
 //Ingresar Empresas
 Route::get('/empresas/ingresar', 'APIEmpresas@Ingresar');
+
+//get empresa
+Route::get('/empresas/obtener', 'APIEmpresas@GetEmpresa');
 
 //Alta de nueva Empresa
 Route::post('/empresas/altaEmpresa', 'APIEmpresas@AltaEmpresa');
@@ -59,14 +61,35 @@ Route::post('/empresas/profile/image', 'APIEmpresas@UpdateProfilePicture');
 //Alta Nuevo Trabajador
 Route::post('/empresas/altaNuevoTrabajador', 'APIEmpresas@AltaTrabajador');
 
-//Get Trabajadores
+//Get Trabajadores by id empresas
 Route::get('/empresas/trabajadores/obtener', 'APIEmpresas@GetTrabajadores');
 
-//Get Trabajadores
+//Get Trabajadores by id trabajadores
 Route::get('/empresas/trabajadores/obtener/id_trabajadadores', 'APIEmpresas@GetTrabajadoresIdTrabajadores');
 
 //Eliminar Trabajador
 Route::post('/empresas/trabajadores/eliminar', 'APIEmpresas@EliminarTrabajadores');
+
+//Eliminar Trabajador
+Route::post('/empresas/modTrabajador', 'APIEmpresas@ModTrabajador');
+
+//Actualizar Zonas Horaria de Empresa
+Route::post('/empresas/zonasHorarias', 'APIEmpresas@ZonasHorarias');
+
+//obtener todas las salidas por id empresas
+Route::get('/empresas/salidas', 'APIEmpresas@GetSalidas');
+
+//obtener una salida en específico en un id empresa
+Route::get('/empresas/salidas/id', 'APIEmpresas@GetSalidaId');
+
+//agregar salidas por id empresas
+Route::post('/empresas/salidas', 'APIEmpresas@AltaSalidas');
+
+//modificar salidas por id empresas y id salidas
+Route::post('/empresas/salidas/modificar', 'APIEmpresas@ModSalidas');
+
+//borrar salidas por id empresas y id salidas
+Route::post('/empresas/salidas/borrar', 'APIEmpresas@DelSalidas');
 
 /*
 *******Admin******

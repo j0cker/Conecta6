@@ -18,19 +18,19 @@
 <!--Menu Transparente
 <?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-<?php $__env->startSection('menuActive','perfilEmpresas'); ?>
+<?php $__env->startSection('menuActive','configuraciones'); ?>
 
 <?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
 <?php $__env->startSection('raiz1Url', '/inicio'); ?>
 <?php $__env->startSection('raiz2','Empresas'); ?>
-<?php $__env->startSection('raiz2Url','/inicio'); ?>
-<?php $__env->startSection('raiz3','PerfilEmpresas'); ?>
-<?php $__env->startSection('raiz3Url','/perfilEmpresas'); ?>
+<?php $__env->startSection('raiz2Url','/inicioEmpresa'); ?>
+<?php $__env->startSection('raiz3','Modificar Salida'); ?>
+<?php $__env->startSection('raiz3Url','/salida/modificar'); ?>
 
 
 
 
-<?php $__env->startSection('controller','perfilEmpresas'); ?>
+<?php $__env->startSection('controller','modificarsalida'); ?>
 
 
 
@@ -61,7 +61,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-user"></i> Perfil
+                                <i class="subheader-icon fal fa-door-open"></i> Modificar Salida
                                 <small>
                                 </small>
                             </h1>
@@ -73,7 +73,7 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Perfil
+                                            Modificar Salida
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -89,41 +89,13 @@
                                                 <div class="col-lg-12 col-xl-12">
                                                     <div class="position-relative">
 
-                                                        <div style="margin-top: 50px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div class="col-md-4 text-center">
-                                                                
-                                                                    
-                                                                    <form method="post" action="<?php echo e(url('/api/empresas/profile/image')); ?>" enctype="multipart/form-data" id="FrmProfilePicture">
-                                                                        <?php echo e(method_field('POST')); ?>
-
-
-                                                                        <label for="profileimg" class="figure">
-                                                                            <input type="file" id="profileimg" hidden name="profileimg">
-                                                                            <img class="profile-image  rounded-circle" onerror="this.src='<?php echo e(url('img/logo-example.png')); ?>'" style="width: 120px; height: 120px;" src="<?php echo e(url('img/logo-example.png')); ?>" alt="<?php echo e($user['usr']->nombre_empresa); ?>" id="userProfilePicture">
-                                                                        </label>
-
-                                                                    </form>
-
-                                                                    <center>
-                                                                    150x150
-                                                                    </center>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 50px;" class="row">
+                                                        <div style="margin-top: 25px;" class="row">
 
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Nombre de la Empresa:
+                                                                    Nombre Salida:
 
                                                                 </div>
 
@@ -131,34 +103,13 @@
 
                                                         </div>
 
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    <?php if(isset($user["usr"]->nombre_empresa)): ?>
-                                                                        <?php echo e($user["usr"]->nombre_empresa); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->nombre_empresa)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
+                                                        <div style="margin-top: 10px;" class="row">
 
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Correo:
+                                                                    <input id="nombreSalida" type="text" class="form-control" placeholder="Nombre de la Salida" />
 
                                                                 </div>
 
@@ -166,34 +117,13 @@
 
                                                         </div>
 
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    <?php if(isset($user["usr"]->correo)): ?>
-                                                                        <?php echo e($user["usr"]->correo); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->correo)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
+                                                        <div style="margin-top: 25px; text-align: left;" class="row">
 
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Solicitante:
+                                                                    Computarizar:<br /><br />
 
                                                                 </div>
 
@@ -201,34 +131,16 @@
 
                                                         </div>
 
-                                                        <div class="row">
+                                                        <div style="" class="row">
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                                <div style="text-align: left; color: black;" class="col-md-4">
 
-                                                                    <?php if(isset($user["usr"]->nombre_solicitante)): ?>
-                                                                        <?php echo e($user["usr"]->nombre_solicitante); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->nombre_solicitante)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Vigencia de la Licencia (mm/dd/YYYY):
+                                                                    <div class="custom-control custom-switch text-left">
+                                                                        <input type="checkbox" class="custom-control-input" id="descanzoActivated">
+                                                                        <label class="custom-control-label" for="descanzoActivated">¿Descanzo Computable?</label><br /><br />
+                                                                    </div>
 
                                                                 </div>
 
@@ -236,190 +148,12 @@
 
                                                         </div>
 
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->vigencia)): ?>
-                                                                        <?php echo e($user["usr"]->vigencia); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->vigencia)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
+                                                        <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
+                                                            <div class="col-12 text-center">
+                                                                <a ng-click="modificarSalida('<?php echo e($user['usr']->id_empresas); ?>', '<?PHP echo $_GET["id"]; ?>')" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
+                                                            </div>
                                                         </div>
 
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Trabajadores Permitidos:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    <?php if(isset($user["usr"]->empleados_permitidos)): ?>
-                                                                        <?php echo e($user["usr"]->empleados_permitidos); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->empleados_permitidos)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Teléfono Fijo:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->telefono_fijo)): ?>
-                                                                        <?php echo e($user["usr"]->telefono_fijo); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->telefono_fijo)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Celular:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->celular)): ?>
-                                                                        <?php echo e($user["usr"]->celular); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->celular)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Fecha de Creación:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->created_at)): ?>
-                                                                        <?php echo e($user["usr"]->created_at); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->created_at)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                Editar
-                                                            </button>
-
-                                                            <a href="perfilEmpresas/pass">
-                                                                <button style="margin-left: 25px; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                    Cambiar Contraseña
-                                                                </button>
-                                                            </a>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -1029,16 +763,22 @@
         
         <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
         <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
-        
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
      
+        <script src="<?php echo e(url('js/moment.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/datepicker.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/timepicker.js?v='.cache("js_version_number").'')); ?>"></script>
+        
+        <script>
+            $( document ).ready(function() {
+               
+            });
+        </script>
+
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                
-                <?php if(in_array("1", $user["permisos"])): ?>
-                    $("#mytheme").attr("href","css/themes/cust-theme-6.css");
-                <?php endif; ?>
+
 
             });
         </script>
@@ -1046,10 +786,18 @@
         <script>
             $(document).ready(function()
             {
+                
+                $('#agregar').click(function() {
+                    
+
+                });
+
                 $('#js-page-content').smartPanel(); 
             });
         </script>
         
+
+
         <!-- Toastr-->
         <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
 
@@ -1062,19 +810,16 @@
         <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
-        
+
+
         <script>
-            $(document).ready(function(){
-
-                $(document).on('change', '#profileimg', function () {
-                    
-                    console.log("[change]");
-
-                    startLoading();
-                    $('#FrmProfilePicture').submit();
-                });
+            $( document ).ready(function() {
+                // Handler for .ready() called.
                 
-            angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                
+                getSalidaByIdClick("<?PHP echo $_GET["id"]; ?>");
+
             });
         </script>
 

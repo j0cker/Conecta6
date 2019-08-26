@@ -57,7 +57,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-building'></i> Trabajadores <span class='fw-300'>Dashboard</span>
+                                <i class='subheader-icon fal fa-briefcase'></i> Trabajadores <span class='fw-300'>Dashboard</span>
                             </h1>
                         </div>
                         <div class="row">

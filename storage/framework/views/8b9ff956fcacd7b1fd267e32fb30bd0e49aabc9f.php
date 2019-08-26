@@ -95,14 +95,20 @@
 
                                                                 <div class="col-md-4 text-center">
                                                                 
-                                                                    <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com">
-                                                                        <img src="<?php echo e(url('img/avatar-admin.png')); ?>" style="width: 100px; height: 100px;" class="profile-image rounded-circle" alt='<?php echo e($user["usr"]->nombre); ?> <?php echo e($user["usr"]->apellido); ?>'>
-                                                                        <!-- you can also add username next to the avatar with the codes below:
-                                                                        <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
-                                                                        <i class="ni ni-chevron-down hidden-xs-down"></i> -->
-                                                                    </a>
+                                                                    
+                                                                    <form method="post" action="<?php echo e(url('/api/empresas/profile/image')); ?>" enctype="multipart/form-data" id="FrmProfilePicture">
+                                                                        <?php echo e(method_field('POST')); ?>
+
+
+                                                                        <label for="profileimg" class="figure">
+                                                                            <input type="file" id="profileimg" hidden name="profileimg">
+                                                                            <img class="profile-image rounded-circle" onerror="this.src='<?php echo e(url('img/profile-image.png')); ?>'" style="width: 120px; height: 120px;" src="<?php echo e(url('img/profile-image.png')); ?>" alt="<?php echo e($user['usr']->nombre); ?>" id="userProfilePicture">
+                                                                        </label>
+
+                                                                    </form>
+
                                                                     <center>
-                                                                    100x100
+                                                                    150x150
                                                                     </center>
 
                                                                 </div>
@@ -1122,6 +1128,12 @@
             {
 
                 $('#js-page-content').smartPanel(); 
+
+                $(document).on('change', '#profileimg', function () {
+                startLoading();
+                    $('#FrmProfilePicture').submit();
+                });
+
             });
         </script>
         

@@ -239,7 +239,7 @@
       functions.getImageEmpresa(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[nuevaplantilla][perfilEmpresas]");
+              console.log("[signinEmpresas][perfilEmpresas]");
 
               console.log(response.data.data);
 
@@ -402,7 +402,7 @@
       functions.getImageEmpresa(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[nuevaplantilla][perfilEmpresas]");
+              console.log("[inicioEmpresa][perfilEmpresas]");
 
               console.log(response.data.data);
 
@@ -445,7 +445,7 @@
       functions.getImageEmpresa(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[nuevaplantilla][perfilEmpresas]");
+              console.log("[perfilEmpresas]");
 
               console.log(response.data.data);
 
@@ -462,7 +462,7 @@
 
         });/*fin getImageEmpresa*/
 
-    };
+    }; //fin getImageEmpresaClick
 
   });//fin controller perfilEmpresas
 
@@ -729,29 +729,19 @@
 
     }//fin send ng
 
+    
+    $scope.getImageEmpresaClick = function(id_empresas){
 
-  });//fin controller nuevaplantilla
+      console.log("[nuevaplantilla] ");
 
-  app.controller('configuraciones', function($scope, functions, $window) {
-
-    console.log("[configuraciones]");
-
-    functions.loading();
-
-    $scope.zonasHorarias = "";
-
-    $scope.getZonasHorariasClick = function(){
-
-      console.log("[configuraciones] ");
-
-      functions.getAllZonasHorarias().then(function (response) {
+      functions.getImageEmpresa(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[configuraciones][getZonasHorariasClick]");
+              console.log("[nuevaplantilla][getImageEmpresa]");
 
               console.log(response.data.data);
 
-              $scope.zonasHorarias = response.data.data;
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
 
             } else {
                 toastr["warning"](response.data.description, "");
@@ -763,6 +753,439 @@
           functions.loadingEndWait();
 
         });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+
+  });//fin controller nuevaplantilla
+
+  
+  app.controller('configuraciones', function($scope, functions, $window) {
+
+    console.log("[configuraciones]");
+
+    functions.loading();
+
+    $scope.zonasHorarias = "";
+
+    var validarSubdominioBD = 0;
+    
+    $scope.validarSubdominio = function(subdominio){
+
+      console.log("[controllers][configuraciones][validarSubdominio]");
+      
+      console.log("[controllers][configuraciones][validarSubdominio] subdominio: " + subdominio);
+      
+      functions.validarSubdominio(subdominio).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][configuraciones][validarSubdominio]");
+
+          $(".fal.fa-check-circle").css("display","");
+
+          $(".fal.fa-times-circle").css("display","none");
+
+          functions.loadingEndWait();
+
+          validarSubdominioBD = 1;
+          
+        } else {
+
+          $(".fal.fa-check-circle").css("display","none");
+
+          $(".fal.fa-times-circle").css("display","");
+
+            functions.loadingEndWait();
+
+            validarSubdominioBD = -1;
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin validarSubdominio*/
+
+    };/*fin validarSubdominio*/
+
+    validarSubdominio = $scope.validarSubdominio;
+
+
+    $scope.delSalidaClick = function(id_empresas, id_salidas){
+
+      console.log("[delSalidaClick]");
+
+      if(id_salidas==""){
+
+        toastr["error"]("Contactar al Administrador", "");
+
+      } else {
+
+        
+        functions.delSalidas(id_empresas, id_salidas).then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            
+            console.log("[controllers][delSalidas]");
+
+            console.log(response.data.data);
+
+            toastr["success"]("Salida Modificada Correctamente!.", "");
+
+            functions.getSalidas(id_empresas).then(function (response) {
+
+              if(response.data.success == "TRUE"){
+                
+                console.log("[controllers][getSalidas]");
+
+                console.log(response.data.data);
+
+                var data = Array();
+
+                var choices = Array();
+                choices = ["id_salidas", "nombre"];
+                
+                data = addKeyToArray(data, response.data.data, choices);
+        
+                console.log(data);
+        
+                $('#dt-basic-example').dataTable().fnClearTable();
+                $('#dt-basic-example').dataTable().fnAddData(data);
+
+                functions.salidas(response.data.data);
+
+                functions.loadingEndWait();
+                
+              } else {
+
+                  functions.loadingEndWait();
+              }
+            }, function (response) {
+              /*ERROR*/
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+
+            });/*fin getSalidas*/
+            
+          } else {
+
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+          }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin delSalidas*/
+      }
+
+    }; // fin delSalidaClick
+
+    delSalidaClick = $scope.delSalidaClick;
+
+    $scope.changeComputableSalidaClick = function(id_empresas, id_salidas, nombre, computable){
+
+      console.log("[changeComputableSalidaClick]");
+
+      if(id_salidas==""){
+
+        toastr["error"]("Contactar al Administrador", "");
+
+      } else if(nombre==""){
+
+        toastr["error"]("Agrega el Nombre de la Salida", "");
+
+      } else if(computable===""){
+
+        toastr["error"]("Agrega si el Valor es Computable", "");
+
+      } else {
+
+        
+        functions.modSalidas(id_empresas, id_salidas, nombre, computable).then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            
+            console.log("[controllers][getSalidas]");
+
+            console.log(response.data.data);
+
+            toastr["success"]("Salida Modificada Correctamente!.", "");
+            
+          } else {
+
+              functions.loadingEndWait();
+          }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getSalidas*/
+      
+      }
+
+    }; // fin changeComputableSalidaClick
+
+    changeComputableSalidaClick = $scope.changeComputableSalidaClick;
+
+    $scope.agregarSalidaClick = function(id_empresas){
+
+      console.log("[agregarSalidaClick]");
+
+      var nombre = "";
+      var computable = 0;
+
+      nombre = $("#nombreSalida").val();
+
+      if(nombre==""){
+
+        toastr["error"]("Agrega el Nombre de la Salida", "");
+
+      } else {
+
+        
+        functions.postSalidas(id_empresas, nombre, computable).then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            
+            console.log("[controllers][getSalidas]");
+
+            console.log(response.data.data);
+
+            functions.getSalidas(id_empresas).then(function (response) {
+
+              if(response.data.success == "TRUE"){
+                
+                console.log("[controllers][getSalidas]");
+      
+                console.log(response.data.data);
+
+                toastr["success"]("Se Agregó Correctamente la Salida", "");
+      
+                var data = Array();
+      
+                var choices = Array();
+                choices = ["id_salidas", "nombre"];
+                
+                data = addKeyToArray(data, response.data.data, choices);
+        
+                console.log(data);
+        
+                $('#dt-basic-example').dataTable().fnClearTable();
+                $('#dt-basic-example').dataTable().fnAddData(data);
+      
+                functions.salidas(response.data.data);
+      
+                functions.loadingEndWait();
+                
+              } else {
+      
+                  functions.loadingEndWait();
+              }
+            }, function (response) {
+              /*ERROR*/
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+      
+            });/*fin getSalidas*/
+            
+          } else {
+
+              functions.loadingEndWait();
+          }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getSalidas*/
+      
+      }
+
+    }; // fin agregarSalidaClick
+
+    $scope.getSalidasClick = function(id_empresas){
+    
+      functions.getSalidas(id_empresas).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][getSalidas]");
+
+          console.log(response.data.data);
+
+          var data = Array();
+
+          var choices = Array();
+          choices = ["id_salidas", "nombre"];
+          
+          data = addKeyToArray(data, response.data.data, choices);
+  
+          console.log(data);
+  
+          $('#dt-basic-example').dataTable().fnClearTable();
+          $('#dt-basic-example').dataTable().fnAddData(data);
+
+          functions.salidas(response.data.data);
+
+          functions.loadingEndWait();
+          
+        } else {
+
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getSalidas*/
+
+    };/*fin getSalidasClick*/
+
+    getSalidasClick = $scope.getSalidasClick;
+
+    $scope.getEmpresaClick = function(id_empresas){
+    
+      functions.getEmpresa(id_empresas).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][getEmpresa]");
+
+          console.log(response.data.data);
+
+          $("#nombreEmpresa").val(response.data.data[0].nombre_empresa);
+
+          $("#subdominio").val(response.data.data[0].subdominio);
+
+          functions.loadingEndWait();
+          
+        } else {
+
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getEmpresa*/
+
+    };/*fin getEmpresaClick*/
+    
+    functions.getPlantillas().then(function (response) {
+
+      if(response.data.success == "TRUE"){
+        
+        console.log("[controllers][modTrabajadorClick][getPlantillas]");
+
+        console.log(response.data.data);
+
+        $scope.plantillas = response.data.data;
+
+        console.log($scope.plantillas);
+
+        var data = Array();
+
+        var choices = Array();
+        choices = ["id_plantillas", "nombrePlantilla"];
+        
+        data = addKeyToArray(data, response.data.data, choices);
+
+        data = functions.plantillas(data, response.data.data);
+
+        console.log(data);
+
+        $('#plantillas').dataTable().fnClearTable();
+        $('#plantillas').dataTable().fnAddData(data);
+        
+
+        functions.loadingEndWait();
+        
+      } else {
+
+          functions.loadingEndWait();
+      }
+    }, function (response) {
+      /*ERROR*/
+      toastr["error"]("Inténtelo de nuevo más tarde", "");
+      functions.loadingEndWait();
+
+    });/*fin getPlantillas*/
+
+    
+
+    $scope.postZonaHorariaClick  = function(id_zona_horaria){
+
+      console.log("[postZonasHorariasClick] ");
+
+      functions.postZonasHorarias(id_zona_horaria).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[configuraciones][postZonasHorarias]");
+
+              console.log(response.data.data);
+
+              toastr["success"]("Información Actualizada Correctamente", "");
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin postZonasHorarias*/
+
+    }; //fin postZonasHorariasClick
+
+    
+
+    $scope.getZonasHorariasClick = function(id_zona_horaria){
+
+      console.log("[getZonasHorariasClick] ");
+
+      functions.getAllZonasHorarias().then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[configuraciones][getZonasHorariasClick]");
+
+              console.log(response.data.data);
+
+              $scope.zonasHorarias = response.data.data;
+
+              $scope.$watch('zonasHorarias', function() {
+                //cuando cargue en front las plantillas
+
+                console.log("Cargar zonasHorarias Seleccionada");
+                
+                for(var i=0; i<$scope.zonasHorarias.length; i++){
+                  if($scope.zonasHorarias[i].id_zonas_horarias==id_zona_horaria){
+                    console.log("entcontramos");
+                    document.getElementById("single-default").selectedIndex = i+1;
+                    
+                  }
+                }
+
+              });//fin watch
+
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getAllZonasHorarias*/
 
     }; //fin getZonasHorariasClick
 
@@ -802,6 +1225,153 @@
 
     functions.loading();
 
+    $scope.modTrabajadorClick = function(id_trabajadores, id_empresas_parameter){
+
+      console.log("[modTrabajadorClick]");
+
+      
+      var id_empresas = "";
+      var nombre = "";
+      var apellido = "";
+      var correo = "";
+      var tel = "";
+      var cel = "";
+      var cargo = "";
+      var numDNI = "";
+      var numSS = "";
+      var selectPlantillaX = "";
+      var selectPlantillaY = "";
+      var plantilla = "";
+      var geoActivated = "";
+      var address = "";
+      var latitud = "";
+      var longitud = "";
+      var metros = "";
+      var registroApp = "";
+      var ipActivated = "";
+      var ipAddress = "";
+      var pcActivated = "";
+      var tabletasActivated = "";
+      var movilesActivated = "";
+      /*
+      var pass = "";
+      var confPass = "";
+      */
+
+      id_empresas = id_empresas_parameter;
+      nombre = $("#nombre").val();
+      apellido = $("#apellido").val();
+      correo = $("#correo").val();
+      tel = $("#tel").val();
+      cel = $("#cel").val();
+      cargo = $("#cargo").val();
+      numDNI = $("#numDNI").val();
+      numSS = $("#numSS").val();
+
+      selectPlantillaX = document.getElementById("select-plantilla").selectedIndex;
+      selectPlantillaY = document.getElementById("select-plantilla").options;
+      plantilla = selectPlantillaY[selectPlantillaX].value ;
+
+      geoActivated = $("#geoActivated").prop("checked");
+      address = $("#pac-input2").val();
+      latitud = $scope.latitud;
+      longitud = $scope.longitud;
+      metros = $("#metros").val();
+      registroApp = $("#registroApp").prop("checked");
+      ipActivated = $("#ipActivated").prop("checked");
+      ipAddress = $("#ipAddress").val();
+      pcActivated = $("#pcActivated").prop("checked");
+      tabletasActivated = $("#tabletasActivated").prop("checked");
+      movilesActivated = $("#movilesActivated").prop("checked");
+      /*
+      pass = $("#pass").val();
+      confPass = $("#confPass").val();
+      */
+
+
+      console.log("[agregarNuevoTrabajadorClick] id_empresas: " + id_empresas);
+      console.log("[agregarNuevoTrabajadorClick] nombre: " + nombre);
+      console.log("[agregarNuevoTrabajadorClick] apellido: " + apellido);
+      console.log("[agregarNuevoTrabajadorClick] correo: " + correo);
+      console.log("[agregarNuevoTrabajadorClick] tel: " + tel);
+      console.log("[agregarNuevoTrabajadorClick] cel: " + cel);
+      console.log("[agregarNuevoTrabajadorClick] cargo: " + cargo);
+      console.log("[agregarNuevoTrabajadorClick] numDNI: " + numDNI);
+      console.log("[agregarNuevoTrabajadorClick] numSS: " + numSS);
+      console.log("[agregarNuevoTrabajadorClick] selectPlantillaX: " + selectPlantillaX);
+      console.log("[agregarNuevoTrabajadorClick] selectPlantillaY: " + selectPlantillaY);
+      console.log("[agregarNuevoTrabajadorClick] selectPlantilla: " + "Index: " + selectPlantillaY[selectPlantillaX].index + " is " + selectPlantillaY[selectPlantillaX].text + " value " + selectPlantillaY[selectPlantillaX].value);
+      console.log("[agregarNuevoTrabajadorClick] plantilla: " + plantilla);
+      console.log("[agregarNuevoTrabajadorClick] geoActivated: " + geoActivated);
+      console.log("[agregarNuevoTrabajadorClick] address: " + address);
+      console.log("[agregarNuevoTrabajadorClick] latitud: " + latitud);
+      console.log("[agregarNuevoTrabajadorClick] longitud: " + longitud);
+      console.log("[agregarNuevoTrabajadorClick] metros: " + metros);
+      console.log("[agregarNuevoTrabajadorClick] registroApp: " + registroApp);
+      console.log("[agregarNuevoTrabajadorClick] ipActivated: " + ipActivated);
+      console.log("[agregarNuevoTrabajadorClick] ipAddress: " + ipAddress);
+      console.log("[agregarNuevoTrabajadorClick] pcActivated: " + pcActivated);
+      console.log("[agregarNuevoTrabajadorClick] tabletasActivated: " + tabletasActivated);
+      console.log("[agregarNuevoTrabajadorClick] movilesActivated: " + movilesActivated);
+      /*
+      console.log("[agregarNuevoTrabajadorClick] pass: " + pass);
+      console.log("[agregarNuevoTrabajadorClick] confPass: " + confPass);
+      */
+
+        
+      if(nombre==""){
+        toastr["error"]("Agregar nombre del trabajador", "");
+      } else if(apellido==""){
+        toastr["error"]("Agregar apellido del trabajador", "");
+      } else if(correo.indexOf("@")=="-1" || correo.indexOf(".")=="-1" || correo.indexOf(" ")!="-1" || correo.indexOf(",")!="-1"){
+        toastr["error"]("Agregar correo del trabajador", "");
+      } else if(tel==""){
+        toastr["error"]("Agregar teléfono fijo del trabajador", "");
+      } else if(cel==""){
+        toastr["error"]("Agregar celular del trabajador", "");
+      } else if(cargo==""){
+        toastr["error"]("Agregar cargo del trabajador", "");
+      } else if(numDNI==""){
+        toastr["error"]("Agregar Número DNI del trabajador", "");
+      } else if(numSS==""){
+        toastr["error"]("Agregar Número de Seguro Social del trabajador", "");
+      } else if(selectPlantillaY[selectPlantillaX].text=="Selecciona una Plantilla"){
+        toastr["error"]("Seleccione una Plantilla al trabajador", "");
+      } else if(geoActivated==1 && address==""){
+        toastr["error"]("Agregar la dirección de Geolocalización", "");
+
+      } else if(ipActivated==1 && ipAddress==""){
+        toastr["error"]("Agregar la dirección IP correctamente", "");
+
+      } else {
+
+        functions.postModTrabajador(id_trabajadores, id_empresas, nombre, apellido, correo, tel, cel, cargo, numDNI, numSS, 
+          plantilla, geoActivated, address, latitud, longitud, metros, registroApp, 
+          ipActivated, ipAddress, pcActivated, tabletasActivated, 
+          movilesActivated).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[modTrabajadorClick][perfilEmpresas]");
+
+              console.log(response.data.data);
+              toastr["success"]("Información enviada Exitosamente", "");
+              window.location = "/trabajadores";
+
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin postNuevoTrabajador*/
+      }
+
+    }; //fin modTrabajadorClick
+
     $scope.getTrabajadoresByIdTrabajadoresClick = function(id_trabajadores){
 
       functions.getTrabajadoresByIdTrabajadores(id_trabajadores).then(function (response) {
@@ -817,7 +1387,7 @@
 
               if(response.data.success == "TRUE"){
                 
-                console.log("[controllers][nuevotrabajador][getPlantillas]");
+                console.log("[controllers][modTrabajadorClick][getPlantillas]");
         
                 console.log(response.data);
         
@@ -841,38 +1411,47 @@
 
                 });
     
-        
-
-                
                 $("#nombre").val(data[0].nombre);
                 $("#apellido").val(data[0].apellido);
                 $("#correo").val(data[0].correo);
                 $("#tel").val(data[0].telefono_fijo);
-                $("#cel").val(data[0].cel);
+                $("#cel").val(data[0].celular);
                 $("#cargo").val(data[0].cargo);
                 $("#numDNI").val(data[0].dni_num);
                 $("#numSS").val(data[0].seguro_social);
+
+                $("#geoActivated").prop("checked", data[0].geo_activated);
+
+                if(data[0].geo_activated==1){
+                  $("#showGeo").css("display","");
+                }
+
+                $("#pac-input").val(data[0].direccion);
+                $("#pac-input2").val(data[0].direccion);
+                $("#deAddressCalle").val(data[0].direccion);
+                $scope.latitud = data[0].latitud;
+                $scope.longitud = data[0].longitud;
+
+                $("#metros").data("ionRangeSlider").update({
+                  from: data[0].metros //your new value
+                });
+
+                $("#registroApp").prop("checked", data[0].app_geo_activated);
+                $("#ipActivated").prop("checked", data[0].ip_activated);
+                $("#ipAddress").val(data[0].ip);
+
+                if(data[0].ip_activated==1){
+                  $("#showIp").css("display","");
+                }
+                
+                $("#pcActivated").prop("checked", data[0].pc_activated);
+                $("#tabletasActivated").prop("checked", data[0].tablet_activated);
+                $("#movilesActivated").prop("checked", data[0].mobile_activated);
                 /*
-
-                selectPlantillaX = document.getElementById("select-plantilla").selectedIndex;
-                selectPlantillaY = document.getElementById("select-plantilla").options;
-                plantilla = selectPlantillaY[selectPlantillaX].value ;
-
-                $("#geoActivated").prop("checked");
-                $("#pac-input2").val(data[0].);
-                $scope.latitud = data[0].;
-                $scope.longitud = data[0].;
-                $("#metros").val(data[0].);
-                $("#registroApp").prop("checked");
-                $("#ipActivated").prop("checked");
-                $("#ipAddress").val(data[0].);
-                $("#pcActivated").prop("checked");
-                $("#tabletasActivated").prop("checked");
-                $("#movilesActivated").prop("checked");
                 $("#pass").val(data[0].);
                 $("#confPass").val(data[0].);
                 */
-        
+
                 functions.loadingEndWait();
                 
               } else {
@@ -892,11 +1471,6 @@
               functions.loadingEndWait();
           }
 
-          
-
-                $("#select-plantilla").val(data[0].id_plantillas);
-                $("#select2-select-plantilla-container").val("webos");
-
       }, function (response) {
         /*ERROR*/
         toastr["error"]("Inténtelo de nuevo más tarde", "");
@@ -914,7 +1488,7 @@
       functions.getImageEmpresa(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[nuevaplantilla][perfilEmpresas]");
+              console.log("[modtrabajador][perfilEmpresas]");
 
               console.log(response.data.data);
 
@@ -946,7 +1520,7 @@
       functions.delTrabajadoresByIdEmpresa(id_trabajadores, id_empresas).then(function (response) {
 
           if(response.data.success == "TRUE"){
-            console.log("[delTrabajadoresByIdEmpresaClick][delTrabajadoresByIdEmpresa]");
+            console.log("[trabajadores][delTrabajadoresByIdEmpresaClick][delTrabajadoresByIdEmpresa]");
 
             console.log(response.data.data);
 
@@ -982,7 +1556,7 @@
       functions.getTrabajadoresByIdEmpresa(id_empresas).then(function (response) {
 
           if(response.data.success == "TRUE"){
-            console.log("[agregarNuevoTrabajadorClick][perfilEmpresas]");
+            console.log("[trabajadores][agregarNuevoTrabajadorClick][perfilEmpresas]");
 
             console.log(response.data.data);
 
@@ -1019,7 +1593,7 @@
       functions.getImageEmpresa(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[nuevaplantilla][perfilEmpresas]");
+              console.log("[trabajadores][perfilEmpresas]");
 
               console.log(response.data.data);
 
@@ -1095,7 +1669,7 @@
 
       selectPlantillaX = document.getElementById("select-plantilla").selectedIndex;
       selectPlantillaY = document.getElementById("select-plantilla").options;
-      plantilla = selectPlantillaY[selectPlantillaX].value ;
+      plantilla = selectPlantillaY[selectPlantillaX].value;
 
       geoActivated = $("#geoActivated").prop("checked");
       address = $("#pac-input2").val();
@@ -1177,10 +1751,11 @@
           movilesActivated, pass).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[agregarNuevoTrabajadorClick][perfilEmpresas]");
+              console.log("[nuevotrabajador][agregarNuevoTrabajadorClick][perfilEmpresas]");
 
               console.log(response.data.data);
               toastr["success"]("Información enviada Exitosamente", "");
+              window.location = "/trabajadores";
 
 
             } else {
@@ -1205,7 +1780,7 @@
       functions.getImageEmpresa(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[nuevaplantilla][perfilEmpresas]");
+              console.log("[nuevotrabajador][perfilEmpresas]");
 
               console.log(response.data.data);
 
@@ -1418,6 +1993,116 @@
 
   });//fin controller nuevoempresa
 
+  app.controller('modificarsalida', function($scope, functions, $window) {
+
+    console.log("[modificarsalida]");
+
+    functions.loading();
+
+    $scope.modificarSalida = function(id_empresas, id_salidas, nombre, computable){
+
+      console.log("[modificarSalida] ");
+
+      var nombre = "";
+      var computable = "";
+
+      nombre = $("#nombreSalida").val();
+      computable = $("#descanzoActivated").prop("checked");
+
+      console.log("nombre: " + nombre);
+      console.log("computable: " + computable);
+
+      functions.modSalidas(id_empresas, id_salidas, nombre, computable).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[modificarsalida][modSalidas]");
+
+              console.log(response.data.data);
+
+              window.redirect = "";
+
+              toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin modSalidas*/
+
+    }; //fin modificarSalida
+
+    modificarSalida = $scope.modificarSalida;
+
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[modificarsalida] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[modificarsalida][getImageEmpresa]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    $scope.getSalidaByIdClick = function(id_salidas){
+
+      console.log("[getSalidaByIdClick]");
+
+      
+      console.log("[getSalidaByIdClick] id_salidas: " + id_salidas);
+
+      functions.getSalidaById(id_salidas).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][getSalidas]");
+
+          console.log(response.data.data);
+
+          $("#nombreSalida").val(response.data.data[0].nombre);
+          $("#descanzoActivated").prop("checked", response.data.data[0].computable);
+
+          functions.loadingEndWait();
+          
+        } else {
+
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getSalidaById*/
+
+    }; //fin getSalidaByIdClick
+
+    getSalidaByIdClick = $scope.getSalidaByIdClick;
+
+
+
+  });//fin controller idiomas
+
   app.controller('idiomas', function($scope, functions, $window) {
 
     console.log("[idiomas]");
@@ -1441,7 +2126,7 @@
       functions.getImageEmpresa(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[nuevaplantilla][perfilEmpresas]");
+              console.log("[consultaDeInformes][perfilEmpresas]");
 
               console.log(response.data.data);
 
@@ -1480,6 +2165,75 @@
 
 
   });//fin controller administradores
+
+  app.controller('perfilpass', function($scope, functions, $window) {
+
+    console.log("[perfilpass]");
+
+    functions.loading();
+
+    
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[signinEmpresas] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[consultaDeInformes][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    
+    $scope.postContChangeClick = function(pass){
+
+      var contActual = "";
+      var contNueva = "";
+      var contConf = "";
+
+      contActual = $("#contActual").val();
+      contNueva = $("#contNueva").val();
+      contConf = $("#contConf").val();
+
+      functions.postContChange(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[postContChange][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+      });/*fin postContChange*/
+
+    }; //fin postContChangeClick
+
+
+  });//fin controller perfilpass
 
   return;
 

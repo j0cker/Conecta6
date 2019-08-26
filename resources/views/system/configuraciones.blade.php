@@ -62,7 +62,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-building'></i> Configuraciones <span class='fw-300'>Dashboard</span>
+                                <i class='subheader-icon fal fa-sliders-v-square'></i> Configuraciones <span class='fw-300'>Dashboard</span>
                             </h1>
                         </div>
                         <div class="row">
@@ -114,10 +114,10 @@
                                             <div style="margin-top: 50px;" class="text-center row">
 
                                                 <div class="col-md-6">
-                                                    <input class="form-control" type="text" placeholder="Nueva Salida" />
+                                                    <input id="nombreSalida" class="form-control" type="text" placeholder="Nueva Salida" />
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <button style="margin-bottom: 20px;" class="btn btn-primary">Agregar</button>
+                                                    <button ng-click="agregarSalidaClick('{{ $user['usr']->id_empresas }}');" style="margin-bottom: 20px;" class="btn btn-primary">Agregar</button>
                                                 </div>
                                             </div>
 
@@ -131,24 +131,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Salida al Baño</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Salida por Café</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Salida de Jornada</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
@@ -206,7 +188,7 @@
 
                                                     <div style="font-size: 25px; color: black;" class="text-center col-md-6">
                                                     
-                                                        Nombre de la Empresa que verán tus usuarios.
+                                                        Nombre de la Empresa.
 
                                                     </div>
 
@@ -219,11 +201,50 @@
                                                 <div class="col-md-3"></div>
 
                                                 <div style="display:inline-block;" class="col-md-6">
-                                                    <input style="width: 300px; display:inline-block;" class="form-control" type="text" placeholder="Nombre de la Empresa" />
+                                                    <input id="nombreEmpresa" style="width: 300px; display:inline-block;" class="form-control" type="text" placeholder="Nombre de la Empresa" />
                                                     <button style="margin-top: 20px; margin-left: 20px; margin-bottom: 20px; display: inline-block;" class="btn btn-primary">Modificar</button>
                                                 </div>
 
                                                 <div class="col-md-3"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 25px;" class="row">
+
+                                                <div class="col-md-4"></div>
+
+                                                    <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                    
+                                                        Subdominio: <i style="color: green; display: none;" class="fal fa-check-circle"></i><i style="color: red; display: none;" class="fal fa-times-circle"></i>
+
+                                                    </div>
+
+                                                <div class="col-md-4"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 10px;" class="row">
+
+                                                <div class="col-md-4"></div>
+
+                                                <div class="input-group mb-3 col-md-4">
+                                                    <input id="subdominio" type="text" class="form-control" placeholder="Nombre de la Empresa" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">.dominio.com <i style="margin-left: 15px; color: green; display: none;" class="fal fa-check-circle"></i><i style="margin-left: 15px; color: red; display: none;" class="fal fa-times-circle"></i></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="text-center row">
+
+                                                <div class="col-md-12">
+                                                    <a href="/plantilla/nueva">
+                                                        <button style="margin-bottom: 20px;" class="text-center btn btn-primary">Modificar subdominio</button>
+                                                    </a>
+                                                </div>
 
                                             </div>
 
@@ -324,7 +345,7 @@
 
                                                 <div class="col-md-12">
                                                     <a href="/plantilla/nueva">
-                                                        <button style="margin-bottom: 20px;" class="text-center btn btn-primary">Agregar</button>
+                                                        <button style="margin-bottom: 20px;" class="text-center btn btn-primary">Agregar Nueva Plantilla</button>
                                                     </a>
                                                 </div>
 
@@ -333,6 +354,7 @@
                                             <table id="plantillas" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
+                                                        <th>ID</th>
                                                         <th>Nombre de la Plantilla</th>
                                                         <th>Lunes</th>
                                                         <th>Martes</th>
@@ -345,31 +367,10 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
-                                                    <tr>
-                                                        <td>Gerentes</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Directores</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
+                                                        <th>ID</th>
                                                         <th>Nombre de la Plantilla</th>
                                                         <th>Lunes</th>
                                                         <th>Martes</th>
@@ -988,13 +989,14 @@
             </div>
         </div> <!-- END Page Settings -->
         
-        <script src="js/vendors.bundle.js"></script>
-        <script src="js/app.bundle.js"></script>
+        <script src="js/vendors.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="js/app.bundle.js?v='.cache("js_version_number").'') }}"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
     
         <script src="{{ url('js/selects.js?v='.cache("js_version_number").'') }}"></script>
 
-        <script src="js/datatables.bundle.js"></script>
+        <script src="js/datatables.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/jquery.mask.js?v='.cache("js_version_number").'') }}"></script>
 
         <script>
             $( document ).ready(function() {
@@ -1006,19 +1008,45 @@
 
             
 
-            function checkbox(valor){
-                
-                console.log(valor);
+            function checkboxSalida(id_salidas, nombre){
 
-                console.log("entro: " + $("#gra-" + valor).prop('checked'));
+                console.log("[checkboxSalida]");
+
+                var computable = $("#gra-"+id_salidas+"").prop("checked");
+                
+                console.log("[checkboxSalida] id_salidas: " + id_salidas);
+                console.log("[checkboxSalida] nombre: " + nombre);
+                console.log("[checkboxSalida] computable: " + computable);
+
+                changeComputableSalidaClick("{{ $user['usr']->id_empresas }}", id_salidas, nombre, computable);
+
+                
             }
 
-            function edit(valor){
+            function editSalida(id_salidas){
+
+                console.log("[editSalida]");
+
+                window.location = "/salidas/modificar?id=" + id_salidas;
+
+            }
+
+            function delSalida(id_salidas){
+
+                console.log("[editSalida]");
+
+                console.log("[checkboxSalida] id_salidas: " + id_salidas);
+
+                delSalidaClick("{{ $user['usr']->id_empresas }}", id_salidas);
+
+            }
+
+            function editPlantilla(valor){
                 
                 console.log(valor);
             }
 
-            function del(valor){
+            function delPlantilla(valor){
                 
                 console.log(valor);
             }
@@ -1068,8 +1096,8 @@
                         "data": null,
                         "render": function ( data, type, row, meta ) {
                             return  `<center>
-                                        <button onclick="edit(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
-                                        <button onclick="del(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
+                                        <button onclick="editSalida(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
+                                        <button onclick="delSalida(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
                                     </center>`;
                         }
                     
@@ -1080,7 +1108,7 @@
                             
                             return `<center>
                                     <div class="custom-control custom-switch mr-2">
-                                        <input type="checkbox" class="custom-control-input" onclick="checkbox(`+row[0]+`);" name="gra-`+row[0]+`" id="gra-`+row[0]+`" checked="checked">
+                                        <input type="checkbox" class="custom-control-input" onclick="checkboxSalida('`+row[0]+`', '`+row[1]+`');" name="gra-`+row[0]+`" id="gra-`+row[0]+`" checked="checked">
                                         <label class="custom-control-label" for="gra-`+row[0]+`"></label>
                                     </div>
                                 </center>`;
@@ -1133,8 +1161,8 @@
                         "data": null,
                         "render": function ( data, type, row, meta ) {
                             return  `<center>
-                                        <button onclick="edit(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
-                                        <button onclick="del(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
+                                        <button onclick="editPlantilla(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
+                                        <button onclick="delPlantilla(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
                                     </center>`;
                         }
                     
@@ -1188,6 +1216,7 @@
         <!-- Toastr-->
         <script src="{{ url('js/toastr.js?v='.cache("js_version_number").'') }}"></script>
 
+
         <!--Angular-->
         
         <script src="{{ url('js/angular.min.js?v='.cache("js_version_number").'') }}"></script>
@@ -1204,17 +1233,46 @@
             $(document).ready(function()
             {
 
+                $('#subdominio').mask("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", {
+                    translation: {
+                        "A": {pattern: /[a-zA-Z0-9]/}
+                    }
+                });
+
+
+                $('#subdominio').on('change', function() {
+                    console.log("[nuevaempresa.php][subdominio] changes");
+
+                    validarSubdominio($("#subdominio").val());
+                    
+                    
+                });
+                
+
+                $(document).on('change', '#single-default', function () {
+                    
+                    console.log("[Zonas Horarias]");
+
+                    console.log($("#single-default").val());
+
+                    angular.element('body').scope().postZonaHorariaClick(""+$("#single-default").val()+"");
+
+                });
+
                 $(document).on('change', '#profileimg', function () {
                     
-                    console.log("[change]");
+                    console.log("[Perfil]");
 
                     startLoading();
                     $('#FrmProfilePicture').submit();
                 });
 
-                $('#js-page-content').smartPanel(); 
+                $('#js-page-content').smartPanel();
                 angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
-                angular.element('body').scope().getZonasHorariasClick();
+                angular.element('body').scope().getZonasHorariasClick("{{ $user['usr']->id_zona_horaria }}");
+                angular.element('body').scope().getEmpresaClick("{{ $user['usr']->id_empresas }}");
+                getSalidasClick("{{ $user['usr']->id_empresas }}");
+                
             });
         </script>
 

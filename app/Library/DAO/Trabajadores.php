@@ -22,6 +22,7 @@ class Trabajadores extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    //borrar trabajador by id trabajador y id empresas
     public function scopeDelByIdEmpresas($query, $id_trabajadores, $id_empresas){
 
       Log::info("[Trabajadores][scopeDelByIdEmpresas]");
@@ -33,13 +34,12 @@ class Trabajadores extends Model
 
     }
 
-
     //buscar trabajadores por empess
     public function scopeGetByIdEmpresas($query, $id_empresas)
     {   
-        Log::info("[Empresas][scopeGetByIdEmpresas]");
+        Log::info("[Trabajadores][scopeGetByIdEmpresas]");
 
-        Log::info("[Empresas][scopeGetByIdEmpresas] id_empresas: ". $id_empresas);
+        Log::info("[Trabajadores][scopeGetByIdEmpresas] id_empresas: ". $id_empresas);
 
         return $query->where([
           ['id_empresas', '=', $id_empresas],
@@ -50,13 +50,54 @@ class Trabajadores extends Model
     //buscar trabajadores por id_trabajadore
     public function scopeGetByIdTrabajadores($query, $id_trabajadores)
     {   
-        Log::info("[Empresas][scopeGetByIdEmpresas]");
+        Log::info("[Trabajadores][scopeGetByIdEmpresas]");
 
-        Log::info("[Empresas][scopeGetByIdEmpresas] id_trabajadores: ". $id_trabajadores);
+        Log::info("[Trabajadores][scopeGetByIdEmpresas] id_trabajadores: ". $id_trabajadores);
 
         return $query->where([
           ['id_trabajadores', '=', $id_trabajadores],
         ]);
+    }
+
+    //modificar plantilla
+    public function scopeModTrabajador($query, $id_trabajadores, $id_empresas, $nombre, $apellido, $correo, $tel, $cel, $cargo, $numDNI, $numSS,
+    $plantilla, $geoActivated, $latitud, $longitud, $address, $metros, $registroApp, $ipActivated, $ipAddress, $pcActivated, 
+    $tabletasActivated, $movilesActivated/*, $pass*/)
+    {
+        
+
+        Log::info("[Trabajadores][scopeModTrabajador]");
+
+        $obj = array();
+        $obj[0] = new \stdClass();
+        $obj[0]->save = $query->where([['id_trabajadores', $id_trabajadores],
+                                       ['id_empresas', $id_empresas]
+                                      ])->update(['nombre' => $nombre,
+                                                  'apellido' => $apellido,
+                                                  'correo' => $correo,
+                                                  'telefono_fijo' => $tel,
+                                                  'celular' => $cel,
+                                                  'cargo' => $cargo,
+                                                  'dni_num' => $numDNI,
+                                                  'seguro_social' => $numSS,
+                                                  'id_plantillas' => $plantilla,
+                                                  'geo_activated' => $geoActivated,
+                                                  'latitud' => $latitud,
+                                                  'longitud' => $longitud,
+                                                  'direccion' => $address,
+                                                  'metros' => $metros,
+                                                  'app_geo_activated' => $registroApp,
+                                                  'ip_activated' => $ipActivated,
+                                                  'ip' => $ipAddress,
+                                                  'pc_activated' => $pcActivated,
+                                                  'tablet_activated' => $tabletasActivated,
+                                                  'mobile_activated' => $movilesActivated
+                                                 ]); //return true in the other one return 1
+        $obj[0]->id = $id_empresas;
+
+
+        return $obj;
+
     }
 
     //agrega plantilla
@@ -66,7 +107,7 @@ class Trabajadores extends Model
     {
         
 
-        Log::info("[plantillas][scopeAddTrabajador]");
+        Log::info("[Trabajadores][scopeAddTrabajador]");
 
 
         $trabajador = new Trabajadores;
@@ -125,15 +166,15 @@ class Trabajadores extends Model
     public function scopeLookForByEmailAndPassAndIdEmpresa($query, $email, $pass, $id_empresas)
     {
 
-        Log::info("[Empresas][scopeLookForByEmailAndPassAndIdEmpresa]");
+        Log::info("[Trabajadores][scopeLookForByEmailAndPassAndIdEmpresa]");
 
         $pass = hash("sha256", $pass);
 
-        Log::info("[Empresas][scopeLookForByEmailAndPassAndIdEmpresa] email: ". $email);
+        Log::info("[Trabajadores][scopeLookForByEmailAndPassAndIdEmpresa] email: ". $email);
 
-        Log::info("[Empresas][scopeLookForByEmailAndPassAndIdEmpresa] pass: ". $pass);
+        Log::info("[Trabajadores][scopeLookForByEmailAndPassAndIdEmpresa] pass: ". $pass);
 
-        Log::info("[Empresas][scopeLookForByEmailAndPassAndIdEmpresa] id_empresas: ". $id_empresas);
+        Log::info("[Trabajadores][scopeLookForByEmailAndPassAndIdEmpresa] id_empresas: ". $id_empresas);
 
         return $query->where([
           ['correo', '=', $email],
