@@ -109,7 +109,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="contActual" type="text" class="form-control" placeholder="Nombre de la Salida" />
+                                                                    <input id="contActual" type="password" class="form-control" placeholder="Contraseña Actual" />
 
                                                                 </div>
 
@@ -137,7 +137,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="contNueva" type="text" class="form-control" placeholder="Nombre de la Salida" />
+                                                                    <input id="contNueva" type="password" class="form-control" placeholder="Nueva Contraseña" />
 
                                                                 </div>
 
@@ -165,7 +165,7 @@
 
                                                             <div style="font-size: 25px; color: black;" class="col-md-4">
                                                             
-                                                                <input id="contConf" type="text" class="form-control" placeholder="Nombre de la Salida" />
+                                                                <input id="contConf" type="password" class="form-control" placeholder="Confirmar Nueva Contraseña" />
 
                                                             </div>
 
@@ -175,7 +175,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a ng-click="" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
+                                                                <a ng-click="postContChangeClick('<?php echo e($user['usr']->pass); ?>', '<?php echo e($user['usr']->id_empresas); ?>');" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
                                                             </div>
                                                         </div>
 

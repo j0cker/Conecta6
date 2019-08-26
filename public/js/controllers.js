@@ -2200,7 +2200,7 @@
     }; //fin getImageEmpresaClick
 
     
-    $scope.postContChangeClick = function(pass){
+    $scope.postContChangeClick = function(pass, id_empresas){
 
       var contActual = "";
       var contNueva = "";
@@ -2210,25 +2210,51 @@
       contNueva = $("#contNueva").val();
       contConf = $("#contConf").val();
 
-      functions.postContChange(id_empresas).then(function (response) {
+      console.log("Pass: " + pass);
+      console.log("id_empresas: " + id_empresas);
 
-            if(response.data.success == "TRUE"){
-              console.log("[postContChange][perfilEmpresas]");
+      console.log("contActual: " + contActual);
+      console.log("contActual SHA256: " + SHA256(contActual));
+      console.log("contNueva: " + contNueva);
+      console.log("contConf: " + contConf);
 
-              console.log(response.data.data);
+      if(SHA256(contActual)!=pass){
+        
+        toastr["error"]("Error: la contraseña actual<br />no coincide", "");
 
-              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+      } else if(contNueva=="" || contConf==""){
+        
+        toastr["error"]("Los campos de contraseña están<br />vacíos", "");
 
-            } else {
-                toastr["warning"](response.data.description, "");
-                functions.loadingEndWait();
-            }
-        }, function (response) {
-          /*ERROR*/
-          toastr["error"]("Inténtelo de nuevo más tarde", "");
-          functions.loadingEndWait();
+      } else if(contNueva!=contConf){
+        
+        toastr["error"]("Error: las contraseñas no<br />coinciden", "");
 
-      });/*fin postContChange*/
+      } else {
+
+        functions.postContChange(id_empresas, contNueva).then(function (response) {
+
+              if(response.data.success == "TRUE"){
+                console.log("[postContChange][perfilEmpresas]");
+
+                console.log(response.data.data);
+
+                toastr["success"]("Se ha cambiado la contraseña con<br /> éxito.", "");
+
+                window.location = "/perfilEmpresas";
+
+              } else {
+                  toastr["warning"](response.data.description, "");
+                  functions.loadingEndWait();
+              }
+          }, function (response) {
+            /*ERROR*/
+            toastr["error"]("Inténtelo de nuevo más tarde", "");
+            functions.loadingEndWait();
+
+        });/*fin postContChange*/
+
+      }
 
     }; //fin postContChangeClick
 

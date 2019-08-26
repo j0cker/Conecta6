@@ -431,6 +431,15 @@
 
 
       },
+      postContChange: function(id_empresas, cont) {
+
+        console.log("[factory][postContChange]");
+
+        var url = '/api/empresas/perfil/pass';
+
+        return $http.post(url, {cache: false, id_empresas:id_empresas, cont:cont });
+
+      },
     };
   });
 

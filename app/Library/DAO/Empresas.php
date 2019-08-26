@@ -32,6 +32,19 @@ class Empresas extends Model
 
     }
 
+    //modificar zona horaria en el perfil de la empresa
+    public function scopeModPass($query, $id_empresas, $pass){
+
+      Log::info("[Empresas][scopeModPass]");
+
+      $pass = hash("sha256", $pass);
+
+      return $query->where([['id_empresas', '=', $id_empresas],
+                           ])->update(['pass' => $pass]); //return true in the other one return 1
+
+    }
+
+    //modificar zona horaria en el perfil de la empresa
     public function scopeModZonaHoraria($query, $id_empresas, $id_zona_horaria){
 
       Log::info("[Empresas][scopeDelByIdEmpresas]");

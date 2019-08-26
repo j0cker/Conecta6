@@ -410,6 +410,113 @@ class APIEmpresas extends Controller
 
   }
 
+  public function ChangePerfilPass(Request $request)
+  {
+    Log::info('[APIEmpresas][ChangePerfilPass]');
+
+    Log::info("[APIEmpresas][ChangePerfilPass] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][ChangePerfilPass] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        if(in_array(1, $token_decrypt["permisos"]) || in_array(2, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][ChangePerfilPass] Permiso Existente");
+          
+
+          Validator::make($request->all(), [
+            'id_empresas' => 'required',
+            'cont' => 'required',
+          ])->validate();
+          
+          $id_empresas = $request->input('id_empresas');
+          $cont = $request->input('cont');
+
+          //print_r($token_decrypt["id"]);
+
+          //print_r($token_decrypt);
+
+          $Empresas = Empresas::modPass($id_empresas, $cont);
+
+
+          if($Empresas==1){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Empresas));
+            $responseJSON->data = $Empresas;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Empresas));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        }
+
+        return redirect('/');
+
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][ChangePerfilPass] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][ChangePerfilPass] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][ChangePerfilPass] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][ChangePerfilPass] ' . $e);
+
+        return redirect('/');
+
+      }
+
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
   public function Trabajadores(Request $request){
     
     Log::info('[APIEmpresas][Trabajadores]');

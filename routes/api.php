@@ -58,6 +58,12 @@ Route::get('/empresas/profile/image', 'APIEmpresas@GetProfileImage');
 //Update Image
 Route::post('/empresas/profile/image', 'APIEmpresas@UpdateProfilePicture');
 
+//Update Image
+Route::post('/empresas/profile/image', 'APIEmpresas@UpdateProfilePicture');
+
+//Actualizar contraseña del perfil de empresas
+Route::post('/empresas/perfil/pass', 'APIEmpresas@ChangePerfilPass');
+
 //Alta Nuevo Trabajador
 Route::post('/empresas/altaNuevoTrabajador', 'APIEmpresas@AltaTrabajador');
 
