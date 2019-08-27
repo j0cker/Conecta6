@@ -95,13 +95,14 @@
         https://boogapp.info/perfilEmpresas/pass
         https://boogapp.info/trabajadores
         https://boogapp.info/trabajadores/nuevo
+        https://boogapp.info/trabajadores/editar
         https://boogapp.info/informes
         https://boogapp.info/plantilla/nueva
         https://boogapp.info/configuraciones
         https://boogapp.info/salidas/modificar?id=1 (ejemplo de editar salidas)
 
         API's con Prejijo api/
-                
+                    
         //Ingresar Empresas
         Route::get('/empresas/ingresar', 'APIEmpresas@Ingresar');
 
@@ -144,7 +145,7 @@
         //Eliminar Trabajador
         Route::post('/empresas/trabajadores/eliminar', 'APIEmpresas@EliminarTrabajadores');
 
-        //Eliminar Trabajador
+        //Modificar Trabajador
         Route::post('/empresas/modTrabajador', 'APIEmpresas@ModTrabajador');
 
         //Actualizar Zonas Horaria de Empresa

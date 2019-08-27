@@ -22,6 +22,18 @@ class Trabajadores extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    //modificar contraseña en el perfil de los trabajadores
+    public function scopeModPass($query, $id_trabajadores, $pass){
+
+      Log::info("[Trabajadores][scopeModPass]");
+
+      $pass = hash("sha256", $pass);
+
+      return $query->where([['id_trabajadores', '=', $id_trabajadores],
+                           ])->update(['pass' => $pass]); //return true in the other one return 1
+
+    }
+
     //borrar trabajador by id trabajador y id empresas
     public function scopeDelByIdEmpresas($query, $id_trabajadores, $id_empresas){
 

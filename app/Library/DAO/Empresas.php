@@ -32,7 +32,7 @@ class Empresas extends Model
 
     }
 
-    //modificar zona horaria en el perfil de la empresa
+    //modificar contraseña en el perfil de la empresa
     public function scopeModPass($query, $id_empresas, $pass){
 
       Log::info("[Empresas][scopeModPass]");

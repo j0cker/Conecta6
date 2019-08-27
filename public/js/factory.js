@@ -431,15 +431,25 @@
 
 
       },
-      postContChange: function(id_empresas, cont) {
+      postContChange: function(id, cont, tipo) {
 
         console.log("[factory][postContChange]");
 
-        var url = '/api/empresas/perfil/pass';
+        if(tipo=="administradores")
+          tipo = "pAdmin";
 
-        return $http.post(url, {cache: false, id_empresas:id_empresas, cont:cont });
+        var url = '/api/'+tipo+'/perfil/pass';
 
-      },
+        if(tipo == "empresas")
+          return $http.post(url, {cache: false, id_empresas:id, cont:cont });
+          
+        if(tipo == "trabajadores")
+          return $http.post(url, {cache: false, id_trabajadores:id, cont:cont });
+        
+        if(tipo == "pAdmin")
+          return $http.post(url, {cache: false, id_administradores:id, cont:cont });
+
+      }
     };
   });
 

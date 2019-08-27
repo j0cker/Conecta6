@@ -28,6 +28,9 @@ Route::get('/marketing', 'APITrabajadores@Marketing');
 Route::get('/introduction', 'APITrabajadores@Introduction');
 Route::get('/registros', 'APITrabajadores@Registros');
 Route::get('/perfilTrabajadores', 'APITrabajadores@Perfil');
+
+//Perfil cambio de contraseña
+Route::get('/perfilTrabajadores/pass', 'APITrabajadores@PerfilPass');
 Route::get('/historial', 'APITrabajadores@Historial');
 
 /*
@@ -49,7 +52,7 @@ Route::get('/trabajadores', 'APIEmpresas@Trabajadores');
 //Nuevos Trabajadores
 Route::get('/trabajadores/nuevo', 'APIEmpresas@NuevoTrabajadores');
 
-//Nuevos Trabajadores
+//editar Trabajadores
 Route::get('/trabajadores/editar', 'APIEmpresas@ModTrabajadores');
 
 //Nueva Plantilla de Horario de los Trabajadores
@@ -79,6 +82,9 @@ Route::get('/inicioAdmin', 'APIAdmin@Inicio');
 
 //Perfil
 Route::get('/perfilAdministradores', 'APIAdmin@Perfil');
+
+//Perfil cambio de contraseña
+Route::get('/perfilAdministradores/pass', 'APIAdmin@PerfilPass');
 
 //Empresas
 Route::get('/empresas', 'APIAdmin@Empresas');

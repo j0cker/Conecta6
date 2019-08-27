@@ -491,9 +491,13 @@
                                                                 Editar
                                                             </button>
 
-                                                            <button style="margin-left: 25px; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                Cambiar Contraseña
-                                                            </button>
+                                                            <a href="/perfilAdministradores/pass">
+
+                                                                <button style="margin-left: 25px; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                                    Cambiar Contraseña
+                                                                </button>
+
+                                                            </a>
 
                                                             <div class="col-md-4"></div>
 

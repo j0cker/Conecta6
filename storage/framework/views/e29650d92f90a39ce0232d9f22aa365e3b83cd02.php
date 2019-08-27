@@ -1,44 +1,40 @@
-@extends('system.master')
+<?php $__env->startSection('lang'); ?><?php echo e($lang); ?><?php $__env->stopSection(); ?>
 
-{{-- lang html tag --}}
 
-@section('lang'){{$lang}}@stop
 
-{{-- Title Head --}}
+<?php $__env->startSection('title'); ?><?php echo e($title); ?><?php $__env->stopSection(); ?>
 
-@section('title'){{$title}}@stop
 
-{{-- Metatag Head --}}
 
-@section('Content-Type','text/html; charset=UTF-8')
-@section('x-ua-compatible','ie=edge')
-@section('keywords','')
-@section('description','')
-@section('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1')
-@section('idiomaLang','es-mx')
+<?php $__env->startSection('Content-Type','text/html; charset=UTF-8'); ?>
+<?php $__env->startSection('x-ua-compatible','ie=edge'); ?>
+<?php $__env->startSection('keywords',''); ?>
+<?php $__env->startSection('description',''); ?>
+<?php $__env->startSection('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1'); ?>
+<?php $__env->startSection('idiomaLang','es-mx'); ?>
 
-{{-- Menu --}}
+
 
 <!--Menu Transparente
-@section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
+<?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-@section('menuActive','perfilTrabajadores')
+<?php $__env->startSection('menuActive','perfilTrabajadores'); ?>
 
-@section('raiz1', @Config::get('app.name'))
-@section('raiz1Url', '/inicio')
-@section('raiz2','Trabajadores')
-@section('raiz2Url','/inicio')
-@section('raiz3','Perfil')
-@section('raiz3Url','/perfil')
+<?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
+<?php $__env->startSection('raiz1Url', '/inicio'); ?>
+<?php $__env->startSection('raiz2','Empresas'); ?>
+<?php $__env->startSection('raiz2Url','/inicioEmpresa'); ?>
+<?php $__env->startSection('raiz3','Contraseña Perfil'); ?>
+<?php $__env->startSection('raiz3Url','/perfilTrabajadores/pass'); ?>
 
 
-{{-- Angular Controller --}}
 
-@section('controller','perfilTrabajadores')
 
-{{-- Body --}}
+<?php $__env->startSection('controller','perfilTrabajadoresPass'); ?>
 
-@section('content')
+
+
+<?php $__env->startSection('content'); ?>
 
 
 <div class="page-wrapper">
@@ -46,7 +42,7 @@
                 
                 <!-- BEGIN Left Aside -->
                         
-                        @include('system.menu')
+                        <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         
                 <!-- END Left Aside -->
 
@@ -54,18 +50,18 @@
                     <!-- BEGIN Page Header -->
                     
                         
-                    @include('system.menu2')
+                    <?php echo $__env->make('system.menu2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                     
                     <!-- END Page Header -->
                     <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
                     <main id="js-page-content" role="main" class="page-content">
                     
-                        @include('system.menu3')
+                        <?php echo $__env->make('system.menu3', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-user"></i> Perfil
+                                <i class="subheader-icon fal fa-door-open"></i> Modificar Contraseña
                                 <small>
                                 </small>
                             </h1>
@@ -77,7 +73,7 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Perfil
+                                            Modificar Contraseña
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -93,42 +89,13 @@
                                                 <div class="col-lg-12 col-xl-12">
                                                     <div class="position-relative">
 
-                                                        <div style="margin-top: 50px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div class="col-md-4 text-center">
-                                                                
-                                                                    <!--    
-                                                                    <form method="post" action="{{ url('/api/trabajadores/profile/image') }}" enctype="multipart/form-data" id="FrmProfilePicture">
-                                                                        {{ method_field('POST') }}
-
-                                                                        <label for="profileimg" class="figure">
-                                                                            <input type="file" id="profileimg" hidden name="profileimg">
-                                                                            <img class="profile-image  rounded-circle" onerror="this.src='{{ url('img/profile-image.png') }}'" style="width: 120px; height: 120px;" src="{{ url('img/profile-image.png') }}" alt="{{ $user['usr']->nombre }} {{ $user['usr']->apellido }}" id="userProfilePicture">
-                                                                        </label>
-
-                                                                    </form>
-                                                                    -->
-                                                                    <img class="profile-image rounded-circle" onerror="this.src='{{ url('img/profile-image.png') }}'" style="width: 120px; height: 120px;" src="{{ url('img/profile-image.png') }}" alt="{{ $user['usr']->nombre }} {{ $user['usr']->apellido }}" id="userProfilePicture">
-
-                                                                    <center>
-                                                                    150x150
-                                                                    </center>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 50px;" class="row">
+                                                        <div style="margin-top: 25px;" class="row">
 
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Nombre:
+                                                                    Contraseña Actual:
 
                                                                 </div>
 
@@ -136,33 +103,13 @@
 
                                                         </div>
 
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    @isset($user["usr"]->nombre)
-                                                                        {{ $user["usr"]->nombre }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->nombre)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
+                                                        <div style="margin-top: 10px;" class="row">
 
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Apellido:
+                                                                    <input id="contActual" type="password" class="form-control" placeholder="Contraseña Actual" />
 
                                                                 </div>
 
@@ -170,33 +117,13 @@
 
                                                         </div>
 
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    @isset($user["usr"]->apellido)
-                                                                        {{ $user["usr"]->apellido }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->apellido)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
+                                                        <div style="margin-top: 25px;" class="row">
 
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Correo:
+                                                                    Contraseña Nueva:
 
                                                                 </div>
 
@@ -204,68 +131,27 @@
 
                                                         </div>
 
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    @isset($user["usr"]->correo)
-                                                                        {{ $user["usr"]->correo }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->correo)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
+                                                        <div style="margin-top: 10px;" class="row">
 
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Cargo:
+                                                                    <input id="contNueva" type="password" class="form-control" placeholder="Nueva Contraseña" />
 
                                                                 </div>
 
                                                             <div class="col-md-4"></div>
 
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    @isset($user["usr"]->cargo)
-                                                                        {{ $user["usr"]->cargo }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->cargo)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
+                                                        </div>                                                        
                                                         
-                                                        <div class="row">
+                                                        <div style="margin-top: 25px;" class="row">
 
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Teléfono Fijo:
+                                                                    Confirmar Contraseña Nueva :
 
                                                                 </div>
 
@@ -273,186 +159,26 @@
 
                                                         </div>
 
-                                                        <div class="row">
+                                                        <div style="margin-top: 10px;" class="row">
 
-                                                            <div class="col-md-4"></div>
+                                                        <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                            
+                                                                <input id="contConf" type="password" class="form-control" placeholder="Confirmar Nueva Contraseña" />
 
-                                                                     
-                                                                    @isset($user["usr"]->telefono_fijo)
-                                                                        {{ $user["usr"]->telefono_fijo }}
-                                                                    @endisset
+                                                            </div>
 
-                                                                    @empty($user["usr"]->telefono_fijo)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Celular:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
+                                                        <div class="col-md-4"></div>
 
                                                         </div>
 
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    @isset($user["usr"]->celular)
-                                                                        {{ $user["usr"]->celular }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->celular)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Fecha de Creación:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
+                                                        <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
+                                                            <div class="col-12 text-center">
+                                                                <a ng-click="postContChangeClick('<?php echo e($user['usr']->pass); ?>', '<?php echo e($user['usr']->id_empresas); ?>');" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
+                                                            </div>
                                                         </div>
 
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    @isset($user["usr"]->created_at)
-                                                                        {{ $user["usr"]->created_at }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->created_at)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    DNI:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    @isset($user["usr"]->dni_num)
-                                                                        {{ $user["usr"]->dni_num }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->dni_num)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Seguro Social:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    @isset($user["usr"]->seguro_social)
-                                                                        {{ $user["usr"]->seguro_social }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->seguro_social)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                Editar
-                                                            </button>
-
-                                                            <a href="/perfilTrabajadores/pass">
-                                                                <button style="margin-left: 25px; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                    Cambiar Contraseña
-                                                                </button>
-                                                            </a>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -466,7 +192,7 @@
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
                     
-                    @include('system.footer2')
+                    <?php echo $__env->make('system.footer2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
@@ -522,7 +248,7 @@
         <!-- END Page Wrapper -->
         <!-- BEGIN Quick Menu -->
         <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-        @include('system.toolbar')
+        <?php echo $__env->make('system.toolbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <!-- END Quick Menu -->
         <!-- BEGIN Messenger -->
         <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1060,18 +786,24 @@
         </div> <!-- END Page Settings -->
 
         
-        <script src="{{ url('js/vendors.bundle.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/app.bundle.js?v='.cache("js_version_number").'') }}"></script>
-        
+        <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
      
+        <script src="<?php echo e(url('js/moment.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/datepicker.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/timepicker.js?v='.cache("js_version_number").'')); ?>"></script>
+        
+        <script>
+            $( document ).ready(function() {
+               
+            });
+        </script>
+
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                
-                @if (in_array("1", $user["permisos"]))
-                    $("#mytheme").attr("href","css/themes/cust-theme-6.css");
-                @endif
+
 
             });
         </script>
@@ -1079,6 +811,11 @@
         <script>
             $(document).ready(function()
             {
+                
+                $('#agregar').click(function() {
+                    
+
+                });
 
                 $('#js-page-content').smartPanel(); 
             });
@@ -1087,24 +824,29 @@
 
 
         <!-- Toastr-->
-        <script src="{{ url('js/toastr.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <!--Angular-->
 
-        <script src="{{ url('js/angular.min.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/sanitize.min.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/module.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/controllers.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/angular.min.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/sanitize.min.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/module.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/controllers.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
 
-        <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
 
-        
+
         <script>
-            $(document).ready(function(){
+            $( document ).ready(function() {
+                // Handler for .ready() called.
                 
-                angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+                angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                
+
             });
         </script>
 
-    @stop
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('system.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

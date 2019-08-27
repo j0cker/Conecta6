@@ -22,6 +22,18 @@ class Admin extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    //modificar contraseña en el perfil de los administradores
+    public function scopeModPass($query, $id_administradores, $pass){
+
+      Log::info("[Admin][scopeModPass]");
+
+      $pass = hash("sha256", $pass);
+
+      return $query->where([['id_administradores', '=', $id_administradores],
+                           ])->update(['pass' => $pass]); //return true in the other one return 1
+
+    }
+
 
     public function scopeLookForByEmailAndPass($query, $email, $pass)
     {

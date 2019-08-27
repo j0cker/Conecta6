@@ -1396,5 +1396,12 @@
         <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
 
         
+        <script>
+            $(document).ready(function()
+            {
+
+                getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+            });
+        </script>
 
     @stop

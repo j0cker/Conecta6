@@ -30,6 +30,9 @@ Route::get('/trabajadores/ingresar', 'APITrabajadores@Ingresar');
 //Logout
 Route::get('/trabajadores/logout', 'APITrabajadores@Logout');
 
+//Actualizar contraseña del perfil de trabajadores
+Route::post('/trabajadores/perfil/pass', 'APITrabajadores@ChangePerfilPass');
+
 /*
 *******Empresas******
 */
@@ -76,7 +79,7 @@ Route::get('/empresas/trabajadores/obtener/id_trabajadadores', 'APIEmpresas@GetT
 //Eliminar Trabajador
 Route::post('/empresas/trabajadores/eliminar', 'APIEmpresas@EliminarTrabajadores');
 
-//Eliminar Trabajador
+//Modificar Trabajador
 Route::post('/empresas/modTrabajador', 'APIEmpresas@ModTrabajador');
 
 //Actualizar Zonas Horaria de Empresa
@@ -106,4 +109,7 @@ Route::get('/pAdmin/ingresar', 'APIAdmin@Ingresar');
 
 //Logout
 Route::get('/pAdmin/logout', 'APIAdmin@Logout');
+
+//Actualizar contraseña del perfil de administradores
+Route::post('/pAdmin/perfil/pass', 'APIAdmin@ChangePerfilPass');
 

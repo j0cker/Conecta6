@@ -17,6 +17,7 @@ use JWTFactory;
 use Tymon\JWTAuth\PayloadFactory;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Session;
+use Validator;
 
 class APITrabajadores extends Controller
 {
@@ -380,6 +381,186 @@ class APITrabajadores extends Controller
 
                                   
       }
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function PerfilPass(Request $request){
+    
+    Log::info('[APITrabajadores][PerfilPass]');
+
+    Log::info("[APITrabajadores][PerfilPass] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        
+
+        if(in_array(3, $token_decrypt["permisos"])){
+
+          return view('system.perfilTrabajadoresPass',["title" => config('app.name'), 
+                                        "lang" => "es", 
+                                        "user" => $token_decrypt, 
+                                        "color" => $token_decrypt['color'], 
+                                        "colorHex" => $token_decrypt['colorHex'],
+                                        "subdominio" => $token_decrypt['subdominio'],
+                                      ]
+                              );
+
+          }
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APITrabajadores][PerfilPass] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APITrabajadores][PerfilPass] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APITrabajadores][PerfilPass] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function ChangePerfilPass(Request $request)
+  {
+    Log::info('[APITrabajadores][ChangePerfilPass]');
+
+    Log::info("[APITrabajadores][ChangePerfilPass] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APITrabajadores][ChangePerfilPass] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        if(in_array(3, $token_decrypt["permisos"])){
+
+          Log::info("[APITrabajadores][ChangePerfilPass] Permiso Existente");
+          
+
+          Validator::make($request->all(), [
+            'id_trabajadores' => 'required',
+            'cont' => 'required',
+          ])->validate();
+          
+          $id_trabajadores = $request->input('id_trabajadores');
+          $cont = $request->input('cont');
+
+          //print_r($token_decrypt["id"]);
+
+          //print_r($token_decrypt);
+
+          $Trabajadores = Trabajadores::modPass($id_trabajadores, $cont);
+
+
+          if($Trabajadores==1){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Trabajadores));
+            $responseJSON->data = $Trabajadores;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Trabajadores));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        }
+
+        return redirect('/');
+
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APITrabajadores][ChangePerfilPass] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APITrabajadores][ChangePerfilPass] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APITrabajadores][ChangePerfilPass] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APITrabajadores][ChangePerfilPass] ' . $e);
+
+        return redirect('/');
+
+      }
+
+
 
     } else {
       abort(404);

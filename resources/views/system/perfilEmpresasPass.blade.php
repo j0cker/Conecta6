@@ -22,19 +22,19 @@
 <!--Menu Transparente
 @section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
 -->
-@section('menuActive','configuraciones')
+@section('menuActive','perfilEmpresas')
 
 @section('raiz1', @Config::get('app.name'))
 @section('raiz1Url', '/inicio')
 @section('raiz2','Empresas')
 @section('raiz2Url','/inicioEmpresa')
 @section('raiz3','Contraseña Perfil')
-@section('raiz3Url','/perfil/pass')
+@section('raiz3Url','/perfilEmpresas/pass')
 
 
 {{-- Angular Controller --}}
 
-@section('controller','perfilpass')
+@section('controller','perfilEmpresasPass')
 
 {{-- Body --}}
 

@@ -1392,6 +1392,13 @@
         <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
 
         
+        <script>
+            $(document).ready(function()
+            {
+
+                getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+            });
+        </script>
 
     <?php $__env->stopSection(); ?>
 

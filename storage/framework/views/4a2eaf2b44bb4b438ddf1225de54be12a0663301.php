@@ -18,19 +18,19 @@
 <!--Menu Transparente
 <?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-<?php $__env->startSection('menuActive','configuraciones'); ?>
+<?php $__env->startSection('menuActive','perfilEmpresas'); ?>
 
 <?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
 <?php $__env->startSection('raiz1Url', '/inicio'); ?>
 <?php $__env->startSection('raiz2','Empresas'); ?>
 <?php $__env->startSection('raiz2Url','/inicioEmpresa'); ?>
 <?php $__env->startSection('raiz3','Contraseña Perfil'); ?>
-<?php $__env->startSection('raiz3Url','/perfil/pass'); ?>
+<?php $__env->startSection('raiz3Url','/perfilEmpresas/pass'); ?>
 
 
 
 
-<?php $__env->startSection('controller','perfilpass'); ?>
+<?php $__env->startSection('controller','perfilEmpresasPass'); ?>
 
 
 

@@ -15,6 +15,7 @@ use JWTAuth;
 use JWTFactory;
 use Tymon\JWTAuth\PayloadFactory;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Validator;
 use Session;
 
 class APIAdmin extends Controller
@@ -57,6 +58,11 @@ class APIAdmin extends Controller
           }
   
           $jwt_token = null;
+
+          //limpiamos imágen para que no truene el JWT Token
+          if(count($administrador)>0){  
+            $administrador->first()->foto_base64 = "";
+          }
   
           $factory = JWTFactory::customClaims([
             'sub'   => $administrador->first()->id_administradores, //id a conciliar del usuario
@@ -247,6 +253,187 @@ class APIAdmin extends Controller
       }
   
     }
+
+    public function PerfilPass(Request $request){
+      
+      Log::info('[APIAdmin][PerfilPass]');
+  
+      Log::info("[APIAdmin][PerfilPass] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('GET')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+  
+          //print_r($token_decrypt["id"]);
+  
+          //print_r($token_decrypt);
+  
+          
+  
+          if(in_array(1, $token_decrypt["permisos"])){
+  
+            return view('system.perfilAdministradoresPass',["title" => config('app.name'), 
+                                          "lang" => "es", 
+                                          "user" => $token_decrypt, 
+                                          "color" => $token_decrypt['color'], 
+                                          "colorHex" => $token_decrypt['colorHex'],
+                                          "subdominio" => $token_decrypt['subdominio'],
+                                        ]
+                                );
+  
+            }
+  
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][PerfilPass] Token error: token_expired');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][PerfilPass] Token error: token_invalid');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][PerfilPass] Token error: token_absent');
+  
+          return redirect('/');
+    
+        }
+  
+      } else {
+        abort(404);
+      }
+  
+    }
+  
+    public function ChangePerfilPass(Request $request)
+    {
+      Log::info('[APIAdmin][ChangePerfilPass]');
+  
+      Log::info("[APIAdmin][ChangePerfilPass] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('POST')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIAdmin][ChangePerfilPass] Token: ". $token);
+  
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+  
+          if(in_array(1, $token_decrypt["permisos"])){
+  
+            Log::info("[APIAdmin][ChangePerfilPass] Permiso Existente");
+            
+  
+            Validator::make($request->all(), [
+              'id_administradores' => 'required',
+              'cont' => 'required',
+            ])->validate();
+            
+            $id_administradores = $request->input('id_administradores');
+            $cont = $request->input('cont');
+  
+            //print_r($token_decrypt["id"]);
+  
+            //print_r($token_decrypt);
+  
+            $Administradores = Admin::modPass($id_administradores, $cont);
+  
+  
+            if($Administradores==1){
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Administradores));
+              $responseJSON->data = $Administradores;
+              return json_encode($responseJSON);
+  
+            } else {
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Administradores));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+  
+            }
+  
+          }
+  
+          return redirect('/');
+  
+  
+  
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][ChangePerfilPass] Token error: token_expired');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][ChangePerfilPass] Token error: token_invalid');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][ChangePerfilPass] Token error: token_absent');
+  
+          return redirect('/');
+    
+        } catch(Exception $e) {
+  
+          //Errores
+      
+          Log::info('[APIAdmin][ChangePerfilPass] ' . $e);
+  
+          return redirect('/');
+  
+        }
+  
+  
+  
+      } else {
+        abort(404);
+      }
+  
+    }
+  
 
     public function Empresas(Request $request){
       

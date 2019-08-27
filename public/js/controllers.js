@@ -135,7 +135,34 @@
     console.log("[inicio]");
 
     functions.loading();
+    
+    $scope.getImageEmpresaClick = function(id_empresas){
 
+      console.log("[signinEmpresas] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[consultaDeInformes][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    getImageEmpresaClick = $scope.getImageEmpresaClick;
 
   });//fin controller inicio
 
@@ -2166,21 +2193,116 @@
 
   });//fin controller administradores
 
-  app.controller('perfilpass', function($scope, functions, $window) {
+  app.controller('perfilTrabajadoresPass', function($scope, functions, $window) {
 
-    console.log("[perfilpass]");
+    console.log("[perfilTrabajadoresPass]");
 
     functions.loading();
 
     
     $scope.getImageEmpresaClick = function(id_empresas){
 
-      console.log("[signinEmpresas] ");
+      console.log("[getImageEmpresaClick] ");
 
       functions.getImageEmpresa(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[consultaDeInformes][perfilEmpresas]");
+              console.log("[perfilTrabajadoresPass][getImageEmpresaClick]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    
+    $scope.postContChangeClick = function(pass, id_trabajadores){
+
+      var contActual = "";
+      var contNueva = "";
+      var contConf = "";
+
+      contActual = $("#contActual").val();
+      contNueva = $("#contNueva").val();
+      contConf = $("#contConf").val();
+
+      console.log("Pass: " + pass);
+      console.log("id_trabajadores: " + id_trabajadores);
+
+      console.log("contActual: " + contActual);
+      console.log("contActual SHA256: " + SHA256(contActual));
+      console.log("contNueva: " + contNueva);
+      console.log("contConf: " + contConf);
+
+      if(SHA256(contActual)!=pass){
+        
+        toastr["error"]("Error: la contraseña actual<br />no coincide", "");
+
+      } else if(contNueva=="" || contConf==""){
+        
+        toastr["error"]("Los campos de contraseña están<br />vacíos", "");
+
+      } else if(contNueva!=contConf){
+        
+        toastr["error"]("Error: las contraseñas no<br />coinciden", "");
+
+      } else {
+
+        functions.postContChange(id_trabajadores, contNueva, "trabajadores").then(function (response) {
+
+              if(response.data.success == "TRUE"){
+                console.log("[postContChange][perfilEmpresas]");
+
+                console.log(response.data.data);
+
+                toastr["success"]("Se ha cambiado la contraseña con<br /> éxito.", "");
+
+                window.location = "/perfilTrabajadores";
+
+              } else {
+                  toastr["warning"](response.data.description, "");
+                  functions.loadingEndWait();
+              }
+          }, function (response) {
+            /*ERROR*/
+            toastr["error"]("Inténtelo de nuevo más tarde", "");
+            functions.loadingEndWait();
+
+        });/*fin postContChange*/
+
+      }
+
+    }; //fin postContChangeClick
+
+
+  });//fin controller perfilTrabajadoresPass
+
+  app.controller('perfilEmpresasPass', function($scope, functions, $window) {
+
+    console.log("[perfilEmpresasPass]");
+
+    functions.loading();
+
+    
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[getImageEmpresaClick] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[perfilEmpresasPass][getImageEmpresaClick]");
 
               console.log(response.data.data);
 
@@ -2232,7 +2354,7 @@
 
       } else {
 
-        functions.postContChange(id_empresas, contNueva).then(function (response) {
+        functions.postContChange(id_empresas, contNueva, "empresas").then(function (response) {
 
               if(response.data.success == "TRUE"){
                 console.log("[postContChange][perfilEmpresas]");
@@ -2259,7 +2381,77 @@
     }; //fin postContChangeClick
 
 
-  });//fin controller perfilpass
+  });//fin controller perfilEmpresasPass
+
+  
+
+  app.controller('perfilAdministradoresPass', function($scope, functions, $window) {
+
+    console.log("[perfilAdministradoresPass]");
+
+    functions.loading();
+
+    $scope.postContChangeClick = function(pass, id_administradores){
+
+      var contActual = "";
+      var contNueva = "";
+      var contConf = "";
+
+      contActual = $("#contActual").val();
+      contNueva = $("#contNueva").val();
+      contConf = $("#contConf").val();
+
+      console.log("Pass: " + pass);
+      console.log("id_administradores: " + id_administradores);
+
+      console.log("contActual: " + contActual);
+      console.log("contActual SHA256: " + SHA256(contActual));
+      console.log("contNueva: " + contNueva);
+      console.log("contConf: " + contConf);
+
+      if(SHA256(contActual)!=pass){
+        
+        toastr["error"]("Error: la contraseña actual<br />no coincide", "");
+
+      } else if(contNueva=="" || contConf==""){
+        
+        toastr["error"]("Los campos de contraseña están<br />vacíos", "");
+
+      } else if(contNueva!=contConf){
+        
+        toastr["error"]("Error: las contraseñas no<br />coinciden", "");
+
+      } else {
+
+        functions.postContChange(id_administradores, contNueva, "administradores").then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            console.log("[postContChange][perfilAdministradoresPass]");
+
+            console.log(response.data.data);
+
+            toastr["success"]("Se ha cambiado la contraseña con<br /> éxito.", "");
+
+            window.location = "/perfilAdministradores";
+
+          } else {
+              toastr["warning"](response.data.description, "");
+              functions.loadingEndWait();
+          }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin postContChange*/
+
+
+      }
+
+    }; //fin postContChangeClick
+
+
+  });//fin controller perfilAdministradoresPass
 
   return;
 
