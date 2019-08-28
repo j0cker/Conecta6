@@ -371,7 +371,6 @@ class APIAdmin extends Controller
   
             $Administradores = Admin::modPass($id_administradores, $cont);
   
-  
             if($Administradores==1){
   
               $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Administradores));

@@ -201,6 +201,31 @@
 
     
 
+    $scope.getTrabajadoresByIdTrabajadoresClick = function(id_trabajadores){
+
+      console.log("[perfilTrabajadores][getTrabajadoresByIdTrabajadoresClick]");
+
+      functions.getTrabajadoresByIdTrabajadores(id_trabajadores).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[modtrabajador][perfilEmpresas]");
+
+              console.log(response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getTrabajadoresByIdTrabajadores*/
+
+    }; //fin getTrabajadoresByIdTrabajadoresClick
+
+    getTrabajadoresByIdTrabajadoresClick = $scope.getTrabajadoresByIdTrabajadoresClick;
     
     $scope.getImageEmpresaClick = function(id_empresas){
 
@@ -465,6 +490,34 @@
 
     functions.loading();
 
+    $scope.getEmpresaClick = function(id_empresas){
+
+      console.log("[perfilEmpresas] ");
+
+      functions.getEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[perfilEmpresas]");
+
+              console.log(response.data.data);
+
+              $scope.empresaPerfil = response.data.data[0];
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    getEmpresa = $scope.getEmpresaClick;
+
     $scope.getImageEmpresaClick = function(id_empresas){
 
       console.log("[perfilEmpresas] ");
@@ -490,6 +543,53 @@
         });/*fin getImageEmpresa*/
 
     }; //fin getImageEmpresaClick
+
+    $scope.postEditProfileClick = function(){
+
+      console.log("[getEditProfileClick] ");
+
+      var nombre_empresa = "";
+      var correo = "";
+      var telefono_fijo = "";
+      var celular = "";
+
+      nombre_empresa = $("#nombre_empresa").val();
+      correo = $("#correo").val();
+      telefono_fijo = $("#telefono_fijo").val();
+      celular = $("#celular").val();
+
+      console.log("nombre_empresa: " + $("#nombre_empresa").val());
+      console.log("correo: " + $("#correo").val());
+      console.log("telefono_fijo: " + $("#telefono_fijo").val());
+      console.log("celular: " + $("#celular").val());
+
+      functions.postEditProfile(nombre_empresa, correo, telefono_fijo, celular, "empresas").then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          console.log("[perfilEmpresas][getEditProfileClick]");
+
+
+          toastr["success"]("Su información se cambió exitosamente", "");
+
+          window.location = "/perfilEmpresas";
+
+          console.log(response.data.data);
+
+        } else {
+            toastr["warning"](response.data.description, "");
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin postEditProfile*/
+
+    }; //fin postEditProfileClick
+
+    postEditProfile = $scope.postEditProfileClick;
+
 
   });//fin controller perfilEmpresas
 

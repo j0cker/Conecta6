@@ -1110,6 +1110,7 @@
             $(document).ready(function(){
                 
                 angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                getTrabajadoresByIdTrabajadoresClick("<?php echo e($user['usr']->id_trabajadores); ?>");
             });
         </script>
 

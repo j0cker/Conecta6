@@ -402,9 +402,20 @@
 
         console.log("[factory][getTrabajadoresByIdEmpresa]");
 
-        var url = '/api/empresas/trabajadores/obtener';
+        var url = '/api/trabajadores/obtener';
 		  	return $http.get(url,{
           params: { cache: false, id_empresas:id_empresas },
+          cache: false
+        });
+
+      },
+      getTrabajadoresByIdTrabajadores: function(id_trabajadores) {
+
+        console.log("[factory][getTrabajadoresByIdTrabajadores]");
+
+        var url = '/api/trabajadores/obtener/id_trabajadadores';
+		  	return $http.get(url,{
+          params: { cache: false, id_trabajadores:id_trabajadores },
           cache: false
         });
 
@@ -413,22 +424,9 @@
 
         console.log("[factory][delTrabajadoresByIdEmpresa]");
 
-        var url = '/api/empresas/trabajadores/eliminar';
+        var url = '/api/trabajadores/eliminar';
 
         return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, id_empresas:id_empresas });
-
-      },
-      getTrabajadoresByIdTrabajadores: function(id_trabajadores) {
-
-        console.log("[factory][delTrabajadoresByIdEmpresa]");
-
-        var url = '/api/empresas/trabajadores/obtener/id_trabajadadores';
-
-        return $http.get(url,{
-          params: { cache: false, id_trabajadores:id_trabajadores },
-          cache: false
-        });
-
 
       },
       postContChange: function(id, cont, tipo) {
@@ -448,6 +446,14 @@
         
         if(tipo == "pAdmin")
           return $http.post(url, {cache: false, id_administradores:id, cont:cont });
+
+      },
+      postEditProfile: function(nombre_empresa, correo, telefono_fijo, celular, tipo){
+        console.log("[factory][getEditProfile]");
+
+        var url = '/api/'+tipo+'/profile/edit';
+
+        return $http.post(url, {cache: false, nombre_empresa:nombre_empresa, correo:correo, telefono_fijo:telefono_fijo, celular:celular });
 
       }
     };

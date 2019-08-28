@@ -1104,6 +1104,7 @@
             $(document).ready(function(){
                 
                 angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+                getTrabajadoresByIdTrabajadoresClick("{{ $user['usr']->id_trabajadores }}");
             });
         </script>
 

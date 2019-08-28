@@ -118,7 +118,7 @@ class Empresas extends Model
 
     }
 
-    //post enterprise image
+    //post update enterprise image
     public function scopeUpdateImage($query, $id_empresas, $profileImg){
 
       Log::info("[Empresas][scopeUpdateImage] id_empresas: ". $id_empresas);
@@ -126,6 +126,26 @@ class Empresas extends Model
       $obj = array();
       $obj[0] = new \stdClass();
       $obj[0]->save = $query->where('id_empresas', $id_empresas)->update(['foto_base64' => $profileImg]); //return true in the other one return 1
+      $obj[0]->id = $id_empresas;
+      
+      return $obj;
+
+
+    }
+
+    //post update enterprise profile
+    public function scopeUpdateProfile($query, $id_empresas, $nombre_empresa, $correo, $telefono_fijo, $celular){
+
+      Log::info("[Empresas][scopeUpdateImage]");
+
+      $obj = array();
+      $obj[0] = new \stdClass();
+      $obj[0]->save = $query->where('id_empresas', $id_empresas)
+                            ->update(['nombre_empresa' => $nombre_empresa,
+                                      'correo' => $correo,
+                                      'telefono_fijo' => $telefono_fijo,
+                                      'celular' => $celular
+                                      ]); //return true in the other one return 1
       $obj[0]->id = $id_empresas;
       
       return $obj;

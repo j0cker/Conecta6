@@ -138,18 +138,24 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                                <div ng-if="empresaPerfil.nombre_empresa!=''" style="font-size: 20px;" class="nombreEmpresaNoEdit col-md-4">
 
-                                                                    @isset($user["usr"]->nombre_empresa)
-                                                                        {{ $user["usr"]->nombre_empresa }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->nombre_empresa)
-                                                                        No especificado
-                                                                    @endempty
+                                                                    <% empresaPerfil.nombre_empresa %>
 
                                                                 </div>
 
+                                                                <div ng-if="empresaPerfil.nombre_empresa==''" style="font-size: 20px;" class="nombreEmpresaNoEdit col-md-4">
+
+                                                                    No Especificado
+
+                                                                </div>
+
+                                                                <div style="font-size: 20px; display: none;" class="nombreEmpresaEdit col-md-4">
+
+                                                                    <input id="nombre_empresa" type="text" class="form-control" value="<% empresaPerfil.nombre_empresa %>" placeholder="Nombre Empresa" />
+
+                                                                </div>
+                                                                    
                                                             <div class="col-md-4"></div>
 
                                                         </div>
@@ -172,15 +178,21 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                                <div ng-if="empresaPerfil.correo!=''" style="font-size: 20px;" class="correoNoEdit col-md-4">
 
-                                                                    @isset($user["usr"]->correo)
-                                                                        {{ $user["usr"]->correo }}
-                                                                    @endisset
+                                                                    <% empresaPerfil.correo %>
 
-                                                                    @empty($user["usr"]->correo)
-                                                                        No especificado
-                                                                    @endempty
+                                                                </div>
+
+                                                                <div ng-if="empresaPerfil.correo==''" style="font-size: 20px;" class="correoNoEdit col-md-4">
+
+                                                                    No Especificado
+
+                                                                </div>
+
+                                                                <div style="font-size: 20px; display: none;" class="correoEdit col-md-4">
+
+                                                                    <input id="correo" type="text" class="form-control" value="<% empresaPerfil.correo %>" placeholder="Correo Elctrónicos" />
 
                                                                 </div>
 
@@ -205,18 +217,19 @@
                                                         <div class="row">
 
                                                             <div class="col-md-4"></div>
+                                                            
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="empresaPerfil.nombre_solicitante!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                    @isset($user["usr"]->nombre_solicitante)
-                                                                        {{ $user["usr"]->nombre_solicitante }}
-                                                                    @endisset
+                                                                <% empresaPerfil.nombre_solicitante %>
 
-                                                                    @empty($user["usr"]->nombre_solicitante)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="empresaPerfil.nombre_solicitante==''" style="font-size: 20px;" class="col-md-4">
+
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -240,18 +253,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="empresaPerfil.vigencia!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                     
-                                                                    @isset($user["usr"]->vigencia)
-                                                                        {{ $user["usr"]->vigencia }}
-                                                                    @endisset
+                                                                <% empresaPerfil.vigencia %>
 
-                                                                    @empty($user["usr"]->vigencia)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="empresaPerfil.vigencia==''" style="font-size: 20px;" class="col-md-4">
+
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -275,17 +287,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="empresaPerfil.empleados_permitidos!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                    @isset($user["usr"]->empleados_permitidos)
-                                                                        {{ $user["usr"]->empleados_permitidos }}
-                                                                    @endisset
+                                                                <% empresaPerfil.empleados_permitidos %>
 
-                                                                    @empty($user["usr"]->empleados_permitidos)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="empresaPerfil.empleados_permitidos==''" style="font-size: 20px;" class="col-md-4">
+
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -309,16 +321,21 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                                <div ng-if="empresaPerfil.telefono_fijo!=''" style="font-size: 20px;" class="telefonoFijoNoEdit col-md-4">
 
-                                                                     
-                                                                    @isset($user["usr"]->telefono_fijo)
-                                                                        {{ $user["usr"]->telefono_fijo }}
-                                                                    @endisset
+                                                                    <% empresaPerfil.telefono_fijo %>
 
-                                                                    @empty($user["usr"]->telefono_fijo)
-                                                                        No especificado
-                                                                    @endempty
+                                                                </div>
+
+                                                                <div ng-if="empresaPerfil.telefono_fijo==''" style="font-size: 20px;" class="telefonoFijoNoEdit col-md-4">
+
+                                                                    No Especificado
+
+                                                                </div>
+
+                                                                <div style="font-size: 20px; display: none;" class="telefonoFijoEdit col-md-4">
+
+                                                                    <input id="telefono_fijo" type="text" class="form-control" value="<% empresaPerfil.telefono_fijo %>" placeholder="Teléfono Fijo" />
 
                                                                 </div>
 
@@ -344,16 +361,21 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                                <div ng-if="empresaPerfil.celular!=''" style="font-size: 20px;" class="celularNoEdit col-md-4">
 
-                                                                     
-                                                                    @isset($user["usr"]->celular)
-                                                                        {{ $user["usr"]->celular }}
-                                                                    @endisset
+                                                                    <% empresaPerfil.celular %>
 
-                                                                    @empty($user["usr"]->celular)
-                                                                        No especificado
-                                                                    @endempty
+                                                                </div>
+
+                                                                <div ng-if="empresaPerfil.celular==''" style="font-size: 20px;" class="celularNoEdit col-md-4">
+
+                                                                    No Especificado
+
+                                                                </div>
+
+                                                                <div style="font-size: 20px; display: none;" class="celularEdit col-md-4">
+
+                                                                    <input id="celular" type="text" class="form-control" value="<% empresaPerfil.celular %>" placeholder="Celular" />
 
                                                                 </div>
 
@@ -379,18 +401,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="empresaPerfil.created_at!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                     
-                                                                    @isset($user["usr"]->created_at)
-                                                                        {{ $user["usr"]->created_at }}
-                                                                    @endisset
+                                                                <% empresaPerfil.created_at %>
 
-                                                                    @empty($user["usr"]->created_at)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="empresaPerfil.created_at==''" style="font-size: 20px;" class="col-md-4">
+
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -400,8 +421,12 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                            <button id="editarPerfil" style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
                                                                 Editar
+                                                            </button>
+
+                                                            <button id="guardarEditarPerfil" style="display: none; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                                Guardar
                                                             </button>
 
                                                             <a href="perfilEmpresas/pass">
@@ -1041,6 +1066,7 @@
         <script>
             $(document).ready(function()
             {
+
                 $('#js-page-content').smartPanel(); 
             });
         </script>
@@ -1061,6 +1087,38 @@
         <script>
             $(document).ready(function(){
 
+                
+                $("#editarPerfil").unbind().click(function() {
+                
+                    console.log("[editarPerfil]");
+                    
+                    $(".nombreEmpresaNoEdit").css("display","none");
+                    $(".nombreEmpresaEdit").css("display","");
+                    
+                    $(".correoNoEdit").css("display","none");
+                    $(".correoEdit").css("display","");                    
+                    
+                    $(".telefonoFijoNoEdit").css("display","none");
+                    $(".telefonoFijoEdit").css("display","");                    
+                    
+                    $(".celularNoEdit").css("display","none");
+                    $(".celularEdit").css("display","");
+
+                    $("#editarPerfil").css("display","none");
+                    $("#guardarEditarPerfil").css("display","");
+                
+                });
+
+                $("#guardarEditarPerfil").unbind().click(function(){
+
+                    console.log("[guardarEditarPerfil]");
+
+                    postEditProfile();
+
+                })
+
+                
+
                 $(document).on('change', '#profileimg', function () {
                     
                     console.log("[change]");
@@ -1069,7 +1127,9 @@
                     $('#FrmProfilePicture').submit();
                 });
                 
-            angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+                angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+                getEmpresa("{{ $user['usr']->id_empresas }}");
+
             });
         </script>
 

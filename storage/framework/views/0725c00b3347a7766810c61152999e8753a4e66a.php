@@ -135,19 +135,24 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                                <div ng-if="empresaPerfil.nombre_empresa!=''" style="font-size: 20px;" class="nombreEmpresaNoEdit col-md-4">
 
-                                                                    <?php if(isset($user["usr"]->nombre_empresa)): ?>
-                                                                        <?php echo e($user["usr"]->nombre_empresa); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->nombre_empresa)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                                    <% empresaPerfil.nombre_empresa %>
 
                                                                 </div>
 
+                                                                <div ng-if="empresaPerfil.nombre_empresa==''" style="font-size: 20px;" class="nombreEmpresaNoEdit col-md-4">
+
+                                                                    No Especificado
+
+                                                                </div>
+
+                                                                <div style="font-size: 20px; display: none;" class="nombreEmpresaEdit col-md-4">
+
+                                                                    <input id="nombre_empresa" type="text" class="form-control" value="<% empresaPerfil.nombre_empresa %>" placeholder="Nombre Empresa" />
+
+                                                                </div>
+                                                                    
                                                             <div class="col-md-4"></div>
 
                                                         </div>
@@ -170,16 +175,21 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                                <div ng-if="empresaPerfil.correo!=''" style="font-size: 20px;" class="correoNoEdit col-md-4">
 
-                                                                    <?php if(isset($user["usr"]->correo)): ?>
-                                                                        <?php echo e($user["usr"]->correo); ?>
+                                                                    <% empresaPerfil.correo %>
 
-                                                                    <?php endif; ?>
+                                                                </div>
 
-                                                                    <?php if(empty($user["usr"]->correo)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                                <div ng-if="empresaPerfil.correo==''" style="font-size: 20px;" class="correoNoEdit col-md-4">
+
+                                                                    No Especificado
+
+                                                                </div>
+
+                                                                <div style="font-size: 20px; display: none;" class="correoEdit col-md-4">
+
+                                                                    <input id="correo" type="text" class="form-control" value="<% empresaPerfil.correo %>" placeholder="Correo Elctrónicos" />
 
                                                                 </div>
 
@@ -204,19 +214,19 @@
                                                         <div class="row">
 
                                                             <div class="col-md-4"></div>
+                                                            
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="empresaPerfil.nombre_solicitante!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                    <?php if(isset($user["usr"]->nombre_solicitante)): ?>
-                                                                        <?php echo e($user["usr"]->nombre_solicitante); ?>
+                                                                <% empresaPerfil.nombre_solicitante %>
 
-                                                                    <?php endif; ?>
+                                                            </div>
 
-                                                                    <?php if(empty($user["usr"]->nombre_solicitante)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                            <div ng-if="empresaPerfil.nombre_solicitante==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                </div>
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -240,19 +250,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="empresaPerfil.vigencia!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                     
-                                                                    <?php if(isset($user["usr"]->vigencia)): ?>
-                                                                        <?php echo e($user["usr"]->vigencia); ?>
+                                                                <% empresaPerfil.vigencia %>
 
-                                                                    <?php endif; ?>
+                                                            </div>
 
-                                                                    <?php if(empty($user["usr"]->vigencia)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                            <div ng-if="empresaPerfil.vigencia==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                </div>
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -276,18 +284,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="empresaPerfil.empleados_permitidos!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                    <?php if(isset($user["usr"]->empleados_permitidos)): ?>
-                                                                        <?php echo e($user["usr"]->empleados_permitidos); ?>
+                                                                <% empresaPerfil.empleados_permitidos %>
 
-                                                                    <?php endif; ?>
+                                                            </div>
 
-                                                                    <?php if(empty($user["usr"]->empleados_permitidos)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                            <div ng-if="empresaPerfil.empleados_permitidos==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                </div>
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -311,17 +318,21 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                                <div ng-if="empresaPerfil.telefono_fijo!=''" style="font-size: 20px;" class="telefonoFijoNoEdit col-md-4">
 
-                                                                     
-                                                                    <?php if(isset($user["usr"]->telefono_fijo)): ?>
-                                                                        <?php echo e($user["usr"]->telefono_fijo); ?>
+                                                                    <% empresaPerfil.telefono_fijo %>
 
-                                                                    <?php endif; ?>
+                                                                </div>
 
-                                                                    <?php if(empty($user["usr"]->telefono_fijo)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                                <div ng-if="empresaPerfil.telefono_fijo==''" style="font-size: 20px;" class="telefonoFijoNoEdit col-md-4">
+
+                                                                    No Especificado
+
+                                                                </div>
+
+                                                                <div style="font-size: 20px; display: none;" class="telefonoFijoEdit col-md-4">
+
+                                                                    <input id="telefono_fijo" type="text" class="form-control" value="<% empresaPerfil.telefono_fijo %>" placeholder="Teléfono Fijo" />
 
                                                                 </div>
 
@@ -347,17 +358,21 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                                <div ng-if="empresaPerfil.celular!=''" style="font-size: 20px;" class="celularNoEdit col-md-4">
 
-                                                                     
-                                                                    <?php if(isset($user["usr"]->celular)): ?>
-                                                                        <?php echo e($user["usr"]->celular); ?>
+                                                                    <% empresaPerfil.celular %>
 
-                                                                    <?php endif; ?>
+                                                                </div>
 
-                                                                    <?php if(empty($user["usr"]->celular)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                                <div ng-if="empresaPerfil.celular==''" style="font-size: 20px;" class="celularNoEdit col-md-4">
+
+                                                                    No Especificado
+
+                                                                </div>
+
+                                                                <div style="font-size: 20px; display: none;" class="celularEdit col-md-4">
+
+                                                                    <input id="celular" type="text" class="form-control" value="<% empresaPerfil.celular %>" placeholder="Celular" />
 
                                                                 </div>
 
@@ -383,19 +398,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="empresaPerfil.created_at!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                     
-                                                                    <?php if(isset($user["usr"]->created_at)): ?>
-                                                                        <?php echo e($user["usr"]->created_at); ?>
+                                                                <% empresaPerfil.created_at %>
 
-                                                                    <?php endif; ?>
+                                                            </div>
 
-                                                                    <?php if(empty($user["usr"]->created_at)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                            <div ng-if="empresaPerfil.created_at==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                </div>
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -405,8 +418,12 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                            <button id="editarPerfil" style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
                                                                 Editar
+                                                            </button>
+
+                                                            <button id="guardarEditarPerfil" style="display: none; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                                Guardar
                                                             </button>
 
                                                             <a href="perfilEmpresas/pass">
@@ -1046,6 +1063,7 @@
         <script>
             $(document).ready(function()
             {
+
                 $('#js-page-content').smartPanel(); 
             });
         </script>
@@ -1066,6 +1084,38 @@
         <script>
             $(document).ready(function(){
 
+                
+                $("#editarPerfil").unbind().click(function() {
+                
+                    console.log("[editarPerfil]");
+                    
+                    $(".nombreEmpresaNoEdit").css("display","none");
+                    $(".nombreEmpresaEdit").css("display","");
+                    
+                    $(".correoNoEdit").css("display","none");
+                    $(".correoEdit").css("display","");                    
+                    
+                    $(".telefonoFijoNoEdit").css("display","none");
+                    $(".telefonoFijoEdit").css("display","");                    
+                    
+                    $(".celularNoEdit").css("display","none");
+                    $(".celularEdit").css("display","");
+
+                    $("#editarPerfil").css("display","none");
+                    $("#guardarEditarPerfil").css("display","");
+                
+                });
+
+                $("#guardarEditarPerfil").unbind().click(function(){
+
+                    console.log("[guardarEditarPerfil]");
+
+                    postEditProfile();
+
+                })
+
+                
+
                 $(document).on('change', '#profileimg', function () {
                     
                     console.log("[change]");
@@ -1074,7 +1124,9 @@
                     $('#FrmProfilePicture').submit();
                 });
                 
-            angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                getEmpresa("<?php echo e($user['usr']->id_empresas); ?>");
+
             });
         </script>
 

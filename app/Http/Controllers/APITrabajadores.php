@@ -461,6 +461,327 @@ class APITrabajadores extends Controller
 
   }
 
+  
+  public function GetTrabajadoresIdTrabajadores(Request $request){
+    
+    Log::info('[APITrabajadores][GetTrabajadoresIdTrabajadores]');
+
+    Log::info("[APITrabajadores][GetTrabajadoresIdTrabajadores] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APITrabajadores][GetTrabajadoresIdTrabajadores] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"])  || in_array(3, $token_decrypt["permisos"])){
+
+          Log::info("[APITrabajadores][GetTrabajadoresIdTrabajadores] Permiso Existente");
+
+          $this->validate($request, [
+            'id_trabajadores' => 'required'
+          ]);
+            
+          $id_trabajadores = $request->input('id_trabajadores');
+          
+          $trabajadores = Trabajadores::getByIdTrabajadores($id_trabajadores)->get();
+
+          Log::info($trabajadores);
+
+          if(count($trabajadores)>0){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($trabajadores));
+            $responseJSON->data = $trabajadores;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($trabajadores));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        }
+
+        return redirect('/');
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APITrabajadores][GetTrabajadoresIdTrabajadores] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APITrabajadores][GetTrabajadoresIdTrabajadores] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APITrabajadores][GetTrabajadoresIdTrabajadores] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APITrabajadores][GetTrabajadoresIdTrabajadores] ' . $e);
+
+        return redirect('/');
+
+      }
+
+  
+  
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function EliminarTrabajadores(Request $request){
+    
+    Log::info('[APITrabajadores][EliminarTrabajadores]');
+
+    Log::info("[APITrabajadores][EliminarTrabajadores] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APITrabajadores][EliminarTrabajadores] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"]) || in_array(3, $token_decrypt["permisos"])){
+
+          Log::info("[APITrabajadores][EliminarTrabajadores] Permiso Existente");
+
+          $this->validate($request, [
+            'id_trabajadores' => 'required',
+            'id_empresas' => 'required'
+          ]);
+            
+          $id_trabajadores = $request->input('id_trabajadores');
+          $id_empresas = $request->input('id_empresas');
+
+          $permisos_inter = Permisos_inter::delByIdEmpresas($id_trabajadores, "3");
+          $trabajadores = Trabajadores::delByIdEmpresas($id_trabajadores, $token_decrypt['usr']->id_empresas);
+          
+          if($permisos_inter == 1 && $trabajadores==1){
+
+          
+            $trabajadores = Trabajadores::getByIdEmpresas($token_decrypt['usr']->id_empresas)->get();
+
+            Log::info($trabajadores);
+
+            if(count($trabajadores)>0){
+
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($trabajadores));
+              $responseJSON->data = $trabajadores;
+              return json_encode($responseJSON);
+  
+            } else {
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($trabajadores));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+  
+            }
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($trabajadores));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+
+        }
+
+        return redirect('/');
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APITrabajadores][EliminarTrabajadores] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APITrabajadores][EliminarTrabajadores] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APITrabajadores][EliminarTrabajadores] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APITrabajadores][EliminarTrabajadores] ' . $e);
+
+        return redirect('/');
+
+      }
+
+  
+  
+    } else {
+      abort(404);
+    }
+
+  }
+  
+  public function GetTrabajadores(Request $request){
+    
+    Log::info('[APIEmpresas][GetTrabajadores]');
+
+    Log::info("[APIEmpresas][GetTrabajadores] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][GetTrabajadores] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][GetTrabajadores] Permiso Existente");
+          
+          $trabajadores = Trabajadores::getByIdEmpresas($token_decrypt['usr']->id_empresas)->get();
+
+          Log::info($trabajadores);
+
+          if(count($trabajadores)>0){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($trabajadores));
+            $responseJSON->data = $trabajadores;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($trabajadores));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        }
+
+        return redirect('/');
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][GetTrabajadores] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][GetTrabajadores] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][GetTrabajadores] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][GetTrabajadores] ' . $e);
+
+        return redirect('/');
+
+      }
+
+  
+  
+    } else {
+      abort(404);
+    }
+
+  }
+
   public function ChangePerfilPass(Request $request)
   {
     Log::info('[APITrabajadores][ChangePerfilPass]');

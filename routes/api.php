@@ -33,6 +33,15 @@ Route::get('/trabajadores/logout', 'APITrabajadores@Logout');
 //Actualizar contraseña del perfil de trabajadores
 Route::post('/trabajadores/perfil/pass', 'APITrabajadores@ChangePerfilPass');
 
+//Get Trabajadores by id trabajadores
+Route::get('/trabajadores/obtener/id_trabajadadores', 'APITrabajadores@GetTrabajadoresIdTrabajadores');
+
+//Get Trabajadores by id empresas
+Route::get('/trabajadores/obtener', 'APITrabajadores@GetTrabajadores');
+
+//Eliminar Trabajador
+Route::post('/trabajadores/eliminar', 'APITrabajadores@EliminarTrabajadores');
+
 /*
 *******Empresas******
 */
@@ -61,23 +70,14 @@ Route::get('/empresas/profile/image', 'APIEmpresas@GetProfileImage');
 //Update Image
 Route::post('/empresas/profile/image', 'APIEmpresas@UpdateProfilePicture');
 
-//Update Image
-Route::post('/empresas/profile/image', 'APIEmpresas@UpdateProfilePicture');
+//Edit Profile
+Route::post('/empresas/profile/edit', 'APIEmpresas@PerfilEditar');
 
 //Actualizar contraseña del perfil de empresas
 Route::post('/empresas/perfil/pass', 'APIEmpresas@ChangePerfilPass');
 
 //Alta Nuevo Trabajador
 Route::post('/empresas/altaNuevoTrabajador', 'APIEmpresas@AltaTrabajador');
-
-//Get Trabajadores by id empresas
-Route::get('/empresas/trabajadores/obtener', 'APIEmpresas@GetTrabajadores');
-
-//Get Trabajadores by id trabajadores
-Route::get('/empresas/trabajadores/obtener/id_trabajadadores', 'APIEmpresas@GetTrabajadoresIdTrabajadores');
-
-//Eliminar Trabajador
-Route::post('/empresas/trabajadores/eliminar', 'APIEmpresas@EliminarTrabajadores');
 
 //Modificar Trabajador
 Route::post('/empresas/modTrabajador', 'APIEmpresas@ModTrabajador');
