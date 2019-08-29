@@ -135,18 +135,18 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            
+                                                            <div ng-if="administradorPerfil.nombre!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                    <?php if(isset($user["usr"]->nombre)): ?>
-                                                                        <?php echo e($user["usr"]->nombre); ?>
+                                                            <% administradorPerfil.nombre %>
 
-                                                                    <?php endif; ?>
+                                                            </div>
 
-                                                                    <?php if(empty($user["usr"]->nombre)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                            <div ng-if="administradorPerfil.nombre==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                </div>
+                                                            No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -170,18 +170,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="administradorPerfil.apellido!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                    <?php if(isset($user["usr"]->apellido)): ?>
-                                                                        <?php echo e($user["usr"]->apellido); ?>
+                                                            <% administradorPerfil.apellido %>
 
-                                                                    <?php endif; ?>
+                                                            </div>
 
-                                                                    <?php if(empty($user["usr"]->apellido)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                            <div ng-if="administradorPerfil.apellido==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                </div>
+                                                            No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -203,97 +202,29 @@
 
                                                         <div class="row">
 
-                                                            <div class="col-md-4"></div>
+                                                            <div class="col-md-4"></div> 
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="administradorPerfil.correo!=''" style="font-size: 20px;" class="correoNoEdit col-md-4">
 
-                                                                    <?php if(isset($user["usr"]->correo)): ?>
-                                                                        <?php echo e($user["usr"]->correo); ?>
+                                                            <% administradorPerfil.correo %>
 
-                                                                    <?php endif; ?>
+                                                            </div>
 
-                                                                    <?php if(empty($user["usr"]->correo)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                            <div ng-if="administradorPerfil.correo==''" style="font-size: 20px;" class="correoNoEdit col-md-4">
 
-                                                                </div>
+                                                            No Especificado
 
-                                                            <div class="col-md-4"></div>
+                                                            </div>
 
-                                                        </div>
+                                                            <div style="font-size: 20px; display: none;" class="correoEdit col-md-4">
 
-                                                        <?php if(in_array("3", $user["permisos"])): ?>
-                                                        
-                                                        <div class="row">
+                                                                <input id="correo" type="text" class="form-control" value="<% administradorPerfil.correo %>" placeholder="Correo" />
 
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Cargo:
-
-                                                                </div>
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
                                                         </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->cargo)): ?>
-                                                                        <?php echo e($user["usr"]->cargo); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->cargo)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <?php endif; ?>
-
-                                                        <?php if(in_array("1", $user["permisos"])): ?>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Rol:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    
-                                                                    Administrador
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <?php endif; ?>
                                                         
                                                         <div class="row">
 
@@ -313,19 +244,23 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="administradorPerfil.telefono_fijo!=''" style="font-size: 20px;" class="telefonoFijoNoEdit col-md-4">
 
-                                                                     
-                                                                    <?php if(isset($user["usr"]->telefono_fijo)): ?>
-                                                                        <?php echo e($user["usr"]->telefono_fijo); ?>
+                                                            <% administradorPerfil.telefono_fijo %>
 
-                                                                    <?php endif; ?>
+                                                            </div>
 
-                                                                    <?php if(empty($user["usr"]->telefono_fijo)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                            <div ng-if="administradorPerfil.telefono_fijo==''" style="font-size: 20px;" class="telefonoFijoNoEdit col-md-4">
 
-                                                                </div>
+                                                            No Especificado
+
+                                                            </div>
+
+                                                            <div style="font-size: 20px; display: none;" class="telefonoFijoEdit col-md-4">
+
+                                                                <input id="celular" type="text" class="form-control" value="<% administradorPerfil.telefono_fijo %>" placeholder="Teléfono Fijo" />
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -349,19 +284,23 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="administradorPerfil.celular!=''" style="font-size: 20px;" class="celularNoEdit col-md-4">
 
-                                                                     
-                                                                    <?php if(isset($user["usr"]->celular)): ?>
-                                                                        <?php echo e($user["usr"]->celular); ?>
+                                                            <% administradorPerfil.celular %>
 
-                                                                    <?php endif; ?>
+                                                            </div>
 
-                                                                    <?php if(empty($user["usr"]->celular)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                            <div ng-if="administradorPerfil.celular==''" style="font-size: 20px;" class="celularNoEdit col-md-4">
 
-                                                                </div>
+                                                            No Especificado
+
+                                                            </div>
+
+                                                            <div style="font-size: 20px; display: none;" class="celularEdit col-md-4">
+
+                                                                <input id="celular" type="text" class="form-control" value="<% administradorPerfil.celular %>" placeholder="Celular" />
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -385,35 +324,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="administradorPerfil.created_at!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                     
-                                                                    <?php if(isset($user["usr"]->created_at)): ?>
-                                                                        <?php echo e($user["usr"]->created_at); ?>
+                                                            <% administradorPerfil.created_at %>
 
-                                                                    <?php endif; ?>
+                                                            </div>
 
-                                                                    <?php if(empty($user["usr"]->created_at)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
+                                                            <div ng-if="administradorPerfil.created_at==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                </div>
+                                                            No Especificado
 
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <?php if(in_array("3", $user["permisos"])): ?>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    DNI:
-
-                                                                </div>
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -423,72 +344,12 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->dni_num)): ?>
-                                                                        <?php echo e($user["usr"]->dni_num); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->dni_num)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <?php endif; ?>
-
-                                                        <?php if(in_array("3", $user["permisos"])): ?>
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Seguro Social:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    <?php if(isset($user["usr"]->seguro_social)): ?>
-                                                                        <?php echo e($user["usr"]->seguro_social); ?>
-
-                                                                    <?php endif; ?>
-
-                                                                    <?php if(empty($user["usr"]->seguro_social)): ?>
-                                                                        No especificado
-                                                                    <?php endif; ?>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <?php endif; ?>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                            <button id="editarPerfil" style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
                                                                 Editar
+                                                            </button>
+
+                                                            <button id="guardarEditarPerfil" style="display: none; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                                Guardar
                                                             </button>
 
                                                             <a href="/perfilAdministradores/pass">
@@ -1130,6 +991,31 @@
         <script>
             $(document).ready(function()
             {
+                $("#editarPerfil").unbind().click(function() {
+                
+                    console.log("[editarPerfil]");
+                    
+                    $(".correoNoEdit").css("display","none");
+                    $(".correoEdit").css("display","");                    
+                    
+                    $(".telefonoFijoNoEdit").css("display","none");
+                    $(".telefonoFijoEdit").css("display","");                    
+                    
+                    $(".celularNoEdit").css("display","none");
+                    $(".celularEdit").css("display","");
+
+                    $("#editarPerfil").css("display","none");
+                    $("#guardarEditarPerfil").css("display","");
+                
+                });
+
+                $("#guardarEditarPerfil").unbind().click(function(){
+
+                    console.log("[guardarEditarPerfil]");
+
+                    postEditProfile();
+
+                })
 
                 $('#js-page-content').smartPanel(); 
 
@@ -1156,7 +1042,13 @@
 
         <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
 
-        
+        <script>
+            $(document).ready(function()
+            {
+                getAdministradoresClick("<?php echo e($user['usr']->id_administradores); ?>");
+
+            });
+        </script>
 
     <?php $__env->stopSection(); ?>
 

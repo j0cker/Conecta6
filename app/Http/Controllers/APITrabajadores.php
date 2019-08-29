@@ -687,9 +687,9 @@ class APITrabajadores extends Controller
   
   public function GetTrabajadores(Request $request){
     
-    Log::info('[APIEmpresas][GetTrabajadores]');
+    Log::info('[APITrabajadores][GetTrabajadores]');
 
-    Log::info("[APIEmpresas][GetTrabajadores] Método Recibido: ". $request->getMethod());
+    Log::info("[APITrabajadores][GetTrabajadores] Método Recibido: ". $request->getMethod());
 
     if($request->isMethod('GET')) {
 
@@ -701,7 +701,7 @@ class APITrabajadores extends Controller
         
       $token = $request->input('token');
 
-      Log::info("[APIEmpresas][GetTrabajadores] Token: ". $token);
+      Log::info("[APITrabajadores][GetTrabajadores] Token: ". $token);
 
 
       try {
@@ -716,7 +716,7 @@ class APITrabajadores extends Controller
 
         if(in_array(2, $token_decrypt["permisos"])){
 
-          Log::info("[APIEmpresas][GetTrabajadores] Permiso Existente");
+          Log::info("[APITrabajadores][GetTrabajadores] Permiso Existente");
           
           $trabajadores = Trabajadores::getByIdEmpresas($token_decrypt['usr']->id_empresas)->get();
 
@@ -744,7 +744,7 @@ class APITrabajadores extends Controller
 
         //token_expired
     
-        Log::info('[APIEmpresas][GetTrabajadores] Token error: token_expired');
+        Log::info('[APITrabajadores][GetTrabajadores] Token error: token_expired');
 
         return redirect('/');
   
@@ -752,7 +752,7 @@ class APITrabajadores extends Controller
 
         //token_invalid
     
-        Log::info('[APIEmpresas][GetTrabajadores] Token error: token_invalid');
+        Log::info('[APITrabajadores][GetTrabajadores] Token error: token_invalid');
 
         return redirect('/');
   
@@ -760,7 +760,7 @@ class APITrabajadores extends Controller
 
         //token_absent
     
-        Log::info('[APIEmpresas][GetTrabajadores] Token error: token_absent');
+        Log::info('[APITrabajadores][GetTrabajadores] Token error: token_absent');
 
         return redirect('/');
   
@@ -768,7 +768,7 @@ class APITrabajadores extends Controller
 
         //Errores
     
-        Log::info('[APIEmpresas][GetTrabajadores] ' . $e);
+        Log::info('[APITrabajadores][GetTrabajadores] ' . $e);
 
         return redirect('/');
 
@@ -888,6 +888,109 @@ class APITrabajadores extends Controller
     }
 
   }
+
+  public function PerfilEditar(Request $request)
+  {
+    Log::info('[APITrabajadores][PerfilEditar]');
+
+    Log::info("[APITrabajadores][PerfilEditar] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APITrabajadores][PerfilEditar] Token: ". $token);
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        if(in_array(3, $token_decrypt["permisos"])){
+
+          Validator::make($request->all(), [
+            'correo' => 'required',
+            'telefono_fijo' => 'required',
+            'celular' => 'required'
+          ])->validate();
+          
+          $correo = $request->input('correo');
+          $telefono_fijo = $request->input('telefono_fijo');
+          $celular = $request->input('celular');
+
+          //print_r($token_decrypt["id"]);
+
+          //print_r($token_decrypt);
+
+          $Trabajadores = Trabajadores::updateProfile($token_decrypt['usr']->id_trabajadores, $correo, $telefono_fijo, $celular);
+        
+          if($Trabajadores==1){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Trabajadores));
+            $responseJSON->data = $Trabajadores;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Trabajadores));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+        } 
+
+        return redirect('/');
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APITrabajadores][PerfilEditar] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APITrabajadores][PerfilEditar] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APITrabajadores][PerfilEditar] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APITrabajadores][PerfilEditar] ' . $e);
+
+        return redirect('/');
+
+      }
+
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
 
   public function Historial(Request $request){
     

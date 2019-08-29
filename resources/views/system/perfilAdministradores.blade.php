@@ -138,17 +138,18 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            
+                                                            <div ng-if="administradorPerfil.nombre!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                    @isset($user["usr"]->nombre)
-                                                                        {{ $user["usr"]->nombre }}
-                                                                    @endisset
+                                                            <% administradorPerfil.nombre %>
 
-                                                                    @empty($user["usr"]->nombre)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="administradorPerfil.nombre==''" style="font-size: 20px;" class="col-md-4">
+
+                                                            No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -172,17 +173,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="administradorPerfil.apellido!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                    @isset($user["usr"]->apellido)
-                                                                        {{ $user["usr"]->apellido }}
-                                                                    @endisset
+                                                            <% administradorPerfil.apellido %>
 
-                                                                    @empty($user["usr"]->apellido)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="administradorPerfil.apellido==''" style="font-size: 20px;" class="col-md-4">
+
+                                                            No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -204,95 +205,29 @@
 
                                                         <div class="row">
 
-                                                            <div class="col-md-4"></div>
+                                                            <div class="col-md-4"></div> 
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="administradorPerfil.correo!=''" style="font-size: 20px;" class="correoNoEdit col-md-4">
 
-                                                                    @isset($user["usr"]->correo)
-                                                                        {{ $user["usr"]->correo }}
-                                                                    @endisset
+                                                            <% administradorPerfil.correo %>
 
-                                                                    @empty($user["usr"]->correo)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="administradorPerfil.correo==''" style="font-size: 20px;" class="correoNoEdit col-md-4">
 
-                                                            <div class="col-md-4"></div>
+                                                            No Especificado
 
-                                                        </div>
+                                                            </div>
 
-                                                        @if (in_array("3", $user["permisos"]))
-                                                        
-                                                        <div class="row">
+                                                            <div style="font-size: 20px; display: none;" class="correoEdit col-md-4">
 
-                                                            <div class="col-md-4"></div>
+                                                                <input id="correo" type="text" class="form-control" value="<% administradorPerfil.correo %>" placeholder="Correo" />
 
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Cargo:
-
-                                                                </div>
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
                                                         </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    @isset($user["usr"]->cargo)
-                                                                        {{ $user["usr"]->cargo }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->cargo)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        @endif
-
-                                                        @if (in_array("1", $user["permisos"]))
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Rol:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                    
-                                                                    Administrador
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        @endif
                                                         
                                                         <div class="row">
 
@@ -312,18 +247,23 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="administradorPerfil.telefono_fijo!=''" style="font-size: 20px;" class="telefonoFijoNoEdit col-md-4">
 
-                                                                     
-                                                                    @isset($user["usr"]->telefono_fijo)
-                                                                        {{ $user["usr"]->telefono_fijo }}
-                                                                    @endisset
+                                                            <% administradorPerfil.telefono_fijo %>
 
-                                                                    @empty($user["usr"]->telefono_fijo)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="administradorPerfil.telefono_fijo==''" style="font-size: 20px;" class="telefonoFijoNoEdit col-md-4">
+
+                                                            No Especificado
+
+                                                            </div>
+
+                                                            <div style="font-size: 20px; display: none;" class="telefonoFijoEdit col-md-4">
+
+                                                                <input id="celular" type="text" class="form-control" value="<% administradorPerfil.telefono_fijo %>" placeholder="Teléfono Fijo" />
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -347,18 +287,23 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="administradorPerfil.celular!=''" style="font-size: 20px;" class="celularNoEdit col-md-4">
 
-                                                                     
-                                                                    @isset($user["usr"]->celular)
-                                                                        {{ $user["usr"]->celular }}
-                                                                    @endisset
+                                                            <% administradorPerfil.celular %>
 
-                                                                    @empty($user["usr"]->celular)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="administradorPerfil.celular==''" style="font-size: 20px;" class="celularNoEdit col-md-4">
+
+                                                            No Especificado
+
+                                                            </div>
+
+                                                            <div style="font-size: 20px; display: none;" class="celularEdit col-md-4">
+
+                                                                <input id="celular" type="text" class="form-control" value="<% administradorPerfil.celular %>" placeholder="Celular" />
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -382,34 +327,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="administradorPerfil.created_at!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                     
-                                                                    @isset($user["usr"]->created_at)
-                                                                        {{ $user["usr"]->created_at }}
-                                                                    @endisset
+                                                            <% administradorPerfil.created_at %>
 
-                                                                    @empty($user["usr"]->created_at)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="administradorPerfil.created_at==''" style="font-size: 20px;" class="col-md-4">
 
-                                                            <div class="col-md-4"></div>
+                                                            No Especificado
 
-                                                        </div>
-
-                                                        @if (in_array("3", $user["permisos"]))
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    DNI:
-
-                                                                </div>
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -419,70 +347,12 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    @isset($user["usr"]->dni_num)
-                                                                        {{ $user["usr"]->dni_num }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->dni_num)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        @endif
-
-                                                        @if (in_array("3", $user["permisos"]))
-                                                        
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Seguro Social:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    @isset($user["usr"]->seguro_social)
-                                                                        {{ $user["usr"]->seguro_social }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->seguro_social)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        @endif
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                            <button id="editarPerfil" style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
                                                                 Editar
+                                                            </button>
+
+                                                            <button id="guardarEditarPerfil" style="display: none; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                                Guardar
                                                             </button>
 
                                                             <a href="/perfilAdministradores/pass">
@@ -1124,6 +994,31 @@
         <script>
             $(document).ready(function()
             {
+                $("#editarPerfil").unbind().click(function() {
+                
+                    console.log("[editarPerfil]");
+                    
+                    $(".correoNoEdit").css("display","none");
+                    $(".correoEdit").css("display","");                    
+                    
+                    $(".telefonoFijoNoEdit").css("display","none");
+                    $(".telefonoFijoEdit").css("display","");                    
+                    
+                    $(".celularNoEdit").css("display","none");
+                    $(".celularEdit").css("display","");
+
+                    $("#editarPerfil").css("display","none");
+                    $("#guardarEditarPerfil").css("display","");
+                
+                });
+
+                $("#guardarEditarPerfil").unbind().click(function(){
+
+                    console.log("[guardarEditarPerfil]");
+
+                    postEditProfile();
+
+                })
 
                 $('#js-page-content').smartPanel(); 
 
@@ -1150,6 +1045,12 @@
 
         <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
 
-        
+        <script>
+            $(document).ready(function()
+            {
+                getAdministradoresClick("{{ $user['usr']->id_administradores }}");
+
+            });
+        </script>
 
     @stop

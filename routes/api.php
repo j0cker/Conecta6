@@ -33,6 +33,9 @@ Route::get('/trabajadores/logout', 'APITrabajadores@Logout');
 //Actualizar contraseña del perfil de trabajadores
 Route::post('/trabajadores/perfil/pass', 'APITrabajadores@ChangePerfilPass');
 
+//Edit Profile
+Route::post('/trabajadores/profile/edit', 'APITrabajadores@PerfilEditar');
+
 //Get Trabajadores by id trabajadores
 Route::get('/trabajadores/obtener/id_trabajadadores', 'APITrabajadores@GetTrabajadoresIdTrabajadores');
 
@@ -112,4 +115,7 @@ Route::get('/pAdmin/logout', 'APIAdmin@Logout');
 
 //Actualizar contraseña del perfil de administradores
 Route::post('/pAdmin/perfil/pass', 'APIAdmin@ChangePerfilPass');
+
+//Get Administradores by id administradores
+Route::get('/pAdmin/obtener', 'APIAdmin@GetAdmin');
 

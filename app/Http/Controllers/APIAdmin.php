@@ -515,6 +515,213 @@ class APIAdmin extends Controller
   
     }
 
+    public function GetAdmin(Request $request){
+
+      Log::info('[APIAdmin][GetAdmin]');
+  
+      Log::info("[APIAdmin][GetAdmin] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('GET')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIAdmin][GetAdmin] Token: ". $token);
+  
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+  
+          if(in_array(1, $token_decrypt["permisos"])){
+  
+            Log::info("[APIAdmin][GetAdmin] Permiso Existente");
+            
+  
+            Validator::make($request->all(), [
+              'id_administradores' => 'required'
+            ])->validate();
+          
+            $id_administradores = $request->input('id_administradores');
+  
+            //print_r($token_decrypt["id"]);
+  
+            //print_r($token_decrypt);
+  
+            $Administradores = Admin::lookByIdAdmin($id_administradores)->get();
+  
+            if(count($Administradores)>0){
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Administradores));
+              $responseJSON->data = $Administradores;
+              return json_encode($responseJSON);
+  
+            } else {
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Administradores));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+  
+            }
+  
+          }
+  
+          return redirect('/');
+  
+  
+  
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][ChangePerfilPass] Token error: token_expired');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][ChangePerfilPass] Token error: token_invalid');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][ChangePerfilPass] Token error: token_absent');
+  
+          return redirect('/');
+    
+        } catch(Exception $e) {
+  
+          //Errores
+      
+          Log::info('[APIAdmin][ChangePerfilPass] ' . $e);
+  
+          return redirect('/');
+  
+        }
+  
+  
+  
+      } else {
+        abort(404);
+      }
+    }
+
+
+    public function PerfilEditar(Request $request)
+    {
+      Log::info('[APITrabajadores][PerfilEditar]');
+  
+      Log::info("[APITrabajadores][PerfilEditar] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('POST')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APITrabajadores][PerfilEditar] Token: ". $token);
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+  
+          if(in_array(1, $token_decrypt["permisos"])){
+  
+            Validator::make($request->all(), [
+              'correo' => 'required',
+              'telefono_fijo' => 'required',
+              'celular' => 'required'
+            ])->validate();
+            
+            $correo = $request->input('correo');
+            $telefono_fijo = $request->input('telefono_fijo');
+            $celular = $request->input('celular');
+  
+            //print_r($token_decrypt["id"]);
+  
+            //print_r($token_decrypt);
+  
+            $Trabajadores = Admin::updateProfile($token_decrypt['usr']->id_trabajadores, $correo, $telefono_fijo, $celular);
+          
+            if($Trabajadores==1){
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Trabajadores));
+              $responseJSON->data = $Trabajadores;
+              return json_encode($responseJSON);
+  
+            } else {
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Trabajadores));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+  
+            }
+          } 
+  
+          return redirect('/');
+  
+  
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APITrabajadores][PerfilEditar] Token error: token_expired');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APITrabajadores][PerfilEditar] Token error: token_invalid');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APITrabajadores][PerfilEditar] Token error: token_absent');
+  
+          return redirect('/');
+    
+        } catch(Exception $e) {
+  
+          //Errores
+      
+          Log::info('[APITrabajadores][PerfilEditar] ' . $e);
+  
+          return redirect('/');
+  
+        }
+  
+  
+  
+      } else {
+        abort(404);
+      }
+  
+    }
+  
+
     public function NuevaEmpresa(Request $request){
       
       Log::info('[APIAdmin][NuevaEmpresa]');

@@ -140,17 +140,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="getTrabajadores.nombre!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                    @isset($user["usr"]->nombre)
-                                                                        {{ $user["usr"]->nombre }}
-                                                                    @endisset
+                                                                <% getTrabajadores.nombre %>
 
-                                                                    @empty($user["usr"]->nombre)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="getTrabajadores.nombre==''" style="font-size: 20px;" class="col-md-4">
+
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -174,17 +174,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="getTrabajadores.apellido!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                    @isset($user["usr"]->apellido)
-                                                                        {{ $user["usr"]->apellido }}
-                                                                    @endisset
+                                                                <% getTrabajadores.apellido %>
 
-                                                                    @empty($user["usr"]->apellido)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="getTrabajadores.apellido==''" style="font-size: 20px;" class="col-md-4">
+
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -208,17 +208,23 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="getTrabajadores.correo!=''" style="font-size: 20px;" class="correoNoEdit col-md-4">
 
-                                                                    @isset($user["usr"]->correo)
-                                                                        {{ $user["usr"]->correo }}
-                                                                    @endisset
+                                                                <% getTrabajadores.correo %>
 
-                                                                    @empty($user["usr"]->correo)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="getTrabajadores.correo==''" style="font-size: 20px;" class="correoNoEdit col-md-4">
+
+                                                                No Especificado
+
+                                                            </div>
+
+                                                            <div style="font-size: 20px; display: none;" class="correoEdit col-md-4">
+
+                                                                <input id="correo" type="text" class="form-control" value="<% getTrabajadores.correo %>" placeholder="Correo" />
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -228,11 +234,11 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Cargo:
+                                                            <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                            
+                                                                Cargo:
 
-                                                                </div>
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -242,18 +248,17 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="getTrabajadores.cargo!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                     
-                                                                    @isset($user["usr"]->cargo)
-                                                                        {{ $user["usr"]->cargo }}
-                                                                    @endisset
+                                                                <% getTrabajadores.cargo %>
 
-                                                                    @empty($user["usr"]->cargo)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="getTrabajadores.cargo==''" style="font-size: 20px;" class="col-md-4">
+
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -277,53 +282,23 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="getTrabajadores.telefono_fijo!=''" style="font-size: 20px;" class="telefonoFijoNoEdit col-md-4">
 
-                                                                     
-                                                                    @isset($user["usr"]->telefono_fijo)
-                                                                        {{ $user["usr"]->telefono_fijo }}
-                                                                    @endisset
+                                                                <% getTrabajadores.telefono_fijo %>
 
-                                                                    @empty($user["usr"]->telefono_fijo)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="getTrabajadores.telefono_fijo==''" style="font-size: 20px;" class="telefonoFijoNoEdit col-md-4">
 
-                                                            <div class="col-md-4"></div>
+                                                                No Especificado
 
-                                                        </div>
-                                                        
-                                                        <div class="row">
+                                                            </div>
 
-                                                            <div class="col-md-4"></div>
+                                                            <div style="font-size: 20px; display: none;" class="telefonoFijoEdit col-md-4">
 
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Celular:
+                                                                <input id="telefono_fijo" type="text" class="form-control" value="<% getTrabajadores.telefono_fijo %>" placeholder="Teléfono Fijo" />
 
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 20px;" class="col-md-4">
-
-                                                                     
-                                                                    @isset($user["usr"]->celular)
-                                                                        {{ $user["usr"]->celular }}
-                                                                    @endisset
-
-                                                                    @empty($user["usr"]->celular)
-                                                                        No especificado
-                                                                    @endempty
-
-                                                                </div>
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -333,11 +308,11 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Fecha de Creación:
+                                                            <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                            
+                                                                Celular:
 
-                                                                </div>
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -347,18 +322,57 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                            <div ng-if="getTrabajadores.celular!=''" style="font-size: 20px;" class="celularNoEdit col-md-4">
 
-                                                                     
-                                                                    @isset($user["usr"]->created_at)
-                                                                        {{ $user["usr"]->created_at }}
-                                                                    @endisset
+                                                                <% getTrabajadores.celular %>
 
-                                                                    @empty($user["usr"]->created_at)
-                                                                        No especificado
-                                                                    @endempty
+                                                            </div>
 
-                                                                </div>
+                                                            <div ng-if="getTrabajadores.celular==''" style="font-size: 20px;" class="celularNoEdit col-md-4">
+
+                                                                No Especificado
+
+                                                            </div>
+
+                                                            <div style="font-size: 20px; display: none;" class="celularEdit col-md-4">
+
+                                                                <input id="celular" type="text" class="form-control" value="<% getTrabajadores.celular %>" placeholder="Celular" />
+
+                                                            </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+                                                        
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                            <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                            
+                                                                Fecha de Creación:
+
+                                                            </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                            <div ng-if="getTrabajadores.created_at!=''" style="font-size: 20px;" class="col-md-4">
+
+                                                                <% getTrabajadores.created_at %>
+
+                                                            </div>
+
+                                                            <div ng-if="getTrabajadores.created_at==''" style="font-size: 20px;" class="col-md-4">
+
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -381,19 +395,18 @@
                                                         <div class="row">
 
                                                             <div class="col-md-4"></div>
+                                                                
+                                                            <div ng-if="getTrabajadores.dni_num!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                                <% getTrabajadores.dni_num %>
 
-                                                                     
-                                                                    @isset($user["usr"]->dni_num)
-                                                                        {{ $user["usr"]->dni_num }}
-                                                                    @endisset
+                                                            </div>
 
-                                                                    @empty($user["usr"]->dni_num)
-                                                                        No especificado
-                                                                    @endempty
+                                                            <div ng-if="getTrabajadores.dni_num==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                </div>
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -416,19 +429,18 @@
                                                         <div class="row">
 
                                                             <div class="col-md-4"></div>
+                                                                                                                                
+                                                            <div ng-if="getTrabajadores.seguro_social!=''" style="font-size: 20px;" class="col-md-4">
 
-                                                                <div style="font-size: 20px;" class="col-md-4">
+                                                                <% getTrabajadores.seguro_social %>
 
-                                                                     
-                                                                    @isset($user["usr"]->seguro_social)
-                                                                        {{ $user["usr"]->seguro_social }}
-                                                                    @endisset
+                                                            </div>
 
-                                                                    @empty($user["usr"]->seguro_social)
-                                                                        No especificado
-                                                                    @endempty
+                                                            <div ng-if="getTrabajadores.seguro_social==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                </div>
+                                                                No Especificado
+
+                                                            </div>
 
                                                             <div class="col-md-4"></div>
 
@@ -438,8 +450,12 @@
 
                                                             <div class="col-md-4"></div>
 
-                                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                            <button id="editarPerfil" style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
                                                                 Editar
+                                                            </button>
+
+                                                            <button id="guardarEditarPerfil" style="display: none; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                                                Guardar
                                                             </button>
 
                                                             <a href="/perfilTrabajadores/pass">
@@ -1068,10 +1084,6 @@
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                
-                @if (in_array("1", $user["permisos"]))
-                    $("#mytheme").attr("href","css/themes/cust-theme-6.css");
-                @endif
 
             });
         </script>
@@ -1102,6 +1114,33 @@
         
         <script>
             $(document).ready(function(){
+
+                                
+                $("#editarPerfil").unbind().click(function() {
+
+                    console.log("[editarPerfil]");
+                    
+                    $(".correoNoEdit").css("display","none");
+                    $(".correoEdit").css("display","");                    
+                    
+                    $(".telefonoFijoNoEdit").css("display","none");
+                    $(".telefonoFijoEdit").css("display","");                    
+                    
+                    $(".celularNoEdit").css("display","none");
+                    $(".celularEdit").css("display","");
+
+                    $("#editarPerfil").css("display","none");
+                    $("#guardarEditarPerfil").css("display","");
+
+                });
+
+                $("#guardarEditarPerfil").unbind().click(function(){
+
+                    console.log("[guardarEditarPerfil]");
+
+                    postEditProfile();
+
+                })
                 
                 angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
                 getTrabajadoresByIdTrabajadoresClick("{{ $user['usr']->id_trabajadores }}");

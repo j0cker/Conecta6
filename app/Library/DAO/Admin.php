@@ -22,6 +22,28 @@ class Admin extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    //Modificar Perfile
+    public function scopeUpdateProfile($query, $id_administrador, $correo, $telefono_fijo, $celular){
+
+      Log::info("[Trabajadores][scopeUpdateProfile]");
+
+      return $query->where([['id_administrador', '=', $id_administrador],
+                           ])->update(['correo' => $correo,
+                                       'telefono_fijo' => $telefono_fijo,
+                                       'celular' => $celular]); //return true in the other one return 1
+
+    }
+
+    public function scopeLookByIdAdmin($query, $id_administradores){
+
+      Log::info("[Admin][scopeLookByIdAdmin]");
+
+      return $query->where([
+        ['id_administradores', '=', $id_administradores],
+      ]);
+
+    }
+
     //modificar contraseña en el perfil de los administradores
     public function scopeModPass($query, $id_administradores, $pass){
 

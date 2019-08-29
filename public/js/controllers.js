@@ -200,6 +200,64 @@
     functions.loading();
 
     
+    $scope.postEditProfileClick = function(){
+
+      console.log("[postEditProfileClick] ");
+
+      var correo = "";
+      var telefono_fijo = "";
+      var celular = "";
+
+      correo = $("#correo").val();
+      telefono_fijo = $("#telefono_fijo").val();
+      celular = $("#celular").val();
+
+      console.log("correo: " + correo);
+      console.log("telefono_fijo: " + telefono_fijo);
+      console.log("celular: " + celular);
+
+      if(telefono_fijo==""){
+
+        toastr["error"]("Llenar Correctamente Teléfono Fijo.", "");
+
+      } else if(celular==""){
+
+        toastr["error"]("Llenar Correctamente Celular.", "");
+
+      } else if(correo==""){
+
+        toastr["error"]("Llenar Correctamente Correo.", "");
+
+      } else {
+
+        functions.postEditProfile("", correo, telefono_fijo, celular, "trabajadores").then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            console.log("[perfilEmpresas][getEditProfileClick]");
+
+
+            toastr["success"]("Su información se cambió exitosamente", "");
+
+            window.location = "/perfilTrabajadores";
+
+            console.log(response.data.data);
+
+          } else {
+              toastr["warning"](response.data.description, "");
+              functions.loadingEndWait();
+          }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin postEditProfile*/
+
+      }
+
+    }; //fin postEditProfileClick
+
+    postEditProfile = $scope.postEditProfileClick;
 
     $scope.getTrabajadoresByIdTrabajadoresClick = function(id_trabajadores){
 
@@ -211,6 +269,8 @@
               console.log("[modtrabajador][perfilEmpresas]");
 
               console.log(response.data.data);
+
+              $scope.getTrabajadores = response.data.data[0];
 
             } else {
                 toastr["warning"](response.data.description, "");
@@ -261,6 +321,68 @@
     console.log("[perfilAdministradores]");
 
     functions.loading();
+    
+    $scope.getAdministradoresClick = function(id_administradores){
+
+      functions.getAdministradores(id_administradores).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          console.log("[perfilAdministradores][getAdministradoresClick]");
+
+          console.log(response.data.data);
+
+          $scope.administradorPerfil = response.data.data[0];
+
+        } else {
+            toastr["warning"](response.data.description, "");
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getAdministradores*/
+
+    }; //fin getAdministradoresClick
+
+    getAdministradoresClick = $scope.getAdministradoresClick;
+    
+    $scope.postEditProfileClick = function(id_administradores){
+
+      var correo = "";
+      var telefono_fijo = "";
+      var celular = "";
+
+      correo = $("#correo").val();
+      telefono_fijo = $("#telefono_fijo").val();
+      celular = $("#celular").val();
+
+      console.log("correo: " + correo);
+      console.log("telefono_fijo: " + telefono_fijo);
+      console.log("celular: " + celular);
+
+      functions.postEditProfile(id_administradores, correo, telefono_fijo, celular, "pAdmin").then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          console.log("[perfilAdministradores][postEditProfileClick]");
+
+          console.log(response.data.data);
+
+        } else {
+            toastr["warning"](response.data.description, "");
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin postEditProfile*/
+
+    }; //fin postEditProfileClick
+
+    getAdministradoresClick = $scope.getAdministradoresClick;
 
 
   });//fin controller perfilAdministradores
@@ -563,28 +685,48 @@
       console.log("telefono_fijo: " + $("#telefono_fijo").val());
       console.log("celular: " + $("#celular").val());
 
-      functions.postEditProfile(nombre_empresa, correo, telefono_fijo, celular, "empresas").then(function (response) {
+      if(telefono_fijo==""){
 
-        if(response.data.success == "TRUE"){
-          console.log("[perfilEmpresas][getEditProfileClick]");
+        toastr["error"]("Llenar Correctamente Teléfono Fijo.", "");
+
+      } else if(celular==""){
+
+        toastr["error"]("Llenar Correctamente Celular.", "");
+
+      } else if(correo==""){
+
+        toastr["error"]("Llenar Correctamente Correo.", "");
+
+      } else if(nombre_empresa==""){
+
+        toastr["error"]("Llenar Correctamente Nombre de la Empresa.", "");
+
+      } else {
+
+        functions.postEditProfile(nombre_empresa, correo, telefono_fijo, celular, "empresas").then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            console.log("[perfilEmpresas][getEditProfileClick]");
 
 
-          toastr["success"]("Su información se cambió exitosamente", "");
+            toastr["success"]("Su información se cambió exitosamente", "");
 
-          window.location = "/perfilEmpresas";
+            window.location = "/perfilEmpresas";
 
-          console.log(response.data.data);
+            console.log(response.data.data);
 
-        } else {
-            toastr["warning"](response.data.description, "");
-            functions.loadingEndWait();
-        }
-      }, function (response) {
-        /*ERROR*/
-        toastr["error"]("Inténtelo de nuevo más tarde", "");
-        functions.loadingEndWait();
+          } else {
+              toastr["warning"](response.data.description, "");
+              functions.loadingEndWait();
+          }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
 
-      });/*fin postEditProfile*/
+        });/*fin postEditProfile*/
+
+      }
 
     }; //fin postEditProfileClick
 
@@ -2299,7 +2441,6 @@
 
     functions.loading();
 
-    
     $scope.getImageEmpresaClick = function(id_empresas){
 
       console.log("[getImageEmpresaClick] ");

@@ -429,6 +429,17 @@
         return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, id_empresas:id_empresas });
 
       },
+      getAdministradores: function(id_administradores) {
+
+        console.log("[factory][getAdministradores]");
+
+        var url = '/api/pAdmin/obtener';
+		  	return $http.get(url,{
+          params: { cache: false, id_administradores:id_administradores },
+          cache: false
+        });
+
+      },
       postContChange: function(id, cont, tipo) {
 
         console.log("[factory][postContChange]");
