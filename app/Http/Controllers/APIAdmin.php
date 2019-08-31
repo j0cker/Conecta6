@@ -8,6 +8,7 @@ use App\Library\VO\ResponseJSON;
 use App\Library\DAO\Trabajadores;
 use App\Library\DAO\Admin;
 use App\Library\DAO\Permisos_inter;
+use App\Library\DAO\Empresas;
 use Auth;
 use carbon\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -515,6 +516,102 @@ class APIAdmin extends Controller
   
     }
 
+    public function GetAllAdmin(Request $request){
+
+      Log::info('[APIAdmin][GetAllAdmin]');
+  
+      Log::info("[APIAdmin][GetAllAdmin] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('GET')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIAdmin][GetAllAdmin] Token: ". $token);
+  
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+  
+          if(in_array(1, $token_decrypt["permisos"])){
+  
+            Log::info("[APIAdmin][GetAllAdmin] Permiso Existente");
+  
+            //print_r($token_decrypt["id"]);
+  
+            //print_r($token_decrypt);
+  
+            $Administradores = Admin::all();
+  
+            if(count($Administradores)>0){
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Administradores));
+              $responseJSON->data = $Administradores;
+              return json_encode($responseJSON);
+  
+            } else {
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Administradores));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+  
+            }
+  
+          }
+  
+          return redirect('/');
+  
+  
+  
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][ChangePerfilPass] Token error: token_expired');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][ChangePerfilPass] Token error: token_invalid');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][ChangePerfilPass] Token error: token_absent');
+  
+          return redirect('/');
+    
+        } catch(Exception $e) {
+  
+          //Errores
+      
+          Log::info('[APIAdmin][ChangePerfilPass] ' . $e);
+  
+          return redirect('/');
+  
+        }
+  
+  
+  
+      } else {
+        abort(404);
+      }
+    }
+
     public function GetAdmin(Request $request){
 
       Log::info('[APIAdmin][GetAdmin]');
@@ -618,12 +715,11 @@ class APIAdmin extends Controller
       }
     }
 
-
-    public function PerfilEditar(Request $request)
+    public function modActiveEmpresas(Request $request)
     {
-      Log::info('[APITrabajadores][PerfilEditar]');
+      Log::info('[APIAdmin][modActiveEmpresas]');
   
-      Log::info("[APITrabajadores][PerfilEditar] Método Recibido: ". $request->getMethod());
+      Log::info("[APIAdmin][modActiveEmpresas] Método Recibido: ". $request->getMethod());
   
       if($request->isMethod('POST')) {
   
@@ -635,7 +731,108 @@ class APIAdmin extends Controller
           
         $token = $request->input('token');
   
-        Log::info("[APITrabajadores][PerfilEditar] Token: ". $token);
+        Log::info("[APIAdmin][modActiveEmpresas] Token: ". $token);
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+  
+          if(in_array(1, $token_decrypt["permisos"])){
+  
+            Validator::make($request->all(), [
+              'id_empresas' => 'required',
+              'active' => 'required'
+            ])->validate();
+            
+            $id_empresas = $request->input('id_empresas');
+            $active = $request->input('active');
+  
+            //print_r($token_decrypt["id"]);
+  
+            //print_r($token_decrypt);
+  
+            $Empresas = Empresas::updateActive($id_empresas, $active);
+          
+            if($Empresas==1){
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Empresas));
+              $responseJSON->data = $Empresas;
+              return json_encode($responseJSON);
+  
+            } else {
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Empresas));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+  
+            }
+          } 
+  
+          return redirect('/');
+  
+  
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][modActiveEmpresas] Token error: token_expired');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][modActiveEmpresas] Token error: token_invalid');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][modActiveEmpresas] Token error: token_absent');
+  
+          return redirect('/');
+    
+        } catch(Exception $e) {
+  
+          //Errores
+      
+          Log::info('[APIAdmin][modActiveEmpresas] ' . $e);
+  
+          return redirect('/');
+  
+        }
+  
+  
+  
+      } else {
+        abort(404);
+      }
+  
+    }
+
+
+    public function PerfilEditar(Request $request)
+    {
+      Log::info('[APIAdmin][PerfilEditar]');
+  
+      Log::info("[APIAdmin][PerfilEditar] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('POST')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIAdmin][PerfilEditar] Token: ". $token);
   
         try {
   
@@ -659,7 +856,7 @@ class APIAdmin extends Controller
   
             //print_r($token_decrypt);
   
-            $Trabajadores = Admin::updateProfile($token_decrypt['usr']->id_trabajadores, $correo, $telefono_fijo, $celular);
+            $Trabajadores = Admin::updateProfile($token_decrypt['usr']->id_administradores, $correo, $telefono_fijo, $celular);
           
             if($Trabajadores==1){
   
@@ -683,7 +880,7 @@ class APIAdmin extends Controller
   
           //token_expired
       
-          Log::info('[APITrabajadores][PerfilEditar] Token error: token_expired');
+          Log::info('[APIAdmin][PerfilEditar] Token error: token_expired');
   
           return redirect('/');
     
@@ -691,7 +888,7 @@ class APIAdmin extends Controller
   
           //token_invalid
       
-          Log::info('[APITrabajadores][PerfilEditar] Token error: token_invalid');
+          Log::info('[APIAdmin][PerfilEditar] Token error: token_invalid');
   
           return redirect('/');
     
@@ -699,7 +896,7 @@ class APIAdmin extends Controller
   
           //token_absent
       
-          Log::info('[APITrabajadores][PerfilEditar] Token error: token_absent');
+          Log::info('[APIAdmin][PerfilEditar] Token error: token_absent');
   
           return redirect('/');
     
@@ -707,7 +904,7 @@ class APIAdmin extends Controller
   
           //Errores
       
-          Log::info('[APITrabajadores][PerfilEditar] ' . $e);
+          Log::info('[APIAdmin][PerfilEditar] ' . $e);
   
           return redirect('/');
   
@@ -720,7 +917,210 @@ class APIAdmin extends Controller
       }
   
     }
+
+    public function DeleteAdmin(Request $request){
+      
+      Log::info('[APIAdmin][DeleteAdmin]');
   
+      Log::info("[APIAdmin][DeleteAdmin] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('POST')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIAdmin][DeleteAdmin] Token: ". $token);
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+          if(in_array("1", $token_decrypt["permisos"])==1){
+  
+            Validator::make($request->all(), [
+              'id_administradores' => 'required'
+            ])->validate();
+            
+            $id_administradores = $request->input('id_administradores');
+  
+            //print_r($token_decrypt["id"]);
+  
+            //print_r($token_decrypt);
+  
+            $Admin = Admin::deleteAdmin($id_administradores);
+          
+            if($Admin==1){
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Admin));
+              $responseJSON->data = $Admin;
+              return json_encode($responseJSON);
+  
+            } else {
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Admin));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+  
+            }
+
+          } else {
+            
+            return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+            
+          }
+  
+          //print_r($token_decrypt["id"]);
+  
+          //print_r($token_decrypt);
+  
+          
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][AltaAdmin] Token error: token_expired');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][AltaAdmin] Token error: token_invalid');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][AltaAdmin] Token error: token_absent');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        }
+  
+  
+  
+      } else {
+        abort(404);
+      }
+  
+    }
+
+    public function AltaAdmin(Request $request){
+      
+      Log::info('[APIAdmin][AltaAdmin]');
+  
+      Log::info("[APIAdmin][AltaAdmin] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('POST')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIAdmin][AltaAdmin] Token: ". $token);
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+          if(in_array("1", $token_decrypt["permisos"])==1){
+  
+            Validator::make($request->all(), [
+              'nombre' => 'required',
+              'apellido' => 'required',
+              'correoElectronico' => 'required',
+              'telefonoFijo' => 'required',
+              'celular' => 'required',
+              'contrasena' => 'required'
+            ])->validate();
+            
+            $nombre = $request->input('nombre');
+            $apellido = $request->input('apellido');
+            $correoElectronico = $request->input('correoElectronico');
+            $telefonoFijo = $request->input('telefonoFijo');
+            $celular = $request->input('celular');
+            $contrasena = $request->input('contrasena');
+  
+            //print_r($token_decrypt["id"]);
+  
+            //print_r($token_decrypt);
+  
+            $Admin = Admin::altaAdmin($nombre, $apellido, $correoElectronico, $telefonoFijo, $celular, $contrasena);
+          
+            if(count($Admin)>0){
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Admin));
+              $responseJSON->data = $Admin;
+              return json_encode($responseJSON);
+  
+            } else {
+  
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Admin));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+  
+            }
+
+          } else {
+            
+            return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+            
+          }
+  
+          //print_r($token_decrypt["id"]);
+  
+          //print_r($token_decrypt);
+  
+          
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][AltaAdmin] Token error: token_expired');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][AltaAdmin] Token error: token_invalid');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][AltaAdmin] Token error: token_absent');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        }
+  
+  
+  
+      } else {
+        abort(404);
+      }
+  
+    }
 
     public function NuevaEmpresa(Request $request){
       

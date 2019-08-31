@@ -113,7 +113,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Nombre" />
+                                                                    <input id="nombre" type="text" class="form-control" placeholder="Nombre" />
 
                                                                 </div>
 
@@ -141,7 +141,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Apellido" />
+                                                                    <input id="apellido" type="text" class="form-control" placeholder="Apellido" />
 
                                                                 </div>
 
@@ -169,7 +169,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Correo Electrónico" />
+                                                                    <input id="correo" type="text" class="form-control" placeholder="Correo Electrónico" />
 
                                                                 </div>
 
@@ -197,7 +197,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Teléfono Fijo" />
+                                                                    <input id="telefono_fijo" type="text" class="form-control" placeholder="Teléfono Fijo" />
 
                                                                 </div>
 
@@ -225,7 +225,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="text" class="form-control" placeholder="Celular" />
+                                                                    <input id="celular" type="text" class="form-control" placeholder="Celular" />
 
                                                                 </div>
 
@@ -253,7 +253,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="password" class="form-control" placeholder="Contraseña" />
+                                                                    <input id="contrasena" type="password" class="form-control" placeholder="Contraseña" />
 
                                                                 </div>
 
@@ -281,7 +281,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input type="password" class="form-control" placeholder="Comprobar Contraseña" />
+                                                                    <input id="valContrasena" type="password" class="form-control" placeholder="Comprobar Contraseña" />
 
                                                                 </div>
 
@@ -291,7 +291,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="#" class="btn btn-danger btn-block waves-effect waves-themed">Agregar</a>
+                                                                <a id="agregar" style="width: 200px;" href="#" class="btn btn-danger btn-block waves-effect waves-themed">Agregar</a>
                                                             </div>
                                                         </div>
 
@@ -951,6 +951,8 @@
             {
 
                 $('#js-page-content').smartPanel(); 
+
+                
             });
         </script>
         
@@ -969,6 +971,18 @@
 
         <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
 
+        
+        <script>
+            $(document).ready(function()
+            {
+                
+                $('#agregar').click(function() {
+                    console.log("[altaAdministradores]");
+
+                    altaAdministradores();
+                });
+            });
+        </script>
         
 
     @stop

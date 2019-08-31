@@ -22,12 +22,47 @@ class Admin extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    //delete admin
+    public function scopeDeleteAdmin($query, $id_administradores){
+
+      Log::info("[Empresas][scopeDeleteAdmin]");
+
+      return $query->where([
+          ['id_administradores', '=', $id_administradores],
+        ])->delete(); //return true in the other one return 1
+
+    }
+
+    //alta admin
+    public function scopeAltaAdmin($query, $nombre, $apellido, $correoElectronico, $telefonoFijo, $celular, $contrasena){
+
+
+      Log::info("[Admin][altaAdmin]");
+
+      $admin = new Admin;
+      $admin->nombre = $nombre;
+      $admin->apellido = $apellido;
+      $admin->correo = $correoElectronico;
+      $admin->telefono_fijo = $telefonoFijo;
+      $admin->cargo = "Administrador";
+      $admin->celular = $celular;
+      $admin->pass = hash("sha256", $contrasena);
+
+      $obj = array();
+      $obj[0] = new \stdClass();
+      $obj[0]->save = $admin->save(); //return true in the other one return 1
+      $obj[0]->id = $admin->id;
+      
+      return $obj;
+
+    }
+
     //Modificar Perfile
-    public function scopeUpdateProfile($query, $id_administrador, $correo, $telefono_fijo, $celular){
+    public function scopeUpdateProfile($query, $id_administradores, $correo, $telefono_fijo, $celular){
 
       Log::info("[Trabajadores][scopeUpdateProfile]");
 
-      return $query->where([['id_administrador', '=', $id_administrador],
+      return $query->where([['id_administradores', '=', $id_administradores],
                            ])->update(['correo' => $correo,
                                        'telefono_fijo' => $telefono_fijo,
                                        'celular' => $celular]); //return true in the other one return 1

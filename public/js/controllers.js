@@ -172,6 +172,7 @@
 
     functions.loading();
 
+    $(".profile-image").attr("src","img/conecta6_blanco.png");
 
   });//fin controller inicioAdmin
 
@@ -321,6 +322,8 @@
     console.log("[perfilAdministradores]");
 
     functions.loading();
+
+    $(".profile-image").attr("src","img/conecta6_blanco.png");
     
     $scope.getAdministradoresClick = function(id_administradores){
 
@@ -362,12 +365,17 @@
       console.log("telefono_fijo: " + telefono_fijo);
       console.log("celular: " + celular);
 
-      functions.postEditProfile(id_administradores, correo, telefono_fijo, celular, "pAdmin").then(function (response) {
+      functions.postEditProfile("", correo, telefono_fijo, celular, "pAdmin").then(function (response) {
 
         if(response.data.success == "TRUE"){
           console.log("[perfilAdministradores][postEditProfileClick]");
 
           console.log(response.data.data);
+
+
+          toastr["success"]("Su información se cambió exitosamente", "");
+
+          window.location = "/perfilAdministradores";
 
         } else {
             toastr["warning"](response.data.description, "");
@@ -382,7 +390,7 @@
 
     }; //fin postEditProfileClick
 
-    getAdministradoresClick = $scope.getAdministradoresClick;
+    postEditProfile = $scope.postEditProfileClick;
 
 
   });//fin controller perfilAdministradores
@@ -603,6 +611,109 @@
     console.log("[empresas]");
 
     functions.loading();
+
+    $(".profile-image").attr("src","img/conecta6_blanco.png");
+
+    
+    $scope.postActiveEmpresaClick = function(id_empresas, active){
+
+      console.log("[empresas] ");
+
+      functions.postActiveEmpresa(id_empresas, active).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[empresas]");
+
+              console.log(response.data.data);
+              toastr["success"]("La información fue cambiada con<br /> éxito.", "");
+
+              
+              functions.getAllEmpresas().then(function (response) {
+
+                if(response.data.success == "TRUE"){
+                  
+                  console.log("[controllers][nuevoempresa][getAllEmpresas]");
+
+                  functions.loadingEndWait();
+
+                  console.log(response.data.data);
+
+                  var data = Array();
+
+                  var choices = Array();
+                  choices = ["id_empresas", "nombre_empresa", "empleados_permitidos", "activo", "vigencia"];
+                  
+                  data = addKeyToArray(data, response.data.data, choices);
+                  data = functions.fechasRestarArray(data);
+
+                  console.log(data);
+
+                  $('#dt-basic-example').dataTable().fnClearTable();
+                  $('#dt-basic-example').dataTable().fnAddData(data);
+
+                  functions.empresasSwitches(response.data.data);
+                  
+                } else {
+
+                    functions.loadingEndWait();
+                }
+              }, function (response) {
+                /*ERROR*/
+                toastr["error"]("Inténtelo de nuevo más tarde", "");
+                functions.loadingEndWait();
+
+              });/*fin getAllEmpresas*/
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin postActiveEmpresa*/
+
+    }; //fin postActiveEmpresaClick
+
+    postActiveEmpresa = $scope.postActiveEmpresaClick;
+
+    functions.getAllEmpresas().then(function (response) {
+
+      if(response.data.success == "TRUE"){
+        
+        console.log("[controllers][nuevoempresa][getAllEmpresas]");
+
+        functions.loadingEndWait();
+
+        console.log(response.data.data);
+
+        var data = Array();
+
+        var choices = Array();
+        choices = ["id_empresas", "nombre_empresa", "empleados_permitidos", "activo", "vigencia"];
+        
+        data = addKeyToArray(data, response.data.data, choices);
+        data = functions.fechasRestarArray(data);
+
+        console.log(data);
+
+        $('#dt-basic-example').dataTable().fnClearTable();
+        $('#dt-basic-example').dataTable().fnAddData(data);
+
+        functions.empresasSwitches(response.data.data);
+        
+      } else {
+
+          functions.loadingEndWait();
+      }
+    }, function (response) {
+      /*ERROR*/
+      toastr["error"]("Inténtelo de nuevo más tarde", "");
+      functions.loadingEndWait();
+
+    });/*fin getAllEmpresas*/
 
   });//fin controller empresas
 
@@ -1122,7 +1233,7 @@
                 $('#dt-basic-example').dataTable().fnClearTable();
                 $('#dt-basic-example').dataTable().fnAddData(data);
 
-                functions.salidas(response.data.data);
+                functions.salidasSwitches(response.data.data);
 
                 functions.loadingEndWait();
                 
@@ -1385,8 +1496,6 @@
       functions.loadingEndWait();
 
     });/*fin getPlantillas*/
-
-    
 
     $scope.postZonaHorariaClick  = function(id_zona_horaria){
 
@@ -2103,6 +2212,8 @@
 
     functions.loading();
 
+    $(".profile-image").attr("src","../img/conecta6_blanco.png");
+
     var theme = $("#mytheme").attr("href").split("cust-theme-");
     theme = theme[1].split(".css");
 
@@ -2255,9 +2366,9 @@
 
         });/*fin postSubscriber*/
       
-      }
+      }// fin else
       
-    }
+    }//altaEmpresa
 
 
   });//fin controller nuevoempresa
@@ -2423,6 +2534,105 @@
 
     functions.loading();
 
+    $(".profile-image").attr("src","../img/conecta6_blanco.png");
+    
+    $scope.getAllAdministradoresClick = function(){
+
+      functions.getAllAdministradores().then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          console.log("[administradores][getAdministradoresByIdAdmin]");
+
+          console.log(response.data.data);
+
+          var data = Array();
+
+          var choices = Array();
+          choices = ["id_administradores", "nombre", "apellido", "correo", "telefono_fijo"];
+          
+          data = addKeyToArray(data, response.data.data, choices);
+
+          console.log(data);
+
+          $('#dt-basic-example').dataTable().fnClearTable();
+          $('#dt-basic-example').dataTable().fnAddData(data);
+
+
+        } else {
+            toastr["warning"](response.data.description, "");
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getAllAdministradores*/
+
+    }; //fin getAllAdministradoresClick
+
+    getAllAdministradores = $scope.getAllAdministradoresClick;
+    
+    $scope.eliminarAdministradorClick = function(id_administradores){
+  
+        console.log(id_administradores);
+  
+        functions.eliminarAdministrador(id_administradores).then(function (response) {
+  
+          if(response.data.success == "TRUE"){
+            console.log("[administradores][getAdministradoresByIdAdmin]");
+  
+            console.log(response.data.data);
+
+            
+            toastr["success"]("Se borro el registro satisfactoriamente.", "");
+            
+            functions.getAllAdministradores().then(function (response) {
+
+              if(response.data.success == "TRUE"){
+                console.log("[administradores][getAdministradoresByIdAdmin]");
+
+                console.log(response.data.data);
+
+                var data = Array();
+
+                var choices = Array();
+                choices = ["id_administradores", "nombre", "apellido", "correo", "telefono_fijo"];
+                
+                data = addKeyToArray(data, response.data.data, choices);
+
+                console.log(data);
+
+                $('#dt-basic-example').dataTable().fnClearTable();
+                $('#dt-basic-example').dataTable().fnAddData(data);
+
+
+              } else {
+                  toastr["warning"](response.data.description, "");
+                  functions.loadingEndWait();
+              }
+            }, function (response) {
+              /*ERROR*/
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+
+            });/*fin getAllAdministradores*/
+  
+  
+          } else {
+              toastr["warning"](response.data.description, "");
+              functions.loadingEndWait();
+          }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+  
+        });/*fin eliminarAdministrador*/
+
+    }; //fin eliminarAdministradorClick
+
+    eliminarAdministrador = $scope.eliminarAdministradorClick;
 
   });//fin controller administradores
 
@@ -2432,8 +2642,181 @@
 
     functions.loading();
 
+    $(".profile-image").attr("src","../img/conecta6_blanco.png");
+
+    
+    $scope.altaAdministradoresClick = function(){
+      console.log("[nuevoempresa][altaAdministradoresClick]");
+
+      functions.loadingWait();
+
+      var nombre = "";
+      var apellido = "";
+      var correoElectronico = "";
+      var telefonoFijo = "";
+      var celular = "";
+      var contrasena = "";
+      var valContrasena = "";
+
+      nombre = $("#nombre").val();
+      apellido = $("#apellido").val();
+      correoElectronico = $("#correo").val();
+      telefonoFijo = $("#telefono_fijo").val();
+      celular = $("#celular").val();
+      contrasena = $("#contrasena").val();
+      valContrasena = $("#valContrasena").val();
+
+      console.log("[nuevoadministrador][altaAdministradoresClick] nombre: " + nombre);
+      console.log("[nuevoadministrador][altaAdministradoresClick] apellido: " + apellido);
+      console.log("[nuevoadministrador][altaAdministradoresClick] correoElectronico: " + correoElectronico);
+      console.log("[nuevoadministrador][altaAdministradoresClick] telefonoFijo: " + telefonoFijo);
+      console.log("[nuevoadministrador][altaAdministradoresClick] celular: " + celular);
+      console.log("[nuevoadministrador][altaAdministradoresClick] contrasena: " + contrasena);
+      console.log("[nuevoadministrador][altaAdministradoresClick] valContrasena: " + valContrasena);
+
+      if(nombre==""){
+        toastr["error"]("Llena correctamente<br /> el nombre.", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(apellido==""){
+        toastr["error"]("Llena correctamente<br /> el apellido", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(correoElectronico.indexOf("@")=="-1" || correoElectronico.indexOf(".")=="-1" || correoElectronico.indexOf(" ")!="-1" || correoElectronico.indexOf(",")!="-1"){
+        toastr["error"]("Llena correctamente<br /> tu correo electrónico", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(telefonoFijo=="" || celular=="" || contrasena=="" || valContrasena==""){
+        toastr["error"]("Llena correctamente<br /> todos los campos", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(valContrasena!=contrasena){
+        toastr["error"]("Contraseñas no<br /> coinciden", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+        
+      } else {
+
+        functions.postAltaAdministradores(nombre, apellido, correoElectronico, telefonoFijo, celular, contrasena).then(function (response) {
+
+                if(response.data.success == "TRUE"){
+                  console.log("[nuevoempresa][altaEmpresa]");
+
+                  toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+                  functions.loadingEndWait();
+                  
+                  $window.location.href = "/administradores";
+
+                } else {
+                    toastr["warning"](response.data.description, "");
+                    functions.loadingEndWait();
+                }
+            }, function (response) {
+              /*ERROR*/
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+
+        });/*fin postSubscriber*/
+      
+      }// fin else
+      
+    }//altaEmpresa
+
+    altaAdministradores = $scope.altaAdministradoresClick;
+
 
   });//fin controller administradores
+
+  app.controller('modAdministrador', function($scope, functions, $window) {
+
+    console.log("[modAdministrador]");
+
+    functions.loading();
+
+    $(".profile-image").attr("src","../img/conecta6_blanco.png");
+
+    
+    $scope.altaAdministradoresClick = function(){
+      console.log("[nuevoempresa][altaAdministradoresClick]");
+
+      functions.loadingWait();
+
+      var nombre = "";
+      var apellido = "";
+      var correoElectronico = "";
+      var telefonoFijo = "";
+      var celular = "";
+      var contrasena = "";
+      var valContrasena = "";
+
+      nombre = $("#nombre").val();
+      apellido = $("#apellido").val();
+      correoElectronico = $("#correo").val();
+      telefonoFijo = $("#telefono_fijo").val();
+      celular = $("#celular").val();
+      contrasena = $("#contrasena").val();
+      valContrasena = $("#valContrasena").val();
+
+      console.log("[nuevoadministrador][altaAdministradoresClick] nombre: " + nombre);
+      console.log("[nuevoadministrador][altaAdministradoresClick] apellido: " + apellido);
+      console.log("[nuevoadministrador][altaAdministradoresClick] correoElectronico: " + correoElectronico);
+      console.log("[nuevoadministrador][altaAdministradoresClick] telefonoFijo: " + telefonoFijo);
+      console.log("[nuevoadministrador][altaAdministradoresClick] celular: " + celular);
+      console.log("[nuevoadministrador][altaAdministradoresClick] contrasena: " + contrasena);
+      console.log("[nuevoadministrador][altaAdministradoresClick] valContrasena: " + valContrasena);
+
+      if(nombre==""){
+        toastr["error"]("Llena correctamente<br /> el nombre.", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(apellido==""){
+        toastr["error"]("Llena correctamente<br /> el apellido", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(correoElectronico.indexOf("@")=="-1" || correoElectronico.indexOf(".")=="-1" || correoElectronico.indexOf(" ")!="-1" || correoElectronico.indexOf(",")!="-1"){
+        toastr["error"]("Llena correctamente<br /> tu correo electrónico", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(telefonoFijo=="" || celular=="" || contrasena=="" || valContrasena==""){
+        toastr["error"]("Llena correctamente<br /> todos los campos", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(valContrasena!=contrasena){
+        toastr["error"]("Contraseñas no<br /> coinciden", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+        
+      } else {
+
+        functions.postAltaAdministradores(nombre, apellido, correoElectronico, telefonoFijo, celular, contrasena).then(function (response) {
+
+                if(response.data.success == "TRUE"){
+                  console.log("[nuevoempresa][altaEmpresa]");
+
+                  toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+                  functions.loadingEndWait();
+                  
+                  $window.location.href = "/administradores";
+
+                } else {
+                    toastr["warning"](response.data.description, "");
+                    functions.loadingEndWait();
+                }
+            }, function (response) {
+              /*ERROR*/
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+
+        });/*fin postSubscriber*/
+      
+      }// fin else
+      
+    }//altaEmpresa
+
+    altaAdministradores = $scope.altaAdministradoresClick;
+
+
+  });//fin controller modAdministrador
 
   app.controller('perfilTrabajadoresPass', function($scope, functions, $window) {
 
@@ -2631,6 +3014,8 @@
     console.log("[perfilAdministradoresPass]");
 
     functions.loading();
+
+    $(".profile-image").attr("src","../img/conecta6_blanco.png");
 
     $scope.postContChangeClick = function(pass, id_administradores){
 

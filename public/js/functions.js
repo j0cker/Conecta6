@@ -103,7 +103,7 @@ function normalize(str){
 
 // funcion para calcular la hora local en una ciudad dada la diferencia horaria.
 function calcTime(city, offset) {
-  // creamos el objeto Date (la selecciona de la mÃ¡quina cliente)
+  // creamos el objeto Date (la selecciona de la máquina cliente)
   d = new Date();
 
   // lo convierte  a milisegundos
@@ -119,6 +119,7 @@ function calcTime(city, offset) {
 }			
 function substractDaysDates(date){
   //recibe parametro del tipo date()
+  //sirve para restar días a la fecha
   var days = 1;
 
   date.setDate(date.getDate()-days);
@@ -170,7 +171,8 @@ function tiempoRelativo(time_value) {
 }
 
 function restaFechas(f1,f2){
-/* DD/MM/YYYY */
+/* restaFechas("29-08-2019", "30-08-2019")
+*/
 var aFecha1 = f1.split('-');
 var aFecha2 = f2.split('-');
 var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]);
@@ -178,6 +180,32 @@ var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
 var dif = fFecha2 - fFecha1;
 var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
 return dias;
+}
+
+function restaFechas2(f1,f2){
+  /* restaFechas("08-29-2019", "08-30-2019")
+  */
+ var aFecha1 = f1.split('-');
+ var aFecha2 = f2.split('-');
+ var fFecha1 = Date.UTC(aFecha1[2],aFecha1[0],aFecha1[1]-1);
+ var fFecha2 = Date.UTC(aFecha2[2],aFecha2[0],aFecha2[1]-1);
+ var dif = fFecha2 - fFecha1;
+ var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+ return dias;
+  }
+function generarFechaHoy(){
+
+  //genera la fecha hoy
+
+  var today = new Date();
+        
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+
+  return today;
 }
 function agregarLinksEnCadena(data) {
 		//Add link to all http:// links within tweets
@@ -194,6 +222,9 @@ function agregarLinksEnCadena(data) {
 		  return '<a target="_blank" href="https://twitter.com/search?q='+reply.substring(1)+'" style="font-weight:lighter;" target="_blank">'+reply.charAt(0)+reply.substring(1)+'</a>';
 		});
 		return data;
+}
+function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
 }
 function deleteAllCookies() {
     /* NOTA: revisa si el dominio coincide ya que si no no se borrarÃ¡n */

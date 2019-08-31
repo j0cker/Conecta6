@@ -94,30 +94,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Manlio Emiliano</td>
-                                                        <td>Terán Ramos</td>
-                                                        <td>manlioelnum1@hotmail.com</td>
-                                                        <td>5510800291</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Juan</td>
-                                                        <td>Sanchez</td>
-                                                        <td>juan@gmail.com</td>
-                                                        <td>5598785467</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Fulanito</td>
-                                                        <td>Gomez</td>
-                                                        <td>fulanito@hotmail.com</td>
-                                                        <td>5593285467</td>
-                                                        <td></td>
-                                                    </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
@@ -762,9 +738,11 @@
                 console.log(valor);
             }
 
-            function del(valor){
+            function del(id_administrador){
                 
-                console.log(valor);
+                console.log("id_administrador: " + id_administrador);
+
+                eliminarAdministrador(id_administrador);
             }
 
             $(document).ready(function()
@@ -878,6 +856,9 @@
             {
 
                 $('#js-page-content').smartPanel(); 
+
+                getAllAdministradores();
+
             });
         </script>
 

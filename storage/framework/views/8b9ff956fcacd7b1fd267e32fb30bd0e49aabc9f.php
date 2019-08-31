@@ -96,16 +96,11 @@
                                                                 <div class="col-md-4 text-center">
                                                                 
                                                                     
-                                                                    <form method="post" action="<?php echo e(url('/api/empresas/profile/image')); ?>" enctype="multipart/form-data" id="FrmProfilePicture">
-                                                                        <?php echo e(method_field('POST')); ?>
 
+                                                                    <label for="profileimg" class="figure">
+                                                                        <img class="profile-image rounded-circle" onerror="this.src='<?php echo e(url('img/profile-image.png')); ?>'" style="width: 120px; height: 120px;" src="<?php echo e(url('img/profile-image.png')); ?>" alt="<?php echo e($user['usr']->nombre); ?>" id="userProfilePicture">
+                                                                    </label>
 
-                                                                        <label for="profileimg" class="figure">
-                                                                            <input type="file" id="profileimg" hidden name="profileimg">
-                                                                            <img class="profile-image rounded-circle" onerror="this.src='<?php echo e(url('img/profile-image.png')); ?>'" style="width: 120px; height: 120px;" src="<?php echo e(url('img/profile-image.png')); ?>" alt="<?php echo e($user['usr']->nombre); ?>" id="userProfilePicture">
-                                                                        </label>
-
-                                                                    </form>
 
                                                                     <center>
                                                                     150x150
@@ -258,7 +253,7 @@
 
                                                             <div style="font-size: 20px; display: none;" class="telefonoFijoEdit col-md-4">
 
-                                                                <input id="celular" type="text" class="form-control" value="<% administradorPerfil.telefono_fijo %>" placeholder="Teléfono Fijo" />
+                                                                <input id="telefono_fijo" type="text" class="form-control" value="<% administradorPerfil.telefono_fijo %>" placeholder="Teléfono Fijo" />
 
                                                             </div>
 
@@ -1009,20 +1004,8 @@
                 
                 });
 
-                $("#guardarEditarPerfil").unbind().click(function(){
-
-                    console.log("[guardarEditarPerfil]");
-
-                    postEditProfile();
-
-                })
-
                 $('#js-page-content').smartPanel(); 
 
-                $(document).on('change', '#profileimg', function () {
-                startLoading();
-                    $('#FrmProfilePicture').submit();
-                });
 
             });
         </script>
@@ -1045,6 +1028,15 @@
         <script>
             $(document).ready(function()
             {
+
+                $("#guardarEditarPerfil").unbind().click(function(){
+
+                    console.log("[guardarEditarPerfil]");
+
+                    postEditProfile();
+
+                })
+
                 getAdministradoresClick("<?php echo e($user['usr']->id_administradores); ?>");
 
             });

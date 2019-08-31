@@ -99,54 +99,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>MC Donalds</td>
-                                                        <td>100</td>
-                                                        <td></td>
-                                                        <td>150</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>MC Donalds</td>
-                                                        <td>100</td>
-                                                        <td></td>
-                                                        <td>150</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>MC Donalds</td>
-                                                        <td>100</td>
-                                                        <td></td>
-                                                        <td>150</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>MC Donalds</td>
-                                                        <td>100</td>
-                                                        <td></td>
-                                                        <td>150</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5</td>
-                                                        <td>MC Donalds</td>
-                                                        <td>100</td>
-                                                        <td></td>
-                                                        <td>150</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>6</td>
-                                                        <td>MC Donalds</td>
-                                                        <td>100</td>
-                                                        <td></td>
-                                                        <td>150</td>
-                                                        <td></td>
-                                                    </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
@@ -780,11 +732,16 @@
 
             
 
-            function checkbox(valor){
-                
-                console.log(valor);
+            function checkboxActive(id_empresas){
 
-                console.log("entro: " + $("#gra-" + valor).prop('checked'));
+                console.log("[checkboxActive]");
+
+                console.log("checkboxActive: " + id_empresas);
+
+                var active = $("#gra-"+id_empresas+"").prop("checked");
+
+                postActiveEmpresa(id_empresas, active);
+
             }
 
             function edit(valor){
@@ -795,6 +752,8 @@
             function del(valor){
                 
                 console.log(valor);
+
+                postEliminarEmpresa(valor);
             }
 
             $(document).ready(function()
@@ -847,7 +806,7 @@
                             //console.log(meta);
                             return `<center>
                                         <div class="custom-control custom-switch mr-2">
-                                            <input type="checkbox" class="custom-control-input" onclick="checkbox(`+row[0]+`);" name="gra-`+row[0]+`" id="gra-`+row[0]+`" checked="checked">
+                                            <input type="checkbox" class="custom-control-input" onclick="checkboxActive(`+row[0]+`);" name="gra-`+row[0]+`" id="gra-`+row[0]+`" checked="checked">
                                             <label class="custom-control-label" for="gra-`+row[0]+`"></label>
                                         </div>
                                     </center>`;
@@ -911,16 +870,14 @@
         <script src="{{ url('js/toastr.js?v='.cache("js_version_number").'') }}"></script>
 
         <!--Angular-->
+
+        <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
         
         <script src="{{ url('js/angular.min.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/sanitize.min.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/module.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/controllers.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
-
-        <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
-
-        
         
         <script>
             $(document).ready(function()

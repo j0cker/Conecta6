@@ -32,8 +32,18 @@
           $('#loader-wrapper').css('display','none');
         }, x);
       },
-      salidas: function(data) {
-        console.log("[factory.js][salidas]");
+      vigencias: function(fecha, hoy){
+        console.log("[factory.js][vigencias]");
+
+        for (var x = 0; x < data.length; x++) {
+
+          $("#gra-"+(x+1)+"").prop("checked", data[x].computable);
+
+        }
+
+      },
+      salidasSwitches: function(data) {
+        console.log("[factory.js][salidasSwitches]");
 
         
         for (var x = 0; x < data.length; x++) {
@@ -41,6 +51,33 @@
           $("#gra-"+(x+1)+"").prop("checked", data[x].computable);
 
         }
+
+      },
+      empresasSwitches: function(data) {
+        console.log("[factory.js][empresasSwitches]");
+
+        for (var x = 0; x < data.length; x++) {
+
+          $("#gra-"+(x+1)+"").prop("checked", data[x].activo);
+
+        }
+
+      },
+      fechasRestarArray: function(data) {
+        console.log("[factory.js][fechasRestarArray]");
+
+        console.log(data);
+
+        for (var x = 0; x < data.length; x++) {
+
+          var today = replaceAll(generarFechaHoy(), "/", "-");
+          var fecha = replaceAll(data[x][4], "/", "-");
+
+          data[x][4] = restaFechas2(today, fecha);
+
+        }
+        
+        return data;
 
       },
       plantillas: function(data, array) {
@@ -398,6 +435,15 @@
           movilesActivated:movilesActivated, pass:pass });
 
       },
+      postActiveEmpresa: function(id_empresas, active) {
+
+        console.log("[factory][postActiveEmpresa]");
+
+        var url = '/api/pAdmin/empresas/modificar/activo';
+
+        return $http.post(url, {cache: false, id_empresas:id_empresas, active:active });
+
+      },
       getTrabajadoresByIdEmpresa: function(id_empresas) {
 
         console.log("[factory][getTrabajadoresByIdEmpresa]");
@@ -420,6 +466,15 @@
         });
 
       },
+      eliminarAdministrador: function(id_administradores) {
+
+        console.log("[factory][eliminarAdministrador]");
+
+        var url = '/api/pAdmin/administradores/eliminar';
+
+        return $http.post(url, {cache: false, id_administradores:id_administradores });
+
+      },
       delTrabajadoresByIdEmpresa: function(id_trabajadores, id_empresas) {
 
         console.log("[factory][delTrabajadoresByIdEmpresa]");
@@ -438,6 +493,40 @@
           params: { cache: false, id_administradores:id_administradores },
           cache: false
         });
+
+      },
+      getAllEmpresas: function() {
+
+        console.log("[factory][getAllEmpresas]");
+
+        var url = '/api/empresas/obtener/all';
+
+        return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
+
+      },
+      getAllAdministradores: function() {
+
+        console.log("[factory][getAllAdministradores]");
+
+        var url = '/api/pAdmin/administradores/obtenerAll';
+
+        return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
+
+      },
+      postAltaAdministradores: function(nombre, apellido, correoElectronico, telefonoFijo, celular, contrasena) {
+
+        console.log("[factory][postAltaAdministradores]");
+
+
+        var url = '/api/pAdmin/administradores/nuevo';
+
+        return $http.post(url, {cache: false, nombre:nombre, apellido:apellido, correoElectronico:correoElectronico, telefonoFijo:telefonoFijo, celular:celular, contrasena:contrasena });
 
       },
       postContChange: function(id, cont, tipo) {
@@ -460,13 +549,22 @@
 
       },
       postEditProfile: function(nombre_empresa, correo, telefono_fijo, celular, tipo){
-        console.log("[factory][getEditProfile]");
+        console.log("[factory][postEditProfile]");
 
         var url = '/api/'+tipo+'/profile/edit';
 
         return $http.post(url, {cache: false, nombre_empresa:nombre_empresa, correo:correo, telefono_fijo:telefono_fijo, celular:celular });
 
-      }
+      },
+      modActiveEmpresas: function(id_empresas, active) {
+
+        console.log("[factory][modActiveEmpresas]");
+
+        var url = '/api/empresas/modificar/activo';
+        return $http.post(url, {cache: false, id_empresas:id_empresas, active:active });
+
+
+      },
     };
   });
 

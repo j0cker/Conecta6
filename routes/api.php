@@ -55,6 +55,9 @@ Route::get('/empresas/ingresar', 'APIEmpresas@Ingresar');
 //get empresa
 Route::get('/empresas/obtener', 'APIEmpresas@GetEmpresa');
 
+//get all empresas
+Route::get('/empresas/obtener/all', 'APIEmpresas@GetAllEmpresas');
+
 //Alta de nueva Empresa
 Route::post('/empresas/altaEmpresa', 'APIEmpresas@AltaEmpresa');
 
@@ -116,6 +119,24 @@ Route::get('/pAdmin/logout', 'APIAdmin@Logout');
 //Actualizar contraseña del perfil de administradores
 Route::post('/pAdmin/perfil/pass', 'APIAdmin@ChangePerfilPass');
 
+//Edit Profile
+Route::post('/pAdmin/profile/edit', 'APIAdmin@PerfilEditar');
+
+//Get All Administradores
+Route::get('/pAdmin/administradores/obtenerAll', 'APIAdmin@GetAllAdmin');
+
 //Get Administradores by id administradores
-Route::get('/pAdmin/obtener', 'APIAdmin@GetAdmin');
+Route::get('/pAdmin/administradores/obtener', 'APIAdmin@GetAdmin');
+
+//Get Administradores by id administradores
+Route::post('/pAdmin/administradores/nuevo', 'APIAdmin@AltaAdmin');
+
+//Eliminar Administrador by id administradores
+Route::post('/pAdmin/administradores/eliminar', 'APIAdmin@DeleteAdmin');
+
+//Edit activo/inactivo empresa by id_empresa
+Route::post('/pAdmin/empresas/modificar/activo', 'APIAdmin@modActiveEmpresas');
+
+//Borrar Empresa por id_empresas
+Route::post('/pAdmin/empresas/eliminar', 'APIAdmin@deleteEmpresas');
 

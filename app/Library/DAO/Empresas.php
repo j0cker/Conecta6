@@ -22,6 +22,15 @@ class Empresas extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    public function scopeUpdateActive($query, $id_empresas, $active){
+
+      Log::info("[Empresas][scopeUpdateActive]");
+
+      return $query->where([['id_empresas', '=', $id_empresas],
+                           ])->update(['activo' => $active]); //return true in the other one return 1
+
+    }
+
     public function scopeGetSalidasByIdEmpresas($query, $id_empresas){
 
       Log::info("[Empresas][scopeGetSalidasByIdEmpresas]");
@@ -168,6 +177,7 @@ class Empresas extends Model
         return $query->where([
           ['correo', '=', $email],
           ['pass', '=', $pass],
+          ['activo', '=', 1],
         ]);
 
     }

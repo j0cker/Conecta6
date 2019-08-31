@@ -1,9 +1,10 @@
 'use strict';
 var app = angular.module('myApp',['ngSanitize']);
-app.config(function($controllerProvider, $interpolateProvider){      
+app.config(function($controllerProvider, $interpolateProvider, $locationProvider){      
     app.controller = $controllerProvider.register;
     $interpolateProvider.startSymbol('<%');
     $interpolateProvider.endSymbol('%>');
+
 });
 app.config(['$httpProvider', function ($httpProvider) {
     //initialize get if not there
