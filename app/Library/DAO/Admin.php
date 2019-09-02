@@ -32,6 +32,20 @@ class Admin extends Model
         ])->delete(); //return true in the other one return 1
 
     }
+  
+    //Modificar Perfile
+    public function scopeModAdmin($query, $id_administradores, $nombre, $apellido, $correoElectronico, $telefonoFijo, $celular){
+
+      Log::info("[Trabajadores][scopeModAdmin]");
+
+      return $query->where([['id_administradores', '=', $id_administradores],
+                           ])->update(['nombre' => $nombre,
+                                       'apellido' => $apellido,
+                                       'correo' => $correoElectronico,
+                                       'telefono_fijo' => $telefonoFijo,
+                                       'celular' => $celular]); //return true in the other one return 1
+
+    }
 
     //alta admin
     public function scopeAltaAdmin($query, $nombre, $apellido, $correoElectronico, $telefonoFijo, $celular, $contrasena){

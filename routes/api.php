@@ -42,8 +42,8 @@ Route::get('/trabajadores/obtener/id_trabajadadores', 'APITrabajadores@GetTrabaj
 //Get Trabajadores by id empresas
 Route::get('/trabajadores/obtener', 'APITrabajadores@GetTrabajadores');
 
-//Eliminar Trabajador
-Route::post('/trabajadores/eliminar', 'APITrabajadores@EliminarTrabajadores');
+//post registro entrada
+Route::post('/trabajadores/registros/entradas', 'APITrabajadores@PostEntradas');
 
 /*
 *******Empresas******
@@ -88,8 +88,14 @@ Route::post('/empresas/altaNuevoTrabajador', 'APIEmpresas@AltaTrabajador');
 //Modificar Trabajador
 Route::post('/empresas/modTrabajador', 'APIEmpresas@ModTrabajador');
 
+//Eliminar Trabajador
+Route::post('/empresas/trabajadores/eliminar', 'APIEmpresas@EliminarTrabajadores');
+
 //Actualizar Zonas Horaria de Empresa
 Route::post('/empresas/zonasHorarias', 'APIEmpresas@ZonasHorarias');
+
+//Get Zona Horaria de Empresa
+Route::get('/empresas/zonasHorarias', 'APIEmpresas@GetZonasHorarias');
 
 //obtener todas las salidas por id empresas
 Route::get('/empresas/salidas', 'APIEmpresas@GetSalidas');
@@ -128,8 +134,11 @@ Route::get('/pAdmin/administradores/obtenerAll', 'APIAdmin@GetAllAdmin');
 //Get Administradores by id administradores
 Route::get('/pAdmin/administradores/obtener', 'APIAdmin@GetAdmin');
 
-//Get Administradores by id administradores
+//Agregar Administradores by id administradores
 Route::post('/pAdmin/administradores/nuevo', 'APIAdmin@AltaAdmin');
+
+//Modificar Administradores by id administradores
+Route::post('/pAdmin/administradores/modificar', 'APIAdmin@ModAdmin');
 
 //Eliminar Administrador by id administradores
 Route::post('/pAdmin/administradores/eliminar', 'APIAdmin@DeleteAdmin');

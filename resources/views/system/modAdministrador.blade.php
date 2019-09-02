@@ -29,7 +29,7 @@
 @section('raiz2','Administradores')
 @section('raiz2Url','/administradores')
 @section('raiz3','Nuevo Administrador')
-@section('raiz3Url','/nuevoadministrador')
+@section('raiz3Url','/modadministrador')
 
 
 {{-- Angular Controller --}}
@@ -65,7 +65,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-user"></i> Nuevo Administrador
+                                <i class="subheader-icon fal fa-user"></i> Modificar Administrador
                                 <small>
                                 </small>
                             </h1>
@@ -77,7 +77,7 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Nuevo Administrador
+                                            Modificar Administrador
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -113,7 +113,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="nombre" type="text" class="form-control" placeholder="Nombre" />
+                                                                    <input value="<% administrador.nombre %>" id="nombre" type="text" class="form-control" placeholder="Nombre" />
 
                                                                 </div>
 
@@ -141,7 +141,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="apellido" type="text" class="form-control" placeholder="Apellido" />
+                                                                    <input value="<% administrador.apellido %>" id="apellido" type="text" class="form-control" placeholder="Apellido" />
 
                                                                 </div>
 
@@ -169,7 +169,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="correo" type="text" class="form-control" placeholder="Correo Electrónico" />
+                                                                    <input value="<% administrador.correo %>" id="correo" type="text" class="form-control" placeholder="Correo Electrónico" />
 
                                                                 </div>
 
@@ -197,7 +197,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="telefono_fijo" type="text" class="form-control" placeholder="Teléfono Fijo" />
+                                                                    <input value="<% administrador.telefono_fijo %>" id="telefono_fijo" type="text" class="form-control" placeholder="Teléfono Fijo" />
 
                                                                 </div>
 
@@ -225,7 +225,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="celular" type="text" class="form-control" placeholder="Celular" />
+                                                                    <input value="<% administrador.celular %>" id="celular" type="text" class="form-control" placeholder="Celular" />
 
                                                                 </div>
 
@@ -253,7 +253,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="contrasena" type="password" class="form-control" placeholder="Contraseña" />
+                                                                    <input value="<% administrador.pass %>" id="contrasena" type="password" class="form-control" placeholder="Contraseña" />
 
                                                                 </div>
 
@@ -281,7 +281,8 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="valContrasena" type="password" class="form-control" placeholder="Comprobar Contraseña" />
+                                                                    <input value="<% administrador.pass %>" id="valContrasena" type="password" class="form-control" placeholder="Comprobar Contraseña" />
+                                                                    <input value="<% administrador.pass %>" id="tmpPass" type="hidden" class="form-control" placeholder="Comprobar Contraseña" />
 
                                                                 </div>
 
@@ -291,7 +292,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a id="agregar" style="width: 200px;" href="#" class="btn btn-danger btn-block waves-effect waves-themed">Agregar</a>
+                                                                <a id="modificar" style="width: 200px;" href="#" class="btn btn-danger btn-block waves-effect waves-themed">Modificar</a>
                                                             </div>
                                                         </div>
 
@@ -976,10 +977,12 @@
             $(document).ready(function()
             {
                 
-                $('#agregar').click(function() {
-                    console.log("[altaAdministradores]");
+                getAdministradores("<?PHP echo $_GET['id']; ?>");
 
-                    altaAdministradores();
+                $('#modificar').click(function() {
+                    console.log("[modificar]");
+
+                    modificarAdministradores("<?PHP echo $_GET['id']; ?>");
                 });
             });
         </script>

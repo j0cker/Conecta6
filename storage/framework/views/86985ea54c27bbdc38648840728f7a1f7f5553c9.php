@@ -1,44 +1,40 @@
-@extends('system.master')
+<?php $__env->startSection('lang'); ?><?php echo e($lang); ?><?php $__env->stopSection(); ?>
 
-{{-- lang html tag --}}
 
-@section('lang'){{$lang}}@stop
 
-{{-- Title Head --}}
+<?php $__env->startSection('title'); ?><?php echo e($title); ?><?php $__env->stopSection(); ?>
 
-@section('title'){{$title}}@stop
 
-{{-- Metatag Head --}}
 
-@section('Content-Type','text/html; charset=UTF-8')
-@section('x-ua-compatible','ie=edge')
-@section('keywords','')
-@section('description','')
-@section('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1')
-@section('idiomaLang','es-mx')
+<?php $__env->startSection('Content-Type','text/html; charset=UTF-8'); ?>
+<?php $__env->startSection('x-ua-compatible','ie=edge'); ?>
+<?php $__env->startSection('keywords',''); ?>
+<?php $__env->startSection('description',''); ?>
+<?php $__env->startSection('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1'); ?>
+<?php $__env->startSection('idiomaLang','es-mx'); ?>
 
-{{-- Menu --}}
+
 
 <!--Menu Transparente
-@section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
+<?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-@section('menuActive','trabajadores')
+<?php $__env->startSection('menuActive','administradores'); ?>
 
-@section('raiz1', @Config::get('app.name'))
-@section('raiz1Url', '/inicio')
-@section('raiz2','Trabajadores')
-@section('raiz2Url','/trabajadores')
-@section('raiz3','Editar Trabajador')
-@section('raiz3Url','/modtrabajador')
+<?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
+<?php $__env->startSection('raiz1Url', '/inicio'); ?>
+<?php $__env->startSection('raiz2','Administradores'); ?>
+<?php $__env->startSection('raiz2Url','/administradores'); ?>
+<?php $__env->startSection('raiz3','Nuevo Administrador'); ?>
+<?php $__env->startSection('raiz3Url','/modadministrador'); ?>
 
 
-{{-- Angular Controller --}}
 
-@section('controller','modtrabajador')
 
-{{-- Body --}}
+<?php $__env->startSection('controller','modAdministrador'); ?>
 
-@section('content')
+
+
+<?php $__env->startSection('content'); ?>
 
 
 <div class="page-wrapper">
@@ -46,7 +42,7 @@
                 
                 <!-- BEGIN Left Aside -->
                         
-                        @include('system.menu')
+                        <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         
                 <!-- END Left Aside -->
 
@@ -54,18 +50,18 @@
                     <!-- BEGIN Page Header -->
                     
                         
-                    @include('system.menu2')
+                    <?php echo $__env->make('system.menu2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                     
                     <!-- END Page Header -->
                     <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
                     <main id="js-page-content" role="main" class="page-content">
                     
-                        @include('system.menu3')
+                        <?php echo $__env->make('system.menu3', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-user"></i> Modificar Trabajador
+                                <i class="subheader-icon fal fa-user"></i> Modificar Administrador
                                 <small>
                                 </small>
                             </h1>
@@ -77,7 +73,7 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Modificar Trabajador
+                                            Modificar Administrador
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -113,7 +109,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="nombre" type="text" class="form-control" placeholder="Nombre" />
+                                                                    <input value="<% administrador.nombre %>" id="nombre" type="text" class="form-control" placeholder="Nombre" />
 
                                                                 </div>
 
@@ -141,7 +137,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="apellido" type="text" class="form-control" placeholder="Apellido" />
+                                                                    <input value="<% administrador.apellido %>" id="apellido" type="text" class="form-control" placeholder="Apellido" />
 
                                                                 </div>
 
@@ -169,7 +165,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="correo" type="text" class="form-control" placeholder="Correo Electrónico" />
+                                                                    <input value="<% administrador.correo %>" id="correo" type="text" class="form-control" placeholder="Correo Electrónico" />
 
                                                                 </div>
 
@@ -197,7 +193,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="tel" type="text" class="form-control" placeholder="Teléfono Fijo" />
+                                                                    <input value="<% administrador.telefono_fijo %>" id="telefono_fijo" type="text" class="form-control" placeholder="Teléfono Fijo" />
 
                                                                 </div>
 
@@ -225,272 +221,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="cel" type="text" class="form-control" placeholder="Celular" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Cargo:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input id="cargo" type="text" class="form-control" placeholder="Cargo" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Número DNI:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input id="numDNI" type="text" class="form-control" placeholder="Número DNI" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Nº Seguro Social:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 10px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input id="numSS" type="text" class="form-control" placeholder="Nº Seguro Social" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Configuración de la plantilla de Horarios:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
-                                                            <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="/plantilla/nueva" class="btn btn-primary btn-block waves-effect waves-themed">Agregar Nueva Plantilla</a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="" class="col-md-4">
-                                                                
-                                                                    <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
-                                                                        <div class="panel-content text-center">
-                                                                            
-                                                                            <select class="select2 form-control w-100" id="select-plantilla">
-                                                                                <option value="default">Selecciona una Plantilla</option>
-                                                                                <option ng-repeat="(key, plantilla) in plantillas" value="<% plantilla.id_plantillas %>"><% plantilla.nombrePlantilla %></option>
-                                                                                <option value="Crear Nueva Plantilla">Crear Nueva Plantilla</option>
-                                                                            </select>
-
-                                                                        </div>
-                                                                        
-                                                                    </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div class="col-md-4 card">
-
-                                                                    <div class="thumbnail">
-
-                                                                        <div style="margin-top: 20px;" class="caption">
-
-                                                                            <h3>Geolocalización</h3>
-                                                                            
-                                                                            <div class="custom-control custom-switch text-center">
-                                                                                <input type="checkbox" class="custom-control-input" id="geoActivated">
-                                                                                <label class="custom-control-label" for="geoActivated">¿Activar Geolocalización?</label><br /><br />
-                                                                            </div>
-
-                                                                            <div style="display: none;" id="showGeo">
-
-                                                                                <input data-error="deAddress calle" class="form-control hidden-xs" id="deAddressCalle" data-toggle="modal" data-target="#addressCalleModal" placeholder="Agregar dirección de la Empresa" type="text" name="deAddress" readonly="readonly">
-                                                                                <input id="pac-input2" type="text" class="form-control hidden-sm hidden-md hidden-lg" placeholder="Agregar dirección de la Empresa">
-                                                                                <div id="deAddressMapaCustomer" style="font-size: 10px; margin-top: 10px; display: none;"></div><br /><br />
-
-
-                                                                                <div class="panel-content">
-                                                                                    <div class="panel-tag">
-                                                                                        Metros permitidos a la redonda:
-                                                                                    </div>
-                                                                                    <input id="metros" type="text" value="" class="d-none" tabindex="-1" readonly="">
-                                                                                </div>
-
-                                                                                <div class="custom-control custom-switch text-center">
-                                                                                    <input type="checkbox" class="custom-control-input" id="registroApp">
-                                                                                    <label class="custom-control-label" for="registroApp">¿Activar registro automático por APPS?</label><br /><br />
-                                                                                </div>
-
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px; text-align: left;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Agregar IP:<br /><br />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: left; color: black;" class="col-md-4">
-
-                                                                    <div class="custom-control custom-switch text-left">
-                                                                        <input type="checkbox" class="custom-control-input" id="ipActivated">
-                                                                        <label class="custom-control-label" for="ipActivated">¿Activar y personalizar IP?</label><br /><br />
-                                                                    </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div id="showIp" style="margin-top: 10px; display: none;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    <input id="ipAddress" type="text" class="form-control" placeholder="129.456.5.34" />
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="margin-top: 25px;" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
-                                                                
-                                                                    Tipos de Dispositivos:
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-
-
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: left; color: black;" class="col-md-4">
-
-                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
-                                                                        <input type="checkbox" class="custom-control-input" id="pcActivated">
-                                                                        <label class="custom-control-label" for="pcActivated">PC</label><br /><br />
-                                                                    </div>
-
-                                                                    <div style="margin-top: 15px;" class="custom-control custom-switch text-left">
-                                                                        <input type="checkbox" class="custom-control-input" id="tabletasActivated">
-                                                                        <label class="custom-control-label" for="tabletasActivated">Tabletas</label><br /><br />
-                                                                    </div>
-
-                                                                    <div style="margin-top: 15px;" class="custom-control custom-switch text-left">
-                                                                        <input type="checkbox" class="custom-control-input" id="movilesActivated">
-                                                                        <label class="custom-control-label" for="movilesActivated">Móviles</label><br /><br />
-                                                                    </div>
+                                                                    <input value="<% administrador.celular %>" id="celular" type="text" class="form-control" placeholder="Celular" />
 
                                                                 </div>
 
@@ -518,7 +249,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="pass" type="password" class="form-control" placeholder="Contraseña" />
+                                                                    <input value="<% administrador.pass %>" id="contrasena" type="password" class="form-control" placeholder="Contraseña" />
 
                                                                 </div>
 
@@ -546,8 +277,8 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="confPass" type="password" class="form-control" placeholder="Comprobar Contraseña" />
-                                                                    <input id="tmpPass" type="hidden" class="form-control" placeholder="Comprobar Contraseña" />
+                                                                    <input value="<% administrador.pass %>" id="valContrasena" type="password" class="form-control" placeholder="Comprobar Contraseña" />
+                                                                    <input value="<% administrador.pass %>" id="tmpPass" type="hidden" class="form-control" placeholder="Comprobar Contraseña" />
 
                                                                 </div>
 
@@ -557,7 +288,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="#" ng-click="modTrabajadorClick('<?PHP echo $_GET['id_trabajadores']; ?>', '{{ $user['usr']->id_empresas }}');" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
+                                                                <a id="modificar" style="width: 200px;" href="#" class="btn btn-danger btn-block waves-effect waves-themed">Modificar</a>
                                                             </div>
                                                         </div>
 
@@ -574,7 +305,7 @@
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
                     
-                    @include('system.footer2')
+                    <?php echo $__env->make('system.footer2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
@@ -630,7 +361,7 @@
         <!-- END Page Wrapper -->
         <!-- BEGIN Quick Menu -->
         <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-        @include('system.toolbar')
+        <?php echo $__env->make('system.toolbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <!-- END Quick Menu -->
         <!-- BEGIN Messenger -->
         <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1168,96 +899,30 @@
         </div> <!-- END Page Settings -->
 
         
-
-        <!-- Modal deAdressCalleModal google -->
-
-        <div class="modal fade" id="addressCalleModal" style="margin: 0 !important; padding: 0 !important; padding-right: 0px !important;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div style="height: 500px;" class="modal-content">
-                <div style="margin: 0 !important; padding: 12px 12px 12px 12px !important;" class="modal-header">
-                    <p style="text-align: center; font-size: 15px; margin: 0 !important; padding: 0px !important;" class="modal-title1" id="exampleModalLabel">¿Cuál es la Dirección de su Empresa?</p>
-                    <button style="margin: 0 !important; padding: 0px !important;" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div style="margin: 0 !important; padding: 0 !important;" class="modal-body">
-                    <div class="pac-card" id="pac-card">
-                        <div>
-                            <div id="title">
-                                Dirección Completa
-                            </div>
-                            <div id="type-selector" class="pac-controls">
-                            
-                            </div>
-                        </div>
-                        <div id="pac-container">
-                            <input id="pac-input" type="text" class="form-control" placeholder="Agregar dirección">
-                        </div>
-                    </div>
-                    <div id="map"></div>
-                    <div id="infowindow-content">
-                        <img src="" width="16" height="16" id="place-icon">
-                        <span id="place-name"  class="title"></span><br>
-                        <span id="place-address"></span>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div data-dismiss="modal" class="btn btn-link"><i class="fal fa-chevron-double-left"></i>
-                        ATRAS
-                    </div>
-                    <button data-dismiss="modal" id="saveDeAddress" name="final" class="btn btn-primary" style="width: 125px;" value="ACEPTAR">
-                        ACEPTAR
-                    </button>
-                </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Fin Modal deAdressCalleModal google -->
-
-        
-        <script src="{{ url('js/vendors.bundle.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/app.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
      
-
-        <script src="{{ url('js/selects.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/moment.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/datepicker.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/slider.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/jquery.mask.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/jquery.masknumber.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/moment.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/datepicker.js?v='.cache("js_version_number").'')); ?>"></script>
         
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-                //slider
-                //Customising Grid
-                //var ionskin = "flat", "big", "modern", "sharp", "round", "square";
-                var ionskin = "round";
-
-                $("#metros").ionRangeSlider(
-                {
-                    skin: ionskin,
-                    min: 0,
-                    max: 500,
-                    from: 250,
-                    step: 1, // default 1 (set step)
-                    grid: true, // default false (enable grid)
-                    grid_num: 4, // default 4 (set number of grid cells)
-                    grid_snap: false // default false (snap grid to step)
-                });
-
-                //masks
-
-                $('#ipAddress').mask('099.099.099.099');
-
+                $("#mytheme").attr("href","<?php echo e(url('css/themes/cust-theme-16.css?v='.cache("js_version_number").'')); ?>");
             });
         </script>
 
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
+                
+                <?php if(in_array("1", $user["permisos"])): ?>
+                    $("#mytheme").attr("href","<?php echo e(url('css/themes/cust-theme-6.css?v='.cache("js_version_number").'')); ?>");
+                <?php endif; ?>
+                <?php if(in_array("3", $user["permisos"])): ?>
+                    $("#mytheme").attr("href","<?php echo e(url('css/themes/cust-theme-16.css?v='.cache("js_version_number").'')); ?>");
+                <?php endif; ?>
 
                 var controls = {
                     leftArrow: '<i class="fal fa-angle-left" style="font-size: 1.25rem"></i>',
@@ -1273,20 +938,7 @@
                 });
 
 
-                $("#select-plantilla").change(function(){
 
-                    console.log("[select-plantilla] " + $("#select-plantilla").val());
-
-                    if($("#select-plantilla").val()=="Crear Nueva Plantilla"){
-                        console.log("Nueva Plantilla");
-                        $('#loader-wrapper').css('display',''); 
-                        window.location = "/plantilla/nueva";
-                    }
-
-                });
-
-                //selects
-                $('.select2').select2();
 
             });
         </script>
@@ -1294,8 +946,9 @@
         <script>
             $(document).ready(function()
             {
+
                 $('#js-page-content').smartPanel(); 
-                
+
                 
             });
         </script>
@@ -1303,146 +956,34 @@
 
 
         <!-- Toastr-->
-        <script src="{{ url('js/toastr.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <!--Angular-->
 
-        <script src="{{ url('js/angular.min.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/sanitize.min.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/module.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/controllers.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/angular.min.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/sanitize.min.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/module.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/controllers.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
 
-        <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
-
-    <!-- maps -->
-    <script type="text/javascript">
-
-    document.write(decodeURIComponent(decodeURIComponent(decodeURIComponent(decodeURIComponent(decodeURIComponent('%252525253Cscript%2525252520src%252525253D%2525252522'))))));document.write('{{ asset('js/maps.js') }}');document.write(decodeURIComponent(decodeURIComponent(decodeURIComponent(decodeURIComponent(decodeURIComponent('%2525252522%252525253E%252525253C%252525252Fscript%252525253E'))))));document.write(decodeURIComponent(decodeURIComponent(decodeURIComponent(decodeURIComponent(decodeURIComponent('%252525253Cscript%2525252520src%252525253D%2525252522https%252525253A%252525252F%252525252Fmaps.googleapis.com%252525252Fmaps%252525252Fapi%252525252Fjs%252525253Fkey%252525253<?PHP echo env("GOOGLE_MAPS"); ?>%2525252526libraries%252525253Dplaces%2525252526callback%252525253DinitMap%2525252522%2525252520async%2525252520defer%252525253E%252525253C%252525252Fscript%252525253E'))))));
-    
-
-        var map = "";
-        var marker = "";
-        var directionsDisplay = "";
-
-        var deDireccion = "";
-        var deLongitud = "";
-        var deLatitud = "";
-        var dePlace = "";
-
-        var aDireccion = "";
-        var aLongitud = "";
-        var aLatitud = "";
-        var aPlace = "";
+        <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
 
         
-        $(function () {
-
-            $("#geoActivated").change(function(){
-
-                console.log("[geoActivated] " + $("#geoActivated").prop("checked"));
-
-                if($("#geoActivated").prop("checked")==true){
-                    $("#showGeo").css("display","");
-                } else {
-                    $("#showGeo").css("display","none");
-                }
-
-            });
-
-            $("#ipActivated").change(function(){
-
-                console.log("[showIp] " + $("#ipActivated").prop("checked"));
-
-                if($("#ipActivated").prop("checked")==true){
-                    $("#showIp").css("display","");
-                } else {
-                    $("#showIp").css("display","none");
-                }
-
-            });
-
-
-            $("#deAddressCalle").click(function(){
-
-                console.log("[deAddressCalle]");
+        <script>
+            $(document).ready(function()
+            {
                 
-                $(".modal-title1").css("display","");
-                $("#pac-input").css("display","");
-                $("#saveDeAddress").css("display","");
+                getAdministradores("<?PHP echo $_GET['id']; ?>");
+
+                $('#modificar').click(function() {
+                    console.log("[modificar]");
+
+                    modificarAdministradores("<?PHP echo $_GET['id']; ?>");
+                });
             });
-
-            $("#saveDeAddress").unbind().click(function() {
-
-                console.log("saveDeAddress");
-
-                $("#deAddressExt").val("");
-                $("#deAddressCP").val("");
-                $("#deAddressMapaCustomer").val("");
-                $("#deAddressMapaCustomer").css("display","none");
-
-                if($("#pac-input").val()==""){
-
-                    console.log("pac-input empty");
-
-                    deDireccion = "";
-                    deLongitud = "";
-                    deLatitud = "";
-
-                    $("#deAddressExt").val("");
-                    $("#deAddressCP").val("");
-                    $("#pac-input2").val($("#pac-input").val());
-                    $("#deAddressCalle").val($("#pac-input").val());
-                    $("#deAddressMapaCustomer").css("display","none");
-
-                    angular.element('body').scope().latitud = deLatitud;
-                    angular.element('body').scope().longitud = deLongitud;
-                }
-
-                if(deLongitud!="" && deLatitud!="" && deDireccion!=""){
-
-                    $("#pac-input2").val($("#pac-input").val());
-                    $("#deAddressCalle").val($("#pac-input").val());
-
-                    $("#deAddressMapaCustomer").html("<a target='_blank' href='https://www.google.com.mx/maps/@"+deLatitud+","+deLongitud+",15z'>https://www.google.com.mx/maps/@"+deLatitud+","+deLongitud+",15z</a><br /><a target='_blank' href='https://maps.google.com/maps?q="+deLatitud+","+deLongitud+"'>https://maps.google.com/maps?q="+deLatitud+","+deLongitud+"</a>");
-                    $("#deAddressMapaCustomer").css("display","block");
-
-                    angular.element('body').scope().latitud = deLatitud;
-                    angular.element('body').scope().longitud = deLongitud;
-
-
-                    if(deDireccion.street_number){
-
-                        $("#deAddressExt").val(deDireccion.street_number);
-
-                    }
-
-                    if(deDireccion.postal_code){
-
-                        $("#deAddressCP").val(deDireccion.postal_code);
-
-                    }
-                }
-
-            });
-
-            
-
-            angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
-            angular.element('body').scope().getTrabajadoresByIdTrabajadoresClick("<?PHP echo $_GET['id_trabajadores']; ?>");
-
-        });
-
-        $(document).keypress(
-            function(event){
-                if (event.which == '13') {
-                    event.preventDefault();
-                }
-            }
-        );
-
         </script>
+        
 
-        <!-- fin maps -->
+    <?php $__env->stopSection(); ?>
 
-    @stop
+<?php echo $__env->make('system.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

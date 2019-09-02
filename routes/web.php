@@ -104,6 +104,9 @@ Route::get('/administradores', 'APIAdmin@Administradores');
 //Nuevo Administradores
 Route::get('/administradores/nuevo', 'APIAdmin@NuevoAdministrador');
 
+//Nuevo Administradores
+Route::get('/administradores/modificar', 'APIAdmin@EditarAdministrador');
+
 /*
 *********Trabajadores***********
 */

@@ -22,14 +22,54 @@ class Permisos_inter extends Model
     const UPDATED_AT = null;
     //public $attributes;
 
-    public function scopeDelByIdEmpresas($query, $id_trabajadores, $permiso){
+    public function scopeDelByIdAdministrador($query, $id_administradores, $permiso){
+
+        Log::info("[Permisos_inter][scopeDelByIdAdministrador]");
+  
+        return $query->where([
+            ['id_administradores', '=', $id_administradores],
+            ['id_permisos', '=', $permiso],
+          ])->delete(); //return true in the other one return 1
+
+    }
+
+    public function scopeDelByIdEmpresas($query, $id_empresas, $permiso){
 
         Log::info("[Permisos_inter][scopeDelByIdEmpresas]");
+  
+        return $query->where([
+            ['id_empresas', '=', $id_empresas],
+            ['id_permisos', '=', $permiso],
+          ])->delete(); //return true in the other one return 1
+
+    }
+
+    public function scopeDelByIdTrabajadores($query, $id_trabajadores, $permiso){
+
+        Log::info("[Permisos_inter][scopeDelByIdTrabajadores]");
   
         return $query->where([
             ['id_trabajadores', '=', $id_trabajadores],
             ['id_permisos', '=', $permiso],
           ])->delete(); //return true in the other one return 1
+
+    }
+
+    public function scopeAddNewAdministrador($query, $id_administradores)
+    {
+
+        Log::info("[Permisos_inter][scopeAddNewAdministrador] id_administradores: ". $id_administradores);
+
+        $permisos_inter = new Permisos_inter;
+        $permisos_inter->id_administradores = $id_administradores;
+        $permisos_inter->id_permisos = 1;
+
+        $obj = array();
+        $obj[0] = new \stdClass();
+        $obj[0]->save = $permisos_inter->save(); //return true in the other one return 1
+        $obj[0]->id = $permisos_inter->id;
+
+        return $obj;
 
     }
 

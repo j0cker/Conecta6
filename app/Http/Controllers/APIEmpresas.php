@@ -622,6 +622,111 @@ class APIEmpresas extends Controller
 
   }
 
+  public function GetZonasHorarias(Request $request)
+  {
+    Log::info('[APIEmpresas][GetZonasHorarias]');
+
+    Log::info("[APIEmpresas][GetZonasHorarias] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][GetZonasHorarias] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        if(in_array(1, $token_decrypt["permisos"]) || in_array(2, $token_decrypt["permisos"]) || in_array(3, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][GetZonasHorarias] Permiso Existente");
+          
+
+          Validator::make($request->all(), [
+            'id_empresas' => 'required'
+          ])->validate();
+          
+          $id_empresas = $request->input('id_empresas');
+
+          //print_r($token_decrypt["id"]);
+
+          //print_r($token_decrypt);
+
+          $Empresas = Empresas::getTimeZone($id_empresas)->get();
+
+
+          if(count($Empresas)>0){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Empresas));
+            $responseJSON->data = $Empresas;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Empresas));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        }
+
+        return redirect('/');
+
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][GetZonasHorarias] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][GetZonasHorarias] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][GetZonasHorarias] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][GetZonasHorarias] ' . $e);
+
+        return redirect('/');
+
+      }
+
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
   public function Trabajadores(Request $request){
     
     Log::info('[APIEmpresas][Trabajadores]');
@@ -752,7 +857,7 @@ class APIEmpresas extends Controller
           $id_trabajadores = $request->input('id_trabajadores');
           $id_empresas = $request->input('id_empresas');
 
-          $permisos_inter = Permisos_inter::delByIdEmpresas($id_trabajadores, "3");
+          $permisos_inter = Permisos_inter::delByIdTrabajadores($id_trabajadores, "3");
           $trabajadores = Trabajadores::delByIdEmpresas($id_trabajadores, $token_decrypt['usr']->id_empresas);
           
           if($permisos_inter == 1 && $trabajadores==1){
@@ -1062,7 +1167,8 @@ class APIEmpresas extends Controller
             'pcActivated' => 'required',
             'tabletasActivated' => 'required',
             'movilesActivated' => 'required',
-            //'pass' => 'required'
+            'pass' => 'required',
+            'tmpPass' => 'required'
           ]);
             
           $id_trabajadores = $request->input('id_trabajadores');
@@ -1087,7 +1193,8 @@ class APIEmpresas extends Controller
           $pcActivated = $request->input('pcActivated');
           $tabletasActivated = $request->input('tabletasActivated');
           $movilesActivated = $request->input('movilesActivated');
-          //$pass = $request->input('pass');
+          $pass = $request->input('pass');
+          $tmpPass = $request->input('tmpPass');
 
           Log::info("[ModTrabajador] id_trabajadores: " . $id_trabajadores);
           Log::info("[ModTrabajador] id_empresas: " . $id_empresas);
@@ -1111,15 +1218,24 @@ class APIEmpresas extends Controller
           Log::info("[ModTrabajador] pcActivated: " . $pcActivated);
           Log::info("[ModTrabajador] tabletasActivated: " . $tabletasActivated);
           Log::info("[ModTrabajador] movilesActivated: " . $movilesActivated);
-          //Log::info("[ModTrabajador] pass: " . $pass);
+          Log::info("[ModTrabajador] pass: " . $pass);
+          Log::info("[ModTrabajador] tmpPass: " . $tmpPass);
 
           $trabajadores = Trabajadores::modTrabajador($id_trabajadores, $id_empresas, $nombre, $apellido, $correo, $tel, $cel, $cargo, $numDNI, $numSS,
           $plantilla, $geoActivated, $latitud, $longitud, $address, $metros, $registroApp, $ipActivated, $ipAddress, $pcActivated, 
-          $tabletasActivated, $movilesActivated/*, $pass*/);
+          $tabletasActivated, $movilesActivated);
+
+            
+          $passC = 1;
+          if($pass != $tmpPass){
+            
+            Log::info("[ModTrabajador] cambiar pass");
+            $passC = Trabajadores::modPass($id_trabajadores, $pass);
+          }
         
           Log::info($trabajadores);
           
-          if($trabajadores[0]->save==1){
+          if($trabajadores[0]->save==1 && $passC==1){
 
             $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($trabajadores));
             $responseJSON->data = $trabajadores;
@@ -2295,12 +2411,18 @@ class APIEmpresas extends Controller
 
         //print_r($token_decrypt);
 
-        if(in_array(2, $token_decrypt["permisos"])){
+        if(in_array(3, $token_decrypt["permisos"]) || in_array(2, $token_decrypt["permisos"])){
 
           Log::info("[APIEmpresas][GetEmpresa] Permiso Existente");
 
-          $salidas = Salidas::getSalidasByIdEmpresas($token_decrypt['usr']->id_empresas)->get();
-        
+          $this->validate($request, [
+            'id_empresas' => 'required'
+          ]);
+            
+          $id_empresas = $request->input('id_empresas');
+          
+          $salidas = Salidas::getSalidasByIdEmpresas($id_empresas)->get();
+          
           Log::info($salidas);
           
           if(count($salidas)>0){

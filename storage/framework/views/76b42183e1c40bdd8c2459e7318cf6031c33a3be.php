@@ -119,9 +119,9 @@
                                     <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
                                         <div class="panel-content text-center">
 
-                                            <textarea class="form-control" placeholder="Agregar Comentario"></textarea>
+                                            <textarea id="comentariosEntrada" class="form-control" placeholder="Agregar Comentario"></textarea>
                                             
-                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                            <button id="registrarEntrada" style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
                                                 Registrar
                                             </button>
                                         </div>
@@ -147,10 +147,10 @@
                                     </div>
                                     <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
                                         <div class="panel-content text-center">
-                                            <select class="select form-control w-100" id="single-default">
+                                            <select class="select2 form-control w-100" id="single-default">
                                                 <option value="default">Selecciona una Salida</option>
-                                                <option value="AK">Salida de la Jornada</option>
-                                                <option value="HI">Salida Desayuno</option>
+                                                <option ng-repeat="(key, salida) in salidas" value="<% salida.id_salidas %>"><% salida.nombre %></option>
+                                                                                
                                             </select>
 
                                             <textarea style="margin-top: 25px;" class="form-control" placeholder="Agregar Comentario"></textarea>
@@ -822,53 +822,42 @@
         <!-- Clock -->
 
         <script src="<?php echo e(url('js/clock.js?v='.cache("js_version_number").'')); ?>"></script>
+        
         <script type="text/javascript">
 			var clock;
 			
 			$(document).ready(function() {
 
-                var fecha = new Date();
-                //var fecha = calcTime("Mexico City","-5");
-
-                console.log(fecha);
-
-                var gmtHours = fecha.getTimezoneOffset()/60;
-                console.log("The local time zone is: GMT " + gmtHours);
-                console.log("La hora actual en Mexico City es: " + calcTime("Mexico City","-4"));
-                console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
-
-
-				var hora = fecha.getHours(),
-                    minutos = fecha.getMinutes(),
-                    segundos = fecha.getSeconds(),
-                    diaSemana = fecha.getDay(),
-                    dia = fecha.getDate(),
-                    mes = fecha.getMonth(),
-                    anio = fecha.getFullYear(),
-                    ampm;
-
-                var $pHoras = $("#horas"),
-                    $pSegundos = $("#segundos"),
-                    $pMinutos = $("#minutos"),
-                    $pAMPM = $("#ampm"),
-                    $pDiaSemana = $("#diaSemana"),
-                    $pDia = $("#dia"),
-                    $pMes = $("#mes"),
-                    $pAnio = $("#anio");
-                var semana = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
-                var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-            
-                $pDiaSemana.text(semana[diaSemana]);
-                $pDia.text(dia);
-                $pMes.text(meses[mes]);
-                $pAnio.text(anio);
-
-				clock = $('.clock').FlipClock(fecha, {
-					clockFace: 'TwentyFourHourClock'
-                });
+                //selects
+                $('.select2').select2();
 
 			});
 		</script>
+
+        <script>
+        
+			
+			$(document).ready(function() {
+
+                
+            $("#registrarEntrada").click(function(){
+
+                console.log("[registrarEntrada]");
+
+                postRegistrarEntradaClick("<?php echo e($user['usr']->id_trabajadores); ?>");
+
+            });
+
+                
+
+                getImageEmpresa("<?php echo e($user['usr']->id_empresas); ?>");
+                getZonaHorariaFront("<?php echo e($user['usr']->id_empresas); ?>");
+                getSalidas("<?php echo e($user['usr']->id_empresas); ?>");
+            });
+
+        </script>
+
+        <script src="https://momentjs.com/downloads/moment-timezone-with-data-1970-2030.js"></script>
 
     <?php $__env->stopSection(); ?>
 

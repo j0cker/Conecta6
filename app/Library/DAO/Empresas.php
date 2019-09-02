@@ -22,6 +22,19 @@ class Empresas extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    
+    //get timezone
+    public function scopeGetTimeZone($query, $id_empresas){
+
+      Log::info("[Empresas][scopeGetTimeZone] id_empresas: ". $id_empresas);
+
+      return $query->join('zonas_horarias', 'empresas.id_zona_horaria', '=', 'zonas_horarias.id_zonas_horarias')
+                    ->select('zonas_horarias.utc','zonas_horarias.id_zonas_horarias','zonas_horarias.nombre')
+                    ->where('empresas.id_empresas', '=' , $id_empresas);
+
+
+    }
+
     public function scopeUpdateActive($query, $id_empresas, $active){
 
       Log::info("[Empresas][scopeUpdateActive]");

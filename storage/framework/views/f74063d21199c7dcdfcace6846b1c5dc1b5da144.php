@@ -494,8 +494,6 @@
 
                                                         </div>
 
-                                                        <!--
-
                                                         <div style="margin-top: 25px;" class="row">
 
                                                             <div class="col-md-4"></div>
@@ -545,6 +543,7 @@
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
                                                                     <input id="confPass" type="password" class="form-control" placeholder="Comprobar Contraseña" />
+                                                                    <input id="tmpPass" type="hidden" class="form-control" placeholder="Comprobar Contraseña" />
 
                                                                 </div>
 
@@ -552,11 +551,9 @@
 
                                                         </div>
 
-                                                        -->
-
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="#" ng-click="modTrabajadorClick('<?PHP echo $_GET['id_trabajadores']; ?>', '<?php echo e($user['usr']->id_empresas); ?>');" class="btn btn-primary btn-block waves-effect waves-themed">Agregar</a>
+                                                                <a style="width: 200px;" href="#" ng-click="modTrabajadorClick('<?PHP echo $_GET['id_trabajadores']; ?>', '<?php echo e($user['usr']->id_empresas); ?>');" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
                                                             </div>
                                                         </div>
 

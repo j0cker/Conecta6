@@ -101,9 +101,40 @@ function normalize(str){
   return str.replace(/[^a-zA-Z 0-9.]+/g,' ');
 }
 
+function calcTime3(timeZone){
+  /*
+  funciona con horarios de verano e invierno (es bueno)
+  es el moment timezone hay que buscarlo en internet, se usó el de moment-timezone-with-data-1970-2030.js
+
+  var fecha = new Date( moment().tz(timeZone).format('YYYY-MM-DD HH:mm:ss'));
+
+  return fecha
+  
+  */
+}
+
+function calcTime2(){
+  /*
+    se necesita de moment y lo mismo que calctime 1 no calcula horario de verna ni de invierno (obsoleto) (seasons)
+    sabiendo el utc por ejemeplo: UTC-6
+
+    var utc = response.data.data[0].utc.split("UTC");
+
+    utc = utc[1]*60; //para transformarlo en el utcOffset del tipo (60,360,etc)
+    
+    console.log(utc);
+
+    var fecha = new Date(moment().utcOffset(utc).format('YYYY-MM-DD HH:mm:ss'));
+  */
+}
+
+
 // funcion para calcular la hora local en una ciudad dada la diferencia horaria.
 function calcTime(city, offset) {
+  //no calcula horario de verano ni de inverno (obsoleto) (seasons)
+
   // creamos el objeto Date (la selecciona de la máquina cliente)
+  // calcTime("mexico",-6)
   d = new Date();
 
   // lo convierte  a milisegundos

@@ -741,6 +741,8 @@
             function edit(valor){
                 
                 console.log(valor);
+
+                window.location = "/administradores/modificar?id="+valor;
             }
 
             function del(id_administrador){

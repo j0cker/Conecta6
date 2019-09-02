@@ -377,13 +377,13 @@
         });
 
       },
-      getSalidas: function() {
+      getSalidas: function(id_empresas) {
 
         console.log("[factory][getSalidas]");
 
         var url = '/api/empresas/salidas';
         return $http.get(url,{
-          params: { cache: false },
+          params: { cache: false, id_empresas:id_empresas },
           cache: false
         });
 
@@ -399,6 +399,25 @@
         });
 
       },
+      postRegistrarEntrada: function(id_trabajadores, comentarios, date){
+
+        console.log("[factory][postRegistrarEntrada]");
+
+        var url = '/api/trabajadores/registros/entradas';
+        return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, comentarios:comentarios, date:date });
+
+      },
+      getZonaHoraria: function(id_empresas) {
+
+        console.log("[factory][getZonasHoraria]");
+
+        var url = '/api/empresas/zonasHorarias';
+        return $http.get(url,{
+          params: { cache: false, id_empresas:id_empresas },
+          cache: false
+        });
+
+      },
       postZonasHorarias: function(id_zona_horaria) {
 
         console.log("[factory][postZonasHorarias]");
@@ -410,7 +429,7 @@
       postModTrabajador: function(id_trabajadores, id_empresas, nombre, apellido, correo, tel, cel, cargo, numDNI, numSS, 
         plantilla, geoActivated, address, latitud, longitud, metros, registroApp, 
         ipActivated, ipAddress, pcActivated, tabletasActivated, 
-        movilesActivated) {
+        movilesActivated, pass, tmpPass) {
 
         console.log("[factory][postModTrabajador]");
 
@@ -418,7 +437,7 @@
 		  	return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, id_empresas:id_empresas, nombre:nombre, apellido:apellido, correo:correo, tel:tel, cel:cel, cargo:cargo, numDNI:numDNI, numSS:numSS, 
           plantilla:plantilla, geoActivated:geoActivated, address:address, latitud:latitud, longitud:longitud, metros:metros, registroApp:registroApp, 
           ipActivated:ipActivated, ipAddress:ipAddress, pcActivated:pcActivated, tabletasActivated:tabletasActivated, 
-          movilesActivated:movilesActivated});
+          movilesActivated:movilesActivated, pass:pass, tmpPass:tmpPass});
 
       },
       postNuevoTrabajador: function(id_empresas, nombre, apellido, correo, tel, cel, cargo, numDNI, numSS, 
@@ -479,7 +498,7 @@
 
         console.log("[factory][delTrabajadoresByIdEmpresa]");
 
-        var url = '/api/trabajadores/eliminar';
+        var url = '/api/empresas/trabajadores/eliminar';
 
         return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, id_empresas:id_empresas });
 
@@ -519,6 +538,18 @@
         });
 
       },
+      getAdministradores: function(id_administradores) {
+
+        console.log("[factory][getAdministradores]");
+
+        var url = '/api/pAdmin/administradores/obtener';
+
+        return $http.get(url,{
+          params: { cache: false, id_administradores:id_administradores },
+          cache: false
+        });
+
+      },
       postAltaAdministradores: function(nombre, apellido, correoElectronico, telefonoFijo, celular, contrasena) {
 
         console.log("[factory][postAltaAdministradores]");
@@ -527,6 +558,16 @@
         var url = '/api/pAdmin/administradores/nuevo';
 
         return $http.post(url, {cache: false, nombre:nombre, apellido:apellido, correoElectronico:correoElectronico, telefonoFijo:telefonoFijo, celular:celular, contrasena:contrasena });
+
+      },
+      postModificarAdministradores: function(id_administradores, nombre, apellido, correoElectronico, telefonoFijo, celular, contrasena, tmpPass) {
+
+        console.log("[factory][postModificarAdministradores]");
+
+
+        var url = '/api/pAdmin/administradores/modificar';
+
+        return $http.post(url, {cache: false, id_administradores:id_administradores, nombre:nombre, apellido:apellido, correoElectronico:correoElectronico, telefonoFijo:telefonoFijo, celular:celular, contrasena:contrasena, tmpPass:tmpPass });
 
       },
       postContChange: function(id, cont, tipo) {

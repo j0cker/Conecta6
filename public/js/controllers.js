@@ -191,6 +191,208 @@
 
     functions.loading();
 
+    $scope.getSalidasClick = function(id_empresas){
+
+      console.log("[getSalidasClick]");
+    
+      functions.getSalidas(id_empresas).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][getSalidas]");
+
+          console.log(response.data.data);
+
+          $scope.salidas = response.data.data;
+
+          functions.loadingEndWait();
+          
+        } else {
+
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getSalidas*/
+
+    };/*fin getSalidasClick*/
+
+    getSalidas = $scope.getSalidasClick;
+
+    
+    $scope.getZonaHorariaFrontClick = function(id_empresas){
+
+      console.log("[signin] ");
+
+      functions.getZonaHoraria(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[signin][getImageEmpresa]");
+
+              console.log(response.data.data);
+
+              var fecha = new Date( moment().tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+              
+              var hora = fecha.getHours(),
+                          minutos = fecha.getMinutes(),
+                          segundos = fecha.getSeconds(),
+                          diaSemana = fecha.getDay(),
+                          dia = fecha.getDate(),
+                          mes = fecha.getMonth(),
+                          anio = fecha.getFullYear(),
+                          ampm;
+
+              var $pHoras = $("#horas"),
+                  $pSegundos = $("#segundos"),
+                  $pMinutos = $("#minutos"),
+                  $pAMPM = $("#ampm"),
+                  $pDiaSemana = $("#diaSemana"),
+                  $pDia = $("#dia"),
+                  $pMes = $("#mes"),
+                  $pAnio = $("#anio");
+              var semana = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
+              var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+          
+              $pDiaSemana.text(semana[diaSemana]);
+              $pDia.text(dia);
+              $pMes.text(meses[mes]);
+              $pAnio.text(anio);
+
+              $scope.clock = $('.clock').FlipClock(fecha, {
+                clockFace: 'TwentyFourHourClock'
+              });
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    getZonaHorariaFront = $scope.getZonaHorariaFrontClick;
+
+    
+    $scope.postRegistrarSalidaClick = function(id_trabajadores){
+
+      console.log("[postRegistrarSalidaClick]");
+
+      var comentarios = "";
+      var date = "";
+      var id_salidas = "";
+      var selectPlantillaX = "";
+      var selectPlantillaY = "";
+      var plantilla = "";
+
+      comentarios = $("#comentariosEntrada").val();
+      date = moment($scope.clock.original).format('YYYY-MM-DD HH:mm:ss');
+      
+      selectPlantillaX = document.getElementById("single-default").selectedIndex;
+      selectPlantillaY = document.getElementById("single-default").options;
+      plantilla = selectPlantillaY[selectPlantillaX].value ;
+
+      console.log("[agregarNuevoTrabajadorClick] id_trabajadores: " + id_trabajadores);
+      console.log("[agregarNuevoTrabajadorClick] comentarios: " + comentarios);
+      console.log("[agregarNuevoTrabajadorClick] date: " + date);
+      console.log("[agregarNuevoTrabajadorClick] selectPlantillaX: " + selectPlantillaX);
+      console.log("[agregarNuevoTrabajadorClick] selectPlantillaY: " + selectPlantillaY);
+      console.log("[agregarNuevoTrabajadorClick] selectPlantilla: " + "Index: " + selectPlantillaY[selectPlantillaX].index + " is " + selectPlantillaY[selectPlantillaX].text + " value " + selectPlantillaY[selectPlantillaX].value);
+      console.log("[agregarNuevoTrabajadorClick] plantilla: " + plantilla);
+
+      functions.postRegistrarSalida(id_trabajadores, comentarios, date).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[postRegistrarEntradaClick][postRegistrarEntrada]");
+
+              console.log(response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    postRegistrarSalidaClick = $scope.postRegistrarSalidaClick;
+    
+    $scope.postRegistrarEntradaClick = function(id_trabajadores){
+
+      console.log("[postRegistrarEntradaClick]");
+
+      var comentarios = "";
+      var date = "";
+
+      comentarios = $("#comentariosEntrada").val();
+      date = moment($scope.clock.original).format('YYYY-MM-DD HH:mm:ss');
+
+      console.log("[agregarNuevoTrabajadorClick] id_trabajadores: " + id_trabajadores);
+      console.log("[agregarNuevoTrabajadorClick] comentarios: " + comentarios);
+      console.log("[agregarNuevoTrabajadorClick] date: " + date);
+
+      functions.postRegistrarEntrada(id_trabajadores, comentarios, date).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[postRegistrarEntradaClick][postRegistrarEntrada]");
+
+              console.log(response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    postRegistrarEntradaClick = $scope.postRegistrarEntradaClick;
+    
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[signin] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[signin][getImageEmpresa]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    getImageEmpresa = $scope.getImageEmpresaClick;
+
 
   });//fin controller registros
 
@@ -1631,10 +1833,8 @@
       var pcActivated = "";
       var tabletasActivated = "";
       var movilesActivated = "";
-      /*
       var pass = "";
-      var confPass = "";
-      */
+      var tmpPass = "";
 
       id_empresas = id_empresas_parameter;
       nombre = $("#nombre").val();
@@ -1661,11 +1861,8 @@
       pcActivated = $("#pcActivated").prop("checked");
       tabletasActivated = $("#tabletasActivated").prop("checked");
       movilesActivated = $("#movilesActivated").prop("checked");
-      /*
-      pass = $("#pass").val();
-      confPass = $("#confPass").val();
-      */
-
+      pass = $("#confPass").val();
+      tmpPass = $("#tmpPass").val();
 
       console.log("[agregarNuevoTrabajadorClick] id_empresas: " + id_empresas);
       console.log("[agregarNuevoTrabajadorClick] nombre: " + nombre);
@@ -1691,10 +1888,8 @@
       console.log("[agregarNuevoTrabajadorClick] pcActivated: " + pcActivated);
       console.log("[agregarNuevoTrabajadorClick] tabletasActivated: " + tabletasActivated);
       console.log("[agregarNuevoTrabajadorClick] movilesActivated: " + movilesActivated);
-      /*
       console.log("[agregarNuevoTrabajadorClick] pass: " + pass);
-      console.log("[agregarNuevoTrabajadorClick] confPass: " + confPass);
-      */
+      console.log("[agregarNuevoTrabajadorClick] tmpPass: " + tmpPass);
 
         
       if(nombre==""){
@@ -1726,7 +1921,7 @@
         functions.postModTrabajador(id_trabajadores, id_empresas, nombre, apellido, correo, tel, cel, cargo, numDNI, numSS, 
           plantilla, geoActivated, address, latitud, longitud, metros, registroApp, 
           ipActivated, ipAddress, pcActivated, tabletasActivated, 
-          movilesActivated).then(function (response) {
+          movilesActivated, pass, tmpPass).then(function (response) {
 
             if(response.data.success == "TRUE"){
               console.log("[modTrabajadorClick][perfilEmpresas]");
@@ -1825,10 +2020,11 @@
                 $("#pcActivated").prop("checked", data[0].pc_activated);
                 $("#tabletasActivated").prop("checked", data[0].tablet_activated);
                 $("#movilesActivated").prop("checked", data[0].mobile_activated);
-                /*
-                $("#pass").val(data[0].);
-                $("#confPass").val(data[0].);
-                */
+                
+                $("#pass").val(data[0].pass);
+                $("#confPass").val(data[0].pass);
+                $("#tmpPass").val(data[0].pass);
+                
 
                 functions.loadingEndWait();
                 
@@ -2736,8 +2932,39 @@
     $(".profile-image").attr("src","../img/conecta6_blanco.png");
 
     
-    $scope.altaAdministradoresClick = function(){
-      console.log("[nuevoempresa][altaAdministradoresClick]");
+    
+    $scope.getAdministradoresClick = function(id_administradores){
+
+      functions.getAdministradores(id_administradores).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          console.log("[administradores][getAdministradores]");
+
+          console.log(response.data.data);
+
+          $scope.administrador = response.data.data[0];
+
+
+        } else {
+            toastr["warning"](response.data.description, "");
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getAdministradores*/
+
+    }; //fin getAdministradoresClick
+
+    getAdministradores = $scope.getAdministradoresClick;
+
+    
+    $scope.modificarAdministradoresClick = function(id_administradores){
+      console.log("[nuevoempresa][modificarAdministradoresClick]");
+
+      console.log("id_administradores: "+ id_administradores);
 
       functions.loadingWait();
 
@@ -2748,6 +2975,7 @@
       var celular = "";
       var contrasena = "";
       var valContrasena = "";
+      var tmpPass = "";
 
       nombre = $("#nombre").val();
       apellido = $("#apellido").val();
@@ -2756,14 +2984,16 @@
       celular = $("#celular").val();
       contrasena = $("#contrasena").val();
       valContrasena = $("#valContrasena").val();
+      tmpPass = $("#tmpPass").val();
 
-      console.log("[nuevoadministrador][altaAdministradoresClick] nombre: " + nombre);
-      console.log("[nuevoadministrador][altaAdministradoresClick] apellido: " + apellido);
-      console.log("[nuevoadministrador][altaAdministradoresClick] correoElectronico: " + correoElectronico);
-      console.log("[nuevoadministrador][altaAdministradoresClick] telefonoFijo: " + telefonoFijo);
-      console.log("[nuevoadministrador][altaAdministradoresClick] celular: " + celular);
-      console.log("[nuevoadministrador][altaAdministradoresClick] contrasena: " + contrasena);
-      console.log("[nuevoadministrador][altaAdministradoresClick] valContrasena: " + valContrasena);
+      console.log("[nuevoadministrador][modificarAdministradoresClick] nombre: " + nombre);
+      console.log("[nuevoadministrador][modificarAdministradoresClick] apellido: " + apellido);
+      console.log("[nuevoadministrador][modificarAdministradoresClick] correoElectronico: " + correoElectronico);
+      console.log("[nuevoadministrador][modificarAdministradoresClick] telefonoFijo: " + telefonoFijo);
+      console.log("[nuevoadministrador][modificarAdministradoresClick] celular: " + celular);
+      console.log("[nuevoadministrador][modificarAdministradoresClick] contrasena: " + contrasena);
+      console.log("[nuevoadministrador][modificarAdministradoresClick] valContrasena: " + valContrasena);
+      console.log("[nuevoadministrador][modificarAdministradoresClick] tmp_pass: " + $("#tmpPass").val());
 
       if(nombre==""){
         toastr["error"]("Llena correctamente<br /> el nombre.", "");
@@ -2788,7 +3018,7 @@
         
       } else {
 
-        functions.postAltaAdministradores(nombre, apellido, correoElectronico, telefonoFijo, celular, contrasena).then(function (response) {
+        functions.postModificarAdministradores(id_administradores, nombre, apellido, correoElectronico, telefonoFijo, celular, contrasena, tmpPass).then(function (response) {
 
                 if(response.data.success == "TRUE"){
                   console.log("[nuevoempresa][altaEmpresa]");
@@ -2811,9 +3041,9 @@
       
       }// fin else
       
-    }//altaEmpresa
+    }//modificarAdministradoresClick
 
-    altaAdministradores = $scope.altaAdministradoresClick;
+    modificarAdministradores = $scope.modificarAdministradoresClick;
 
 
   });//fin controller modAdministrador
