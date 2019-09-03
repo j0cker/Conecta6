@@ -281,7 +281,7 @@
     getZonaHorariaFront = $scope.getZonaHorariaFrontClick;
 
     
-    $scope.postRegistrarSalidaClick = function(id_trabajadores){
+    $scope.postRegistrarEntradaClick = function(id_trabajadores){
 
       console.log("[postRegistrarSalidaClick]");
 
@@ -307,48 +307,16 @@
       console.log("[agregarNuevoTrabajadorClick] selectPlantilla: " + "Index: " + selectPlantillaY[selectPlantillaX].index + " is " + selectPlantillaY[selectPlantillaX].text + " value " + selectPlantillaY[selectPlantillaX].value);
       console.log("[agregarNuevoTrabajadorClick] plantilla: " + plantilla);
 
-      functions.postRegistrarSalida(id_trabajadores, comentarios, date).then(function (response) {
-
-            if(response.data.success == "TRUE"){
-              console.log("[postRegistrarEntradaClick][postRegistrarEntrada]");
-
-              console.log(response.data.data);
-
-            } else {
-                toastr["warning"](response.data.description, "");
-                functions.loadingEndWait();
-            }
-        }, function (response) {
-          /*ERROR*/
-          toastr["error"]("Inténtelo de nuevo más tarde", "");
-          functions.loadingEndWait();
-
-        });/*fin getImageEmpresa*/
-
-    }; //fin getImageEmpresaClick
-
-    postRegistrarSalidaClick = $scope.postRegistrarSalidaClick;
-    
-    $scope.postRegistrarEntradaClick = function(id_trabajadores){
-
-      console.log("[postRegistrarEntradaClick]");
-
-      var comentarios = "";
-      var date = "";
-
-      comentarios = $("#comentariosEntrada").val();
-      date = moment($scope.clock.original).format('YYYY-MM-DD HH:mm:ss');
-
-      console.log("[agregarNuevoTrabajadorClick] id_trabajadores: " + id_trabajadores);
-      console.log("[agregarNuevoTrabajadorClick] comentarios: " + comentarios);
-      console.log("[agregarNuevoTrabajadorClick] date: " + date);
-
       functions.postRegistrarEntrada(id_trabajadores, comentarios, date).then(function (response) {
 
             if(response.data.success == "TRUE"){
               console.log("[postRegistrarEntradaClick][postRegistrarEntrada]");
 
               console.log(response.data.data);
+
+              toastr["success"]("Tu Entrada ha sido Registrada Correctamante!.", "");
+    
+              window.location = "/registros";
 
             } else {
                 toastr["warning"](response.data.description, "");
@@ -364,6 +332,70 @@
     }; //fin getImageEmpresaClick
 
     postRegistrarEntradaClick = $scope.postRegistrarEntradaClick;
+    
+    $scope.postRegistrarSalidaClick = function(id_trabajadores){
+
+      console.log("[postRegistrarSalidaClick]");
+
+      var comentarios = "";
+      var date = "";
+      
+      var comentarios = "";
+      var date = "";
+      var id_salidas = "";
+      var selectPlantillaX = "";
+      var selectPlantillaY = "";
+      var plantilla = "";
+
+      comentarios = $("#comentariosSalida").val();
+      date = moment($scope.clock.original).format('YYYY-MM-DD HH:mm:ss');
+      
+      selectPlantillaX = document.getElementById("single-default").selectedIndex;
+      selectPlantillaY = document.getElementById("single-default").options;
+      plantilla = selectPlantillaY[selectPlantillaX].value ;
+
+      console.log("[agregarNuevoTrabajadorClick] id_trabajadores: " + id_trabajadores);
+      console.log("[agregarNuevoTrabajadorClick] comentarios: " + comentarios);
+      console.log("[agregarNuevoTrabajadorClick] date: " + date);
+      console.log("[agregarNuevoTrabajadorClick] selectPlantillaX: " + selectPlantillaX);
+      console.log("[agregarNuevoTrabajadorClick] selectPlantillaY: " + selectPlantillaY);
+      console.log("[agregarNuevoTrabajadorClick] selectPlantilla: " + "Index: " + selectPlantillaY[selectPlantillaX].index + " is " + selectPlantillaY[selectPlantillaX].text + " value " + selectPlantillaY[selectPlantillaX].value);
+      console.log("[agregarNuevoTrabajadorClick] plantilla: " + plantilla);
+
+      if(selectPlantillaX==0){
+
+        console.log("[agregarNuevoTrabajadorClick] default selected");
+
+        toastr["error"]("Selecciona un Tipo de Salida!.", "");
+
+      } else {
+
+        functions.postRegistrarSalida(id_trabajadores, comentarios, date, selectPlantillaY[selectPlantillaX].value).then(function (response) {
+
+              if(response.data.success == "TRUE"){
+                console.log("[postRegistrarSalidaClick][postRegistrarSalida]");
+
+                console.log(response.data.data);
+
+                toastr["success"]("Tu Salida ha sido Registrada Correctamante!.", "");
+      
+                window.location = "/registros";
+
+              } else {
+                  toastr["warning"](response.data.description, "");
+                  functions.loadingEndWait();
+              }
+          }, function (response) {
+            /*ERROR*/
+            toastr["error"]("Inténtelo de nuevo más tarde", "");
+            functions.loadingEndWait();
+
+          });/*fin getImageEmpresa*/
+
+      }; //fin getImageEmpresaClick
+    }
+
+    postRegistrarSalidaClick = $scope.postRegistrarSalidaClick;
     
     $scope.getImageEmpresaClick = function(id_empresas){
 
@@ -602,6 +634,83 @@
     console.log("[historial]");
 
     functions.loading();
+
+        
+    $scope.getZonaHorariaFrontClick = function(id_empresas){
+
+      functions.loading();
+
+      console.log("[historial] ");
+
+      functions.getZonaHoraria(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[historial][getZonaHoraria]");
+
+              console.log(response.data.data);
+
+              var start = new Date( moment().subtract(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+              var end = new Date( moment().add(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+
+              $('#datepicker-2').daterangepicker({
+                  timePicker: true,
+                  startDate: start,
+                  endDate: end,
+                  locale:
+                  {
+                      format: 'YYYY-MM-DD HH:mm:ss'
+                  }
+              });
+
+              
+              functions.loadingEndWait();
+              
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    getZonaHorariaFront = $scope.getZonaHorariaFrontClick;
+
+    
+
+    postRegistrarSalidaClick = $scope.postRegistrarSalidaClick;
+    
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[signin] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[signin][getImageEmpresa]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    getImageEmpresa = $scope.getImageEmpresaClick;
 
 
   });//fin controller historial

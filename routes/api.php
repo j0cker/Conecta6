@@ -45,6 +45,9 @@ Route::get('/trabajadores/obtener', 'APITrabajadores@GetTrabajadores');
 //post registro entrada
 Route::post('/trabajadores/registros/entradas', 'APITrabajadores@PostEntradas');
 
+//post registro salidas
+Route::post('/trabajadores/registros/salidas', 'APITrabajadores@PostSalidas');
+
 /*
 *******Empresas******
 */

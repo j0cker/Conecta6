@@ -157,9 +157,9 @@
                                                                                 
                                             </select>
 
-                                            <textarea style="margin-top: 25px;" class="form-control" placeholder="Agregar Comentario"></textarea>
+                                            <textarea id="comentariosSalida" style="margin-top: 25px;" class="form-control" placeholder="Agregar Comentario"></textarea>
                                             
-                                            <button style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
+                                            <button id="registrarSalida" style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
                                                 Registrar
                                             </button>
 
@@ -851,6 +851,16 @@
                 postRegistrarEntradaClick("{{ $user['usr']->id_trabajadores }}");
 
             });
+
+            $("#registrarSalida").click(function(){
+
+                console.log("[registrarEntrada]");
+
+                postRegistrarSalidaClick("{{ $user['usr']->id_trabajadores }}");
+
+            });
+
+            
 
                 
 

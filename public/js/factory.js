@@ -407,6 +407,14 @@
         return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, comentarios:comentarios, date:date });
 
       },
+      postRegistrarSalida: function(id_trabajadores, comentarios, date, id_salidas){
+
+        console.log("[factory][postRegistrarEntrada]");
+
+        var url = '/api/trabajadores/registros/salidas';
+        return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, comentarios:comentarios, date:date, id_salidas:id_salidas });
+
+      },
       getZonaHoraria: function(id_empresas) {
 
         console.log("[factory][getZonasHoraria]");

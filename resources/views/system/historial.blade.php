@@ -842,16 +842,7 @@
 
                 });
 
-                $('#datepicker-2').daterangepicker({
-                    timePicker: true,
-                    startDate: moment().startOf('hour'),
-                    endDate: moment().startOf('hour').add(32, 'hour'),
-                    locale:
-                    {
-                        format: 'YY/MM/DD hh:mm A'
-                    }
-                });
-
+                
 
                 //array
                 //https://datatables.net/examples/ajax/simple.html
@@ -877,6 +868,7 @@
         <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
 
         <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/moment.js?v='.cache("js_version_number").'') }}"></script>
 
         
         
@@ -885,8 +877,13 @@
             {
 
                 $('#js-page-content').smartPanel(); 
+                getZonaHorariaFront("{{ $user['usr']->id_empresas }}");
+                getImageEmpresa("{{ $user['usr']->id_empresas }}");
+
             });
         </script>
+
+        <script src="https://momentjs.com/downloads/moment-timezone-with-data-1970-2030.js"></script>
 
 
     @stop

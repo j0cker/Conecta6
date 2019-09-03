@@ -9,6 +9,7 @@ use App\Library\DAO\Trabajadores;
 use App\Library\DAO\Permisos_inter;
 use App\Library\DAO\Colores;
 use App\Library\DAO\Empresas;
+use App\Library\DAO\Registros;
 use Auth;
 use carbon\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -871,6 +872,104 @@ class APITrabajadores extends Controller
 
   }
 
+  public function PostSalidas(Request $request){
+    
+    Log::info('[APITrabajadores][PostSalidas]');
+
+    Log::info("[APITrabajadores][PostSalidas] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array("3", $token_decrypt["permisos"])==1){
+            
+          Validator::make($request->all(), [
+            'id_trabajadores' => 'required',
+            'date' => 'required',
+            'id_salidas' => 'required'
+          ])->validate();
+          
+          $id_trabajadores = $request->input('id_trabajadores');
+          $comentarios = $request->input('comentarios');
+          $date = $request->input('date');
+          $id_salidas = $request->input('id_salidas');
+
+          //print_r($token_decrypt["id"]);
+
+          //print_r($token_decrypt);
+
+          $Registros = Registros::addRegistroSalida($id_trabajadores, $comentarios, $date, $id_salidas);
+        
+          if($Registros[0]->save==1){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Registros));
+            $responseJSON->data = $Registros;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Registros));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        } else {
+          
+          return redirect('/');
+          
+        }
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APITrabajadores][PostSalidas] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APITrabajadores][PostSalidas] Token error: token_invalid');
+
+        return redirect('/');
+                                    
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APITrabajadores][PostSalidas] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+    } else {
+      abort(404);
+    }
+
+
+  }
+
   public function PostEntradas(Request $request){
     
     Log::info('[APITrabajadores][PostEntradas]');
@@ -901,7 +1000,6 @@ class APITrabajadores extends Controller
             
           Validator::make($request->all(), [
             'id_trabajadores' => 'required',
-            'comentarios' => 'required',
             'date' => 'required'
           ])->validate();
           
@@ -913,17 +1011,17 @@ class APITrabajadores extends Controller
 
           //print_r($token_decrypt);
 
-          $Entradas = Entradas::addRegistroEntrada($id_trabajadores, $comentarios, $date);
+          $Registros = Registros::addRegistroEntrada($id_trabajadores, $comentarios, $date);
         
-          if($Entradas==1){
+          if($Registros[0]->save==1){
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Entradas));
-            $responseJSON->data = $Entradas;
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Registros));
+            $responseJSON->data = $Registros;
             return json_encode($responseJSON);
 
           } else {
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Entradas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Registros));
             $responseJSON->data = [];
             return json_encode($responseJSON);
 
