@@ -22,6 +22,33 @@ class Registros extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    public function scopeGetLastRegistro($query, $id_trabajadores, $date){
+        
+        Log::info("[Entradas][scopeGetLastRegistro]");
+        Log::info("[Entradas][scopeGetLastRegistro] date: " . substr($date, 0, 10));
+        
+        return $query->where([
+            ['id_trabajadores', '=', $id_trabajadores],
+            ['fecha', 'like', '%'.substr($date, 0, 10).'%']
+        ])
+        ->orderBy('id_registros', 'desc')
+        ->limit(1);
+    }
+
+    public function scopeGetAllHistorial($query, $id_trabajadores, $start, $end)
+    {
+
+        Log::info("[Entradas][scopeGetAllHistorial]");
+        
+        return $query->leftJoin('salidas', 'salidas.id_salidas', '=', 'registros.id_salidas')
+        ->where([
+            ['id_trabajadores', '=', $id_trabajadores],
+            ['fecha', '>=', $start],
+            ['fecha', '<=', $end],
+        ]);
+
+    }
+
     public function scopeAddRegistroSalida($query, $id_trabajadores, $comentarios, $date, $id_salidas)
     {
 

@@ -135,6 +135,127 @@
     console.log("[inicio]");
 
     functions.loading();
+
+    
+    $scope.getZonaHorariaFrontClick = function(id_empresas, id_trabajadores, id_plantillas){
+
+      console.log("[inicio] ");
+
+      console.log("id_plantillas: " + id_plantillas);
+
+      functions.getZonaHoraria(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[inicio][getZonaHoraria]");
+
+              console.log(response.data.data);
+
+              var fecha = new Date( moment().tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+              
+              var hora = fecha.getHours(),
+                          minutos = fecha.getMinutes(),
+                          segundos = fecha.getSeconds(),
+                          diaSemana = fecha.getDay(),
+                          dia = fecha.getDate(),
+                          mes = fecha.getMonth(),
+                          anio = fecha.getFullYear(),
+                          ampm;
+              
+              console.log(fecha);
+
+              var semana = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
+              var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+          
+              $("#mesActual").html(`"` + meses[mes] + `"`);
+
+              console.log(mes);
+              
+              var start = moment().year(anio).month(mes).date(1).startOf("day").format('YYYY-MM-DD HH:mm:ss');
+              
+              var end = moment().year(anio).month(mes).date(31).startOf("day").format('YYYY-MM-DD HH:mm:ss');
+
+              functions.getHistorialEntradas(id_trabajadores, start, end).then(function (response) {
+
+                if(response.data.success == "TRUE"){
+                  console.log("[historial][getHistorialEntradas]");
+
+                  //no es requerido llenar el tipo con el tipo de salida ya que en nombre ya lo puedes
+                  //response.data.data = functions.completarTiposDeSalidasArray(response.data.data);
+
+                  registros = response.data.data;
+
+                  functions.getIdPlantillas(id_plantillas).then(function (response) {
+
+                    if(response.data.success == "TRUE"){
+                      
+                      console.log("[controllers][modTrabajadorClick][getPlantillas]");
+
+                      console.log(response.data.data);
+
+                      console.log(registros);
+
+                      registros = orderFechaAsc(registros);
+
+                      var statDiarioHrsTrabajadas = functions.statDiarioHrsTrabajadas(fecha, registros);
+                      
+                      var tabla = Array();
+                      tabla[0] = Array();
+                      tabla[0][0] = "Diario (Hoy)";
+
+                      tabla[1] = Array();
+                      tabla[1][0] = "Semanal (Últimos 7 días)";
+
+                      tabla[2] = Array();
+                      tabla[2][0] = "Mensual ("+meses[mes]+")";
+
+                      $('#dt-basic-example').dataTable().fnClearTable();
+                      $('#dt-basic-example').dataTable().fnAddData(tabla);
+
+
+                      functions.loadingEndWait();
+                      
+                    } else {
+
+                        functions.loadingEndWait();
+                    }
+                  }, function (response) {
+                    /*ERROR*/
+                    toastr["error"]("Inténtelo de nuevo más tarde", "");
+                    functions.loadingEndWait();
+
+                  });/*fin getPlantillas*/
+                  
+                  functions.loadingEndWait();
+                  
+                } else {
+                    toastr["success"]("No hay Registros en esos Intervalos", "");
+                    
+                    $('#dt-basic-example').dataTable().fnClearTable();
+                    functions.loadingEndWait();
+                }
+              }, function (response) {
+                /*ERROR*/
+                toastr["error"]("Inténtelo de nuevo más tarde", "");
+                functions.loadingEndWait();
+
+              });/*fin getHistorialEntradas*/
+
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    getZonaHorariaFront = $scope.getZonaHorariaFrontClick;
+
     
     $scope.getImageEmpresaClick = function(id_empresas){
 
@@ -209,7 +330,7 @@
           
         } else {
 
-            functions.loadingEndWait();
+          functions.loadingEndWait();
         }
       }, function (response) {
         /*ERROR*/
@@ -319,7 +440,7 @@
               window.location = "/registros";
 
             } else {
-                toastr["warning"](response.data.description, "");
+                toastr["error"](response.data.description, "");
                 functions.loadingEndWait();
             }
         }, function (response) {
@@ -382,7 +503,7 @@
                 window.location = "/registros";
 
               } else {
-                  toastr["warning"](response.data.description, "");
+                  toastr["error"](response.data.description, "");
                   functions.loadingEndWait();
               }
           }, function (response) {
@@ -636,11 +757,14 @@
     functions.loading();
 
         
-    $scope.getZonaHorariaFrontClick = function(id_empresas){
+    $scope.getZonaHorariaFrontClick = function(id_empresas, id_trabajadores){
 
       functions.loading();
 
       console.log("[historial] ");
+
+      console.log("id_empresas: " + id_empresas);
+      console.log("id_trabajadores: " + id_trabajadores);
 
       functions.getZonaHoraria(id_empresas).then(function (response) {
 
@@ -663,8 +787,6 @@
               });
 
               
-              functions.loadingEndWait();
-              
             } else {
                 toastr["warning"](response.data.description, "");
                 functions.loadingEndWait();
@@ -680,9 +802,6 @@
 
     getZonaHorariaFront = $scope.getZonaHorariaFrontClick;
 
-    
-
-    postRegistrarSalidaClick = $scope.postRegistrarSalidaClick;
     
     $scope.getImageEmpresaClick = function(id_empresas){
 
@@ -711,6 +830,52 @@
     }; //fin getImageEmpresaClick
 
     getImageEmpresa = $scope.getImageEmpresaClick;
+
+    
+    
+    $scope.getHistorialEntradasClick = function(id_trabajadores, start, end){
+
+      functions.loading();
+
+      functions.getHistorialEntradas(id_trabajadores, start, end).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          console.log("[historial][getHistorialEntradas]");
+
+          response.data.data = functions.completarTiposDeSalidasArray(response.data.data);
+
+          console.log(response.data.data);
+
+          var data = Array();
+
+          var choices = Array();
+          choices = ["id_registros", "fecha", "tipo", "comentarios"];
+          
+          data = addKeyToArray(data, response.data.data, choices);
+
+          console.log(data);
+
+          $('#dt-basic-example').dataTable().fnClearTable();
+          $('#dt-basic-example').dataTable().fnAddData(data);
+          
+          functions.loadingEndWait();
+          
+        } else {
+            toastr["success"]("No hay Registros en esos Intervalos", "");
+            
+            $('#dt-basic-example').dataTable().fnClearTable();
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getHistorialEntradas*/
+
+    }; //fin getHistorialEntradasClick
+
+    getHistorialEntradas = $scope.getHistorialEntradasClick;
 
 
   });//fin controller historial

@@ -48,6 +48,9 @@ Route::post('/trabajadores/registros/entradas', 'APITrabajadores@PostEntradas');
 //post registro salidas
 Route::post('/trabajadores/registros/salidas', 'APITrabajadores@PostSalidas');
 
+//Get Historial Entradas
+Route::get('/trabajadores/historial/todas', 'APITrabajadores@GetAllHistorial');
+
 /*
 *******Empresas******
 */
@@ -70,8 +73,11 @@ Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
 //alta nueva plantilla
 Route::post('/empresas/plantilla/nueva', 'APIEmpresas@AltaPlantilla');
 
-//get plantillas by empresas
+//get plantillas by id empresas
 Route::get('/empresas/plantilla/obtener', 'APIEmpresas@GetPlantillas');
+
+//get plantillas by id plantillas
+Route::get('/empresas/plantilla/obtenerByIdPlantillas', 'APIEmpresas@GetByIdPlantillas');
 
 //Get Image
 Route::get('/empresas/profile/image', 'APIEmpresas@GetProfileImage');

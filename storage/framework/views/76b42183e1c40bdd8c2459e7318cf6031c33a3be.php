@@ -839,26 +839,26 @@
 			
 			$(document).ready(function() {
 
-                
-            $("#registrarEntrada").click(function(){
+                    
+                $("#registrarEntrada").click(function(){
 
-                console.log("[registrarEntrada]");
+                    console.log("[registrarEntrada]");
 
-                postRegistrarEntradaClick("<?php echo e($user['usr']->id_trabajadores); ?>");
+                    postRegistrarEntradaClick("<?php echo e($user['usr']->id_trabajadores); ?>");
 
-            });
+                });
 
-            $("#registrarSalida").click(function(){
+                $("#registrarSalida").click(function(){
 
-                console.log("[registrarEntrada]");
+                    console.log("[registrarEntrada]");
 
-                postRegistrarSalidaClick("<?php echo e($user['usr']->id_trabajadores); ?>");
+                    postRegistrarSalidaClick("<?php echo e($user['usr']->id_trabajadores); ?>");
 
-            });
-
-            
+                });
 
                 
+
+                    
 
                 getImageEmpresa("<?php echo e($user['usr']->id_empresas); ?>");
                 getZonaHorariaFront("<?php echo e($user['usr']->id_empresas); ?>");

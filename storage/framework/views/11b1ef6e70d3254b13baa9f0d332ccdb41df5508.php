@@ -60,6 +60,7 @@
                                 <i class='subheader-icon fal fa-history'></i> Historial Entradas y Salidas <span class='fw-300'>Dashboard</span>
                             </h1>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-12 sortable-grid ui-sortable">
                                 <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
@@ -97,78 +98,18 @@
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
-                                                        <th>Fecha</th>
-                                                        <th>Hora</th>
+                                                        <th>ID</th>
+                                                        <th>Fecha y Hora</th>
                                                         <th>Entrada/Salida</th>
                                                         <th>Comentarios</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
-                                                    <tr>
-                                                        <td>03-13-19</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Entrada</td>
-                                                        <td>Salí Tarde</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>04-10-19</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Comida</td>
-                                                        <td>Recuperé el tiempo que salí tarde</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>05-14-20</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Jornada</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>11-05-18</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Jornada</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>01-16-20</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Comida</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>07-14-18</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Comida</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>08-30-18</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Jornada</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>09-19-18</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Entrada</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>12-16-19</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Entrada</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>05-30-20</td>
-                                                        <td>10:00 AM</td>
-                                                        <td>Salida Jornada</td>
-                                                        <td></td>
-                                                    </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>Fecha</th>
-                                                        <th>Hora</th>
+                                                        <th>ID</th>
+                                                        <th>Fecha y Hora</th>
                                                         <th>Entrada/Salida</th>
                                                         <td>Comentarios</td>
                                                     </tr>
@@ -179,7 +120,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+                        </div><!-- fin row -->
+
                     </main>
                     <!-- this overlay is activated only when mobile menu is triggered -->
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
@@ -790,6 +733,20 @@
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
+
+                $('#datepicker-2').change(function(){
+
+                    console.log("[datepicker]");
+
+                    var arrayDatePicker = $('#datepicker-2').val().split(" - ");
+                    var start = arrayDatePicker[0];
+                    var end = arrayDatePicker[1];
+                    
+
+                    getHistorialEntradas("<?php echo e($user['usr']->id_trabajadores); ?>", start, end);
+
+                });
+
             });
         </script>
 
@@ -872,7 +829,7 @@
             {
 
                 $('#js-page-content').smartPanel(); 
-                getZonaHorariaFront("<?php echo e($user['usr']->id_empresas); ?>");
+                getZonaHorariaFront("<?php echo e($user['usr']->id_empresas); ?>", "<?php echo e($user['usr']->id_trabajadores); ?>");
                 getImageEmpresa("<?php echo e($user['usr']->id_empresas); ?>");
 
             });

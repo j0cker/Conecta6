@@ -843,26 +843,26 @@
 			
 			$(document).ready(function() {
 
-                
-            $("#registrarEntrada").click(function(){
+                    
+                $("#registrarEntrada").click(function(){
 
-                console.log("[registrarEntrada]");
+                    console.log("[registrarEntrada]");
 
-                postRegistrarEntradaClick("{{ $user['usr']->id_trabajadores }}");
+                    postRegistrarEntradaClick("{{ $user['usr']->id_trabajadores }}");
 
-            });
+                });
 
-            $("#registrarSalida").click(function(){
+                $("#registrarSalida").click(function(){
 
-                console.log("[registrarEntrada]");
+                    console.log("[registrarEntrada]");
 
-                postRegistrarSalidaClick("{{ $user['usr']->id_trabajadores }}");
+                    postRegistrarSalidaClick("{{ $user['usr']->id_trabajadores }}");
 
-            });
-
-            
+                });
 
                 
+
+                    
 
                 getImageEmpresa("{{ $user['usr']->id_empresas }}");
                 getZonaHorariaFront("{{ $user['usr']->id_empresas }}");

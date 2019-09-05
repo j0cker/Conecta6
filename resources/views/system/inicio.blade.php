@@ -72,7 +72,7 @@
                             <div class="subheader-block d-lg-flex align-items-center">
                                 <div class="d-inline-flex flex-column justify-content-center mr-3">
                                     <span class="fw-300 fs-xs d-block opacity-50">
-                                        <small>EXPENSES</small>
+                                        <small>Entradas</small>
                                     </span>
                                     <span class="fw-500 fs-xl d-block color-primary-500">
                                         $47,000
@@ -83,7 +83,7 @@
                             <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                 <div class="d-inline-flex flex-column justify-content-center mr-3">
                                     <span class="fw-300 fs-xs d-block opacity-50">
-                                        <small>MY PROFITS</small>
+                                        <small>Salidas</small>
                                     </span>
                                     <span class="fw-500 fs-xl d-block color-danger-500">
                                         $38,500
@@ -92,6 +92,68 @@
                                 <span class="sparklines hidden-lg-down" sparktype="bar" sparkbarcolor="#fe6bb0" sparkheight="32px" sparkbarwidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"><canvas width="85" height="32" style="display: inline-block; width: 85px; height: 32px; vertical-align: top;"></canvas></span>
                             </div>
                         </div>
+
+                        
+                        <div class="row">
+                            <div class="col-lg-12 sortable-grid ui-sortable">
+                                <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
+                                    <div class="panel-hdr" role="heading">
+                                        <h2>
+                                            Resumen del Mes Actual  <span style="padding-left: 5px;" id="mesActual"></span>
+                                        </h2>
+                                        <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
+                                            <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
+                                            <a href="#" class="btn btn-panel hover-effect-dot js-panel-fullscreen waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></a>
+                                        </div>
+                                        <div class="panel-toolbar" role="menu"><a href="#" class="btn btn-toolbar-master waves-effect waves-themed" data-toggle="dropdown"><i class="fal fa-ellipsis-v"></i></a><div class="dropdown-menu dropdown-menu-animated dropdown-menu-right p-0">
+                                        <div class="dropdown-multilevel dropdown-multilevel-left"><div class="dropdown-item"><span data-i18n="drpdwn.panelcolor">Panel Style</span>	</div><div class="dropdown-menu d-flex flex-wrap" style="min-width: 9.5rem; width: 9.5rem; padding: 0.5rem"><a href="#" class="btn d-inline-block bg-primary-700 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-700 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-primary-500 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-500 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-primary-600 bg-primary-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-600 bg-primary-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-600 bg-primray-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-600 bg-primray-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-600 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-600 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-700 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-700 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-900 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-900 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-700 bg-primary-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-700 bg-primary-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-600 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-600 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-danger-900 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-danger-900 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-fusion-400 bg-fusion-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-fusion-400 bg-fusion-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-faded width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-faded" style="margin:1px;"></a></div>										</div>  <div class="dropdown-divider m-0"></div>
+                                        </div></div>
+                                    </div>
+
+                                    <div class="panel-container show">
+                                        <div class="panel-content">
+
+                                            <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                                                <thead class="bg-warning-200">
+                                                    <tr>
+                                                        <th>Periodo</th>
+                                                        <th>Horas Trabajadas</th>
+                                                        <th>Horas Extras</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="historialTable">
+                                                    <tr>
+                                                        <th>Diario</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Semanal</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Mensual</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Periodo</th>
+                                                        <th>Horas Trabajadas</th>
+                                                        <th>Horas Extras</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <!-- datatable end -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!-- fin row -->
+
                         <div class="row">
                             <div class="col-lg-12 sortable-grid ui-sortable">
                                 <div id="panel-1" class="panel panel-locked panel-sortable" role="widget">
@@ -242,7 +304,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div><!--Fin row-->
+
                     </main>
                     <!-- this overlay is activated only when mobile menu is triggered -->
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
@@ -860,6 +923,7 @@
         <script src="js/easypiechart.bundle.js"></script>
         <script src="js/flot.bundle.js"></script>
         <script src="js/jqvmap.bundle.js"></script>
+        <script src="{{ url('js/datatables.bundle.js?v='.cache("js_version_number").'') }}"></script>
 
         <!-- Panel advanced functions
         <script>
@@ -1375,6 +1439,11 @@
                     }
 
                 }
+
+                $('#dt-basic-example').dataTable( {
+                    "ordering": false
+                } );
+
             });
 
         </script>
@@ -1394,6 +1463,7 @@
         <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
 
         <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/moment.js?v='.cache("js_version_number").'') }}"></script>
 
         
         <script>
@@ -1401,7 +1471,12 @@
             {
 
                 getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+                
+                getZonaHorariaFront("{{ $user['usr']->id_empresas }}", "{{ $user['usr']->id_trabajadores }}", "{{ $user['usr']->id_plantillas }}");
+
             });
         </script>
+
+        <script src="https://momentjs.com/downloads/moment-timezone-with-data-1970-2030.js"></script>
 
     @stop

@@ -915,6 +915,20 @@ class APITrabajadores extends Controller
 
           //print_r($token_decrypt);
 
+          Log::info("Request IP: " .request()->ip());
+
+          $last_register = Registros::GetLastRegistro($id_trabajadores, $date)->get();
+
+          //si el arreglo no está vacío y la úlimo registro de entradas fue una del tipo entrada.
+          //mensaje: una entrada no puede ir seguida de una entrada
+          if(count($last_register)!=0 && $last_register[0]->tipo=="salida"){
+            
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.salidaseguidaDeSalida'), count($last_register));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+              
+          }
+
           $Registros = Registros::addRegistroSalida($id_trabajadores, $comentarios, $date, $id_salidas);
         
           if($Registros[0]->save==1){
@@ -996,6 +1010,8 @@ class APITrabajadores extends Controller
 
         //print_r($token_decrypt);
 
+          Log::info("Request IP: " .request()->ip());
+
         if(in_array("3", $token_decrypt["permisos"])==1){
             
           Validator::make($request->all(), [
@@ -1010,6 +1026,18 @@ class APITrabajadores extends Controller
           //print_r($token_decrypt["id"]);
 
           //print_r($token_decrypt);
+
+          $last_register = Registros::GetLastRegistro($id_trabajadores, $date)->get();
+
+          //si el arreglo no está vacío y la úlimo registro de entradas fue una del tipo entrada.
+          //mensaje: una entrada no puede ir seguida de una entrada
+          if(count($last_register)!=0 && $last_register[0]->tipo=="entrada"){
+            
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.entradaSeguidaDeEntrada'), count($last_register));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+              
+          }
 
           $Registros = Registros::addRegistroEntrada($id_trabajadores, $comentarios, $date);
         
@@ -1065,6 +1093,104 @@ class APITrabajadores extends Controller
 
 
   }
+
+  public function GetAllHistorial(Request $request){
+    
+    Log::info('[APITrabajadores][GetAllHistorial]');
+
+    Log::info("[APITrabajadores][GetAllHistorial] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array("3", $token_decrypt["permisos"])==1){
+            
+          Validator::make($request->all(), [
+            'id_trabajadores' => 'required',
+            'start' => 'required',
+            'end' => 'required'
+          ])->validate();
+          
+          $id_trabajadores = $request->input('id_trabajadores');
+          $start = $request->input('start');
+          $end = $request->input('end');
+
+          //print_r($token_decrypt["id"]);
+
+          //print_r($token_decrypt);
+
+          $Registros = Registros::getAllHistorial($id_trabajadores, $start, $end)->get();
+        
+          if(count($Registros)>0){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Registros));
+            $responseJSON->data = $Registros;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Registros));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        } else {
+          
+          return redirect('/');
+          
+        }
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APITrabajadores][GetAllHistorial] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APITrabajadores][GetAllHistorial] Token error: token_invalid');
+
+        return redirect('/');
+                                    
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APITrabajadores][GetAllHistorial] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+    } else {
+      abort(404);
+    }
+
+
+  }
+
 
 
   public function Historial(Request $request){

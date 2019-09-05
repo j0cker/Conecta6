@@ -200,7 +200,18 @@ function tiempoRelativo(time_value) {
   return shortdate;
   }
 }
-
+function orderFechaAsc(array){
+  array.sort(function(a, b) {
+    return new Date(a.fecha) - new Date(b.fecha);
+  });
+  return array;
+}
+function orderFechaDesc(array){
+  array.sort(function(a, b) {
+    return new Date(b.fecha)- new Date(a.fecha);
+  });
+  return array;
+}
 function restaFechas(f1,f2){
 /* restaFechas("29-08-2019", "30-08-2019")
 */

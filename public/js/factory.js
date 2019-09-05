@@ -80,6 +80,25 @@
         return data;
 
       },
+      completarTiposDeSalidasArray: function(data) {
+        console.log("[factory.js][completarTiposDeSalidasArray]");
+
+        console.log(data);
+
+        for (var x = 0; x < data.length; x++) {
+
+          //data[x][10] = data[x][10] + data[x][9];
+
+
+          if(data[x]['nombre'] != null){
+            data[x]['tipo'] = data[x]['nombre'].toLowerCase();
+          }
+
+        }
+        
+        return data;
+
+      },
       plantillas: function(data, array) {
         console.log("[factory.js][plantillas]");
 
@@ -176,6 +195,46 @@
         });
 
       },
+      statDiarioHrsTrabajadas: function(fecha, registros){
+        console.log("[factory][statDiarioHrsTrabajadas]");
+
+        console.log(fecha);
+
+        var phora = fecha.getHours(),
+                    pminutos = fecha.getMinutes(),
+                    psegundos = fecha.getSeconds(),
+                    pdiaSemana = fecha.getDay(),
+                    pdia = fecha.getDate(),
+                    pmes = fecha.getMonth(),
+                    panio = fecha.getFullYear(),
+                    pampm;
+
+        console.log("[statDiarioHrsTrabajadas] pdia busca: " + pdia);
+
+        var registrosHoy = Array();
+        //obtener registros solos de hoy
+        for(var i=0; i<registros.length; i++){
+
+          fechaRegistro =  new Date(registros[i].fecha);
+
+          var rhora = fechaRegistro.getHours(),
+              rminutos = fechaRegistro.getMinutes(),
+              rsegundos = fechaRegistro.getSeconds(),
+              rdiaSemana = fechaRegistro.getDay(),
+              rdia = fechaRegistro.getDate(),
+              rmes = fechaRegistro.getMonth(),
+              ranio = fechaRegistro.getFullYear(),
+              rampm;
+
+          if(pdia==rdia){
+            registrosHoy.push(registros[i]);
+          }
+
+        }//fin for
+
+        console.log(registrosHoy);
+
+      },
       postPlantilla: function(nombrePlantilla, 
         lunesActivated, de1Lunes, a1Lunes, de2Lunes, a2Lunes,
         martesActivated, de1Martes, a1Martes, de2Martes, a2Martes,
@@ -250,6 +309,17 @@
         var url = '/api/empresas/plantilla/obtener';
         return $http.get(url,{
           params: { cache: false },
+          cache: false
+        });
+
+      },
+      getIdPlantillas: function(id_plantillas) {
+
+        console.log("[factory][getIdPlantillas]");
+
+        var url = '/api/empresas/plantilla/obtenerByIdPlantillas';
+        return $http.get(url,{
+          params: { cache: false, id_plantillas:id_plantillas },
           cache: false
         });
 
@@ -335,6 +405,18 @@
 
 		  	return $http.get(url,{
           params: { cache: false, subdominio:subdominio },
+          cache: false
+        });
+
+      },
+      getHistorialEntradas: function(id_trabajadores, start, end) {
+
+        console.log("[factory][getHistorialEntradas]");
+
+        var url = '/api/trabajadores/historial/todas';
+        
+        return $http.get(url,{
+          params: { cache: false, id_trabajadores:id_trabajadores, start:start, end:end },
           cache: false
         });
 

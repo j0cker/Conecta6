@@ -41,6 +41,10 @@ return [
     'emailPrioridad3' => "Media",
     'emailPrioridad5' => "Baja",
 
+    //textos
+    'entradaSeguidaDeEntrada' => 'Una entrada no puede ir seguida de otra entrada en el mismo día',
+    'salidaseguidaDeSalida' => 'Una salida no puede ir seguida de otra salida en el mismo día',
+
     //libraries
     'successTrue' => "TRUE",
     'successFalse' => "FALSE",

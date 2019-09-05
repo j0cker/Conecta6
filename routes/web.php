@@ -46,9 +46,6 @@ Route::get('/perfilEmpresas', 'APIEmpresas@Perfil');
 //Perfil Cambio de Contraseña
 Route::get('/perfilEmpresas/pass', 'APIEmpresas@PerfilPass');
 
-//Perfil Editar
-Route::post('/perfilEmpresas/profile/edit', 'APIEmpresas@PerfilEditar');
-
 //Trabajadores
 Route::get('/trabajadores', 'APIEmpresas@Trabajadores');
 

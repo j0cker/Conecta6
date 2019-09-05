@@ -59,13 +59,34 @@
         https://boogapp.info/perfilTrabajadores
         https://boogapp.info/registros
         https://boogapp.info/historial
+        https://boogapp.info/perfilTrabajadores/pass
+        
 
         API's con Prejijo api/
 
-        //Request API
+        //Ingresar Trabajadores
         Route::get('/trabajadores/ingresar', 'APITrabajadores@Ingresar');
+
         //Logout
         Route::get('/trabajadores/logout', 'APITrabajadores@Logout');
+
+        //Actualizar contraseña del perfil de trabajadores
+        Route::post('/trabajadores/perfil/pass', 'APITrabajadores@ChangePerfilPass');
+
+        //Edit Profile
+        Route::post('/trabajadores/profile/edit', 'APITrabajadores@PerfilEditar');
+
+        //Get Trabajadores by id trabajadores
+        Route::get('/trabajadores/obtener/id_trabajadadores', 'APITrabajadores@GetTrabajadoresIdTrabajadores');
+
+        //Get Trabajadores by id empresas
+        Route::get('/trabajadores/obtener', 'APITrabajadores@GetTrabajadores');
+
+        //post registro entrada
+        Route::post('/trabajadores/registros/entradas', 'APITrabajadores@PostEntradas');
+
+        //post registro salidas
+        Route::post('/trabajadores/registros/salidas', 'APITrabajadores@PostSalidas');
 
 
 
@@ -102,12 +123,15 @@
         https://boogapp.info/salidas/modificar?id=1 (ejemplo de editar salidas)
 
         API's con Prejijo api/
-                    
+
         //Ingresar Empresas
         Route::get('/empresas/ingresar', 'APIEmpresas@Ingresar');
 
         //get empresa
         Route::get('/empresas/obtener', 'APIEmpresas@GetEmpresa');
+
+        //get all empresas
+        Route::get('/empresas/obtener/all', 'APIEmpresas@GetAllEmpresas');
 
         //Alta de nueva Empresa
         Route::post('/empresas/altaEmpresa', 'APIEmpresas@AltaEmpresa');
@@ -127,8 +151,8 @@
         //Update Image
         Route::post('/empresas/profile/image', 'APIEmpresas@UpdateProfilePicture');
 
-        //Update Image
-        Route::post('/empresas/profile/image', 'APIEmpresas@UpdateProfilePicture');
+        //Edit Profile
+        Route::post('/empresas/profile/edit', 'APIEmpresas@PerfilEditar');
 
         //Actualizar contraseña del perfil de empresas
         Route::post('/empresas/perfil/pass', 'APIEmpresas@ChangePerfilPass');
@@ -136,20 +160,17 @@
         //Alta Nuevo Trabajador
         Route::post('/empresas/altaNuevoTrabajador', 'APIEmpresas@AltaTrabajador');
 
-        //Get Trabajadores by id empresas
-        Route::get('/empresas/trabajadores/obtener', 'APIEmpresas@GetTrabajadores');
-
-        //Get Trabajadores by id trabajadores
-        Route::get('/empresas/trabajadores/obtener/id_trabajadadores', 'APIEmpresas@GetTrabajadoresIdTrabajadores');
+        //Modificar Trabajador
+        Route::post('/empresas/modTrabajador', 'APIEmpresas@ModTrabajador');
 
         //Eliminar Trabajador
         Route::post('/empresas/trabajadores/eliminar', 'APIEmpresas@EliminarTrabajadores');
 
-        //Modificar Trabajador
-        Route::post('/empresas/modTrabajador', 'APIEmpresas@ModTrabajador');
-
         //Actualizar Zonas Horaria de Empresa
         Route::post('/empresas/zonasHorarias', 'APIEmpresas@ZonasHorarias');
+
+        //Get Zona Horaria de Empresa
+        Route::get('/empresas/zonasHorarias', 'APIEmpresas@GetZonasHorarias');
 
         //obtener todas las salidas por id empresas
         Route::get('/empresas/salidas', 'APIEmpresas@GetSalidas');
@@ -164,7 +185,9 @@
         Route::post('/empresas/salidas/modificar', 'APIEmpresas@ModSalidas');
 
         //borrar salidas por id empresas y id salidas
-        Route::post('/empresas/salidas/borrar', 'APIEmpresas@DelSalidas');
+        Route::post('/empresas/salidas/borrar', 'APIEmpresas@DelSalidas');  
+
+
 
 
 
@@ -182,18 +205,49 @@
         https://boogapp.info/pAdmin
         https://boogapp.info/inicioAdmin
         https://boogapp.info/perfilAdministradores
+        https://boogapp.info/perfilAdministradores/pass
         https://boogapp.info/empresas
         https://boogapp.info/empresas/nueva (ya funciona, puedes dar de alta nuevas empresas con subdominio)
         https://boogapp.info/idiomas
         https://boogapp.info/administradores
         https://boogapp.info/administradores/nuevo
+        https://boogapp.info/administradores/modificar?id=1 (ejemplo de editar administrador)
 
         API's con Prejijo api/
 
-        //Request API
+        //Ingresar Administradores
         Route::get('/pAdmin/ingresar', 'APIAdmin@Ingresar');
+
         //Logout
         Route::get('/pAdmin/logout', 'APIAdmin@Logout');
+
+        //Actualizar contraseña del perfil de administradores
+        Route::post('/pAdmin/perfil/pass', 'APIAdmin@ChangePerfilPass');
+
+        //Edit Profile
+        Route::post('/pAdmin/profile/edit', 'APIAdmin@PerfilEditar');
+
+        //Get All Administradores
+        Route::get('/pAdmin/administradores/obtenerAll', 'APIAdmin@GetAllAdmin');
+
+        //Get Administradores by id administradores
+        Route::get('/pAdmin/administradores/obtener', 'APIAdmin@GetAdmin');
+
+        //Agregar Administradores by id administradores
+        Route::post('/pAdmin/administradores/nuevo', 'APIAdmin@AltaAdmin');
+
+        //Modificar Administradores by id administradores
+        Route::post('/pAdmin/administradores/modificar', 'APIAdmin@ModAdmin');
+
+        //Eliminar Administrador by id administradores
+        Route::post('/pAdmin/administradores/eliminar', 'APIAdmin@DeleteAdmin');
+
+        //Edit activo/inactivo empresa by id_empresa
+        Route::post('/pAdmin/empresas/modificar/activo', 'APIAdmin@modActiveEmpresas');
+
+        //Borrar Empresa por id_empresas
+        Route::post('/pAdmin/empresas/eliminar', 'APIAdmin@deleteEmpresas');
+
 
 
 
