@@ -170,7 +170,7 @@
 
               console.log(mes);
               
-              var start = moment().year(anio).month(mes).date(1).startOf("day").format('YYYY-MM-DD HH:mm:ss');
+              var start = moment().year(anio).month(mes).date(1).subtract(1, 'month').startOf("day").format('YYYY-MM-DD HH:mm:ss');
               
               var end = moment().year(anio).month(mes).date(31).startOf("day").format('YYYY-MM-DD HH:mm:ss');
 
@@ -197,13 +197,17 @@
                       registros = orderFechaAsc(registros);
 
                       var statDiarioHrsTrabajadas = functions.statDiarioHrsTrabajadas(fecha, registros);
+
+                      var statSemanalHrsTrabajadas = functions.statSemanalHrsTrabajadas(fecha, registros);
                       
                       var tabla = Array();
                       tabla[0] = Array();
                       tabla[0][0] = "Diario (Hoy)";
+                      tabla[0][1] = statDiarioHrsTrabajadas["horas"] + " hrs con " + statDiarioHrsTrabajadas["minutos"] + " Min y " + statDiarioHrsTrabajadas["segundos"] + " Segundos.";
 
                       tabla[1] = Array();
                       tabla[1][0] = "Semanal (Últimos 7 días)";
+                      tabla[1][1] = statSemanalHrsTrabajadas["horas"] + " hrs con " + statSemanalHrsTrabajadas["minutos"] + " Min y " + statSemanalHrsTrabajadas["segundos"] + " Segundos.";
 
                       tabla[2] = Array();
                       tabla[2][0] = "Mensual ("+meses[mes]+")";
@@ -405,6 +409,8 @@
     $scope.postRegistrarEntradaClick = function(id_trabajadores){
 
       console.log("[postRegistrarSalidaClick]");
+ 
+      functions.loading();
 
       var comentarios = "";
       var date = "";
@@ -439,6 +445,8 @@
     
               window.location = "/registros";
 
+              functions.loadingEndWait();
+
             } else {
                 toastr["error"](response.data.description, "");
                 functions.loadingEndWait();
@@ -457,6 +465,8 @@
     $scope.postRegistrarSalidaClick = function(id_trabajadores){
 
       console.log("[postRegistrarSalidaClick]");
+ 
+      functions.loading();
 
       var comentarios = "";
       var date = "";
@@ -501,6 +511,8 @@
                 toastr["success"]("Tu Salida ha sido Registrada Correctamante!.", "");
       
                 window.location = "/registros";
+
+                functions.loadingEndWait();
 
               } else {
                   toastr["error"](response.data.description, "");

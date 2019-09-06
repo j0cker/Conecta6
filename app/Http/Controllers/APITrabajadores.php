@@ -921,7 +921,14 @@ class APITrabajadores extends Controller
 
           //si el arreglo no está vacío y la úlimo registro de entradas fue una del tipo entrada.
           //mensaje: una entrada no puede ir seguida de una entrada
-          if(count($last_register)!=0 && $last_register[0]->tipo=="salida"){
+          if(count($last_register)==0){
+            
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.salidaComoPrimero'), count($last_register));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+          if($last_register[0]->tipo=="salida"){
             
               $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.salidaseguidaDeSalida'), count($last_register));
               $responseJSON->data = [];
@@ -1010,7 +1017,7 @@ class APITrabajadores extends Controller
 
         //print_r($token_decrypt);
 
-          Log::info("Request IP: " .request()->ip());
+        Log::info("Request IP: " .request()->ip());
 
         if(in_array("3", $token_decrypt["permisos"])==1){
             

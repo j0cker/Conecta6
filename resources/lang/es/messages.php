@@ -44,6 +44,7 @@ return [
     //textos
     'entradaSeguidaDeEntrada' => 'Una entrada no puede ir seguida de otra entrada en el mismo día',
     'salidaseguidaDeSalida' => 'Una salida no puede ir seguida de otra salida en el mismo día',
+    'salidaComoPrimero' => 'Registre una Entrada primero',
 
     //libraries
     'successTrue' => "TRUE",

@@ -234,7 +234,29 @@ function restaFechas2(f1,f2){
  var dif = fFecha2 - fFecha1;
  var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
  return dias;
-  }
+}
+function restaFechas3(f1,f2){
+  /* restaFechas("2019-08-29", "2019-08-28")
+  */
+  var aFecha1 = f1.split('-');
+  var aFecha2 = f2.split('-');
+  var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,aFecha1[2]);
+  var fFecha2 = Date.UTC(aFecha2[0],aFecha2[1]-1,aFecha2[2]);
+  var dif = fFecha2 - fFecha1;
+  var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+  return dias;
+}
+function restaFechas4(f1,f2){
+  /* restaFechas("2019/08/29", "2019/08/28")
+  */
+  var aFecha1 = f1.split('/');
+  var aFecha2 = f2.split('/');
+  var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,aFecha1[2]);
+  var fFecha2 = Date.UTC(aFecha2[0],aFecha2[1]-1,aFecha2[2]);
+  var dif = fFecha2 - fFecha1;
+  var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+  return dias;
+}
 function generarFechaHoy(){
 
   //genera la fecha hoy

@@ -22,6 +22,7 @@ class Registros extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    //obtener último registro del día
     public function scopeGetLastRegistro($query, $id_trabajadores, $date){
         
         Log::info("[Entradas][scopeGetLastRegistro]");
@@ -35,6 +36,7 @@ class Registros extends Model
         ->limit(1);
     }
 
+    //obten el historial desde una fecha inicio a una fecha final
     public function scopeGetAllHistorial($query, $id_trabajadores, $start, $end)
     {
 

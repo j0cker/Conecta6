@@ -195,6 +195,200 @@
         });
 
       },
+      limpiarEntradasSeguidasDeSalidas: function(data){
+
+        var registrosEntSal = Array();
+
+        
+
+        //Limpiar y guardar arreglo por entrada seguido de salida para facilitar el cálculo
+        var x=0;
+        for(var i=0; i<data.length; i++){
+
+          i = x;
+
+          console.log("Vueltas i: " + i + " Vueltas x: " + x);
+
+          console.log(data[i]);
+          if(data[i].tipo=="entrada"){
+
+            registrosEntSal.push(data[i]);
+
+            var encontroPareja = 0;
+
+            for(var y=x; y<data.length; y++){
+
+              var fecha = data[y].fecha.toString().split(" ");
+              var fecha2 = registrosEntSal[registrosEntSal.length-1].fecha.toString().split(" ");
+    
+              if(data[y].tipo!=registrosEntSal[registrosEntSal.length-1].tipo  && fecha[0]==fecha2[0]){
+                console.log("encontró Vueltas i: " + i + " Vueltas y: " + y);
+
+                registrosEntSal.push(data[y]);
+                encontroPareja = 1;
+                x=y+1;
+                i = x;
+                break;
+              } else if(fecha[0]!=fecha2[0]) {
+                x=y;
+                i = x;
+                break;
+              }
+
+            }//fin for
+
+            if(encontroPareja==0){
+              console.log("no encontró pareja");
+              registrosEntSal.pop();
+              x=y;
+              i = x;
+            }
+          } else {
+            console.log("no es entrada");
+            x++;
+            i = x;
+          }
+
+        }//fin for
+
+        return registrosEntSal;
+      },
+      statSemanalHrsTrabajadas: function(fecha, registros){
+        console.log("[factory][statSemanalHrsTrabajadas]");
+
+        console.log(fecha);
+
+        var fecha= new Date(moment(fecha).subtract(168, 'hour').format('YYYY-MM-DD HH:mm:ss'));
+
+        console.log(fecha);
+        
+        var phora = fecha.getHours(),
+                    pminutos = fecha.getMinutes(),
+                    psegundos = fecha.getSeconds(),
+                    pdiaSemana = fecha.getDay(),
+                    pdia = fecha.getDate(),
+                    pmes = fecha.getMonth(),
+                    panio = fecha.getFullYear(),
+                    pampm;
+
+        console.log("[statDiarioHrsTrabajadas] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio);
+
+        var registrosSemana = Array();
+
+        //obtener registros solo de la última semana
+        for(var i=0; i<registros.length; i++){
+
+          
+          fechaRegistro =  new Date(registros[i].fecha);
+
+          var rhora = fechaRegistro.getHours(),
+              rminutos = fechaRegistro.getMinutes(),
+              rsegundos = fechaRegistro.getSeconds(),
+              rdiaSemana = fechaRegistro.getDay(),
+              rdia = fechaRegistro.getDate(),
+              rmes = fechaRegistro.getMonth(),
+              ranio = fechaRegistro.getFullYear(),
+              rampm;
+
+          var fechaRestar = panio + "-" + pmes + "-" + pdia; 
+          var fechaRestar2 = ranio + "-" + rmes + "-" + rdia; 
+
+          console.log(fechaRestar);
+          console.log(fechaRestar2);
+
+          console.log(restaFechas3(fechaRestar, fechaRestar2))
+
+          if(restaFechas3(fechaRestar, fechaRestar2) <= 7 && restaFechas3(fechaRestar, fechaRestar2) >= 0){
+            registrosSemana.push(registros[i]);
+          }
+
+        }//fin for
+
+        console.log("Entradas de la Última Semana:");
+
+        console.log(registrosSemana);
+
+        //limpiar entradas seguidas de salidas
+        var registrosEntSal = this.limpiarEntradasSeguidasDeSalidas(registrosSemana);
+
+        console.log("Entradas seguidas de Salidas (limpiadas):");
+
+        console.log(registrosEntSal);
+
+        //calculo de horas trabajadas de la semana
+        var horas = 0;
+        var minutos = 0;
+        var segundos = 0;
+
+        var horas_ = Array();
+
+        horas_["horas"] = horas;
+        horas_["minutos"] = minutos;
+        horas_["segundos"] = segundos;
+
+        for(var i=0; i<registrosEntSal.length; i=i+2){
+
+          if(registrosEntSal[i+1]!=undefined){
+
+            if(registrosEntSal[i].tipo=="entrada" && registrosEntSal[i+1].tipo=="salida"){
+
+              console.log("Calcular: " + i + "  " + (i+1));
+
+              fecha1 = registrosEntSal[i].fecha.toString().split(" ");
+              fecha2 = registrosEntSal[i+1].fecha.toString().split(" ");
+
+              var hora1 = (fecha1[1]).toString().split(":"),
+              hora2 = (fecha2[1]).toString().split(":"),
+              t1 = new Date(),
+              t2 = new Date();
+
+              t1.setHours(hora1[0], hora1[1], hora1[2]);
+              t2.setHours(hora2[0], hora2[1], hora2[2]);
+              
+              //Aquí hago la resta
+              t1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+              
+              console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+              horas = horas + t1.getHours();
+              minutos = minutos + t1.getMinutes();
+              segundos = segundos + t1.getSeconds();
+
+              console.log("No Compensar Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+              if(segundos>59){
+                var segundosEntero = (segundos/60);
+                segundosEntero = segundosEntero.toString().split(".");
+                minutos = minutos + parseInt(segundosEntero[0]);
+                segundos = segundos%60;
+              }
+
+              if(minutos>59){
+                var minutosEntero = (minutos/60);
+                minutosEntero = minutosEntero.toString().split(".");
+                horas = horas + parseInt(minutosEntero[0]);
+                minutos = minutos%60;
+              }
+
+              horas_["horas"] = horas;
+              horas_["minutos"] = minutos;
+              horas_["segundos"] = segundos;
+
+              console.log("Compensar Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+            }
+
+          }
+
+        }//fin for
+
+        console.log("Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+        return horas_;
+
+        
+
+      },
       statDiarioHrsTrabajadas: function(fecha, registros){
         console.log("[factory][statDiarioHrsTrabajadas]");
 
@@ -209,10 +403,11 @@
                     panio = fecha.getFullYear(),
                     pampm;
 
-        console.log("[statDiarioHrsTrabajadas] pdia busca: " + pdia);
+        console.log("[statDiarioHrsTrabajadas] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio);
 
         var registrosHoy = Array();
-        //obtener registros solos de hoy
+
+        //obtener registros solo de hoy
         for(var i=0; i<registros.length; i++){
 
           fechaRegistro =  new Date(registros[i].fecha);
@@ -226,13 +421,94 @@
               ranio = fechaRegistro.getFullYear(),
               rampm;
 
-          if(pdia==rdia){
+          //por el día, mes y año, por que solo se jalo el mes actual de 01 a 31
+          if(pdia==rdia && pmes==rmes && panio==ranio){
             registrosHoy.push(registros[i]);
           }
 
         }//fin for
 
+        console.log("Entradas Hoy:");
+
         console.log(registrosHoy);
+
+        //limpiar entradas seguidas de salidas
+        var registrosEntSal = this.limpiarEntradasSeguidasDeSalidas(registrosHoy);
+
+        console.log("Entradas seguidas de Salidas (limpiadas):");
+
+        console.log(registrosEntSal);
+
+        //calculo de horas trabajadas de hoy
+        var horas = 0;
+        var minutos = 0;
+        var segundos = 0;
+
+        var horas_ = Array();
+        
+        horas_["horas"] = horas;
+        horas_["minutos"] = minutos;
+        horas_["segundos"] = segundos;
+
+        for(var i=0; i<registrosEntSal.length; i=i+2){
+
+          if(registrosEntSal[i+1]!=undefined){
+
+            if(registrosEntSal[i].tipo=="entrada" && registrosEntSal[i+1].tipo=="salida"){
+
+              console.log("Calcular: " + i + "  " + (i+1));
+
+              fecha1 = registrosEntSal[i].fecha.toString().split(" ");
+              fecha2 = registrosEntSal[i+1].fecha.toString().split(" ");
+
+              var hora1 = (fecha1[1]).toString().split(":"),
+              hora2 = (fecha2[1]).toString().split(":"),
+              t1 = new Date(),
+              t2 = new Date();
+
+              t1.setHours(hora1[0], hora1[1], hora1[2]);
+              t2.setHours(hora2[0], hora2[1], hora2[2]);
+              
+              //Aquí hago la resta
+              t1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+              
+              console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+              horas = horas + t1.getHours();
+              minutos = minutos + t1.getMinutes();
+              segundos = segundos + t1.getSeconds();
+
+              console.log("No Compensar Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+              if(segundos>59){
+                var segundosEntero = (segundos/60);
+                segundosEntero = segundosEntero.toString().split(".");
+                minutos = minutos + parseInt(segundosEntero[0]);
+                segundos = segundos%60;
+              }
+
+              if(minutos>59){
+                var minutosEntero = (minutos/60);
+                minutosEntero = minutosEntero.toString().split(".");
+                horas = horas + parseInt(minutosEntero[0]);
+                minutos = minutos%60;
+              }
+
+              horas_["horas"] = horas;
+              horas_["minutos"] = minutos;
+              horas_["segundos"] = segundos;
+
+              console.log("Compensar Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+            }
+
+          }
+
+        }//fin for
+
+        console.log("Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+        return horas_;
 
       },
       postPlantilla: function(nombrePlantilla, 
