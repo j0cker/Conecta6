@@ -200,6 +200,26 @@ function tiempoRelativo(time_value) {
   return shortdate;
   }
 }
+function horasAMPMTo24(hora){
+
+  //recibe 6:20 PM
+  //devuelve 18:20
+
+  console.log("[functions][horasAMPMTo24]");
+
+  console.log("[functions][horasAMPMTo24] hora: " + hora);
+
+  var formato = hora.toString().split(" ");
+  var hora2 = hora.toString().split(":");
+
+  if(formato[1]=="PM"){
+    hora2[0] = (parseInt(hora2[0]) + 12);
+  }
+
+  formato = hora2[1].toString().split(" ");
+
+  return hora2[0] + ":" + formato[0];
+}
 function orderFechaAsc(array){
   array.sort(function(a, b) {
     return new Date(a.fecha) - new Date(b.fecha);

@@ -100,6 +100,9 @@
 
       },
       plantillas: function(data, array) {
+        /*
+        display datatable
+        */
         console.log("[factory.js][plantillas]");
 
         console.log("array: " + array.length);
@@ -195,6 +198,520 @@
         });
 
       },
+      statDiarioHorsExtra: function (statHrsPlantilla, statDiarioHrsTrabajadas, fecha){
+
+        console.log("[factory][statDiarioHorsExtra]");
+
+        
+        var hora = fecha.getHours(),
+          minutos = fecha.getMinutes(),
+          segundos = fecha.getSeconds(),
+          diaSemana = fecha.getDay(),
+          dia = fecha.getDate(),
+          mes = fecha.getMonth(),
+          anio = fecha.getFullYear(),
+          ampm;
+
+        var semana = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
+        var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    
+        var dias = semana[diaSemana];
+
+        var horas_ = Array();
+
+        if(statHrsPlantilla[dias]["activated"]!="-"){
+
+          console.log("[factory][statDiarioHorsExtra] día: " + dias);
+          
+          var t1 = new Date(),
+          t2 = new Date();
+
+          console.log("[factory][statDiarioHorsExtra] horas Plantilla: " + statHrsPlantilla["sabado"]["horas"]);
+          console.log("[factory][statDiarioHorsExtra] horas diario: " + statDiarioHrsTrabajadas["horas"]);
+
+          t1.setHours(statHrsPlantilla[dias]["horas"], statHrsPlantilla[dias]["minutos"], statHrsPlantilla[dias]["segundos"]);
+          t2.setHours(statDiarioHrsTrabajadas["horas"], statDiarioHrsTrabajadas["minutos"], statDiarioHrsTrabajadas["segundos"]);
+          
+          //Aquí hago la resta
+          //t1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+          //t1.setHours(t1.getHours() - t2.getHours(),  t1.getMinutes() - t2.getMinutes(),  t1.getSeconds() - t2.getSeconds());
+
+          
+          if(t2>t1){ 
+            
+            t1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+          
+            console.log("horas extras: " + t2 + " > " + t1);
+
+            console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+            horas_["horas"] = t1.getHours();
+            horas_["minutos"] = t1.getMinutes();
+            horas_["segundos"] = t1.getSeconds();
+          } else {
+            
+            t1.setHours(t1.getHours() - t2.getHours(),  t1.getMinutes() - t2.getMinutes(),  t1.getSeconds() - t2.getSeconds());
+
+            console.log("no horas extras: " + t2 + " > " + t1);
+            
+            console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+            horas_["horas"] = -t1.getHours();
+            horas_["minutos"] = t1.getMinutes();
+            horas_["segundos"] = t1.getSeconds();
+          }
+
+
+        } else {
+          
+          console.log("Horas: " + statDiarioHrsTrabajadas["horas"] + " Minutos: " + statDiarioHrsTrabajadas["minutos"] + " Segundos: " + statDiarioHrsTrabajadas["segundos"]);
+
+          horas_["horas"] =  statDiarioHrsTrabajadas["horas"];
+          horas_["minutos"] = statDiarioHrsTrabajadas["minutos"];
+          horas_["segundos"] = statDiarioHrsTrabajadas["segundos"];
+
+        }
+        
+
+        return horas_;
+
+      },
+      statHorasPlantilla: function (plantilla){
+
+        /*
+          calcular horas de la plantilla
+        */
+
+        var horas_ = Array();
+
+        horas_["lunes"] = "-";
+        horas_["martes"] = "-";
+        horas_["miercoles"] = "-";
+        horas_["jueves"] = "-";
+        horas_["viernes"] = "-";
+        horas_["sabado"] = "-";
+        horas_["domingo"] = "-";
+
+        if(plantilla.lunesActivated==1){
+
+          horas_["lunes"] = Array();
+          horas_["lunes"]["activated"] = 1;
+          
+          
+
+          var de1Lunes = horasAMPMTo24(plantilla.de1Lunes);
+          de1Lunes = de1Lunes.split(":");
+          console.log(de1Lunes);
+
+          var a1Lunes = horasAMPMTo24(plantilla.a1Lunes);
+          a1Lunes = a1Lunes.split(":");
+          console.log(a1Lunes);
+
+          var de2Lunes = horasAMPMTo24(plantilla.de2Lunes);
+          de2Lunes = de2Lunes.split(":");
+          console.log(de2Lunes);
+
+          var a2Lunes = horasAMPMTo24(plantilla.a2Lunes);
+          a2Lunes = a2Lunes.split(":");
+          console.log(a2Lunes);
+
+          var t1 = new Date(),
+              t2 = new Date(),
+              de1a1 = new Date(),
+              de2a2 = new Date();
+          
+
+          //de1 a a1
+
+          t1.setHours(de1Lunes[0], de1Lunes[1], "00");
+          t2.setHours(a1Lunes[0], a1Lunes[1], "00");
+
+          //Aquí hago la resta
+          de1a1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de1a1.getHours() + " Minutos: " + de1a1.getMinutes() + " Segundos: " + de1a1.getSeconds());
+
+
+          //de2 a a2
+
+          t1.setHours(de2Lunes[0], de2Lunes[1], "00");
+          t2.setHours(a2Lunes[0], a2Lunes[1], "00");
+          
+          //Aquí hago la resta
+          de2a2.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de2a2.getHours() + " Minutos: " + de2a2.getMinutes() + " Segundos: " + de2a2.getSeconds());
+
+          //de1 a a1 y de de2 a a2
+          //aquí hago la suma
+          t1.setHours(de1a1.getHours() + de2a2.getHours(),  de1a1.getMinutes() + de2a2.getMinutes(), de1a1.getSeconds() + de2a2.getSeconds());
+
+          console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+          horas_["lunes"]["horas"] = t1.getHours();
+          horas_["lunes"]["minutos"] = t1.getMinutes();
+          horas_["lunes"]["segundos"] = t1.getSeconds();
+
+        }
+        if(plantilla.martesActivated==1){
+
+          horas_["martes"] = Array();
+          horas_["martes"]["activated"] = 1;
+
+          var de1Martes = horasAMPMTo24(plantilla.de1Martes);
+          de1Martes = de1Martes.split(":");
+          console.log(de1Martes);
+
+          var a1Martes = horasAMPMTo24(plantilla.a1Martes);
+          a1Martes = a1Martes.split(":");
+          console.log(a1Martes);
+
+          var de2Martes = horasAMPMTo24(plantilla.de2Martes);
+          de2Martes = de2Martes.split(":");
+          console.log(de2Martes);
+
+          var a2Martes = horasAMPMTo24(plantilla.a2Martes);
+          a2Martes = a2Martes.split(":");
+          console.log(a2Martes);
+
+          var t1 = new Date(),
+              t2 = new Date(),
+              de1a1 = new Date(),
+              de2a2 = new Date();
+          
+
+          //de1 a a1
+
+          t1.setHours(de1Martes[0], de1Martes[1], "00");
+          t2.setHours(a1Martes[0], a1Martes[1], "00");
+
+          //Aquí hago la resta
+          de1a1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de1a1.getHours() + " Minutos: " + de1a1.getMinutes() + " Segundos: " + de1a1.getSeconds());
+
+
+          //de2 a a2
+
+          t1.setHours(de2Martes[0], de2Martes[1], "00");
+          t2.setHours(a2Martes[0], a2Martes[1], "00");
+          
+          //Aquí hago la resta
+          de2a2.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de2a2.getHours() + " Minutos: " + de2a2.getMinutes() + " Segundos: " + de2a2.getSeconds());
+
+          //de1 a a1 y de de2 a a2
+          //aquí hago la suma
+          t1.setHours(de1a1.getHours() + de2a2.getHours(),  de1a1.getMinutes() + de2a2.getMinutes(), de1a1.getSeconds() + de2a2.getSeconds());
+
+          console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+          horas_["martes"]["horas"] = t1.getHours();
+          horas_["martes"]["minutos"] = t1.getMinutes();
+          horas_["martes"]["segundos"] = t1.getSeconds();
+
+        }
+        if(plantilla.miercolesActivated==1){
+
+          horas_["miercoles"] = Array();
+          horas_["miercoles"]["activated"] = 1;
+
+          var de1Miercoles = horasAMPMTo24(plantilla.de1Miercoles);
+          de1Miercoles = de1Miercoles.split(":");
+          console.log(de1Miercoles);
+
+          var a1Miercoles = horasAMPMTo24(plantilla.a1Miercoles);
+          a1Miercoles = a1Miercoles.split(":");
+          console.log(a1Miercoles);
+
+          var de2Miercoles = horasAMPMTo24(plantilla.de2Miercoles);
+          de2Miercoles = de2Miercoles.split(":");
+          console.log(de2Miercoles);
+
+          var a2Miercoles = horasAMPMTo24(plantilla.a2Miercoles);
+          a2Miercoles = a2Miercoles.split(":");
+          console.log(a2Miercoles);
+
+          var t1 = new Date(),
+              t2 = new Date(),
+              de1a1 = new Date(),
+              de2a2 = new Date();
+          
+
+          //de1 a a1
+
+          t1.setHours(de1Miercoles[0], de1Miercoles[1], "00");
+          t2.setHours(a1Miercoles[0], a1Miercoles[1], "00");
+
+          //Aquí hago la resta
+          de1a1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de1a1.getHours() + " Minutos: " + de1a1.getMinutes() + " Segundos: " + de1a1.getSeconds());
+
+
+          //de2 a a2
+
+          t1.setHours(de2Miercoles[0], de2Miercoles[1], "00");
+          t2.setHours(a2Miercoles[0], a2Miercoles[1], "00");
+          
+          //Aquí hago la resta
+          de2a2.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de2a2.getHours() + " Minutos: " + de2a2.getMinutes() + " Segundos: " + de2a2.getSeconds());
+
+          //de1 a a1 y de de2 a a2
+          //aquí hago la suma
+          t1.setHours(de1a1.getHours() + de2a2.getHours(),  de1a1.getMinutes() + de2a2.getMinutes(), de1a1.getSeconds() + de2a2.getSeconds());
+
+          console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+          horas_["miercoles"]["horas"] = t1.getHours();
+          horas_["miercoles"]["minutos"] = t1.getMinutes();
+          horas_["miercoles"]["segundos"] = t1.getSeconds();
+
+        }
+        if(plantilla.juevesActivated==1){
+
+          horas_["jueves"] = Array();
+          horas_["jueves"]["activated"] = 1;
+
+          var de1Jueves = horasAMPMTo24(plantilla.de1Jueves);
+          de1Jueves = de1Jueves.split(":");
+          console.log(de1Jueves);
+
+          var a1Jueves = horasAMPMTo24(plantilla.a1Jueves);
+          a1Jueves = a1Jueves.split(":");
+          console.log(a1Jueves);
+
+          var de2Jueves = horasAMPMTo24(plantilla.de2Jueves);
+          de2Jueves = de2Jueves.split(":");
+          console.log(de2Jueves);
+
+          var a2Jueves = horasAMPMTo24(plantilla.a2Jueves);
+          a2Jueves = a2Jueves.split(":");
+          console.log(a2Jueves);
+
+          var t1 = new Date(),
+              t2 = new Date(),
+              de1a1 = new Date(),
+              de2a2 = new Date();
+          
+
+          //de1 a a1
+
+          t1.setHours(de1Jueves[0], de1Jueves[1], "00");
+          t2.setHours(a1Jueves[0], a1Jueves[1], "00");
+
+          //Aquí hago la resta
+          de1a1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de1a1.getHours() + " Minutos: " + de1a1.getMinutes() + " Segundos: " + de1a1.getSeconds());
+
+
+          //de2 a a2
+
+          t1.setHours(de2Jueves[0], de2Jueves[1], "00");
+          t2.setHours(a2Jueves[0], a2Jueves[1], "00");
+          
+          //Aquí hago la resta
+          de2a2.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de2a2.getHours() + " Minutos: " + de2a2.getMinutes() + " Segundos: " + de2a2.getSeconds());
+
+          //de1 a a1 y de de2 a a2
+          //aquí hago la suma
+          t1.setHours(de1a1.getHours() + de2a2.getHours(),  de1a1.getMinutes() + de2a2.getMinutes(), de1a1.getSeconds() + de2a2.getSeconds());
+
+          console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+          horas_["jueves"]["horas"] = t1.getHours();
+          horas_["jueves"]["minutos"] = t1.getMinutes();
+          horas_["jueves"]["segundos"] = t1.getSeconds();
+
+        }
+        if(plantilla.viernesActivated==1){
+
+          horas_["viernes"] = Array();
+          horas_["viernes"]["activated"] = 1;
+
+          var de1Viernes = horasAMPMTo24(plantilla.de1Viernes);
+          de1Viernes = de1Viernes.split(":");
+          console.log(de1Viernes);
+
+          var a1Viernes = horasAMPMTo24(plantilla.a1Viernes);
+          a1Viernes = a1Viernes.split(":");
+          console.log(a1Viernes);
+
+          var de2Viernes = horasAMPMTo24(plantilla.de2Viernes);
+          de2Viernes = de2Viernes.split(":");
+          console.log(de2Viernes);
+
+          var a2Viernes = horasAMPMTo24(plantilla.a2Viernes);
+          a2Viernes = a2Viernes.split(":");
+          console.log(a2Viernes);
+
+          var t1 = new Date(),
+              t2 = new Date(),
+              de1a1 = new Date(),
+              de2a2 = new Date();
+          
+
+          //de1 a a1
+
+          t1.setHours(de1Viernes[0], de1Viernes[1], "00");
+          t2.setHours(a1Viernes[0], a1Viernes[1], "00");
+
+          //Aquí hago la resta
+          de1a1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de1a1.getHours() + " Minutos: " + de1a1.getMinutes() + " Segundos: " + de1a1.getSeconds());
+
+
+          //de2 a a2
+
+          t1.setHours(de2Viernes[0], de2Viernes[1], "00");
+          t2.setHours(a2Viernes[0], a2Viernes[1], "00");
+          
+          //Aquí hago la resta
+          de2a2.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de2a2.getHours() + " Minutos: " + de2a2.getMinutes() + " Segundos: " + de2a2.getSeconds());
+
+          //de1 a a1 y de de2 a a2
+          //aquí hago la suma
+          t1.setHours(de1a1.getHours() + de2a2.getHours(),  de1a1.getMinutes() + de2a2.getMinutes(), de1a1.getSeconds() + de2a2.getSeconds());
+
+          console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+          horas_["viernes"]["horas"] = t1.getHours();
+          horas_["viernes"]["minutos"] = t1.getMinutes();
+          horas_["viernes"]["segundos"] = t1.getSeconds();
+
+        }
+        if(plantilla.sabadoActivated==1){
+
+          horas_["sabado"] = Array();
+          horas_["sabado"]["activated"] = 1;
+
+          var de1Sabado = horasAMPMTo24(plantilla.de1Sabado);
+          de1Sabado = de1Sabado.split(":");
+          console.log(de1Sabado);
+
+          var a1Sabado = horasAMPMTo24(plantilla.a1Sabado);
+          a1Sabado = a1Sabado.split(":");
+          console.log(a1Sabado);
+
+          var de2Sabado = horasAMPMTo24(plantilla.de2Sabado);
+          de2Sabado = de2Sabado.split(":");
+          console.log(de2Sabado);
+
+          var a2Sabado = horasAMPMTo24(plantilla.a2Sabado);
+          a2Sabado = a2Sabado.split(":");
+          console.log(a2Sabado);
+
+          var t1 = new Date(),
+              t2 = new Date(),
+              de1a1 = new Date(),
+              de2a2 = new Date();
+          
+
+          //de1 a a1
+
+          t1.setHours(de1Sabado[0], de1Sabado[1], "00");
+          t2.setHours(a1Sabado[0], a1Sabado[1], "00");
+
+          //Aquí hago la resta
+          de1a1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de1a1.getHours() + " Minutos: " + de1a1.getMinutes() + " Segundos: " + de1a1.getSeconds());
+
+
+          //de2 a a2
+
+          t1.setHours(de2Sabado[0], de2Sabado[1], "00");
+          t2.setHours(a2Sabado[0], a2Sabado[1], "00");
+          
+          //Aquí hago la resta
+          de2a2.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de2a2.getHours() + " Minutos: " + de2a2.getMinutes() + " Segundos: " + de2a2.getSeconds());
+
+          //de1 a a1 y de de2 a a2
+          //aquí hago la suma
+          t1.setHours(de1a1.getHours() + de2a2.getHours(),  de1a1.getMinutes() + de2a2.getMinutes(), de1a1.getSeconds() + de2a2.getSeconds());
+
+          console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+          horas_["sabado"]["horas"] = t1.getHours();
+          horas_["sabado"]["minutos"] = t1.getMinutes();
+          horas_["sabado"]["segundos"] = t1.getSeconds();
+
+        }
+        if(plantilla.domingoActivated==1){
+          
+          horas_["domingo"] = Array();
+          horas_["domingo"]["activated"] = 1;
+
+          var de1Domingo = horasAMPMTo24(plantilla.de1Domingo);
+          de1Domingo = de1Domingo.split(":");
+          console.log(de1Domingo);
+
+          var a1Domingo = horasAMPMTo24(plantilla.a1Domingo);
+          a1Domingo = a1Domingo.split(":");
+          console.log(a1Domingo);
+
+          var de2Domingo = horasAMPMTo24(plantilla.de2Domingo);
+          de2Domingo = de2Domingo.split(":");
+          console.log(de2Domingo);
+
+          var a2Domingo = horasAMPMTo24(plantilla.a2Domingo);
+          a2Domingo = a2Domingo.split(":");
+          console.log(a2Domingo);
+
+          var t1 = new Date(),
+              t2 = new Date(),
+              de1a1 = new Date(),
+              de2a2 = new Date();
+          
+
+          //de1 a a1
+
+          t1.setHours(de1Sabado[0], de1Sabado[1], "00");
+          t2.setHours(a1Sabado[0], a1Sabado[1], "00");
+
+          //Aquí hago la resta
+          de1a1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de1a1.getHours() + " Minutos: " + de1a1.getMinutes() + " Segundos: " + de1a1.getSeconds());
+
+
+          //de2 a a2
+
+          t1.setHours(de2Sabado[0], de2Sabado[1], "00");
+          t2.setHours(a2Sabado[0], a2Sabado[1], "00");
+          
+          //Aquí hago la resta
+          de2a2.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+
+          console.log("Horas: " + de2a2.getHours() + " Minutos: " + de2a2.getMinutes() + " Segundos: " + de2a2.getSeconds());
+
+          //de1 a a1 y de de2 a a2
+          //aquí hago la suma
+          t1.setHours(de1a1.getHours() + de2a2.getHours(),  de1a1.getMinutes() + de2a2.getMinutes(), de1a1.getSeconds() + de2a2.getSeconds());
+
+          console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+          horas_["domingo"]["horas"] = t1.getHours();
+          horas_["domingo"]["minutos"] = t1.getMinutes();
+          horas_["domingo"]["segundos"] = t1.getSeconds();
+
+        }
+
+        return horas_;
+
+        
+      },
       limpiarEntradasSeguidasDeSalidas: function(data){
 
         var registrosEntSal = Array();
@@ -252,6 +769,152 @@
         }//fin for
 
         return registrosEntSal;
+      },
+      statMesHrsTrabajadas: function(fecha, registros){
+        console.log("[factory][statMesHrsTrabajadas]");
+
+        console.log(fecha);
+
+        var hoyhora = fecha.getHours(),
+                    hoyminutos = fecha.getMinutes(),
+                    hoysegundos = fecha.getSeconds(),
+                    hoydiaSemana = fecha.getDay(),
+                    hoydia = fecha.getDate(),
+                    hoymes = fecha.getMonth(),
+                    hoyanio = fecha.getFullYear(),
+                    hoyampm;
+
+        var fecha= new Date(moment(fecha).subtract(1, 'month').format('YYYY-MM-DD HH:mm:ss'));
+
+        console.log(fecha);
+        
+        var phora = fecha.getHours(),
+                    pminutos = fecha.getMinutes(),
+                    psegundos = fecha.getSeconds(),
+                    pdiaSemana = fecha.getDay(),
+                    pdia = fecha.getDate(),
+                    pmes = fecha.getMonth(),
+                    panio = fecha.getFullYear(),
+                    pampm;
+
+        console.log("[statMesHrsTrabajadas] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio);
+
+        var registrosMes = Array();
+
+        //obtener registros solo del último mes
+        for(var i=0; i<registros.length; i++){
+
+          
+          fechaRegistro =  new Date(registros[i].fecha);
+
+          var rhora = fechaRegistro.getHours(),
+              rminutos = fechaRegistro.getMinutes(),
+              rsegundos = fechaRegistro.getSeconds(),
+              rdiaSemana = fechaRegistro.getDay(),
+              rdia = fechaRegistro.getDate(),
+              rmes = fechaRegistro.getMonth(),
+              ranio = fechaRegistro.getFullYear(),
+              rampm;
+
+          var fechaRestar = panio + "-" + pmes + "-" + pdia; 
+          var fechaRestar2 = ranio + "-" + rmes + "-" + rdia; 
+
+          console.log(fechaRestar);
+          console.log(fechaRestar2);
+
+          console.log(restaFechas3(fechaRestar, fechaRestar2))
+
+          if(restaFechas3(fechaRestar, fechaRestar2) <= 31 && restaFechas3(fechaRestar, fechaRestar2) >= 0 &&
+            (hoymes==rmes)){
+            registrosMes.push(registros[i]);
+          }
+
+        }//fin for
+
+        console.log("Entrada el Última Mes:");
+
+        console.log(registrosMes);
+
+        //limpiar entradas seguidas de salidas
+        var registrosEntSal = this.limpiarEntradasSeguidasDeSalidas(registrosMes);
+
+        console.log("Entradas seguidas de Salidas (limpiadas):");
+
+        console.log(registrosEntSal);
+
+        //calculo de horas trabajadas de la semana
+        var horas = 0;
+        var minutos = 0;
+        var segundos = 0;
+
+        var horas_ = Array();
+
+        horas_["horas"] = horas;
+        horas_["minutos"] = minutos;
+        horas_["segundos"] = segundos;
+
+        for(var i=0; i<registrosEntSal.length; i=i+2){
+
+          if(registrosEntSal[i+1]!=undefined){
+
+            if(registrosEntSal[i].tipo=="entrada" && registrosEntSal[i+1].tipo=="salida"){
+
+              console.log("Calcular: " + i + "  " + (i+1));
+
+              fecha1 = registrosEntSal[i].fecha.toString().split(" ");
+              fecha2 = registrosEntSal[i+1].fecha.toString().split(" ");
+
+              var hora1 = (fecha1[1]).toString().split(":"),
+              hora2 = (fecha2[1]).toString().split(":"),
+              t1 = new Date(),
+              t2 = new Date();
+
+              t1.setHours(hora1[0], hora1[1], hora1[2]);
+              t2.setHours(hora2[0], hora2[1], hora2[2]);
+              
+              //Aquí hago la resta
+              t1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+              
+              console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+              horas = horas + t1.getHours();
+              minutos = minutos + t1.getMinutes();
+              segundos = segundos + t1.getSeconds();
+
+              console.log("No Compensar Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+              if(segundos>59){
+                var segundosEntero = (segundos/60);
+                segundosEntero = segundosEntero.toString().split(".");
+                minutos = minutos + parseInt(segundosEntero[0]);
+                segundos = segundos%60;
+              }
+
+              if(minutos>59){
+                var minutosEntero = (minutos/60);
+                minutosEntero = minutosEntero.toString().split(".");
+                horas = horas + parseInt(minutosEntero[0]);
+                minutos = minutos%60;
+              }
+
+              horas_["horas"] = horas;
+              horas_["minutos"] = minutos;
+              horas_["segundos"] = segundos;
+
+              console.log("Compensar Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+            }
+
+          }
+
+        }//fin for
+
+        console.log("Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+        return horas_;
+
+        
+
       },
       statSemanalHrsTrabajadas: function(fecha, registros){
         console.log("[factory][statSemanalHrsTrabajadas]");

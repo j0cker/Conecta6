@@ -190,7 +190,9 @@
                       
                       console.log("[controllers][modTrabajadorClick][getPlantillas]");
 
-                      console.log(response.data.data);
+                      plantilla = response.data.data[0];
+
+                      console.log(plantilla);
 
                       console.log(registros);
 
@@ -199,11 +201,18 @@
                       var statDiarioHrsTrabajadas = functions.statDiarioHrsTrabajadas(fecha, registros);
 
                       var statSemanalHrsTrabajadas = functions.statSemanalHrsTrabajadas(fecha, registros);
+
+                      var statMesHrsTrabajadas = functions.statMesHrsTrabajadas(fecha, registros);
+
+                      var statHrsPlantilla = functions.statHorasPlantilla(plantilla);
+
+                      var statDiarioHorsExtra = functions.statDiarioHorsExtra(statHrsPlantilla, statDiarioHrsTrabajadas, fecha);
                       
                       var tabla = Array();
                       tabla[0] = Array();
                       tabla[0][0] = "Diario (Hoy)";
                       tabla[0][1] = statDiarioHrsTrabajadas["horas"] + " hrs con " + statDiarioHrsTrabajadas["minutos"] + " Min y " + statDiarioHrsTrabajadas["segundos"] + " Segundos.";
+                      tabla[0][2] = statDiarioHorsExtra["horas"] + " hrs con " + statDiarioHorsExtra["minutos"] + " Min y " + statDiarioHorsExtra["segundos"] + " Segundos.";
 
                       tabla[1] = Array();
                       tabla[1][0] = "Semanal (Últimos 7 días)";
@@ -211,10 +220,10 @@
 
                       tabla[2] = Array();
                       tabla[2][0] = "Mensual ("+meses[mes]+")";
+                      tabla[2][1] = statMesHrsTrabajadas["horas"] + " hrs con " + statMesHrsTrabajadas["minutos"] + " Min y " + statMesHrsTrabajadas["segundos"] + " Segundos.";
 
                       $('#dt-basic-example').dataTable().fnClearTable();
                       $('#dt-basic-example').dataTable().fnAddData(tabla);
-
 
                       functions.loadingEndWait();
                       
@@ -1845,7 +1854,7 @@
                 $('#dt-basic-example').dataTable().fnClearTable();
                 $('#dt-basic-example').dataTable().fnAddData(data);
       
-                functions.salidas(response.data.data);
+                functions.salidasSwitches(response.data.data);
       
                 functions.loadingEndWait();
                 
@@ -1897,7 +1906,7 @@
           $('#dt-basic-example').dataTable().fnClearTable();
           $('#dt-basic-example').dataTable().fnAddData(data);
 
-          functions.salidas(response.data.data);
+          functions.salidasSwitches(response.data.data);
 
           functions.loadingEndWait();
           

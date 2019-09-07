@@ -206,7 +206,7 @@ class APIEmpresas extends Controller
             
           $id_plantillas = $request->input('id_plantillas');
           
-          $Plantillas = Plantillas::getByIdPlantillas($id_plantillas);
+          $Plantillas = Plantillas::getByIdPlantillas($id_plantillas)->get();
 
           if(count($Plantillas)>0){
 
