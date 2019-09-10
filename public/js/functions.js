@@ -200,6 +200,13 @@ function tiempoRelativo(time_value) {
   return shortdate;
   }
 }
+function secondsToHHMMSS (seconds) {
+  /*
+    the way to calculate the hour, minutes and seconds is converting everything to seconds and then sum all of them.
+
+  */
+  return (Math.floor(seconds / 3600)) + ":" + ("0" + Math.floor(seconds / 60) % 60).slice(-2) + ":" + ("0" + seconds % 60).slice(-2)
+}
 function horasAMPMTo24(hora){
 
   //recibe 6:20 PM

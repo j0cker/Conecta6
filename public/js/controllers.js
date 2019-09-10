@@ -208,6 +208,8 @@
 
                       var statDiarioHorsExtra = functions.statDiarioHorsExtra(statHrsPlantilla, statDiarioHrsTrabajadas, fecha);
                       
+                      var statSemanaHorsExtra = functions.statSemanaHorsExtra(statHrsPlantilla, statSemanalHrsTrabajadas, fecha);
+                
                       var tabla = Array();
                       tabla[0] = Array();
                       tabla[0][0] = "Diario (Hoy)";
@@ -217,6 +219,7 @@
                       tabla[1] = Array();
                       tabla[1][0] = "Semanal (Últimos 7 días)";
                       tabla[1][1] = statSemanalHrsTrabajadas["horas"] + " hrs con " + statSemanalHrsTrabajadas["minutos"] + " Min y " + statSemanalHrsTrabajadas["segundos"] + " Segundos.";
+                      tabla[1][2] = statSemanaHorsExtra["horas"] + " hrs con " + statSemanaHorsExtra["minutos"] + " Min y " + statSemanaHorsExtra["segundos"] + " Segundos.";
 
                       tabla[2] = Array();
                       tabla[2][0] = "Mensual ("+meses[mes]+")";
