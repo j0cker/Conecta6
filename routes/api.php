@@ -51,6 +51,9 @@ Route::post('/trabajadores/registros/salidas', 'APITrabajadores@PostSalidas');
 //Get Historial Entradas
 Route::get('/trabajadores/historial/todas', 'APITrabajadores@GetAllHistorial');
 
+//Get All Entradas All Salidas
+Route::get('/trabajadores/registros/todos', 'APITrabajadores@GetAllEntradasSalidas');
+
 /*
 *******Empresas******
 */

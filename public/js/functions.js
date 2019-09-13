@@ -200,12 +200,43 @@ function tiempoRelativo(time_value) {
   return shortdate;
   }
 }
-function secondsToHHMMSS (seconds) {
-  /*
+function diasEnUnMes(mes, año) {
+  /** total de días que tiene un mes */
+	return new Date(año, mes, 0).getDate();
+}
+function getSign(num){
+  /* obtener el signo de un número + o - */
+
+  return num === 0 ? num : (num > 0 ? 1 : -1); // -1
+  
+}
+function secondsToHHMMSS (hora, minutos, segundos) {
+
+   /*
     the way to calculate the hour, minutes and seconds is converting everything to seconds and then sum all of them.
 
   */
-  return (Math.floor(seconds / 3600)) + ":" + ("0" + Math.floor(seconds / 60) % 60).slice(-2) + ":" + ("0" + seconds % 60).slice(-2)
+
+  console.log("[functions][secondsToHHMMSS]");
+
+  console.log("[functions][secondsToHHMMSS] Horas: " + hora + " Minutos: " + minutos + " Segundos: " + segundos);
+
+  secHoras = hora*3600;
+  secMinutos = minutos*60;
+  secSegundos = segundos;
+  
+  seconds = secHoras + secMinutos + secSegundos;
+
+  var horas_ = Array();
+  horas_["horas"] = (seconds === 0 ? 1 : (seconds > 0 ? 1 : -1))*(Math.floor(Math.abs(seconds) / 3600));
+  horas_["minutos"] = (seconds === 0 ? 1 : (seconds > 0 ? 1 : -1))*(("0" + Math.floor(Math.abs(seconds) / 60) % 60).slice(-2));
+  horas_["segundos"] = (seconds === 0 ? 1 : (seconds > 0 ? 1 : -1))*(("0" + Math.abs(seconds) % 60).slice(-2));
+
+  console.log("[functions][secondsToHHMMSS] Horas: " + horas_["horas"] + " Minutos: " + horas_["minutos"] + " Segundos: " + horas_["segundos"]);
+
+
+  return horas_;
+
 }
 function horasAMPMTo24(hora){
 

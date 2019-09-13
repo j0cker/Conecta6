@@ -14,7 +14,7 @@
         /*Instrucciones*/
 
         Por favor verifica siempre accesar con el protocolo de seguridad https://
-
+        La zona horaria soporta también cambio de estaciones del año.
         
         
         

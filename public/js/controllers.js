@@ -135,8 +135,53 @@
     console.log("[inicio]");
 
     functions.loading();
-
     
+    $scope.getAllEntradasSalidasClick = function(id_trabajadores){
+
+      console.log("[inicio] ");
+
+      functions.getAllEntradasSalidas(id_trabajadores).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[inicio]");
+
+              console.log(response.data.data);
+
+              console.log("Entradas: " + response.data.entradas);
+              console.log("Salidas: " + response.data.salidas);
+
+              $scope.entradas = response.data.entradas;
+              $scope.salidas = response.data.salidas;
+              $scope.entradasPorcentaje = Math.round((parseInt(response.data.entradas)*100)/(parseInt(response.data.entradas) + parseInt(response.data.salidas)));
+              $scope.salidasPorcentaje = Math.round((parseInt(response.data.salidas)*100)/(parseInt(response.data.entradas) + parseInt(response.data.salidas)));
+              $scope.totalEntradasSalidas = Math.round(parseInt(response.data.entradas) + parseInt(response.data.salidas));
+
+              /*
+              $('.js-easy-pie-chart').data('easyPieChart').update(40);
+              $('span', $('.js-easy-pie-chart')).text(40);
+              */
+
+              /* update chart 
+              var chart = window.chart = $('#entradas-chart .js-easy-pie-chart').data('easyPieChart');
+              chart.update(40);
+             */
+
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    getAllEntradasSalidasClick = $scope.getAllEntradasSalidasClick;
+
     $scope.getZonaHorariaFrontClick = function(id_empresas, id_trabajadores, id_plantillas){
 
       console.log("[inicio] ");
@@ -209,7 +254,25 @@
                       var statDiarioHorsExtra = functions.statDiarioHorsExtra(statHrsPlantilla, statDiarioHrsTrabajadas, fecha);
                       
                       var statSemanaHorsExtra = functions.statSemanaHorsExtra(statHrsPlantilla, statSemanalHrsTrabajadas, fecha);
-                
+                      
+                      var statMesHorsExtra = functions.statMesHorsExtra(statHrsPlantilla, statMesHrsTrabajadas, fecha);
+
+                      var statMesEntradasYSalidas = functions.statMesEntradasYSalidas(statMesHrsTrabajadas, fecha);
+
+                      var statEntradasYSalidasEfectivas = functions.statMesEntradasYSalidasEfectivas(statMesEntradasYSalidas);
+
+                      functions.statGraphic(statMesEntradasYSalidas);
+
+                      var myvalues = statMesEntradasYSalidas;
+                      $('.entradas').sparkline(myvalues, { enableTagOptions: true , colorMap: ["#886ab5"],barSpacing: 1,chartRangeMin:0,barWidth: 5});
+
+                      var myvalues = statMesEntradasYSalidas;
+                      $('.salidas').sparkline(myvalues, { enableTagOptions: true , colorMap: ["#fe6bb0"],barSpacing: 1,chartRangeMin:0,barWidth: 5});
+                      
+                      $('.totalEntradaYSalidas').sparkline(myvalues, { enableTagOptions: true , colorMap: ["#fe6bb0"],barSpacing: 1,chartRangeMin:0,barWidth: 5});
+              
+                      $scope.entradasYSalidasEfectivas = statEntradasYSalidasEfectivas;
+
                       var tabla = Array();
                       tabla[0] = Array();
                       tabla[0][0] = "Diario (Hoy)";
@@ -224,6 +287,7 @@
                       tabla[2] = Array();
                       tabla[2][0] = "Mensual ("+meses[mes]+")";
                       tabla[2][1] = statMesHrsTrabajadas["horas"] + " hrs con " + statMesHrsTrabajadas["minutos"] + " Min y " + statMesHrsTrabajadas["segundos"] + " Segundos.";
+                      tabla[2][2] = statMesHorsExtra["horas"] + " hrs con " + statMesHorsExtra["minutos"] + " Min y " + statMesHorsExtra["segundos"] + " Segundos.";
 
                       $('#dt-basic-example').dataTable().fnClearTable();
                       $('#dt-basic-example').dataTable().fnAddData(tabla);

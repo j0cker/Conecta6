@@ -68,24 +68,24 @@
                             <div class="subheader-block d-lg-flex align-items-center">
                                 <div class="d-inline-flex flex-column justify-content-center mr-3">
                                     <span class="fw-300 fs-xs d-block opacity-50">
-                                        <small>Entradas</small>
+                                        <small>Total Entradas</small>
                                     </span>
                                     <span class="fw-500 fs-xl d-block color-primary-500">
-                                        $47,000
+                                        <% entradas %>
                                     </span>
                                 </div>
-                                <span class="sparklines hidden-lg-down" sparktype="bar" sparkbarcolor="#886ab5" sparkheight="32px" sparkbarwidth="5px" values="3,4,3,6,7,3,3,6,2,6,4"><canvas width="85" height="32" style="display: inline-block; width: 85px; height: 32px; vertical-align: top;"></canvas></span>
+                                <span class="sparklines entradas hidden-lg-down" sparktype="bar" sparkbarcolor="#886ab5" sparkheight="32px" sparkbarwidth="5px" values=""><canvas width="85" height="32" style="display: inline-block; width: 85px; height: 32px; vertical-align: top;"></canvas></span>
                             </div>
                             <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                 <div class="d-inline-flex flex-column justify-content-center mr-3">
                                     <span class="fw-300 fs-xs d-block opacity-50">
-                                        <small>Salidas</small>
+                                        <small>Total Salidas</small>
                                     </span>
                                     <span class="fw-500 fs-xl d-block color-danger-500">
-                                        $38,500
+                                        <% salidas %>
                                     </span>
                                 </div>
-                                <span class="sparklines hidden-lg-down" sparktype="bar" sparkbarcolor="#fe6bb0" sparkheight="32px" sparkbarwidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"><canvas width="85" height="32" style="display: inline-block; width: 85px; height: 32px; vertical-align: top;"></canvas></span>
+                                <span class="sparklines salidas hidden-lg-down" sparktype="bar" sparkbarcolor="#fe6bb0" sparkheight="32px" sparkbarwidth="5px" values=""><canvas width="85" height="32" style="display: inline-block; width: 85px; height: 32px; vertical-align: top;"></canvas></span>
                             </div>
                         </div>
 
@@ -170,130 +170,66 @@
                                             <div class="row no-gutters">
                                                 <div class="col-lg-7 col-xl-8">
                                                     <div class="position-relative">
-                                                        <div id="updating-chart" style="height: 242px; padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;" width="966" height="302"></canvas><canvas class="flot-overlay" width="966" height="302" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;"></canvas></div>
+                                                        <div id="updating-chart" style="height: 300px; padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;" width="966" height="302"></canvas><canvas class="flot-overlay" width="966" height="302" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;"></canvas></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-5 col-xl-4 pl-lg-3">
                                                     <div class="d-flex mt-2">
-                                                        My Tasks
-                                                        <span class="d-inline-block ml-auto">130 / 500</span>
+                                                        Total de Entradas y Salidas
+                                                        <span class="d-inline-block ml-auto"><% totalEntradasSalidas %></span>
                                                     </div>
                                                     <div class="progress progress-sm mb-3">
-                                                        <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 100%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <div class="d-flex">
-                                                        Transfered
-                                                        <span class="d-inline-block ml-auto">440 TB</span>
+                                                        Total Entradas
+                                                        <span class="d-inline-block ml-auto"><% entradas %></span>
                                                     </div>
                                                     <div class="progress progress-sm mb-3">
-                                                        <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-success-500" role="progressbar" style="width: <% entradasPorcentaje %>%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <div class="d-flex">
-                                                        Bugs Squashed
-                                                        <span class="d-inline-block ml-auto">77%</span>
+                                                        Total Salidas
+                                                        <span class="d-inline-block ml-auto"><% salidas %></span>
                                                     </div>
                                                     <div class="progress progress-sm mb-3">
-                                                        <div class="progress-bar bg-info-400" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-info-400" role="progressbar" style="width: <% salidasPorcentaje %>%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <div class="d-flex">
-                                                        User Testing
-                                                        <span class="d-inline-block ml-auto">7 days</span>
+                                                        Total Entradas Efectivas
+                                                        <span class="d-inline-block ml-auto"><% entradasYSalidasEfectivas %></span>
                                                     </div>
-                                                    <div class="progress progress-sm mb-g">
-                                                        <div class="progress-bar bg-primary-300" role="progressbar" style="width: 84%;" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress progress-sm mb-3">
+                                                        <div class="progress-bar bg-danger-400" role="progressbar" style="width: 100%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
-                                                    <div class="row no-gutters">
-                                                        <div class="col-6 pr-1">
-                                                            <a href="#" class="btn btn-default btn-block waves-effect waves-themed">Generate PDF</a>
-                                                        </div>
-                                                        <div class="col-6 pl-1">
-                                                            <a href="#" class="btn btn-default btn-block waves-effect waves-themed">Report a Bug</a>
-                                                        </div>
+                                                    <div class="d-flex">
+                                                        Total Salidas Efectivas
+                                                        <span class="d-inline-block ml-auto"><% entradasYSalidasEfectivas %></span>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel-content p-0">
-                                            <div class="row row-grid no-gutters">
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                                                    <div class="progress progress-sm mb-3">
+                                                        <div class="progress-bar bg-warning-400" role="progressbar" style="width: 100%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
                                                     <div class="px-3 py-2 d-flex align-items-center">
-                                                        <div class="js-easy-pie-chart color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="75" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
+                                                    <div class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="50" data-piesize="145" data-linewidth="20" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                                        <div id="entradas-chart" class="js-easy-pie-chart color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="50" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
                                                             <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">75</span>
+                                                                <span class="js-percent d-block text-dark">50</span>
                                                             </div>
                                                         </div>
                                                         <span class="d-inline-block ml-2 text-muted">
-                                                            SERVER LOAD
+                                                            Entradas
                                                             <i class="fal fa-caret-up color-danger-500 ml-1"></i>
                                                         </span>
                                                         <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#886ab5" sparkfillcolor="false" sparklinewidth="1" values="5,6,5,3,8,6,9,7,4,2"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
+                                                            <div class="sparklines totalEntradaYSalidas d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#886ab5" sparkfillcolor="false" sparklinewidth="1" values="5,6,5,3,8,6,9,7,4,2"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
                                                             <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge badge-success opacity-50 text-center p-1 width-6">97%</span>
-                                                                <span class="d-inline-block badge bg-fusion-300 opacity-50 text-center p-1 width-6 mt-1">44%</span>
+                                                                <span class="d-inline-block badge badge-success opacity-50 text-center p-1 width-6"><% entradasPorcentaje %>%</span>
+                                                                <span class="d-inline-block badge bg-fusion-300 opacity-50 text-center p-1 width-6 mt-1"><% salidasPorcentaje %>%</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                                    <div class="px-3 py-2 d-flex align-items-center">
-                                                        <div class="js-easy-pie-chart color-success-500 position-relative d-inline-flex align-items-center justify-content-center" data-percent="79" data-piesize="50" data-linewidth="5" data-linecap="butt">
-                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">79</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="d-inline-block ml-2 text-muted">
-                                                            DISK SPACE
-                                                            <i class="fal fa-caret-down color-success-500 ml-1"></i>
-                                                        </span>
-                                                        <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#1dc9b7" sparkfillcolor="false" sparklinewidth="1" values="5,9,7,3,5,2,5,3,9,6"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
-                                                            <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge badge-info opacity-50 text-center p-1 width-6">76%</span>
-                                                                <span class="d-inline-block badge bg-warning-300 opacity-50 text-center p-1 width-6 mt-1">3%</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                                    <div class="px-3 py-2 d-flex align-items-center">
-                                                        <div class="js-easy-pie-chart color-info-500 position-relative d-inline-flex align-items-center justify-content-center" data-percent="23" data-piesize="50" data-linewidth="5" data-linecap="butt">
-                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">23</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="d-inline-block ml-2 text-muted">
-                                                            DATA TTF
-                                                            <i class="fal fa-caret-up color-success-500 ml-1"></i>
-                                                        </span>
-                                                        <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#51adf6" sparkfillcolor="false" sparklinewidth="1" values="3,5,2,5,3,9,6,5,9,7"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
-                                                            <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge bg-fusion-500 opacity-50 text-center p-1 width-6">10GB</span>
-                                                                <span class="d-inline-block badge bg-fusion-300 opacity-50 text-center p-1 width-6 mt-1">10%</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                                    <div class="px-3 py-2 d-flex align-items-center">
-                                                        <div class="js-easy-pie-chart color-fusion-500 position-relative d-inline-flex align-items-center justify-content-center" data-percent="36" data-piesize="50" data-linewidth="5" data-linecap="butt">
-                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">36</span>
-                                                            </div>
-                                                        </div>
-                                                        <span class="d-inline-block ml-2 text-muted">
-                                                            TEMP.
-                                                            <i class="fal fa-caret-down color-success-500 ml-1"></i>
-                                                        </span>
-                                                        <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#fd3995" sparkfillcolor="false" sparklinewidth="1" values="5,3,9,6,5,9,7,3,5,2"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
-                                                            <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge badge-danger opacity-50 text-center p-1 width-6">124</span>
-                                                                <span class="d-inline-block badge bg-info-300 opacity-50 text-center p-1 width-6 mt-1">40F</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -943,501 +879,43 @@
         <script>
             $(document).ready(function()
             {
-
-
-                //
-                //
-                var dataSetPie = [
-                {
-                    label: "Asia",
-                    data: 4119630000,
-                    color: myapp_get_color.primary_500
-                },
-                {
-                    label: "Latin America",
-                    data: 590950000,
-                    color: myapp_get_color.info_500
-                },
-                {
-                    label: "Africa",
-                    data: 1012960000,
-                    color: myapp_get_color.warning_500
-                },
-                {
-                    label: "Oceania",
-                    data: 95100000,
-                    color: myapp_get_color.danger_500
-                },
-                {
-                    label: "Europe",
-                    data: 727080000,
-                    color: myapp_get_color.success_500
-                },
-                {
-                    label: "North America",
-                    data: 344120000,
-                    color: myapp_get_color.fusion_400
-                }];
-
-
-                $.plot($("#flotPie"), dataSetPie,
-                {
-                    series:
-                    {
-                        pie:
-                        {
-                            innerRadius: 0.5,
-                            show: true,
-                            radius: 1,
-                            label:
-                            {
-                                show: true,
-                                radius: 2 / 3,
-                                threshold: 0.1
-                            }
-                        }
-                    },
-                    legend:
-                    {
-                        show: false
-                    }
-                });
-
-
-                $.plot('#flotBar1', [
-                {
-                    data: [
-                        [1, 0],
-                        [2, 0],
-                        [3, 0],
-                        [4, 1],
-                        [5, 3],
-                        [6, 3],
-                        [7, 10],
-                        [8, 11],
-                        [9, 10],
-                        [10, 9],
-                        [11, 12],
-                        [12, 8],
-                        [13, 10],
-                        [14, 6],
-                        [15, 3]
-                    ],
-                    bars:
-                    {
-                        show: true,
-                        lineWidth: 0,
-                        fillColor: myapp_get_color.fusion_50,
-                        barWidth: .3,
-                        order: 'left'
-                    }
-                },
-                {
-                    data: [
-                        [1, 0],
-                        [2, 0],
-                        [3, 1],
-                        [4, 2],
-                        [5, 2],
-                        [6, 5],
-                        [7, 8],
-                        [8, 12],
-                        [9, 10],
-                        [10, 11],
-                        [11, 3]
-                    ],
-                    bars:
-                    {
-                        show: true,
-                        lineWidth: 0,
-                        fillColor: myapp_get_color.success_500,
-                        barWidth: .3,
-                        align: 'right'
-                    }
-                }],
-                {
-                    grid:
-                    {
-                        borderWidth: 0,
-                    },
-                    yaxis:
-                    {
-                        min: 0,
-                        max: 15,
-                        tickColor: '#F0F0F0',
-                        ticks: [
-                            [0, ''],
-                            [5, '$5000'],
-                            [10, '$25000'],
-                            [15, '$45000']
-                        ],
-                        font:
-                        {
-                            color: '#444',
-                            size: 10
-                        }
-                    },
-                    xaxis:
-                    {
-                        mode: 'categories',
-                        tickColor: '#F0F0F0',
-                        ticks: [
-                            [0, '3am'],
-                            [1, '4am'],
-                            [2, '5am'],
-                            [3, '6am'],
-                            [4, '7am'],
-                            [5, '8am'],
-                            [6, '9am'],
-                            [7, '10am'],
-                            [8, '11am'],
-                            [9, '12nn'],
-                            [10, '1pm'],
-                            [11, '2pm'],
-                            [12, '3pm'],
-                            [13, '4pm'],
-                            [14, '5pm']
-                        ],
-                        font:
-                        {
-                            color: '#999',
-                            size: 9
-                        }
-                    }
-                });
-
-
-                /*
-                 * VECTOR MAP
-                 */
-
-                 var data_array = {
-                    "af": "16.63",
-                    "al": "0",
-                    "dz": "158.97",
-                    "ao": "85.81",
-                    "ag": "1.1",
-                    "ar": "351.02",
-                    "am": "8.83",
-                    "au": "1219.72",
-                    "at": "366.26",
-                    "az": "52.17",
-                    "bs": "7.54",
-                    "bh": "21.73",
-                    "bd": "105.4",
-                    "bb": "3.96",
-                    "by": "52.89",
-                    "be": "461.33",
-                    "bz": "1.43",
-                    "bj": "6.49",
-                    "bt": "1.4",
-                    "bo": "19.18",
-                    "ba": "16.2",
-                    "bw": "12.5",
-                    "br": "2023.53",
-                    "bn": "11.96",
-                    "bg": "44.84",
-                    "bf": "8.67",
-                    "bi": "1.47",
-                    "kh": "11.36",
-                    "cm": "21.88",
-                    "ca": "1563.66",
-                    "cv": "1.57",
-                    "cf": "2.11",
-                    "td": "7.59",
-                    "cl": "199.18",
-                    "cn": "5745.13",
-                    "co": "283.11",
-                    "km": "0.56",
-                    "cd": "12.6",
-                    "cg": "11.88",
-                    "cr": "35.02",
-                    "ci": "22.38",
-                    "hr": "59.92",
-                    "cy": "22.75",
-                    "cz": "195.23",
-                    "dk": "304.56",
-                    "dj": "1.14",
-                    "dm": "0.38",
-                    "do": "50.87",
-                    "ec": "61.49",
-                    "eg": "216.83",
-                    "sv": "21.8",
-                    "gq": "14.55",
-                    "er": "2.25",
-                    "ee": "19.22",
-                    "et": "30.94",
-                    "fj": "3.15",
-                    "fi": "231.98",
-                    "fr": "2555.44",
-                    "ga": "12.56",
-                    "gm": "1.04",
-                    "ge": "11.23",
-                    "de": "3305.9",
-                    "gh": "18.06",
-                    "gr": "305.01",
-                    "gd": "0.65",
-                    "gt": "40.77",
-                    "gn": "4.34",
-                    "gw": "0.83",
-                    "gy": "2.2",
-                    "ht": "6.5",
-                    "hn": "15.34",
-                    "hk": "226.49",
-                    "hu": "132.28",
-                    "is": "0",
-                    "in": "1430.02",
-                    "id": "695.06",
-                    "ir": "337.9",
-                    "iq": "84.14",
-                    "ie": "204.14",
-                    "il": "201.25",
-                    "it": "2036.69",
-                    "jm": "13.74",
-                    "jp": "5390.9",
-                    "jo": "27.13",
-                    "kz": "129.76",
-                    "ke": "32.42",
-                    "ki": "0.15",
-                    "kw": "117.32",
-                    "kg": "4.44",
-                    "la": "6.34",
-                    "lv": "23.39",
-                    "lb": "39.15",
-                    "ls": "1.8",
-                    "lr": "0.98",
-                    "lt": "35.73",
-                    "lu": "52.43",
-                    "mk": "9.58",
-                    "mg": "8.33",
-                    "mw": "5.04",
-                    "my": "218.95",
-                    "mv": "1.43",
-                    "ml": "9.08",
-                    "mt": "7.8",
-                    "mr": "3.49",
-                    "mu": "9.43",
-                    "mx": "1004.04",
-                    "md": "5.36",
-                    "rw": "5.69",
-                    "ws": "0.55",
-                    "st": "0.19",
-                    "sa": "434.44",
-                    "sn": "12.66",
-                    "rs": "38.92",
-                    "sc": "0.92",
-                    "sl": "1.9",
-                    "sg": "217.38",
-                    "sk": "86.26",
-                    "si": "46.44",
-                    "sb": "0.67",
-                    "za": "354.41",
-                    "es": "1374.78",
-                    "lk": "48.24",
-                    "kn": "0.56",
-                    "lc": "1",
-                    "vc": "0.58",
-                    "sd": "65.93",
-                    "sr": "3.3",
-                    "sz": "3.17",
-                    "se": "444.59",
-                    "ch": "522.44",
-                    "sy": "59.63",
-                    "tw": "426.98",
-                    "tj": "5.58",
-                    "tz": "22.43",
-                    "th": "312.61",
-                    "tl": "0.62",
-                    "tg": "3.07",
-                    "to": "0.3",
-                    "tt": "21.2",
-                    "tn": "43.86",
-                    "tr": "729.05",
-                    "tm": "0",
-                    "ug": "17.12",
-                    "ua": "136.56",
-                    "ae": "239.65",
-                    "gb": "2258.57",
-                    "us": "14624.18",
-                    "uy": "40.71",
-                    "uz": "37.72",
-                    "vu": "0.72",
-                    "ve": "285.21",
-                    "vn": "101.99",
-                    "ye": "30.02",
-                    "zm": "15.69",
-                    "zw": "0"
-                };
-
-                $('#vector-map').vectorMap(
-                {
-                    map: 'world_en',
-                    backgroundColor: 'transparent',
-                    color: myapp_get_color.warning_50,
-                    borderOpacity: 0.5,
-                    borderWidth: 1,
-                    hoverColor: myapp_get_color.success_300,
-                    hoverOpacity: null,
-                    selectedColor: myapp_get_color.success_500,
-                    selectedRegions: ['US'],
-                    enableZoom: true,
-                    showTooltip: true,
-                    scaleColors: [myapp_get_color.primary_400, myapp_get_color.primary_50],
-                    values: data_array,
-                    normalizeFunction: 'polynomial',
-                    onRegionClick: function(element, code, region)
-                    {
-                        /*var message = 'You clicked "'
-						+ region
-						+ '" which has the code: '
-						+ code.toLowerCase();
-			 
-					console.log(message);*/
-
-                        var randomNumber = Math.floor(Math.random() * 10000000);
-                        var arrow;
-
-                        if (Math.random() >= 0.5 == true)
-                        {
-                            arrow = '<div class="ml-2 d-inline-flex"><i class="fal fa-caret-up text-success fs-xs"></i></div>'
-                        }
-                        else
-                        {
-                            arrow = '<div class="ml-2 d-inline-flex"><i class="fal fa-caret-down text-danger fs-xs"></i></div>'
-                        }
-
-                        $('.js-jqvmap-flag').attr('src', 'https://lipis.github.io/flag-icon-css/flags/4x3/' + code.toLowerCase() + '.svg');
-                        $('.js-jqvmap-country').html(region + ' - ' + '$' + randomNumber.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + arrow);
-                    }
-                });
-
-
-
-
-                /* TAB 1: UPDATING CHART */
-                var data = [],
-                    totalPoints = 200;
-                var getRandomData = function()
-                {
-                    if (data.length > 0)
-                        data = data.slice(1);
-
-                    // do a random walk
-                    while (data.length < totalPoints)
-                    {
-                        var prev = data.length > 0 ? data[data.length - 1] : 50;
-                        var y = prev + Math.random() * 10 - 5;
-                        if (y < 0)
-                            y = 0;
-                        if (y > 100)
-                            y = 100;
-                        data.push(y);
-                    }
-
-                    // zip the generated y values with the x values
-                    var res = [];
-                    for (var i = 0; i < data.length; ++i)
-                        res.push([i, data[i]])
-                    return res;
-                }
-                // setup control widget
-                var updateInterval = 1500;
-                $("#updating-chart").val(updateInterval).change(function()
-                {
-
-                    var v = $(this).val();
-                    if (v && !isNaN(+v))
-                    {
-                        updateInterval = +v;
-                        $(this).val("" + updateInterval);
-                    }
-
-                });
-                // setup plot
-                var options = {
-                    colors: [myapp_get_color.primary_700],
-                    series:
-                    {
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 0.5,
-                            fill: 0.9,
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0.6
-                                },
-                                {
-                                    opacity: 0
-                                }]
-                            },
-                        },
-
-                        shadowSize: 0 // Drawing is faster without shadows
-                    },
-                    grid:
-                    {
-                        borderColor: '#F0F0F0',
-                        borderWidth: 1,
-                        labelMargin: 5
-                    },
-                    xaxis:
-                    {
-                        color: '#F0F0F0',
-                        font:
-                        {
-                            size: 10,
-                            color: '#999'
-                        }
-                    },
-                    yaxis:
-                    {
-                        min: 0,
-                        max: 100,
-                        color: '#F0F0F0',
-                        font:
-                        {
-                            size: 10,
-                            color: '#999'
-                        }
-                    }
-                };
-                var plot = $.plot($("#updating-chart"), [getRandomData()], options);
-                /* live switch */
-                $('input[type="checkbox"]#start_interval').click(function()
-                {
-                    if ($(this).prop('checked'))
-                    {
-                        $on = true;
-                        updateInterval = 1500;
-                        update();
-                    }
-                    else
-                    {
-                        clearInterval(updateInterval);
-                        $on = false;
-                    }
-                });
-                var update = function()
-                {
-                    if ($on == true)
-                    {
-                        plot.setData([getRandomData()]);
-                        plot.draw();
-                        setTimeout(update, updateInterval);
-
-                    }
-                    else
-                    {
-                        clearInterval(updateInterval)
-                    }
-
-                }
+                $('.js-easy-pie-chart').data('easyPieChart').update(10);
 
                 $('#dt-basic-example').dataTable( {
-                    "ordering": false
+                    "ordering": false,
+                    
+                    responsive: true,
+                    dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421" ] ],
+                    buttons: [
+                        {
+                            extend: 'colvis',
+                            text: 'Column Visibility',
+                            titleAttr: 'Col visibility',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'print',
+                            text: '<i class="fal fa-print"></i>',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-default'
+                        }
+
+                    ]
                 } );
 
             });
@@ -1469,6 +947,8 @@
                 getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
                 
                 getZonaHorariaFront("<?php echo e($user['usr']->id_empresas); ?>", "<?php echo e($user['usr']->id_trabajadores); ?>", "<?php echo e($user['usr']->id_plantillas); ?>");
+
+                getAllEntradasSalidasClick("<?php echo e($user['usr']->id_trabajadores); ?>");
 
             });
         </script>
