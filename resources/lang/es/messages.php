@@ -42,9 +42,11 @@ return [
     'emailPrioridad5' => "Baja",
 
     //textos
-    'entradaSeguidaDeEntrada' => 'Una entrada no puede ir seguida de otra entrada en el mismo día',
-    'salidaseguidaDeSalida' => 'Una salida no puede ir seguida de otra salida en el mismo día',
-    'salidaComoPrimero' => 'Registre una Entrada primero',
+    'ipnocoincide' => 'La IP No coincide.',
+    'geonocoincide' => 'Te encuentres en un zona fuera de tolerancia del lugar de registro de asistencia.',
+    'entradaSeguidaDeEntrada' => 'Una entrada no puede ir seguida de otra entrada en el mismo día.',
+    'salidaseguidaDeSalida' => 'Una salida no puede ir seguida de otra salida en el mismo día.',
+    'salidaComoPrimero' => 'Registre una Entrada primero.',
 
     //libraries
     'successTrue' => "TRUE",

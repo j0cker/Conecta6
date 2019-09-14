@@ -192,7 +192,9 @@ class Functions
      return $date;
    }
    public function distanceCalculation($point1_lat, $point1_long, $point2_lat, $point2_long, $unit = 'km', $decimals = 2) {
-        // Cálculo de la distancia en grados
+    
+    //es más exacto    
+    // Cálculo de la distancia en grados
         $degrees = rad2deg(acos((sin(deg2rad($point1_lat))*sin(deg2rad($point2_lat))) + (cos(deg2rad($point1_lat))*cos(deg2rad($point2_lat))*cos(deg2rad($point1_long-$point2_long)))));
     
         // Conversión de la distancia en grados a la unidad escogida (kilómetros, millas o millas naúticas)
@@ -209,6 +211,7 @@ class Functions
         return round($distance, $decimals);
     }
     public function calculaDistancia($longitud1, $latitud1, $longitud2, $latitud2){
+        //podría no ser muy funcional y exacto
         //calculamos la diferencia de entre la longitud de los dos puntos
         $diferenciaX = $longitud1 - $longitud2;
  

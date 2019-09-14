@@ -128,10 +128,32 @@ function calcTime2(){
   */
 }
 
+function getLocation(options){
 
+  /*
+    get location in coordinates
+
+    getLocation()
+        .then((position) => {
+          console.log(position);
+          geoLocation = position;
+        })
+        .catch((err) => {
+          console.error(err.message);
+        });
+  */
+
+  console.log("[functions][getLocation]");
+
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject, options);
+  });
+
+
+}
 // funcion para calcular la hora local en una ciudad dada la diferencia horaria.
 function calcTime(city, offset) {
-  //no calcula horario de verano ni de inverno (obsoleto) (seasons)
+  //no calcula horario de verano ni de inverno (obsoleto) (seasons) es mejor usar la librería momenttimezone
 
   // creamos el objeto Date (la selecciona de la máquina cliente)
   // calcTime("mexico",-6)

@@ -156,15 +156,10 @@
               $scope.salidasPorcentaje = Math.round((parseInt(response.data.salidas)*100)/(parseInt(response.data.entradas) + parseInt(response.data.salidas)));
               $scope.totalEntradasSalidas = Math.round(parseInt(response.data.entradas) + parseInt(response.data.salidas));
 
-              /*
-              $('.js-easy-pie-chart').data('easyPieChart').update(40);
-              $('span', $('.js-easy-pie-chart')).text(40);
-              */
+            
+              $('#entradasPie.js-easy-pie-chart').data('easyPieChart').update($scope.entradasPorcentaje);
 
-              /* update chart 
-              var chart = window.chart = $('#entradas-chart .js-easy-pie-chart').data('easyPieChart');
-              chart.update(40);
-             */
+              $('#salidasPie.js-easy-pie-chart').data('easyPieChart').update($scope.salidasPorcentaje);
 
 
             } else {
@@ -482,7 +477,7 @@
     getZonaHorariaFront = $scope.getZonaHorariaFrontClick;
 
     
-    $scope.postRegistrarEntradaClick = function(id_trabajadores){
+    $scope.postRegistrarEntradaClick = function(id_trabajadores, geo_activated){
 
       console.log("[postRegistrarSalidaClick]");
  
@@ -502,15 +497,19 @@
       selectPlantillaY = document.getElementById("single-default").options;
       plantilla = selectPlantillaY[selectPlantillaX].value ;
 
-      console.log("[agregarNuevoTrabajadorClick] id_trabajadores: " + id_trabajadores);
-      console.log("[agregarNuevoTrabajadorClick] comentarios: " + comentarios);
-      console.log("[agregarNuevoTrabajadorClick] date: " + date);
-      console.log("[agregarNuevoTrabajadorClick] selectPlantillaX: " + selectPlantillaX);
-      console.log("[agregarNuevoTrabajadorClick] selectPlantillaY: " + selectPlantillaY);
-      console.log("[agregarNuevoTrabajadorClick] selectPlantilla: " + "Index: " + selectPlantillaY[selectPlantillaX].index + " is " + selectPlantillaY[selectPlantillaX].text + " value " + selectPlantillaY[selectPlantillaX].value);
-      console.log("[agregarNuevoTrabajadorClick] plantilla: " + plantilla);
+      console.log("[postRegistrarEntradaClick] id_trabajadores: " + id_trabajadores);
+      console.log("[postRegistrarEntradaClick] comentarios: " + comentarios);
+      console.log("[postRegistrarEntradaClick] date: " + date);
+      console.log("[postRegistrarEntradaClick] selectPlantillaX: " + selectPlantillaX);
+      console.log("[postRegistrarEntradaClick] selectPlantillaY: " + selectPlantillaY);
+      console.log("[postRegistrarEntradaClick] selectPlantilla: " + "Index: " + selectPlantillaY[selectPlantillaX].index + " is " + selectPlantillaY[selectPlantillaX].text + " value " + selectPlantillaY[selectPlantillaX].value);
+      console.log("[postRegistrarEntradaClick] plantilla: " + plantilla);
 
-      functions.postRegistrarEntrada(id_trabajadores, comentarios, date).then(function (response) {
+      if(geo_activated==0){
+
+        console.log("[postRegistrarEntradaClick][Sin GeoLocalización]");
+
+        functions.postRegistrarEntrada(id_trabajadores, comentarios, date, "-1").then(function (response) {
 
             if(response.data.success == "TRUE"){
               console.log("[postRegistrarEntradaClick][postRegistrarEntrada]");
@@ -518,7 +517,7 @@
               console.log(response.data.data);
 
               toastr["success"]("Tu Entrada ha sido Registrada Correctamante!.", "");
-    
+
               window.location = "/registros";
 
               functions.loadingEndWait();
@@ -532,13 +531,58 @@
           toastr["error"]("Inténtelo de nuevo más tarde", "");
           functions.loadingEndWait();
 
-        });/*fin getImageEmpresa*/
+        });/*fin postRegistrarEntrada*/
 
-    }; //fin getImageEmpresaClick
+      } else {
+
+        console.log("[postRegistrarEntradaClick][GeoLocalización]");
+
+        getLocation()
+          .then((position) => {
+            console.log(position);
+            var geoLocation = position.coords;
+            console.log(geoLocation);
+
+            functions.postRegistrarEntrada(id_trabajadores, comentarios, date, geoLocation.latitude+","+geoLocation.longitude).then(function (response) {
+
+                if(response.data.success == "TRUE"){
+                  console.log("[postRegistrarEntradaClick][postRegistrarEntrada] success");
+
+                  console.log(response.data.data);
+
+                  toastr["success"]("Tu Entrada ha sido Registrada Correctamante!.", "");
+
+                  window.location = "/registros";
+
+                  functions.loadingEndWait();
+
+                } else {
+                  console.log("[postRegistrarEntradaClick][postRegistrarEntrada] no success");
+                    toastr["error"](response.data.description, "");
+                    functions.loadingEndWait();
+                }
+            }, function (response) {
+              /*ERROR*/
+              console.log("[postRegistrarEntradaClick][postRegistrarEntrada] Error");
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+
+            });/*fin postRegistrarEntrada*/
+
+          })
+          .catch((err) => {
+            console.error(err.message);
+            toastr["error"](err.message, "");
+          });
+
+      }
+
+
+    }; //fin postRegistrarEntradaClick
 
     postRegistrarEntradaClick = $scope.postRegistrarEntradaClick;
     
-    $scope.postRegistrarSalidaClick = function(id_trabajadores){
+    $scope.postRegistrarSalidaClick = function(id_trabajadores, geo_activated){
 
       console.log("[postRegistrarSalidaClick]");
  
@@ -568,7 +612,7 @@
       console.log("[agregarNuevoTrabajadorClick] selectPlantillaY: " + selectPlantillaY);
       console.log("[agregarNuevoTrabajadorClick] selectPlantilla: " + "Index: " + selectPlantillaY[selectPlantillaX].index + " is " + selectPlantillaY[selectPlantillaX].text + " value " + selectPlantillaY[selectPlantillaX].value);
       console.log("[agregarNuevoTrabajadorClick] plantilla: " + plantilla);
-
+      
       if(selectPlantillaX==0){
 
         console.log("[agregarNuevoTrabajadorClick] default selected");
@@ -577,31 +621,76 @@
 
       } else {
 
-        functions.postRegistrarSalida(id_trabajadores, comentarios, date, selectPlantillaY[selectPlantillaX].value).then(function (response) {
+        if(geo_activated==0){
 
-              if(response.data.success == "TRUE"){
-                console.log("[postRegistrarSalidaClick][postRegistrarSalida]");
+          functions.postRegistrarSalida(id_trabajadores, comentarios, date, selectPlantillaY[selectPlantillaX].value, "-1").then(function (response) {
+  
+            if(response.data.success == "TRUE"){
+              console.log("[postRegistrarSalidaClick][postRegistrarSalida] success");
 
-                console.log(response.data.data);
+              console.log(response.data.data);
 
-                toastr["success"]("Tu Salida ha sido Registrada Correctamante!.", "");
-      
-                window.location = "/registros";
+              toastr["success"]("Tu Salida ha sido Registrada Correctamante!.", "");
+    
+              window.location = "/registros";
 
+              functions.loadingEndWait();
+
+            } else {
+                console.log("[postRegistrarSalidaClick][postRegistrarSalida] no success");
+                toastr["error"](response.data.description, "");
                 functions.loadingEndWait();
-
-              } else {
-                  toastr["error"](response.data.description, "");
-                  functions.loadingEndWait();
-              }
+            }
           }, function (response) {
             /*ERROR*/
+            console.log("[postRegistrarSalidaClick][postRegistrarSalida] Error");
             toastr["error"]("Inténtelo de nuevo más tarde", "");
             functions.loadingEndWait();
 
-          });/*fin getImageEmpresa*/
+          });/*fin postRegistrarSalida*/
 
-      }; //fin getImageEmpresaClick
+        } else {
+          
+          getLocation()
+          .then((position) => {
+            console.log(position);
+            geoLocation = position.coords;
+
+            functions.postRegistrarSalida(id_trabajadores, comentarios, date, selectPlantillaY[selectPlantillaX].value, geoLocation.latitude+","+geoLocation.longitude).then(function (response) {
+  
+                if(response.data.success == "TRUE"){
+                  console.log("[postRegistrarSalidaClick][postRegistrarSalida] success");
+  
+                  console.log(response.data.data);
+  
+                  toastr["success"]("Tu Salida ha sido Registrada Correctamante!.", "");
+        
+                  window.location = "/registros";
+  
+                  functions.loadingEndWait();
+  
+                } else {
+                    console.log("[postRegistrarSalidaClick][postRegistrarSalida] no success");
+                    toastr["error"](response.data.description, "");
+                    functions.loadingEndWait();
+                }
+            }, function (response) {
+              /*ERROR*/
+              console.log("[postRegistrarSalidaClick][postRegistrarSalida] Error");
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+  
+            });/*fin postRegistrarSalida*/
+
+          })
+          .catch((err) => {
+              console.error(err.message);
+              toastr["error"](err.message, "");
+          });
+        }
+
+
+      }; //fin postRegistrarSalidaClick
     }
 
     postRegistrarSalidaClick = $scope.postRegistrarSalidaClick;

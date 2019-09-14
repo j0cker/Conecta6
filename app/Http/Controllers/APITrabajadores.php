@@ -10,6 +10,8 @@ use App\Library\DAO\Permisos_inter;
 use App\Library\DAO\Colores;
 use App\Library\DAO\Empresas;
 use App\Library\DAO\Registros;
+use App\Library\util\functions;
+use Browser;
 use Auth;
 use carbon\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -1003,13 +1005,55 @@ class APITrabajadores extends Controller
           Validator::make($request->all(), [
             'id_trabajadores' => 'required',
             'date' => 'required',
-            'id_salidas' => 'required'
+            'id_salidas' => 'required',
+            'geoLocation' => 'required'
           ])->validate();
+
+          $functions = new functions();
           
           $id_trabajadores = $request->input('id_trabajadores');
           $comentarios = $request->input('comentarios');
           $date = $request->input('date');
           $id_salidas = $request->input('id_salidas');
+          $geoLocation = $request->input('geoLocation');
+
+          Log::info("Request IP: " .request()->ip());
+          Log::info("Empresa IP: " .$token_decrypt["usr"]->ip);
+          Log::info("Geolocation: " .$geoLocation);
+          Log::info("platformFamily: " .Browser::platformFamily());
+          Log::info("isMobile: " .Browser::isMobile());
+          Log::info("isTablet: " .Browser::isTablet());
+          Log::info("isDesktop: " .Browser::isDesktop());
+
+          //restricción por IP
+          if($token_decrypt["usr"]->ip_activated==1 && ($token_decrypt["usr"]->ip=="" || $token_decrypt["usr"]->ip!=request()->ip())){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.ipnocoincide'), 0);
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+          
+          //restricción por Geolocation
+          $geoArray = explode(",", $geoLocation);
+          if($token_decrypt["usr"]->geo_activated==1 && ($geoLocation=="-1" || $token_decrypt["usr"]->metros<=$functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))){
+
+            Log::info("Latitud: " . $token_decrypt["usr"]->latitud." Longitud: ".$token_decrypt["usr"]->longitud);
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->calculaDistancia($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.geonocoincide'), 0);
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          } else {
+
+            Log::info("Latitud: " . $token_decrypt["usr"]->latitud." Longitud: ".$token_decrypt["usr"]->longitud);
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->calculaDistancia($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
+          
+          }
+
 
           //print_r($token_decrypt["id"]);
 
@@ -1115,20 +1159,57 @@ class APITrabajadores extends Controller
 
         //print_r($token_decrypt["id"]);
 
-        //print_r($token_decrypt);
-
-        Log::info("Request IP: " .request()->ip());
-
         if(in_array("3", $token_decrypt["permisos"])==1){
             
           Validator::make($request->all(), [
             'id_trabajadores' => 'required',
-            'date' => 'required'
+            'date' => 'required',
+            'geoLocation' => 'required'
           ])->validate();
+
+          $functions = new functions();
           
           $id_trabajadores = $request->input('id_trabajadores');
           $comentarios = $request->input('comentarios');
           $date = $request->input('date');
+          $geoLocation = $request->input('geoLocation');
+
+          Log::info("Request IP: " .request()->ip());
+          Log::info("Empresa IP: " .$token_decrypt["usr"]->ip);
+          Log::info("Geolocation: " .$geoLocation);
+          Log::info("platformFamily: " .Browser::platformFamily());
+          Log::info("isMobile: " .Browser::isMobile());
+          Log::info("isTablet: " .Browser::isTablet());
+          Log::info("isDesktop: " .Browser::isDesktop());
+
+          //restricción por IP
+          if($token_decrypt["usr"]->ip_activated==1 && ($token_decrypt["usr"]->ip=="" || $token_decrypt["usr"]->ip!=request()->ip())){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.ipnocoincide'), 0);
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+          
+          //restricción por Geolocation
+          $geoArray = explode(",", $geoLocation);
+          if($token_decrypt["usr"]->geo_activated==1 && ($geoLocation=="-1" || $token_decrypt["usr"]->metros<=$functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))){
+
+            Log::info("Latitud: " . $token_decrypt["usr"]->latitud." Longitud: ".$token_decrypt["usr"]->longitud);
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->calculaDistancia($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.geonocoincide'), 0);
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          } else {
+
+            Log::info("Latitud: " . $token_decrypt["usr"]->latitud." Longitud: ".$token_decrypt["usr"]->longitud);
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->calculaDistancia($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
+          
+          }
 
           //print_r($token_decrypt["id"]);
 
@@ -1161,6 +1242,8 @@ class APITrabajadores extends Controller
             return json_encode($responseJSON);
 
           }
+
+        
 
         } else {
           

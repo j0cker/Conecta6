@@ -844,7 +844,7 @@
 
                     console.log("[registrarEntrada]");
 
-                    postRegistrarEntradaClick("<?php echo e($user['usr']->id_trabajadores); ?>");
+                    postRegistrarEntradaClick("<?php echo e($user['usr']->id_trabajadores); ?>", "<?php echo e($user['usr']->geo_activated); ?>");
 
                 });
 
@@ -852,7 +852,7 @@
 
                     console.log("[registrarEntrada]");
 
-                    postRegistrarSalidaClick("<?php echo e($user['usr']->id_trabajadores); ?>");
+                    postRegistrarSalidaClick("<?php echo e($user['usr']->id_trabajadores); ?>", "<?php echo e($user['usr']->geo_activated); ?>");
 
                 });
 

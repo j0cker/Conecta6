@@ -174,7 +174,7 @@
                                             <div class="row no-gutters">
                                                 <div class="col-lg-7 col-xl-8">
                                                     <div class="position-relative">
-                                                        <div id="updating-chart" style="height: 300px; padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;" width="966" height="302"></canvas><canvas class="flot-overlay" width="966" height="302" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;"></canvas></div>
+                                                        <div id="updating-chart" style="height: 450px; padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;" width="966" height="302"></canvas><canvas class="flot-overlay" width="966" height="302" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;"></canvas></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-5 col-xl-4 pl-lg-3">
@@ -206,6 +206,7 @@
                                                     <div class="progress progress-sm mb-3">
                                                         <div class="progress-bar bg-danger-400" role="progressbar" style="width: 100%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
+
                                                     <div class="d-flex">
                                                         Total Salidas Efectivas
                                                         <span class="d-inline-block ml-auto"><% entradasYSalidasEfectivas %></span>
@@ -213,27 +214,49 @@
                                                     <div class="progress progress-sm mb-3">
                                                         <div class="progress-bar bg-warning-400" role="progressbar" style="width: 100%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
+
                                                     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-                                                    <div class="px-3 py-2 d-flex align-items-center">
-                                                    <div class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="50" data-piesize="145" data-linewidth="20" data-trackcolor="#ccbfdf" data-scalelength="8">
-                                                        <div id="entradas-chart" class="js-easy-pie-chart color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="50" data-piesize="50" data-linewidth="5" data-linecap="butt" data-scalelength="0">
-                                                            <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                                                <span class="js-percent d-block text-dark">50</span>
+                                                        <div class="px-3 py-2 d-flex align-items-center">
+                                                            <div id="entradasPie" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="100" data-linewidth="20" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                                                <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                                                    <span class="js-percent d-block text-dark">0</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <span class="d-inline-block ml-2 text-muted">
-                                                            Entradas
-                                                            <i class="fal fa-caret-up color-danger-500 ml-1"></i>
-                                                        </span>
-                                                        <div class="ml-auto d-inline-flex align-items-center">
-                                                            <div class="sparklines totalEntradaYSalidas d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#886ab5" sparkfillcolor="false" sparklinewidth="1" values="5,6,5,3,8,6,9,7,4,2"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
-                                                            <div class="d-inline-flex flex-column small ml-2">
-                                                                <span class="d-inline-block badge badge-success opacity-50 text-center p-1 width-6"><% entradasPorcentaje %>%</span>
-                                                                <span class="d-inline-block badge bg-fusion-300 opacity-50 text-center p-1 width-6 mt-1"><% salidasPorcentaje %>%</span>
+                                                            <span class="d-inline-block ml-2 text-muted">
+                                                                Entradas
+                                                                <i class="fal fa-caret-up color-danger-500 ml-1"></i>
+                                                            </span>
+                                                            <div class="ml-auto d-inline-flex align-items-center">
+                                                                <div class="sparklines totalEntradaYSalidas d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#886ab5" sparkfillcolor="false" sparklinewidth="1" values="5,6,5,3,8,6,9,7,4,2"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
+                                                                <div class="d-inline-flex flex-column small ml-2">
+                                                                    <span class="d-inline-block badge badge-success opacity-50 text-center p-1 width-6"><% entradasPorcentaje %>%</span>
+                                                                    <span class="d-inline-block badge bg-fusion-300 opacity-50 text-center p-1 width-6 mt-1"><% salidasPorcentaje %>%</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+
+                                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                                                        <div class="px-3 py-2 d-flex align-items-center">
+                                                            <div id="salidasPie" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="100" data-linewidth="20" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                                                <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                                                    <span class="js-percent d-block text-dark">0</span>
+                                                                </div>
+                                                            </div>
+                                                            <span class="d-inline-block ml-2 text-muted">
+                                                                Salidas
+                                                                <i class="fal fa-caret-up color-danger-500 ml-1"></i>
+                                                            </span>
+                                                            <div class="ml-auto d-inline-flex align-items-center">
+                                                                <div class="sparklines totalEntradaYSalidas d-inline-flex" sparktype="line" sparkheight="30" sparkwidth="70" sparklinecolor="#886ab5" sparkfillcolor="false" sparklinewidth="1" values="5,6,5,3,8,6,9,7,4,2"><canvas width="70" height="30" style="display: inline-block; width: 70px; height: 30px; vertical-align: top;"></canvas></div>
+                                                                <div class="d-inline-flex flex-column small ml-2">
+                                                                    <span class="d-inline-block badge badge-success opacity-50 text-center p-1 width-6"><% salidasPorcentaje %>%</span>
+                                                                    <span class="d-inline-block badge bg-fusion-300 opacity-50 text-center p-1 width-6 mt-1"><% entradasPorcentaje %>%</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -883,8 +906,9 @@
         <script>
             $(document).ready(function()
             {
-                $('.js-easy-pie-chart').data('easyPieChart').update(10);
 
+                
+                
                 $('#dt-basic-example').dataTable( {
                     "ordering": false,
                     

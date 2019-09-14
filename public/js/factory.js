@@ -2344,20 +2344,20 @@
         });
 
       },
-      postRegistrarEntrada: function(id_trabajadores, comentarios, date){
+      postRegistrarEntrada: function(id_trabajadores, comentarios, date, geoLocation){
 
         console.log("[factory][postRegistrarEntrada]");
 
         var url = '/api/trabajadores/registros/entradas';
-        return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, comentarios:comentarios, date:date });
+        return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, comentarios:comentarios, date:date, geoLocation:geoLocation });
 
       },
-      postRegistrarSalida: function(id_trabajadores, comentarios, date, id_salidas){
+      postRegistrarSalida: function(id_trabajadores, comentarios, date, id_salidas, geoLocation){
 
         console.log("[factory][postRegistrarEntrada]");
 
         var url = '/api/trabajadores/registros/salidas';
-        return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, comentarios:comentarios, date:date, id_salidas:id_salidas });
+        return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, comentarios:comentarios, date:date, id_salidas:id_salidas, geoLocation:geoLocation });
 
       },
       getZonaHoraria: function(id_empresas) {

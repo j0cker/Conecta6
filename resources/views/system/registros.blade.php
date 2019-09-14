@@ -848,7 +848,7 @@
 
                     console.log("[registrarEntrada]");
 
-                    postRegistrarEntradaClick("{{ $user['usr']->id_trabajadores }}");
+                    postRegistrarEntradaClick("{{ $user['usr']->id_trabajadores }}", "{{ $user['usr']->geo_activated }}");
 
                 });
 
@@ -856,7 +856,7 @@
 
                     console.log("[registrarEntrada]");
 
-                    postRegistrarSalidaClick("{{ $user['usr']->id_trabajadores }}");
+                    postRegistrarSalidaClick("{{ $user['usr']->id_trabajadores }}", "{{ $user['usr']->geo_activated }}");
 
                 });
 
