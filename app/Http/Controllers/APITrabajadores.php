@@ -1024,6 +1024,7 @@ class APITrabajadores extends Controller
           Log::info("isMobile: " .Browser::isMobile());
           Log::info("isTablet: " .Browser::isTablet());
           Log::info("isDesktop: " .Browser::isDesktop());
+          Log::info("Date: " . functions::dateNowCarbonTimezone('America/Mexico_City'));
 
           //restricción por IP
           if($token_decrypt["usr"]->ip_activated==1 && ($token_decrypt["usr"]->ip=="" || $token_decrypt["usr"]->ip!=request()->ip())){

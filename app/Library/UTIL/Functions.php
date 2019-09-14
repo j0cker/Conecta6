@@ -3,6 +3,8 @@ namespace App\Library\UTIL;
 use Illuminate\Support\Facades\Log;
 use Config;
 use App;
+use carbon\Carbon;
+
 class Functions
 {
     public function __construct(){
@@ -183,13 +185,12 @@ class Functions
     public function quitarHtml($string){
         return strip_tags($string);
     }
-    public function dateCarbon($date, $usoHorario){
-     //$date = Carbon::createFromFormat('Y-m-d H:i:s', '2016-12-30 23:37:00', 'America/Detroit');
-     //America/Mexico_City
-     //colocar use Carbon\Carbon;
-     //$date = Carbon::createFromFormat('d-m-Y H:i', $date, $usoHorario);
-     //$date->setTimezone(Config::get('app.timezone'));
-     return $date;
+    public static function dateNowCarbonTimezone($usoHorario){
+     
+     //return now in timezone, seems like seasons are supported.
+
+     return Carbon::createFromFormat('Y-m-d H:i:s', Carbon::now())->timezone($usoHorario);
+     
    }
    public function distanceCalculation($point1_lat, $point1_long, $point2_lat, $point2_long, $unit = 'km', $decimals = 2) {
     
