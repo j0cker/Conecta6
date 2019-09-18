@@ -1025,10 +1025,37 @@ class APITrabajadores extends Controller
           Log::info("isTablet: " .Browser::isTablet());
           Log::info("isDesktop: " .Browser::isDesktop());
           Log::info("Date: " . functions::dateNowCarbonTimezone('America/Mexico_City'));
+          Log::info("PC Activated: " .$token_decrypt["usr"]->pc_activated);
+          Log::info("Tablet Activated: " .$token_decrypt["usr"]->tablet_activated);
+          Log::info("Mobile Activated: " .$token_decrypt["usr"]->mobile_activated);
+          Log::info("Geo Activated: " .$token_decrypt["usr"]->geo_activated);
+          Log::info("Geo Metro: " . $token_decrypt["usr"]->metros);
 
+          //restricción por dispositivo
+          $pc=-1; $tablet=-1; $mobile=-1;
+          if($token_decrypt["usr"]->pc_activated==1 && Browser::isDesktop()==1){
+            $pc=1;
+          }
+          if($token_decrypt["usr"]->tablet_activated==1 && Browser::isTablet()==1){
+            $tablet=1;
+          }
+          if($token_decrypt["usr"]->mobile_activated==1 && Browser::isMobile()==1){
+            $mobile=1;
+          }
+          if($token_decrypt["usr"]->pc_activated==0 && $token_decrypt["usr"]->tablet_activated==0 && $token_decrypt["usr"]->mobile_activated==0){
+            $pc=1; $tablet=1; $mobile=1;
+          }
+          if($pc==-1 && $tablet==-1 && $mobile==-1){
+            Log::info(Lang::get('messages.devicenotavailable'));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.devicenotavailable'), 0);
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+          }
+          
           //restricción por IP
           if($token_decrypt["usr"]->ip_activated==1 && ($token_decrypt["usr"]->ip=="" || $token_decrypt["usr"]->ip!=request()->ip())){
 
+            Log::info(Lang::get('messages.ipnocoincide'));
             $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.ipnocoincide'), 0);
             $responseJSON->data = [];
             return json_encode($responseJSON);
@@ -1037,22 +1064,31 @@ class APITrabajadores extends Controller
           
           //restricción por Geolocation
           $geoArray = explode(",", $geoLocation);
-          if($token_decrypt["usr"]->geo_activated==1 && ($geoLocation=="-1" || $token_decrypt["usr"]->metros<=$functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))){
+          if($token_decrypt["usr"]->geo_activated=="1" && $token_decrypt["usr"]->metros<abs($functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))){
 
+            Log::info(Lang::get('messages.geonocoincide'));
             Log::info("Latitud: " . $token_decrypt["usr"]->latitud." Longitud: ".$token_decrypt["usr"]->longitud);
-            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
-            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->calculaDistancia($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<" .abs($functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))." Cumple Entonces Error");
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<" .abs($functions->calculaDistancia($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))." Cumple Entonces Error");
 
             $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.geonocoincide'), 0);
             $responseJSON->data = [];
             return json_encode($responseJSON);
 
-          } else {
+          } else if($token_decrypt["usr"]->geo_activated==1 && $geoLocation=="-1"){
 
+            Log::info("Geolocalización: " .$geoLocation);
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.geonohabilitado'), 0);
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          } else if($token_decrypt["usr"]->geo_activated==1) {
+
+            Log::info("GEO está activado, y se cumplieron las condicionantes para registrar entrada/salida");
             Log::info("Latitud: " . $token_decrypt["usr"]->latitud." Longitud: ".$token_decrypt["usr"]->longitud);
-            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
-            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->calculaDistancia($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
-          
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<" .abs($functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))." Cumple Entonces Error");
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<" .abs($functions->calculaDistancia($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))." Cumple Entonces Error");
+
           }
 
 
@@ -1182,6 +1218,32 @@ class APITrabajadores extends Controller
           Log::info("isMobile: " .Browser::isMobile());
           Log::info("isTablet: " .Browser::isTablet());
           Log::info("isDesktop: " .Browser::isDesktop());
+          Log::info("PC Activated: " .$token_decrypt["usr"]->pc_activated);
+          Log::info("Tablet Activated: " .$token_decrypt["usr"]->tablet_activated);
+          Log::info("Mobile Activated: " .$token_decrypt["usr"]->mobile_activated);
+          Log::info("Geo Activated: " .$token_decrypt["usr"]->geo_activated);
+          Log::info("Geo Metro: " . $token_decrypt["usr"]->metros);
+
+          //restricción por dispositivo
+          $pc=-1; $tablet=-1; $mobile=-1;
+          if($token_decrypt["usr"]->pc_activated==1 && Browser::isDesktop()==1){
+            $pc=1;
+          }
+          if($token_decrypt["usr"]->tablet_activated==1 && Browser::isTablet()==1){
+            $tablet=1;
+          }
+          if($token_decrypt["usr"]->mobile_activated==1 && Browser::isMobile()==1){
+            $mobile=1;
+          }
+          if($token_decrypt["usr"]->pc_activated==0 && $token_decrypt["usr"]->tablet_activated==0 && $token_decrypt["usr"]->mobile_activated==0){
+            $pc=1; $tablet=1; $mobile=1;
+          }
+          if($pc==-1 && $tablet==-1 && $mobile==-1){
+            Log::info(Lang::get('messages.devicenotavailable'));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.devicenotavailable'), 0);
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+          }
 
           //restricción por IP
           if($token_decrypt["usr"]->ip_activated==1 && ($token_decrypt["usr"]->ip=="" || $token_decrypt["usr"]->ip!=request()->ip())){
@@ -1194,22 +1256,31 @@ class APITrabajadores extends Controller
           
           //restricción por Geolocation
           $geoArray = explode(",", $geoLocation);
-          if($token_decrypt["usr"]->geo_activated==1 && ($geoLocation=="-1" || $token_decrypt["usr"]->metros<=$functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))){
+          if($token_decrypt["usr"]->geo_activated=="1" && $token_decrypt["usr"]->metros<abs($functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))){
 
+            Log::info(Lang::get('messages.geonocoincide'));
             Log::info("Latitud: " . $token_decrypt["usr"]->latitud." Longitud: ".$token_decrypt["usr"]->longitud);
-            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
-            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->calculaDistancia($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<" .abs($functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))." Cumple Entonces Error");
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<" .abs($functions->calculaDistancia($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))." Cumple Entonces Error");
 
             $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.geonocoincide'), 0);
             $responseJSON->data = [];
             return json_encode($responseJSON);
 
-          } else {
+          } else if($token_decrypt["usr"]->geo_activated==1 && $geoLocation=="-1"){
 
+            Log::info("Geolocalización: " .$geoLocation);
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.geonohabilitado'), 0);
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          } else if($token_decrypt["usr"]->geo_activated==1) {
+
+            Log::info("GEO está activado, y se cumplieron las condicionantes para registrar entrada/salida");
             Log::info("Latitud: " . $token_decrypt["usr"]->latitud." Longitud: ".$token_decrypt["usr"]->longitud);
-            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
-            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<=" .$functions->calculaDistancia($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud));
-          
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<" .abs($functions->distanceCalculation($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))." Cumple Entonces Error");
+            Log::info("Geolocation: ".$token_decrypt["usr"]->metros."<" .abs($functions->calculaDistancia($geoArray[0], $geoArray[1], $token_decrypt["usr"]->latitud, $token_decrypt["usr"]->longitud))." Cumple Entonces Error");
+
           }
 
           //print_r($token_decrypt["id"]);

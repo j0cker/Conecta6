@@ -44,6 +44,8 @@ return [
     //textos
     'ipnocoincide' => 'La IP No coincide.',
     'geonocoincide' => 'Te encuentres en un zona fuera de tolerancia del lugar de registro de asistencia.',
+    'geonohabilitado' => 'Favor de habilitar la geolocalización.',
+    'devicenotavailable' => 'Utiliza un Dispositivo Aprobado por la Empresa.',
     'entradaSeguidaDeEntrada' => 'Una entrada no puede ir seguida de otra entrada en el mismo día.',
     'salidaseguidaDeSalida' => 'Una salida no puede ir seguida de otra salida en el mismo día.',
     'salidaComoPrimero' => 'Registre una Entrada primero.',
