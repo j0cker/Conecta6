@@ -387,7 +387,7 @@ class APIEmpresas extends Controller
 
       //print_r($token_decrypt);
 
-      $image = Empresas::getImage($id_empresas);
+      $image = Empresas::getImage($id_empresas)->get();
 
       //$image->first()->foto_base64 = "";
 

@@ -1574,7 +1574,7 @@
 
         
 
-        //Limpiar y guardar arreglo por entrada seguido de salida para facilitar el cálculo
+        //Limpiar y guardar arreglo por entrada seguido de salida para facilitar el cálculo y toma en cuenta que sea computarizable
         var x=0;
         for(var i=0; i<data.length; i++){
 
@@ -1594,7 +1594,7 @@
               var fecha = data[y].fecha.toString().split(" ");
               var fecha2 = registrosEntSal[registrosEntSal.length-1].fecha.toString().split(" ");
     
-              if(data[y].tipo!=registrosEntSal[registrosEntSal.length-1].tipo  && fecha[0]==fecha2[0]){
+              if(data[y].tipo!=registrosEntSal[registrosEntSal.length-1].tipo  && fecha[0]==fecha2[0] && (data[y].tipo=="salida" && data[y].computable==1)){
                 console.log("encontró Vueltas i: " + i + " Vueltas y: " + y);
 
                 registrosEntSal.push(data[y]);
@@ -1698,7 +1698,7 @@
 
         console.log(registrosEntSal);
 
-        //calculo de horas trabajadas de la semana solo computarisables
+        //calculo de horas trabajadas de la semana
         var horas = 0;
         var minutos = 0;
         var segundos = 0;
@@ -1718,9 +1718,10 @@
 
         for(var i=0; i<registrosEntSal.length; i=i+2){
 
+          //se sale del arreglo al llegar al final
           if(registrosEntSal[i+1]!=undefined){
 
-            if(registrosEntSal[i].tipo=="entrada" && (registrosEntSal[i+1].tipo=="salida" && registrosEntSal[i+1].computable==1)){
+            if(registrosEntSal[i].tipo=="entrada" && registrosEntSal[i+1].tipo=="salida"){
 
               console.log("Calcular: " + i + "  " + (i+1));
 
@@ -1863,7 +1864,7 @@
 
         console.log(registrosEntSal);
 
-        //calculo de horas trabajadas de la semana solo computarisables
+        //calculo de horas trabajadas de la semana
         var horas = 0;
         var minutos = 0;
         var segundos = 0;
@@ -1883,9 +1884,10 @@
 
         for(var i=0; i<registrosEntSal.length; i=i+2){
 
+          //se sale del arreglo al llegar al final
           if(registrosEntSal[i+1]!=undefined){
 
-            if(registrosEntSal[i].tipo=="entrada" && (registrosEntSal[i+1].tipo=="salida" && registrosEntSal[i+1].computable==1)){
+            if(registrosEntSal[i].tipo=="entrada" && registrosEntSal[i+1].tipo=="salida"){
 
               console.log("Calcular: " + i + "  " + (i+1));
 
@@ -2014,7 +2016,7 @@
 
         console.log(registrosEntSal);
 
-        //calculo de horas trabajadas de hoy solo computarisables
+        //calculo de horas trabajadas de hoy
         var horas = 0;
         var minutos = 0;
         var segundos = 0;
@@ -2027,9 +2029,10 @@
 
         for(var i=0; i<registrosEntSal.length; i=i+2){
 
+          //se sale del arreglo al llegar al final
           if(registrosEntSal[i+1]!=undefined){
 
-            if(registrosEntSal[i].tipo=="entrada" && (registrosEntSal[i+1].tipo=="salida" && registrosEntSal[i+1].computable==1)){
+            if(registrosEntSal[i].tipo=="entrada" && registrosEntSal[i+1].tipo=="salida"){
 
               console.log("Calcular: " + i + "  " + (i+1));
 

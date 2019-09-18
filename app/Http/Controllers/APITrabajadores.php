@@ -912,11 +912,11 @@ class APITrabajadores extends Controller
 
           //print_r($token_decrypt);
 
-          $Entradas = Registros::getAllEntradas($id_trabajadores)->get()->count();
+          $Entradas = Registros::getAllEntradas($id_trabajadores)->count();
           
           Log::info($Entradas);
 
-          $Salidas = Registros::getAllSalidas($id_trabajadores)->get()->count();
+          $Salidas = Registros::getAllSalidas($id_trabajadores)->count();
     
           Log::info($Salidas);
         
