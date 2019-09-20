@@ -51,6 +51,37 @@ class Registros extends Model
         ]);
 
     }
+    
+    //obten todas las entradas por id trabajadores
+    public function scopeGetAllEntradasByEmpresas($query, $id_empresas)
+    {
+
+        Log::info("[Entradas][scopeGetAllEntradasByEmpresas]");
+        Log::info("[Entradas][scopeGetAllEntradasByEmpresas] id_empresas: " . $id_empresas);
+        
+        
+
+        return $query->leftJoin('trabajadores', 'trabajadores.id_trabajadores', '=', 'registros.id_trabajadores')
+        ->where([
+            ['id_empresas', '=', $id_empresas],
+            ['tipo', '=', 'entrada'],
+        ]);
+
+    }
+    
+    //obten todas las salidas por id trabajadores
+    public function scopeGetAllSalidasByEmpresas($query, $id_empresas)
+    {
+
+        Log::info("[Entradas][scopeGetAllSalidasByEmpresas]");
+        
+        return $query->leftJoin('trabajadores', 'trabajadores.id_trabajadores', '=', 'registros.id_trabajadores')
+        ->where([
+            ['id_empresas', '=', $id_empresas],
+            ['tipo', '=', 'salida'],
+        ]);
+
+    }
 
     //obtener último registro del día
     public function scopeGetLastRegistro($query, $id_trabajadores, $date){

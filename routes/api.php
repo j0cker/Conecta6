@@ -48,11 +48,14 @@ Route::post('/trabajadores/registros/entradas', 'APITrabajadores@PostEntradas');
 //post registro salidas
 Route::post('/trabajadores/registros/salidas', 'APITrabajadores@PostSalidas');
 
-//Get Historial Entradas
+//Get Historial Entradas by id_trabajadores fecha ini y fecha fin
 Route::get('/trabajadores/historial/todas', 'APITrabajadores@GetAllHistorial');
 
-//Get All Entradas All Salidas
+//Get All Entradas All Salidas by id_trabajadores
 Route::get('/trabajadores/registros/todos', 'APITrabajadores@GetAllEntradasSalidas');
+
+//Get All Entradas All Salidas by id_empresas
+Route::get('/trabajadores/registros/todosByEmpresas', 'APITrabajadores@GetAllEntradasSalidasByEmpresas');
 
 /*
 *******Empresas******

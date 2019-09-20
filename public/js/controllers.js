@@ -171,9 +171,9 @@
           toastr["error"]("Inténtelo de nuevo más tarde", "");
           functions.loadingEndWait();
 
-        });/*fin getImageEmpresa*/
+        });/*fin getAllEntradasSalidas*/
 
-    }; //fin getImageEmpresaClick
+    }; //fin getAllEntradasSalidasClick
 
     getAllEntradasSalidasClick = $scope.getAllEntradasSalidasClick;
 
@@ -1229,6 +1229,93 @@
     functions.loading();
 
     
+    
+    $scope.getAllEntradasSalidasByEmpresasClick = function(id_empresas){
+
+      console.log("[inicio] ");
+
+      functions.getAllEntradasSalidasByEmpresas(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[inicio]");
+
+              console.log(response.data.data);
+
+              console.log("Entradas: " + response.data.entradas.length);
+              console.log("Salidas: " + response.data.salidas.length);
+
+              var entradasySalidas = concatArray(response.data.entradas, response.data.salidas);
+
+              var arrayDividido = functions.dividirArrayPorIdTrabajadores(entradasySalidas);
+
+              console.log("Array Dividido:");
+              console.log(arrayDividido);
+              
+              var arrayDivididoOrdered = functions.ordernarPorFechaArrayKey(arrayDividido);
+
+              console.log("Arreglo ordenado por fecha:");
+              console.log(arrayDivididoOrdered);
+
+              var porcentaje = functions.porcentajeActividadTrabajadores(arrayDivididoOrdered);
+
+              $scope.entradasTotales = response.data.entradas.length;
+              $scope.salidasTotales = response.data.salidas.length;
+
+
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getAllEntradasSalidasByEmpresas*/
+
+    }; //fin getAllEntradasSalidasByEmpresasClick
+
+    getAllEntradasSalidasByEmpresasClick = $scope.getAllEntradasSalidasByEmpresasClick;
+
+    $scope.getTrabajadoresByIdEmpresaClick = function(id_empresas){
+
+      functions.getTrabajadoresByIdEmpresa(id_empresas).then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            console.log("[trabajadores][agregarNuevoTrabajadorClick][perfilEmpresas]");
+
+            console.log(response.data.data);
+
+            var data = Array();
+
+            //var choices = Array();
+            //choices = ["id_trabajadores", "nombre", "apellido", "correo", "telefono_fijo"];
+            
+            //data = addKeyToArray(data, response.data.data, choices);
+
+            $scope.totalTrabajadores = response.data.data.length;
+
+            console.log(data);
+
+            //$('#dt-basic-example').dataTable().fnClearTable();
+            //$('#dt-basic-example').dataTable().fnAddData(data);
+            
+
+          } else {
+              toastr["warning"](response.data.description, "");
+              functions.loadingEndWait();
+          }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getTrabajadoresByIdEmpresa*/
+
+    }; //fin getTrabajadoresByIdEmpresa
+
+    getTrabajadoresByIdEmpresaClick = $scope.getTrabajadoresByIdEmpresaClick;
 
     $scope.getImageEmpresaClick = function(id_empresas){
 

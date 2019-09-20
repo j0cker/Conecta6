@@ -15,9 +15,9 @@
 
         Por favor verifica siempre accesar con el protocolo de seguridad https://
         La zona horaria soporta también cambio de estaciones del año.
-        
-        
-        
+        Las estadísticas tiene un algoritmo especial de cálculo de horas trabajadas y de horas extras (las horas extras pueden ser negativas). Soporta cálculos computarizables de salidas personalizables.
+        Una entrada no puede seguir de otra entrada y viceversa (salidas) Ojo. (solo válido durante el mismo día corriendo).
+        Las entradads y salidas incluyen restricciones por Geolocalización, IP y por dispositivo.
         
         
         /**Landing Page**/
@@ -90,6 +90,9 @@
 
         //Get Historial Entradas
         Route::get('/trabajadores/historial/todas', 'APITrabajadores@GetAllHistorial');
+
+        //Get All Entradas All Salidas
+        Route::get('/trabajadores/registros/todos', 'APITrabajadores@GetAllEntradasSalidas');
 
 
 

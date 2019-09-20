@@ -63,20 +63,20 @@
                             </h1>
                             <div class="d-flex mr-4">
                                 <div class="mr-2">
-                                    <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#967bbd&quot;, &quot;#ccbfdf&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">7/10</span>
+                                    <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#967bbd&quot;, &quot;#ccbfdf&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">.70</span>
                                 </div>
                                 <div>
-                                    <label class="fs-sm mb-0 mt-2 mt-md-0">Empresas con Actividad</label>
+                                    <label class="fs-sm mb-0 mt-2 mt-md-0">Trabajadores con Actividad</label>
                                     <h4 class="font-weight-bold mb-0">70.60%</h4>
                                 </div>
                             </div>
                             <div class="d-flex mr-0">
                                 <div class="mr-2">
-                                    <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#2196F3&quot;, &quot;#9acffa&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">3/10</span>
+                                    <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#2196F3&quot;, &quot;#9acffa&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">1/10</span>
                                 </div>
                                 <div>
-                                    <label class="fs-sm mb-0 mt-2 mt-md-0">Empresas sin Actividad</label>
-                                    <h4 class="font-weight-bold mb-0">14,134</h4>
+                                    <label class="fs-sm mb-0 mt-2 mt-md-0">Trabajadores sin Actividad</label>
+                                    <h4 class="font-weight-bold mb-0">14%</h4>
                                 </div>
                             </div>
                         </div>
@@ -85,8 +85,8 @@
                                 <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            100
-                                            <small class="m-0 l-h-n">Total de Empresas</small>
+                                            0
+                                            <small class="m-0 l-h-n">Plan Próximo a Vencer (días)</small>
                                         </h3>
                                     </div>
                                     <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
@@ -96,7 +96,7 @@
                                 <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            1250
+                                            <% totalTrabajadores %>
                                             <small class="m-0 l-h-n">Total de Trabajadores</small>
                                         </h3>
                                     </div>
@@ -107,8 +107,8 @@
                                 <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            25
-                                            <small class="m-0 l-h-n">Planes Próximos a Vencer</small>
+                                            <% entradasTotales %>
+                                            <small class="m-0 l-h-n">Entradas Totales</small>
                                         </h3>
                                     </div>
                                     <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
@@ -118,8 +118,8 @@
                                 <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            10
-                                            <small class="m-0 l-h-n">Empresas Demo</small>
+                                        <% salidasTotales %>
+                                            <small class="m-0 l-h-n">Salidas Totales</small>
                                         </h3>
                                     </div>
                                     <i class="fal fa-globe position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
@@ -1326,8 +1326,6 @@
 
         <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
 
-        
-        
         <script>
             $(document).ready(function()
             {
@@ -1335,6 +1333,8 @@
                 $('#js-page-content').smartPanel(); 
 
                 angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                getTrabajadoresByIdEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                getAllEntradasSalidasByEmpresasClick("<?php echo e($user['usr']->id_empresas); ?>");
             });
         </script>
 

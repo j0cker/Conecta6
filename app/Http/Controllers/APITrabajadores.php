@@ -874,6 +874,106 @@ class APITrabajadores extends Controller
 
   }
 
+  public function GetAllEntradasSalidasByEmpresas(Request $request){
+    
+    Log::info('[APITrabajadores][GetAllEntradasSalidasByEmpresas]');
+
+    Log::info("[APITrabajadores][GetAllEntradasSalidasByEmpresas] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array("3", $token_decrypt["permisos"])==1 || in_array("2", $token_decrypt["permisos"])==1){
+
+          $this->validate($request, [
+            'id_empresas' => 'required'
+          ]);
+            
+          $id_empresas = $request->input('id_empresas');
+            
+          //print_r($token_decrypt["id"]);
+
+          //print_r($token_decrypt);
+
+          $Entradas = Registros::getAllEntradasByEmpresas($id_empresas)->get();
+          
+          Log::info($Entradas);
+
+          $Salidas = Registros::getAllSalidasByEmpresas($id_empresas)->get();
+    
+          Log::info($Salidas);
+        
+          if(true){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Entradas));
+            $responseJSON->data = [];
+            $responseJSON->entradas = $Entradas;
+            $responseJSON->salidas = $Salidas;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Entradas));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        } else {
+          
+          return redirect('/');
+          
+        }
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APITrabajadores][GetAllEntradasSalidasByEmpresas] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APITrabajadores][GetAllEntradasSalidasByEmpresas] Token error: token_invalid');
+
+        return redirect('/');
+                                    
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APITrabajadores][GetAllEntradasSalidasByEmpresas] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+    } else {
+      abort(404);
+    }
+
+  }
+
   public function GetAllEntradasSalidas(Request $request){
     
     Log::info('[APITrabajadores][GetAllEntradasSalidas]');

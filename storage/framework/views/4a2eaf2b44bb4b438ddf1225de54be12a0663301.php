@@ -61,7 +61,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-door-open"></i> Modificar Contraseña
+                                <i class="subheader-icon fal fa-key"></i> Modificar Contraseña
                                 <small>
                                 </small>
                             </h1>

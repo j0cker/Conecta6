@@ -32,6 +32,15 @@ toastr.options = {
   "showMethod": "fadeIn",
   "hideMethod": "fadeOut"
 }
+function concatArray(array1, array2){
+
+  /*
+  concatena un array con otro array
+  */
+
+  return array1.concat(array2);
+
+}
 function removeKeyFromArray(json, choice) {
   /*
     Remueve una llave de un array por completo
@@ -47,7 +56,7 @@ function removeKeyFromArray(json, choice) {
 }
 function addKeyToArray(data, array, choice) {
   /*
-    agrega un array de llaves de un array a un array
+    agrega un array de llaves seleccionados de un array a otro array de la misma especie, es un especie de filtro o pipe.
     para datatables
   */
 

@@ -32,6 +32,38 @@
           $('#loader-wrapper').css('display','none');
         }, x);
       },
+      porcentajeActividadTrabajadores: function(entradasYSalidas){
+
+        var trabajadores = Array();
+
+      },
+      ordernarPorFechaArrayKey: function(arrayKeys){
+        var arrayDivididoOrdered = Array();
+
+              for (var key in arrayKeys){
+                if(arrayDivididoOrdered[""+key+""] == undefined){
+                  arrayDivididoOrdered[""+key+""] = Array();
+                }
+                arrayDivididoOrdered[""+key+""] = orderFechaDesc(arrayKeys[key]);
+              }
+        return arrayDivididoOrdered;
+      },
+      dividirArrayPorIdTrabajadores: function(entradasySalidas){
+
+        var arrayDividido = Array();
+
+        for(var i=0; i<entradasySalidas.length; i++){
+          if(arrayDividido[""+entradasySalidas[i].id_trabajadores+""] == undefined){
+            arrayDividido[""+entradasySalidas[i].id_trabajadores+""] = Array();
+          }
+          
+          arrayDividido[""+entradasySalidas[i].id_trabajadores+""].push(entradasySalidas[i]);
+          
+        }
+
+
+        return arrayDividido;
+      },
       vigencias: function(fecha, hoy){
         console.log("[factory.js][vigencias]");
 
@@ -2271,6 +2303,18 @@
         
         return $http.get(url,{
           params: { cache: false, id_trabajadores:id_trabajadores },
+          cache: false
+        });
+
+      },
+      getAllEntradasSalidasByEmpresas: function(id_empresas) {
+
+        console.log("[factory][getAllEntradasSalidasByEmpresas]");
+
+        var url = '/api/trabajadores/registros/todosByEmpresas';
+        
+        return $http.get(url,{
+          params: { cache: false, id_empresas:id_empresas },
           cache: false
         });
 
