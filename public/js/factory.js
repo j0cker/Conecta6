@@ -32,20 +32,71 @@
           $('#loader-wrapper').css('display','none');
         }, x);
       },
-      porcentajeActividadTrabajadores: function(entradasYSalidas){
+      porcentajeActividadTrabajadores: function(trabajadoresTotales, entradasYSalidas, fecha){
 
         var trabajadores = Array();
+        trabajadores["totales"] = trabajadoresTotales;
+        trabajadores["activos"] = 0;
+
+        
+        var phora = fecha.getHours(),
+            pminutos = fecha.getMinutes(),
+            psegundos = fecha.getSeconds(),
+            pdiaSemana = fecha.getDay(),
+            pdia = fecha.getDate(),
+            pmes = fecha.getMonth(),
+            panio = fecha.getFullYear(),
+            pampm;
+
+        for (var key in entradasYSalidas){
+
+          if (entradasYSalidas[key][0] !== undefined) {
+              
+            console.log(entradasYSalidas[key][0]);
+
+            fechaRegistro =  new Date(entradasYSalidas[key][0].fecha);
+
+            var rhora = fechaRegistro.getHours(),
+                rminutos = fechaRegistro.getMinutes(),
+                rsegundos = fechaRegistro.getSeconds(),
+                rdiaSemana = fechaRegistro.getDay(),
+                rdia = fechaRegistro.getDate(),
+                rmes = fechaRegistro.getMonth(),
+                ranio = fechaRegistro.getFullYear(),
+                rampm;
+
+            var fechaRestar = panio + "-" + pmes + "-" + pdia; 
+            var fechaRestar2 = ranio + "-" + rmes + "-" + rdia; 
+
+            console.log(fechaRestar);
+            console.log(fechaRestar2);
+
+            console.log(restaFechas3(fechaRestar, fechaRestar2))
+
+            if(Math.abs(restaFechas3(fechaRestar, fechaRestar2)) <7){
+              trabajadores["activos"] = parseInt(trabajadores["activos"]) + 1;
+            }
+
+          }//fin if undefined
+
+        }//fin for
+
+        trabajadores["conActividad"] = (trabajadores["activos"]*100)/(trabajadores["totales"]);
+        trabajadores["noActivos"] = trabajadores["totales"] - trabajadores["activos"];
+        trabajadores["sinActividad"] = (trabajadores["noActivos"]*100)/(trabajadores["totales"]);
+
+        return trabajadores;
 
       },
       ordernarPorFechaArrayKey: function(arrayKeys){
         var arrayDivididoOrdered = Array();
 
-              for (var key in arrayKeys){
-                if(arrayDivididoOrdered[""+key+""] == undefined){
-                  arrayDivididoOrdered[""+key+""] = Array();
-                }
-                arrayDivididoOrdered[""+key+""] = orderFechaDesc(arrayKeys[key]);
-              }
+        for (var key in arrayKeys){
+          if(arrayDivididoOrdered[""+key+""] == undefined){
+            arrayDivididoOrdered[""+key+""] = Array();
+          }
+          arrayDivididoOrdered[""+key+""] = orderFechaDesc(arrayKeys[key]);
+        }
         return arrayDivididoOrdered;
       },
       dividirArrayPorIdTrabajadores: function(entradasySalidas){

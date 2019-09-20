@@ -325,9 +325,9 @@
           toastr["error"]("Inténtelo de nuevo más tarde", "");
           functions.loadingEndWait();
 
-        });/*fin getImageEmpresa*/
+        });/*fin getZonaHoraria*/
 
-    }; //fin getImageEmpresaClick
+    }; //fin getZonaHorariaFrontClick
 
     getZonaHorariaFront = $scope.getZonaHorariaFrontClick;
 
@@ -1228,40 +1228,123 @@
 
     functions.loading();
 
-    
-    
-    $scope.getAllEntradasSalidasByEmpresasClick = function(id_empresas){
+    $scope.getZonaHorariaFrontClick = function(id_empresas){
 
-      console.log("[inicio] ");
+      console.log("[inicioEmpresa] ");
 
-      functions.getAllEntradasSalidasByEmpresas(id_empresas).then(function (response) {
+      functions.getZonaHoraria(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[inicio]");
+              console.log("[inicioEmpresa][getZonaHoraria]");
 
               console.log(response.data.data);
 
-              console.log("Entradas: " + response.data.entradas.length);
-              console.log("Salidas: " + response.data.salidas.length);
-
-              var entradasySalidas = concatArray(response.data.entradas, response.data.salidas);
-
-              var arrayDividido = functions.dividirArrayPorIdTrabajadores(entradasySalidas);
-
-              console.log("Array Dividido:");
-              console.log(arrayDividido);
+              var fecha = new Date( moment().tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
               
-              var arrayDivididoOrdered = functions.ordernarPorFechaArrayKey(arrayDividido);
+              var hora = fecha.getHours(),
+                          minutos = fecha.getMinutes(),
+                          segundos = fecha.getSeconds(),
+                          diaSemana = fecha.getDay(),
+                          dia = fecha.getDate(),
+                          mes = fecha.getMonth(),
+                          anio = fecha.getFullYear(),
+                          ampm;
+              
+              console.log(fecha);
 
-              console.log("Arreglo ordenado por fecha:");
-              console.log(arrayDivididoOrdered);
+              var semana = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
+              var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+                  
+                      
+              functions.getAllEntradasSalidasByEmpresas(id_empresas).then(function (response) {
 
-              var porcentaje = functions.porcentajeActividadTrabajadores(arrayDivididoOrdered);
+                if(response.data.success == "TRUE"){
+                  console.log("[inicio]");
 
-              $scope.entradasTotales = response.data.entradas.length;
-              $scope.salidasTotales = response.data.salidas.length;
+                  console.log(response.data.data);
+
+                  console.log("Entradas: " + response.data.entradas.length);
+                  console.log("Salidas: " + response.data.salidas.length);
+
+                  var entradasySalidas = concatArray(response.data.entradas, response.data.salidas);
+
+                  console.log("Concat: ");
+                  console.log(entradasySalidas);
+
+                  var arrayDividido = functions.dividirArrayPorIdTrabajadores(entradasySalidas);
+
+                  console.log("Array Dividido:");
+                  console.log(arrayDividido);
+                  
+                  var arrayDivididoOrdered = functions.ordernarPorFechaArrayKey(arrayDividido);
+
+                  console.log("Arreglo ordenado por fecha:");
+                  console.log(arrayDivididoOrdered);
+
+                  $scope.entradasTotales = response.data.entradas.length;
+                  $scope.salidasTotales = response.data.salidas.length;
+
+                  functions.getTrabajadoresByIdEmpresa(id_empresas).then(function (response) {
+
+                      if(response.data.success == "TRUE"){
+                        console.log("[trabajadores][agregarNuevoTrabajadorClick][perfilEmpresas]");
+
+                        console.log(response.data.data);
+
+                        var data = Array();
+
+                        //var choices = Array();
+                        //choices = ["id_trabajadores", "nombre", "apellido", "correo", "telefono_fijo"];
+                        
+                        //data = addKeyToArray(data, response.data.data, choices);
+
+                        $scope.totalTrabajadores = response.data.data.length;
+
+                        console.log(data);
+
+                              
+                        var porcentaje = functions.porcentajeActividadTrabajadores($scope.totalTrabajadores, arrayDivididoOrdered, fecha);
+
+                        console.log("Porcentajes:");
+                        console.log(porcentaje);
+
+                        $scope.conActividad = porcentaje["conActividad"];
+                        $scope.sinActividad = porcentaje["sinActividad"];
+                        $scope.activos = porcentaje["activos"];
+                        $scope.noActivos = porcentaje["noActivos"];
+                        $scope.totales = porcentaje["totales"];
+
+                        //$('#dt-basic-example').dataTable().fnClearTable();
+                        //$('#dt-basic-example').dataTable().fnAddData(data);
+                                  
+                        $('#tSinActividad.js-easy-pie-chart').data('easyPieChart').update($scope.sinActividad);
+
+                        $('#tConActividad.js-easy-pie-chart').data('easyPieChart').update($scope.conActividad);
+
+                        
+
+                      } else {
+                          toastr["warning"](response.data.description, "");
+                          functions.loadingEndWait();
+                      }
+                  }, function (response) {
+                    /*ERROR*/
+                    toastr["error"]("Inténtelo de nuevo más tarde", "");
+                    functions.loadingEndWait();
+
+                  });/*fin getTrabajadoresByIdEmpresa*/
 
 
+                } else {
+                    toastr["warning"](response.data.description, "");
+                    functions.loadingEndWait();
+                }
+            }, function (response) {
+              /*ERROR*/
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+
+            });/*fin getAllEntradasSalidasByEmpresas*/
 
             } else {
                 toastr["warning"](response.data.description, "");
@@ -1272,51 +1355,12 @@
           toastr["error"]("Inténtelo de nuevo más tarde", "");
           functions.loadingEndWait();
 
-        });/*fin getAllEntradasSalidasByEmpresas*/
+        });/*fin getZonaHoraria*/
 
-    }; //fin getAllEntradasSalidasByEmpresasClick
+    }; //fin getZonaHorariaFrontClick
 
-    getAllEntradasSalidasByEmpresasClick = $scope.getAllEntradasSalidasByEmpresasClick;
-
-    $scope.getTrabajadoresByIdEmpresaClick = function(id_empresas){
-
-      functions.getTrabajadoresByIdEmpresa(id_empresas).then(function (response) {
-
-          if(response.data.success == "TRUE"){
-            console.log("[trabajadores][agregarNuevoTrabajadorClick][perfilEmpresas]");
-
-            console.log(response.data.data);
-
-            var data = Array();
-
-            //var choices = Array();
-            //choices = ["id_trabajadores", "nombre", "apellido", "correo", "telefono_fijo"];
-            
-            //data = addKeyToArray(data, response.data.data, choices);
-
-            $scope.totalTrabajadores = response.data.data.length;
-
-            console.log(data);
-
-            //$('#dt-basic-example').dataTable().fnClearTable();
-            //$('#dt-basic-example').dataTable().fnAddData(data);
-            
-
-          } else {
-              toastr["warning"](response.data.description, "");
-              functions.loadingEndWait();
-          }
-      }, function (response) {
-        /*ERROR*/
-        toastr["error"]("Inténtelo de nuevo más tarde", "");
-        functions.loadingEndWait();
-
-      });/*fin getTrabajadoresByIdEmpresa*/
-
-    }; //fin getTrabajadoresByIdEmpresa
-
-    getTrabajadoresByIdEmpresaClick = $scope.getTrabajadoresByIdEmpresaClick;
-
+    getZonaHorariaFront = $scope.getZonaHorariaFrontClick;
+    
     $scope.getImageEmpresaClick = function(id_empresas){
 
       console.log("[signinEmpresas] ");

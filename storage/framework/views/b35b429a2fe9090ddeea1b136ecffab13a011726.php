@@ -63,20 +63,33 @@
                             </h1>
                             <div class="d-flex mr-4">
                                 <div class="mr-2">
-                                    <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#967bbd&quot;, &quot;#ccbfdf&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">.70</span>
+
+                                    <div id="tConActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="50" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                        <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                            <span class="js-percent d-block text-dark">0</span>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div>
                                     <label class="fs-sm mb-0 mt-2 mt-md-0">Trabajadores con Actividad</label>
-                                    <h4 class="font-weight-bold mb-0">70.60%</h4>
+                                    <h4 class="font-weight-bold mb-0"><% activos %> - <% conActividad %>%</h4>
                                 </div>
+
                             </div>
                             <div class="d-flex mr-0">
                                 <div class="mr-2">
-                                    <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#2196F3&quot;, &quot;#9acffa&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">1/10</span>
+
+                                    <div id="tSinActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="50" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                        <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                            <span class="js-percent d-block text-dark">0</span>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div>
                                     <label class="fs-sm mb-0 mt-2 mt-md-0">Trabajadores sin Actividad</label>
-                                    <h4 class="font-weight-bold mb-0">14%</h4>
+                                    <h4 class="font-weight-bold mb-0"><% noActivos %> - <% sinActividad %>%</h4>
                                 </div>
                             </div>
                         </div>
@@ -1325,6 +1338,7 @@
         <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/moment.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <script>
             $(document).ready(function()
@@ -1333,10 +1347,11 @@
                 $('#js-page-content').smartPanel(); 
 
                 angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
-                getTrabajadoresByIdEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
-                getAllEntradasSalidasByEmpresasClick("<?php echo e($user['usr']->id_empresas); ?>");
+                getZonaHorariaFront("<?php echo e($user['usr']->id_empresas); ?>");
             });
         </script>
+
+        <script src="https://momentjs.com/downloads/moment-timezone-with-data-1970-2030.js"></script>
 
 
     <?php $__env->stopSection(); ?>
