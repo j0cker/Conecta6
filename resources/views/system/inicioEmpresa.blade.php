@@ -71,7 +71,7 @@
 
                                     <div id="tConActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="50" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
                                         <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                            <span class="js-percent d-block text-dark">0</span>
+                                            <span style="font-size: 8px;" class="js-percent d-block text-dark">0</span>
                                         </div>
                                     </div>
 
@@ -87,7 +87,7 @@
 
                                     <div id="tSinActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="50" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
                                         <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
-                                            <span class="js-percent d-block text-dark">0</span>
+                                            <span style="font-size: 8px;" class="js-percent d-block text-dark">0</span>
                                         </div>
                                     </div>
 
@@ -144,12 +144,14 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Grafica chida
                         <div class="row">
                             <div class="col-lg-12">
                                 <div id="panel-1" class="panel">
                                     <div class="panel-hdr">
                                         <h2>
-                                            Marketing profits
+                                            Resumen del Mes Actual  <span style="padding-left: 5px;" id="mesActual"></span>
                                         </h2>
                                     </div>
                                     <div class="panel-container show">
@@ -261,6 +263,151 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>-->
+
+                        
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div id="panel-1" class="panel">
+
+                                    <div class="panel-hdr">
+                                        <h2>
+                                            Resumen del Mes Actual  <span style="padding-left: 5px;" id="mesActual"></span>
+                                        </h2>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="row">
+                                                <div style="font-size: 20px; margin: .66667rem;" class="col-md-12 text-center">
+                                                    Los Más Impuntuales del Mes
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div id="impuntuales" style="margin: .66667rem;" class="col-md-12 text-left"> 
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <div class="row">
+                                                <div style="font-size: 20px; margin: .66667rem;" class="col-md-12 text-center">
+                                                    Trabajadores con Más Faltas de Asistencias del Mes
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div id="faltas" style="margin: .66667rem;" class="col-md-12 text-left"> 
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- gráfica chida 2
+
+                            <div class="col-lg-6">
+                                <div id="panel-2" class="panel panel-locked" data-panel-sortable data-panel-collapsed data-panel-close>
+                                    <div class="panel-hdr">
+                                        <h2>
+                                            Returning <span class="fw-300"><i>Target</i></span>
+                                        </h2>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content poisition-relative">
+                                            <div class="p-1 position-absolute pos-right pos-top mt-3 mr-3 z-index-cloud d-flex align-items-center justify-content-center">
+                                                <div class="border-faded border-top-0 border-left-0 border-bottom-0 py-2 pr-4 mr-3 hidden-sm-down">
+                                                    <div class="text-right fw-500 l-h-n d-flex flex-column">
+                                                        <div class="h3 m-0 d-flex align-items-center justify-content-end">
+                                                            <div class='icon-stack mr-2'>
+                                                                <i class="base base-7 icon-stack-3x opacity-100 color-success-600"></i>
+                                                                <i class="base base-7 icon-stack-2x opacity-100 color-success-500"></i>
+                                                                <i class="fal fa-arrow-up icon-stack-1x opacity-100 color-white"></i>
+                                                            </div>
+                                                            $44.34 / GE
+                                                        </div>
+                                                        <span class="m-0 fs-xs text-muted">Increased Profit as per redux margins and estimates</span>
+                                                    </div>
+                                                </div>
+                                                <div class="js-easy-pie-chart color-info-400 position-relative d-inline-flex align-items-center justify-content-center" data-percent="35" data-piesize="95" data-linewidth="10" data-scalelength="5">
+                                                    <div class="js-easy-pie-chart color-success-400 position-relative position-absolute pos-left pos-right pos-top pos-bottom d-flex align-items-center justify-content-center" data-percent="65" data-piesize="60" data-linewidth="5" data-scalelength="1" data-scalecolor="#fff">
+                                                        <div class="position-absolute pos-top pos-left pos-right pos-bottom d-flex align-items-center justify-content-center fw-500 fs-xl text-dark">78%</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="flot-area" style="width:100%; height:300px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            -->
+
+                            <!-- Gráfica chida 3
+
+                            <div class="col-lg-6">
+                                <div id="panel-3" class="panel panel-locked" data-panel-sortable data-panel-collapsed data-panel-close>
+                                    <div class="panel-hdr">
+                                        <h2>
+                                            Effective <span class="fw-300"><i>Marketing</i></span>
+                                        </h2>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content poisition-relative">
+                                            <div class="pb-5 pt-3">
+                                                <div class="row">
+                                                    <div class="col-6 col-xl-3 d-sm-flex align-items-center">
+                                                        <div class="p-2 mr-3 bg-info-200 rounded">
+                                                            <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">3,4,5,8,2</span>
+                                                        </div>
+                                                        <div>
+                                                            <label class="fs-sm mb-0">Bounce Rate</label>
+                                                            <h4 class="font-weight-bold mb-0">37.56%</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-xl-3 d-sm-flex align-items-center">
+                                                        <div class="p-2 mr-3 bg-info-300 rounded">
+                                                            <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">5,3,1,7,9</span>
+                                                        </div>
+                                                        <div>
+                                                            <label class="fs-sm mb-0">Sessions</label>
+                                                            <h4 class="font-weight-bold mb-0">759</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-xl-3 d-sm-flex align-items-center">
+                                                        <div class="p-2 mr-3 bg-success-300 rounded">
+                                                            <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">3,4,3,5,5</span>
+                                                        </div>
+                                                        <div>
+                                                            <label class="fs-sm mb-0">New Sessions</label>
+                                                            <h4 class="font-weight-bold mb-0">12.17%</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 col-xl-3 d-sm-flex align-items-center">
+                                                        <div class="p-2 mr-3 bg-success-500 rounded">
+                                                            <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">6,4,7,5,6</span>
+                                                        </div>
+                                                        <div>
+                                                            <label class="fs-sm mb-0">Clickthrough</label>
+                                                            <h4 class="font-weight-bold mb-0">19.77%</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="flotVisit" style="width:100%; height:208px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            -->
+
                         </div>
                     </main>
                     <!-- this overlay is activated only when mobile menu is triggered -->
@@ -878,7 +1025,7 @@
         </script>
 
         <script>
-            /* defined datas */
+            /* defined datas 
             var dataTargetProfit = [
                 [1354586000000, 153],
                 [1364587000000, 658],
@@ -941,6 +1088,7 @@
                 [600, 2],
                 [700, 1]
             ];
+            */
 
             $(document).ready(function()
             {
@@ -1016,7 +1164,8 @@
                 });
 
 
-                /* flot toggle example */
+
+                /* flot toggle example 
                 var flot_toggle = function()
                 {
 
@@ -1031,9 +1180,9 @@
                             align: "center",
                             barWidth: 30 * 30 * 60 * 1000 * 80,
                             lineWidth: 0,
-                            /*fillColor: {
-                            	colors: [myapp_get_color.primary_500, myapp_get_color.primary_900]
-                            },*/
+                            //fillColor: {
+                            //	colors: [myapp_get_color.primary_500, myapp_get_color.primary_900]
+                            //},
                             fillColor:
                             {
                                 colors: [
@@ -1143,9 +1292,11 @@
                     plotNow()
                 }
                 flot_toggle();
+                */
+
                 /* flot toggle example -- end*/
 
-                /* flot area */
+                /* flot area 
                 var flotArea = $.plot($('#flot-area'), [
                 {
                     data: dataSet1,
@@ -1222,7 +1373,8 @@
                     }
 
                 });
-                /* flot area -- end */
+                */
+                /* flot area -- end 
 
                 var flotVisit = $.plot('#flotVisit', [
                 {
@@ -1324,6 +1476,7 @@
                         }
                     }
                 });
+                */
 
 
             });

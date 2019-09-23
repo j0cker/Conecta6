@@ -354,6 +354,68 @@
                       var plot = $.plot($("#updating-chart"), [res], options);
                       /* FIN TAB 1: UPDATING CHART (Gráfica Grande) */
       },
+      impuntuales: function(fecha, registros){
+        console.log("[factory][impuntuales]");
+
+        console.log(fecha);
+
+        var fecha= new Date(moment(fecha).subtract(168, 'hour').format('YYYY-MM-DD HH:mm:ss'));
+
+        console.log(fecha);
+        
+        var phora = fecha.getHours(),
+                    pminutos = fecha.getMinutes(),
+                    psegundos = fecha.getSeconds(),
+                    pdiaSemana = fecha.getDay(),
+                    pdia = fecha.getDate(),
+                    pmes = fecha.getMonth(),
+                    panio = fecha.getFullYear(),
+                    pampm;
+
+        console.log("[statDiarioHrsTrabajadas] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio);
+
+        var registrosSemana = Array();
+
+        //obtener registros solo de la última semana
+        for(var i=0; i<registros.length; i++){
+
+          
+          fechaRegistro =  new Date(registros[i].fecha);
+
+          var rhora = fechaRegistro.getHours(),
+              rminutos = fechaRegistro.getMinutes(),
+              rsegundos = fechaRegistro.getSeconds(),
+              rdiaSemana = fechaRegistro.getDay(),
+              rdia = fechaRegistro.getDate(),
+              rmes = fechaRegistro.getMonth(),
+              ranio = fechaRegistro.getFullYear(),
+              rampm;
+
+          var fechaRestar = panio + "-" + pmes + "-" + pdia; 
+          var fechaRestar2 = ranio + "-" + rmes + "-" + rdia; 
+
+          console.log(fechaRestar);
+          console.log(fechaRestar2);
+
+          console.log(restaFechas3(fechaRestar, fechaRestar2))
+
+          if(restaFechas3(fechaRestar, fechaRestar2) <= 7 && restaFechas3(fechaRestar, fechaRestar2) > 0){
+            registrosSemana.push(registros[i]);
+          }
+
+        }//fin for
+
+        console.log("Entradas de la Última Semana:");
+
+        console.log(registrosSemana);
+
+        //limpiar entradas seguidas de salidas
+        var registrosEntSal = this.limpiarEntradasSeguidasDeSalidas(registrosSemana);
+
+        console.log("Entradas seguidas de Salidas (limpiadas):");
+
+        console.log(registrosEntSal);
+      },
       statMesEntradasYSalidasEfectivas: function (statMesEntradasYSalidas){
         var x = 0;
         for(var i=0; i<statMesEntradasYSalidas.length; i++){
@@ -2378,6 +2440,18 @@
         
         return $http.get(url,{
           params: { cache: false, id_trabajadores:id_trabajadores, start:start, end:end },
+          cache: false
+        });
+
+      },
+      getHistorialEntradasByIdEmpresas: function(id_empresas, start, end) {
+
+        console.log("[factory][getHistorialEntradasByIdEmpresas]");
+
+        var url = '/api/trabajadores/historial/todasByIdEmpresas';
+        
+        return $http.get(url,{
+          params: { cache: false, id_empresas:id_empresas, start:start, end:end },
           cache: false
         });
 

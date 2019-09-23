@@ -97,7 +97,22 @@ class Registros extends Model
         ->limit(1);
     }
 
-    //obten el historial desde una fecha inicio a una fecha final
+    //obten el historial desde una fecha inicio a una fecha final por id_empresas
+    public function ScopeGetAllHistorialByIdEmpresas($query, $id_empresas, $start, $end)
+    {
+
+        Log::info("[Entradas][ScopeGetAllHistorialByIdEmpresas]");
+        
+        return $query->leftJoin('salidas', 'salidas.id_salidas', '=', 'registros.id_salidas')
+        ->where([
+            ['id_empresas', '=', $id_empresas],
+            ['fecha', '>=', $start],
+            ['fecha', '<=', $end],
+        ]);
+
+    }
+
+    //obten el historial desde una fecha inicio a una fecha final por id_trabajadores
     public function scopeGetAllHistorial($query, $id_trabajadores, $start, $end)
     {
 

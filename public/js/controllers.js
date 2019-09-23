@@ -1254,7 +1254,30 @@
 
               var semana = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
               var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-                  
+              
+              $("#mesActual").html(`"` + meses[mes] + `"`);
+              
+              var start = moment().year(anio).month(mes).date(1).subtract(1, 'month').startOf("day").format('YYYY-MM-DD HH:mm:ss');
+              
+              var end = moment().year(anio).month(mes).date(31).startOf("day").format('YYYY-MM-DD HH:mm:ss');
+
+              functions.getHistorialEntradasByIdEmpresas(id_empresas).then(function (response) {
+
+                  if(response.data.success == "TRUE"){
+                    console.log("[inicioEmpresa][getHistorialEntradasByIdEmpresas]");
+
+                    console.log(response.data.data);
+
+                  } else {
+                      toastr["warning"](response.data.description, "");
+                      functions.loadingEndWait();
+                  }
+              }, function (response) {
+                /*ERROR*/
+                toastr["error"]("Inténtelo de nuevo más tarde", "");
+                functions.loadingEndWait();
+
+              });/*fin getHistorialEntradasByIdEmpresas*/
                       
               functions.getAllEntradasSalidasByEmpresas(id_empresas).then(function (response) {
 
@@ -1283,6 +1306,8 @@
 
                   $scope.entradasTotales = response.data.entradas.length;
                   $scope.salidasTotales = response.data.salidas.length;
+
+                  //functions.impuntuales();
 
                   functions.getTrabajadoresByIdEmpresa(id_empresas).then(function (response) {
 
@@ -1367,23 +1392,23 @@
 
       functions.getImageEmpresa(id_empresas).then(function (response) {
 
-            if(response.data.success == "TRUE"){
-              console.log("[inicioEmpresa][perfilEmpresas]");
+          if(response.data.success == "TRUE"){
+            console.log("[inicioEmpresa][perfilEmpresas]");
 
-              console.log(response.data.data);
+            console.log(response.data.data);
 
-              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+            $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
 
-            } else {
-                toastr["warning"](response.data.description, "");
-                functions.loadingEndWait();
-            }
-        }, function (response) {
-          /*ERROR*/
-          toastr["error"]("Inténtelo de nuevo más tarde", "");
-          functions.loadingEndWait();
+          } else {
+              toastr["warning"](response.data.description, "");
+              functions.loadingEndWait();
+          }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
 
-        });/*fin getImageEmpresa*/
+      });/*fin getImageEmpresa*/
 
     }; //fin getImageEmpresaClick
 
