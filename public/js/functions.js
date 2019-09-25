@@ -289,6 +289,18 @@ function horasAMPMTo24(hora){
 
   return hora2[0] + ":" + formato[0];
 }
+function ordenarPorNumeroDesc(array){
+  array.sort(function(a, b) {
+    return a + b;
+  });
+  return array;
+}
+function ordenarPorNumeroAsc(array){
+  array.sort(function(a, b) {
+    return a - b;
+  });
+  return array;
+}
 function orderFechaAsc(array){
   array.sort(function(a, b) {
     return new Date(a.fecha) - new Date(b.fecha);

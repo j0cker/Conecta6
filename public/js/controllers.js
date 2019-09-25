@@ -210,6 +210,7 @@
 
               console.log(mes);
               
+              //por si en las estadísticas hay que jalar días antes, de todas formas se filtran bien dentro de cada función lo necesario
               var start = moment().year(anio).month(mes).date(1).subtract(1, 'month').startOf("day").format('YYYY-MM-DD HH:mm:ss');
               
               var end = moment().year(anio).month(mes).date(31).startOf("day").format('YYYY-MM-DD HH:mm:ss');
@@ -1257,22 +1258,78 @@
               
               $("#mesActual").html(`"` + meses[mes] + `"`);
               
+              //por si en las estadísticas hay que jalar días antes, de todas formas se filtran bien dentro de cada función lo necesario.
               var start = moment().year(anio).month(mes).date(1).subtract(1, 'month').startOf("day").format('YYYY-MM-DD HH:mm:ss');
               
               var end = moment().year(anio).month(mes).date(31).startOf("day").format('YYYY-MM-DD HH:mm:ss');
 
-              functions.getHistorialEntradasByIdEmpresas(id_empresas).then(function (response) {
+              functions.getHistorialEntradasByIdEmpresas(id_empresas, start, end).then(function (registros) {
 
-                  if(response.data.success == "TRUE"){
+                  if(registros.data.success == "TRUE"){
                     console.log("[inicioEmpresa][getHistorialEntradasByIdEmpresas]");
 
-                    console.log(response.data.data);
+                    console.log(registros.data.data);
+
+                    var imputales = functions.filtrarSoloEntradasAlMes(fecha, registros.data.data);
+
+                    var imputales_divididos = functions.dividirArrayPorIdTrabajadores(imputales);
+
+                    console.log("Arreglo Divididos");
+
+                    console.log(imputales_divididos);
+
+                    functions.getPlantillas().then(function (response) {
+
+                      if(response.data.success == "TRUE"){
+                        
+                        console.log("[controllers][modTrabajadorClick][getPlantillas]");
+
+                        console.log(response.data.data);
+
+                        var plantillas = response.data.data;
+
+                        var array = functions.impuntualesPuntualesConSusAsistencias(plantillas, imputales_divididos);
+
+                        array["impuntuales"] = array["impuntuales"].sort(function(a, b) {
+                          return a.impuntualidad + b.impuntualidad;
+                        });
+                        
+                        array["puntuales"] = array["puntuales"].sort(function(a, b) {
+                          return a.impuntualidad + b.impuntualidad;
+                        });
+
+                        console.log("impuntuales: ");
+
+                        console.log(array["impuntuales"]);
+
+                        $scope.imputuales = array["impuntuales"];
+
+                        console.log("puntuales: ");
+
+                        console.log(array["puntuales"]);
+
+                        $scope.puntuales = array["puntuales"];
+
+                        $scope.faltantes = [];
+
+                        functions.loadingEndWait();
+                        
+                      } else {
+
+                          functions.loadingEndWait();
+                      }
+                    }, function (response) {
+                      /*ERROR*/
+                      toastr["error"]("Inténtelo de nuevo más tarde", "");
+                      functions.loadingEndWait();
+
+                    });/*fin getPlantillas*/
 
                   } else {
-                      toastr["warning"](response.data.description, "");
+                      toastr["warning"](registros.data.description, "");
                       functions.loadingEndWait();
                   }
-              }, function (response) {
+              }, function (registros) {
                 /*ERROR*/
                 toastr["error"]("Inténtelo de nuevo más tarde", "");
                 functions.loadingEndWait();
@@ -1282,7 +1339,7 @@
               functions.getAllEntradasSalidasByEmpresas(id_empresas).then(function (response) {
 
                 if(response.data.success == "TRUE"){
-                  console.log("[inicio]");
+                  console.log("[inicio][getAllEntradasSalidasByEmpresas]");
 
                   console.log(response.data.data);
 
@@ -1306,8 +1363,6 @@
 
                   $scope.entradasTotales = response.data.entradas.length;
                   $scope.salidasTotales = response.data.salidas.length;
-
-                  //functions.impuntuales();
 
                   functions.getTrabajadoresByIdEmpresa(id_empresas).then(function (response) {
 

@@ -354,12 +354,202 @@
                       var plot = $.plot($("#updating-chart"), [res], options);
                       /* FIN TAB 1: UPDATING CHART (Gráfica Grande) */
       },
-      impuntuales: function(fecha, registros){
+      impuntualesPuntualesConSusAsistencias: function(plantillas, registros){
+        
         console.log("[factory][impuntuales]");
+
+        console.log(plantillas);
+
+        var array = Array();
+        array["impuntuales"] = Array();
+        array["puntuales"] = Array();
+        array["asistencias"] = Array();
+
+        var x=0;
+        var z=0;
+        var asistencias = 0;
+        //recorrer llaves
+        for (var key in registros){
+
+          var impuntualCont = 0;
+          var puntualCont = 0;
+
+          array["asistencias"][asistencias] = Array();
+          array["asistencias"][asistencias].asistencias = 0;
+          
+          //recorrer arreglos dentro de las llaves
+          for(var i=0; i<registros[key].length; i++){
+
+            array["asistencias"][asistencias].asistencias = 1 + parseInt(array["asistencias"][asistencias].asistencias);
+            array["asistencias"][asistencias].nombre = registros[key][i].nombre; 
+            array["asistencias"][asistencias].apellido = registros[key][i].apellido;
+            array["asistencias"][asistencias].id_trabajadores = registros[key][i].id_trabajadores;
+
+            //console.log(registros[key][i].fecha);
+
+            var fecha= new Date(moment(registros[key][i].fecha).format('YYYY-MM-DD HH:mm:ss'));
+
+            //console.log(fecha);
+            
+            var phora = fecha.getHours(),
+                        pminutos = fecha.getMinutes(),
+                        psegundos = fecha.getSeconds(),
+                        pdiaSemana = fecha.getDay(),
+                        pdia = fecha.getDate(),
+                        pmes = fecha.getMonth(),
+                        panio = fecha.getFullYear(),
+                        pampm;
+
+            var semana = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
+            var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+        
+            var dias = semana[pdiaSemana];
+
+            console.log("[impuntuales] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio + " días: " + dias);
+
+            //recorrer plantillas buscando la plantilla del usuario ej.(gerentes, directivos, etc.)
+            for(var y=0; y<plantillas.length; y++){
+              if(plantillas[y].id_plantillas==registros[key][i].id_plantillas){
+                console.log("Plantilla posición: " +y + " plantilla_id: " + registros[key][i].id_plantillas);
+                break;
+              }
+            }
+
+            if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1){
+              
+
+              console.log("[Válido Con Horario en plantilla] Dia: " + dias + " Nombre: " + registros[key][i].nombre);
+
+
+              console.log("[impuntuales] hora: " + phora + " minutos: " +pminutos + " segundos: " + psegundos);
+              
+
+              var horaPlantilla = horasAMPMTo24(plantillas[y]["de1"+dias.charAt(0).toUpperCase()+""+ dias.slice(1)]).split(":");
+
+
+              console.log("[impuntuales] ");
+              console.log(horaPlantilla);
+
+              var t1 = new Date(),
+              t2 = new Date();
+  
+              t1.setHours(phora,pminutos,psegundos);
+              t2.setHours(horaPlantilla[0],horaPlantilla[1],0);
+
+              //array["asistencias"][x].nombre = registros[key][i].nombre; 
+              //array["asistencias"][x].apellido = registros[key][i].apellido; 
+              //array["asistencias"][x].impuntualidad = 0; 
+              
+              if(t1>t2){
+
+                //impuntual
+                console.log("Impuntual");
+
+                if(impuntualCont==0){
+
+                  array["impuntuales"][x] = Array();
+                  array["impuntuales"][x].nombre = registros[key][i].nombre; 
+                  array["impuntuales"][x].apellido = registros[key][i].apellido; 
+                  array["impuntuales"][x].id_trabajadores = registros[key][i].id_trabajadores; 
+                  array["impuntuales"][x].impuntualidad = 1; 
+
+                  impuntualCont++;
+
+                } else {
+ 
+                  array["impuntuales"][x].impuntualidad = 1 + parseInt(array["impuntuales"][x].impuntualidad);
+
+                }
+
+              } else {
+                
+                //puntual
+                console.log("puntual");
+
+                if(puntualCont==0){
+
+                  array["puntuales"][z] = Array();
+                  array["puntuales"][z].nombre = registros[key][i].nombre; 
+                  array["puntuales"][z].apellido = registros[key][i].apellido; 
+                  array["puntuales"][z].id_trabajadores = registros[key][i].id_trabajadores; 
+                  array["puntuales"][z].puntualidad = 1; 
+
+                  puntualCont++;
+
+                } else {
+ 
+                  array["puntuales"][z].puntualidad = 1 + parseInt(array["puntuales"][z].puntualidad);
+                  
+                }
+                
+              }
+
+
+            } else {
+
+              console.log("[No Válido Sin Horario en plantilla] Dia: " + dias);
+
+            }
+
+          }//fin for 2
+          if(impuntualCont!=0){
+            x++;
+          }
+          if(puntualCont!=0){
+            z++;
+          }
+          
+          asistencias++;
+
+        }//fin for 1 keys
+
+
+        for(var x=0; x<array["impuntuales"].length; x++){
+
+          for(var y=0; y<array["asistencias"].length; y++){
+
+            if(array["impuntuales"][x].id_trabajadores==array["asistencias"][y].id_trabajadores){
+
+              array["impuntuales"][x].asistencias = array["asistencias"][y].asistencias;
+
+            }
+
+          }
+
+        }
+
+        for(var x=0; x<array["puntuales"].length; x++){
+
+          for(var y=0; y<array["asistencias"].length; y++){
+
+            if(array["puntuales"][x].id_trabajadores==array["asistencias"][y].id_trabajadores){
+
+              array["puntuales"][x].asistencias = array["asistencias"][y].asistencias;
+
+            }
+
+          }
+
+        }
+
+        return array;
+      },
+      filtrarSoloEntradasAlMes: function(fecha, registros){
+        
+        console.log("[factory][filtrarSoloEntradasAlMes]");
 
         console.log(fecha);
 
-        var fecha= new Date(moment(fecha).subtract(168, 'hour').format('YYYY-MM-DD HH:mm:ss'));
+        var hoyhora = fecha.getHours(),
+                    hoyminutos = fecha.getMinutes(),
+                    hoysegundos = fecha.getSeconds(),
+                    hoydiaSemana = fecha.getDay(),
+                    hoydia = fecha.getDate(),
+                    hoymes = fecha.getMonth(),
+                    hoyanio = fecha.getFullYear(),
+                    hoyampm;
+
+        var fecha= new Date(moment(fecha).subtract(1, 'month').format('YYYY-MM-DD HH:mm:ss'));
 
         console.log(fecha);
         
@@ -372,11 +562,11 @@
                     panio = fecha.getFullYear(),
                     pampm;
 
-        console.log("[statDiarioHrsTrabajadas] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio);
+        console.log("[filtrarSoloEntradasAlMes] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio);
 
-        var registrosSemana = Array();
+        var registrosMes = Array();
 
-        //obtener registros solo de la última semana
+        //obtener registros solo del último mes
         for(var i=0; i<registros.length; i++){
 
           
@@ -399,22 +589,24 @@
 
           console.log(restaFechas3(fechaRestar, fechaRestar2))
 
-          if(restaFechas3(fechaRestar, fechaRestar2) <= 7 && restaFechas3(fechaRestar, fechaRestar2) > 0){
-            registrosSemana.push(registros[i]);
+          //substring dias
+          //filtramos solo entradas en la mañana por día
+          if(restaFechas3(fechaRestar, fechaRestar2) <= 31 && restaFechas3(fechaRestar, fechaRestar2) >= 0 &&
+            hoymes==rmes && registros[i].tipo=="entrada" && 
+            ((i!=0 && registros[i-1].fecha.substring(8,10)!=registros[i].fecha.substring(8,10)) || i==0)
+            ){
+
+            registrosMes.push(registros[i]);
           }
 
         }//fin for
 
-        console.log("Entradas de la Última Semana:");
+        console.log("Entrada el Última Mes:");
 
-        console.log(registrosSemana);
+        console.log(registrosMes);
 
-        //limpiar entradas seguidas de salidas
-        var registrosEntSal = this.limpiarEntradasSeguidasDeSalidas(registrosSemana);
-
-        console.log("Entradas seguidas de Salidas (limpiadas):");
-
-        console.log(registrosEntSal);
+        return registrosMes;
+        
       },
       statMesEntradasYSalidasEfectivas: function (statMesEntradasYSalidas){
         var x = 0;

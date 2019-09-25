@@ -85,7 +85,7 @@ Route::post('/empresas/plantilla/nueva', 'APIEmpresas@AltaPlantilla');
 //get plantillas by id empresas
 Route::get('/empresas/plantilla/obtener', 'APIEmpresas@GetPlantillas');
 
-//get plantillas by id plantillas
+//get plantillas by id plantillas (por trabajador)
 Route::get('/empresas/plantilla/obtenerByIdPlantillas', 'APIEmpresas@GetByIdPlantillas');
 
 //Get Image

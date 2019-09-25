@@ -279,34 +279,193 @@
                                     <div class="row">
                                         <div class="col-md-6">
 
-                                            <div class="row">
+                                            <div class="row container">
                                                 <div style="font-size: 20px; margin: .66667rem;" class="col-md-12 text-center">
                                                     Los Más Impuntuales del Mes
                                                 </div>
                                             </div>
 
-                                            <div class="row">
-                                                <div id="impuntuales" style="margin: .66667rem;" class="col-md-12 text-left"> 
+                                            <div class="row container">
+                                                <div ng-if="imputuales.length > 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-left"> 
+
+                                                
+
+                                                    <table class="table">
+
+                                                        <thead style="background-color: var(--theme-primary-300);">
+                                                            <tr>
+                                                                <th scope="col"># de <br />Impuntualidades</th>
+                                                                <th scope="col"># de  <br />Asistencias</th>
+                                                                <th scope="col">Nombre</th>
+                                                                <th scope="col">Apellido</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="thead-light">
+                                                            <tr ng-repeat="(key,x) in imputuales">
+                                                                <td><b><% x.impuntualidad %></b></td>
+                                                                <td><b><% x.asistencias %></b></td>
+                                                                <td><% x.nombre %></td>
+                                                                <td><% x.apellido %></td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+
+
+                                                </div><!-- fin ng-if -->
+                                                
+                                                <div ng-if="imputuales.length == 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-center">
+
+                                                    No hay Datos
+
                                                 </div>
+
                                             </div>
 
                                         </div>
 
                                         <div class="col-md-6">
 
-                                            <div class="row">
+                                            <div class="row container">
                                                 <div style="font-size: 20px; margin: .66667rem;" class="col-md-12 text-center">
                                                     Trabajadores con Más Faltas de Asistencias del Mes
                                                 </div>
                                             </div>
 
-                                            <div class="row">
-                                                <div id="faltas" style="margin: .66667rem;" class="col-md-12 text-left"> 
+                                            <div class="row container">
+                                                <div ng-if="faltantes.length > 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-left"> 
+
+                                                    <table class="table">
+
+                                                        <thead style="background-color: var(--theme-primary-300)">
+                                                            <tr>
+                                                                <th scope="col"># de <br />Puntualidades</th>
+                                                                <th scope="col"># de  <br />Asistencias</th>
+                                                                <th scope="col">Nombre</th>
+                                                                <th scope="col">Apellido</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="thead-light">
+                                                            <tr ng-repeat="(key,x) in faltantes">
+                                                                <td><b><% x.impuntualidad %></b></td>
+                                                                <td><b><% x.asistencias %></b></td>
+                                                                <td><% x.nombre %></td>
+                                                                <td><% x.apellido %></td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+
+
+                                                </div><!-- fin ng-if -->
+                                                
+                                                <div ng-if="faltantes.length == 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-center">
+
+                                                    No hay Datos
+
                                                 </div>
+
                                             </div>
 
                                         </div>
-                                    </div>
+                                    </div><!--fin row-->
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="row container">
+                                                <div style="font-size: 20px; margin: .66667rem;" class="col-md-12 text-center">
+                                                    Los Más Puntuales del Mes
+                                                </div>
+                                            </div>
+
+                                            <div class="row container">
+                                                <div ng-if="puntuales.length > 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-left"> 
+
+                                                
+
+                                                    <table class="table">
+
+                                                        <thead style="background-color: var(--theme-primary-300);">
+                                                            <tr>
+                                                                <th scope="col"># de <br />Puntualidades</th>
+                                                                <th scope="col"># de  <br />Asistencias</th>
+                                                                <th scope="col">Nombre</th>
+                                                                <th scope="col">Apellido</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody class="thead-light">
+                                                            <tr ng-repeat="(key,x) in puntuales">
+                                                                <td><b><% x.puntualidad %></b></td>
+                                                                <td><b><% x.asistencias %></b></td>
+                                                                <td><% x.nombre %></td>
+                                                                <td><% x.apellido %></td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+
+
+                                                </div><!-- fin ng-if -->
+                                                
+                                                <div ng-if="puntuales.length == 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-center">
+
+                                                    No hay Datos
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <div class="row container">
+                                                <div style="font-size: 20px; margin: .66667rem;" class="col-md-12 text-center">
+                                                    Trabajadores con Menos Faltas de Asistencias del Mes
+                                                </div>
+                                            </div>
+
+                                            <div class="row container">
+                                                <div ng-if="faltantes.length > 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-left"> 
+
+                                                    <table class="table">
+
+                                                        <thead style="background-color: var(--theme-primary-300)">
+                                                            <tr>
+                                                                <th scope="col"># de <br />Puntualidades</th>
+                                                                <th scope="col"># de <br />Asistencias</th>
+                                                                <th scope="col">Nombre</th>
+                                                                <th scope="col">Apellido</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody class="thead-light">
+                                                            <tr ng-repeat="(key,x) in faltantes">
+                                                                <td><b><% x.impuntualidad %></b></td>
+                                                                <td><b><% x.asistencias %></b></td>
+                                                                <td><% x.nombre %></td>
+                                                                <td><% x.apellido %></td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+
+
+                                                </div><!-- fin ng-if -->
+                                                
+                                                <div ng-if="faltantes.length == 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-center">
+
+                                                    No hay Datos
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div><!--fin row-->
+
 
                                 </div>
                             </div>

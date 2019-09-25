@@ -104,11 +104,11 @@ class Registros extends Model
         Log::info("[Entradas][ScopeGetAllHistorialByIdEmpresas]");
         
         return $query->leftJoin('salidas', 'salidas.id_salidas', '=', 'registros.id_salidas')
+        ->leftJoin('trabajadores', 'trabajadores.id_trabajadores', '=', 'registros.id_trabajadores')
         ->where([
-            ['id_empresas', '=', $id_empresas],
             ['fecha', '>=', $start],
             ['fecha', '<=', $end],
-        ]);
+        ])->orderBy('fecha', 'asc');
 
     }
 
@@ -123,7 +123,7 @@ class Registros extends Model
             ['id_trabajadores', '=', $id_trabajadores],
             ['fecha', '>=', $start],
             ['fecha', '<=', $end],
-        ]);
+        ])->orderBy('fecha', 'asc');
 
     }
 
