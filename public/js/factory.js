@@ -354,9 +354,286 @@
                       var plot = $.plot($("#updating-chart"), [res], options);
                       /* FIN TAB 1: UPDATING CHART (Gráfica Grande) */
       },
+      faltasNoFaltasConSusAsistencias: function(plantillas, registros, fecha){
+        
+        console.log("[factory][faltasNoFaltasConSusAsistencias]");
+
+        console.log(plantillas);
+
+        console.log(registros);
+
+        var array = Array();
+        array["faltas"] = Array();
+        array["noFaltas"] = Array();
+        array["asistencias"] = Array();
+        array["noLaborales"] = Array();
+
+        fecha = new Date(moment(fecha).format('YYYY-MM-DD HH:mm:ss'));
+
+        var phora = fecha.getHours(),
+            pminutos = fecha.getMinutes(),
+            psegundos = fecha.getSeconds(),
+            pdiaSemana = fecha.getDay(),
+            pdia = fecha.getDate(),
+            pmes = fecha.getMonth(),
+            panio = fecha.getFullYear(),
+            pampm;
+
+        console.log(fecha);
+
+        var faltasCont = 0;
+        var noFaltasCont = 0;
+        var asistenciasCont = 0;
+        var noLaboralesCont = 0;
+
+        //recorrer llaves
+        for (var key in registros){
+            
+          faltas=0;
+          noFaltas=0;
+          asistencias=0;
+          noLaborales = 0;
+        
+          //recorrer plantillas buscando la plantilla del usuario ej.(gerentes, directivos, etc.)
+          for(var y=0; y<plantillas.length; y++){
+            if(registros[key][0].id_plantillas!=undefined && plantillas[y].id_plantillas==registros[key][0].id_plantillas){
+              console.log("Plantilla posición: " +y + " plantilla_id: " + registros[key][0].id_plantillas + " llave: " + key);
+              break;
+            }
+          }
+
+          var recordarDia = 1;
+
+          //recorrer arreglos dentro de las llaves
+          for(var x=0; x<registros[key].length; x++){
+
+            for(var i=recordarDia; i<=parseInt(pdia); i++){
+
+              console.log("[factory][faltasNoFaltasConSusAsistencias] i: " + i);
+
+              fecha2 = new Date(moment(registros[key][x].fecha).format('YYYY-MM-DD HH:mm:ss'));
+
+              var rhora = fecha2.getHours(),
+                  rminutos = fecha2.getMinutes(),
+                  rsegundos = fecha2.getSeconds(),
+                  rdiaSemana = fecha2.getDay(),
+                  rdia = fecha2.getDate(),
+                  rmes = fecha2.getMonth(),
+                  ranio = fecha2.getFullYear(),
+                  rampm;
+
+              var semana = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
+              var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+          
+              var fechaDiaIncremental = new Date(panio,pmes,i);
+
+              var ahora = fechaDiaIncremental.getHours(),
+                  aminutos = fechaDiaIncremental.getMinutes(),
+                  asegundos = fechaDiaIncremental.getSeconds(),
+                  adiaSemana = fechaDiaIncremental.getDay(),
+                  adia = fechaDiaIncremental.getDate(),
+                  ames = fechaDiaIncremental.getMonth(),
+                  aanio = fechaDiaIncremental.getFullYear(),
+                  aampm;
+
+              var dias = semana[adiaSemana];
+
+              console.log("[faltasNoFaltasConSusAsistencias] busca dia registro:" + rdia + " VS i:" + i + " Nombre: " + registros[key][x].nombre + " dia: " + dias);
+
+              
+              //rompe días para no almacenar de más.
+              if(i>parseInt(rdia)){
+                recordarDia = i;
+                if(x==(registros[key].length-1)){
+                  
+                  if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1) {
+                    //falta (dentro de plantilla)
+    
+                    console.log("Falta");
+    
+                    if(faltas==0){
+    
+                      array["faltas"][faltasCont] = Array();
+                      array["faltas"][faltasCont].nombre = registros[key][x].nombre; 
+                      array["faltas"][faltasCont].apellido = registros[key][x].apellido; 
+                      array["faltas"][faltasCont].id_trabajadores = registros[key][x].id_trabajadores; 
+                      array["faltas"][faltasCont].faltas = 1;
+                    
+                      faltas++;  
+    
+                    } else {
+    
+                      array["faltas"][faltasCont].faltas = 1 + parseInt(array["faltas"][faltasCont].faltas);
+    
+                    }
+                    
+    
+                  } else {
+                    console.log("Días no Laborales");
+    
+                    if(noLaborales==0){
+    
+                      array["noLaborales"][noLaboralesCont] = Array();
+                      array["noLaborales"][noLaboralesCont].nombre = registros[key][x].nombre; 
+                      array["noLaborales"][noLaboralesCont].apellido = registros[key][x].apellido; 
+                      array["noLaborales"][noLaboralesCont].id_trabajadores = registros[key][x].id_trabajadores; 
+                      array["noLaborales"][noLaboralesCont].noLaborales = 1;
+                    
+                      noLaborales++;  
+    
+                    } else {
+    
+                      array["noLaborales"][noLaboralesCont].noLaborales = 1 + parseInt(array["noLaborales"][noLaboralesCont].noLaborales);
+    
+                    }
+                  }
+                } else {
+                  console.log("Rompe");
+                  break;
+                }
+                
+              } else {
+
+                if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1 && i==parseInt(rdia) && pmes==rmes && panio==ranio){
+                  //no es falta (dentro de plantilla)
+
+                  console.log("No Falta");
+
+                  if(noFaltas==0){
+
+                    array["noFaltas"][noFaltasCont] = Array();
+                    array["noFaltas"][noFaltasCont].nombre = registros[key][x].nombre; 
+                    array["noFaltas"][noFaltasCont].apellido = registros[key][x].apellido; 
+                    array["noFaltas"][noFaltasCont].id_trabajadores = registros[key][x].id_trabajadores; 
+                    array["noFaltas"][noFaltasCont].noFaltas = 1; 
+
+                    noFaltas++;
+
+                  } else {
+
+                    array["noFaltas"][noFaltasCont].noFaltas = 1 + parseInt(array["noFaltas"][noFaltasCont].noFaltas);
+
+                  }
+
+                } else if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1) {
+                  //falta (dentro de plantilla)
+
+                  console.log("Falta");
+
+                  if(faltas==0){
+
+                    array["faltas"][faltasCont] = Array();
+                    array["faltas"][faltasCont].nombre = registros[key][x].nombre; 
+                    array["faltas"][faltasCont].apellido = registros[key][x].apellido; 
+                    array["faltas"][faltasCont].id_trabajadores = registros[key][x].id_trabajadores; 
+                    array["faltas"][faltasCont].faltas = 1;
+                  
+                    faltas++;  
+
+                  } else {
+
+                    array["faltas"][faltasCont].faltas = 1 + parseInt(array["faltas"][faltasCont].faltas);
+
+                  }
+                  
+
+                } else if(i==parseInt(rdia) && pmes==rmes && panio==ranio){
+                  //días extras de asistencia (fuera de plantilla)
+
+                  console.log("Asistencia Fuera de Plantilla");
+
+                  if(asistencias==0){
+
+                    array["asistencias"][asistenciasCont] = Array();
+                    array["asistencias"][asistenciasCont].nombre = registros[key][x].nombre; 
+                    array["asistencias"][asistenciasCont].apellido = registros[key][x].apellido; 
+                    array["asistencias"][asistenciasCont].id_trabajadores = registros[key][x].id_trabajadores; 
+                    array["asistencias"][asistenciasCont].asistencias = 1; 
+
+                    asistencias++;
+
+                  } else {
+
+                    array["asistencias"][asistenciasCont].asistencias = 1 + parseInt(array["asistencias"][asistenciasCont].asistencias);
+
+                  }
+
+                } else {
+                  console.log("Días no Laborales");
+    
+                  if(noLaborales==0){
+  
+                    array["noLaborales"][noLaboralesCont] = Array();
+                    array["noLaborales"][noLaboralesCont].nombre = registros[key][x].nombre; 
+                    array["noLaborales"][noLaboralesCont].apellido = registros[key][x].apellido; 
+                    array["noLaborales"][noLaboralesCont].id_trabajadores = registros[key][x].id_trabajadores; 
+                    array["noLaborales"][noLaboralesCont].noLaborales = 1;
+                  
+                    noLaborales++;  
+  
+                  } else {
+  
+                    array["noLaborales"][noLaboralesCont].noLaborales = 1 + parseInt(array["noLaborales"][noLaboralesCont].noLaborales);
+  
+                  }
+                }
+              
+              }//fin if dia mayor que otro dia
+
+            } //fin for días
+
+            
+          }//fin recorrer arreglo dentro de los registros
+
+          
+          if(faltas!=0){
+            faltasCont++;
+          }
+          if(noFaltas!=0){
+            noFaltasCont++;
+          }
+          if(asistencias!=0){
+            asistenciasCont++;
+          }
+          if(noLaborales!=0){
+            noLaboralesCont++;
+          }
+
+        }//fin recorrer llaves
+        
+        for(var x=0; x<array["faltas"].length; x++){
+
+          for(var y=0; y<array["asistencias"].length; y++){
+
+            if(array["faltas"][x].id_trabajadores==array["asistencias"][y].id_trabajadores){
+
+              array["faltas"][x].asistencias = array["asistencias"][y].asistencias;
+
+            }
+
+          }
+
+        }
+
+        for(var x=0; x<array["noFaltas"].length; x++){
+
+          for(var y=0; y<array["asistencias"].length; y++){
+
+            if(array["noFaltas"][x].id_trabajadores==array["asistencias"][y].id_trabajadores){
+
+              array["noFaltas"][x].asistencias = array["asistencias"][y].asistencias;
+
+            }
+
+          }
+
+        }
+      
+        return array;
+      },
       impuntualesPuntualesConSusAsistencias: function(plantillas, registros){
         
-        console.log("[factory][impuntuales]");
+        console.log("[factory][impuntualesPuntualesConSusAsistencias]");
 
         console.log(plantillas);
 
@@ -405,7 +682,7 @@
         
             var dias = semana[pdiaSemana];
 
-            console.log("[impuntuales] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio + " días: " + dias);
+            console.log("[impuntualesPuntualesConSusAsistencias] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio + " días: " + dias + " Hora: " + phora + " Minuto: " + pminutos + " Nombre: " + registros[key][i].nombre);
 
             //recorrer plantillas buscando la plantilla del usuario ej.(gerentes, directivos, etc.)
             for(var y=0; y<plantillas.length; y++){
@@ -421,13 +698,13 @@
               console.log("[Válido Con Horario en plantilla] Dia: " + dias + " Nombre: " + registros[key][i].nombre);
 
 
-              console.log("[impuntuales] hora: " + phora + " minutos: " +pminutos + " segundos: " + psegundos);
+              console.log("[impuntualesPuntualesConSusAsistencias] hora: " + phora + " minutos: " +pminutos + " segundos: " + psegundos);
               
 
               var horaPlantilla = horasAMPMTo24(plantillas[y]["de1"+dias.charAt(0).toUpperCase()+""+ dias.slice(1)]).split(":");
 
 
-              console.log("[impuntuales] ");
+              console.log("[impuntualesPuntualesConSusAsistencias] ");
               console.log(horaPlantilla);
 
               var t1 = new Date(),
@@ -489,9 +766,36 @@
 
               console.log("[No Válido Sin Horario en plantilla] Dia: " + dias);
 
+              //marcar asistencias y cero impuntualidades, cero puntualidades
+              
+
+              if(impuntualCont==0){
+
+                array["impuntuales"][x] = Array();
+                array["impuntuales"][x].nombre = registros[key][i].nombre; 
+                array["impuntuales"][x].apellido = registros[key][i].apellido; 
+                array["impuntuales"][x].id_trabajadores = registros[key][i].id_trabajadores; 
+                array["impuntuales"][x].impuntualidad = 0; 
+
+                impuntualCont++;
+
+              } 
+
+              if(puntualCont==0){
+
+                array["puntuales"][z] = Array();
+                array["puntuales"][z].nombre = registros[key][i].nombre; 
+                array["puntuales"][z].apellido = registros[key][i].apellido; 
+                array["puntuales"][z].id_trabajadores = registros[key][i].id_trabajadores; 
+                array["puntuales"][z].puntualidad = 0; 
+
+                puntualCont++;
+
+              } 
+
             }
 
-          }//fin for 2
+          }//fin for recorrer dentro de los registros
           if(impuntualCont!=0){
             x++;
           }
@@ -501,7 +805,7 @@
           
           asistencias++;
 
-        }//fin for 1 keys
+        }//fin for recorrer llaves
 
 
         for(var x=0; x<array["impuntuales"].length; x++){

@@ -291,13 +291,13 @@ function horasAMPMTo24(hora){
 }
 function ordenarPorNumeroDesc(array){
   array.sort(function(a, b) {
-    return a + b;
+    return (b-a);
   });
   return array;
 }
 function ordenarPorNumeroAsc(array){
   array.sort(function(a, b) {
-    return a - b;
+    return (a-b);
   });
   return array;
 }

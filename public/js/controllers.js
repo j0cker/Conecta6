@@ -1270,13 +1270,13 @@
 
                     console.log(registros.data.data);
 
-                    var imputales = functions.filtrarSoloEntradasAlMes(fecha, registros.data.data);
+                    var imputuales = functions.filtrarSoloEntradasAlMes(fecha, registros.data.data);
 
-                    var imputales_divididos = functions.dividirArrayPorIdTrabajadores(imputales);
+                    var imputuales_divididos = functions.dividirArrayPorIdTrabajadores(imputuales);
 
                     console.log("Arreglo Divididos");
 
-                    console.log(imputales_divididos);
+                    console.log(imputuales_divididos);
 
                     functions.getPlantillas().then(function (response) {
 
@@ -1288,29 +1288,55 @@
 
                         var plantillas = response.data.data;
 
-                        var array = functions.impuntualesPuntualesConSusAsistencias(plantillas, imputales_divididos);
+                        var array = functions.impuntualesPuntualesConSusAsistencias(plantillas, imputuales_divididos);
 
-                        array["impuntuales"] = array["impuntuales"].sort(function(a, b) {
-                          return a.impuntualidad + b.impuntualidad;
+                        var impuntuales = array["impuntuales"].sort(function(a, b) {
+                          return (b.impuntualidad - a.impuntualidad);
                         });
                         
-                        array["puntuales"] = array["puntuales"].sort(function(a, b) {
-                          return a.impuntualidad + b.impuntualidad;
+                        var puntuales = array["puntuales"].sort(function(a, b) {
+                          return (b.puntuales - a.puntuales);
                         });
 
                         console.log("impuntuales: ");
 
-                        console.log(array["impuntuales"]);
+                        console.log(impuntuales);
 
                         $scope.imputuales = array["impuntuales"];
 
                         console.log("puntuales: ");
 
-                        console.log(array["puntuales"]);
+                        console.log(puntuales);
 
-                        $scope.puntuales = array["puntuales"];
+                        $scope.puntuales = puntuales;
 
-                        $scope.faltantes = [];
+                        console.log("asistencias: ");
+
+                        console.log(array["asistencias"]);
+
+                        var array = functions.faltasNoFaltasConSusAsistencias(plantillas, imputuales_divididos, fecha);
+
+                        var faltas = array["faltas"].sort(function(a, b) {
+                          return (b.faltas - a.faltas);
+                        });
+                        
+                        var nofaltas = array["noFaltas"].sort(function(a, b) {
+                          return (b.noFaltas - a.noFaltas);
+                        });
+
+                        console.log(array);
+
+                        console.log("faltas: ");
+
+                        console.log(faltas);
+
+                        console.log("No faltas: ");
+
+                        console.log(nofaltas);
+
+                        $scope.faltantes = faltas;
+
+                        $scope.Nofaltas = nofaltas;
 
                         functions.loadingEndWait();
                         

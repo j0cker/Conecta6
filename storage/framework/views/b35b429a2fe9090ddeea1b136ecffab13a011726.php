@@ -290,7 +290,7 @@
                                                         <thead style="background-color: var(--theme-primary-300);">
                                                             <tr>
                                                                 <th scope="col"># de <br />Impuntualidades</th>
-                                                                <th scope="col"># de  <br />Asistencias</th>
+                                                                <th scope="col"># de  <br />Asistencias Totales</th>
                                                                 <th scope="col">Nombre</th>
                                                                 <th scope="col">Apellido</th>
                                                             </tr>
@@ -334,15 +334,15 @@
 
                                                         <thead style="background-color: var(--theme-primary-300)">
                                                             <tr>
-                                                                <th scope="col"># de <br />Puntualidades</th>
-                                                                <th scope="col"># de  <br />Asistencias</th>
+                                                                <th scope="col"># de <br />Faltas</th>
+                                                                <th scope="col">Asistencias Fuera<br />de Plantilla</th>
                                                                 <th scope="col">Nombre</th>
                                                                 <th scope="col">Apellido</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="thead-light">
                                                             <tr ng-repeat="(key,x) in faltantes">
-                                                                <td><b><% x.impuntualidad %></b></td>
+                                                                <td><b><% x.faltas %></b></td>
                                                                 <td><b><% x.asistencias %></b></td>
                                                                 <td><% x.nombre %></td>
                                                                 <td><% x.apellido %></td>
@@ -384,7 +384,7 @@
                                                         <thead style="background-color: var(--theme-primary-300);">
                                                             <tr>
                                                                 <th scope="col"># de <br />Puntualidades</th>
-                                                                <th scope="col"># de  <br />Asistencias</th>
+                                                                <th scope="col"># de  <br />Asistencias Totales</th>
                                                                 <th scope="col">Nombre</th>
                                                                 <th scope="col">Apellido</th>
                                                             </tr>
@@ -423,22 +423,22 @@
                                             </div>
 
                                             <div class="row container">
-                                                <div ng-if="faltantes.length > 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-left"> 
+                                                <div ng-if="Nofaltas.length > 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-left"> 
 
                                                     <table class="table">
 
                                                         <thead style="background-color: var(--theme-primary-300)">
                                                             <tr>
-                                                                <th scope="col"># de <br />Puntualidades</th>
-                                                                <th scope="col"># de <br />Asistencias</th>
+                                                                <th scope="col">Asistencias dentro <br/>de Plantilla</th>
+                                                                <th scope="col">Asistencias Fuera<br />de Plantilla</th>
                                                                 <th scope="col">Nombre</th>
                                                                 <th scope="col">Apellido</th>
                                                             </tr>
                                                         </thead>
 
                                                         <tbody class="thead-light">
-                                                            <tr ng-repeat="(key,x) in faltantes">
-                                                                <td><b><% x.impuntualidad %></b></td>
+                                                            <tr ng-repeat="(key,x) in Nofaltas">
+                                                                <td><b><% x.noFaltas %></b></td>
                                                                 <td><b><% x.asistencias %></b></td>
                                                                 <td><% x.nombre %></td>
                                                                 <td><% x.apellido %></td>
