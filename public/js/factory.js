@@ -34,6 +34,12 @@
       },
       porcentajeActividadTrabajadores: function(trabajadoresTotales, entradasYSalidas, fecha){
 
+        console.log("[porcentajeActividadTrabajadores]");
+        console.log(fecha);
+
+        console.log(trabajadoresTotales);
+        console.log(entradasYSalidas);
+
         var trabajadores = Array();
         trabajadores["totales"] = trabajadoresTotales;
         trabajadores["activos"] = 0;
@@ -385,14 +391,38 @@
         var noFaltasCont = 0;
         var asistenciasCont = 0;
         var noLaboralesCont = 0;
+            
+        var faltas=0;
+        var noFaltas=0;
+        var asistencias=0;
+        var noLaborales = 0;
 
         //recorrer llaves
         for (var key in registros){
-            
-          faltas=0;
-          noFaltas=0;
-          asistencias=0;
-          noLaborales = 0;
+
+          array["faltas"][faltasCont] = Array();
+          array["faltas"][faltasCont].nombre = registros[key][0].nombre; 
+          array["faltas"][faltasCont].apellido = registros[key][0].apellido; 
+          array["faltas"][faltasCont].id_trabajadores = registros[key][0].id_trabajadores; 
+          array["faltas"][faltasCont].faltas = 0;
+
+          array["noFaltas"][noFaltasCont] = Array();
+          array["noFaltas"][noFaltasCont].nombre = registros[key][0].nombre; 
+          array["noFaltas"][noFaltasCont].apellido = registros[key][0].apellido; 
+          array["noFaltas"][noFaltasCont].id_trabajadores = registros[key][0].id_trabajadores; 
+          array["noFaltas"][noFaltasCont].noFaltas = 0;
+  
+          array["noLaborales"][noLaboralesCont] = Array();
+          array["noLaborales"][noLaboralesCont].nombre = registros[key][0].nombre; 
+          array["noLaborales"][noLaboralesCont].apellido = registros[key][0].apellido; 
+          array["noLaborales"][noLaboralesCont].id_trabajadores = registros[key][0].id_trabajadores; 
+          array["noLaborales"][noLaboralesCont].noLaborales = 0;
+          
+          array["asistencias"][asistenciasCont] = Array();
+          array["asistencias"][asistenciasCont].nombre = registros[key][0].nombre; 
+          array["asistencias"][asistenciasCont].apellido = registros[key][0].apellido; 
+          array["asistencias"][asistenciasCont].id_trabajadores = registros[key][0].id_trabajadores; 
+          array["asistencias"][asistenciasCont].asistencias = 0; 
         
           //recorrer plantillas buscando la plantilla del usuario ej.(gerentes, directivos, etc.)
           for(var y=0; y<plantillas.length; y++){
@@ -585,20 +615,11 @@
             
           }//fin recorrer arreglo dentro de los registros
 
+          faltasCont++;
+          noFaltasCont++;
+          asistenciasCont++;
+          noLaboralesCont++;
           
-          if(faltas!=0){
-            faltasCont++;
-          }
-          if(noFaltas!=0){
-            noFaltasCont++;
-          }
-          if(asistencias!=0){
-            asistenciasCont++;
-          }
-          if(noLaborales!=0){
-            noLaboralesCont++;
-          }
-
         }//fin recorrer llaves
         
         for(var x=0; x<array["faltas"].length; x++){
@@ -2266,6 +2287,185 @@
         }//fin for
 
         return registrosEntSal;
+      },
+      statIntervalosHrsTrabajadas: function(fechaInicio, fechaFin, registros){
+        console.log("[factory][statMesHrsTrabajadas]");
+
+        console.log("Fecha Fin");
+        console.log(fechaFin);
+
+        var finhora = fechaFin.getHours(),
+                    finminutos = fechaFin.getMinutes(),
+                    finsegundos = fechaFin.getSeconds(),
+                    findiaSemana = fechaFin.getDay(),
+                    findia = fechaFin.getDate(),
+                    finmes = fechaFin.getMonth(),
+                    finanio = fechaFin.getFullYear(),
+                    finampm;
+
+        console.log("Fecha Inicio");
+        console.log(fechaInicio);
+
+        var fechaInicio= new Date(moment(fechaInicio).format('YYYY-MM-DD HH:mm:ss'));
+        
+        var phora = fechaInicio.getHours(),
+                    pminutos = fechaInicio.getMinutes(),
+                    psegundos = fechaInicio.getSeconds(),
+                    pdiaSemana = fechaInicio.getDay(),
+                    pdia = fechaInicio.getDate(),
+                    pmes = fechaInicio.getMonth(),
+                    panio = fechaInicio.getFullYear(),
+                    pampm;
+
+        console.log("[statMesHrsTrabajadas] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio);
+
+        var registrosMes = Array();
+
+        //obtener registros solo del último mes
+        for(var i=0; i<registros.length; i++){
+
+          
+          fechaRegistro =  new Date(registros[i].fecha);
+
+          var rhora = fechaRegistro.getHours(),
+              rminutos = fechaRegistro.getMinutes(),
+              rsegundos = fechaRegistro.getSeconds(),
+              rdiaSemana = fechaRegistro.getDay(),
+              rdia = fechaRegistro.getDate(),
+              rmes = fechaRegistro.getMonth(),
+              ranio = fechaRegistro.getFullYear(),
+              rampm;
+
+          var fechaRestar = panio + "-" + pmes + "-" + pdia; 
+          var fechaRestar2 = ranio + "-" + rmes + "-" + rdia; 
+          var fechaRestar3 = finanio + "-" + finmes + "-" + findia; 
+
+          console.log(fechaRestar + " " + phora + ":" + pminutos + ":" + psegundos);
+          console.log(fechaRestar2 + " " + rhora + ":" + rminutos + ":" + rsegundos);
+          console.log(fechaRestar3 + " " + finhora + ":" + finminutos + ":" + finsegundos);
+
+          console.log(restaFechas3(fechaRestar, fechaRestar2) + " VS " + restaFechas3(fechaRestar, fechaRestar3))
+
+          if(restaFechas3(fechaRestar, fechaRestar2) <= restaFechas3(fechaRestar, fechaRestar3) && restaFechas3(fechaRestar, fechaRestar2) >= 0){
+            registrosMes.push(registros[i]);
+          }
+
+        }//fin for
+
+        console.log("Entrada el Última Mes:");
+
+        console.log(registrosMes);
+
+        //limpiar entradas seguidas de salidas
+        var registrosEntSal = this.limpiarEntradasSeguidasDeSalidas(registrosMes);
+
+        console.log("Entradas seguidas de Salidas (limpiadas):");
+
+        console.log(registrosEntSal);
+
+        //calculo de horas trabajadas de la semana
+        var horas = 0;
+        var minutos = 0;
+        var segundos = 0;
+
+        var horas_ = Array();
+
+        horas_["horas"] = horas;
+        horas_["minutos"] = minutos;
+        horas_["segundos"] = segundos;
+        horas_["semana"] = Array();
+        horas_["semana"]["hora"] = Array();
+        horas_["semana"]["hora"]["horas"] = Array();
+        horas_["semana"]["hora"]["minutos"] = Array();
+        horas_["semana"]["hora"]["segundos"] = Array();
+        horas_["semana"]["dias"] = Array();
+        horas_["semana"]["fechas"] = Array();
+
+        for(var i=0; i<registrosEntSal.length; i=i+2){
+
+          //se sale del arreglo al llegar al final
+          if(registrosEntSal[i+1]!=undefined){
+
+            if(registrosEntSal[i].tipo=="entrada" && registrosEntSal[i+1].tipo=="salida"){
+
+              console.log("Calcular: " + i + "  " + (i+1));
+
+              fecha1 = registrosEntSal[i].fecha.toString().split(" ");
+              fecha2 = registrosEntSal[i+1].fecha.toString().split(" ");
+
+              var hora1 = (fecha1[1]).toString().split(":"),
+              hora2 = (fecha2[1]).toString().split(":"),
+              t1 = new Date(),
+              t2 = new Date();
+
+              t1.setHours(hora1[0], hora1[1], hora1[2]);
+              t2.setHours(hora2[0], hora2[1], hora2[2]);
+              
+              //Aquí hago la resta
+              t1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+              
+              console.log("Horas: " + t1.getHours() + " Minutos: " + t1.getMinutes() + " Segundos: " + t1.getSeconds());
+
+              horas = horas + t1.getHours();
+              minutos = minutos + t1.getMinutes();
+              segundos = segundos + t1.getSeconds();
+
+              fechaRegistro =  new Date(registrosEntSal[i].fecha);
+
+              var rhora = fechaRegistro.getHours(),
+                  rminutos = fechaRegistro.getMinutes(),
+                  rsegundos = fechaRegistro.getSeconds(),
+                  rdiaSemana = fechaRegistro.getDay(),
+                  rdia = fechaRegistro.getDate(),
+                  rmes = fechaRegistro.getMonth(),
+                  ranio = fechaRegistro.getFullYear(),
+                  rampm;
+
+              var semana = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
+              var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+          
+              var dias = semana[rdiaSemana];
+
+              horas_["semana"]["hora"]["horas"].push(t1.getHours());
+              horas_["semana"]["hora"]["minutos"].push(t1.getMinutes());
+              horas_["semana"]["hora"]["segundos"].push(t1.getSeconds());
+              horas_["semana"]["dias"].push(dias);
+              horas_["semana"]["fechas"].push(fechaRegistro);
+
+              console.log("No Compensar Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+              if(segundos>59){
+                var segundosEntero = (segundos/60);
+                segundosEntero = segundosEntero.toString().split(".");
+                minutos = minutos + parseInt(segundosEntero[0]);
+                segundos = segundos%60;
+              }
+
+              if(minutos>59){
+                var minutosEntero = (minutos/60);
+                minutosEntero = minutosEntero.toString().split(".");
+                horas = horas + parseInt(minutosEntero[0]);
+                minutos = minutos%60;
+              }
+
+              horas_["horas"] = horas;
+              horas_["minutos"] = minutos;
+              horas_["segundos"] = segundos;
+
+              console.log("Compensar Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+            }
+
+          }
+
+        }//fin for
+
+        console.log("Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+        return horas_;
+
+        
+
       },
       statMesHrsTrabajadas: function(fecha, registros){
         console.log("[factory][statMesHrsTrabajadas]");

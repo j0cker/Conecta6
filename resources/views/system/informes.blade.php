@@ -119,17 +119,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Manlio Emiliano</td>
-                                                        <td>Terán Ramos</td>
-                                                        <td>150 Horas</td>
-                                                        <td>5</td>
-                                                        <td>5</td>
-                                                        <td>28 - 1680 Minutos</td>
-                                                        <td>Salidas al Baño: 51<br />Salidas por Café: 20</td>
-                                                        <td></td>
-                                                    </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
@@ -749,11 +738,10 @@
             </div>
         </div> <!-- END Page Settings -->
         
-        <script src="js/vendors.bundle.js"></script>
-        <script src="js/app.bundle.js"></script>
+        <script src="{{ url('js/vendors.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/app.bundle.js?v='.cache("js_version_number").'') }}"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
-    
-        <script src="js/datatables.bundle.js"></script>
+        <script src="{{ url('js/datatables.bundle.js?v='.cache("js_version_number").'') }}"></script>
 
         <script>
             $( document ).ready(function() {
@@ -838,6 +826,21 @@
 
                 });
 
+                
+
+                $('#datepicker-2').change(function(){
+
+                    console.log("[datepicker]");
+
+                    var arrayDatePicker = $('#datepicker-2').val().split(" - ");
+                    var start = arrayDatePicker[0];
+                    var end = arrayDatePicker[1];
+
+
+                    getTrabajadoresAndStats("{{ $user['usr']->id_empresas }}", start, end);
+
+                });
+
                 /* no sirve
 
                 $('#dt-basic-example tbody').on( 'click', 'button', function () {
@@ -888,21 +891,21 @@
         <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
 
         <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/moment.js?v='.cache("js_version_number").'') }}"></script>
 
-        
-        
         <script>
             $(document).ready(function()
             {
 
                 $('#js-page-content').smartPanel(); 
 
-                
-                
-
-                angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+                getZonaHorariaFront("{{ $user['usr']->id_empresas }}");
             });
         </script>
+
+        <script src="https://momentjs.com/downloads/moment-timezone-with-data-1970-2030.js"></script>
+        
+        <script src="{{ url('js/daterangepicker.js?v='.cache("js_version_number").'') }}"></script>
 
 
     @stop

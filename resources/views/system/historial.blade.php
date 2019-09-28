@@ -827,8 +827,6 @@
         <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/moment.js?v='.cache("js_version_number").'') }}"></script>
 
-        
-        
         <script>
             $(document).ready(function()
             {

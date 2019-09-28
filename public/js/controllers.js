@@ -974,9 +974,9 @@
           toastr["error"]("Inténtelo de nuevo más tarde", "");
           functions.loadingEndWait();
 
-        });/*fin getImageEmpresa*/
+        });/*fin getZonaHoraria*/
 
-    }; //fin getImageEmpresaClick
+    }; //fin getZonaHorariaFrontClick
 
     getZonaHorariaFront = $scope.getZonaHorariaFrontClick;
 
@@ -1236,6 +1236,7 @@
       functions.getZonaHoraria(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
+
               console.log("[inicioEmpresa][getZonaHoraria]");
 
               console.log(response.data.data);
@@ -2443,7 +2444,6 @@
 
               });//fin watch
 
-
             } else {
                 toastr["warning"](response.data.description, "");
                 functions.loadingEndWait();
@@ -3383,19 +3383,218 @@
     functions.loading();
 
     
-    $scope.getImageEmpresaClick = function(id_empresas){
 
-      console.log("[signinEmpresas] ");
+    $scope.getZonaHorariaFrontClick = function(id_empresas, start, end){
 
-      functions.getImageEmpresa(id_empresas).then(function (response) {
+      functions.loading();
+
+      console.log("[historial] ");
+
+      console.log("id_empresas: " + id_empresas);
+
+      functions.getZonaHoraria(id_empresas).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+
+          console.log("[historial][getZonaHoraria]");
+
+          console.log(response.data.data);
+
+          start = new Date(moment().subtract(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+          end = new Date(moment().add(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+
+          $('#datepicker-2').daterangepicker({
+            timePicker: true,
+            startDate: start,
+            endDate: end,
+            locale:
+            { format: 'YYYY-MM-DD HH:mm:ss'
+            }
+          });
+
+            
+          functions.getImageEmpresa(id_empresas).then(function (response) {
+
+              if(response.data.success == "TRUE"){
+                console.log("[consultaDeInformes][perfilEmpresas]");
+
+                console.log(response.data.data);
+
+                $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+              } else {
+                  toastr["warning"](response.data.description, "");
+                  functions.loadingEndWait();
+              }
+          }, function (response) {
+            /*ERROR*/
+            toastr["error"]("Inténtelo de nuevo más tarde", "");
+            functions.loadingEndWait();
+
+          });/*fin getImageEmpresa*/
+          
+        } else {
+            toastr["warning"](response.data.description, "");
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getZonaHoraria*/
+
+    }; //fin getZonaHorariaFrontClick
+
+    getZonaHorariaFront = $scope.getZonaHorariaFrontClick;
+
+    $scope.getTrabajadoresAndStatsClick = function(id_empresas, start, end){
+
+      functions.loading();
+
+      console.log("[historial] ");
+
+      console.log("id_empresas: " + id_empresas);
+
+      functions.getZonaHoraria(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[consultaDeInformes][perfilEmpresas]");
+
+              console.log("[historial][getZonaHoraria]");
 
               console.log(response.data.data);
+                
+              start = new Date(moment(start).format('YYYY-MM-DD HH:mm:ss'));
+              end = new Date(moment(end).format('YYYY-MM-DD HH:mm:ss'));
 
-              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+              functions.getTrabajadoresByIdEmpresa(id_empresas).then(function (response) {
 
+                if(response.data.success == "TRUE"){
+                  console.log("[consultaDeInformes][getTrabajadoresByIdEmpresa]");
+
+                  console.log(response.data.data);
+
+                  var trabajadores = response.data.data;
+
+                  console.log(trabajadores[0].id_trabajadores);
+
+                  functions.getHistorialEntradas(trabajadores[0].id_trabajadores, start, end).then(function (response) {
+
+                    if(response.data.success == "TRUE"){
+                      console.log("[consultaDeInformes][getHistorialEntradas]");
+
+                      //no es requerido llenar el tipo con el tipo de salida ya que en nombre ya lo puedes
+                      //response.data.data = functions.completarTiposDeSalidasArray(response.data.data);
+
+                      registros = response.data.data;
+
+                      functions.getIdPlantillas(trabajadores[0].id_plantillas).then(function (response) {
+
+                        if(response.data.success == "TRUE"){
+                          
+                          console.log("[controllers][modTrabajadorClick][getPlantillas]");
+
+                          plantilla = response.data.data[0];
+
+                          console.log(plantilla);
+
+                          console.log(registros);
+
+                          registros = orderFechaAsc(registros);
+
+                          console.log(response.data.data);
+
+                          var fecha = end;
+                          
+                          console.log(fecha);
+
+                          var statMesHrsTrabajadas = functions.statIntervalosHrsTrabajadas(start, end, registros);
+
+                          var statHrsPlantilla = functions.statHorasPlantilla(plantilla);
+                          
+                          var statMesHorsExtra = functions.statMesHorsExtra(statHrsPlantilla, statMesHrsTrabajadas, fecha);
+
+                          trabajadores[0].totalHorasTrabajadas = statMesHrsTrabajadas["horas"] + " hrs con " + statMesHrsTrabajadas["minutos"] + " Min y " + statMesHrsTrabajadas["segundos"] + " Segundos.";
+                          trabajadores[0].horasExtras = statMesHorsExtra["horas"] + " hrs con " + statMesHorsExtra["minutos"] + " Min y " + statMesHorsExtra["segundos"] + " Segundos.";
+                          
+                          if(true){
+
+                        
+                            var data = Array();
+
+                            var choices = Array();
+                            choices = ["id_trabajadores", "nombre", "apellido", "totalHorasTrabajadas","horasExtras"];
+                            
+                            data = addKeyToArray(data, trabajadores, choices);
+                  
+                            console.log(data);
+                            
+                            $('#dt-basic-example').dataTable().fnClearTable();
+                            $('#dt-basic-example').dataTable().fnAddData(data); 
+
+                          }
+
+                          functions.loadingEndWait();
+                          
+                        } else {
+
+                            functions.loadingEndWait();
+                        }
+                      }, function (response) {
+                        /*ERROR*/
+                        toastr["error"]("Inténtelo de nuevo más tarde", "");
+                        functions.loadingEndWait();
+
+                      });/*fin getPlantillas*/
+                      
+                      functions.loadingEndWait();
+                      
+                    } else {
+                        toastr["success"]("No hay Registros en esos Intervalos", "");
+                        
+                        $('#dt-basic-example').dataTable().fnClearTable();
+                        functions.loadingEndWait();
+                    }
+                  }, function (response) {
+                    /*ERROR*/
+                    toastr["error"]("Inténtelo de nuevo más tarde", "");
+                    functions.loadingEndWait();
+
+                  });/*fin getHistorialEntradas*/
+        
+                } else {
+                    toastr["warning"](response.data.description, "");
+                    functions.loadingEndWait();
+                }
+              }, function (response) {
+                //ERROR
+                toastr["error"]("Inténtelo de nuevo más tarde", "");
+                functions.loadingEndWait();
+
+              });//fin getTrabajadoresByIdEmpresa
+
+              
+                 
+              functions.getImageEmpresa(id_empresas).then(function (response) {
+
+                  if(response.data.success == "TRUE"){
+                    console.log("[consultaDeInformes][perfilEmpresas]");
+
+                    console.log(response.data.data);
+
+                    $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+                  } else {
+                      toastr["warning"](response.data.description, "");
+                      functions.loadingEndWait();
+                  }
+              }, function (response) {
+                /*ERROR*/
+                toastr["error"]("Inténtelo de nuevo más tarde", "");
+                functions.loadingEndWait();
+
+              });/*fin getImageEmpresa*/
+              
             } else {
                 toastr["warning"](response.data.description, "");
                 functions.loadingEndWait();
@@ -3405,10 +3604,11 @@
           toastr["error"]("Inténtelo de nuevo más tarde", "");
           functions.loadingEndWait();
 
-        });/*fin getImageEmpresa*/
+        });/*fin getZonaHoraria*/
 
-    }; //fin getImageEmpresaClick
+    }; //fin getZonaHorariaFrontClick
 
+    getTrabajadoresAndStats = $scope.getTrabajadoresAndStatsClick;
 
   });//fin controller consultaDeInformes
 

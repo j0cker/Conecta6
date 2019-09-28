@@ -1579,7 +1579,7 @@ class APITrabajadores extends Controller
 
         //print_r($token_decrypt);
 
-        if(in_array("3", $token_decrypt["permisos"])==1){
+        if(in_array("3", $token_decrypt["permisos"])==1 || in_array("2", $token_decrypt["permisos"])==1){
             
           Validator::make($request->all(), [
             'id_trabajadores' => 'required',
