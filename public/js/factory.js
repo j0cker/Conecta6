@@ -870,7 +870,7 @@
 
                   }
 
-                } else if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1) {
+                } else if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1 && pmes==rmes && panio==ranio) {
                   //falta (dentro de plantilla)
 
                   console.log("Falta");
@@ -982,6 +982,8 @@
         console.log("[factory][impuntualesPuntualesConSusAsistencias]");
 
         console.log(plantillas);
+        console.log("registros: ");
+        console.log(registros);
 
         var array = Array();
         array["impuntuales"] = Array();
@@ -1247,11 +1249,31 @@
 
           console.log(restaFechas3(fechaRestar, fechaRestar2) + " VS " + restaFechas3(fechaRestar, fechaRestar3))
 
+          console.log("size registrosMes: " + registrosIntervalo.length);
+
+          var validacion = 1;
+          x=0;
+          while(x<registrosIntervalo.length){
+
+            //console.log("[while] Días registrosMes: " + registrosMes[x].fecha.substring(0,10) + " Registro: " + registros[i].fecha.substring(0,10));
+
+            if(registrosIntervalo[x].fecha.substring(0,10)==registros[i].fecha.substring(0,10) && registrosIntervalo[x].id_trabajadores==registros[i].id_trabajadores){
+              validacion=-1;
+              console.log("Duplicado");
+              break;
+            }
+
+            x++;
+          }
+
           if(restaFechas3(fechaRestar, fechaRestar2) <= restaFechas3(fechaRestar, fechaRestar3) && restaFechas3(fechaRestar, fechaRestar2) >= 0 &&
           registros[i].tipo=="entrada" && 
-          ((i!=0 && registros[i-1].fecha.substring(8,10)!=registros[i].fecha.substring(8,10)) || i==0)){
+          ((i!=0 && validacion==1) || i==0)){
             console.log("Se agrega");
             registrosIntervalo.push(registros[i]);
+          } else {
+            
+            console.log("No Se agrega");
           }
 
         }//fin for
@@ -1318,14 +1340,33 @@
 
           console.log(restaFechas3(fechaRestar, fechaRestar2))
 
+          console.log("size registrosMes: " + registrosMes.length);
+          var validacion = 1;
+          x=0;
+          while(x<registrosMes.length){
+
+            //console.log("[while] Días registrosMes: " + registrosMes[x].fecha.substring(0,10) + " Registro: " + registros[i].fecha.substring(0,10));
+
+            if(registrosMes[x].fecha.substring(0,10)==registros[i].fecha.substring(0,10) && registrosMes[x].id_trabajadores==registros[i].id_trabajadores){
+              validacion=-1;
+              console.log("Duplicado");
+              break;
+            }
+
+            x++;
+          }
+
           //substring dias
           //filtramos solo entradas en la mañana por día
           if(restaFechas3(fechaRestar, fechaRestar2) <= 31 && restaFechas3(fechaRestar, fechaRestar2) >= 0 &&
             hoymes==rmes && registros[i].tipo=="entrada" && 
-            ((i!=0 && registros[i-1].fecha.substring(8,10)!=registros[i].fecha.substring(8,10)) || i==0)
+            ((i!=0 && validacion==1) || i==0)
             ){
             console.log("Se agrega");
             registrosMes.push(registros[i]);
+          } else {
+            
+            console.log("No Se agrega");
           }
 
         }//fin for
