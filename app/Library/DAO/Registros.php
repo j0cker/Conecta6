@@ -102,6 +102,12 @@ class Registros extends Model
     {
 
         Log::info("[Entradas][ScopeGetAllHistorialByIdEmpresas]");
+
+        Log::info("[Entradas][ScopeGetAllHistorialByIdEmpresas] inicio: ". $start);
+
+        Log::info("[Entradas][ScopeGetAllHistorialByIdEmpresas] fin: " . $end);
+
+        
         
         return $query->leftJoin('salidas', 'salidas.id_salidas', '=', 'registros.id_salidas')
         ->leftJoin('trabajadores', 'trabajadores.id_trabajadores', '=', 'registros.id_trabajadores')

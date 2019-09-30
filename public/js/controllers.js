@@ -218,7 +218,7 @@
               functions.getHistorialEntradas(id_trabajadores, start, end).then(function (response) {
 
                 if(response.data.success == "TRUE"){
-                  console.log("[historial][getHistorialEntradas]");
+                  console.log("[inicio][getHistorialEntradas]");
 
                   //no es requerido llenar el tipo con el tipo de salida ya que en nombre ya lo puedes
                   //response.data.data = functions.completarTiposDeSalidasArray(response.data.data);
@@ -955,12 +955,12 @@
               var end = new Date( moment().add(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
 
               $('#datepicker-2').daterangepicker({
-                  timePicker: true,
+                  timePicker: false,
                   startDate: start,
                   endDate: end,
                   locale:
                   {
-                      format: 'YYYY-MM-DD HH:mm:ss'
+                      format: 'YYYY-MM-DD'
                   }
               });
 
@@ -1015,7 +1015,7 @@
 
       functions.loading();
 
-      functions.getHistorialEntradas(id_trabajadores, start, end).then(function (response) {
+      functions.getHistorialEntradas(id_trabajadores, start + " 00:00:00", end + " 23:59:59").then(function (response) {
 
         if(response.data.success == "TRUE"){
           console.log("[historial][getHistorialEntradas]");
@@ -3391,7 +3391,7 @@
 
       functions.loading();
 
-      console.log("[historial] ");
+      console.log("[consultaDeInformes] ");
 
       console.log("id_empresas: " + id_empresas);
 
@@ -3399,12 +3399,12 @@
 
         if(response.data.success == "TRUE"){
 
-          console.log("[historial][getZonaHoraria]");
+          console.log("[consultaDeInformes][getZonaHoraria]");
 
           console.log(response.data.data);
 
-          start = new Date(moment().subtract(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD'));
-          end = new Date(moment().add(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD'));
+          start = new Date(moment().subtract(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+          end = new Date(moment().add(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
 
           $('#datepicker-2').daterangepicker({
             timePicker: false,
@@ -3455,7 +3455,7 @@
 
       functions.loading();
 
-      console.log("[historial] ");
+      console.log("[consultaDeInformes] ");
 
       console.log("id_empresas: " + id_empresas);
 
@@ -3463,13 +3463,25 @@
 
             if(response.data.success == "TRUE"){
 
-              console.log("[historial][getZonaHoraria]");
+              console.log("[consultaDeInformes][getZonaHoraria]");
 
               console.log(response.data.data);
+              
+              console.log("Start: " + start);
+              console.log("End: " + end);
 
               var fecha = new Date( moment().tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+
+              start2 = start;
+              end2 = end;
+
               start = new Date(moment(start).format('YYYY-MM-DD HH:mm:ss'));
+              //start.setHours(0,0,0);
               end = new Date(moment(end).format('YYYY-MM-DD HH:mm:ss'));
+              //end.setHours(23,59,59);
+
+              console.log("Start: " + start);
+              console.log("End: " + end);
 
               functions.getTrabajadoresByIdEmpresa(id_empresas).then(function (response) {
 
@@ -3480,7 +3492,7 @@
 
                   var trabajadores = response.data.data;
 
-                  functions.getHistorialEntradasByIdEmpresas(id_empresas, start, end).then(function (response) {
+                  functions.getHistorialEntradasByIdEmpresas(id_empresas, start2 + " 00:00:00", end2 + " 23:59:59").then(function (response) {
 
                     if(response.data.success == "TRUE"){
                       console.log("[consultaDeInformes][getHistorialEntradas]");
