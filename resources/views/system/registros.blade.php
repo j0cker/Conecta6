@@ -98,7 +98,7 @@
                                                 <p id="anio" class="anio"></p>
                                             </div>
 
-                                            <div style="margin-top: 25px;" class="panel-content clock text-center"></div>
+                                            <div style="padding: 1rem 0 1rem 0 !important; margin-top: 25px;" class="panel-content clock text-center"></div>
                                         </center>
                                     </div>
                                 </div>
