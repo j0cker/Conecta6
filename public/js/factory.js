@@ -577,7 +577,7 @@
 
                   }
 
-                } else if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1) {
+                } else if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1 && imes==regmes && ianio==reganio) {
                   //falta (dentro de plantilla)
 
                   console.log("Falta");

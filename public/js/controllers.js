@@ -3403,15 +3403,15 @@
 
           console.log(response.data.data);
 
-          start = new Date(moment().subtract(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
-          end = new Date(moment().add(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+          start = new Date(moment().subtract(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD'));
+          end = new Date(moment().add(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD'));
 
           $('#datepicker-2').daterangepicker({
-            timePicker: true,
+            timePicker: false,
             startDate: start,
             endDate: end,
             locale:
-            { format: 'YYYY-MM-DD HH:mm:ss'
+            { format: 'YYYY-MM-DD'
             }
           });
 
