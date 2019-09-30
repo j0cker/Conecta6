@@ -360,7 +360,331 @@
                       var plot = $.plot($("#updating-chart"), [res], options);
                       /* FIN TAB 1: UPDATING CHART (Gráfica Grande) */
       },
-      faltasNoFaltasConSusAsistencias: function(plantillas, registros, fecha){
+      faltasNoFaltasConSusAsistenciasIntervalos: function(plantillas, registros, fechaini, fechafin){
+        
+        console.log("[factory][faltasNoFaltasConSusAsistenciasIntervalos]");
+
+        console.log(plantillas);
+
+        console.log(registros);
+
+        var array = Array();
+        array["faltas"] = Array();
+        array["noFaltas"] = Array();
+        array["asistencias"] = Array();
+        array["noLaborales"] = Array();
+
+        fechaini = new Date(moment(fechaini).format('YYYY-MM-DD HH:mm:ss'));
+
+        var inihora = fechaini.getHours(),
+            iniminutos = fechaini.getMinutes(),
+            inisegundos = fechaini.getSeconds(),
+            inidiaSemana = fechaini.getDay(),
+            inidia = fechaini.getDate(),
+            inimes = fechaini.getMonth(),
+            inianio = fechaini.getFullYear(),
+            iniampm;
+
+        console.log(fechaini);
+
+        fechafin = new Date(moment(fechafin).format('YYYY-MM-DD HH:mm:ss'));
+
+        var finhora = fechafin.getHours(),
+            finminutos = fechafin.getMinutes(),
+            finsegundos = fechafin.getSeconds(),
+            findiaSemana = fechafin.getDay(),
+            findia = fechafin.getDate(),
+            finmes = fechafin.getMonth(),
+            finanio = fechafin.getFullYear(),
+            finampm;
+
+        console.log(fechafin);
+
+        var faltasCont = 0;
+        var noFaltasCont = 0;
+        var asistenciasCont = 0;
+        var noLaboralesCont = 0;
+            
+        var faltas=0;
+        var noFaltas=0;
+        var asistencias=0;
+        var noLaborales = 0;
+
+        //recorrer llaves
+        for (var key in registros){
+
+          array["faltas"][faltasCont] = Array();
+          array["faltas"][faltasCont].nombre = registros[key][0].nombre; 
+          array["faltas"][faltasCont].apellido = registros[key][0].apellido; 
+          array["faltas"][faltasCont].id_trabajadores = registros[key][0].id_trabajadores; 
+          array["faltas"][faltasCont].faltas = 0;
+
+          array["noFaltas"][noFaltasCont] = Array();
+          array["noFaltas"][noFaltasCont].nombre = registros[key][0].nombre; 
+          array["noFaltas"][noFaltasCont].apellido = registros[key][0].apellido; 
+          array["noFaltas"][noFaltasCont].id_trabajadores = registros[key][0].id_trabajadores; 
+          array["noFaltas"][noFaltasCont].noFaltas = 0;
+  
+          array["noLaborales"][noLaboralesCont] = Array();
+          array["noLaborales"][noLaboralesCont].nombre = registros[key][0].nombre; 
+          array["noLaborales"][noLaboralesCont].apellido = registros[key][0].apellido; 
+          array["noLaborales"][noLaboralesCont].id_trabajadores = registros[key][0].id_trabajadores; 
+          array["noLaborales"][noLaboralesCont].noLaborales = 0;
+          
+          array["asistencias"][asistenciasCont] = Array();
+          array["asistencias"][asistenciasCont].nombre = registros[key][0].nombre; 
+          array["asistencias"][asistenciasCont].apellido = registros[key][0].apellido; 
+          array["asistencias"][asistenciasCont].id_trabajadores = registros[key][0].id_trabajadores; 
+          array["asistencias"][asistenciasCont].asistencias = 0; 
+        
+          //recorrer plantillas buscando la plantilla del usuario ej.(gerentes, directivos, etc.)
+          for(var y=0; y<plantillas.length; y++){
+            if(registros[key][0].id_plantillas!=undefined && plantillas[y].id_plantillas==registros[key][0].id_plantillas){
+              console.log("Plantilla posición: " +y + " plantilla_id: " + registros[key][0].id_plantillas + " llave: " + key);
+              break;
+            }
+          }
+
+          var fechaRestar = inianio + "-" + inimes + "-" + inidia; 
+          var fechaRestar2 = finanio + "-" + finmes + "-" + findia; 
+
+          console.log(fechaRestar);
+          console.log(fechaRestar2);
+
+          console.log((restaFechas3(fechaRestar, fechaRestar2)+1));
+
+          var recordarDia = 1;
+
+          var fecha = new Date(moment(fechaini).subtract(1, 'day').format('YYYY-MM-DD HH:mm:ss'));
+
+          //recorrer arreglos dentro de las llaves
+          for(var x=0; x<registros[key].length; x++){
+
+            for(var i=recordarDia; i<=(restaFechas3(fechaRestar, fechaRestar2)+1); i++){
+
+              console.log("[factory][faltasNoFaltasConSusAsistencias] i: " + i);
+
+              fechareg = new Date(moment(registros[key][x].fecha).format('YYYY-MM-DD HH:mm:ss'));
+
+              var reghora = fechareg.getHours(),
+                  regminutos = fechareg.getMinutes(),
+                  regsegundos = fechareg.getSeconds(),
+                  regdiaSemana = fechareg.getDay(),
+                  regdia = fechareg.getDate(),
+                  regmes = fechareg.getMonth(),
+                  reganio = fechareg.getFullYear(),
+                  regampm;
+
+              var semana = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
+              var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+              var fechaDiaIncremental= new Date(moment(fecha).add(i, 'day').format('YYYY-MM-DD HH:mm:ss'));
+
+              var ihora = fechaDiaIncremental.getHours(),
+                  iminutos = fechaDiaIncremental.getMinutes(),
+                  isegundos = fechaDiaIncremental.getSeconds(),
+                  idiaSemana = fechaDiaIncremental.getDay(),
+                  idia = fechaDiaIncremental.getDate(),
+                  imes = fechaDiaIncremental.getMonth(),
+                  ianio = fechaDiaIncremental.getFullYear(),
+                  iampm;
+
+              var dias = semana[idiaSemana];
+
+              console.log("[faltasNoFaltasConSusAsistencias] busca dia registro:" + regdia + " VS idia:" + idia + " Nombre: " + registros[key][x].nombre + " dia: " + dias);
+
+              
+              if(idia>parseInt(regdia) && imes==regmes && ianio==reganio){
+
+                console.log("idia>parseInt(regdia): 1");
+
+                recordarDia = i;
+                if(x==(registros[key].length-1)){
+                  
+                  if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1) {
+                    //falta (dentro de plantilla)
+    
+                    console.log("Falta");
+    
+                    if(faltas==0){
+    
+                      array["faltas"][faltasCont] = Array();
+                      array["faltas"][faltasCont].nombre = registros[key][x].nombre; 
+                      array["faltas"][faltasCont].apellido = registros[key][x].apellido; 
+                      array["faltas"][faltasCont].id_trabajadores = registros[key][x].id_trabajadores; 
+                      array["faltas"][faltasCont].faltas = 1;
+                    
+                      faltas++;  
+    
+                    } else {
+    
+                      array["faltas"][faltasCont].faltas = 1 + parseInt(array["faltas"][faltasCont].faltas);
+    
+                    }
+                    
+    
+                  } else {
+                    console.log("Días no Laborales");
+    
+                    if(noLaborales==0){
+    
+                      array["noLaborales"][noLaboralesCont] = Array();
+                      array["noLaborales"][noLaboralesCont].nombre = registros[key][x].nombre; 
+                      array["noLaborales"][noLaboralesCont].apellido = registros[key][x].apellido; 
+                      array["noLaborales"][noLaboralesCont].id_trabajadores = registros[key][x].id_trabajadores; 
+                      array["noLaborales"][noLaboralesCont].noLaborales = 1;
+                    
+                      noLaborales++;  
+    
+                    } else {
+    
+                      array["noLaborales"][noLaboralesCont].noLaborales = 1 + parseInt(array["noLaborales"][noLaboralesCont].noLaborales);
+    
+                    }
+                  }
+
+                  recordarDia = 1;
+
+                } else {
+                  console.log("Rompe");
+                  
+                  //rompe días para no almacenar de más.
+                  break;
+                }
+                
+              } else {
+
+                console.log("idia>parseInt(regdia): 2");
+
+                if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1 && idia==parseInt(regdia) && imes==regmes && ianio==reganio){
+                  //no es falta (dentro de plantilla)
+
+                  console.log("No Falta");
+
+                  if(noFaltas==0){
+
+                    array["noFaltas"][noFaltasCont] = Array();
+                    array["noFaltas"][noFaltasCont].nombre = registros[key][x].nombre; 
+                    array["noFaltas"][noFaltasCont].apellido = registros[key][x].apellido; 
+                    array["noFaltas"][noFaltasCont].id_trabajadores = registros[key][x].id_trabajadores; 
+                    array["noFaltas"][noFaltasCont].noFaltas = 1; 
+
+                    noFaltas++;
+
+                  } else {
+
+                    array["noFaltas"][noFaltasCont].noFaltas = 1 + parseInt(array["noFaltas"][noFaltasCont].noFaltas);
+
+                  }
+
+                } else if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1) {
+                  //falta (dentro de plantilla)
+
+                  console.log("Falta");
+
+                  if(faltas==0){
+
+                    array["faltas"][faltasCont] = Array();
+                    array["faltas"][faltasCont].nombre = registros[key][x].nombre; 
+                    array["faltas"][faltasCont].apellido = registros[key][x].apellido; 
+                    array["faltas"][faltasCont].id_trabajadores = registros[key][x].id_trabajadores; 
+                    array["faltas"][faltasCont].faltas = 1;
+                  
+                    faltas++;  
+
+                  } else {
+
+                    array["faltas"][faltasCont].faltas = 1 + parseInt(array["faltas"][faltasCont].faltas);
+
+                  }
+                  
+
+                } else if(idia==parseInt(regdia) && imes==regmes && ianio==reganio){
+                  //días extras de asistencia (fuera de plantilla)
+
+                  console.log("Asistencia Fuera de Plantilla");
+
+                  if(asistencias==0){
+
+                    array["asistencias"][asistenciasCont] = Array();
+                    array["asistencias"][asistenciasCont].nombre = registros[key][x].nombre; 
+                    array["asistencias"][asistenciasCont].apellido = registros[key][x].apellido; 
+                    array["asistencias"][asistenciasCont].id_trabajadores = registros[key][x].id_trabajadores; 
+                    array["asistencias"][asistenciasCont].asistencias = 1; 
+
+                    asistencias++;
+
+                  } else {
+
+                    array["asistencias"][asistenciasCont].asistencias = 1 + parseInt(array["asistencias"][asistenciasCont].asistencias);
+
+                  }
+
+                } else {
+                  console.log("Días no Laborales");
+    
+                  if(noLaborales==0){
+  
+                    array["noLaborales"][noLaboralesCont] = Array();
+                    array["noLaborales"][noLaboralesCont].nombre = registros[key][x].nombre; 
+                    array["noLaborales"][noLaboralesCont].apellido = registros[key][x].apellido; 
+                    array["noLaborales"][noLaboralesCont].id_trabajadores = registros[key][x].id_trabajadores; 
+                    array["noLaborales"][noLaboralesCont].noLaborales = 1;
+                  
+                    noLaborales++;  
+  
+                  } else {
+  
+                    array["noLaborales"][noLaboralesCont].noLaborales = 1 + parseInt(array["noLaborales"][noLaboralesCont].noLaborales);
+  
+                  }
+                }
+              
+              }//fin if dia mayor que otro dia
+
+            } //fin for días
+
+            
+          }//fin recorrer arreglo dentro de los registros
+
+          faltasCont++;
+          noFaltasCont++;
+          asistenciasCont++;
+          noLaboralesCont++;
+          
+        }//fin recorrer llaves
+        
+        for(var x=0; x<array["faltas"].length; x++){
+
+          for(var y=0; y<array["asistencias"].length; y++){
+
+            if(array["faltas"][x].id_trabajadores==array["asistencias"][y].id_trabajadores){
+
+              array["faltas"][x].asistencias = array["asistencias"][y].asistencias;
+
+            }
+
+          }
+
+        }
+
+        for(var x=0; x<array["noFaltas"].length; x++){
+
+          for(var y=0; y<array["asistencias"].length; y++){
+
+            if(array["noFaltas"][x].id_trabajadores==array["asistencias"][y].id_trabajadores){
+
+              array["noFaltas"][x].asistencias = array["asistencias"][y].asistencias;
+
+            }
+
+          }
+
+        }
+      
+        return array;
+      },
+      faltasNoFaltasConSusAsistenciasMes: function(plantillas, registros, fecha){
         
         console.log("[factory][faltasNoFaltasConSusAsistencias]");
 
@@ -471,7 +795,6 @@
               console.log("[faltasNoFaltasConSusAsistencias] busca dia registro:" + rdia + " VS i:" + i + " Nombre: " + registros[key][x].nombre + " dia: " + dias);
 
               
-              //rompe días para no almacenar de más.
               if(i>parseInt(rdia)){
                 recordarDia = i;
                 if(x==(registros[key].length-1)){
@@ -519,6 +842,8 @@
                   }
                 } else {
                   console.log("Rompe");
+                  
+                  //rompe días para no almacenar de más.
                   break;
                 }
                 
@@ -859,6 +1184,85 @@
 
         return array;
       },
+      filtrarSoloEntradasPorIntervalo: function(fechaInicio, fechaFin, registros){
+        console.log("[factory][filtrarSoloEntradasPorIntervalo]");
+
+        console.log("Registros:");
+        console.log(registros);
+
+        console.log("Fecha Fin");
+        console.log(fechaFin);
+
+        var finhora = fechaFin.getHours(),
+                    finminutos = fechaFin.getMinutes(),
+                    finsegundos = fechaFin.getSeconds(),
+                    findiaSemana = fechaFin.getDay(),
+                    findia = fechaFin.getDate(),
+                    finmes = fechaFin.getMonth(),
+                    finanio = fechaFin.getFullYear(),
+                    finampm;
+
+        console.log("Fecha Inicio");
+        console.log(fechaInicio);
+
+        //var fechaInicio= new Date(moment(fechaInicio).format('YYYY-MM-DD HH:mm:ss'));
+        
+        var phora = fechaInicio.getHours(),
+                    pminutos = fechaInicio.getMinutes(),
+                    psegundos = fechaInicio.getSeconds(),
+                    pdiaSemana = fechaInicio.getDay(),
+                    pdia = fechaInicio.getDate(),
+                    pmes = fechaInicio.getMonth(),
+                    panio = fechaInicio.getFullYear(),
+                    pampm;
+
+        console.log("[filtrarSoloEntradasPorIntervalo] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio);
+
+        var registrosIntervalo = Array();
+
+        //obtener registros solo del último mes
+        for(var i=0; i<registros.length; i++){
+
+          console.log("[filtrarSoloEntradasPorIntervalo] Iteraciones: " + i);
+
+          
+          fechaRegistro =  new Date(registros[i].fecha);
+
+          var rhora = fechaRegistro.getHours(),
+              rminutos = fechaRegistro.getMinutes(),
+              rsegundos = fechaRegistro.getSeconds(),
+              rdiaSemana = fechaRegistro.getDay(),
+              rdia = fechaRegistro.getDate(),
+              rmes = fechaRegistro.getMonth(),
+              ranio = fechaRegistro.getFullYear(),
+              rampm;
+
+          var fechaRestar = panio + "-" + pmes + "-" + pdia; 
+          var fechaRestar2 = ranio + "-" + rmes + "-" + rdia; 
+          var fechaRestar3 = finanio + "-" + finmes + "-" + findia; 
+
+          console.log(fechaRestar + " " + phora + ":" + pminutos + ":" + psegundos);
+          console.log(fechaRestar2 + " " + rhora + ":" + rminutos + ":" + rsegundos);
+          console.log(fechaRestar3 + " " + finhora + ":" + finminutos + ":" + finsegundos);
+
+          console.log(restaFechas3(fechaRestar, fechaRestar2) + " VS " + restaFechas3(fechaRestar, fechaRestar3))
+
+          if(restaFechas3(fechaRestar, fechaRestar2) <= restaFechas3(fechaRestar, fechaRestar3) && restaFechas3(fechaRestar, fechaRestar2) >= 0 &&
+          registros[i].tipo=="entrada" && 
+          ((i!=0 && registros[i-1].fecha.substring(8,10)!=registros[i].fecha.substring(8,10)) || i==0)){
+            console.log("Se agrega");
+            registrosIntervalo.push(registros[i]);
+          }
+
+        }//fin for
+
+        console.log("Entrada en intervalo:");
+
+        console.log(registrosIntervalo);
+
+        return registrosIntervalo;
+
+      },
       filtrarSoloEntradasAlMes: function(fecha, registros){
         
         console.log("[factory][filtrarSoloEntradasAlMes]");
@@ -920,7 +1324,7 @@
             hoymes==rmes && registros[i].tipo=="entrada" && 
             ((i!=0 && registros[i-1].fecha.substring(8,10)!=registros[i].fecha.substring(8,10)) || i==0)
             ){
-
+            console.log("Se agrega");
             registrosMes.push(registros[i]);
           }
 
@@ -1059,6 +1463,357 @@
         return entradas;
 
       },
+      statIntervalosHorsExtra: function (statHrsPlantilla, statIntervalosHrsTrabajadas, fechaini, fechafin){
+
+        console.log("[factory][statIntervalosHorsExtra]");
+
+        console.log(statIntervalosHrsTrabajadas);
+
+        console.log(statHrsPlantilla);
+
+        var stats = Array();
+        stats["semana"] = Array();
+        stats["semana"]["hora"] = Array();
+        stats["semana"]["hora"]["horas"] = Array();
+        stats["semana"]["hora"]["minutos"] = Array();
+        stats["semana"]["hora"]["segundos"] = Array();
+        stats["semana"]["dias"] = Array();
+        stats["semana"]["fechas"] = Array();
+
+        console.log("[factory][statIntervalosHorsExtra] FechaIni: " + fechaini);
+        console.log("[factory][statIntervalosHorsExtra] FechaFin: " + fechafin);
+        
+        var ahora = fechaini.getHours(),
+                aminutos = fechaini.getMinutes(),
+                asegundos = fechaini.getSeconds(),
+                adiaSemana = fechaini.getDay(),
+                adia = fechaini.getDate(),
+                ames = fechaini.getMonth(),
+                aanio = fechaini.getFullYear(),
+                aampm;
+        
+                
+        var bhora = fechafin.getHours(),
+          bminutos = fechafin.getMinutes(),
+          bsegundos = fechafin.getSeconds(),
+          bdiaSemana = fechafin.getDay(),
+          bdia = fechafin.getDate(),
+          bmes = fechafin.getMonth(),
+          banio = fechafin.getFullYear(),
+          bampm;
+
+        var fechaRestar = aanio + "-" + ames + "-" + adia; 
+        var fechaRestar2 = banio + "-" + bmes + "-" + bdia; 
+
+        console.log(fechaRestar);
+        console.log(fechaRestar2);
+
+        console.log("[factory][statIntervalosHorsExtra] " + (restaFechas3(fechaRestar, fechaRestar2) + 1));
+
+        console.log(statIntervalosHrsTrabajadas["semana"]["dias"].length);
+
+        console.log("----------------------Limpiar Arreglo----------------------");
+   
+        fecha = new Date(moment(fechaini).subtract(1, 'day').format('YYYY-MM-DD HH:mm:ss'));
+
+        //limpiar arreglo
+        var y=0;
+        for(var i=0; i<(restaFechas3(fechaRestar, fechaRestar2) + 1); i++){
+   
+          fecha = new Date(moment(fecha).add(1, 'day').format('YYYY-MM-DD HH:mm:ss'));
+
+          console.log("[factory][statIntervalosHorsExtra] fechaini en ciclo add 1: " + fecha);
+
+          var phora = fecha.getHours(),
+                      pminutos = fecha.getMinutes(),
+                      psegundos = fecha.getSeconds(),
+                      pdiaSemana = fecha.getDay(),
+                      pdia = fecha.getDate(),
+                      pmes = fecha.getMonth(),
+                      panio = fecha.getFullYear(),
+                      pampm;
+          
+          stats["semana"]["hora"]["horas"][y] = 0;
+          stats["semana"]["hora"]["minutos"][y] = 0;
+          stats["semana"]["hora"]["segundos"][y] = 0;
+
+          var coincidencia = 0;
+
+          for(var i2=0; i2<statIntervalosHrsTrabajadas["semana"]["dias"].length; i2++){
+
+            var fecha2 = statIntervalosHrsTrabajadas["semana"]["fechas"][i2];
+
+            var hora = fecha2.getHours(),
+                      minutos = fecha2.getMinutes(),
+                      segundos = fecha2.getSeconds(),
+                      diaSemana = fecha2.getDay(),
+                      dia = fecha2.getDate(),
+                      mes = fecha2.getMonth(),
+                      anio = fecha2.getFullYear(),
+                      ampm;
+
+            if(pdia==dia && pmes==mes && panio==anio){
+
+              console.log("--------------Coinciden-------------------");
+
+              console.log("coinciden dia: " + dia + " mes: " + mes + " anio: " + anio);
+
+              var t1 = new Date();
+
+              console.log("Horas a sumar: " + statIntervalosHrsTrabajadas["semana"]["hora"]["horas"][i2] + " - " + stats["semana"]["hora"]["horas"][y]);
+
+              var horas = parseInt(statIntervalosHrsTrabajadas["semana"]["hora"]["horas"][i2]) + parseInt(stats["semana"]["hora"]["horas"][y]);
+              var minutos = parseInt(statIntervalosHrsTrabajadas["semana"]["hora"]["minutos"][i2]) + parseInt(stats["semana"]["hora"]["minutos"][y]);
+              var segundos = parseInt(statIntervalosHrsTrabajadas["semana"]["hora"]["segundos"][i2]) + parseInt(stats["semana"]["hora"]["segundos"][y]);
+
+              var arregloHoras = secondsToHHMMSS(horas, minutos, segundos);
+
+              console.log(arregloHoras);
+
+              stats["semana"]["dias"][y] = statIntervalosHrsTrabajadas["semana"]["dias"][i2];
+              stats["semana"]["fechas"][y] = statIntervalosHrsTrabajadas["semana"]["fechas"][i2];
+              stats["semana"]["hora"]["horas"][y] = arregloHoras["horas"];
+              stats["semana"]["hora"]["minutos"][y] = arregloHoras["minutos"];
+              stats["semana"]["hora"]["segundos"][y] = arregloHoras["segundos"];
+              coincidencia++;
+              console.log("--------------Fin Coinciden-------------------");
+
+            } 
+
+          } // fin for
+          
+          if(coincidencia!=0){
+            y++;
+          }
+          
+        }//fin for limpiar arreglo
+        
+        console.log("Limpiar arreglo con sus horas y fechas, suma todo, pueden haber fechas repetidas que simplificará, variable=stats");
+        console.log(stats);
+
+        console.log("----------------------FIn Limpiar Arreglo----------------------");
+
+        var horas_ = Array();
+        horas_["horas"] =  0;
+        horas_["minutos"] = 0;
+        horas_["segundos"] = 0;
+
+        console.log("[factory][statIntervalosHorsExtra] " + fecha);
+   
+        fecha = new Date(moment(fechaini).subtract(1, 'day').format('YYYY-MM-DD HH:mm:ss'));
+
+        console.log("[factory][statIntervalosHorsExtra] " + fecha);
+
+        console.log("----------------------Calcular horas----------------------");
+
+        //calcular horas extras
+        for(var i=0; i<(restaFechas3(fechaRestar, fechaRestar2) + 1); i++){
+   
+          fecha = new Date(moment(fecha).add(1, 'day').format('YYYY-MM-DD HH:mm:ss'));
+
+          console.log("[factory][statIntervalosHorsExtra] " + fecha);
+          
+          var phora = fecha.getHours(),
+                      pminutos = fecha.getMinutes(),
+                      psegundos = fecha.getSeconds(),
+                      pdiaSemana = fecha.getDay(),
+                      pdia = fecha.getDate(),
+                      pmes = fecha.getMonth(),
+                      panio = fecha.getFullYear(),
+                      pampm;
+  
+          var semana = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
+          var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+      
+          var dias = semana[pdiaSemana];
+
+          console.log("[factory][statIntervalosHorsExtra] busca pdia: " + pdia + " pmes: " + pmes + " panio: " + panio + " added days" + i);
+
+          var coincidencia = 0;
+
+          for(var i2=0; i2<stats["semana"]["dias"].length; i2++){
+
+            var fecha2 = stats["semana"]["fechas"][i2];
+
+            var hora = fecha2.getHours(),
+                      minutos = fecha2.getMinutes(),
+                      segundos = fecha2.getSeconds(),
+                      diaSemana = fecha2.getDay(),
+                      dia = fecha2.getDate(),
+                      mes = fecha2.getMonth(),
+                      anio = fecha2.getFullYear(),
+                      ampm;
+
+            if(pdia==dia && pmes==mes && panio==anio){
+              
+              coincidencia++;
+
+              console.log("Días mes y año coinciden: " + stats["semana"]["dias"][i2]);
+
+              if(statHrsPlantilla[stats["semana"]["dias"][i2]]["activated"]!="-"){
+
+                
+                console.log("---------día activado--------");
+
+                console.log("Horas Actual: " + horas_["horas"]+":"+horas_["minutos"]+":"+horas_["segundos"]);
+
+                console.log("[factory][statIntervalosHorsExtra] día: " + stats["semana"]["dias"][i2]);
+                
+                var t1 = new Date(),
+                t2 = new Date();
+    
+                console.log("[factory][statIntervalosHorsExtra] horas Plantilla: " + statHrsPlantilla[stats["semana"]["dias"][i2]]["horas"]);
+                console.log("[factory][statIntervalosHorsExtra] horas trabajadas: " + stats["semana"]["hora"]["horas"][i2]);
+    
+                t1.setHours(statHrsPlantilla[stats["semana"]["dias"][i2]]["horas"], statHrsPlantilla[stats["semana"]["dias"][i2]]["minutos"], statHrsPlantilla[stats["semana"]["dias"][i2]]["segundos"]);
+                t2.setHours(stats["semana"]["hora"]["horas"][i2], stats["semana"]["hora"]["minutos"][i2], stats["semana"]["hora"]["segundos"][i2]);
+                
+                //Aquí hago la resta
+                //t1.setHours(t2.getHours() - t1.getHours(),  t2.getMinutes() - t1.getMinutes(), t2.getSeconds() - t1.getSeconds());
+                //t1.setHours(t1.getHours() - t2.getHours(),  t1.getMinutes() - t2.getMinutes(),  t1.getSeconds() - t2.getSeconds());
+    
+                
+                if(t2>t1){ 
+
+                  //horas extras
+                  console.log("---------Horas Extras Con Plantilla--------");
+
+                  var horas = parseInt(t2.getHours()) - parseInt(t1.getHours());
+                  var minutos = parseInt(t2.getMinutes()) - parseInt(t1.getMinutes());
+                  var segundos = parseInt(t2.getSeconds()) - parseInt(t1.getSeconds());
+
+                  var arregloHoras = secondsToHHMMSS(horas, minutos, segundos);
+
+                  console.log(arregloHoras);
+                
+                  console.log("horas extras: " + t2 + " > " + t1);
+    
+                  console.log("Horas Actual: " + horas_["horas"] + " Minutos: " + horas_["minutos"] + " Segundos: " + horas_["segundos"]);
+    
+                
+                  horas = parseInt(horas_["horas"]) + parseInt(arregloHoras["horas"]);
+                  minutos = parseInt(horas_["minutos"]) + parseInt(arregloHoras["minutos"]);
+                  segundos = parseInt(horas_["segundos"]) + parseInt(arregloHoras["segundos"]);
+
+                  arregloHoras = secondsToHHMMSS(horas, minutos, segundos);
+
+                  horas_["horas"] = arregloHoras["horas"];
+                  horas_["minutos"] = arregloHoras["minutos"]
+                  horas_["segundos"] = arregloHoras["segundos"]
+                  
+                  console.log("total: " + horas_["horas"]+":"+horas_["minutos"]+":"+horas_["segundos"]);
+
+                  console.log("----------Fin Horas Extras Con Plantilla----------");
+    
+                } else {
+                  
+                  console.log("----------Horas No Extras Con Plantilla----------");
+
+                  var horas = parseInt(t1.getHours()) - parseInt(t2.getHours());
+                  var minutos = parseInt(t1.getMinutes()) - parseInt(t2.getMinutes());
+                  var segundos = parseInt(t1.getSeconds()) - parseInt(t2.getSeconds());
+
+                  var arregloHoras = secondsToHHMMSS(horas, minutos, segundos);
+
+                  console.log(arregloHoras);
+    
+                  console.log("no horas extras: " + t2 + " > " + t1);
+
+                  console.log("Horas Actual: " + horas_["horas"] + " Minutos: " + horas_["minutos"] + " Segundos: " + horas_["segundos"]);
+                  
+                  horas = parseInt(horas_["horas"]) - parseInt(arregloHoras["horas"]);
+                  minutos = parseInt(horas_["minutos"]) - parseInt(arregloHoras["minutos"]);
+                  segundos = parseInt(horas_["segundos"]) - parseInt(arregloHoras["segundos"]);
+
+                  arregloHoras = secondsToHHMMSS(horas, minutos, segundos);
+
+                  horas_["horas"] = arregloHoras["horas"];
+                  horas_["minutos"] = arregloHoras["minutos"]
+                  horas_["segundos"] = arregloHoras["segundos"]
+                  
+                  console.log("total: " + horas_["horas"]+":"+horas_["minutos"]+":"+horas_["segundos"]);
+
+                  console.log("----------Fin Horas No Extras con Plantilla----------");
+
+                }
+    
+    
+              } else {
+
+                console.log("----------Horas Sin Plantilla (extras)----------");
+                
+
+                console.log("Horas Actual: " + horas_["horas"] + " Minutos: " + horas_["minutos"] + " Segundos: " + horas_["segundos"]);
+                console.log("Horas a Sumar: " + stats["semana"]["hora"]["horas"][i2] + " Minutos: " + stats["semana"]["hora"]["minutos"][i2] + " Segundos: " + stats["semana"]["hora"]["segundos"][i2]);
+                     
+                var horas = parseInt(horas_["horas"]) + parseInt(stats["semana"]["hora"]["horas"][i2]);
+                var minutos = parseInt(horas_["minutos"]) + parseInt(stats["semana"]["hora"]["minutos"][i2]);
+                var segundos = parseInt(horas_["segundos"]) + parseInt(stats["semana"]["hora"]["segundos"][i2]);
+
+                arregloHoras = secondsToHHMMSS(horas, minutos, segundos);
+                
+                horas_["horas"] = arregloHoras["horas"];
+                horas_["minutos"] = arregloHoras["minutos"]
+                horas_["segundos"] = arregloHoras["segundos"]
+                
+
+                console.log("total: " + horas_["horas"]+":"+horas_["minutos"]+":"+horas_["segundos"]);
+    
+                console.log("----------Fin Horas SIn Plantilla (extras)----------");
+
+              }
+
+
+            }// fin if (año, mes y día)
+
+          }//fin for2
+
+          
+            
+          console.log("Coincidencias: " + coincidencia);
+
+          if(pmes==mes && panio==anio && coincidencia==0){
+
+            console.log("--------------No Coincidencias-------------------");
+
+            console.log("No coinciden dia: " + pdia + " mes: " + pmes + " anio: " + panio + " días: " + dias + " Plantilla activada?: " + statHrsPlantilla[dias]["activated"]);
+
+            
+            if(statHrsPlantilla[dias]["activated"]==1){
+              
+              console.log("--------------No Coincidencias Con plantilla No Horas Extra -------------------");
+              
+              console.log("Horas: " + parseInt(statHrsPlantilla[dias]["horas"]));
+
+              var horas = parseInt(horas_["horas"]) - parseInt(statHrsPlantilla[dias]["horas"]);
+              var minutos = parseInt(horas_["minutos"]) - parseInt(statHrsPlantilla[dias]["minutos"]);
+              var segundos = parseInt(horas_["segundos"]) - parseInt(statHrsPlantilla[dias]["segundos"]);
+
+              arregloHoras = secondsToHHMMSS(horas, minutos, segundos);
+              
+              horas_["horas"] = arregloHoras["horas"];
+              horas_["minutos"] = arregloHoras["minutos"];
+              horas_["segundos"] = arregloHoras["segundos"];
+
+            }
+
+            console.log("--------------Fin No Coincidencias -------------------");
+            
+
+          }
+          
+
+        }//fin for
+
+        console.log(horas_);
+
+        
+        console.log("----------------------Fin Calcular horas----------------------");
+        
+
+        return horas_;
+
+      }, 
       statMesHorsExtra: function (statHrsPlantilla, statSemanalHrsTrabajadas, fecha){
 
         console.log("[factory][statSemanaHorsExtra]");
@@ -1167,7 +1922,7 @@
           
         }//fin for limpiar arreglo
         
-        console.log("Limpiar arreglo con sus horas y fechas variable=stats");
+        console.log("Limpiar arreglo con sus horas y fechas, suma todo, pueden haber fechas repetidas que simplificará, variable=stats");
         console.log(stats);
 
         console.log("----------------------FIn Limpiar Arreglo----------------------");
@@ -1493,7 +2248,7 @@
 
         }//fin for limpiar arreglo
         
-        console.log("Limpiar arreglo con sus horas y fechas variable=stats");
+        console.log("Limpiar arreglo con sus horas y fechas, suma todo, pueden haber fechas repetidas que simplificará, variable=stats");
         console.log(stats);
 
         console.log("----------------------FIn Limpiar Arreglo----------------------");
@@ -2289,7 +3044,7 @@
         return registrosEntSal;
       },
       statIntervalosHrsTrabajadas: function(fechaInicio, fechaFin, registros){
-        console.log("[factory][statMesHrsTrabajadas]");
+        console.log("[factory][statIntervalosHrsTrabajadas]");
 
         console.log("Fecha Fin");
         console.log(fechaFin);
@@ -2306,7 +3061,7 @@
         console.log("Fecha Inicio");
         console.log(fechaInicio);
 
-        var fechaInicio= new Date(moment(fechaInicio).format('YYYY-MM-DD HH:mm:ss'));
+        //var fechaInicio= new Date(moment(fechaInicio).format('YYYY-MM-DD HH:mm:ss'));
         
         var phora = fechaInicio.getHours(),
                     pminutos = fechaInicio.getMinutes(),
@@ -2317,9 +3072,9 @@
                     panio = fechaInicio.getFullYear(),
                     pampm;
 
-        console.log("[statMesHrsTrabajadas] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio);
+        console.log("[statIntervalosHrsTrabajadas] pdia busca: " + pdia + " pmes: " + pmes + " panio: " + panio);
 
-        var registrosMes = Array();
+        var registrosIntervalo = Array();
 
         //obtener registros solo del último mes
         for(var i=0; i<registros.length; i++){
@@ -2347,17 +3102,17 @@
           console.log(restaFechas3(fechaRestar, fechaRestar2) + " VS " + restaFechas3(fechaRestar, fechaRestar3))
 
           if(restaFechas3(fechaRestar, fechaRestar2) <= restaFechas3(fechaRestar, fechaRestar3) && restaFechas3(fechaRestar, fechaRestar2) >= 0){
-            registrosMes.push(registros[i]);
+            registrosIntervalo.push(registros[i]);
           }
 
         }//fin for
 
-        console.log("Entrada el Última Mes:");
+        console.log("Entrada en intervalo:");
 
-        console.log(registrosMes);
+        console.log(registrosIntervalo);
 
         //limpiar entradas seguidas de salidas
-        var registrosEntSal = this.limpiarEntradasSeguidasDeSalidas(registrosMes);
+        var registrosEntSal = this.limpiarEntradasSeguidasDeSalidas(registrosIntervalo);
 
         console.log("Entradas seguidas de Salidas (limpiadas):");
 

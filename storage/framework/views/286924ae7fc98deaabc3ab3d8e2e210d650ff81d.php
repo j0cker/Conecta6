@@ -110,7 +110,12 @@
                                                         <th>Horas Extras</th>
                                                         <th>Descanzos Totales</th>
                                                         <th>Salidas</th>
-                                                        <th>Opciones</th>
+                                                        <th>Asistencias Totales</th>
+                                                        <th>Asistencias Fuera de Platilla</th>
+                                                        <th>Asistencias Dentro de Plantilla</th>
+                                                        <th>Puntualidades</th>
+                                                        <th>Impuntualidades</th>
+                                                        <th>Días no Laborales</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
@@ -125,7 +130,12 @@
                                                         <th>Horas Extras</th>
                                                         <th>Descanzos Totales</th>
                                                         <th>Salidas</th>
-                                                        <th>Opciones</th>
+                                                        <th>Asistencias Totales</th>
+                                                        <th>Asistencias Fuera de Platilla</th>
+                                                        <th>Asistencias Dentro de Plantilla</th>
+                                                        <th>Puntualidades</th>
+                                                        <th>Impuntualidades</th>
+                                                        <th>Días no Laborales</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -804,7 +814,8 @@
                             className: 'btn-outline-default'
                         }
 
-                    ],
+                    ]
+                    /*
                     "columnDefs": [ {
                         "targets": -1,
                         "data": null,
@@ -817,7 +828,7 @@
                     
                     } 
                 
-                    ]
+                    ]*/
 
                 });
 

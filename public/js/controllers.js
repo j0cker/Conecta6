@@ -1270,8 +1270,11 @@
                     console.log("[inicioEmpresa][getHistorialEntradasByIdEmpresas]");
 
                     console.log(registros.data.data);
-
+                    
                     var imputuales = functions.filtrarSoloEntradasAlMes(fecha, registros.data.data);
+
+                    console.log("Registro de mes:");
+                    console.log(imputuales);
 
                     var imputuales_divididos = functions.dividirArrayPorIdTrabajadores(imputuales);
 
@@ -1315,7 +1318,7 @@
 
                         console.log(array["asistencias"]);
 
-                        var array = functions.faltasNoFaltasConSusAsistencias(plantillas, imputuales_divididos, fecha);
+                        var array = functions.faltasNoFaltasConSusAsistenciasMes(plantillas, imputuales_divididos, fecha);
 
                         var faltas = array["faltas"].sort(function(a, b) {
                           return (b.faltas - a.faltas);
@@ -3463,7 +3466,8 @@
               console.log("[historial][getZonaHoraria]");
 
               console.log(response.data.data);
-                
+
+              var fecha = new Date( moment().tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
               start = new Date(moment(start).format('YYYY-MM-DD HH:mm:ss'));
               end = new Date(moment(end).format('YYYY-MM-DD HH:mm:ss'));
 
@@ -3476,9 +3480,7 @@
 
                   var trabajadores = response.data.data;
 
-                  console.log(trabajadores[0].id_trabajadores);
-
-                  functions.getHistorialEntradas(trabajadores[0].id_trabajadores, start, end).then(function (response) {
+                  functions.getHistorialEntradasByIdEmpresas(id_empresas, start, end).then(function (response) {
 
                     if(response.data.success == "TRUE"){
                       console.log("[consultaDeInformes][getHistorialEntradas]");
@@ -3488,51 +3490,178 @@
 
                       registros = response.data.data;
 
-                      functions.getIdPlantillas(trabajadores[0].id_plantillas).then(function (response) {
+                      console.log("Registros");
+                      console.log(registros);
+
+                      var registros_divididos = functions.dividirArrayPorIdTrabajadores(registros);
+
+                      console.log("Registros Divididos");
+                      console.log(registros_divididos);
+
+                      functions.getPlantillas().then(function (response) {
 
                         if(response.data.success == "TRUE"){
                           
                           console.log("[controllers][modTrabajadorClick][getPlantillas]");
 
-                          plantilla = response.data.data[0];
+                          plantillas = response.data.data;
 
-                          console.log(plantilla);
+                          /* Faltas y No Faltas */
 
-                          console.log(registros);
+                          console.log("faltas y no faltas");
 
-                          registros = orderFechaAsc(registros);
+                          var imputuales = functions.filtrarSoloEntradasPorIntervalo(start, end, registros);
 
-                          console.log(response.data.data);
+                          var imputuales_divididos = functions.dividirArrayPorIdTrabajadores(imputuales);
 
-                          var fecha = end;
+                          var array = functions.impuntualesPuntualesConSusAsistencias(plantillas, imputuales_divididos);
+
+                          var impuntuales = array["impuntuales"].sort(function(a, b) {
+                            return (b.impuntualidad - a.impuntualidad);
+                          });
                           
-                          console.log(fecha);
+                          var puntuales = array["puntuales"].sort(function(a, b) {
+                            return (b.puntuales - a.puntuales);
+                          });
 
-                          var statMesHrsTrabajadas = functions.statIntervalosHrsTrabajadas(start, end, registros);
+                          console.log("impuntuales: ");
 
-                          var statHrsPlantilla = functions.statHorasPlantilla(plantilla);
+                          console.log(impuntuales);
+
+                          console.log("puntuales: ");
+
+                          console.log(puntuales);
+
+                          console.log("asistencias: ");
+
+                          var asistencias = array["asistencias"];
+
+                          console.log(array["asistencias"]);
+
+                          console.log("faltasNoFaltasConSusAsistenciasIntervalos: ");
+
+                          var array = functions.faltasNoFaltasConSusAsistenciasIntervalos(plantillas, imputuales_divididos, start, end);
+
+                          var faltas = array["faltas"].sort(function(a, b) {
+                            return (b.faltas - a.faltas);
+                          });
                           
-                          var statMesHorsExtra = functions.statMesHorsExtra(statHrsPlantilla, statMesHrsTrabajadas, fecha);
+                          var nofaltas = array["noFaltas"].sort(function(a, b) {
+                            return (b.noFaltas - a.noFaltas);
+                          });
 
-                          trabajadores[0].totalHorasTrabajadas = statMesHrsTrabajadas["horas"] + " hrs con " + statMesHrsTrabajadas["minutos"] + " Min y " + statMesHrsTrabajadas["segundos"] + " Segundos.";
-                          trabajadores[0].horasExtras = statMesHorsExtra["horas"] + " hrs con " + statMesHorsExtra["minutos"] + " Min y " + statMesHorsExtra["segundos"] + " Segundos.";
+                          console.log(array);
+
+                          console.log("faltas: ");
+
+                          console.log(faltas);
+
+                          console.log("No faltas: ");
+
+                          console.log(nofaltas);
+
+                          var noLaborales = array["noLaborales"];
+
+                          for(var i=0; i<trabajadores.length; i++){
+
+                            for(var x=0; x<plantillas.length; x++){
+                              if(trabajadores[i].id_plantillas==plantillas[x].id_plantillas){
+                                break;
+                              }
+                            }
+
+                            console.log(plantillas[x]);
+
+                            if(registros_divididos[trabajadores[i].id_trabajadores]!=null){
+
+                              console.log(trabajadores[i].id_trabajadores);
+
+                              console.log(registros_divididos[trabajadores[i].id_trabajadores]);
+
+                              registros = orderFechaAsc(registros_divididos[trabajadores[i].id_trabajadores]);
+                            
+                            } else {
+
+                              registros = [];
+
+                            }
+
+                              var fecha = end;
+                              
+                              console.log(fecha);
+
+                              /* Hors Trabajadas y Hors Extras */
+
+                              var statIntervalosHrsTrabajadas = functions.statIntervalosHrsTrabajadas(start, end, registros);
+
+                              var statHrsPlantilla = functions.statHorasPlantilla(plantillas[x]);
+                              
+                              var statMesHorsExtra = functions.statIntervalosHorsExtra(statHrsPlantilla, statIntervalosHrsTrabajadas, start, end);
+
+                              console.log(statMesHorsExtra);
+
+                              trabajadores[i].faltas = 0;
+                              trabajadores[i].noFaltas = 0;
+                              trabajadores[i].puntualidades = 0;
+                              trabajadores[i].impuntualidades = 0;
+                              trabajadores[i].descanzosTotales = 0;
+                              trabajadores[i].salidas = 0;
+                              trabajadores[i].asistenciasT = 0;
+                              trabajadores[i].asistenciasFuera = 0;
+                              trabajadores[i].asistenciasDentro = 0;
+                              trabajadores[i].noLaborales = 0;
+                              trabajadores[i].totalHorasTrabajadas = statIntervalosHrsTrabajadas["horas"] + " hrs con " + statIntervalosHrsTrabajadas["minutos"] + " Min y " + statIntervalosHrsTrabajadas["segundos"] + " Segundos.";
+                              trabajadores[i].horasExtras = statMesHorsExtra["horas"] + " hrs con " + statMesHorsExtra["minutos"] + " Min y " + statMesHorsExtra["segundos"] + " Segundos.";
+                              
+                              for (var key in faltas){
+                                if(faltas[key].id_trabajadores==trabajadores[i].id_trabajadores){
+                                  trabajadores[i].faltas = faltas[key].faltas;
+                                  trabajadores[i].asistenciasFuera = faltas[key].asistencias;
+                                }
+                              }
+                              for (var key in nofaltas){
+                                if(nofaltas[key].id_trabajadores==trabajadores[i].id_trabajadores){
+                                  trabajadores[i].asistenciasDentro = nofaltas[key].noFaltas;
+                                  trabajadores[i].asistenciasFuera = nofaltas[key].asistencias;
+                                }
+                              }
+                              for (var key in asistencias){
+                                if(asistencias[key].id_trabajadores==trabajadores[i].id_trabajadores){
+                                  console.log();
+                                  trabajadores[i].asistenciasT = asistencias[key].asistencias;
+                                }
+                              }
+                              for (var key in impuntuales){
+                                if(impuntuales[key].id_trabajadores==trabajadores[i].id_trabajadores){
+                                  trabajadores[i].impuntualidades = impuntuales[key].impuntualidad;
+                                }
+                              }
+                              for (var key in puntuales){
+                                if(puntuales[key].id_trabajadores==trabajadores[i].id_trabajadores){
+                                  trabajadores[i].puntualidades = puntuales[key].puntualidad;
+                                }
+                              }
+                              for (var key in noLaborales){
+                                if(noLaborales[key].id_trabajadores==trabajadores[i].id_trabajadores){
+                                  trabajadores[i].noLaborales = noLaborales[key].noLaborales;
+                                }
+                              }
+
+                          } //fin for
+
+                          var data = Array();
+
+                          var choices = Array();
+                          choices = ["id_trabajadores", "nombre", "apellido", "totalHorasTrabajadas", "faltas", "horasExtras", "descanzosTotales", "salidas", "asistenciasT", "asistenciasFuera", "asistenciasDentro", "puntualidades", "impuntualidades", "noLaborales"];
                           
-                          if(true){
+                          data = addKeyToArray(data, trabajadores, choices);
+                
+                          console.log(data);
+                          
+                          $('#dt-basic-example').dataTable().fnClearTable();
+                          $('#dt-basic-example').dataTable().fnAddData(data); 
 
                         
-                            var data = Array();
-
-                            var choices = Array();
-                            choices = ["id_trabajadores", "nombre", "apellido", "totalHorasTrabajadas","horasExtras"];
-                            
-                            data = addKeyToArray(data, trabajadores, choices);
-                  
-                            console.log(data);
-                            
-                            $('#dt-basic-example').dataTable().fnClearTable();
-                            $('#dt-basic-example').dataTable().fnAddData(data); 
-
-                          }
 
                           functions.loadingEndWait();
                           
@@ -3550,6 +3679,10 @@
                       functions.loadingEndWait();
                       
                     } else {
+
+                        //no hay registros, pero igual se debe de colocar en ceros los registros y mostrar la información
+                        //de los usuarios, al igual que condicionar cuando terminen los ciclos para mostrar la información aquí.
+
                         toastr["success"]("No hay Registros en esos Intervalos", "");
                         
                         $('#dt-basic-example').dataTable().fnClearTable();
