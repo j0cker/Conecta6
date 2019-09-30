@@ -111,7 +111,7 @@
                                                         <th>Descanzos Totales</th>
                                                         <th>Salidas</th>
                                                         <th>Asistencias Totales</th>
-                                                        <th>Asistencias Fuera de Platilla</th>
+                                                        <th>Asistencias Fuera de Plantilla</th>
                                                         <th>Asistencias Dentro de Plantilla</th>
                                                         <th>Puntualidades</th>
                                                         <th>Impuntualidades</th>
@@ -131,7 +131,7 @@
                                                         <th>Descanzos Totales</th>
                                                         <th>Salidas</th>
                                                         <th>Asistencias Totales</th>
-                                                        <th>Asistencias Fuera de Platilla</th>
+                                                        <th>Asistencias Fuera de Plantilla</th>
                                                         <th>Asistencias Dentro de Plantilla</th>
                                                         <th>Puntualidades</th>
                                                         <th>Impuntualidades</th>
