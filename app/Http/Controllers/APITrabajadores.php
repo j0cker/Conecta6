@@ -10,7 +10,7 @@ use App\Library\DAO\Permisos_inter;
 use App\Library\DAO\Colores;
 use App\Library\DAO\Empresas;
 use App\Library\DAO\Registros;
-use App\Library\util\functions;
+use App\Library\UTIL\Functions;
 use Browser;
 use Auth;
 use carbon\Carbon;
