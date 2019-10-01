@@ -1080,7 +1080,7 @@
 
               console.log(response.data.data);
 
-              var start = new Date( moment().subtract(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+              var start = new Date( moment().subtract(4800, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
               var end = new Date( moment().add(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
 
               $('#datepicker-2').daterangepicker({
@@ -1157,13 +1157,6 @@
           choices = ["id_registros", "nombre", "apellido", "fecha", "tipo", "comentarios"];
 
           var data_registros = response.data.data;
-          /*
-          for(var x=0; x<response.data.data.length; x++){
-            //if(response.data.data[x].id_empresas==id_empresas){
-              data_registros.push(response.data.data[x]);
-            //}
-          }
-          */
           
           data = addKeyToArray(data, data_registros, choices);
 
