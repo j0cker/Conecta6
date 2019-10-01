@@ -109,7 +109,8 @@ class Registros extends Model
 
         
         
-        return $query->leftJoin('salidas', 'salidas.id_salidas', '=', 'registros.id_salidas')
+        return $query->select('salidas.nombre as nombreSalida', 'salidas.*', 'trabajadores.*', 'registros.*')
+        ->leftJoin('salidas', 'salidas.id_salidas', '=', 'registros.id_salidas')
         ->leftJoin('trabajadores', 'trabajadores.id_trabajadores', '=', 'registros.id_trabajadores')
         ->where([
             ['fecha', '>=', $start],

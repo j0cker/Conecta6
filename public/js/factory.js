@@ -362,6 +362,11 @@
       },
       faltasNoFaltasConSusAsistenciasIntervalos: function(plantillas, registros, fechaini, fechafin){
         
+        /*
+          Éste código es mejor que el de mes
+          Este es Ciclado sin condiciones raras
+        */
+
         console.log("[factory][faltasNoFaltasConSusAsistenciasIntervalos]");
 
         console.log(plantillas);
@@ -451,18 +456,32 @@
           console.log(fechaRestar);
           console.log(fechaRestar2);
 
-          console.log((restaFechas3(fechaRestar, fechaRestar2)+1));
-
-          var recordarDia = 1;
+          console.log("Iteraciones:" + (restaFechas3(fechaRestar, fechaRestar2)+1));
 
           var fecha = new Date(moment(fechaini).subtract(1, 'day').format('YYYY-MM-DD HH:mm:ss'));
 
-          //recorrer arreglos dentro de las llaves
-          for(var x=0; x<registros[key].length; x++){
+          for(var i=1; i<=(restaFechas3(fechaRestar, fechaRestar2)+1); i++){
 
-            for(var i=recordarDia; i<=(restaFechas3(fechaRestar, fechaRestar2)+1); i++){
+            console.log("[factory][faltasNoFaltasConSusAsistencias] i: " + i);
 
-              console.log("[factory][faltasNoFaltasConSusAsistencias] i: " + i);
+            var semana = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
+            var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+            var fechaDiaIncremental= new Date(moment(fecha).add(i, 'day').format('YYYY-MM-DD HH:mm:ss'));
+
+            var ihora = fechaDiaIncremental.getHours(),
+                iminutos = fechaDiaIncremental.getMinutes(),
+                isegundos = fechaDiaIncremental.getSeconds(),
+                idiaSemana = fechaDiaIncremental.getDay(),
+                idia = fechaDiaIncremental.getDate(),
+                imes = fechaDiaIncremental.getMonth(),
+                ianio = fechaDiaIncremental.getFullYear(),
+                iampm;
+
+            var dias = semana[idiaSemana];
+                
+            //recorrer arreglos dentro de las llaves
+            for(var x=0; x<registros[key].length; x++){
 
               fechareg = new Date(moment(registros[key][x].fecha).format('YYYY-MM-DD HH:mm:ss'));
 
@@ -475,184 +494,63 @@
                   reganio = fechareg.getFullYear(),
                   regampm;
 
-              var semana = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
-              var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-
-              var fechaDiaIncremental= new Date(moment(fecha).add(i, 'day').format('YYYY-MM-DD HH:mm:ss'));
-
-              var ihora = fechaDiaIncremental.getHours(),
-                  iminutos = fechaDiaIncremental.getMinutes(),
-                  isegundos = fechaDiaIncremental.getSeconds(),
-                  idiaSemana = fechaDiaIncremental.getDay(),
-                  idia = fechaDiaIncremental.getDate(),
-                  imes = fechaDiaIncremental.getMonth(),
-                  ianio = fechaDiaIncremental.getFullYear(),
-                  iampm;
-
-              var dias = semana[idiaSemana];
-
               console.log("[faltasNoFaltasConSusAsistencias] busca dia registro:" + regdia + " VS idia:" + idia + " Nombre: " + registros[key][x].nombre + " dia: " + dias);
+      
+              if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1 
+                && idia==parseInt(regdia) && imes==regmes && ianio==reganio){
+                //no es falta (dentro de plantilla)
 
+                console.log("No Falta");
+
+                array["noFaltas"][noFaltasCont].noFaltas = 1 + parseInt(array["noFaltas"][noFaltasCont].noFaltas);
+                noFaltas = 1;
+                break;
+
+              } else if(idia==parseInt(regdia) && imes==regmes && ianio==reganio){
+                //días extras de asistencia (fuera de plantilla)
+
+                console.log("Asistencia Fuera de Plantilla");
+
+                array["asistencias"][asistenciasCont].asistencias = 1 + parseInt(array["asistencias"][asistenciasCont].asistencias);
+                asistencias = 1;
+                break;
+
+              }
               
-              if(idia>parseInt(regdia) && imes==regmes && ianio==reganio){
+            }//fin recorrer arreglo dentro de los registros
 
-                console.log("idia>parseInt(regdia): 1");
+            console.log("NoFaltas: " + noFaltas + " Asistencias: " + asistencias + " Día: " + dias);
+            if(plantillas[y]!=undefined)
+              console.log("Plantilla Activada?: " + plantillas[y][""+dias+"Activated"]);
 
-                recordarDia = i;
-                if(x==(registros[key].length-1)){
-                  
-                  if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1) {
-                    //falta (dentro de plantilla)
-    
-                    console.log("Falta");
-    
-                    if(faltas==0){
-    
-                      array["faltas"][faltasCont] = Array();
-                      array["faltas"][faltasCont].nombre = registros[key][x].nombre; 
-                      array["faltas"][faltasCont].apellido = registros[key][x].apellido; 
-                      array["faltas"][faltasCont].id_trabajadores = registros[key][x].id_trabajadores; 
-                      array["faltas"][faltasCont].faltas = 1;
-                    
-                      faltas++;  
-    
-                    } else {
-    
-                      array["faltas"][faltasCont].faltas = 1 + parseInt(array["faltas"][faltasCont].faltas);
-    
-                    }
-                    
-    
-                  } else {
-                    console.log("Días no Laborales");
-    
-                    if(noLaborales==0){
-    
-                      array["noLaborales"][noLaboralesCont] = Array();
-                      array["noLaborales"][noLaboralesCont].nombre = registros[key][x].nombre; 
-                      array["noLaborales"][noLaboralesCont].apellido = registros[key][x].apellido; 
-                      array["noLaborales"][noLaboralesCont].id_trabajadores = registros[key][x].id_trabajadores; 
-                      array["noLaborales"][noLaboralesCont].noLaborales = 1;
-                    
-                      noLaborales++;  
-    
-                    } else {
-    
-                      array["noLaborales"][noLaboralesCont].noLaborales = 1 + parseInt(array["noLaborales"][noLaboralesCont].noLaborales);
-    
-                    }
-                  }
+            if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1 &&
+              noFaltas!=1 && asistencias!=1) {
+              //falta (dentro de plantilla)
 
-                  recordarDia = 1;
-
-                } else {
-                  console.log("Rompe");
-                  
-                  //rompe días para no almacenar de más.
-                  break;
-                }
-                
-              } else {
-
-                console.log("idia>parseInt(regdia): 2");
-
-                if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1 && idia==parseInt(regdia) && imes==regmes && ianio==reganio){
-                  //no es falta (dentro de plantilla)
-
-                  console.log("No Falta");
-
-                  if(noFaltas==0){
-
-                    array["noFaltas"][noFaltasCont] = Array();
-                    array["noFaltas"][noFaltasCont].nombre = registros[key][x].nombre; 
-                    array["noFaltas"][noFaltasCont].apellido = registros[key][x].apellido; 
-                    array["noFaltas"][noFaltasCont].id_trabajadores = registros[key][x].id_trabajadores; 
-                    array["noFaltas"][noFaltasCont].noFaltas = 1; 
-
-                    noFaltas++;
-
-                  } else {
-
-                    array["noFaltas"][noFaltasCont].noFaltas = 1 + parseInt(array["noFaltas"][noFaltasCont].noFaltas);
-
-                  }
-
-                } else if(plantillas[y]!=undefined && plantillas[y][""+dias+"Activated"]==1 && imes==regmes && ianio==reganio) {
-                  //falta (dentro de plantilla)
-
-                  console.log("Falta");
-
-                  if(faltas==0){
-
-                    array["faltas"][faltasCont] = Array();
-                    array["faltas"][faltasCont].nombre = registros[key][x].nombre; 
-                    array["faltas"][faltasCont].apellido = registros[key][x].apellido; 
-                    array["faltas"][faltasCont].id_trabajadores = registros[key][x].id_trabajadores; 
-                    array["faltas"][faltasCont].faltas = 1;
-                  
-                    faltas++;  
-
-                  } else {
-
-                    array["faltas"][faltasCont].faltas = 1 + parseInt(array["faltas"][faltasCont].faltas);
-
-                  }
-                  
-
-                } else if(idia==parseInt(regdia) && imes==regmes && ianio==reganio){
-                  //días extras de asistencia (fuera de plantilla)
-
-                  console.log("Asistencia Fuera de Plantilla");
-
-                  if(asistencias==0){
-
-                    array["asistencias"][asistenciasCont] = Array();
-                    array["asistencias"][asistenciasCont].nombre = registros[key][x].nombre; 
-                    array["asistencias"][asistenciasCont].apellido = registros[key][x].apellido; 
-                    array["asistencias"][asistenciasCont].id_trabajadores = registros[key][x].id_trabajadores; 
-                    array["asistencias"][asistenciasCont].asistencias = 1; 
-
-                    asistencias++;
-
-                  } else {
-
-                    array["asistencias"][asistenciasCont].asistencias = 1 + parseInt(array["asistencias"][asistenciasCont].asistencias);
-
-                  }
-
-                } else {
-                  console.log("Días no Laborales");
-    
-                  if(noLaborales==0){
-  
-                    array["noLaborales"][noLaboralesCont] = Array();
-                    array["noLaborales"][noLaboralesCont].nombre = registros[key][x].nombre; 
-                    array["noLaborales"][noLaboralesCont].apellido = registros[key][x].apellido; 
-                    array["noLaborales"][noLaboralesCont].id_trabajadores = registros[key][x].id_trabajadores; 
-                    array["noLaborales"][noLaboralesCont].noLaborales = 1;
-                  
-                    noLaborales++;  
-  
-                  } else {
-  
-                    array["noLaborales"][noLaboralesCont].noLaborales = 1 + parseInt(array["noLaborales"][noLaboralesCont].noLaborales);
-  
-                  }
-                }
+              console.log("Falta");
               
-              }//fin if dia mayor que otro dia
+              array["faltas"][faltasCont].faltas = 1 + parseInt(array["faltas"][faltasCont].faltas);
+              
+            } else if(noFaltas!=1 && asistencias!=1) {
+              array["noLaborales"][noLaboralesCont].noLaborales = 1 + parseInt(array["noLaborales"][noLaboralesCont].noLaborales);
+              console.log("Días no Laborales");
 
-            } //fin for días
+            }
 
+            faltas=0;
+            noFaltas=0;
+            asistencias=0;
+            noLaborales = 0;
+
+          }//fin iteraciones
             
-          }//fin recorrer arreglo dentro de los registros
-
           faltasCont++;
           noFaltasCont++;
           asistenciasCont++;
           noLaboralesCont++;
           
         }//fin recorrer llaves
+
         
         for(var x=0; x<array["faltas"].length; x++){
 
@@ -681,6 +579,7 @@
           }
 
         }
+        
       
         return array;
       },
@@ -3258,9 +3157,25 @@
 
         console.log("Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
 
-        return horas_;
+        //número de salidas
+        horas_["salidas"] = Array();
+        horas_["salidas"]["nombres"] = Array();
 
-        
+        console.log("Calculo Salidas");
+
+        for(var i=0; i<registrosEntSal.length; i++){
+
+          if(registrosEntSal[i].tipo=="salida"){
+            if(horas_["salidas"]["nombres"][registrosEntSal[i].nombreSalida]!=undefined){
+              horas_["salidas"]["nombres"][registrosEntSal[i].nombreSalida] = 1 + horas_["salidas"]["nombres"][registrosEntSal[i].nombreSalida];
+            } else {
+              horas_["salidas"]["nombres"][registrosEntSal[i].nombreSalida] = 1;
+            }
+          }
+
+        }
+
+        return horas_;
 
       },
       statMesHrsTrabajadas: function(fecha, registros){

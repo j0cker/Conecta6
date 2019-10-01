@@ -3617,14 +3617,21 @@
                               trabajadores[i].puntualidades = 0;
                               trabajadores[i].impuntualidades = 0;
                               trabajadores[i].descanzosTotales = 0;
-                              trabajadores[i].salidas = 0;
                               trabajadores[i].asistenciasT = 0;
                               trabajadores[i].asistenciasFuera = 0;
                               trabajadores[i].asistenciasDentro = 0;
                               trabajadores[i].noLaborales = 0;
                               trabajadores[i].totalHorasTrabajadas = statIntervalosHrsTrabajadas["horas"] + " hrs con " + statIntervalosHrsTrabajadas["minutos"] + " Min y " + statIntervalosHrsTrabajadas["segundos"] + " Segundos.";
                               trabajadores[i].horasExtras = statMesHorsExtra["horas"] + " hrs con " + statMesHorsExtra["minutos"] + " Min y " + statMesHorsExtra["segundos"] + " Segundos.";
-                              
+                              trabajadores[i].salidas = "";
+                              var x=0;
+                              for (var key in statIntervalosHrsTrabajadas["salidas"]["nombres"]){
+                                trabajadores[i].salidas = trabajadores[i].salidas + "" + key + " : " + statIntervalosHrsTrabajadas["salidas"]["nombres"][key] + ", ";
+                                x++;
+                              }
+                              if(x==0){
+                                trabajadores[i].salidas = 0;
+                              }
                               for (var key in faltas){
                                 if(faltas[key].id_trabajadores==trabajadores[i].id_trabajadores){
                                   trabajadores[i].faltas = faltas[key].faltas;
