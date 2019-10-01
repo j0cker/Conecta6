@@ -137,7 +137,7 @@
         
         for (var x = 0; x < data.length; x++) {
 
-          $("#gra-"+(x+1)+"").prop("checked", data[x].computable);
+          $("#gra-"+(data[x].id_salidas)+"").prop("checked", data[x].computable);
 
         }
 
@@ -147,7 +147,7 @@
 
         for (var x = 0; x < data.length; x++) {
 
-          $("#gra-"+(x+1)+"").prop("checked", data[x].activo);
+          $("#gra-"+(data[x].id_empresas)+"").prop("checked", data[x].activo);
 
         }
 
