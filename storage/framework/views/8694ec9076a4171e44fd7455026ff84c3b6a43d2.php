@@ -907,8 +907,6 @@
                 
                 $('#dt-basic-example').dataTable( {
                     
-                    "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
-                    "iDisplayLength": 25,
                     "pageLength": 25,
                     "ordering": false,
                     responsive: true,
@@ -917,6 +915,10 @@
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421" ] ],
                     buttons: [
+                        {
+                            extend: 'pageLength',
+                            className: 'btn-outline-default'
+                        },
                         {
                             extend: 'colvis',
                             text: 'Column Visibility',

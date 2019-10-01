@@ -763,11 +763,10 @@
             $(document).ready(function()
             {
 
-                console.log($.fn.DataTable.version);
                 /* init datatables */
                var table = $('#dt-basic-example').dataTable(
                 {
-                    "pageLength": 5,   
+                    "pageLength": 25,   
                     "ordering": true,
                     responsive: true,
                     dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +

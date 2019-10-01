@@ -756,13 +756,18 @@
                 /* init datatables */
                var table = $('#dt-basic-example').dataTable(
                 {
-                    "pageLength": 10,
+                    "pageLength": 25,
+                    "ordering": true,
                     responsive: true,
                     dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421","545435435" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421", "45435435" ] ],
                     buttons: [
+                        {
+                            extend: 'pageLength',
+                            className: 'btn-outline-default'
+                        },
                         {
                             extend: 'colvis',
                             text: 'Column Visibility',

@@ -1080,7 +1080,7 @@
 
               console.log(response.data.data);
 
-              var start = new Date( moment().subtract(4800, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+              var start = new Date( moment().subtract(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
               var end = new Date( moment().add(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
 
               $('#datepicker-2').daterangepicker({
