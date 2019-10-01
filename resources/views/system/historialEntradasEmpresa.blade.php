@@ -84,9 +84,13 @@
                                     <div class="panel-container show">
                                         <div class="panel-content">
 
-                                            
                                             <div class="form-group row">
-                                                <div class="col-12">
+
+                                                <div class="col-md-6">
+                                                    <button style="margin-top: 10px;" class="btn btn-primary">Importar</button>
+                                                </div>
+                                            
+                                                <div class="col-6">
                                                     <div style="margin-top: 10px; !important" class="input-group">
                                                         <input type="text" class="form-control" placeholder="Select date" id="datepicker-2">
                                                         <div class="input-group-append">
@@ -769,6 +773,7 @@
                     "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
                     "iDisplayLength": 25,
                     "pageLength": 25,
+                    "ordering": true,
                     responsive: true,
                     dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
                         "<'row'<'col-sm-12'tr>>" +

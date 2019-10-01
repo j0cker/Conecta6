@@ -79,9 +79,13 @@
                                     <div class="panel-container show">
                                         <div class="panel-content">
 
-                                            
                                             <div class="form-group row">
-                                                <div class="col-12">
+
+                                                <div class="col-md-6">
+                                                    <button style="margin-top: 10px;" class="btn btn-primary">Importar</button>
+                                                </div>
+                                            
+                                                <div class="col-6">
                                                     <div style="margin-top: 10px; !important" class="input-group">
                                                         <input type="text" class="form-control" placeholder="Select date" id="datepicker-2">
                                                         <div class="input-group-append">
@@ -761,7 +765,6 @@
                 /* init datatables */
                var table = $('#dt-basic-example').dataTable(
                 {
-                    
                     "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
                     "iDisplayLength": 25,
                     "pageLength": 25,
