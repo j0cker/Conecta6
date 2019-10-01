@@ -64,6 +64,9 @@ Route::get('/salidas/modificar', 'APIEmpresas@SalidasModificar');
 //sign in personalizado (URL a evaluación)
 Route::get('/{any}/pAdmin', 'APIEmpresas@SignInPersonalizado');
 
+//historial de entrada por empresa
+Route::get('/historialEntradasEmpresa', 'APIEmpresas@HistorialEntradasEmpresa');
+
 //configuraciones
 Route::get('/configuraciones', 'APIEmpresas@Configuraciones');
 

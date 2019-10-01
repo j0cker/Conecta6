@@ -54,6 +54,9 @@ Route::get('/trabajadores/historial/todas', 'APITrabajadores@GetAllHistorial');
 //Get Historial Entradas by id_empresas fecha ini y fecha fin
 Route::get('/trabajadores/historial/todasByIdEmpresas', 'APITrabajadores@GetAllHistorialByIdEmpresas');
 
+//Get Historial Entradas by id_empresas fecha ini y fecha fin
+Route::get('/trabajadores/historial/todasByIdEmpresas', 'APITrabajadores@GetAllHistorialByIdEmpresas');
+
 //Get All Entradas All Salidas by id_trabajadores
 Route::get('/trabajadores/registros/todos', 'APITrabajadores@GetAllEntradasSalidas');
 

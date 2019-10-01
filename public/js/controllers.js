@@ -983,12 +983,12 @@
     
     $scope.getImageEmpresaClick = function(id_empresas){
 
-      console.log("[signin] ");
+      console.log("[historial] ");
 
       functions.getImageEmpresa(id_empresas).then(function (response) {
 
             if(response.data.success == "TRUE"){
-              console.log("[signin][getImageEmpresa]");
+              console.log("[historial][getImageEmpresa]");
 
               console.log(response.data.data);
 
@@ -1057,6 +1057,133 @@
 
 
   });//fin controller historial
+
+  app.controller('historialEntradasYSalidasPorEmpresa', function($scope, functions, $window) {
+
+    console.log("[historialEntradasYSalidasPorEmpresa]");
+
+    functions.loading();
+
+        
+    $scope.getZonaHorariaFrontClick = function(id_empresas){
+
+      functions.loading();
+
+      console.log("[historialEntradasYSalidasPorEmpresa] ");
+
+      console.log("id_empresas: " + id_empresas);
+
+      functions.getZonaHoraria(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[historialEntradasYSalidasPorEmpresa][getZonaHoraria]");
+
+              console.log(response.data.data);
+
+              var start = new Date( moment().subtract(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+              var end = new Date( moment().add(48, 'hour').tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+
+              $('#datepicker-2').daterangepicker({
+                  timePicker: false,
+                  startDate: start,
+                  endDate: end,
+                  locale:
+                  {
+                      format: 'YYYY-MM-DD'
+                  }
+              });
+
+              
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getZonaHoraria*/
+
+    }; //fin getZonaHorariaFrontClick
+
+    getZonaHorariaFront = $scope.getZonaHorariaFrontClick;
+
+    
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[historialEntradasYSalidasPorEmpresa] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[historialEntradasYSalidasPorEmpresa][getImageEmpresa]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+    getImageEmpresa = $scope.getImageEmpresaClick;
+
+    
+    
+    $scope.getHistorialEntradasByIdEmpresasClick = function(id_empresas, start, end){
+
+      functions.loading();
+
+      functions.getHistorialEntradasByIdEmpresas(id_empresas, start + " 00:00:00", end + " 23:59:59").then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          console.log("[historialEntradasYSalidasPorEmpresa][getHistorialEntradas]");
+
+          console.log(response.data.data);
+
+          var data = Array();
+
+          var choices = Array();
+          choices = ["id_registros", "nombre", "apellido", "fecha", "tipo", "comentarios"];
+          
+          data = addKeyToArray(data, response.data.data, choices);
+
+          console.log(data);
+
+          $('#dt-basic-example').dataTable().fnClearTable();
+          $('#dt-basic-example').dataTable().fnAddData(data);
+          
+          functions.loadingEndWait();
+          
+        } else {
+            toastr["success"]("No hay Registros en esos Intervalos", "");
+            
+            $('#dt-basic-example').dataTable().fnClearTable();
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getHistorialEntradas*/
+
+    }; //fin getHistorialEntradasClick
+
+    getHistorialEntradasByIdEmpresas = $scope.getHistorialEntradasByIdEmpresasClick;
+
+
+  });//fin controller historialEntradasYSalidasPorEmpresa
 
   
   app.controller('signinEmpresas', function($scope, functions, $window) {
