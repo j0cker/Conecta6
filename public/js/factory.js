@@ -3160,20 +3160,35 @@
         //número de salidas
         horas_["salidas"] = Array();
         horas_["salidas"]["nombres"] = Array();
+        horas_["salidas"]["descanzosTotales"] = 0;
 
         console.log("Calculo Salidas");
+
+        aux = Array();
 
         for(var i=0; i<registrosEntSal.length; i++){
 
           if(registrosEntSal[i].tipo=="salida"){
+
+            console.log(registrosEntSal[i].fecha.substring(0,10));
+
             if(horas_["salidas"]["nombres"][registrosEntSal[i].nombreSalida]!=undefined){
               horas_["salidas"]["nombres"][registrosEntSal[i].nombreSalida] = 1 + horas_["salidas"]["nombres"][registrosEntSal[i].nombreSalida];
             } else {
               horas_["salidas"]["nombres"][registrosEntSal[i].nombreSalida] = 1;
             }
+
+            if(aux[registrosEntSal[i].fecha.substring(0,10)]!=undefined && aux[registrosEntSal[i].fecha.substring(0,10)]==1){
+              horas_["salidas"]["descanzosTotales"] = horas_["salidas"]["descanzosTotales"] + 1;
+            }
+
+            aux[registrosEntSal[i].fecha.substring(0,10)] = 1;
+
           }
 
         }
+
+        console.log(horas_);
 
         return horas_;
 

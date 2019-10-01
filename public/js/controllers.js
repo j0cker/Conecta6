@@ -3616,7 +3616,7 @@
                               trabajadores[i].noFaltas = 0;
                               trabajadores[i].puntualidades = 0;
                               trabajadores[i].impuntualidades = 0;
-                              trabajadores[i].descanzosTotales = 0;
+                              trabajadores[i].descanzosTotales = statIntervalosHrsTrabajadas["salidas"]["descanzosTotales"];
                               trabajadores[i].asistenciasT = 0;
                               trabajadores[i].asistenciasFuera = 0;
                               trabajadores[i].asistenciasDentro = 0;
