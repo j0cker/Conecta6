@@ -56,7 +56,8 @@ class APITrabajadores extends Controller
                                         "color" => $subdominio->first()->color, 
                                         "colorHex" => $colores->first()->hex, 
                                         "subdominio" => $subdominio->first()->subdominio, 
-                                        "id_empresas" => $subdominio->first()->id_empresas
+                                        "id_empresas" => $subdominio->first()->id_empresas, 
+                                        "nombre" => $subdominio->first()->nombre_empresa
                                         ]
                                     );
 

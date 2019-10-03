@@ -60,7 +60,8 @@ class APIEmpresas extends Controller
                                   "color" => $subdominio->first()->color, 
                                   "colorHex" => $colores->first()->hex, 
                                   "subdominio" => $request->path(), 
-                                  "id_empresas" => $subdominio->first()->id_empresas
+                                  "id_empresas" => $subdominio->first()->id_empresas, 
+                                  "nombre" => $subdominio->first()->nombre_empresa
                                   ]
                       );
 

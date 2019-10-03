@@ -53,7 +53,7 @@
 
                   <div class="col-md-8 resaltar">
 
-                    <p class="resaltar">Bienvenido a Company Name por favor ingrese su usuario y contraseña</p>
+                    <p class="resaltar">Bienvenido a {{ $nombre }} por favor ingrese su usuario y contraseña</p>
 
                     <div class="input-group resaltar">
                       <span class="input-group-addon "><span class="fa fa-user"></span></span>
