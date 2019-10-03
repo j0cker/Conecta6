@@ -26,21 +26,33 @@ class Plantillas extends Model
     //obtiene plantilla por id_plantilla
     public function scopeGetByIdPlantillas($query, $id_plantillas)
     {   
-        Log::info("[Empresas][scopeGetByIdPlantillas]");
+        Log::info("[Plantillas][scopeGetByIdPlantillas]");
 
-        Log::info("[Empresas][scopeGetByIdPlantillas] id_plantillas: ". $id_plantillas);
+        Log::info("[Plantillas][scopeGetByIdPlantillas] id_plantillas: ". $id_plantillas);
 
         return $query->where([
           ['id_plantillas', '=', $id_plantillas],
         ]);
     }
 
+    //delPlantillaByIdPlantilla
+    public function scopeDelPlantillaByIdPlantilla($query, $id_plantillas){
+
+      Log::info("[Plantillas][delPlantillaByIdPlantilla]");
+
+      return $query->where([
+          ['id_plantillas', '=', $id_plantillas]
+      ])->delete(); //return true in the other one return 1
+
+      
+    }
+
     //obtiene plantilla por empresa
     public function scopeGetByIdEmpresas($query, $id_empresas)
     {   
-        Log::info("[Empresas][scopeGetByIdEmpresas]");
+        Log::info("[Plantillas][scopeGetByIdEmpresas]");
 
-        Log::info("[Empresas][scopeGetByIdEmpresas] id_empresas: ". $id_empresas);
+        Log::info("[Plantillas][scopeGetByIdEmpresas] id_empresas: ". $id_empresas);
 
         return $query->where([
           ['id_empresas', '=', $id_empresas],

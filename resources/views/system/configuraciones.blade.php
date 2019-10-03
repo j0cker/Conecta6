@@ -1041,14 +1041,20 @@
 
             }
 
-            function editPlantilla(valor){
+            function editPlantilla(id_plantillas){
+
+                console.log("[editPlantilla]");
                 
-                console.log(valor);
+                console.log(id_plantillas);
             }
 
-            function delPlantilla(valor){
+            function delPlantilla(id_plantillas){
+
+                console.log("[delPlantilla]");
                 
-                console.log(valor);
+                console.log(id_plantillas);
+
+                delPlantillaClick(id_plantillas);
             }
 
             $(document).ready(function()

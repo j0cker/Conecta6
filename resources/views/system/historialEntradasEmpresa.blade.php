@@ -740,6 +740,12 @@
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
     
         <script src="{{ url('js/datatables.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        
+	    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+	    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
+
         <script src="{{ url('js/moment.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/daterangepicker.js?v='.cache("js_version_number").'') }}"></script>
         
@@ -789,11 +795,37 @@
                             titleAttr: 'Col visibility',
                             className: 'btn-outline-default'
                         },
-                        {
-                            extend: 'csvHtml5',
-                            text: 'CSV',
-                            titleAttr: 'Generate CSV',
-                            className: 'btn-outline-default'
+                        {   
+                            extend: 'collection',
+                            text: 'Export',
+                            buttons: [ 
+                                {   //meter librería jszip
+                                    extend: 'excelHtml5',
+                                    text: 'Excel',
+                                    orientation: 'landscape',
+                                    titleAttr: 'Generate Excel',
+                                    className: 'btn-outline-default'
+                                }, 
+                                {
+                                    extend: 'csvHtml5',
+                                    text: 'CSV',
+                                    titleAttr: 'Generate CSV',
+                                    className: 'btn-outline-default'
+                                }, 
+                                {
+                                    //se debe incluir libreria pdf maker
+                                    extend: 'pdfHtml5',
+                                    text: 'PDF',
+                                    titleAttr: 'PDF',
+                                    customize: function(doc) {
+                                        //pageMargins [left, top, right, bottom] 
+                                        doc.pageMargins = [ 20, 20, 20, 20 ];
+                                    },
+                                    className: 'btn-outline-default'
+                                } 
+                            ],
+                            className: 'btn-outline-default'       
+
                         },
                         {
                             extend: 'copyHtml5',
@@ -808,7 +840,7 @@
                             className: 'btn-outline-default'
                         }
 
-                    ],
+                    ]
                     
                 });
 
@@ -852,6 +884,5 @@
         </script>
 
         <script src="https://momentjs.com/downloads/moment-timezone-with-data-1970-2030.js"></script>
-
-
+        
     @stop

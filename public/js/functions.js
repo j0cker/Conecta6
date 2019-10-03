@@ -241,7 +241,7 @@ function getSign(num){
   return num === 0 ? num : (num > 0 ? 1 : -1); // -1
   
 }
-function secondsToHHMMSS (hora, minutos, segundos) {
+function secondsToHHMMSS(hora, minutos, segundos) {
 
    /*
     the way to calculate the hour, minutes and seconds is converting everything to seconds and then sum all of them.
@@ -258,6 +258,8 @@ function secondsToHHMMSS (hora, minutos, segundos) {
   
   seconds = secHoras + secMinutos + secSegundos;
 
+  console.log(seconds);
+
   var horas_ = Array();
   horas_["horas"] = (seconds === 0 ? 1 : (seconds > 0 ? 1 : -1))*(Math.floor(Math.abs(seconds) / 3600));
   horas_["minutos"] = (seconds === 0 ? 1 : (seconds > 0 ? 1 : -1))*(("0" + Math.floor(Math.abs(seconds) / 60) % 60).slice(-2));
@@ -269,6 +271,100 @@ function secondsToHHMMSS (hora, minutos, segundos) {
   return horas_;
 
 }
+
+function compararFechas24(horas1, horas2){
+
+  //recibe 6:20 PM
+  //devuelve 18:20
+
+  console.log("[functions][compararFechas24]");
+
+  console.log("[functions][compararFechas24] hora: " + horas1);
+
+  var formato12 = horas1.toString().split(" ");
+  var horas12 = horas1.toString().split(":");
+
+  if(formato12[1]=="PM"){
+    horas12[0] = (parseInt(horas12[0]) + 12);
+  }
+
+  formato12 = horas12[1].toString().split(" ");
+
+  var horas1A = horas12[0] + ":" + formato12[0];
+
+  console.log("[functions][compararFechas24] hora: " + horas2);
+
+  var formato22 = horas2.toString().split(" ");
+  var hora22 = horas2.toString().split(":");
+
+  if(formato22[1]=="PM"){
+    hora22[0] = (parseInt(hora22[0]) + 12);
+  }
+
+  formato22 = hora22[1].toString().split(" ");
+
+  var horas2A = hora22[0] + ":" + formato22[0];
+
+  console.log(horas1A + " " + horas2A);
+
+  var t1 = new Date(),
+  t2 = new Date();
+
+  t1.setHours(horas12[0],formato12[0],0);
+  t2.setHours(hora22[0],formato22[0],0);
+
+  //array["asistencias"][x].nombre = registros[key][i].nombre; 
+  //array["asistencias"][x].apellido = registros[key][i].apellido; 
+  //array["asistencias"][x].impuntualidad = 0; 
+  
+  if(t1<t2){
+
+    console.log("-1");
+    return -1;
+  } else {
+    console.log("1");
+    return 1;
+  }
+
+}
+function horasAMPMToSeconds(hora){
+
+  //recibe 10:00 AM
+  //devuelve 3600 segundos
+
+  console.log("[functions][horasAMPMTo24]");
+
+  console.log("[functions][horasAMPMTo24] hora: " + hora);
+
+  var formato = hora.toString().split(" ");
+  var hora2 = hora.toString().split(":");
+
+  if(formato[1]=="PM"){
+    hora2[0] = (parseInt(hora2[0]) + 12);
+  }
+
+  formato = hora2[1].toString().split(" ");
+
+  var hora = hora2[0];
+  var minutos = formato[0];
+  var segundos = 0;
+
+  console.log("[functions][secondsToHHMMSS]");
+
+  console.log("[functions][secondsToHHMMSS] Horas: " + hora + " Minutos: " + minutos + " Segundos: " + segundos);
+
+  secHoras = hora*3600;
+  secMinutos = minutos*60;
+  secSegundos = segundos;
+  
+  seconds = secHoras + secMinutos + secSegundos;
+
+  console.log(seconds);
+
+  return seconds;
+
+}
+
 function horasAMPMTo24(hora){
 
   //recibe 6:20 PM

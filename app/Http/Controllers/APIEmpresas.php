@@ -1855,6 +1855,109 @@ class APIEmpresas extends Controller
   
   }
 
+  public function PostPlantillaEliminar(Request $request){
+
+    Log::info('[APIEmpresas][PostPlantillaEliminar]');
+
+    Log::info("[APIEmpresas][PostPlantillaEliminar] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][PostPlantillaEliminar] Token: ". $token);
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"])){
+          
+          Log::info("[APIEmpresas][PostPlantillaEliminar] Permiso Existente");
+          
+          $this->validate($request, [
+            'id_plantillas' => 'required',
+          ]);
+          
+          $id_plantillas = $request->input('id_plantillas');
+          
+          Log::info("[PostPlantillaEliminar] id_plantillas: " . $id_plantillas);
+          
+          $Plantillas = Plantillas::delPlantillaByIdPlantilla($id_plantillas);
+          
+          Log::info($Plantillas);
+          
+          if($Plantillas==1){
+          
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Plantillas));
+            $responseJSON->data = $Plantillas;
+            return json_encode($responseJSON);
+
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Plantillas));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+          
+        }
+
+        return redirect('/');
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][PostPlantillaEliminar] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][PostPlantillaEliminar] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][PostPlantillaEliminar] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][PostPlantillaEliminar] ' . $e);
+
+        return redirect('/');
+
+      }
+
+    } else {
+      abort(404);
+    }
+  }
+
   public function DelSalidas(Request $request){
 
     Log::info('[APIEmpresas][DelSalidas]');

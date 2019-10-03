@@ -203,7 +203,7 @@
 
           var lunes = "";
           if(array[x]["a1Lunes"]!=""){
-            lunes = "de " + array[x]["a1Lunes"] + " a " +  array[x]["de1Lunes"] + " y de " +  array[x]["a2Lunes"] + " a " +  array[x]["de2Lunes"];
+            lunes = "de " + array[x]["de1Lunes"] + " a " +  array[x]["a1Lunes"] + " y de " +  array[x]["de2Lunes"] + " a " +  array[x]["a2Lunes"];
           } else {
             lunes = "-";
           }
@@ -211,7 +211,7 @@
 
           var martes = "";
           if(array[x]["a1Martes"]!=""){
-            martes = "de " + array[x]["a1Martes"] + " a " +  array[x]["de1Martes"] + " y de " +  array[x]["a2Martes"] + " a " +  array[x]["de2Martes"];
+            martes = "de " + array[x]["de1Martes"] + " a " +  array[x]["a1Martes"] + " y de " +  array[x]["de2Martes"] + " a " +  array[x]["a2Martes"];
           } else {
             martes = "-";
           }
@@ -219,7 +219,7 @@
 
           var miercoles = "";
           if(array[x]["a1Miercoles"]!=""){
-            miercoles = "de " + array[x]["a1Miercoles"] + " a " +  array[x]["de1Miercoles"] + " y de " +  array[x]["a2Miercoles"] + " a " +  array[x]["de2Miercoles"];
+            miercoles = "de " + array[x]["de1Miercoles"] + " a " +  array[x]["a1Miercoles"] + " y de " +  array[x]["de2Miercoles"] + " a " +  array[x]["a2Miercoles"];
           } else {
             miercoles = "-";
           }
@@ -227,7 +227,7 @@
 
           var jueves = "";
           if(array[x]["a1Jueves"]!=""){
-            jueves = "de " + array[x]["a1Jueves"] + " a " +  array[x]["de1Jueves"] + " y de " +  array[x]["a2Jueves"] + " a " +  array[x]["de2Jueves"];
+            jueves = "de " + array[x]["de1Jueves"] + " a " +  array[x]["a1Jueves"] + " y de " +  array[x]["de2Jueves"] + " a " +  array[x]["a2Jueves"];
           } else {
             jueves = "-";
           }
@@ -235,7 +235,7 @@
 
           var viernes = "";
           if(array[x]["a1Viernes"]!=""){
-            viernes = "de " + array[x]["a1Viernes"] + " a " +  array[x]["de1Viernes"] + " y de " +  array[x]["a2Viernes"] + " a " +  array[x]["de2Viernes"];
+            viernes = "de " + array[x]["de1Viernes"] + " a " +  array[x]["a1Viernes"] + " y de " +  array[x]["de2Viernes"] + " a " +  array[x]["a2Viernes"];
           } else {
             viernes = "-";
           }
@@ -243,7 +243,7 @@
 
           var sabado = "";
           if(array[x]["a1Sabado"]!=""){
-            sabado = "de " + array[x]["a1Sabado"] + " a " +  array[x]["de1Sabado"] + " y de " +  array[x]["a2Sabado"] + " a " +  array[x]["de2Sabado"];
+            sabado = "de " + array[x]["de1Sabado"] + " a " +  array[x]["a1Sabado"] + " y de " +  array[x]["de2Sabado"] + " a " +  array[x]["a2Sabado"];
           } else {
             sabado = "-";
           }
@@ -251,7 +251,7 @@
 
           var domingo = "";
           if(array[x]["a1Domingo"]!=""){
-            domingo = "de " + array[x]["a1Domingo"] + " a " +  array[x]["de1Domingo"] + " y de " +  array[x]["a2Domingo"] + " a " +  array[x]["de2Domingo"];
+            domingo = "de " + array[x]["de1Domingo"] + " a " +  array[x]["a1Domingo"] + " y de " +  array[x]["de2Domingo"] + " a " +  array[x]["a2Domingo"];
           } else {
             domingo = "-";
           }
@@ -261,6 +261,14 @@
         }
 
         return data;
+
+      },
+      delPlantilla: function(id_plantillas) {
+
+        console.log("[factory][delPlantilla]");
+
+        var url = '/api/empresas/plantilla/borrar';
+        return $http.post(url, {cache: false, id_plantillas:id_plantillas });
 
       },
       postIngresar: function(correo, contPass, color, colorHex, subdominio) {

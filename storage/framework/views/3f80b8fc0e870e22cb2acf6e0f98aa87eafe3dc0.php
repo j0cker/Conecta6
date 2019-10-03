@@ -1037,14 +1037,20 @@
 
             }
 
-            function editPlantilla(valor){
+            function editPlantilla(id_plantillas){
+
+                console.log("[editPlantilla]");
                 
-                console.log(valor);
+                console.log(id_plantillas);
             }
 
-            function delPlantilla(valor){
+            function delPlantilla(id_plantillas){
+
+                console.log("[delPlantilla]");
                 
-                console.log(valor);
+                console.log(id_plantillas);
+
+                delPlantillaClick(id_plantillas);
             }
 
             $(document).ready(function()
@@ -1054,8 +1060,6 @@
                 /* init datatables */
                var table = $('#dt-basic-example').dataTable(
                 {
-                    "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
-                    "iDisplayLength": 25,
                     "pageLength": 25,
                     "ordering": true,
                     responsive: true,
@@ -1064,6 +1068,10 @@
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421" ] ],
                     buttons: [
+                        {
+                            extend: 'pageLength',
+                            className: 'btn-outline-default'
+                        },
                         {
                             extend: 'colvis',
                             text: 'Column Visibility',
@@ -1122,8 +1130,6 @@
                 /* init datatables */
                var table = $('#plantillas').dataTable(
                 {
-                    "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
-                    "iDisplayLength": 25,
                     "pageLength": 25,
                     "ordering": true,
                     responsive: true,
@@ -1132,6 +1138,10 @@
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421" ] ],
                     buttons: [
+                        {
+                            extend: 'pageLength',
+                            className: 'btn-outline-default'
+                        },
                         {
                             extend: 'colvis',
                             text: 'Column Visibility',

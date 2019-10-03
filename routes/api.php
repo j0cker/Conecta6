@@ -85,11 +85,14 @@ Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
 //alta nueva plantilla
 Route::post('/empresas/plantilla/nueva', 'APIEmpresas@AltaPlantilla');
 
-//get plantillas by id empresas
+//get plantillas by id_empresas
 Route::get('/empresas/plantilla/obtener', 'APIEmpresas@GetPlantillas');
 
-//get plantillas by id plantillas (por trabajador)
+//get plantillas by id_plantillas (por trabajador)
 Route::get('/empresas/plantilla/obtenerByIdPlantillas', 'APIEmpresas@GetByIdPlantillas');
+
+//post plantillas borrar by id_plantillas (por trabajador)
+Route::post('/empresas/plantilla/borrar', 'APIEmpresas@PostPlantillaEliminar');
 
 //Get Image
 Route::get('/empresas/profile/image', 'APIEmpresas@GetProfileImage');

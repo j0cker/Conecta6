@@ -2010,9 +2010,8 @@
       console.log("[nuevaplantilla][send] de1Domingo: " + de1Domingo);
       console.log("[nuevaplantilla][send] a1Domingo: " + a1Domingo);
       console.log("[nuevaplantilla][send] de2Domingo: " + de2Domingo);
-      console.log("[nuevaplantilla][send] a2Domingo: " + a2Domingo);
+      console.log("[nuevaplantilla][send] a2Domingo: " + a2Domingo);  
 
-      
       if($('#nombrePlantilla').val()==""){
 
           toastr["error"]("Llena correctamente el<br />nombre de la plantilla", "");
@@ -2040,6 +2039,15 @@
           toastr["error"]("Llena correctamente los<br />horarios del día lunes.", "");
           functions.loadingEndWait();
 
+      } else if($('#lunesActivated').prop("checked") && (
+        compararFechas24(de1Lunes, a1Lunes)==1 ||
+        compararFechas24(a1Lunes, de2Lunes)==1 ||
+        compararFechas24(de2Lunes, a2Lunes)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día lunes.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
+        functions.loadingEndWait();
+
       } else if($('#martesActivated').prop("checked") && 
       ($('#de1Martes').val()=="" ||
       $('#a1Martes').val()=="" ||
@@ -2047,6 +2055,15 @@
       $('#a2Martes').val()=="")){
 
         toastr["error"]("Llena correctamente los<br />horarios del día martes.", "");
+        functions.loadingEndWait();
+
+      } else if($('#lunesActivated').prop("checked") && (
+        compararFechas24(de1Martes, a1Martes)==1 ||
+        compararFechas24(a1Martes, de2Martes)==1 ||
+        compararFechas24(de2Martes, a2Martes)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día martes.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
         functions.loadingEndWait();
 
       } else if($('#miercolesActivated').prop("checked") && 
@@ -2058,6 +2075,15 @@
         toastr["error"]("Llena correctamente los<br />horarios del día miercoles.", "");
         functions.loadingEndWait();
 
+      } else if($('#lunesActivated').prop("checked") && (
+        compararFechas24(de1Miercoles, a1Miercoles)==1 ||
+        compararFechas24(a1Miercoles, de2Miercoles)==1 ||
+        compararFechas24(de2Miercoles, a2Miercoles)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día miercoles.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
+        functions.loadingEndWait();
+
       } else if($('#juevesActivated').prop("checked") && 
       ($('#de1Jueves').val()=="" ||
       $('#a1Jueves').val()=="" ||
@@ -2065,6 +2091,15 @@
       $('#a2Jueves').val()=="")){
 
         toastr["error"]("Llena correctamente los<br />horarios del día jueves.", "");
+        functions.loadingEndWait();
+
+      } else if($('#lunesActivated').prop("checked") && (
+        compararFechas24(de1Jueves, a1Jueves)==1 ||
+        compararFechas24(a1Jueves, de2Jueves)==1 ||
+        compararFechas24(de2Jueves, a2Jueves)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día jueves.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
         functions.loadingEndWait();
 
       } else if($('#viernesActivated').prop("checked") && 
@@ -2076,6 +2111,15 @@
         toastr["error"]("Llena correctamente los<br />horarios del día viernes.", "");
         functions.loadingEndWait();
 
+      } else if($('#lunesActivated').prop("checked") && (
+        compararFechas24(de1Viernes, a1Viernes)==1 ||
+        compararFechas24(a1Viernes, de2Viernes)==1 ||
+        compararFechas24(de2Viernes, a2Viernes)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día viernes.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
+        functions.loadingEndWait();
+
       } else if($('#sabadoActivated').prop("checked") && 
       ($('#de1Sabado').val()=="" ||
       $('#a1Sabado').val()=="" ||
@@ -2083,6 +2127,15 @@
       $('#a2Sabado').val()=="")){
 
         toastr["error"]("Llena correctamente los<br />horarios del día sábado.", "");
+        functions.loadingEndWait();
+
+      } else if($('#lunesActivated').prop("checked") && (
+        compararFechas24(de1Sabado, a1Sabado)==1 ||
+        compararFechas24(a1Sabado, de2Sabado)==1 ||
+        compararFechas24(de2Sabado, a2Sabado)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día sábado.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
         functions.loadingEndWait();
 
       } else if($('#domingoActivated').prop("checked") && 
@@ -2094,11 +2147,19 @@
         toastr["error"]("Llena correctamente los<br />horarios del día domingo.", "");
         functions.loadingEndWait();
 
+      } else if($('#lunesActivated').prop("checked") && (
+        compararFechas24(de1Domingo, a1Domingo)==1 ||
+        compararFechas24(a1Domingo, de2Domingo)==1 ||
+        compararFechas24(de2Domingo, a2Domingo)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día domingo.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
+        functions.loadingEndWait();
+
       } else {
           
           console.log("[agregar]");
       
-
         functions.postPlantilla(nombrePlantilla, 
         lunesActivated, de1Lunes, a1Lunes, de2Lunes, a2Lunes,
         martesActivated, de1Martes, a1Martes, de2Martes, a2Martes,
@@ -2122,11 +2183,11 @@
                 functions.loadingEndWait();
             }
         }, function (response) {
-          /*ERROR*/
+          //ERROR
           toastr["error"]("Inténtelo de nuevo más tarde", "");
           functions.loadingEndWait();
 
-        });/*fin postSubscriber*/
+        });/*fin postPlantilla*/
       
       }//fin else
 
@@ -2213,6 +2274,84 @@
     };/*fin validarSubdominio*/
 
     validarSubdominio = $scope.validarSubdominio;
+
+
+    $scope.delPlantillaClick = function(id_empresas, id_plantillas){
+
+      console.log("[delPlantillaClick]");
+
+      if(id_plantillas==""){
+
+        toastr["error"]("Contactar al Administrador", "");
+
+      } else {
+
+        functions.delPlantilla(id_empresas, id_plantillas).then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            
+            console.log("[controllers][delPlantilla]");
+
+            console.log(response.data.data);
+
+            toastr["success"]("Salida Modificada Correctamente!.", "");
+
+            functions.getPlantillas().then(function (response) {
+
+              if(response.data.success == "TRUE"){
+                
+                console.log("[controllers][modTrabajadorClick][getPlantillas]");
+        
+                console.log(response.data.data);
+        
+                $scope.plantillas = response.data.data;
+        
+                console.log($scope.plantillas);
+        
+                var data = Array();
+        
+                var choices = Array();
+                choices = ["id_plantillas", "nombrePlantilla"];
+                
+                data = addKeyToArray(data, response.data.data, choices);
+        
+                data = functions.plantillas(data, response.data.data);
+        
+                console.log(data);
+        
+                $('#plantillas').dataTable().fnClearTable();
+                $('#plantillas').dataTable().fnAddData(data);
+                
+        
+                functions.loadingEndWait();
+                
+              } else {
+        
+                  functions.loadingEndWait();
+              }
+            }, function (response) {
+              /*ERROR*/
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+        
+            });/*fin getPlantillas*/
+            
+          } else {
+
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+          }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin delSalidas*/
+      }
+
+    }; // fin delPlantillaClick
+
+    delPlantillaClick = $scope.delPlantillaClick;
 
 
     $scope.delSalidaClick = function(id_empresas, id_salidas){
