@@ -123,7 +123,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Días Laborales y Horas Laborales (formato 24hrs):
+                                                                    Días Laborales y Horas Laborales (formato 12Hrs):
 
                                                                 </div>
 
@@ -193,8 +193,14 @@
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="text-align: center; color: black; display: none;" class="col-md-4 martesActivated">
+                                                                
+                                                                    <select class="select2 form-control w-100" id="martesTurno">
+                                                                        <option value="default">Selecciona un Turno</option>
+                                                                        <option value="0">Matutino/Verspertino</option>
+                                                                        <option value="1">Nocturno</option>
+                                                                    </select>
 
-                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Martes" placeholder="10:30AM" /> 
                                                                     <p style="display: inline-block;">a:</p>
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Martes" placeholder="18:30AM" />
@@ -1032,6 +1038,8 @@
         <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
         <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
+    
+        <script src="<?php echo e(url('js/selects.js?v='.cache("js_version_number").'')); ?>"></script>
      
         <script src="<?php echo e(url('js/moment.js?v='.cache("js_version_number").'')); ?>"></script>
         <script src="<?php echo e(url('js/datepicker.js?v='.cache("js_version_number").'')); ?>"></script>
@@ -1072,6 +1080,9 @@
         <script>
             $(document).ready(function()
             {
+
+                //selects
+                $('.select2').select2();
                 
                 $('#agregar').click(function() {
                     

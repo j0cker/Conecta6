@@ -2057,7 +2057,7 @@
         toastr["error"]("Llena correctamente los<br />horarios del día martes.", "");
         functions.loadingEndWait();
 
-      } else if($('#lunesActivated').prop("checked") && (
+      } else if($('#martesActivated').prop("checked") && (
         compararFechas24(de1Martes, a1Martes)==1 ||
         compararFechas24(a1Martes, de2Martes)==1 ||
         compararFechas24(de2Martes, a2Martes)==1)
@@ -2075,7 +2075,7 @@
         toastr["error"]("Llena correctamente los<br />horarios del día miercoles.", "");
         functions.loadingEndWait();
 
-      } else if($('#lunesActivated').prop("checked") && (
+      } else if($('#miercolesActivated').prop("checked") && (
         compararFechas24(de1Miercoles, a1Miercoles)==1 ||
         compararFechas24(a1Miercoles, de2Miercoles)==1 ||
         compararFechas24(de2Miercoles, a2Miercoles)==1)
@@ -2093,7 +2093,7 @@
         toastr["error"]("Llena correctamente los<br />horarios del día jueves.", "");
         functions.loadingEndWait();
 
-      } else if($('#lunesActivated').prop("checked") && (
+      } else if($('#juevesActivated').prop("checked") && (
         compararFechas24(de1Jueves, a1Jueves)==1 ||
         compararFechas24(a1Jueves, de2Jueves)==1 ||
         compararFechas24(de2Jueves, a2Jueves)==1)
@@ -2111,7 +2111,7 @@
         toastr["error"]("Llena correctamente los<br />horarios del día viernes.", "");
         functions.loadingEndWait();
 
-      } else if($('#lunesActivated').prop("checked") && (
+      } else if($('#viernesActivated').prop("checked") && (
         compararFechas24(de1Viernes, a1Viernes)==1 ||
         compararFechas24(a1Viernes, de2Viernes)==1 ||
         compararFechas24(de2Viernes, a2Viernes)==1)
@@ -2129,7 +2129,7 @@
         toastr["error"]("Llena correctamente los<br />horarios del día sábado.", "");
         functions.loadingEndWait();
 
-      } else if($('#lunesActivated').prop("checked") && (
+      } else if($('#sabadoActivated').prop("checked") && (
         compararFechas24(de1Sabado, a1Sabado)==1 ||
         compararFechas24(a1Sabado, de2Sabado)==1 ||
         compararFechas24(de2Sabado, a2Sabado)==1)
@@ -2147,7 +2147,7 @@
         toastr["error"]("Llena correctamente los<br />horarios del día domingo.", "");
         functions.loadingEndWait();
 
-      } else if($('#lunesActivated').prop("checked") && (
+      } else if($('#domingoActivated').prop("checked") && (
         compararFechas24(de1Domingo, a1Domingo)==1 ||
         compararFechas24(a1Domingo, de2Domingo)==1 ||
         compararFechas24(de2Domingo, a2Domingo)==1)

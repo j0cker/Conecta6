@@ -1032,12 +1032,16 @@
             }
 
             function delSalida(id_salidas){
+                
+                if(confirm("Confirme que ninguno de sus empleados esté usando esta salida.")==1){
 
-                console.log("[editSalida]");
+                    console.log("[editSalida]");
 
-                console.log("[checkboxSalida] id_salidas: " + id_salidas);
+                    console.log("[checkboxSalida] id_salidas: " + id_salidas);
 
-                delSalidaClick("{{ $user['usr']->id_empresas }}", id_salidas);
+                    delSalidaClick("{{ $user['usr']->id_empresas }}", id_salidas);
+
+                }
 
             }
 
@@ -1050,11 +1054,16 @@
 
             function delPlantilla(id_plantillas){
 
+                
+                if(confirm("Confirme que ninguno de sus empleados esté usando esta plantilla.")==1){
+
                 console.log("[delPlantilla]");
                 
                 console.log(id_plantillas);
 
                 delPlantillaClick(id_plantillas);
+
+                }
             }
 
             $(document).ready(function()

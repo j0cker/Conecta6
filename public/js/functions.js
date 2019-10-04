@@ -284,9 +284,11 @@ function compararFechas24(horas1, horas2){
   var formato12 = horas1.toString().split(" ");
   var horas12 = horas1.toString().split(":");
 
-  if(formato12[1]=="PM"){
-    horas12[0] = (parseInt(horas12[0]) + 12);
-  }
+  if(formato12[1] == "PM" && horas12[0]<12) 
+    horas12[0] = parseInt(horas12[0])+12;
+
+  if(formato12[1] == "AM" && horas12[0]==12) 
+    horas12[0] = parseInt(horas12[0])-12;
 
   formato12 = horas12[1].toString().split(" ");
 
@@ -297,9 +299,11 @@ function compararFechas24(horas1, horas2){
   var formato22 = horas2.toString().split(" ");
   var hora22 = horas2.toString().split(":");
 
-  if(formato22[1]=="PM"){
-    hora22[0] = (parseInt(hora22[0]) + 12);
-  }
+  if(formato22[1] == "PM" && hora22[0]<12) 
+    hora22[0] = parseInt(hora22[0])+12;
+
+  if(formato22[1] == "AM" && hora22[0]==12) 
+    hora22[0] = parseInt(hora22[0])-12;
 
   formato22 = hora22[1].toString().split(" ");
 
@@ -339,9 +343,11 @@ function horasAMPMToSeconds(hora){
   var formato = hora.toString().split(" ");
   var hora2 = hora.toString().split(":");
 
-  if(formato[1]=="PM"){
-    hora2[0] = (parseInt(hora2[0]) + 12);
-  }
+  if(formato[1] == "PM" && hora2[0]<12) 
+    hora2[0] = parseInt(hora2[0])+12;
+
+  if(formato[1] == "AM" && hora2[0]==12) 
+    hora2[0] = parseInt(hora2[0])-12;
 
   formato = hora2[1].toString().split(" ");
 
@@ -377,9 +383,11 @@ function horasAMPMTo24(hora){
   var formato = hora.toString().split(" ");
   var hora2 = hora.toString().split(":");
 
-  if(formato[1]=="PM"){
-    hora2[0] = (parseInt(hora2[0]) + 12);
-  }
+  if(formato[1] == "PM" && hora2[0]<12) 
+    hora2[0] = parseInt(hora2[0])+12;
+
+  if(formato[1] == "AM" && hora2[0]==12) 
+    hora2[0] = parseInt(hora2[0])-12;
 
   formato = hora2[1].toString().split(" ");
 
