@@ -1006,8 +1006,6 @@
 
         <script>
 
-            
-
             function checkboxSalida(id_salidas, nombre){
 
                 console.log("[checkboxSalida]");
@@ -1050,6 +1048,8 @@
                 console.log("[editPlantilla]");
                 
                 console.log(id_plantillas);
+
+                window.location = "/plantilla/mod?id_plantilla=" + id_plantillas;
             }
 
             function delPlantilla(id_plantillas){

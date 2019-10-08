@@ -475,7 +475,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="pcActivated">
-                                                                        <label class="custom-control-label" for="pcActivated">PC</label><br /><br />
+                                                                        <label class="custom-control-label" for="pcActivated">PC/MAC/Laptop</label><br /><br />
                                                                     </div>
 
                                                                     <div style="margin-top: 15px;" class="custom-control custom-switch text-left">

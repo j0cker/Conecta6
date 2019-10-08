@@ -58,6 +58,9 @@ Route::get('/trabajadores/editar', 'APIEmpresas@ModTrabajadores');
 //Nueva Plantilla de Horario de los Trabajadores
 Route::get('/plantilla/nueva', 'APIEmpresas@NuevaPlantilla');
 
+//Mod Plantilla de Horario de los Trabajadores
+Route::get('/plantilla/mod', 'APIEmpresas@ModificarPlantilla');
+
 //Nueva Salida
 Route::get('/salidas/modificar', 'APIEmpresas@SalidasModificar');
 
@@ -110,10 +113,10 @@ Route::get('/administradores/modificar', 'APIAdmin@EditarAdministrador');
 /*
 *********Trabajadores***********
 */
-//sign in personalizado (URL a evaluación)
-Route::get('/test', 'APITest@Test');
 
 //sign in personalizado (URL a evaluación)
 Route::get('/{any}', 'APITrabajadores@SignIn');
 
+//tests laravel php
+Route::get('/test', 'APITest@Test');
 

@@ -1931,42 +1931,56 @@
       a1Lunes = $("#a1Lunes").val();
       de2Lunes = $("#de2Lunes").val();
       a2Lunes = $("#a2Lunes").val();
+      var lunesTurnoX = document.getElementById("lunesTurno").selectedIndex;
+      var lunesTurnoY = document.getElementById("lunesTurno").options;
 
       martesActivated = $("#martesActivated").prop("checked");
       de1Martes = $("#de1Martes").val();
       a1Martes = $("#a1Martes").val();
       de2Martes = $("#de2Martes").val();
       a2Martes = $("#a2Martes").val();
+      var martesTurnoX = document.getElementById("martesTurno").selectedIndex;
+      var martesTurnoY = document.getElementById("martesTurno").options;
 
       miercolesActivated = $("#miercolesActivated").prop("checked");
       de1Miercoles = $("#de1Miercoles").val();
       a1Miercoles = $("#a1Miercoles").val();
       de2Miercoles = $("#de2Miercoles").val();
       a2Miercoles = $("#a2Miercoles").val();
+      var miercolesTurnoX = document.getElementById("miercolesTurno").selectedIndex;
+      var miercolesTurnoY = document.getElementById("miercolesTurno").options;
 
       juevesActivated = $("#juevesActivated").prop("checked");
       de1Jueves = $("#de1Jueves").val();
       a1Jueves = $("#a1Jueves").val();
       de2Jueves = $("#de2Jueves").val();
       a2Jueves = $("#a2Jueves").val();
+      var juevesTurnoX = document.getElementById("juevesTurno").selectedIndex;
+      var juevesTurnoY = document.getElementById("juevesTurno").options;
 
       viernesActivated = $("#viernesActivated").prop("checked");
       de1Viernes = $("#de1Viernes").val();
       a1Viernes = $("#a1Viernes").val();
       de2Viernes = $("#de2Viernes").val();
       a2Viernes = $("#a2Viernes").val();
+      var viernesTurnoX = document.getElementById("viernesTurno").selectedIndex;
+      var viernesTurnoY = document.getElementById("viernesTurno").options;
 
       sabadoActivated = $("#sabadoActivated").prop("checked");
       de1Sabado = $("#de1Sabado").val();
       a1Sabado = $("#a1Sabado").val();
       de2Sabado = $("#de2Sabado").val();
       a2Sabado = $("#a2Sabado").val();
+      var sabadoTurnoX = document.getElementById("sabadoTurno").selectedIndex;
+      var sabadoTurnoY = document.getElementById("sabadoTurno").options;
 
       domingoActivated = $("#domingoActivated").prop("checked");
       de1Domingo = $("#de1Domingo").val();
       a1Domingo = $("#a1Domingo").val();
       de2Domingo = $("#de2Domingo").val();
       a2Domingo = $("#a2Domingo").val();
+      var domingoTurnoX = document.getElementById("domingoTurno").selectedIndex;
+      var domingoTurnoY = document.getElementById("domingoTurno").options;
 
       console.log("[nuevaplantilla][send] nombrePlantilla: " + nombrePlantilla);
       
@@ -1975,42 +1989,56 @@
       console.log("[nuevaplantilla][send] a1Lunes: " + a1Lunes);
       console.log("[nuevaplantilla][send] de2Lunes: " + de2Lunes);
       console.log("[nuevaplantilla][send] a2Lunes: " + a2Lunes);
+      console.log("Index: " + lunesTurnoY[lunesTurnoX].index + " is " + lunesTurnoY[lunesTurnoX].text + " value " + lunesTurnoY[lunesTurnoX].value);
+      console.log("[nuevaplantilla][send] select turno: " + lunesTurnoY[lunesTurnoX].value + ", " + lunesTurnoY[lunesTurnoX].text);
       
       console.log("[nuevaplantilla][send] martesActivated: " + martesActivated);
       console.log("[nuevaplantilla][send] de1Martes: " + de1Martes);
       console.log("[nuevaplantilla][send] a1Martes: " + a1Martes);
       console.log("[nuevaplantilla][send] de2Martes: " + de2Martes);
       console.log("[nuevaplantilla][send] a2Martes: " + a2Martes);
+      console.log("Index: " + martesTurnoY[martesTurnoX].index + " is " + martesTurnoY[martesTurnoX].text + " value " + martesTurnoY[martesTurnoX].value);
+      console.log("[nuevaplantilla][send] select turno: " + martesTurnoY[martesTurnoX].value + ", " + martesTurnoY[martesTurnoX].text);
       
       console.log("[nuevaplantilla][send] miercolesActivated: " + miercolesActivated);
       console.log("[nuevaplantilla][send] de1Miercoles: " + de1Miercoles);
       console.log("[nuevaplantilla][send] a1Miercoles: " + a1Miercoles);
       console.log("[nuevaplantilla][send] de2Miercoles: " + de2Miercoles);
       console.log("[nuevaplantilla][send] a2Miercoles: " + a2Miercoles);
+      console.log("Index: " + miercolesTurnoY[miercolesTurnoX].index + " is " + miercolesTurnoY[miercolesTurnoX].text + " value " + miercolesTurnoY[miercolesTurnoX].value);
+      console.log("[nuevaplantilla][send] select turno: " + miercolesTurnoY[miercolesTurnoX].value + ", " + miercolesTurnoY[miercolesTurnoX].text);
       
       console.log("[nuevaplantilla][send] juevesActivated: " + juevesActivated);
       console.log("[nuevaplantilla][send] de1Jueves: " + de1Jueves);
       console.log("[nuevaplantilla][send] a1Jueves: " + a1Jueves);
       console.log("[nuevaplantilla][send] de2Jueves: " + de2Jueves);
       console.log("[nuevaplantilla][send] a2Jueves: " + a2Jueves);
+      console.log("Index: " + juevesTurnoY[juevesTurnoX].index + " is " + juevesTurnoY[juevesTurnoX].text + " value " + juevesTurnoY[juevesTurnoX].value);
+      console.log("[nuevaplantilla][send] select turno: " + juevesTurnoY[juevesTurnoX].value + ", " + juevesTurnoY[juevesTurnoX].text);
       
       console.log("[nuevaplantilla][send] viernesActivated: " + viernesActivated);
       console.log("[nuevaplantilla][send] de1Viernes: " + de1Viernes);
       console.log("[nuevaplantilla][send] a1Viernes: " + a1Viernes);
       console.log("[nuevaplantilla][send] de2Viernes: " + de2Viernes);
       console.log("[nuevaplantilla][send] a2Viernes: " + a2Viernes);
+      console.log("Index: " + viernesTurnoY[viernesTurnoX].index + " is " + viernesTurnoY[viernesTurnoX].text + " value " + viernesTurnoY[viernesTurnoX].value);
+      console.log("[nuevaplantilla][send] select turno: " + viernesTurnoY[viernesTurnoX].value + ", " + viernesTurnoY[viernesTurnoX].text);
       
       console.log("[nuevaplantilla][send] sabadoActivated: " + sabadoActivated);
       console.log("[nuevaplantilla][send] de1Sabado: " + de1Sabado);
       console.log("[nuevaplantilla][send] a1Sabado: " + a1Sabado);
       console.log("[nuevaplantilla][send] de2Sabado: " + de2Sabado);
       console.log("[nuevaplantilla][send] a2Sabado: " + a2Sabado);
+      console.log("Index: " + sabadoTurnoY[sabadoTurnoX].index + " is " + sabadoTurnoY[sabadoTurnoX].text + " value " + sabadoTurnoY[sabadoTurnoX].value);
+      console.log("[nuevaplantilla][send] select turno: " + sabadoTurnoY[sabadoTurnoX].value + ", " + sabadoTurnoY[sabadoTurnoX].text);
       
       console.log("[nuevaplantilla][send] domingoActivated: " + domingoActivated);
       console.log("[nuevaplantilla][send] de1Domingo: " + de1Domingo);
       console.log("[nuevaplantilla][send] a1Domingo: " + a1Domingo);
       console.log("[nuevaplantilla][send] de2Domingo: " + de2Domingo);
-      console.log("[nuevaplantilla][send] a2Domingo: " + a2Domingo);  
+      console.log("[nuevaplantilla][send] a2Domingo: " + a2Domingo); 
+      console.log("Index: " + domingoTurnoY[domingoTurnoX].index + " is " + domingoTurnoY[domingoTurnoX].text + " value " + domingoTurnoY[domingoTurnoX].value);
+      console.log("[nuevaplantilla][send] select turno: " + domingoTurnoY[domingoTurnoX].value + ", " + domingoTurnoY[domingoTurnoX].text); 
 
       if($('#nombrePlantilla').val()==""){
 
@@ -2039,12 +2067,28 @@
           toastr["error"]("Llena correctamente los<br />horarios del día lunes.", "");
           functions.loadingEndWait();
 
-      } else if($('#lunesActivated').prop("checked") && (
+      } else if(
+        $('#lunesActivated').prop("checked") &&
+        (($('#de1Lunes').val()==$('#a1Lunes').val()) ||
+        ($('#de2Lunes').val()==$('#a2Lunes').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día lunes.", "");
+          functions.loadingEndWait();
+
+      } else if($('#lunesActivated').prop("checked") && 
+        lunesTurnoY[lunesTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#lunesActivated').prop("checked") && 
+        lunesTurnoY[lunesTurnoX].value==0 &&
+        (
         compararFechas24(de1Lunes, a1Lunes)==1 ||
         compararFechas24(a1Lunes, de2Lunes)==1 ||
         compararFechas24(de2Lunes, a2Lunes)==1)
               ){
-
+        console.log("Horario Nocturno");
         toastr["error"]("Llena correctamente los<br />horarios del día lunes.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
         functions.loadingEndWait();
 
@@ -2057,7 +2101,23 @@
         toastr["error"]("Llena correctamente los<br />horarios del día martes.", "");
         functions.loadingEndWait();
 
-      } else if($('#martesActivated').prop("checked") && (
+      } else if(
+        $('#martesActivated').prop("checked") &&
+        (($('#de1Martes').val()==$('#a1Martes').val()) ||
+        ($('#de2Martes').val()==$('#a2Martes').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día martes.", "");
+          functions.loadingEndWait();
+
+      } else if($('#martesActivated').prop("checked") && 
+          martesTurnoY[martesTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#martesActivated').prop("checked") && 
+        martesTurnoY[martesTurnoX].value==0 &&
+        (
         compararFechas24(de1Martes, a1Martes)==1 ||
         compararFechas24(a1Martes, de2Martes)==1 ||
         compararFechas24(de2Martes, a2Martes)==1)
@@ -2075,7 +2135,23 @@
         toastr["error"]("Llena correctamente los<br />horarios del día miercoles.", "");
         functions.loadingEndWait();
 
-      } else if($('#miercolesActivated').prop("checked") && (
+      } else if(
+        $('#miercolesActivated').prop("checked") &&
+        (($('#de1Miercoles').val()==$('#a1Miercoles').val()) ||
+        ($('#de2Miercoles').val()==$('#a2Miercoles').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día miercoles.", "");
+          functions.loadingEndWait();
+
+      } else if($('#miercolesActivated').prop("checked") && 
+          miercolesTurnoY[miercolesTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#miercolesActivated').prop("checked") && 
+        miercolesTurnoY[miercolesTurnoX].value==0 &&
+        (
         compararFechas24(de1Miercoles, a1Miercoles)==1 ||
         compararFechas24(a1Miercoles, de2Miercoles)==1 ||
         compararFechas24(de2Miercoles, a2Miercoles)==1)
@@ -2093,7 +2169,23 @@
         toastr["error"]("Llena correctamente los<br />horarios del día jueves.", "");
         functions.loadingEndWait();
 
-      } else if($('#juevesActivated').prop("checked") && (
+      } else if(
+        $('#juevesActivated').prop("checked") &&
+        (($('#de1Jueves').val()==$('#a1Jueves').val()) ||
+        ($('#de2Jueves').val()==$('#a2Jueves').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día jueves.", "");
+          functions.loadingEndWait();
+
+      } else if($('#juevesActivated').prop("checked") && 
+          juevesTurnoY[juevesTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#juevesActivated').prop("checked") && 
+        juevesTurnoY[juevesTurnoX].value==0 &&
+        (
         compararFechas24(de1Jueves, a1Jueves)==1 ||
         compararFechas24(a1Jueves, de2Jueves)==1 ||
         compararFechas24(de2Jueves, a2Jueves)==1)
@@ -2111,7 +2203,23 @@
         toastr["error"]("Llena correctamente los<br />horarios del día viernes.", "");
         functions.loadingEndWait();
 
-      } else if($('#viernesActivated').prop("checked") && (
+      } else if(
+        $('#viernesActivated').prop("checked") &&
+        (($('#de1Viernes').val()==$('#a1Viernes').val()) ||
+        ($('#de2Viernes').val()==$('#a2Viernes').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día viernes.", "");
+          functions.loadingEndWait();
+
+      } else if($('#viernesActivated').prop("checked") && 
+          viernesTurnoY[viernesTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#viernesActivated').prop("checked") && 
+        viernesTurnoY[viernesTurnoX].value==0 &&
+        (
         compararFechas24(de1Viernes, a1Viernes)==1 ||
         compararFechas24(a1Viernes, de2Viernes)==1 ||
         compararFechas24(de2Viernes, a2Viernes)==1)
@@ -2129,7 +2237,23 @@
         toastr["error"]("Llena correctamente los<br />horarios del día sábado.", "");
         functions.loadingEndWait();
 
-      } else if($('#sabadoActivated').prop("checked") && (
+      } else if(
+        $('#sabadoActivated').prop("checked") &&
+        (($('#de1Sabado').val()==$('#a1Sabado').val()) ||
+        ($('#de2Sabado').val()==$('#a2Sabado').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día sábado.", "");
+          functions.loadingEndWait();
+
+      } else if($('#sabadoActivated').prop("checked") && 
+          sabadoTurnoY[sabadoTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#sabadoActivated').prop("checked") && 
+        sabadoTurnoY[sabadoTurnoX].value==0 &&
+        (
         compararFechas24(de1Sabado, a1Sabado)==1 ||
         compararFechas24(a1Sabado, de2Sabado)==1 ||
         compararFechas24(de2Sabado, a2Sabado)==1)
@@ -2147,7 +2271,23 @@
         toastr["error"]("Llena correctamente los<br />horarios del día domingo.", "");
         functions.loadingEndWait();
 
-      } else if($('#domingoActivated').prop("checked") && (
+      } else if(
+        $('#domingoActivated').prop("checked") &&
+        (($('#de1Domingo').val()==$('#a1Domingo').val()) ||
+        ($('#de2Domingo').val()==$('#a2Domingo').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día domingo.", "");
+          functions.loadingEndWait();
+
+      } else if($('#domingoActivated').prop("checked") && 
+          domingoTurnoY[domingoTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#domingoActivated').prop("checked") && 
+        domingoTurnoY[domingoTurnoX].value==0 &&
+        (
         compararFechas24(de1Domingo, a1Domingo)==1 ||
         compararFechas24(a1Domingo, de2Domingo)==1 ||
         compararFechas24(de2Domingo, a2Domingo)==1)
@@ -2158,16 +2298,16 @@
 
       } else {
           
-          console.log("[agregar]");
+        console.log("[agregar]");
       
         functions.postPlantilla(nombrePlantilla, 
-        lunesActivated, de1Lunes, a1Lunes, de2Lunes, a2Lunes,
-        martesActivated, de1Martes, a1Martes, de2Martes, a2Martes,
-        miercolesActivated, de1Miercoles, a1Miercoles, de2Miercoles, a2Miercoles,
-        juevesActivated, de1Jueves, a1Jueves, de2Jueves, a2Jueves,
-        viernesActivated, de1Viernes, a1Viernes, de2Viernes, a2Viernes,
-        sabadoActivated, de1Sabado, a1Sabado, de2Sabado, a2Sabado,
-        domingoActivated, de1Domingo, a1Domingo, de2Domingo, a2Domingo
+        lunesActivated, lunesTurnoY[lunesTurnoX].text, de1Lunes, a1Lunes, de2Lunes, a2Lunes,
+        martesActivated, martesTurnoY[martesTurnoX].text, de1Martes, a1Martes, de2Martes, a2Martes,
+        miercolesActivated, miercolesTurnoY[miercolesTurnoX].text, de1Miercoles, a1Miercoles, de2Miercoles, a2Miercoles,
+        juevesActivated, juevesTurnoY[juevesTurnoX].text, de1Jueves, a1Jueves, de2Jueves, a2Jueves,
+        viernesActivated, viernesTurnoY[viernesTurnoX].text, de1Viernes, a1Viernes, de2Viernes, a2Viernes,
+        sabadoActivated, sabadoTurnoY[sabadoTurnoX].text, de1Sabado, a1Sabado, de2Sabado, a2Sabado,
+        domingoActivated, domingoTurnoY[domingoTurnoX].text, de1Domingo, a1Domingo, de2Domingo, a2Domingo
         ).then(function (response) {
 
             if(response.data.success == "TRUE"){
@@ -2182,6 +2322,7 @@
                 toastr["warning"](response.data.description, "");
                 functions.loadingEndWait();
             }
+            
         }, function (response) {
           //ERROR
           toastr["error"]("Inténtelo de nuevo más tarde", "");
@@ -2223,7 +2364,661 @@
 
   });//fin controller nuevaplantilla
 
-  
+  app.controller('modplantilla', function($scope, functions, $window) {
+
+    functions.loading();
+    
+    console.log("[modplantilla]");
+
+    $scope.send = function(id_plantilla){
+      console.log("[modplantilla][send]");
+
+      console.log("[modplantilla][send] id_plantilla: " + id_plantilla);
+
+      functions.loadingWait();
+
+      var nombrePlantilla = "";
+
+      var lunesActivated = "";
+      var de1Lunes = "";
+      var a1Lunes = "";
+      var de2Lunes = "";
+      var a2Lunes = "";
+
+      var martesActivated = "";
+      var de1Martes = "";
+      var a1Martes = "";
+      var de2Martes = "";
+      var a2Martes = "";
+
+      var miercolesActivated = "";
+      var de1Miercoles = "";
+      var a1Miercoles = "";
+      var de2Miercoles = "";
+      var a2Miercoles = "";
+
+      var juevesActivated = "";
+      var de1Jueves = "";
+      var a1Jueves = "";
+      var de2Jueves = "";
+      var a2Jueves = "";
+
+      var viernesActivated = "";
+      var de1Viernes = "";
+      var a1Viernes = "";
+      var de2Viernes = "";
+      var a2Viernes = "";
+
+      var sabadoActivated = "";
+      var de1Sabado = "";
+      var a1Sabado = "";
+      var de2Sabado = "";
+      var a2Sabado = "";
+
+      var domingoActivated = "";
+      var de1Domingo = "";
+      var a1Domingo = "";
+      var de2Domingo = "";
+      var a2Domingo = "";
+
+      nombrePlantilla = $("#nombrePlantilla").val();
+
+      lunesActivated = $("#lunesActivated").prop("checked");
+      de1Lunes = $("#de1Lunes").val();
+      a1Lunes = $("#a1Lunes").val();
+      de2Lunes = $("#de2Lunes").val();
+      a2Lunes = $("#a2Lunes").val();
+      var lunesTurnoX = document.getElementById("lunesTurno").selectedIndex;
+      var lunesTurnoY = document.getElementById("lunesTurno").options;
+
+      martesActivated = $("#martesActivated").prop("checked");
+      de1Martes = $("#de1Martes").val();
+      a1Martes = $("#a1Martes").val();
+      de2Martes = $("#de2Martes").val();
+      a2Martes = $("#a2Martes").val();
+      var martesTurnoX = document.getElementById("martesTurno").selectedIndex;
+      var martesTurnoY = document.getElementById("martesTurno").options;
+
+      miercolesActivated = $("#miercolesActivated").prop("checked");
+      de1Miercoles = $("#de1Miercoles").val();
+      a1Miercoles = $("#a1Miercoles").val();
+      de2Miercoles = $("#de2Miercoles").val();
+      a2Miercoles = $("#a2Miercoles").val();
+      var miercolesTurnoX = document.getElementById("miercolesTurno").selectedIndex;
+      var miercolesTurnoY = document.getElementById("miercolesTurno").options;
+
+      juevesActivated = $("#juevesActivated").prop("checked");
+      de1Jueves = $("#de1Jueves").val();
+      a1Jueves = $("#a1Jueves").val();
+      de2Jueves = $("#de2Jueves").val();
+      a2Jueves = $("#a2Jueves").val();
+      var juevesTurnoX = document.getElementById("juevesTurno").selectedIndex;
+      var juevesTurnoY = document.getElementById("juevesTurno").options;
+
+      viernesActivated = $("#viernesActivated").prop("checked");
+      de1Viernes = $("#de1Viernes").val();
+      a1Viernes = $("#a1Viernes").val();
+      de2Viernes = $("#de2Viernes").val();
+      a2Viernes = $("#a2Viernes").val();
+      var viernesTurnoX = document.getElementById("viernesTurno").selectedIndex;
+      var viernesTurnoY = document.getElementById("viernesTurno").options;
+
+      sabadoActivated = $("#sabadoActivated").prop("checked");
+      de1Sabado = $("#de1Sabado").val();
+      a1Sabado = $("#a1Sabado").val();
+      de2Sabado = $("#de2Sabado").val();
+      a2Sabado = $("#a2Sabado").val();
+      var sabadoTurnoX = document.getElementById("sabadoTurno").selectedIndex;
+      var sabadoTurnoY = document.getElementById("sabadoTurno").options;
+
+      domingoActivated = $("#domingoActivated").prop("checked");
+      de1Domingo = $("#de1Domingo").val();
+      a1Domingo = $("#a1Domingo").val();
+      de2Domingo = $("#de2Domingo").val();
+      a2Domingo = $("#a2Domingo").val();
+      var domingoTurnoX = document.getElementById("domingoTurno").selectedIndex;
+      var domingoTurnoY = document.getElementById("domingoTurno").options;
+
+      console.log("[modplantilla][send] id_plantilla: " + id_plantilla);
+
+      console.log("[modplantilla][send] nombrePlantilla: " + nombrePlantilla);
+      
+      console.log("[modplantilla][send] lunesActivated: " + lunesActivated);
+      console.log("[modplantilla][send] de1Lunes: " + de1Lunes);
+      console.log("[modplantilla][send] a1Lunes: " + a1Lunes);
+      console.log("[modplantilla][send] de2Lunes: " + de2Lunes);
+      console.log("[modplantilla][send] a2Lunes: " + a2Lunes);
+      console.log("Index: " + lunesTurnoY[lunesTurnoX].index + " is " + lunesTurnoY[lunesTurnoX].text + " value " + lunesTurnoY[lunesTurnoX].value);
+      console.log("[modplantilla][send] select turno: " + lunesTurnoY[lunesTurnoX].value + ", " + lunesTurnoY[lunesTurnoX].text);
+      
+      console.log("[modplantilla][send] martesActivated: " + martesActivated);
+      console.log("[modplantilla][send] de1Martes: " + de1Martes);
+      console.log("[modplantilla][send] a1Martes: " + a1Martes);
+      console.log("[modplantilla][send] de2Martes: " + de2Martes);
+      console.log("[modplantilla][send] a2Martes: " + a2Martes);
+      console.log("Index: " + martesTurnoY[martesTurnoX].index + " is " + martesTurnoY[martesTurnoX].text + " value " + martesTurnoY[martesTurnoX].value);
+      console.log("[modplantilla][send] select turno: " + martesTurnoY[martesTurnoX].value + ", " + martesTurnoY[martesTurnoX].text);
+      
+      console.log("[modplantilla][send] miercolesActivated: " + miercolesActivated);
+      console.log("[modplantilla][send] de1Miercoles: " + de1Miercoles);
+      console.log("[modplantilla][send] a1Miercoles: " + a1Miercoles);
+      console.log("[modplantilla][send] de2Miercoles: " + de2Miercoles);
+      console.log("[modplantilla][send] a2Miercoles: " + a2Miercoles);
+      console.log("Index: " + miercolesTurnoY[miercolesTurnoX].index + " is " + miercolesTurnoY[miercolesTurnoX].text + " value " + miercolesTurnoY[miercolesTurnoX].value);
+      console.log("[modplantilla][send] select turno: " + miercolesTurnoY[miercolesTurnoX].value + ", " + miercolesTurnoY[miercolesTurnoX].text);
+      
+      console.log("[modplantilla][send] juevesActivated: " + juevesActivated);
+      console.log("[modplantilla][send] de1Jueves: " + de1Jueves);
+      console.log("[modplantilla][send] a1Jueves: " + a1Jueves);
+      console.log("[modplantilla][send] de2Jueves: " + de2Jueves);
+      console.log("[modplantilla][send] a2Jueves: " + a2Jueves);
+      console.log("Index: " + juevesTurnoY[juevesTurnoX].index + " is " + juevesTurnoY[juevesTurnoX].text + " value " + juevesTurnoY[juevesTurnoX].value);
+      console.log("[modplantilla][send] select turno: " + juevesTurnoY[juevesTurnoX].value + ", " + juevesTurnoY[juevesTurnoX].text);
+      
+      console.log("[modplantilla][send] viernesActivated: " + viernesActivated);
+      console.log("[modplantilla][send] de1Viernes: " + de1Viernes);
+      console.log("[modplantilla][send] a1Viernes: " + a1Viernes);
+      console.log("[modplantilla][send] de2Viernes: " + de2Viernes);
+      console.log("[modplantilla][send] a2Viernes: " + a2Viernes);
+      console.log("Index: " + viernesTurnoY[viernesTurnoX].index + " is " + viernesTurnoY[viernesTurnoX].text + " value " + viernesTurnoY[viernesTurnoX].value);
+      console.log("[modplantilla][send] select turno: " + viernesTurnoY[viernesTurnoX].value + ", " + viernesTurnoY[viernesTurnoX].text);
+      
+      console.log("[modplantilla][send] sabadoActivated: " + sabadoActivated);
+      console.log("[modplantilla][send] de1Sabado: " + de1Sabado);
+      console.log("[modplantilla][send] a1Sabado: " + a1Sabado);
+      console.log("[modplantilla][send] de2Sabado: " + de2Sabado);
+      console.log("[modplantilla][send] a2Sabado: " + a2Sabado);
+      console.log("Index: " + sabadoTurnoY[sabadoTurnoX].index + " is " + sabadoTurnoY[sabadoTurnoX].text + " value " + sabadoTurnoY[sabadoTurnoX].value);
+      console.log("[modplantilla][send] select turno: " + sabadoTurnoY[sabadoTurnoX].value + ", " + sabadoTurnoY[sabadoTurnoX].text);
+      
+      console.log("[modplantilla][send] domingoActivated: " + domingoActivated);
+      console.log("[modplantilla][send] de1Domingo: " + de1Domingo);
+      console.log("[modplantilla][send] a1Domingo: " + a1Domingo);
+      console.log("[modplantilla][send] de2Domingo: " + de2Domingo);
+      console.log("[modplantilla][send] a2Domingo: " + a2Domingo); 
+      console.log("Index: " + domingoTurnoY[domingoTurnoX].index + " is " + domingoTurnoY[domingoTurnoX].text + " value " + domingoTurnoY[domingoTurnoX].value);
+      console.log("[modplantilla][send] select turno: " + domingoTurnoY[domingoTurnoX].value + ", " + domingoTurnoY[domingoTurnoX].text); 
+
+      if($('#nombrePlantilla').val()==""){
+
+          toastr["error"]("Llena correctamente el<br />nombre de la plantilla", "");
+          functions.loadingEndWait();
+
+      } else if (!$('#lunesActivated').prop("checked") &&
+      !$('#martesActivated').prop("checked") &&
+      !$('#miercolesActivated').prop("checked") &&
+      !$('#juevesActivated').prop("checked") &&
+      !$('#viernesActivated').prop("checked") &&
+      !$('#sabadoActivated').prop("checked") &&
+      !$('#domingoActivated').prop("checked")){
+
+          console.log("No activado nada");
+
+          toastr["error"]("Debes seleccionar por<br />lo menos un día.", "");
+          functions.loadingEndWait();
+
+      } else if($('#lunesActivated').prop("checked") && 
+          ($('#de1Lunes').val()=="" ||
+          $('#a1Lunes').val()=="" ||
+          $('#de2Lunes').val()=="" ||
+          $('#a2Lunes').val()=="")){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día lunes.", "");
+          functions.loadingEndWait();
+
+      } else if(
+        $('#lunesActivated').prop("checked") &&
+        (($('#de1Lunes').val()==$('#a1Lunes').val()) ||
+        ($('#de2Lunes').val()==$('#a2Lunes').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día lunes.", "");
+          functions.loadingEndWait();
+
+      } else if($('#lunesActivated').prop("checked") && 
+        lunesTurnoY[lunesTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#lunesActivated').prop("checked") && 
+        lunesTurnoY[lunesTurnoX].value==0 &&
+        (
+        compararFechas24(de1Lunes, a1Lunes)==1 ||
+        compararFechas24(a1Lunes, de2Lunes)==1 ||
+        compararFechas24(de2Lunes, a2Lunes)==1)
+              ){
+        console.log("Horario Nocturno");
+        toastr["error"]("Llena correctamente los<br />horarios del día lunes.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
+        functions.loadingEndWait();
+
+      } else if($('#martesActivated').prop("checked") && 
+      ($('#de1Martes').val()=="" ||
+      $('#a1Martes').val()=="" ||
+      $('#de2Martes').val()=="" ||
+      $('#a2Martes').val()=="")){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día martes.", "");
+        functions.loadingEndWait();
+
+      } else if(
+        $('#martesActivated').prop("checked") &&
+        (($('#de1Martes').val()==$('#a1Martes').val()) ||
+        ($('#de2Martes').val()==$('#a2Martes').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día martes.", "");
+          functions.loadingEndWait();
+
+      } else if($('#martesActivated').prop("checked") && 
+          martesTurnoY[martesTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#martesActivated').prop("checked") && 
+        martesTurnoY[martesTurnoX].value==0 &&
+        (
+        compararFechas24(de1Martes, a1Martes)==1 ||
+        compararFechas24(a1Martes, de2Martes)==1 ||
+        compararFechas24(de2Martes, a2Martes)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día martes.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
+        functions.loadingEndWait();
+
+      } else if($('#miercolesActivated').prop("checked") && 
+      ($('#de1Miercoles').val()=="" ||
+      $('#a1Miercoles').val()=="" ||
+      $('#de2Miercoles').val()=="" ||
+      $('#a2Miercoles').val()=="")){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día miercoles.", "");
+        functions.loadingEndWait();
+
+      } else if(
+        $('#miercolesActivated').prop("checked") &&
+        (($('#de1Miercoles').val()==$('#a1Miercoles').val()) ||
+        ($('#de2Miercoles').val()==$('#a2Miercoles').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día miercoles.", "");
+          functions.loadingEndWait();
+
+      } else if($('#miercolesActivated').prop("checked") && 
+          miercolesTurnoY[miercolesTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#miercolesActivated').prop("checked") && 
+        miercolesTurnoY[miercolesTurnoX].value==0 &&
+        (
+        compararFechas24(de1Miercoles, a1Miercoles)==1 ||
+        compararFechas24(a1Miercoles, de2Miercoles)==1 ||
+        compararFechas24(de2Miercoles, a2Miercoles)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día miercoles.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
+        functions.loadingEndWait();
+
+      } else if($('#juevesActivated').prop("checked") && 
+      ($('#de1Jueves').val()=="" ||
+      $('#a1Jueves').val()=="" ||
+      $('#de2Jueves').val()=="" ||
+      $('#a2Jueves').val()=="")){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día jueves.", "");
+        functions.loadingEndWait();
+
+      } else if(
+        $('#juevesActivated').prop("checked") &&
+        (($('#de1Jueves').val()==$('#a1Jueves').val()) ||
+        ($('#de2Jueves').val()==$('#a2Jueves').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día jueves.", "");
+          functions.loadingEndWait();
+
+      } else if($('#juevesActivated').prop("checked") && 
+          juevesTurnoY[juevesTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#juevesActivated').prop("checked") && 
+        juevesTurnoY[juevesTurnoX].value==0 &&
+        (
+        compararFechas24(de1Jueves, a1Jueves)==1 ||
+        compararFechas24(a1Jueves, de2Jueves)==1 ||
+        compararFechas24(de2Jueves, a2Jueves)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día jueves.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
+        functions.loadingEndWait();
+
+      } else if($('#viernesActivated').prop("checked") && 
+      ($('#de1Viernes').val()=="" ||
+      $('#a1Viernes').val()=="" ||
+      $('#de2Viernes').val()=="" ||
+      $('#a2Viernes').val()=="")){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día viernes.", "");
+        functions.loadingEndWait();
+
+      } else if(
+        $('#viernesActivated').prop("checked") &&
+        (($('#de1Viernes').val()==$('#a1Viernes').val()) ||
+        ($('#de2Viernes').val()==$('#a2Viernes').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día viernes.", "");
+          functions.loadingEndWait();
+
+      } else if($('#viernesActivated').prop("checked") && 
+          viernesTurnoY[viernesTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#viernesActivated').prop("checked") && 
+        viernesTurnoY[viernesTurnoX].value==0 &&
+        (
+        compararFechas24(de1Viernes, a1Viernes)==1 ||
+        compararFechas24(a1Viernes, de2Viernes)==1 ||
+        compararFechas24(de2Viernes, a2Viernes)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día viernes.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
+        functions.loadingEndWait();
+
+      } else if($('#sabadoActivated').prop("checked") && 
+      ($('#de1Sabado').val()=="" ||
+      $('#a1Sabado').val()=="" ||
+      $('#de2Sabado').val()=="" ||
+      $('#a2Sabado').val()=="")){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día sábado.", "");
+        functions.loadingEndWait();
+
+      } else if(
+        $('#sabadoActivated').prop("checked") &&
+        (($('#de1Sabado').val()==$('#a1Sabado').val()) ||
+        ($('#de2Sabado').val()==$('#a2Sabado').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día sábado.", "");
+          functions.loadingEndWait();
+
+      } else if($('#sabadoActivated').prop("checked") && 
+          sabadoTurnoY[sabadoTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#sabadoActivated').prop("checked") && 
+        sabadoTurnoY[sabadoTurnoX].value==0 &&
+        (
+        compararFechas24(de1Sabado, a1Sabado)==1 ||
+        compararFechas24(a1Sabado, de2Sabado)==1 ||
+        compararFechas24(de2Sabado, a2Sabado)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día sábado.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
+        functions.loadingEndWait();
+
+      } else if($('#domingoActivated').prop("checked") && 
+      ($('#de1Domingo').val()=="" ||
+      $('#a1Domingo').val()=="" ||
+      $('#de2Domingo').val()=="" ||
+      $('#a2Domingo').val()=="")){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día domingo.", "");
+        functions.loadingEndWait();
+
+      } else if(
+        $('#domingoActivated').prop("checked") &&
+        (($('#de1Domingo').val()==$('#a1Domingo').val()) ||
+        ($('#de2Domingo').val()==$('#a2Domingo').val()))){
+
+          toastr["error"]("Llena correctamente los<br />horarios del día domingo.", "");
+          functions.loadingEndWait();
+
+      } else if($('#domingoActivated').prop("checked") && 
+          domingoTurnoY[domingoTurnoX].value=="default"){
+
+        toastr["error"]("Llena correctamente el<br />turno", "");
+        functions.loadingEndWait();
+
+      } else if($('#domingoActivated').prop("checked") && 
+        domingoTurnoY[domingoTurnoX].value==0 &&
+        (
+        compararFechas24(de1Domingo, a1Domingo)==1 ||
+        compararFechas24(a1Domingo, de2Domingo)==1 ||
+        compararFechas24(de2Domingo, a2Domingo)==1)
+              ){
+
+        toastr["error"]("Llena correctamente los<br />horarios del día domingo.<br />Los horarios deben llevar<br /> lógica en sus horarios.", "");
+        functions.loadingEndWait();
+
+      } else {
+          
+        console.log("[agregar]");
+      
+        functions.modPlantilla(id_plantilla, nombrePlantilla, 
+        lunesActivated, lunesTurnoY[lunesTurnoX].text, de1Lunes, a1Lunes, de2Lunes, a2Lunes,
+        martesActivated, martesTurnoY[martesTurnoX].text, de1Martes, a1Martes, de2Martes, a2Martes,
+        miercolesActivated, miercolesTurnoY[miercolesTurnoX].text, de1Miercoles, a1Miercoles, de2Miercoles, a2Miercoles,
+        juevesActivated, juevesTurnoY[juevesTurnoX].text, de1Jueves, a1Jueves, de2Jueves, a2Jueves,
+        viernesActivated, viernesTurnoY[viernesTurnoX].text, de1Viernes, a1Viernes, de2Viernes, a2Viernes,
+        sabadoActivated, sabadoTurnoY[sabadoTurnoX].text, de1Sabado, a1Sabado, de2Sabado, a2Sabado,
+        domingoActivated, domingoTurnoY[domingoTurnoX].text, de1Domingo, a1Domingo, de2Domingo, a2Domingo
+        ).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[modplantilla][postIngresar]");
+
+              toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+
+              $window.location.href = "/configuraciones";
+
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+            
+        }, function (response) {
+          //ERROR
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin postPlantilla*/
+      
+      }//fin else
+
+    }//fin send ng
+
+    
+
+    $scope.getIdPlantillasClick = function(id_plantillas){
+
+      console.log("[getIdPlantillasClick] id_plantillas: " + id_plantillas);
+
+      functions.getIdPlantillas(id_plantillas).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][modplantilla][getIdPlantillas]");
+
+          console.log(response.data.data[0]);
+
+          var data = response.data.data[0];
+
+          $("#nombrePlantilla").val(data.nombrePlantilla);
+
+          $("#lunesActivated").prop("checked", data.lunesActivated);
+          if(data.lunesActivated==1){
+            $('.lunesActivated').css("display","");
+          }
+          if(data.turnoLunes.toString().toLowerCase().indexOf("vespertino")!=-1){
+            $("#lunesTurno").val(0);
+            $('#lunesTurno').trigger('change');
+          } else if(data.turnoLunes.toString().toLowerCase().indexOf("nocturno")!=-1){
+            $("#lunesTurno").val(1);
+            $('#lunesTurno').trigger('change');
+          }
+          $("#de1Lunes").val(data.de1Lunes);
+          $("#a1Lunes").val(data.a1Lunes);
+          $("#de2Lunes").val(data.de2Lunes);
+          $("#a2Lunes").val(data.a2Lunes);
+
+          $("#martesActivated").prop("checked", data.martesActivated);
+          if(data.martesActivated==1){
+            $('.martesActivated').css("display","");
+          }
+          if(data.turnoMartes.toString().toLowerCase().indexOf("vespertino")!=-1){
+            console.log("entró");
+            $("#martesTurno").val(0);
+            $('#martesTurno').trigger('change');
+          } else if(data.turnoMartes.toString().toLowerCase().indexOf("nocturno")!=-1){
+            $("#martesTurno").val(1);
+            $('#martesTurno').trigger('change');
+          }
+          $("#de1Martes").val(data.de1Martes);
+          $("#a1Martes").val(data.a1Martes);
+          $("#de2Martes").val(data.de2Martes);
+          $("#a2Martes").val(data.a2Martes);
+
+          $("#miercolesActivated").prop("checked", data.miercolesActivated);
+          if(data.miercolesActivated==1){
+            $('.miercolesActivated').css("display","");
+          }
+          if(data.turnoMiercoles.toString().toLowerCase().indexOf("vespertino")!=-1){
+            console.log("entró");
+            $("#miercolesTurno").val(0);
+            $('#miercolesTurno').trigger('change');
+          } else if(data.turnoMiercoles.toString().toLowerCase().indexOf("nocturno")!=-1){
+            $("#miercolesTurno").val(1);
+            $('#miercolesTurno').trigger('change');
+          }
+          $("#de1Miercoles").val(data.de1Miercoles);
+          $("#a1Miercoles").val(data.a1Miercoles);
+          $("#de2Miercoles").val(data.de2Miercoles);
+          $("#a2Miercoles").val(data.a2Miercoles);
+
+          $("#juevesActivated").prop("checked", data.juevesActivated);
+          if(data.juevesActivated==1){
+            $('.juevesActivated').css("display","");
+          }
+          if(data.turnoJueves.toString().toLowerCase().indexOf("vespertino")!=-1){
+            console.log("entró");
+            $("#juevesTurno").val(0);
+            $('#juevesTurno').trigger('change');
+          } else if(data.turnoJueves.toString().toLowerCase().indexOf("nocturno")!=-1){
+            $("#juevesTurno").val(1);
+            $('#juevesTurno').trigger('change');
+          }
+          $("#de1Jueves").val(data.de1Jueves);
+          $("#a1Jueves").val(data.a1Jueves);
+          $("#de2Jueves").val(data.de2Jueves);
+          $("#a2Jueves").val(data.a2Jueves);
+
+          $("#viernesActivated").prop("checked", data.viernesActivated);
+          if(data.viernesActivated==1){
+            $('.viernesActivated').css("display","");
+          }
+          console.log(data.turnoViernes.toString().toLowerCase().indexOf("vespertino"));
+          if(data.turnoViernes.toString().toLowerCase().indexOf("vespertino")!=-1){
+            console.log("entró");
+            $("#viernesTurno").val(0);
+            $('#viernesTurno').trigger('change');
+          } else if(data.turnoViernes.toString().toLowerCase().indexOf("nocturno")!=-1){
+            $("#viernesTurno").val(1);
+            $('#viernesTurno').trigger('change');
+          }
+          $("#de1Viernes").val(data.de1Viernes);
+          $("#a1Viernes").val(data.a1Viernes);
+          $("#de2Viernes").val(data.de2Viernes);
+          $("#a2Viernes").val(data.a2Viernes);
+
+          $("#sabadoActivated").prop("checked", data.sabadoActivated);
+          if(data.sabadoActivated==1){
+            $('.sabadoActivated').css("display","");
+          }
+          if(data.turnoSabado.toString().toLowerCase().indexOf("vespertino")!=-1){
+            console.log("entró");
+            $("#sabadoTurno").val(0);
+            $('#sabadoTurno').trigger('change');
+          } else if(data.turnoSabado.toString().toLowerCase().indexOf("nocturno")!=-1){
+            $("#sabadoTurno").val(1);
+            $('#sabadoTurno').trigger('change');
+          }
+          $("#de1Sabado").val(data.de1Sabado);
+          $("#a1Sabado").val(data.a1Sabado);
+          $("#de2Sabado").val(data.de2Sabado);
+          $("#a2Sabado").val(data.a2Sabado);
+
+          $("#domingoActivated").prop("checked", data.domingoActivated);
+          if(data.domingoActivated==1){
+            $('.domingoActivated').css("display","");
+          }
+          if(data.turnoDomingo.toString().toLowerCase().indexOf("vespertino")!=-1){
+            console.log("entró");
+            $("#domingoTurno").val(0);
+            $('#domingoTurno').trigger('change');
+          } else if(data.turnoDomingo.toString().toLowerCase().indexOf("nocturno")!=-1){
+            $("#domingoTurno").val(1);
+            $('#domingoTurno').trigger('change');
+          }
+          $("#de1Domingo").val(data.de1Domingo);
+          $("#a1Domingo").val(data.a1Domingo);
+          $("#de2Domingo").val(data.de2Domingo);
+          $("#a2Domingo").val(data.a2Domingo);
+
+          
+
+          functions.loadingEndWait();
+          
+        } else {
+
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getPlantillas*/
+
+    }; //fin getIdPlantillasClick
+
+    getIdPlantillasClick = $scope.getIdPlantillasClick
+
+      
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[modplantilla] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[modplantilla][getImageEmpresa]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+
+  });//fin controller modplantilla
+
   app.controller('configuraciones', function($scope, functions, $window) {
 
     console.log("[configuraciones]");

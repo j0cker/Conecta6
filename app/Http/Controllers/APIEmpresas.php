@@ -2282,7 +2282,7 @@ class APIEmpresas extends Controller
 
         //Errores
     
-        Log::info('[APIEmpresas][AltaPlantilla] ' . $e);
+        Log::info('[APIEmpresas][AltaSalidas] ' . $e);
 
         return redirect('/');
 
@@ -2336,97 +2336,111 @@ class APIEmpresas extends Controller
           $a1Lunes = ($request->input('a1Lunes') == "")? '' : $request->input('a1Lunes');
           $de2Lunes = ($request->input('de2Lunes') == "")? '' : $request->input('de2Lunes');
           $a2Lunes = ($request->input('a2Lunes') == "")? '' : $request->input('a2Lunes');
+          $turnoLunes = ($request->input('turnoLunes') == "")? '' : $request->input('turnoLunes');
 
           $martesActivated = ($request->input('martesActivated') == 1)? 1 : 0 ; 
           $de1Martes = ($request->input('de1Martes') == "")? '' : $request->input('de1Martes');
           $a1Martes = ($request->input('a1Martes') == "")? '' : $request->input('a1Martes');
           $de2Martes = ($request->input('de2Martes') == "")? '' : $request->input('de2Martes');
           $a2Martes = ($request->input('a2Martes') == "")? '' : $request->input('a2Martes');
+          $turnoMartes = ($request->input('turnoMartes') == "")? '' : $request->input('turnoMartes');
 
           $miercolesActivated = ($request->input('miercolesActivated') == 1)? 1 : 0 ; 
           $de1Miercoles = ($request->input('de1Miercoles') == "")? '' : $request->input('de1Miercoles');
           $a1Miercoles = ($request->input('a1Miercoles') == "")? '' : $request->input('a1Miercoles');
           $de2Miercoles = ($request->input('de2Miercoles') == "")? '' : $request->input('de2Miercoles');
           $a2Miercoles = ($request->input('a2Miercoles') == "")? '' : $request->input('a2Miercoles');
+          $turnoMiercoles = ($request->input('turnoMiercoles') == "")? '' : $request->input('turnoMiercoles');
 
           $juevesActivated = ($request->input('juevesActivated') == 1)? 1 : 0 ; 
           $de1Jueves = ($request->input('de1Jueves') == "")? '' : $request->input('de1Jueves');
           $a1Jueves = ($request->input('a1Jueves') == "")? '' : $request->input('a1Jueves');
           $de2Jueves = ($request->input('de2Jueves') == "")? '' : $request->input('de2Jueves');
           $a2Jueves = ($request->input('a2Jueves') == "")? '' : $request->input('a2Jueves');
+          $turnoJueves = ($request->input('turnoJueves') == "")? '' : $request->input('turnoJueves');
 
           $viernesActivated = ($request->input('viernesActivated') == 1)? 1 : 0 ; 
           $de1Viernes = ($request->input('de1Viernes') == "")? '' : $request->input('de1Viernes');
           $a1Viernes = ($request->input('a1Viernes') == "")? '' : $request->input('a1Viernes');
           $de2Viernes = ($request->input('de2Viernes') == "")? '' : $request->input('de2Viernes');
           $a2Viernes = ($request->input('a2Viernes') == "")? '' : $request->input('a2Viernes');
+          $turnoViernes = ($request->input('turnoViernes') == "")? '' : $request->input('turnoViernes');
 
           $sabadoActivated = ($request->input('sabadoActivated') == 1)? 1 : 0 ; 
           $de1Sabado = ($request->input('de1Sabado') == "")? '' : $request->input('de1Sabado');
           $a1Sabado = ($request->input('a1Sabado') == "")? '' : $request->input('a1Sabado');
           $de2Sabado = ($request->input('de2Sabado') == "")? '' : $request->input('de2Sabado');
           $a2Sabado = ($request->input('a2Sabado') == "")? '' : $request->input('a2Sabado');
+          $turnoSabado = ($request->input('turnoSabado') == "")? '' : $request->input('turnoSabado');
 
           $domingoActivated = ($request->input('domingoActivated') == 1)? 1 : 0 ; 
           $de1Domingo = ($request->input('de1Domingo') == "")? '' : $request->input('de1Domingo');
           $a1Domingo = ($request->input('a1Domingo') == "")? '' : $request->input('a1Domingo');
           $de2Domingo = ($request->input('de2Domingo') == "")? '' : $request->input('de2Domingo');
           $a2Domingo = ($request->input('a2Domingo') == "")? '' : $request->input('a2Domingo');
+          $turnoDomingo = ($request->input('turnoDomingo') == "")? '' : $request->input('turnoDomingo');
 
-          Log::info("[APIEmpresas][send] nombrePlantilla: " . $nombrePlantilla);
+          Log::info("[APIEmpresas][AltaPlantilla] nombrePlantilla: " . $nombrePlantilla);
 
-          Log::info("[APIEmpresas][send] id_empresas: " . $id_empresas);
+          Log::info("[APIEmpresas][AltaPlantilla] id_empresas: " . $id_empresas);
           
-          Log::info("[APIEmpresas][send] lunesActivated: " . $lunesActivated);
-          Log::info("[APIEmpresas][send] de1Lunes: " . $de1Lunes);
-          Log::info("[APIEmpresas][send] a1Lunes: " . $a1Lunes);
-          Log::info("[APIEmpresas][send] de2Lunes: " . $de2Lunes);
-          Log::info("[APIEmpresas][send] a2Lunes: " . $a2Lunes);
+          Log::info("[APIEmpresas][AltaPlantilla] lunesActivated: " . $lunesActivated);
+          Log::info("[APIEmpresas][AltaPlantilla] de1Lunes: " . $de1Lunes);
+          Log::info("[APIEmpresas][AltaPlantilla] a1Lunes: " . $a1Lunes);
+          Log::info("[APIEmpresas][AltaPlantilla] de2Lunes: " . $de2Lunes);
+          Log::info("[APIEmpresas][AltaPlantilla] a2Lunes: " . $a2Lunes);
+          Log::info("[APIEmpresas][AltaPlantilla] lunesTurno: " . $turnoLunes);
           
-          Log::info("[APIEmpresas][send] martesActivated: " . $martesActivated);
-          Log::info("[APIEmpresas][send] de1Martes: " . $de1Martes);
-          Log::info("[APIEmpresas][send] a1Martes: " . $a1Martes);
-          Log::info("[APIEmpresas][send] de2Martes: " . $de2Martes);
-          Log::info("[APIEmpresas][send] a2Martes: " . $a2Martes);
+          Log::info("[APIEmpresas][AltaPlantilla] martesActivated: " . $martesActivated);
+          Log::info("[APIEmpresas][AltaPlantilla] de1Martes: " . $de1Martes);
+          Log::info("[APIEmpresas][AltaPlantilla] a1Martes: " . $a1Martes);
+          Log::info("[APIEmpresas][AltaPlantilla] de2Martes: " . $de2Martes);
+          Log::info("[APIEmpresas][AltaPlantilla] a2Martes: " . $a2Martes);
+          Log::info("[APIEmpresas][AltaPlantilla] martesTurno: " . $turnoMartes);
           
-          Log::info("[APIEmpresas][send] miercolesActivated: " . $miercolesActivated);
-          Log::info("[APIEmpresas][send] de1Miercoles: " . $de1Miercoles);
-          Log::info("[APIEmpresas][send] a1Miercoles: " . $a1Miercoles);
-          Log::info("[APIEmpresas][send] de2Miercoles: " . $de2Miercoles);
-          Log::info("[APIEmpresas][send] a2Miercoles: " . $a2Miercoles);
+          Log::info("[APIEmpresas][AltaPlantilla] miercolesActivated: " . $miercolesActivated);
+          Log::info("[APIEmpresas][AltaPlantilla] de1Miercoles: " . $de1Miercoles);
+          Log::info("[APIEmpresas][AltaPlantilla] a1Miercoles: " . $a1Miercoles);
+          Log::info("[APIEmpresas][AltaPlantilla] de2Miercoles: " . $de2Miercoles);
+          Log::info("[APIEmpresas][AltaPlantilla] a2Miercoles: " . $a2Miercoles);
+          Log::info("[APIEmpresas][AltaPlantilla] miercolesTurno: " . $turnoMiercoles);
           
-          Log::info("[APIEmpresas][send] juevesActivated: " . $juevesActivated);
-          Log::info("[APIEmpresas][send] de1Jueves: " . $de1Jueves);
-          Log::info("[APIEmpresas][send] a1Jueves: " . $a1Jueves);
-          Log::info("[APIEmpresas][send] de2Jueves: " . $de2Jueves);
-          Log::info("[APIEmpresas][send] a2Jueves: " . $a2Jueves);
+          Log::info("[APIEmpresas][AltaPlantilla] juevesActivated: " . $juevesActivated);
+          Log::info("[APIEmpresas][AltaPlantilla] de1Jueves: " . $de1Jueves);
+          Log::info("[APIEmpresas][AltaPlantilla] a1Jueves: " . $a1Jueves);
+          Log::info("[APIEmpresas][AltaPlantilla] de2Jueves: " . $de2Jueves);
+          Log::info("[APIEmpresas][AltaPlantilla] a2Jueves: " . $a2Jueves);
+          Log::info("[APIEmpresas][AltaPlantilla] juevesTurno: " . $turnoJueves);
           
-          Log::info("[APIEmpresas][send] viernesActivated: " . $viernesActivated);
-          Log::info("[APIEmpresas][send] de1Viernes: " . $de1Viernes);
-          Log::info("[APIEmpresas][send] a1Viernes: " . $a1Viernes);
-          Log::info("[APIEmpresas][send] de2Viernes: " . $de2Viernes);
-          Log::info("[APIEmpresas][send] a2Viernes: " . $a2Viernes);
+          Log::info("[APIEmpresas][AltaPlantilla] viernesActivated: " . $viernesActivated);
+          Log::info("[APIEmpresas][AltaPlantilla] de1Viernes: " . $de1Viernes);
+          Log::info("[APIEmpresas][AltaPlantilla] a1Viernes: " . $a1Viernes);
+          Log::info("[APIEmpresas][AltaPlantilla] de2Viernes: " . $de2Viernes);
+          Log::info("[APIEmpresas][AltaPlantilla] a2Viernes: " . $a2Viernes);
+          Log::info("[APIEmpresas][AltaPlantilla] viernesTurno: " . $turnoViernes);
           
-          Log::info("[APIEmpresas][send] sabadoActivated: " . $sabadoActivated);
-          Log::info("[APIEmpresas][send] de1Sabado: " . $de1Sabado);
-          Log::info("[APIEmpresas][send] a1Sabado: " . $a1Sabado);
-          Log::info("[APIEmpresas][send] de2Sabado: " . $de2Sabado);
-          Log::info("[APIEmpresas][send] a2Sabado: " . $a2Sabado);
+          Log::info("[APIEmpresas][AltaPlantilla] sabadoActivated: " . $sabadoActivated);
+          Log::info("[APIEmpresas][AltaPlantilla] de1Sabado: " . $de1Sabado);
+          Log::info("[APIEmpresas][AltaPlantilla] a1Sabado: " . $a1Sabado);
+          Log::info("[APIEmpresas][AltaPlantilla] de2Sabado: " . $de2Sabado);
+          Log::info("[APIEmpresas][AltaPlantilla] a2Sabado: " . $a2Sabado);
+          Log::info("[APIEmpresas][AltaPlantilla] sabadoTurno: " . $turnoSabado);
           
-          Log::info("[APIEmpresas][send] domingoActivated: " . $domingoActivated);
-          Log::info("[APIEmpresas][send] de1Domingo: " . $de1Domingo);
-          Log::info("[APIEmpresas][send] a1Domingo: " . $a1Domingo);
-          Log::info("[APIEmpresas][send] de2Domingo: " . $de2Domingo);
-          Log::info("[APIEmpresas][send] a2Domingo: " . $a2Domingo);
+          Log::info("[APIEmpresas][AltaPlantilla] domingoActivated: " . $domingoActivated);
+          Log::info("[APIEmpresas][AltaPlantilla] de1Domingo: " . $de1Domingo);
+          Log::info("[APIEmpresas][AltaPlantilla] a1Domingo: " . $a1Domingo);
+          Log::info("[APIEmpresas][AltaPlantilla] de2Domingo: " . $de2Domingo);
+          Log::info("[APIEmpresas][AltaPlantilla] a2Domingo: " . $a2Domingo);
+          Log::info("[APIEmpresas][AltaPlantilla] domingoTurno: " . $turnoDomingo);
 
           $plantillas = Plantillas::addPlantilla($nombrePlantilla, $id_empresas,
-          $lunesActivated, $de1Lunes, $a1Lunes, $de2Lunes, $a2Lunes,
-          $martesActivated, $de1Martes, $a1Martes, $de2Martes, $a2Martes,
-          $miercolesActivated, $de1Miercoles, $a1Miercoles, $de2Miercoles, $a2Miercoles,
-          $juevesActivated, $de1Jueves, $a1Jueves, $de2Jueves, $a2Jueves,
-          $viernesActivated, $de1Viernes, $a1Viernes, $de2Viernes, $a2Viernes,
-          $sabadoActivated, $de1Sabado, $a1Sabado, $de2Sabado, $a2Sabado,
-          $domingoActivated, $de1Domingo, $a1Domingo, $de2Domingo, $a2Domingo);
+          $lunesActivated, $de1Lunes, $a1Lunes, $de2Lunes, $a2Lunes, $turnoLunes,
+          $martesActivated, $de1Martes, $a1Martes, $de2Martes, $a2Martes, $turnoMartes,
+          $miercolesActivated, $de1Miercoles, $a1Miercoles, $de2Miercoles, $a2Miercoles, $turnoMiercoles,
+          $juevesActivated, $de1Jueves, $a1Jueves, $de2Jueves, $a2Jueves, $turnoJueves,
+          $viernesActivated, $de1Viernes, $a1Viernes, $de2Viernes, $a2Viernes, $turnoViernes,
+          $sabadoActivated, $de1Sabado, $a1Sabado, $de2Sabado, $a2Sabado, $turnoSabado,
+          $domingoActivated, $de1Domingo, $a1Domingo, $de2Domingo, $a2Domingo, $turnoDomingo);
         
           Log::info($plantillas);
           
@@ -2491,103 +2505,318 @@ class APIEmpresas extends Controller
 
   }
 
-    public function GetAllEmpresas(Request $request){
-      
-      Log::info('[APIEmpresas][GetAllEmpresas]');
-  
-      Log::info("[APIEmpresas][GetAllEmpresas] Método Recibido: ". $request->getMethod());
-  
-      if($request->isMethod('GET')) {
-  
-        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
-  
-        $this->validate($request, [
-          'token' => 'required'
-        ]);
+  public function ModPlantilla(Request $request){
+    
+    Log::info('[APIEmpresas][ModPlantilla]');
+
+    Log::info("[APIEmpresas][ModPlantilla] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][ModPlantilla] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][ModPlantilla] Permiso Existente");
+
+          $idPlantilla = ($request->input('id_plantilla')=="")? '' : $request->input('id_plantilla');
+
+          $nombrePlantilla = ($request->input('nombrePlantilla')=="")? '' : $request->input('nombrePlantilla');
+
+          $id_empresas = ($token_decrypt['usr']->id_empresas=="")? '' : $token_decrypt['usr']->id_empresas;
+
+          $lunesActivated = ($request->input('lunesActivated') == 1)? 1 : 0 ; 
+          $de1Lunes = ($request->input('de1Lunes') == "")? '' : $request->input('de1Lunes');
+          $a1Lunes = ($request->input('a1Lunes') == "")? '' : $request->input('a1Lunes');
+          $de2Lunes = ($request->input('de2Lunes') == "")? '' : $request->input('de2Lunes');
+          $a2Lunes = ($request->input('a2Lunes') == "")? '' : $request->input('a2Lunes');
+          $turnoLunes = ($request->input('turnoLunes') == "")? '' : $request->input('turnoLunes');
+
+          $martesActivated = ($request->input('martesActivated') == 1)? 1 : 0 ; 
+          $de1Martes = ($request->input('de1Martes') == "")? '' : $request->input('de1Martes');
+          $a1Martes = ($request->input('a1Martes') == "")? '' : $request->input('a1Martes');
+          $de2Martes = ($request->input('de2Martes') == "")? '' : $request->input('de2Martes');
+          $a2Martes = ($request->input('a2Martes') == "")? '' : $request->input('a2Martes');
+          $turnoMartes = ($request->input('turnoMartes') == "")? '' : $request->input('turnoMartes');
+
+          $miercolesActivated = ($request->input('miercolesActivated') == 1)? 1 : 0 ; 
+          $de1Miercoles = ($request->input('de1Miercoles') == "")? '' : $request->input('de1Miercoles');
+          $a1Miercoles = ($request->input('a1Miercoles') == "")? '' : $request->input('a1Miercoles');
+          $de2Miercoles = ($request->input('de2Miercoles') == "")? '' : $request->input('de2Miercoles');
+          $a2Miercoles = ($request->input('a2Miercoles') == "")? '' : $request->input('a2Miercoles');
+          $turnoMiercoles = ($request->input('turnoMiercoles') == "")? '' : $request->input('turnoMiercoles');
+
+          $juevesActivated = ($request->input('juevesActivated') == 1)? 1 : 0 ; 
+          $de1Jueves = ($request->input('de1Jueves') == "")? '' : $request->input('de1Jueves');
+          $a1Jueves = ($request->input('a1Jueves') == "")? '' : $request->input('a1Jueves');
+          $de2Jueves = ($request->input('de2Jueves') == "")? '' : $request->input('de2Jueves');
+          $a2Jueves = ($request->input('a2Jueves') == "")? '' : $request->input('a2Jueves');
+          $turnoJueves = ($request->input('turnoJueves') == "")? '' : $request->input('turnoJueves');
+
+          $viernesActivated = ($request->input('viernesActivated') == 1)? 1 : 0 ; 
+          $de1Viernes = ($request->input('de1Viernes') == "")? '' : $request->input('de1Viernes');
+          $a1Viernes = ($request->input('a1Viernes') == "")? '' : $request->input('a1Viernes');
+          $de2Viernes = ($request->input('de2Viernes') == "")? '' : $request->input('de2Viernes');
+          $a2Viernes = ($request->input('a2Viernes') == "")? '' : $request->input('a2Viernes');
+          $turnoViernes = ($request->input('turnoViernes') == "")? '' : $request->input('turnoViernes');
+
+          $sabadoActivated = ($request->input('sabadoActivated') == 1)? 1 : 0 ; 
+          $de1Sabado = ($request->input('de1Sabado') == "")? '' : $request->input('de1Sabado');
+          $a1Sabado = ($request->input('a1Sabado') == "")? '' : $request->input('a1Sabado');
+          $de2Sabado = ($request->input('de2Sabado') == "")? '' : $request->input('de2Sabado');
+          $a2Sabado = ($request->input('a2Sabado') == "")? '' : $request->input('a2Sabado');
+          $turnoSabado = ($request->input('turnoSabado') == "")? '' : $request->input('turnoSabado');
+
+          $domingoActivated = ($request->input('domingoActivated') == 1)? 1 : 0 ; 
+          $de1Domingo = ($request->input('de1Domingo') == "")? '' : $request->input('de1Domingo');
+          $a1Domingo = ($request->input('a1Domingo') == "")? '' : $request->input('a1Domingo');
+          $de2Domingo = ($request->input('de2Domingo') == "")? '' : $request->input('de2Domingo');
+          $a2Domingo = ($request->input('a2Domingo') == "")? '' : $request->input('a2Domingo');
+          $turnoDomingo = ($request->input('turnoDomingo') == "")? '' : $request->input('turnoDomingo');
+
+          Log::info("[APIEmpresas][ModPlantilla] idPlantilla: " . $idPlantilla);
+
+          Log::info("[APIEmpresas][ModPlantilla] nombrePlantilla: " . $nombrePlantilla);
+
+          Log::info("[APIEmpresas][ModPlantilla] id_empresas: " . $id_empresas);
           
-        $token = $request->input('token');
-  
-        Log::info("[APIEmpresas][GetAllEmpresas] Token: ". $token);
-  
-  
-        try {
-  
-          // attempt to verify the credentials and create a token for the user
-          $token = JWTAuth::getToken();
-          $token_decrypt = JWTAuth::getPayload($token)->toArray();
-  
-          //print_r($token_decrypt["id"]);
-  
-          //print_r($token_decrypt);
-  
-          if(in_array(1, $token_decrypt["permisos"])){
-  
-            Log::info("[APIEmpresas][GetAllEmpresas] Permiso Existente");
-  
-            $Empresas = Empresas::all();
+          Log::info("[APIEmpresas][ModPlantilla] lunesActivated: " . $lunesActivated);
+          Log::info("[APIEmpresas][ModPlantilla] de1Lunes: " . $de1Lunes);
+          Log::info("[APIEmpresas][ModPlantilla] a1Lunes: " . $a1Lunes);
+          Log::info("[APIEmpresas][ModPlantilla] de2Lunes: " . $de2Lunes);
+          Log::info("[APIEmpresas][ModPlantilla] a2Lunes: " . $a2Lunes);
+          Log::info("[APIEmpresas][ModPlantilla] lunesTurno: " . $turnoLunes);
           
-            Log::info($Empresas);
-            
-            if(count($Empresas)>0){
-  
-              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Empresas));
-              $responseJSON->data = $Empresas;
-              return json_encode($responseJSON);
-  
-            } else {
-  
-              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Empresas));
-              $responseJSON->data = [];
-              return json_encode($responseJSON);
-  
-            }
-            
+          Log::info("[APIEmpresas][ModPlantilla] martesActivated: " . $martesActivated);
+          Log::info("[APIEmpresas][ModPlantilla] de1Martes: " . $de1Martes);
+          Log::info("[APIEmpresas][ModPlantilla] a1Martes: " . $a1Martes);
+          Log::info("[APIEmpresas][ModPlantilla] de2Martes: " . $de2Martes);
+          Log::info("[APIEmpresas][ModPlantilla] a2Martes: " . $a2Martes);
+          Log::info("[APIEmpresas][ModPlantilla] martesTurno: " . $turnoMartes);
+          
+          Log::info("[APIEmpresas][ModPlantilla] miercolesActivated: " . $miercolesActivated);
+          Log::info("[APIEmpresas][ModPlantilla] de1Miercoles: " . $de1Miercoles);
+          Log::info("[APIEmpresas][ModPlantilla] a1Miercoles: " . $a1Miercoles);
+          Log::info("[APIEmpresas][ModPlantilla] de2Miercoles: " . $de2Miercoles);
+          Log::info("[APIEmpresas][ModPlantilla] a2Miercoles: " . $a2Miercoles);
+          Log::info("[APIEmpresas][ModPlantilla] miercolesTurno: " . $turnoMiercoles);
+          
+          Log::info("[APIEmpresas][ModPlantilla] juevesActivated: " . $juevesActivated);
+          Log::info("[APIEmpresas][ModPlantilla] de1Jueves: " . $de1Jueves);
+          Log::info("[APIEmpresas][ModPlantilla] a1Jueves: " . $a1Jueves);
+          Log::info("[APIEmpresas][ModPlantilla] de2Jueves: " . $de2Jueves);
+          Log::info("[APIEmpresas][ModPlantilla] a2Jueves: " . $a2Jueves);
+          Log::info("[APIEmpresas][ModPlantilla] juevesTurno: " . $turnoJueves);
+          
+          Log::info("[APIEmpresas][ModPlantilla] viernesActivated: " . $viernesActivated);
+          Log::info("[APIEmpresas][ModPlantilla] de1Viernes: " . $de1Viernes);
+          Log::info("[APIEmpresas][ModPlantilla] a1Viernes: " . $a1Viernes);
+          Log::info("[APIEmpresas][ModPlantilla] de2Viernes: " . $de2Viernes);
+          Log::info("[APIEmpresas][ModPlantilla] a2Viernes: " . $a2Viernes);
+          Log::info("[APIEmpresas][ModPlantilla] viernesTurno: " . $turnoViernes);
+          
+          Log::info("[APIEmpresas][ModPlantilla] sabadoActivated: " . $sabadoActivated);
+          Log::info("[APIEmpresas][ModPlantilla] de1Sabado: " . $de1Sabado);
+          Log::info("[APIEmpresas][ModPlantilla] a1Sabado: " . $a1Sabado);
+          Log::info("[APIEmpresas][ModPlantilla] de2Sabado: " . $de2Sabado);
+          Log::info("[APIEmpresas][ModPlantilla] a2Sabado: " . $a2Sabado);
+          Log::info("[APIEmpresas][ModPlantilla] sabadoTurno: " . $turnoSabado);
+          
+          Log::info("[APIEmpresas][ModPlantilla] domingoActivated: " . $domingoActivated);
+          Log::info("[APIEmpresas][ModPlantilla] de1Domingo: " . $de1Domingo);
+          Log::info("[APIEmpresas][ModPlantilla] a1Domingo: " . $a1Domingo);
+          Log::info("[APIEmpresas][ModPlantilla] de2Domingo: " . $de2Domingo);
+          Log::info("[APIEmpresas][ModPlantilla] a2Domingo: " . $a2Domingo);
+          Log::info("[APIEmpresas][ModPlantilla] domingoTurno: " . $turnoDomingo);
+
+          $plantillas = Plantillas::modPlantilla($idPlantilla, $nombrePlantilla, $id_empresas,
+          $lunesActivated, $de1Lunes, $a1Lunes, $de2Lunes, $a2Lunes, $turnoLunes,
+          $martesActivated, $de1Martes, $a1Martes, $de2Martes, $a2Martes, $turnoMartes,
+          $miercolesActivated, $de1Miercoles, $a1Miercoles, $de2Miercoles, $a2Miercoles, $turnoMiercoles,
+          $juevesActivated, $de1Jueves, $a1Jueves, $de2Jueves, $a2Jueves, $turnoJueves,
+          $viernesActivated, $de1Viernes, $a1Viernes, $de2Viernes, $a2Viernes, $turnoViernes,
+          $sabadoActivated, $de1Sabado, $a1Sabado, $de2Sabado, $a2Sabado, $turnoSabado,
+          $domingoActivated, $de1Domingo, $a1Domingo, $de2Domingo, $a2Domingo, $turnoDomingo);
+        
+          Log::info($plantillas);
+          
+          if($plantillas[0]->save==1){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($plantillas));
+            $responseJSON->data = $plantillas;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($plantillas));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
           }
-  
-          return redirect('/');
-  
-  
-        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-  
-          //token_expired
-      
-          Log::info('[APIEmpresas][GetAllEmpresas] Token error: token_expired');
-  
-          return redirect('/');
-    
-        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-  
-          //token_invalid
-      
-          Log::info('[APIEmpresas][GetAllEmpresas] Token error: token_invalid');
-  
-          return redirect('/');
-    
-        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-  
-          //token_absent
-      
-          Log::info('[APIEmpresas][GetAllEmpresas] Token error: token_absent');
-  
-          return redirect('/');
-    
-        } catch(Exception $e) {
-  
-          //Errores
-      
-          Log::info('[APIEmpresas][GetAllEmpresas] ' . $e);
-  
-          return redirect('/');
-  
+          
         }
+
+        return redirect('/');
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][ModPlantilla] Token error: token_expired');
+
+        return redirect('/');
   
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][ModPlantilla] Token error: token_invalid');
+
+        return redirect('/');
   
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][ModPlantilla] Token error: token_absent');
+
+        return redirect('/');
   
-      } else {
-        abort(404);
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][ModPlantilla] ' . $e);
+
+        return redirect('/');
+
       }
-  
+
+
+
+    } else {
+      abort(404);
     }
+
+  }
+
+  public function GetAllEmpresas(Request $request){
+    
+    Log::info('[APIEmpresas][GetAllEmpresas]');
+
+    Log::info("[APIEmpresas][GetAllEmpresas] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][GetAllEmpresas] Token: ". $token);
+
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array(1, $token_decrypt["permisos"])){
+
+          Log::info("[APIEmpresas][GetAllEmpresas] Permiso Existente");
+
+          $Empresas = Empresas::all();
+        
+          Log::info($Empresas);
+          
+          if(count($Empresas)>0){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Empresas));
+            $responseJSON->data = $Empresas;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Empresas));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+          
+        }
+
+        return redirect('/');
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][GetAllEmpresas] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][GetAllEmpresas] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][GetAllEmpresas] Token error: token_absent');
+
+        return redirect('/');
+  
+      } catch(Exception $e) {
+
+        //Errores
+    
+        Log::info('[APIEmpresas][GetAllEmpresas] ' . $e);
+
+        return redirect('/');
+
+      }
+
+
+
+    } else {
+      abort(404);
+    }
+
+  }
 
   public function GetSalidas(Request $request){
     
@@ -3495,6 +3724,77 @@ class APIEmpresas extends Controller
         //token_absent
     
         Log::info('[AltaEmpresa][NuevaPlantilla] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function ModificarPlantilla(Request $request){
+    
+    Log::info('[ModificarPlantilla]');
+
+    Log::info("[ModificarPlantilla] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APITrabajadores][ModificarPlantilla] Token: ". $token);
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        if(in_array(2, $token_decrypt["permisos"])){
+
+          return view('system.modplantilla',["title" => config('app.name'), 
+                                        "lang" => "es", 
+                                        "user" => $token_decrypt, 
+                                        "color" => $token_decrypt['color'], 
+                                        "colorHex" => $token_decrypt['colorHex'],
+                                        "subdominio" => $token_decrypt['subdominio'],
+                                      ]
+                              );
+                            
+        }
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[AltaEmpresa][ModificarPlantilla] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[AltaEmpresa][ModificarPlantilla] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[AltaEmpresa][ModificarPlantilla] Token error: token_absent');
 
         return redirect('/');
   

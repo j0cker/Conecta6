@@ -28,13 +28,13 @@
 @section('raiz1Url', '/inicio')
 @section('raiz2','Empresas')
 @section('raiz2Url','/inicioEmpresa')
-@section('raiz3','Nueva Plantilla')
-@section('raiz3Url','/plantilla/nueva')
+@section('raiz3','Modificar Plantilla')
+@section('raiz3Url','/plantilla/mod')
 
 
 {{-- Angular Controller --}}
 
-@section('controller','nuevaplantilla')
+@section('controller','modplantilla')
 
 {{-- Body --}}
 
@@ -464,7 +464,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a ng-click="send()" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Agregar</a>
+                                                                <a ng-click="send('<?PHP echo $_GET["id_plantilla"] ?>')" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
                                                             </div>
                                                         </div>
 
@@ -1209,6 +1209,7 @@
                 // Handler for .ready() called.
                 
                 angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
+                getIdPlantillasClick("<?PHP echo $_GET['id_plantilla']; ?>");
 
             });
         </script>

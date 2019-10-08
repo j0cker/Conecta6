@@ -153,8 +153,14 @@
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="text-align: center; color: black; display: none;" class="col-md-4 lunesActivated">
+                                                                
+                                                                    <select class="select2 form-control w-100" id="lunesTurno">
+                                                                        <option value="default">Selecciona un Turno</option>
+                                                                        <option value="0">Matutino/Vespertino</option>
+                                                                        <option value="1">Nocturno</option>
+                                                                    </select>
 
-                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Lunes" placeholder="10:30AM" /> 
                                                                     <p style="display: inline-block;">a:</p>
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Lunes" placeholder="18:30AM" />
@@ -196,7 +202,7 @@
                                                                 
                                                                     <select class="select2 form-control w-100" id="martesTurno">
                                                                         <option value="default">Selecciona un Turno</option>
-                                                                        <option value="0">Matutino/Verspertino</option>
+                                                                        <option value="0">Matutino/Vespertino</option>
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
@@ -240,8 +246,14 @@
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="text-align: center; color: black; display: none;" class="col-md-4 miercolesActivated">
+                                                                
+                                                                    <select class="select2 form-control w-100" id="miercolesTurno">
+                                                                        <option value="default">Selecciona un Turno</option>
+                                                                        <option value="0">Matutino/Vespertino</option>
+                                                                        <option value="1">Nocturno</option>
+                                                                    </select>
 
-                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Miercoles" placeholder="10:30AM" /> 
                                                                     <p style="display: inline-block;">a:</p>
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Miercoles" placeholder="18:30AM" />
@@ -281,8 +293,14 @@
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="text-align: center; color: black; display: none;" class="col-md-4 juevesActivated">
+                                                                
+                                                                    <select class="select2 form-control w-100" id="juevesTurno">
+                                                                        <option value="default">Selecciona un Turno</option>
+                                                                        <option value="0">Matutino/Vespertino</option>
+                                                                        <option value="1">Nocturno</option>
+                                                                    </select>
 
-                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Jueves" placeholder="10:30AM" /> 
                                                                     <p style="display: inline-block;">a:</p>
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Jueves" placeholder="18:30AM" />
@@ -322,8 +340,14 @@
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="text-align: center; color: black; display: none;" class="col-md-4 viernesActivated">
+                                                                
+                                                                    <select class="select2 form-control w-100" id="viernesTurno">
+                                                                        <option value="default">Selecciona un Turno</option>
+                                                                        <option value="0">Matutino/Vespertino</option>
+                                                                        <option value="1">Nocturno</option>
+                                                                    </select>
 
-                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Viernes" placeholder="10:30AM" /> 
                                                                     <p style="display: inline-block;">a:</p>
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Viernes" placeholder="18:30AM" />
@@ -363,8 +387,14 @@
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="text-align: center; color: black; display: none;" class="col-md-4 sabadoActivated">
+                                                                
+                                                                    <select class="select2 form-control w-100" id="sabadoTurno">
+                                                                        <option value="default">Selecciona un Turno</option>
+                                                                        <option value="0">Matutino/Vespertino</option>
+                                                                        <option value="1">Nocturno</option>
+                                                                    </select>
 
-                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Sabado" placeholder="10:30AM" /> 
                                                                     <p style="display: inline-block;">a:</p>
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Sabado" placeholder="18:30AM" />
@@ -404,8 +434,14 @@
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="text-align: center; color: black; display: none;" class="col-md-4 domingoActivated">
+                                                                
+                                                                    <select class="select2 form-control w-100" id="domingoTurno">
+                                                                        <option value="default">Selecciona un Turno</option>
+                                                                        <option value="0">Matutino/Vespertino</option>
+                                                                        <option value="1">Nocturno</option>
+                                                                    </select>
 
-                                                                    <p style="display: inline-block;">De:</p> 
+                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Domingo" placeholder="10:30AM" /> 
                                                                     <p style="display: inline-block;">a:</p>
                                                                     <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Domingo" placeholder="18:30AM" />
