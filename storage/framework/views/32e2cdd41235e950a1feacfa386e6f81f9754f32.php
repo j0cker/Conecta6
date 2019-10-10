@@ -35,6 +35,7 @@
         12) total de entradas y salidas
         13) trabajadores activos y no activos
         14) salidas computarizables
+        15) total de trabajadores
         
         Para recuperar contraseñas el sistema está capacitado para mandar correos electrónicos.
         
@@ -77,9 +78,9 @@
 
         https://boogapp.info/inicio
         https://boogapp.info/perfilTrabajadores
+        https://boogapp.info/perfilTrabajadores/pass
         https://boogapp.info/registros
         https://boogapp.info/historial
-        https://boogapp.info/perfilTrabajadores/pass
         
 
         API's con Prejijo api/
@@ -155,12 +156,12 @@
         https://boogapp.info/trabajadores/editar
         https://boogapp.info/informes
         https://boogapp.info/plantilla/nueva
-        https://boogapp.info/plantilla/mod?id=1
+        https://boogapp.info/plantilla/mod?id_plantilla=2
         https://boogapp.info/configuraciones
         https://boogapp.info/salidas/modificar?id=1 (ejemplo de editar salidas)
 
         API's con Prejijo api/
-
+                
         //Ingresar Empresas
         Route::get('/empresas/ingresar', 'APIEmpresas@Ingresar');
 
@@ -179,11 +180,17 @@
         //alta nueva plantilla
         Route::post('/empresas/plantilla/nueva', 'APIEmpresas@AltaPlantilla');
 
-        //get plantillas by id empresas
+        //mod plantilla by id_plantilla
+        Route::post('/empresas/plantilla/mod', 'APIEmpresas@ModPlantilla');
+
+        //get plantillas by id_empresas
         Route::get('/empresas/plantilla/obtener', 'APIEmpresas@GetPlantillas');
 
-        //get plantillas by id plantillas
+        //get plantillas by id_plantillas (por trabajador)
         Route::get('/empresas/plantilla/obtenerByIdPlantillas', 'APIEmpresas@GetByIdPlantillas');
+
+        //post plantillas borrar by id_plantillas (por trabajador)
+        Route::post('/empresas/plantilla/borrar', 'APIEmpresas@PostPlantillaEliminar');
 
         //Get Image
         Route::get('/empresas/profile/image', 'APIEmpresas@GetProfileImage');
@@ -225,8 +232,7 @@
         Route::post('/empresas/salidas/modificar', 'APIEmpresas@ModSalidas');
 
         //borrar salidas por id empresas y id salidas
-        Route::post('/empresas/salidas/borrar', 'APIEmpresas@DelSalidas');  
-
+        Route::post('/empresas/salidas/borrar', 'APIEmpresas@DelSalidas');
 
 
 

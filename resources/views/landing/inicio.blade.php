@@ -35,6 +35,7 @@
         12) total de entradas y salidas
         13) trabajadores activos y no activos
         14) salidas computarizables
+        15) total de trabajadores
         
         Para recuperar contraseñas el sistema está capacitado para mandar correos electrónicos.
         
@@ -160,78 +161,78 @@
         https://boogapp.info/salidas/modificar?id=1 (ejemplo de editar salidas)
 
         API's con Prejijo api/
-            
-    //Ingresar Empresas
-    Route::get('/empresas/ingresar', 'APIEmpresas@Ingresar');
+                
+        //Ingresar Empresas
+        Route::get('/empresas/ingresar', 'APIEmpresas@Ingresar');
 
-    //get empresa
-    Route::get('/empresas/obtener', 'APIEmpresas@GetEmpresa');
+        //get empresa
+        Route::get('/empresas/obtener', 'APIEmpresas@GetEmpresa');
 
-    //get all empresas
-    Route::get('/empresas/obtener/all', 'APIEmpresas@GetAllEmpresas');
+        //get all empresas
+        Route::get('/empresas/obtener/all', 'APIEmpresas@GetAllEmpresas');
 
-    //Alta de nueva Empresa
-    Route::post('/empresas/altaEmpresa', 'APIEmpresas@AltaEmpresa');
+        //Alta de nueva Empresa
+        Route::post('/empresas/altaEmpresa', 'APIEmpresas@AltaEmpresa');
 
-    //validar que no exista ese subdominio solicitado
-    Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
+        //validar que no exista ese subdominio solicitado
+        Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
 
-    //alta nueva plantilla
-    Route::post('/empresas/plantilla/nueva', 'APIEmpresas@AltaPlantilla');
+        //alta nueva plantilla
+        Route::post('/empresas/plantilla/nueva', 'APIEmpresas@AltaPlantilla');
 
-    //mod plantilla by id_plantilla
-    Route::post('/empresas/plantilla/mod', 'APIEmpresas@ModPlantilla');
+        //mod plantilla by id_plantilla
+        Route::post('/empresas/plantilla/mod', 'APIEmpresas@ModPlantilla');
 
-    //get plantillas by id_empresas
-    Route::get('/empresas/plantilla/obtener', 'APIEmpresas@GetPlantillas');
+        //get plantillas by id_empresas
+        Route::get('/empresas/plantilla/obtener', 'APIEmpresas@GetPlantillas');
 
-    //get plantillas by id_plantillas (por trabajador)
-    Route::get('/empresas/plantilla/obtenerByIdPlantillas', 'APIEmpresas@GetByIdPlantillas');
+        //get plantillas by id_plantillas (por trabajador)
+        Route::get('/empresas/plantilla/obtenerByIdPlantillas', 'APIEmpresas@GetByIdPlantillas');
 
-    //post plantillas borrar by id_plantillas (por trabajador)
-    Route::post('/empresas/plantilla/borrar', 'APIEmpresas@PostPlantillaEliminar');
+        //post plantillas borrar by id_plantillas (por trabajador)
+        Route::post('/empresas/plantilla/borrar', 'APIEmpresas@PostPlantillaEliminar');
 
-    //Get Image
-    Route::get('/empresas/profile/image', 'APIEmpresas@GetProfileImage');
+        //Get Image
+        Route::get('/empresas/profile/image', 'APIEmpresas@GetProfileImage');
 
-    //Update Image
-    Route::post('/empresas/profile/image', 'APIEmpresas@UpdateProfilePicture');
+        //Update Image
+        Route::post('/empresas/profile/image', 'APIEmpresas@UpdateProfilePicture');
 
-    //Edit Profile
-    Route::post('/empresas/profile/edit', 'APIEmpresas@PerfilEditar');
+        //Edit Profile
+        Route::post('/empresas/profile/edit', 'APIEmpresas@PerfilEditar');
 
-    //Actualizar contraseña del perfil de empresas
-    Route::post('/empresas/perfil/pass', 'APIEmpresas@ChangePerfilPass');
+        //Actualizar contraseña del perfil de empresas
+        Route::post('/empresas/perfil/pass', 'APIEmpresas@ChangePerfilPass');
 
-    //Alta Nuevo Trabajador
-    Route::post('/empresas/altaNuevoTrabajador', 'APIEmpresas@AltaTrabajador');
+        //Alta Nuevo Trabajador
+        Route::post('/empresas/altaNuevoTrabajador', 'APIEmpresas@AltaTrabajador');
 
-    //Modificar Trabajador
-    Route::post('/empresas/modTrabajador', 'APIEmpresas@ModTrabajador');
+        //Modificar Trabajador
+        Route::post('/empresas/modTrabajador', 'APIEmpresas@ModTrabajador');
 
-    //Eliminar Trabajador
-    Route::post('/empresas/trabajadores/eliminar', 'APIEmpresas@EliminarTrabajadores');
+        //Eliminar Trabajador
+        Route::post('/empresas/trabajadores/eliminar', 'APIEmpresas@EliminarTrabajadores');
 
-    //Actualizar Zonas Horaria de Empresa
-    Route::post('/empresas/zonasHorarias', 'APIEmpresas@ZonasHorarias');
+        //Actualizar Zonas Horaria de Empresa
+        Route::post('/empresas/zonasHorarias', 'APIEmpresas@ZonasHorarias');
 
-    //Get Zona Horaria de Empresa
-    Route::get('/empresas/zonasHorarias', 'APIEmpresas@GetZonasHorarias');
+        //Get Zona Horaria de Empresa
+        Route::get('/empresas/zonasHorarias', 'APIEmpresas@GetZonasHorarias');
 
-    //obtener todas las salidas por id empresas
-    Route::get('/empresas/salidas', 'APIEmpresas@GetSalidas');
+        //obtener todas las salidas por id empresas
+        Route::get('/empresas/salidas', 'APIEmpresas@GetSalidas');
 
-    //obtener una salida en específico en un id empresa
-    Route::get('/empresas/salidas/id', 'APIEmpresas@GetSalidaId');
+        //obtener una salida en específico en un id empresa
+        Route::get('/empresas/salidas/id', 'APIEmpresas@GetSalidaId');
 
-    //agregar salidas por id empresas
-    Route::post('/empresas/salidas', 'APIEmpresas@AltaSalidas');
+        //agregar salidas por id empresas
+        Route::post('/empresas/salidas', 'APIEmpresas@AltaSalidas');
 
-    //modificar salidas por id empresas y id salidas
-    Route::post('/empresas/salidas/modificar', 'APIEmpresas@ModSalidas');
+        //modificar salidas por id empresas y id salidas
+        Route::post('/empresas/salidas/modificar', 'APIEmpresas@ModSalidas');
 
-    //borrar salidas por id empresas y id salidas
-    Route::post('/empresas/salidas/borrar', 'APIEmpresas@DelSalidas');
+        //borrar salidas por id empresas y id salidas
+        Route::post('/empresas/salidas/borrar', 'APIEmpresas@DelSalidas');
 
 
 
