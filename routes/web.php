@@ -22,16 +22,27 @@ Route::get('/', 'APILanding@Landing');
 ********Trabajadores*******
 */
 
-//Sistema Welcome
-Route::get('/inicio', 'APITrabajadores@Inicio');
+//ejemplos de hojas
 Route::get('/marketing', 'APITrabajadores@Marketing');
 Route::get('/introduction', 'APITrabajadores@Introduction');
+
+//Sistema Welcome
+Route::get('/inicio', 'APITrabajadores@Inicio');
+
+//reloj gigante para registro
 Route::get('/registros', 'APITrabajadores@Registros');
+
+//perfil de trabajadores
 Route::get('/perfilTrabajadores', 'APITrabajadores@Perfil');
 
 //Perfil cambio de contraseña
 Route::get('/perfilTrabajadores/pass', 'APITrabajadores@PerfilPass');
+
+//historial de entradas y salidas
 Route::get('/historial', 'APITrabajadores@Historial');
+
+//recuperar contraseña
+Route::get('/{any}/recuperar', 'APITrabajadores@Recuperar');
 
 /*
 *********Empresas***********

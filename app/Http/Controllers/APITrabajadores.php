@@ -21,6 +21,7 @@ use Tymon\JWTAuth\PayloadFactory;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Session;
 use Validator;
+use App\Library\CLASSES\queueMails;
 
 class APITrabajadores extends Controller
 {
@@ -1791,6 +1792,110 @@ class APITrabajadores extends Controller
   
       }
 
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function RecuperarPass(Request $request){
+    
+    Log::info('[APITrabajadores][RecuperarPass]');
+
+    Log::info("[APITrabajadores][RecuperarPass] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+    
+      $this->validate($request, [
+        'correo' => 'required'
+      ]);
+        
+      $correo = $request->input('correo');
+      $pass = Functions::generacion_contrasenas_aleatorias(8);
+
+      $trabajadores = Trabajadores::cambioContrasena($correo, $pass);
+
+      if($trabajadores==1){
+
+        $trabajadores = Trabajadores::lookForByEmailAndPass($correo, $pass)->get();
+
+        $data["name"] = $trabajadores[0]->nombre;
+        //Send to queue email list of administrator mail
+        $data["user_id"] = $trabajadores[0]->id_trabajadores;
+        $data["tipo"] = "Trabajador";
+        $data['email'] = $correo;
+        $data['password'] = $pass;
+        //$data['body'] = "".Lang::get('messages.emailSubscribeBody')."".$email."";
+        //$data['subject'] = Lang::get('messages.emailSubscribeSubject');
+        //$data['name'] = Config::get('mail.from.name');
+        //$data['priority'] = 1;
+
+        $mail = new QueueMails($data);
+        $mail->newPassword();
+
+        $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.SentEmail'), count($trabajadores));
+        $responseJSON->data = $trabajadores;
+        return json_encode($responseJSON);
+
+      } else {
+
+        $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.NotFoundMail'), count($trabajadores));
+        $responseJSON->data = [];
+        return json_encode($responseJSON);
+
+      }
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function Recuperar(Request $request){
+    
+    Log::info('[APITrabajadores][Recuperar]');
+
+    Log::info("[APITrabajadores][Recuperar] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+      
+      $path = explode("/", $request->path());
+
+      $subdominio = Empresas::lookForBySubdominio($path[0])->get();
+    
+      Log::info('[APITrabajadores][Recuperar] subdominio size: ' . count($subdominio));
+
+      Log::info($subdominio);
+
+      if(count($subdominio)>0){
+
+        $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDData'), count($subdominio));
+        $responseJSON->data = [];
+        
+        $colores = Colores::lookForById($subdominio->first()->color)->get();
+
+        Log::info($subdominio->first()->color);
+        Log::info($colores->first()->hex);
+
+        return view('trabajadores.recuperar',["title" => config('app.name'), 
+                                        "lang" => "es", 
+                                        "color" => $subdominio->first()->color, 
+                                        "colorHex" => $colores->first()->hex, 
+                                        "subdominio" => $subdominio->first()->subdominio, 
+                                        "id_empresas" => $subdominio->first()->id_empresas, 
+                                        "nombre" => $subdominio->first()->nombre_empresa
+                                        ]
+                                    );
+
+      } else {
+
+        abort(404);
+
+      }
+        
+      return ;
 
 
     } else {

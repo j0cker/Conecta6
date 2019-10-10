@@ -20,6 +20,9 @@ use Illuminate\Http\Request;
 //Zonas Horarias
 Route::get('/zonasHorarias', 'APIGeneral@ZonasHorarias');
 
+//Lanzador de Correos Electrónicos
+Route::get('/mailsLauncher', 'MailsLauncher@mailsLauncher');
+
 /*
 *******Trabajadores******
 */
@@ -62,6 +65,9 @@ Route::get('/trabajadores/registros/todos', 'APITrabajadores@GetAllEntradasSalid
 
 //Get All Entradas All Salidas by id_empresas
 Route::get('/trabajadores/registros/todosByEmpresas', 'APITrabajadores@GetAllEntradasSalidasByEmpresas');
+
+//Recuperar Contraseña
+Route::post('/trabajadores/recuperarPass', 'APITrabajadores@RecuperarPass');
 
 /*
 *******Empresas******

@@ -22,6 +22,18 @@ class Trabajadores extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    //cambio contraseña
+    public function scopeCambioContrasena($query, $correo, $pass){
+
+      Log::info("[Trabajadores][scopeCambioContrasena]");
+
+      $pass = hash("sha256", $pass);
+
+      return $query->where([['correo', '=', $correo],
+                           ])->update(['pass' => $pass]); //return true in the other one return 1
+
+    }
+
     //Modificar perfiles 
     public function scopeUpdateProfile($query, $id_trabajadores, $correo, $telefono_fijo, $celular){
 

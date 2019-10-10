@@ -5340,8 +5340,6 @@
 
   });//fin controller perfilEmpresasPass
 
-  
-
   app.controller('perfilAdministradoresPass', function($scope, functions, $window) {
 
     console.log("[perfilAdministradoresPass]");
@@ -5411,6 +5409,86 @@
 
 
   });//fin controller perfilAdministradoresPass
+  
+  app.controller('recuperarTrabajadores', function($scope, functions, $window) {
+
+    console.log("[recuperarTrabajadores]");
+
+    functions.loading();
+
+    $("body").css("background-image","url('../img/texture.png')");
+
+    $scope.postRecuperarClick = function(){
+
+      var correo = "";
+
+      correo = $("#correo").val();
+
+      console.log("correo: " + correo);
+
+      if(correo.indexOf("@")=="-1" || correo.indexOf(".")=="-1" || correo.indexOf(" ")!="-1" || correo.indexOf(",")!="-1"){
+        
+        toastr["error"]("Error: la contraseña actual<br />no coincide", "");
+
+      } else {
+
+        functions.postRecuperar("trabajadores", correo).then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            console.log("[postRecuperar][recuperarTrabajadores]");
+
+            console.log(response.data.data);
+
+            toastr["success"](response.data.description, "");
+
+          } else {
+              toastr["warning"](response.data.description, "");
+              functions.loadingEndWait();
+          }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin postContChange*/
+
+
+      }
+
+    }; //fin postContChangeClick
+
+    postRecuperarClick = $scope.postRecuperarClick;
+
+    
+    
+    $scope.getImageEmpresaClick = function(id_empresas){
+
+      console.log("[signin] ");
+
+      functions.getImageEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[signin][getImageEmpresa]");
+
+              console.log(response.data.data);
+
+              $(".profile-image").attr("src","data:image/png;base64," + response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getImageEmpresa*/
+
+    }; //fin getImageEmpresaClick
+
+
+  });//fin controller recuperarTrabajadores
 
   return;
 

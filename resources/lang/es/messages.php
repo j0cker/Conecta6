@@ -1,4 +1,3 @@
-
 <?php
 return [
 
@@ -17,11 +16,13 @@ return [
     'selectFormRequired' => "Por favor ingresa un valor correcto",
     'emailSubscribeSubject' => "Tiene un nuevo subscriptor.",
     'emailSubscribeBody' => "Tienes un nuevo subscriptor. Correo: ",
+
     //email reset password
     'emailResetText1' => "You are receiving this email because we received a password reset request for your account.",
     'emailResetText2' => "Reset Password",
     'emailResetText3' => "If you did not request a password reset, no further action is required.",
     'emailResetText4' => "If you’re having trouble clicking the button, copy and paste the URL below into your web browser:",
+
     //email Administration
     'emailAdminTitle' => "Email's Personalizados",
     'emailAdminTarget' => "Objetivo de alcance",
@@ -74,5 +75,10 @@ return [
     'errorFormat' => "El archivo que desea cargar tiene un formato no válido.",
     'BDsentMail' => "Te hemos enviado un correo electrónico con tu nueva contraseña..",
 
+    //contraseñas
+    'NotFoundMail' => "No encontramos el correo electrónico",
+    'SentEmail' => "Le Hemos enviado un correo electrónico con su nueva contraseña",
 
 ];
+
+?>

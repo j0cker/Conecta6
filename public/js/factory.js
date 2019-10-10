@@ -3825,6 +3825,18 @@
         });
 
       },
+      postRecuperar: function(tipo, correo){
+
+        console.log("[factory][postRecuperar]");
+
+        if(tipo == "trabajadores"){
+          var url = '/api/trabajadores/recuperarPass';
+        }
+
+        return $http.post(url, {cache: false, correo:correo });
+
+
+      },
       getIdPlantillas: function(id_plantillas) {
 
         console.log("[factory][getIdPlantillas]");

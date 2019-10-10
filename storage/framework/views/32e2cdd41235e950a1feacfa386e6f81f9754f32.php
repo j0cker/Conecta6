@@ -18,6 +18,25 @@
         Las estadísticas tiene un algoritmo especial de cálculo de horas trabajadas y de horas extras (las horas extras pueden ser negativas). Soporta cálculos computarizables de salidas personalizables.
         Una entrada no puede seguir de otra entrada y viceversa (salidas) Ojo. (solo válido durante el mismo día corriendo).
         Las entradads y salidas incluyen restricciones por Geolocalización, IP y por dispositivo.
+
+        Las estadísticas tienen los siguientes cálculos:
+
+        1) total horas trabajadas
+        2) total horas extras
+        3) numeros de faltas
+        4) descanzos totales
+        5) salidas
+        6) asistencias totales
+        7) asistencias fuera de plantilla
+        8) asistencias dentro de plantilla
+        9) puntualidades
+        10) impuntualidades
+        11) dias no laborales
+        12) total de entradas y salidas
+        13) trabajadores activos y no activos
+        14) salidas computarizables
+        
+        Para recuperar contraseñas el sistema está capacitado para mandar correos electrónicos.
         
         
         /**Landing Page**/
@@ -30,11 +49,12 @@
         *******Generales******
         */
 
+        
         //Zonas Horarias
         Route::get('/zonasHorarias', 'APIGeneral@ZonasHorarias');
 
-
-
+        //Lanzador de Correos Electrónicos
+        Route::get('/mailsLauncher', 'MailsLauncher@mailsLauncher');
 
 
         /***Trabajadores***/
@@ -63,7 +83,7 @@
         
 
         API's con Prejijo api/
-
+ 
         //Ingresar Trabajadores
         Route::get('/trabajadores/ingresar', 'APITrabajadores@Ingresar');
 
@@ -88,13 +108,23 @@
         //post registro salidas
         Route::post('/trabajadores/registros/salidas', 'APITrabajadores@PostSalidas');
 
-        //Get Historial Entradas
+        //Get Historial Entradas by id_trabajadores fecha ini y fecha fin
         Route::get('/trabajadores/historial/todas', 'APITrabajadores@GetAllHistorial');
 
-        //Get All Entradas All Salidas
+        //Get Historial Entradas by id_empresas fecha ini y fecha fin
+        Route::get('/trabajadores/historial/todasByIdEmpresas', 'APITrabajadores@GetAllHistorialByIdEmpresas');
+
+        //Get Historial Entradas by id_empresas fecha ini y fecha fin
+        Route::get('/trabajadores/historial/todasByIdEmpresas', 'APITrabajadores@GetAllHistorialByIdEmpresas');
+
+        //Get All Entradas All Salidas by id_trabajadores
         Route::get('/trabajadores/registros/todos', 'APITrabajadores@GetAllEntradasSalidas');
 
+        //Get All Entradas All Salidas by id_empresas
+        Route::get('/trabajadores/registros/todosByEmpresas', 'APITrabajadores@GetAllEntradasSalidasByEmpresas');
 
+        //Recuperar Contraseña
+        Route::post('/trabajadores/recuperarPass', 'APITrabajadores@RecuperarPass');
 
 
 
@@ -125,6 +155,7 @@
         https://boogapp.info/trabajadores/editar
         https://boogapp.info/informes
         https://boogapp.info/plantilla/nueva
+        https://boogapp.info/plantilla/mod?id=1
         https://boogapp.info/configuraciones
         https://boogapp.info/salidas/modificar?id=1 (ejemplo de editar salidas)
 

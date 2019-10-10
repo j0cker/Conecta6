@@ -322,6 +322,25 @@ class Functions
       $text = preg_replace("/[^a-zA-Z0-9 ]+/", "", $text);
       return $text;
     }
+    public static function generacion_contrasenas_aleatorias($longitud){
+
+        /*
+        longitud de la pass: ej: 8
+        */
+
+        //Carácteres para la contraseña
+        $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        $password = "";
+        //Reconstruimos la contraseña segun la longitud que se quiera
+        for($i=0;$i<$longitud;$i++) {
+            //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+            $password .= substr($str,rand(0,62),1);
+        }
+        
+        Log::info("[functions][generacion_contrasenas_aleatorias] Password generado: ". $password);
+
+        return $password;
+    }
     public function mail_only($text){
       //permite solo a-z0-9 y espacios
       $text = preg_replace("/[^a-zA-Z0-9@.]+/", "", $text);
