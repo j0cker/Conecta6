@@ -21,7 +21,7 @@ use Tymon\JWTAuth\PayloadFactory;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Session;
 use Validator;
-use App\Library\CLASSES\queueMails;
+use App\Library\CLASSES\QueueMails;
 
 class APITrabajadores extends Controller
 {
@@ -1811,7 +1811,7 @@ class APITrabajadores extends Controller
       $this->validate($request, [
         'correo' => 'required'
       ]);
-        
+
       $correo = $request->input('correo');
       $pass = Functions::generacion_contrasenas_aleatorias(8);
 

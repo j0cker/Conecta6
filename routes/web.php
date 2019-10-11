@@ -41,9 +41,6 @@ Route::get('/perfilTrabajadores/pass', 'APITrabajadores@PerfilPass');
 //historial de entradas y salidas
 Route::get('/historial', 'APITrabajadores@Historial');
 
-//recuperar contraseña
-Route::get('/{any}/recuperar', 'APITrabajadores@Recuperar');
-
 /*
 *********Empresas***********
 */
@@ -127,6 +124,21 @@ Route::get('/administradores/modificar', 'APIAdmin@EditarAdministrador');
 
 //sign in personalizado (URL a evaluación)
 Route::get('/{any}', 'APITrabajadores@SignIn');
+
+/*
+Recuperar Contraseñas
+*/
+
+
+//recuperar contraseña administradores
+Route::get('/pAdmin/recuperar', 'APIAdmin@Recuperar');
+
+//recuperar contraseña trabajadores
+Route::get('/{any}/recuperar', 'APITrabajadores@Recuperar');
+
+//recuperar contraseña empresas
+Route::get('/{any}/pAdmin/recuperar', 'APIEmpresas@Recuperar');
+
 
 //tests laravel php
 Route::get('/test', 'APITest@Test');

@@ -22,7 +22,18 @@ class Empresas extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
-    
+    //cambio contraseña
+    public function scopeCambioContrasena($query, $correo, $pass){
+
+      Log::info("[Empresas][scopeCambioContrasena]");
+
+      $pass = hash("sha256", $pass);
+
+      return $query->where([['correo', '=', $correo],
+                           ])->update(['pass' => $pass]); //return true in the other one return 1
+
+    }
+
     //get timezone
     public function scopeGetTimeZone($query, $id_empresas){
 

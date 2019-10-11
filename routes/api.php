@@ -66,7 +66,7 @@ Route::get('/trabajadores/registros/todos', 'APITrabajadores@GetAllEntradasSalid
 //Get All Entradas All Salidas by id_empresas
 Route::get('/trabajadores/registros/todosByEmpresas', 'APITrabajadores@GetAllEntradasSalidasByEmpresas');
 
-//Recuperar Contraseña
+//Recuperar Contraseñas de trabajadores
 Route::post('/trabajadores/recuperarPass', 'APITrabajadores@RecuperarPass');
 
 /*
@@ -145,6 +145,9 @@ Route::post('/empresas/salidas/modificar', 'APIEmpresas@ModSalidas');
 //borrar salidas por id empresas y id salidas
 Route::post('/empresas/salidas/borrar', 'APIEmpresas@DelSalidas');
 
+//Recuperar Contraseñas de empresas
+Route::post('/empresas/recuperarPass', 'APIEmpresas@RecuperarPass');
+
 /*
 *******Admin******
 */
@@ -181,4 +184,7 @@ Route::post('/pAdmin/empresas/modificar/activo', 'APIAdmin@modActiveEmpresas');
 
 //Borrar Empresa por id_empresas
 Route::post('/pAdmin/empresas/eliminar', 'APIAdmin@deleteEmpresas');
+
+//Recuperar Contraseñas de administradores
+Route::post('/pAdmin/recuperarPass', 'APIAdmin@RecuperarPass');
 

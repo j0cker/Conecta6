@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('trabajadores.master')
 
   {{-- lang html tag --}}
 
@@ -23,7 +23,7 @@
 
   {{-- Angular Controller --}}
 
-  @section('controller','signInAdmin')
+  @section('controller','recuperarEmpresas')
 
   {{-- Body --}}
 
@@ -43,8 +43,8 @@
 
               <div class="card">
 
-                <div style="margin-top: 35px; width: 270px !important; height: 121px !important;" class="card-image resaltar">
-                  <img onerror="this.src='{{ url('img/logo-example.png') }}'" style="width: 240px !important; height: 101px !important;" class="logoCompany text-center" src="{{ url('img/Conecta6-logotipo.png') }}">
+                <div class="card-image resaltar">
+                  <img onerror="this.src='{{ url('img/logo-example.png') }}'" class="profile-image logoCompany text-center" src="{{ url('img/logo-example.png') }}">
                 </div>
 
                 <div class="card-content">
@@ -53,24 +53,19 @@
 
                   <div class="col-md-8 resaltar">
 
-                    <p class="resaltar">Bienvenido al Panel de Administración por favor ingrese su usuario y contraseña</p>
+                    <p class="resaltar">Ingresa tu correo para Recuperar tu Contraseña</p>
 
                     <div class="input-group resaltar">
                       <span class="input-group-addon "><span class="fa fa-user"></span></span>
                       <input id="correo" type="text" placeholder="Correo Electrónico" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
                     </div>
 
-                    <div class="input-group resaltar">
-                      <span class="input-group-addon"><span class="fa fa-lock"></span></span>
-                      <input id="contPass" type="password" placeholder="Contraseña" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
-                    </div>
-
-                    <button ng-click="send()" id="ingresarButton" style="margin-top: 40px; margin-bottom: 40px;" class="btn waves-effect waves-light resaltar" type="submit" name="action">Ingresar
+                    <button ng-click="postRecuperarClick()" id="ingresarButton" style="margin-top: 40px; margin-bottom: 40px;" class="btn waves-effect waves-light resaltar" type="submit" name="action">Recuperar
                       <i class="fa fa-sign-in" aria-hidden="true"></i>
                     </button>
 
                     <a style="margin-bottom: 40px;" href="#">
-                      <p class="resaltar"><a href="{{ url('/pAdmin/recuperar') }}">¿Olvidaste tu Contraseña?</a></p>
+                      <p class="resaltar"><a href="{{ url('/'.$subdominio.'/pAdmin') }}">Iniciar Sesión</a></p>
                     </a>
                     
                   </div>
@@ -93,5 +88,12 @@
 
     </main>
     <!--Main layout-->
+
+    <script>
+        $(document).ready(function(){
+
+          angular.element('body').scope().getImageEmpresaClick("{{ $id_empresas }}");
+        });
+    </script>
 
     @stop

@@ -3833,8 +3833,15 @@
           var url = '/api/trabajadores/recuperarPass';
         }
 
-        return $http.post(url, {cache: false, correo:correo });
+        if(tipo == "empresas"){
+          var url = '/api/empresas/recuperarPass';
+        }
 
+        if(tipo == "administradores"){
+          var url = '/api/pAdmin/recuperarPass';
+        }
+
+        return $http.post(url, {cache: false, correo:correo });
 
       },
       getIdPlantillas: function(id_plantillas) {

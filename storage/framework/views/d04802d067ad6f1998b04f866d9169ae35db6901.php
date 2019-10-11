@@ -21,7 +21,7 @@
 
   
 
-  <?php $__env->startSection('controller','signinEmpresas'); ?>
+  <?php $__env->startSection('controller','recuperarEmpresas'); ?>
 
   
 
@@ -51,29 +51,19 @@
 
                   <div class="col-md-8 resaltar">
 
-                    <p class="resaltar">Bienvenido a <?php echo e($nombre); ?> por favor ingrese su usuario y contraseña</p>
+                    <p class="resaltar">Ingresa tu correo para Recuperar tu Contraseña</p>
 
                     <div class="input-group resaltar">
                       <span class="input-group-addon "><span class="fa fa-user"></span></span>
                       <input id="correo" type="text" placeholder="Correo Electrónico" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
                     </div>
 
-                    <div class="input-group resaltar">
-                      <span class="input-group-addon"><span class="fa fa-lock"></span></span>
-                      <input id="contPass" type="password" placeholder="Contraseña" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
-
-                      <input id="color" value="<?php echo e($color); ?>" style="display: none;" type="hidden">
-                      <input id="colorHex" value="<?php echo e($colorHex); ?>" style="display: none;" type="hidden">
-                      <input id="subdominio" value="<?php echo e($subdominio); ?>" style="display: none;" type="hidden">
-
-                    </div>
-
-                    <button ng-click="send()" id="ingresarButton" style="margin-top: 40px; margin-bottom: 40px;" class="btn waves-effect waves-light resaltar" type="submit" name="action">Ingresar
+                    <button ng-click="postRecuperarClick()" id="ingresarButton" style="margin-top: 40px; margin-bottom: 40px;" class="btn waves-effect waves-light resaltar" type="submit" name="action">Recuperar
                       <i class="fa fa-sign-in" aria-hidden="true"></i>
                     </button>
 
                     <a style="margin-bottom: 40px;" href="#">
-                      <p class="resaltar"><a href="<?php echo e(url('/'.$subdominio.'/recuperar')); ?>">¿Olvidaste tu Contraseña?</a></p>
+                      <p class="resaltar"><a href="<?php echo e(url('/'.$subdominio.'/pAdmin')); ?>">Iniciar Sesión</a></p>
                     </a>
                     
                   </div>
@@ -97,8 +87,6 @@
     </main>
     <!--Main layout-->
 
-    
-        
     <script>
         $(document).ready(function(){
 
@@ -108,4 +96,4 @@
 
     <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('empresas.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('trabajadores.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

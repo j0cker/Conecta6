@@ -75,7 +75,7 @@
                     </button>
 
                     <a style="margin-bottom: 40px;" href="#">
-                      <p class="resaltar">¿Olvidaste tu Contraseña?</p>
+                      <p class="resaltar"><a href="{{ url('/'.$subdominio.'/recuperar') }}">¿Olvidaste tu Contraseña?</a></p>
                     </a>
                     
                   </div>

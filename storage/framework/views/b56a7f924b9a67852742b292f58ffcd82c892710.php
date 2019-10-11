@@ -51,7 +51,7 @@
 
                   <div class="col-md-8 resaltar">
 
-                    <p class="resaltar">Bienvenido a Company Name por favor ingrese su usuario y contraseña</p>
+                    <p class="resaltar">Bienvenido al Panel de Administración por favor ingrese su usuario y contraseña</p>
 
                     <div class="input-group resaltar">
                       <span class="input-group-addon "><span class="fa fa-user"></span></span>
@@ -68,7 +68,7 @@
                     </button>
 
                     <a style="margin-bottom: 40px;" href="#">
-                      <p class="resaltar">¿Olvidaste tu Contraseña?</p>
+                      <p class="resaltar"><a href="<?php echo e(url('/pAdmin/recuperar')); ?>">¿Olvidaste tu Contraseña?</a></p>
                     </a>
                     
                   </div>

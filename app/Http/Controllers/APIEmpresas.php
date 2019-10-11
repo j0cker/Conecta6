@@ -21,6 +21,7 @@ use Tymon\JWTAuth\PayloadFactory;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Session;
 use Validator;
+use App\Library\CLASSES\QueueMails;
 
 class APIEmpresas extends Controller
 {
@@ -3542,9 +3543,9 @@ class APIEmpresas extends Controller
 
   public function AltaEmpresa(Request $request){
   
-    Log::info('[AltaEmpresa]');
+    Log::info('[APIEmpresas][AltaEmpresa]');
 
-    Log::info("[AltaEmpresa] Método Recibido: ". $request->getMethod());
+    Log::info("[APIEmpresas][AltaEmpresa] Método Recibido: ". $request->getMethod());
 
     if($request->isMethod('POST')) {
 
@@ -3557,7 +3558,7 @@ class APIEmpresas extends Controller
         
       $token = $request->input('token');
 
-      Log::info("[APITrabajadores][Inicio] Token: ". $token);
+      Log::info("[APIEmpresas][Inicio] Token: ". $token);
 
       try {
 
@@ -3578,17 +3579,17 @@ class APIEmpresas extends Controller
         $contrasena = $request->input('contrasena');
         $color = $request->input('color');
 
-        Log::info("[AltaEmpresa] nombreEmpresa: " .$nombreEmpresa);
-        Log::info("[AltaEmpresa] nombreSolicitante: " .$nombreSolicitante);
-        Log::info("[AltaEmpresa] correoElectronico: " .$correoElectronico);
-        Log::info("[AltaEmpresa] telefonoFijo: " .$telefonoFijo);
-        Log::info("[AltaEmpresa] celular: " .$celular);
-        Log::info("[AltaEmpresa] datepicker: " .$datepicker);
-        Log::info("[AltaEmpresa] empleadosPermitidos: " .$empleadosPermitidos);
-        Log::info("[AltaEmpresa] activa: " .$activa);
-        Log::info("[AltaEmpresa] subdominio: " .$subdominio);
-        Log::info("[AltaEmpresa] contrasena: " .$contrasena);
-        Log::info("[AltaEmpresa] color: " .$color);
+        Log::info("[APIEmpresas][AltaEmpresa] nombreEmpresa: " .$nombreEmpresa);
+        Log::info("[APIEmpresas][AltaEmpresa] nombreSolicitante: " .$nombreSolicitante);
+        Log::info("[APIEmpresas][AltaEmpresa] correoElectronico: " .$correoElectronico);
+        Log::info("[APIEmpresas][AltaEmpresa] telefonoFijo: " .$telefonoFijo);
+        Log::info("[APIEmpresas][AltaEmpresa] celular: " .$celular);
+        Log::info("[APIEmpresas][AltaEmpresa] datepicker: " .$datepicker);
+        Log::info("[APIEmpresas][AltaEmpresa] empleadosPermitidos: " .$empleadosPermitidos);
+        Log::info("[APIEmpresas][AltaEmpresa] activa: " .$activa);
+        Log::info("[APIEmpresas][AltaEmpresa] subdominio: " .$subdominio);
+        Log::info("[APIEmpresas][AltaEmpresa] contrasena: " .$contrasena);
+        Log::info("[APIEmpresas][AltaEmpresa] color: " .$color);
 
         $empresas = Empresas::addNewEnterprise($nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $subdominio, $contrasena, $color);
         
@@ -3606,7 +3607,7 @@ class APIEmpresas extends Controller
 
           $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../public_html/'.$subdominio.'/index.php', $body);
 
-          Log::info("[AltaEmpresa] Cpanel API");
+          Log::info("[APIEmpresas][AltaEmpresa] Cpanel API");
           Log::info($result);
 
           if($result_archive==1){
@@ -3636,7 +3637,7 @@ class APIEmpresas extends Controller
 
         //token_expired
     
-        Log::info('[AltaEmpresa][Inicio] Token error: token_expired');
+        Log::info('[APIEmpresas][AltaEmpresa] Token error: token_expired');
 
         return redirect('/');
   
@@ -3644,7 +3645,7 @@ class APIEmpresas extends Controller
 
         //token_invalid
     
-        Log::info('[AltaEmpresa][Inicio] Token error: token_invalid');
+        Log::info('[APIEmpresas][AltaEmpresa] Token error: token_invalid');
 
         return redirect('/');
   
@@ -3652,7 +3653,7 @@ class APIEmpresas extends Controller
 
         //token_absent
     
-        Log::info('[AltaEmpresa][Inicio] Token error: token_absent');
+        Log::info('[APIEmpresas][AltaEmpresa] Token error: token_absent');
 
         return redirect('/');
   
@@ -3667,9 +3668,9 @@ class APIEmpresas extends Controller
 
   public function NuevaPlantilla(Request $request){
     
-    Log::info('[NuevaPlantilla]');
+    Log::info('[APIEmpresas][NuevaPlantilla]');
 
-    Log::info("[NuevaPlantilla] Método Recibido: ". $request->getMethod());
+    Log::info("[APIEmpresas][NuevaPlantilla] Método Recibido: ". $request->getMethod());
 
     if($request->isMethod('GET')) {
 
@@ -3682,7 +3683,7 @@ class APIEmpresas extends Controller
         
       $token = $request->input('token');
 
-      Log::info("[APITrabajadores][NuevaPlantilla] Token: ". $token);
+      Log::info("[APIEmpresas][NuevaPlantilla] Token: ". $token);
 
       try {
 
@@ -3707,7 +3708,7 @@ class APIEmpresas extends Controller
 
         //token_expired
     
-        Log::info('[AltaEmpresa][NuevaPlantilla] Token error: token_expired');
+        Log::info('[APIEmpresas][NuevaPlantilla] Token error: token_expired');
 
         return redirect('/');
   
@@ -3715,7 +3716,7 @@ class APIEmpresas extends Controller
 
         //token_invalid
     
-        Log::info('[AltaEmpresa][NuevaPlantilla] Token error: token_invalid');
+        Log::info('[APIEmpresas][NuevaPlantilla] Token error: token_invalid');
 
         return redirect('/');
   
@@ -3723,7 +3724,7 @@ class APIEmpresas extends Controller
 
         //token_absent
     
-        Log::info('[AltaEmpresa][NuevaPlantilla] Token error: token_absent');
+        Log::info('[APIEmpresas][NuevaPlantilla] Token error: token_absent');
 
         return redirect('/');
   
@@ -3736,11 +3737,115 @@ class APIEmpresas extends Controller
 
   }
 
+  public function RecuperarPass(Request $request){
+    
+    Log::info('[APIEmpresas][RecuperarPass]');
+
+    Log::info("[APIEmpresas][RecuperarPass] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+    
+      $this->validate($request, [
+        'correo' => 'required'
+      ]);
+
+      $correo = $request->input('correo');
+      $pass = Functions::generacion_contrasenas_aleatorias(8);
+
+      $empresas = Empresas::cambioContrasena($correo, $pass);
+
+      if($empresas==1){
+
+        $empresas = Empresas::lookForByEmailAndPass($correo, $pass)->get();
+
+        $data["name"] = $empresas[0]->nombre;
+        //Send to queue email list of administrator mail
+        $data["user_id"] = $empresas[0]->id_empresas;
+        $data["tipo"] = "Trabajador";
+        $data['email'] = $correo;
+        $data['password'] = $pass;
+        //$data['body'] = "".Lang::get('messages.emailSubscribeBody')."".$email."";
+        //$data['subject'] = Lang::get('messages.emailSubscribeSubject');
+        //$data['name'] = Config::get('mail.from.name');
+        //$data['priority'] = 1;
+
+        $mail = new QueueMails($data);
+        $mail->newPassword();
+
+        $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.SentEmail'), count($empresas));
+        $responseJSON->data = $empresas;
+        return json_encode($responseJSON);
+
+      } else {
+
+        $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.NotFoundMail'), count($empresas));
+        $responseJSON->data = [];
+        return json_encode($responseJSON);
+
+      }
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function Recuperar(Request $request){
+    
+    Log::info('[APIEmpresas][Recuperar]');
+
+    Log::info("[APIEmpresas][Recuperar] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+      
+      $path = explode("/", $request->path());
+
+      $subdominio = Empresas::lookForBySubdominio($path[0])->get();
+    
+      Log::info('[APIEmpresas][Recuperar] subdominio size: ' . count($subdominio));
+
+      Log::info($subdominio);
+
+      if(count($subdominio)>0){
+
+        $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDData'), count($subdominio));
+        $responseJSON->data = [];
+        
+        $colores = Colores::lookForById($subdominio->first()->color)->get();
+
+        Log::info($subdominio->first()->color);
+        Log::info($colores->first()->hex);
+
+        return view('empresas.recuperar',["title" => config('app.name'), 
+                                        "lang" => "es", 
+                                        "color" => $subdominio->first()->color, 
+                                        "colorHex" => $colores->first()->hex, 
+                                        "subdominio" => $subdominio->first()->subdominio, 
+                                        "id_empresas" => $subdominio->first()->id_empresas, 
+                                        "nombre" => $subdominio->first()->nombre_empresa
+                                        ]
+                                    );
+
+      } else {
+
+        abort(404);
+
+      }
+        
+      return ;
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
   public function ModificarPlantilla(Request $request){
     
-    Log::info('[ModificarPlantilla]');
+    Log::info('[APIEmpresas][ModificarPlantilla]');
 
-    Log::info("[ModificarPlantilla] Método Recibido: ". $request->getMethod());
+    Log::info("[APIEmpresas][ModificarPlantilla] Método Recibido: ". $request->getMethod());
 
     if($request->isMethod('GET')) {
 
@@ -3753,7 +3858,7 @@ class APIEmpresas extends Controller
         
       $token = $request->input('token');
 
-      Log::info("[APITrabajadores][ModificarPlantilla] Token: ". $token);
+      Log::info("[APIEmpresas][ModificarPlantilla] Token: ". $token);
 
       try {
 
@@ -3778,7 +3883,7 @@ class APIEmpresas extends Controller
 
         //token_expired
     
-        Log::info('[AltaEmpresa][ModificarPlantilla] Token error: token_expired');
+        Log::info('[APIEmpresas][ModificarPlantilla] Token error: token_expired');
 
         return redirect('/');
   
@@ -3786,7 +3891,7 @@ class APIEmpresas extends Controller
 
         //token_invalid
     
-        Log::info('[AltaEmpresa][ModificarPlantilla] Token error: token_invalid');
+        Log::info('[APIEmpresas][ModificarPlantilla] Token error: token_invalid');
 
         return redirect('/');
   
@@ -3794,7 +3899,7 @@ class APIEmpresas extends Controller
 
         //token_absent
     
-        Log::info('[AltaEmpresa][ModificarPlantilla] Token error: token_absent');
+        Log::info('[APIEmpresas][ModificarPlantilla] Token error: token_absent');
 
         return redirect('/');
   
@@ -3810,15 +3915,15 @@ class APIEmpresas extends Controller
 
   public function SubdominioValidar(Request $request){
   
-    Log::info('[SubdominioValidar]');
+    Log::info('[APIEmpresas][SubdominioValidar]');
 
-    Log::info("[SubdominioValidar] Método Recibido: ". $request->getMethod());
+    Log::info("[APIEmpresas][SubdominioValidar] Método Recibido: ". $request->getMethod());
 
     if($request->isMethod('GET')) {
       
       $subdominio = $request->input('subdominio');
   
-      Log::info('[SubdominioValidar] subdominio: ' . $subdominio);
+      Log::info('[APIEmpresas][SubdominioValidar] subdominio: ' . $subdominio);
 
       $subdominios_array = Empresas::lookForBySubdominio($subdominio)->get();
 
@@ -3826,7 +3931,7 @@ class APIEmpresas extends Controller
         $subdominios_array->first()->foto_base64 = "";
       }
   
-      Log::info('[SubdominioValidar] subdominio size: ' . count($subdominios_array));
+      Log::info('[APIEmpresas][SubdominioValidar] subdominio size: ' . count($subdominios_array));
 
       Log::info($subdominios_array);
 

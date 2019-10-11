@@ -18,6 +18,8 @@ use Tymon\JWTAuth\PayloadFactory;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Validator;
 use Session;
+use App\Library\CLASSES\QueueMails;
+use App\Library\UTIL\Functions;
 
 class APIAdmin extends Controller
 {
@@ -1640,6 +1642,85 @@ class APIAdmin extends Controller
         }
   
   
+  
+      } else {
+        abort(404);
+      }
+  
+    }
+    public function RecuperarPass(Request $request){
+      
+      Log::info('[APIAdmin][RecuperarPass]');
+  
+      Log::info("[APIAdmin][RecuperarPass] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('POST')) {
+      
+        $this->validate($request, [
+          'correo' => 'required'
+        ]);
+  
+        $correo = $request->input('correo');
+        $pass = Functions::generacion_contrasenas_aleatorias(8);
+  
+        $admin = Admin::cambioContrasena($correo, $pass);
+  
+        if($admin==1){
+  
+          $admin = Admin::lookForByEmailAndPass($correo, $pass)->get();
+  
+          $data["name"] = $admin[0]->nombre;
+          //Send to queue email list of administrator mail
+          $data["user_id"] = $admin[0]->id_administradores;
+          $data["tipo"] = "Trabajador";
+          $data['email'] = $correo;
+          $data['password'] = $pass;
+          //$data['body'] = "".Lang::get('messages.emailSubscribeBody')."".$email."";
+          //$data['subject'] = Lang::get('messages.emailSubscribeSubject');
+          //$data['name'] = Config::get('mail.from.name');
+          //$data['priority'] = 1;
+  
+          $mail = new QueueMails($data);
+          $mail->newPassword();
+  
+          $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.SentEmail'), count($admin));
+          $responseJSON->data = $admin;
+          return json_encode($responseJSON);
+  
+        } else {
+  
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.NotFoundMail'), count($admin));
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+  
+        }
+  
+      } else {
+        abort(404);
+      }
+  
+    }
+  
+    public function Recuperar(Request $request){
+      
+      Log::info('[APIAdmin][Recuperar]');
+  
+      Log::info("[APIAdmin][Recuperar] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('GET')) {
+        
+  
+          $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDData'), 0);
+          $responseJSON->data = [];
+          
+  
+          return view('admin.recuperar',["title" => config('app.name'), 
+                                                      "lang" => "es", 
+                                                      "color" => 6, 
+                                                      "colorHex" => "#ad0a38",
+                                                      "subdominio" => "pAdmin",
+                                                    ]
+                                      );
   
       } else {
         abort(404);
