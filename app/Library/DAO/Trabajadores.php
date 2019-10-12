@@ -22,6 +22,7 @@ class Trabajadores extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+
     //cambio contraseña
     public function scopeCambioContrasena($query, $correo, $pass){
 

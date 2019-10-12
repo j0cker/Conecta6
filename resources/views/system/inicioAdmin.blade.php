@@ -62,35 +62,50 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-chart-area'></i> Analytics <span class='fw-300'>Dashboard</span>
+                                <i class='subheader-icon fal fa-chart-area'></i> Inicio <span class='fw-300'>Dashboard</span>
                                 <small>
                                 </small>
                             </h1>
-                            <div class="d-flex mr-4">
+                            <div class="d-flex mr-4 align-items-center">
                                 <div class="mr-2">
-                                    <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#967bbd&quot;, &quot;#ccbfdf&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">7/10</span>
+
+                                    <div id="tConActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                        <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                            <span style="font-size: 18px;" class="js-percent d-block text-dark">0</span>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div>
                                     <label class="fs-sm mb-0 mt-2 mt-md-0">Empresas con Actividad</label>
-                                    <h4 class="font-weight-bold mb-0">70.60%</h4>
+                                    <h4 class="font-weight-bold mb-0"><% activos %> - <% conActividad %>%</h4>
                                 </div>
+
                             </div>
-                            <div class="d-flex mr-0">
+                            <div class="d-flex mr-0 align-items-center">
+
                                 <div class="mr-2">
-                                    <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#2196F3&quot;, &quot;#9acffa&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">3/10</span>
+                                    <div id="tSinActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                        <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                            <span style="font-size: 18px;" class="js-percent d-block text-dark">0</span>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div>
                                     <label class="fs-sm mb-0 mt-2 mt-md-0">Empresas sin Actividad</label>
-                                    <h4 class="font-weight-bold mb-0">14,134</h4>
+                                    <h4 class="font-weight-bold mb-0"><% noActivos %> - <% sinActividad %>%</h4>
                                 </div>
+
                             </div>
+
                         </div>
                         <div class="row">
                             <div class="col-sm-6 col-xl-3">
                                 <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            100
+                                            <% totalEmpresas %>
                                             <small class="m-0 l-h-n">Total de Empresas</small>
                                         </h3>
                                     </div>
@@ -101,7 +116,7 @@
                                 <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            1250
+                                            <% totalTrabajadores %>
                                             <small class="m-0 l-h-n">Total de Trabajadores</small>
                                         </h3>
                                     </div>
@@ -112,8 +127,8 @@
                                 <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            25
-                                            <small class="m-0 l-h-n">Planes Próximos a Vencer</small>
+                                            <% proxVencer %>
+                                            <small class="m-0 l-h-n">Planes Prox. a Vencer</small>
                                         </h3>
                                     </div>
                                     <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
@@ -132,6 +147,7 @@
                             </div>
                         </div>
                         <div class="row">
+                            <!--
                             <div class="col-lg-12">
                                 <div id="panel-1" class="panel">
                                     <div class="panel-hdr">
@@ -160,6 +176,8 @@
                                     </div>
                                 </div>
                             </div>
+                            -->
+                            <!--
                             <div class="col-lg-6">
                                 <div id="panel-2" class="panel panel-locked" data-panel-sortable data-panel-collapsed data-panel-close>
                                     <div class="panel-hdr">
@@ -193,12 +211,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
+                            </div> -->
+                            <div class="col-lg-12">
                                 <div id="panel-3" class="panel panel-locked" data-panel-sortable data-panel-collapsed data-panel-close>
                                     <div class="panel-hdr">
                                         <h2>
-                                            Effective <span class="fw-300"><i>Marketing</i></span>
+                                            Estadísticas de <span class="fw-300"><i>Empresas</i></span>
                                         </h2>
                                     </div>
                                     <div class="panel-container show">
@@ -206,39 +224,66 @@
                                             <div class="pb-5 pt-3">
                                                 <div class="row">
                                                     <div class="col-6 col-xl-3 d-sm-flex align-items-center">
-                                                        <div class="p-2 mr-3 bg-info-200 rounded">
-                                                            <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">3,4,5,8,2</span>
+                                                        <div class="mr-2">
+
+                                                            <div id="vigentes" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                                                <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                                                    <span style="font-size: 18px;" class="js-percent d-block text-dark">0</span>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                         <div>
-                                                            <label class="fs-sm mb-0">Bounce Rate</label>
-                                                            <h4 class="font-weight-bold mb-0">37.56%</h4>
+                                                            <label class="fs-sm mb-0 mt-2 mt-md-0">Planes Vigentes</label>
+                                                            <h4 class="font-weight-bold mb-0"><% vigentes %> - <% vigentesPorcentaje %>%</h4>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6 col-xl-3 d-sm-flex align-items-center">
-                                                        <div class="p-2 mr-3 bg-info-300 rounded">
-                                                            <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">5,3,1,7,9</span>
+                                                    <div class="col-6 col-xl-3 d-sm-flex align-items-center">                         
+                                                            
+                                                        <div class="mr-2">
+
+                                                            <div id="noVigentes" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                                                <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                                                    <span style="font-size: 18px;" class="js-percent d-block text-dark">0</span>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                         <div>
-                                                            <label class="fs-sm mb-0">Sessions</label>
-                                                            <h4 class="font-weight-bold mb-0">759</h4>
+                                                            <label class="fs-sm mb-0 mt-2 mt-md-0">Planes Vencidos</label>
+                                                            <h4 class="font-weight-bold mb-0"><% noVigentes %> - <% noVigentesPorcentaje %>%</h4>
                                                         </div>
+
+                                                    </div>
+                                                    <div class="col-6 col-xl-3 d-sm-flex align-items-center">                         
+                                                        <div class="mr-2">
+
+                                                            <div id="tConActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                                                <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                                                    <span style="font-size: 18px;" class="js-percent d-block text-dark">0</span>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div>
+                                                            <label class="fs-sm mb-0 mt-2 mt-md-0">Total Entradas</label>
+                                                            <h4 class="font-weight-bold mb-0"><% activos %> - <% conActividad %>%</h4>
+                                                        </div>
+
                                                     </div>
                                                     <div class="col-6 col-xl-3 d-sm-flex align-items-center">
-                                                        <div class="p-2 mr-3 bg-success-300 rounded">
-                                                            <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">3,4,3,5,5</span>
+                                                        <div class="mr-2">
+
+                                                            <div id="tConActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                                                <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
+                                                                    <span style="font-size: 18px;" class="js-percent d-block text-dark">0</span>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                         <div>
-                                                            <label class="fs-sm mb-0">New Sessions</label>
-                                                            <h4 class="font-weight-bold mb-0">12.17%</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 col-xl-3 d-sm-flex align-items-center">
-                                                        <div class="p-2 mr-3 bg-success-500 rounded">
-                                                            <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">6,4,7,5,6</span>
-                                                        </div>
-                                                        <div>
-                                                            <label class="fs-sm mb-0">Clickthrough</label>
-                                                            <h4 class="font-weight-bold mb-0">19.77%</h4>
+                                                            <label class="fs-sm mb-0 mt-2 mt-md-0">Total Salidas</label>
+                                                            <h4 class="font-weight-bold mb-0"><% activos %> - <% conActividad %>%</h4>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1143,7 +1188,7 @@
                 flot_toggle();
                 /* flot toggle example -- end*/
 
-                /* flot area */
+                /* flot area
                 var flotArea = $.plot($('#flot-area'), [
                 {
                     data: dataSet1,
@@ -1219,7 +1264,7 @@
                         }
                     }
 
-                });
+                });*/
                 /* flot area -- end */
 
                 var flotVisit = $.plot('#flotVisit', [

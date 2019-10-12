@@ -370,6 +370,71 @@
     functions.loading();
 
     $(".profile-image").attr("src","img/conecta6_blanco.png");
+    
+    functions.getAllEmpresas().then(function (response) {
+
+      if(response.data.success == "TRUE"){
+        
+        console.log("[controllers][getAllEmpresas]");
+
+        console.log(response.data.data.length);
+
+        $scope.totalEmpresas = response.data.data.length;
+
+        console.log(response.data.data);
+
+        dataArray = functions.PlanesVencidosVigenciasCalc(response.data.data);
+
+        console.log(dataArray);
+
+        $scope.vigentes = dataArray["vigentes"];
+        $scope.noVigentes = dataArray["noVigentes"];
+        $scope.proxVencer = dataArray["proxVencer"];
+
+        $scope.totalPlanes = parseInt(dataArray["vigentes"]) + parseInt(dataArray["noVigentes"]) + parseInt(dataArray["proxVencer"]);
+ 
+        $scope.vigentesPorcentaje = (dataArray["vigentes"]*100)/$scope.totalPlanes;
+        $scope.noVigentesPorcentaje = (dataArray["noVigentes"]*100)/$scope.totalPlanes;
+        $scope.proxVencerPorcentaje = (dataArray["proxVencer"]*100)/$scope.totalPlanes;
+
+        $('#vigentes.js-easy-pie-chart').data('easyPieChart').update($scope.vigentesPorcentaje);
+        $('#noVigentes.js-easy-pie-chart').data('easyPieChart').update($scope.noVigentesPorcentaje);
+
+        functions.loadingEndWait();
+        
+      } else {
+
+        functions.loadingEndWait();
+      }
+    }, function (response) {
+      /*ERROR*/
+      toastr["error"]("Inténtelo de nuevo más tarde", "");
+      functions.loadingEndWait();
+
+    });/*fin getAllEmpresas*/
+    
+    functions.getTrabajadoresAll().then(function (response) {
+
+      if(response.data.success == "TRUE"){
+        
+        console.log("[controllers][getTrabajadoresAll]");
+
+        console.log(response.data.data.length);
+
+        $scope.totalTrabajadores = response.data.data.length;
+
+        functions.loadingEndWait();
+        
+      } else {
+
+        functions.loadingEndWait();
+      }
+    }, function (response) {
+      /*ERROR*/
+      toastr["error"]("Inténtelo de nuevo más tarde", "");
+      functions.loadingEndWait();
+
+    });/*fin getTrabajadoresAll*/
 
   });//fin controller inicioAdmin
 

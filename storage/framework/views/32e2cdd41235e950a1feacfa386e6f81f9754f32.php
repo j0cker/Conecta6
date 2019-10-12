@@ -38,6 +38,7 @@
         15) total de trabajadores
         
         Para recuperar contraseñas el sistema está capacitado para mandar correos electrónicos.
+        Empresas desactivadas/deshabilitadas no podrán accesar
         
         
         /**Landing Page**/

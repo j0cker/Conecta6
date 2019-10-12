@@ -152,6 +152,43 @@
         }
 
       },
+      PlanesVencidosVigenciasCalc: function(data) {
+        console.log("[factory.js][PlanesVencidosVigenciasCalc]");
+
+        console.log(data);  
+        
+        var dataArray = Array();
+        dataArray["vigentes"] = 0;
+        dataArray["noVigentes"] = 0;
+        dataArray["proxVencer"] = 0;
+
+        for (var x = 0; x < data.length; x++) {
+
+          var today = replaceAll(generarFechaHoy2(), "/", "-");
+          var fecha = replaceAll(data[x].vigencia, "/", "-");
+
+          console.log("[factory.js][PlanesVencidosVigenciasCalc] " + generarFechaHoy2() + " restar " + data[x].vigencia);
+
+          console.log(restaFechas2(today, fecha));
+
+          if(restaFechas2(today, fecha)>30){
+
+            dataArray["vigentes"] = parseInt(dataArray["vigentes"]) + 1;
+
+          } else if(restaFechas2(today, fecha)>0) {
+
+            dataArray["proxVencer"] = parseInt(dataArray["proxVencer"]) + 1;
+
+          } else {
+
+            dataArray["noVigentes"] = parseInt(dataArray["noVigentes"]) + 1;
+          }
+
+        }
+        
+        return dataArray;
+
+      },
       fechasRestarArray: function(data) {
         console.log("[factory.js][fechasRestarArray]");
 
@@ -4118,6 +4155,17 @@
         var url = '/api/pAdmin/empresas/modificar/activo';
 
         return $http.post(url, {cache: false, id_empresas:id_empresas, active:active });
+
+      },
+      getTrabajadoresAll: function(id_empresas) {
+
+        console.log("[factory][getTrabajadoresAll]");
+
+        var url = '/api/trabajadores/obtenerAll';
+		  	return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
 
       },
       getTrabajadoresByIdEmpresa: function(id_empresas) {

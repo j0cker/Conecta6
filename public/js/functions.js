@@ -464,7 +464,21 @@ function restaFechas4(f1,f2){
 }
 function generarFechaHoy(){
 
-  //genera la fecha hoy
+  //genera la fecha hoy con formato mm/dd/YYYY
+
+  var today = new Date();
+        
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+
+  return today;
+}
+function generarFechaHoy2(){
+
+  //genera la fecha hoy con formato dd/mm/YYYY
 
   var today = new Date();
         

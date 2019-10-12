@@ -45,6 +45,9 @@ Route::get('/trabajadores/obtener/id_trabajadadores', 'APITrabajadores@GetTrabaj
 //Get Trabajadores by id empresas
 Route::get('/trabajadores/obtener', 'APITrabajadores@GetTrabajadores');
 
+//Get All Trabajadores
+Route::get('/trabajadores/obtenerAll', 'APITrabajadores@GetAllTrabajadores');
+
 //post registro entrada
 Route::post('/trabajadores/registros/entradas', 'APITrabajadores@PostEntradas');
 
@@ -76,7 +79,7 @@ Route::post('/trabajadores/recuperarPass', 'APITrabajadores@RecuperarPass');
 //Ingresar Empresas
 Route::get('/empresas/ingresar', 'APIEmpresas@Ingresar');
 
-//get empresa
+//get empresa by id empresas
 Route::get('/empresas/obtener', 'APIEmpresas@GetEmpresa');
 
 //get all empresas
