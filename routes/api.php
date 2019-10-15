@@ -54,11 +54,11 @@ Route::post('/trabajadores/registros/entradas', 'APITrabajadores@PostEntradas');
 //post registro salidas
 Route::post('/trabajadores/registros/salidas', 'APITrabajadores@PostSalidas');
 
+//Get Historial Todas las Entradas y Salidas sin filtros
+Route::get('/trabajadores/historial/getAll', 'APITrabajadores@GetAllHistorialEYS');
+
 //Get Historial Entradas by id_trabajadores fecha ini y fecha fin
 Route::get('/trabajadores/historial/todas', 'APITrabajadores@GetAllHistorial');
-
-//Get Historial Entradas by id_empresas fecha ini y fecha fin
-Route::get('/trabajadores/historial/todasByIdEmpresas', 'APITrabajadores@GetAllHistorialByIdEmpresas');
 
 //Get Historial Entradas by id_empresas fecha ini y fecha fin
 Route::get('/trabajadores/historial/todasByIdEmpresas', 'APITrabajadores@GetAllHistorialByIdEmpresas');
@@ -190,4 +190,10 @@ Route::post('/pAdmin/empresas/eliminar', 'APIAdmin@deleteEmpresas');
 
 //Recuperar Contraseñas de administradores
 Route::post('/pAdmin/recuperarPass', 'APIAdmin@RecuperarPass');
+
+//Actualizar Zonas Horaria de Administrador
+Route::post('/pAdmin/zonasHorarias', 'APIAdmin@ZonasHorarias');
+
+//Get Zona Horaria de Administrador
+Route::get('/pAdmin/zonasHorarias', 'APIAdmin@GetZonasHorarias');
 

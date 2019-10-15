@@ -85,7 +85,7 @@ class Empresas extends Model
       return $query->where([['id_empresas', '=', $id_empresas],
                            ])->update(['id_zona_horaria' => $id_zona_horaria]); //return true in the other one return 1
 
-  }
+    }
 
     public function scopeDelByIdEmpresas($query, $id_empresas){
 

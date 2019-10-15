@@ -105,6 +105,26 @@
         }
         return arrayDivididoOrdered;
       },
+      dividirArrayPorCampoDinamico: function(entradasySalidas, campo){
+
+        console.log("[factory][dividirArrayPorCampoDinamico]");
+
+        var arrayDividido = Array();
+
+        for(var i=0; i<entradasySalidas.length; i++){
+          if(arrayDividido[""+entradasySalidas[i][campo]] == undefined){
+            arrayDividido[""+entradasySalidas[i][campo]] = Array();
+          }
+          
+          if(arrayDividido[""+entradasySalidas[i][campo]].length<1){
+            arrayDividido[""+entradasySalidas[i][campo]].push(entradasySalidas[i]);
+          }
+          
+        }
+
+        return arrayDividido;
+
+      },
       dividirArrayPorIdTrabajadores: function(entradasySalidas){
 
         var arrayDividido = Array();
@@ -4013,6 +4033,18 @@
         });
 
       },
+      getAllHistorialEntradas: function() {
+
+        console.log("[factory][getAllHistorialEntradas]");
+
+        var url = '/api/trabajadores/historial/getAll';
+
+        return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
+
+      },
       getHistorialEntradasByIdEmpresas: function(id_empresas, start, end) {
 
         console.log("[factory][getHistorialEntradasByIdEmpresas]");
@@ -4112,11 +4144,30 @@
         });
 
       },
+      getZonaHorariaAdministrador: function() {
+
+        console.log("[factory][getZonaHorariaAdministrador]");
+
+        var url = '/api/pAdmin/zonasHorarias';
+        return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
+
+      },
       postZonasHorarias: function(id_zona_horaria) {
 
         console.log("[factory][postZonasHorarias]");
 
         var url = '/api/empresas/zonasHorarias';
+        return $http.post(url, {cache: false, id_zona_horaria:id_zona_horaria});
+
+      },
+      postZonasHorariasAdministradores: function(id_zona_horaria) {
+
+        console.log("[factory][postZonasHorariasAdministradores]");
+
+        var url = '/api/pAdmin/zonasHorarias';
         return $http.post(url, {cache: false, id_zona_horaria:id_zona_horaria});
 
       },

@@ -1401,7 +1401,6 @@ class APIEmpresas extends Controller
     }
 
   }
-
   
   public function ZonasHorarias(Request $request){
     

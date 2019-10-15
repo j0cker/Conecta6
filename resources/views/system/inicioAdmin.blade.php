@@ -258,7 +258,7 @@
                                                     <div class="col-6 col-xl-3 d-sm-flex align-items-center">                         
                                                         <div class="mr-2">
 
-                                                            <div id="tConActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                                            <div id="totalEntradas" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
                                                                 <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
                                                                     <span style="font-size: 18px;" class="js-percent d-block text-dark">0</span>
                                                                 </div>
@@ -267,14 +267,14 @@
                                                         </div>
                                                         <div>
                                                             <label class="fs-sm mb-0 mt-2 mt-md-0">Total Entradas</label>
-                                                            <h4 class="font-weight-bold mb-0"><% activos %> - <% conActividad %>%</h4>
+                                                            <h4 class="font-weight-bold mb-0"><% entradas %> - <% entradasPorcentaje %>%</h4>
                                                         </div>
 
                                                     </div>
                                                     <div class="col-6 col-xl-3 d-sm-flex align-items-center">
                                                         <div class="mr-2">
 
-                                                            <div id="tConActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                                            <div id="totalSalidas" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
                                                                 <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
                                                                     <span style="font-size: 18px;" class="js-percent d-block text-dark">0</span>
                                                                 </div>
@@ -283,7 +283,7 @@
                                                         </div>
                                                         <div>
                                                             <label class="fs-sm mb-0 mt-2 mt-md-0">Total Salidas</label>
-                                                            <h4 class="font-weight-bold mb-0"><% activos %> - <% conActividad %>%</h4>
+                                                            <h4 class="font-weight-bold mb-0"><% salidas %> - <% salidasPorcentaje %>%</h4>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1268,7 +1268,8 @@
                 /* flot area -- end */
 
                 var flotVisit = $.plot('#flotVisit', [
-                {
+                /*
+                {   
                     data: [
                         [3, 0],
                         [4, 1],
@@ -1283,7 +1284,7 @@
                         [13, 5]
                     ],
                     color: myapp_get_color.success_200
-                },
+                },*/
                 {
                     data: [
                         [1, 0],

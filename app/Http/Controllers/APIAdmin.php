@@ -190,6 +190,210 @@ class APIAdmin extends Controller
   
     }
 
+
+
+    public function GetZonasHorarias(Request $request)
+    {
+      Log::info('[APIAdmin][GetZonasHorarias]');
+
+      Log::info("[APIAdmin][GetZonasHorarias] Método Recibido: ". $request->getMethod());
+
+      if($request->isMethod('GET')) {
+
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+
+        Log::info("[APIAdmin][GetZonasHorarias] Token: ". $token);
+
+
+        try {
+
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+          if(in_array(1, $token_decrypt["permisos"])){
+
+            Log::info("[APIAdmin][GetZonasHorarias] Permiso Existente");
+
+            //print_r($token_decrypt["id"]);
+
+            //print_r($token_decrypt);
+
+            $Empresas = Empresas::getTimeZone($token_decrypt['usr']->id_administradores)->get();
+
+
+            if(count($Empresas)>0){
+
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Empresas));
+              $responseJSON->data = $Empresas;
+              return json_encode($responseJSON);
+
+            } else {
+
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Empresas));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+
+            }
+
+          }
+
+          return redirect('/');
+
+
+
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+          //token_expired
+      
+          Log::info('[APIAdmin][GetZonasHorarias] Token error: token_expired');
+
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+          //token_invalid
+      
+          Log::info('[APIAdmin][GetZonasHorarias] Token error: token_invalid');
+
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+          //token_absent
+      
+          Log::info('[APIAdmin][GetZonasHorarias] Token error: token_absent');
+
+          return redirect('/');
+    
+        } catch(Exception $e) {
+
+          //Errores
+      
+          Log::info('[APIAdmin][GetZonasHorarias] ' . $e);
+
+          return redirect('/');
+
+        }
+
+      } else {
+        abort(404);
+      }
+
+    }
+      
+    public function ZonasHorarias(Request $request){
+      
+      Log::info('[APIAdmin][ZonasHorarias]');
+
+      Log::info("[APIAdmin][ZonasHorarias] Método Recibido: ". $request->getMethod());
+
+      if($request->isMethod('POST')) {
+
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+
+        Log::info("[APIAdmin][ZonasHorarias] Token: ". $token);
+
+
+        try {
+
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+          //print_r($token_decrypt["id"]);
+
+          //print_r($token_decrypt);
+
+          if(in_array(1, $token_decrypt["permisos"])){
+
+            Log::info("[APIAdmin][ZonasHorarias] Permiso Existente");
+            
+            $this->validate($request, [
+              'id_zona_horaria' => 'required'
+            ]);
+              
+            $id_zona_horaria = $request->input('id_zona_horaria');
+            
+            Log::info("[APIAdmin][ZonasHorarias] id_zona_horaria: " . $id_zona_horaria);
+
+            $Administradores = Admin::modZonaHoraria($token_decrypt['usr']->id_administradores, $id_zona_horaria);
+          
+            Log::info($Administradores);
+            
+            if($Administradores==1){
+
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Administradores));
+              $responseJSON->data = $Administradores;
+              return json_encode($responseJSON);
+
+            } else {
+
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Administradores));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+
+            }
+            
+          }
+
+          return redirect('/');
+
+
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+          //token_expired
+      
+          Log::info('[APIAdmin][ZonasHorarias] Token error: token_expired');
+
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+          //token_invalid
+      
+          Log::info('[APIAdmin][ZonasHorarias] Token error: token_invalid');
+
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+          //token_absent
+      
+          Log::info('[APIAdmin][ZonasHorarias] Token error: token_absent');
+
+          return redirect('/');
+    
+        } catch(Exception $e) {
+
+          //Errores
+      
+          Log::info('[APIAdmin][ZonasHorarias] ' . $e);
+
+          return redirect('/');
+
+        }
+
+
+
+      } else {
+        abort(404);
+      }
+
+    }
+
     public function Perfil(Request $request){
       
       Log::info('[APIAdmin][Perfil]');

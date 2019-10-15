@@ -335,6 +335,44 @@
 
                                                         </div>
 
+                                                        <div style="margin-top: 50px;" class="row">
+
+                                                            <div class="col-md-3"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="text-center col-md-6">
+                                                                
+                                                                    Configuración de la Zona Horaria:
+
+                                                                </div>
+
+                                                            <div class="col-md-3"></div>
+
+                                                        </div>
+
+                                                        <div style="margin-top: 25px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="" class="col-md-4">
+                                                                
+                                                                    <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
+                                                                        <div class="panel-content text-center">
+                                                                            
+                                                                            <select class="select2 form-control w-100" id="single-default">
+                                                                                <option value="default">Selecciona una Zona Horaria</option>
+                                                                                <option ng-repeat="(key, zonaHoraria) in zonasHorarias" value="<% zonaHoraria.id_zonas_horarias %>"><% zonaHoraria.nombre %> (<% zonaHoraria.utc %>) </option>
+                                                                            </select>
+
+                                                                        </div>
+                                                                        
+                                                                    </div>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
                                                         <div class="row">
 
                                                             <div class="col-md-4"></div>
@@ -969,6 +1007,7 @@
         
         <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
         <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/selects.js?v='.cache("js_version_number").'')); ?>"></script>
         
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
      
@@ -979,6 +1018,10 @@
                 <?php if(in_array("1", $user["permisos"])): ?>
                     $("#mytheme").attr("href","css/themes/cust-theme-6.css");
                 <?php endif; ?>
+
+
+                //selects
+                $('.select2').select2();
 
             });
         </script>
@@ -1038,6 +1081,19 @@
                 })
 
                 getAdministradoresClick("<?php echo e($user['usr']->id_administradores); ?>");
+
+                $(document).on('change', '#single-default', function () {
+                    
+                    console.log("[Zonas Horarias]");
+
+                    console.log($("#single-default").val());
+
+                    angular.element('body').scope().postZonaHorariaClick(""+$("#single-default").val()+"");
+
+                });
+
+                
+                getZonasHorariasClick("<?php echo e($user['usr']->id_zona_horaria); ?>");
 
             });
         </script>

@@ -399,6 +399,63 @@
 
         $('#vigentes.js-easy-pie-chart').data('easyPieChart').update($scope.vigentesPorcentaje);
         $('#noVigentes.js-easy-pie-chart').data('easyPieChart').update($scope.noVigentesPorcentaje);
+            
+
+        functions.getAllHistorialEntradas().then(function (response) {
+
+          if(response.data.success == "TRUE"){
+            
+            console.log("[controllers][getAllHistorialEntradas]");
+
+            console.log(response.data);
+
+            $scope.entradas = response.data.entradas.length;
+            $scope.salidas = response.data.salidas.length;
+            $scope.entradasTotales = response.data.combinadas.length;
+            $scope.entradasPorcentaje = Math.round((($scope.entradas*100) / $scope.entradasTotales));
+            $scope.salidasPorcentaje = Math.round((($scope.salidas*100) /$scope.entradasTotales));
+            $scope.combinadas = response.data.combinadas.length;
+            
+            $('#totalEntradas.js-easy-pie-chart').data('easyPieChart').update($scope.entradas);
+            $('#totalSalidas.js-easy-pie-chart').data('easyPieChart').update($scope.salidas);
+
+            functions.getZonaHorariaAdministrador().then(function (response) {
+
+                  if(response.data.success == "TRUE"){
+                    console.log("[controllers][getZonaHorariaAdministrador]");
+
+                    console.log(response.data.data);
+
+                    var historialCampoDinamico = functions.dividirArrayPorCampoDinamico($scope.combinadas, "id_empresas");
+                    
+                    var empresasActividad = functions.empresasActividad(historialCampoDinamico, $scope.totalEmpresas);
+        
+                    console.log(historialCampoDinamico);
+
+                  } else {
+                      toastr["warning"](response.data.description, "");
+                      functions.loadingEndWait();
+                  }
+              }, function (response) {
+                /*ERROR*/
+                toastr["error"]("Inténtelo de nuevo más tarde", "");
+                functions.loadingEndWait();
+
+              });/*fin getImageEmpresa*/
+
+            functions.loadingEndWait();
+            
+          } else {
+
+            functions.loadingEndWait();
+
+          }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getAllHistorialEntradas*/
 
         functions.loadingEndWait();
         
@@ -483,7 +540,6 @@
     };/*fin getSalidasClick*/
 
     getSalidas = $scope.getSalidasClick;
-
     
     $scope.getZonaHorariaFrontClick = function(id_empresas){
 
@@ -922,6 +978,75 @@
     functions.loading();
 
     $(".profile-image").attr("src","img/conecta6_blanco.png");
+    
+    $scope.postZonaHorariaClick  = function(id_zona_horaria){
+
+      console.log("[postZonasHorariasClick] ");
+
+      functions.postZonasHorariasAdministradores(id_zona_horaria).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[configuraciones][postZonasHorarias]");
+
+              console.log(response.data.data);
+
+              toastr["success"]("Información Actualizada Correctamente", "");
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin postZonasHorarias*/
+
+    }; //fin postZonasHorariasClick
+    
+    $scope.getZonasHorariasClick = function(id_zona_horaria){
+
+      console.log("[getZonasHorariasClick] ");
+
+      functions.getAllZonasHorarias().then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[configuraciones][getZonasHorariasClick]");
+
+              console.log(response.data.data);
+
+              $scope.zonasHorarias = response.data.data;
+
+              $scope.$watch('zonasHorarias', function() {
+                //cuando cargue en front las plantillas
+
+                console.log("Cargar zonasHorarias Seleccionada");
+                
+                for(var i=0; i<$scope.zonasHorarias.length; i++){
+                  if($scope.zonasHorarias[i].id_zonas_horarias==id_zona_horaria){
+                    console.log("encontramos");
+                    document.getElementById("single-default").selectedIndex = i+1;
+                    
+                  }
+                }
+
+              });//fin watch
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getAllZonasHorarias*/
+
+    }; //fin getZonasHorariasClick
+
+    getZonasHorariasClick = $scope.getZonasHorariasClick;
     
     $scope.getAdministradoresClick = function(id_administradores){
 

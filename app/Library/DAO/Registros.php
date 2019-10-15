@@ -22,14 +22,50 @@ class Registros extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
-    
+    //obtener todos los registros (entradas y salidas)
+    public function scopeGetAllHistorialEYS($query)
+    {
+
+        Log::info("[Registros][GetAllHistorialEYS]");
+        
+        return $query->select('trabajadores.*', 'registros.*')
+        ->leftJoin('trabajadores', 'trabajadores.id_trabajadores', '=', 'registros.id_trabajadores')
+        ->where([
+        ])->orderBy('fecha', 'desc');
+
+    }
+
+    //obten todas las entradas
+    public function scopeGetAllHistorialEntradas($query)
+    {
+
+        Log::info("[Registros][scopeGetAllEntradas]");
+        
+        return $query->where([
+            ['tipo', '=', 'entrada'],
+        ])->orderBy('id_registros', 'desc');
+
+    }
+
+    //obten todas las salidas
+    public function scopeGetAllHistorialSalidas($query)
+    {
+
+        Log::info("[Registros][scopeGetAllHistorialSalidas]");
+        
+        
+        return $query->where([
+            ['tipo', '=', 'salida'],
+        ])->orderBy('id_registros', 'desc');
+
+    }
 
     //obten todas las entradas por id trabajadores
     public function scopeGetAllEntradas($query, $id_trabajadores)
     {
 
-        Log::info("[Entradas][scopeGetAllEntradas]");
-        Log::info("[Entradas][scopeGetAllEntradas] id_trabajadores: " . $id_trabajadores);
+        Log::info("[Registros][scopeGetAllEntradas]");
+        Log::info("[Registros][scopeGetAllEntradas] id_trabajadores: " . $id_trabajadores);
         
         
         return $query->where([
@@ -43,7 +79,7 @@ class Registros extends Model
     public function scopeGetAllSalidas($query, $id_trabajadores)
     {
 
-        Log::info("[Entradas][scopeGetAllSalidas]");
+        Log::info("[Registros][scopeGetAllSalidas]");
         
         return $query->where([
             ['id_trabajadores', '=', $id_trabajadores],
@@ -56,8 +92,8 @@ class Registros extends Model
     public function scopeGetAllEntradasByEmpresas($query, $id_empresas)
     {
 
-        Log::info("[Entradas][scopeGetAllEntradasByEmpresas]");
-        Log::info("[Entradas][scopeGetAllEntradasByEmpresas] id_empresas: " . $id_empresas);
+        Log::info("[Registros][scopeGetAllEntradasByEmpresas]");
+        Log::info("[Registros][scopeGetAllEntradasByEmpresas] id_empresas: " . $id_empresas);
         
         
 
@@ -73,7 +109,7 @@ class Registros extends Model
     public function scopeGetAllSalidasByEmpresas($query, $id_empresas)
     {
 
-        Log::info("[Entradas][scopeGetAllSalidasByEmpresas]");
+        Log::info("[Registros][scopeGetAllSalidasByEmpresas]");
         
         return $query->leftJoin('trabajadores', 'trabajadores.id_trabajadores', '=', 'registros.id_trabajadores')
         ->where([
@@ -86,8 +122,8 @@ class Registros extends Model
     //obtener último registro del día
     public function scopeGetLastRegistro($query, $id_trabajadores, $date){
         
-        Log::info("[Entradas][scopeGetLastRegistro]");
-        Log::info("[Entradas][scopeGetLastRegistro] date: " . substr($date, 0, 10));
+        Log::info("[Registros][scopeGetLastRegistro]");
+        Log::info("[Registros][scopeGetLastRegistro] date: " . substr($date, 0, 10));
         
         return $query->where([
             ['id_trabajadores', '=', $id_trabajadores],
@@ -101,13 +137,11 @@ class Registros extends Model
     public function ScopeGetAllHistorialByIdEmpresas($query, $id_empresas, $start, $end)
     {
 
-        Log::info("[Entradas][ScopeGetAllHistorialByIdEmpresas]");
+        Log::info("[Registros][ScopeGetAllHistorialByIdEmpresas]");
 
-        Log::info("[Entradas][ScopeGetAllHistorialByIdEmpresas] inicio: ". $start);
+        Log::info("[Registros][ScopeGetAllHistorialByIdEmpresas] inicio: ". $start);
 
-        Log::info("[Entradas][ScopeGetAllHistorialByIdEmpresas] fin: " . $end);
-
-        
+        Log::info("[Registros][ScopeGetAllHistorialByIdEmpresas] fin: " . $end);
         
         return $query->select('salidas.nombre as nombreSalida', 'salidas.*', 'trabajadores.*', 'registros.*')
         ->leftJoin('salidas', 'salidas.id_salidas', '=', 'registros.id_salidas')

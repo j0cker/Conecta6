@@ -466,6 +466,96 @@ class APITrabajadores extends Controller
 
   }
 
+  public function GetAllHistorialEYS(Request $request){
+    
+    Log::info('[APITrabajadores][GetAllHistorialEYS]');
+
+    Log::info("[APITrabajadores][GetAllHistorialEYS] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+
+      $token = $request->input('token');
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        //print_r($token_decrypt["id"]);
+
+        //print_r($token_decrypt);
+
+        if(in_array("1", $token_decrypt["permisos"])==1){
+          
+          //print_r($token_decrypt["id"]);
+
+          //print_r($token_decrypt);
+
+          $Registros = Registros::GetAllHistorialEYS()->get();
+          $Entradas = Registros::getAllHistorialEntradas()->get();
+          $Salidas = Registros::GetAllHistorialSalidas()->get();
+          
+          if(count($Registros)>0){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Registros));
+            $responseJSON->entradas = $Entradas;
+            $responseJSON->salidas = $Salidas;
+            $responseJSON->combinadas = $Registros;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Registros));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        } else {
+          
+          return redirect('/');
+          
+        }
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APITrabajadores][GetAllHistorialEYS] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APITrabajadores][GetAllHistorialEYS] Token error: token_invalid');
+
+        return redirect('/');
+                                    
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APITrabajadores][GetAllHistorialEYS] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+    } else {
+      abort(404);
+    }
+
+  }
+
   public function GetAllTrabajadores(Request $request){
     
     Log::info('[APITrabajadores][GetAllTrabajadores]');

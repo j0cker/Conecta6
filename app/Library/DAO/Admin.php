@@ -37,18 +37,28 @@ class Admin extends Model
     //delete admin
     public function scopeDeleteAdmin($query, $id_administradores){
 
-      Log::info("[Empresas][scopeDeleteAdmin]");
+      Log::info("[Admin][scopeDeleteAdmin]");
 
       return $query->where([
           ['id_administradores', '=', $id_administradores],
         ])->delete(); //return true in the other one return 1
 
     }
+
+    //modificar zona horaria en el perfil de la empresa
+    public function scopeModZonaHoraria($query, $id_administradores, $id_zona_horaria){
+
+      Log::info("[Admin][scopeModZonaHoraria]");
+
+      return $query->where([['id_administradores', '=', $id_administradores],
+                           ])->update(['id_zona_horaria' => $id_zona_horaria]); //return true in the other one return 1
+
+    }
   
     //Modificar Perfile
     public function scopeModAdmin($query, $id_administradores, $nombre, $apellido, $correoElectronico, $telefonoFijo, $celular){
 
-      Log::info("[Trabajadores][scopeModAdmin]");
+      Log::info("[Admin][scopeModAdmin]");
 
       return $query->where([['id_administradores', '=', $id_administradores],
                            ])->update(['nombre' => $nombre,
@@ -86,7 +96,7 @@ class Admin extends Model
     //Modificar Perfile
     public function scopeUpdateProfile($query, $id_administradores, $correo, $telefono_fijo, $celular){
 
-      Log::info("[Trabajadores][scopeUpdateProfile]");
+      Log::info("[Admin][scopeUpdateProfile]");
 
       return $query->where([['id_administradores', '=', $id_administradores],
                            ])->update(['correo' => $correo,
