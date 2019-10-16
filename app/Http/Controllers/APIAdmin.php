@@ -225,18 +225,18 @@ class APIAdmin extends Controller
 
             //print_r($token_decrypt);
 
-            $Empresas = Empresas::getTimeZone($token_decrypt['usr']->id_administradores)->get();
+            $Admin = Admin::getTimeZone($token_decrypt['usr']->id_administradores)->get();
 
 
-            if(count($Empresas)>0){
+            if(count($Admin)>0){
 
-              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Empresas));
-              $responseJSON->data = $Empresas;
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Admin));
+              $responseJSON->data = $Admin;
               return json_encode($responseJSON);
 
             } else {
 
-              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Empresas));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Admin));
               $responseJSON->data = [];
               return json_encode($responseJSON);
 

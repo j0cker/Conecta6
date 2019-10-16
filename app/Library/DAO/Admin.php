@@ -69,6 +69,18 @@ class Admin extends Model
 
     }
 
+    //get timezone
+    public function scopeGetTimeZone($query, $id_administradores){
+
+      Log::info("[Empresas][scopeGetTimeZone] id_administradores: ". $id_administradores);
+
+      return $query->join('zonas_horarias', 'administradores.id_zona_horaria', '=', 'zonas_horarias.id_zonas_horarias')
+                    ->select('zonas_horarias.utc','zonas_horarias.id_zonas_horarias','zonas_horarias.nombre')
+                    ->where('administradores.id_administradores', '=' , $id_administradores);
+
+
+    }
+
     //alta admin
     public function scopeAltaAdmin($query, $nombre, $apellido, $correoElectronico, $telefonoFijo, $celular, $contrasena){
 

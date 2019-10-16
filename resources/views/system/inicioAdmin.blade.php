@@ -1387,6 +1387,7 @@
         <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
 
         <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="{{ url('js/moment.js?v='.cache("js_version_number").'') }}"></script>
 
         
         
@@ -1397,6 +1398,8 @@
                 $('#js-page-content').smartPanel(); 
             });
         </script>
+
+        <script src="https://momentjs.com/downloads/moment-timezone-with-data-1970-2030.js"></script>
 
 
     @stop

@@ -426,9 +426,13 @@
 
                     console.log(response.data.data);
 
+                    var fecha = new Date( moment().tz(response.data.data[0].nombre).format('YYYY-MM-DD HH:mm:ss'));
+
+                    console.log(fecha);
+
                     var historialCampoDinamico = functions.dividirArrayPorCampoDinamico($scope.combinadas, "id_empresas");
                     
-                    var empresasActividad = functions.empresasActividad(historialCampoDinamico, $scope.totalEmpresas);
+                    var empresasActividad = functions.empresasActividad(historialCampoDinamico, $scope.totalEmpresas, fecha);
         
                     console.log(historialCampoDinamico);
 

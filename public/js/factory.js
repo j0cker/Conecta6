@@ -172,6 +172,43 @@
         }
 
       },
+      empresasActividad: function(historialCampoDinamico, totalEmpresas, fecha){
+
+        var empresas = Array();
+        empresas["empresasConActividad"] = 0;
+        empresas["empresasSinActividad"] = 0;
+
+        var hora = fecha.getHours(),
+        minutos = fecha.getMinutes(),
+        segundos = fecha.getSeconds(),
+        diaSemana = fecha.getDay(),
+        dia = fecha.getDate(),
+        mes = fecha.getMonth(),
+        anio = fecha.getFullYear(),
+        ampm;
+
+        var $pHoras = $("#horas"),
+            $pSegundos = $("#segundos"),
+            $pMinutos = $("#minutos"),
+            $pAMPM = $("#ampm"),
+            $pDiaSemana = $("#diaSemana"),
+            $pDia = $("#dia"),
+            $pMes = $("#mes"),
+            $pAnio = $("#anio");
+        var semana = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
+        var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+        $pDiaSemana.text(semana[diaSemana]);
+        $pDia.text(dia);
+        $pMes.text(meses[mes]);
+        $pAnio.text(anio);
+
+        
+        
+        empresas["empresasConActividadPorcentaje"] = (empresas["empresasConActividad"]*100)/totalEmpresas;
+        empresas["empresasSinActividadPorcentaje"] = (empresas["empresasSinActividadPorcentaje"]*100)/totalEmpresas;
+
+      },
       PlanesVencidosVigenciasCalc: function(data) {
         console.log("[factory.js][PlanesVencidosVigenciasCalc]");
 
