@@ -109,6 +109,10 @@
 
         console.log("[factory][dividirArrayPorCampoDinamico]");
 
+        console.log("Entrada:");
+
+        console.log(entradasySalidas);
+
         var arrayDividido = Array();
 
         for(var i=0; i<entradasySalidas.length; i++){
@@ -174,6 +178,8 @@
       },
       empresasActividad: function(historialCampoDinamico, totalEmpresas, fecha){
 
+        console.log("[factory][empresasActividad]");
+
         var empresas = Array();
         empresas["empresasConActividad"] = 0;
         empresas["empresasSinActividad"] = 0;
@@ -187,26 +193,61 @@
         anio = fecha.getFullYear(),
         ampm;
 
-        var $pHoras = $("#horas"),
-            $pSegundos = $("#segundos"),
-            $pMinutos = $("#minutos"),
-            $pAMPM = $("#ampm"),
-            $pDiaSemana = $("#diaSemana"),
-            $pDia = $("#dia"),
-            $pMes = $("#mes"),
-            $pAnio = $("#anio");
-        var semana = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
-        var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+        var inactivos = 0;
+        var activos = 0;
 
-        $pDiaSemana.text(semana[diaSemana]);
-        $pDia.text(dia);
-        $pMes.text(meses[mes]);
-        $pAnio.text(anio);
+        for (var key in historialCampoDinamico){
 
-        
-        
+          if(historialCampoDinamico[""+key+""] != undefined){
+            console.log("Key: " + key + " Fecha: " + historialCampoDinamico[""+key+""][0].fecha);
+
+            var fecha2 = historialCampoDinamico[""+key+""][0].fecha;
+
+            fecha2 = new Date(moment(fecha2).format('YYYY-MM-DD HH:mm:ss'));
+
+            var ahora = fecha2.getHours(),
+                aminutos = fecha2.getMinutes(),
+                asegundos = fecha2.getSeconds(),
+                adiaSemana = fecha2.getDay(),
+                adia = fecha2.getDate(),
+                ames = fecha2.getMonth(),
+                aanio = fecha2.getFullYear(),
+                aampm;
+
+              
+            var fechaRestarHoy = anio + "-" + mes + "-" + dia; 
+            var fechaRestarRegistro = aanio + "-" + ames + "-" + adia; 
+
+            console.log(fechaRestarHoy);
+            console.log(fechaRestarRegistro);
+
+            //fechaRestarRegistro = "2019-9-10"
+
+            console.log("Fechas resta en días:" + (restaFechas3(fechaRestarHoy, fechaRestarRegistro)+1));
+
+            if(restaFechas3(fechaRestarHoy, fechaRestarRegistro)+1<-6){
+              inactivos++;
+            } else {
+              activos++;
+            }
+
+          }
+
+        }
+
+        if((inactivos+activos)!=totalEmpresas){
+          inactivos = Math.abs(inactivos + (activos-totalEmpresas));
+        }
+
+        console.log("Inactivos: " + inactivos + " Activos: " + activos);
+
+        empresas["empresasConActividad"] = activos;
+        empresas["empresasSinActividad"] = inactivos;
+
         empresas["empresasConActividadPorcentaje"] = (empresas["empresasConActividad"]*100)/totalEmpresas;
-        empresas["empresasSinActividadPorcentaje"] = (empresas["empresasSinActividadPorcentaje"]*100)/totalEmpresas;
+        empresas["empresasSinActividadPorcentaje"] = (empresas["empresasSinActividad"]*100)/totalEmpresas;
+
+        return empresas;
 
       },
       PlanesVencidosVigenciasCalc: function(data) {

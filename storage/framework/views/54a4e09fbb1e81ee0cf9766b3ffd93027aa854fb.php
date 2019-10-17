@@ -64,7 +64,7 @@
                             <div class="d-flex mr-4 align-items-center">
                                 <div class="mr-2">
 
-                                    <div id="tConActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                    <div id="empresasConActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
                                         <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
                                             <span style="font-size: 18px;" class="js-percent d-block text-dark">0</span>
                                         </div>
@@ -73,14 +73,14 @@
                                 </div>
                                 <div>
                                     <label class="fs-sm mb-0 mt-2 mt-md-0">Empresas con Actividad</label>
-                                    <h4 class="font-weight-bold mb-0"><% activos %> - <% conActividad %>%</h4>
+                                    <h4 class="font-weight-bold mb-0"><% activos %> - <% activosPorcentaje %>%</h4>
                                 </div>
 
                             </div>
                             <div class="d-flex mr-0 align-items-center">
 
                                 <div class="mr-2">
-                                    <div id="tSinActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
+                                    <div id="empresasSinActividad" class="js-easy-pie-chart color-primary-900 position-relative d-flex align-items-center justify-content-center" data-percent="0" data-piesize="75" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="8">
                                         <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-lg">
                                             <span style="font-size: 18px;" class="js-percent d-block text-dark">0</span>
                                         </div>
@@ -89,7 +89,7 @@
 
                                 <div>
                                     <label class="fs-sm mb-0 mt-2 mt-md-0">Empresas sin Actividad</label>
-                                    <h4 class="font-weight-bold mb-0"><% noActivos %> - <% sinActividad %>%</h4>
+                                    <h4 class="font-weight-bold mb-0"><% noActivos %> - <% inactivosPorcentaje %>%</h4>
                                 </div>
 
                             </div>
@@ -1283,15 +1283,6 @@
                 {
                     data: [
                         [1, 0],
-                        [2, 0],
-                        [3, 1],
-                        [4, 2],
-                        [5, 2],
-                        [6, 5],
-                        [7, 8],
-                        [8, 12],
-                        [9, 9],
-                        [10, 11],
                         [11, 5]
                     ],
                     color: myapp_get_color.info_200

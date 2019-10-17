@@ -415,6 +415,8 @@
             $scope.entradasPorcentaje = Math.round((($scope.entradas*100) / $scope.entradasTotales));
             $scope.salidasPorcentaje = Math.round((($scope.salidas*100) /$scope.entradasTotales));
             $scope.combinadas = response.data.combinadas.length;
+
+            $scope.combinadasArray = response.data.combinadas;
             
             $('#totalEntradas.js-easy-pie-chart').data('easyPieChart').update($scope.entradas);
             $('#totalSalidas.js-easy-pie-chart').data('easyPieChart').update($scope.salidas);
@@ -430,11 +432,24 @@
 
                     console.log(fecha);
 
-                    var historialCampoDinamico = functions.dividirArrayPorCampoDinamico($scope.combinadas, "id_empresas");
+                    var historialCampoDinamico = functions.dividirArrayPorCampoDinamico($scope.combinadasArray, "id_empresas");
                     
+                    console.log(historialCampoDinamico);
+
                     var empresasActividad = functions.empresasActividad(historialCampoDinamico, $scope.totalEmpresas, fecha);
         
-                    console.log(historialCampoDinamico);
+                    console.log(empresasActividad);    
+                    
+                    empresasActividad["empresasConActividadPorcentaje"] = (empresasActividad["empresasConActividad"]*100)/$scope.totalEmpresas;
+                    empresasActividad["empresasSinActividadPorcentaje"] = (empresasActividad["empresasSinActividad"]*100)/$scope.totalEmpresas;
+
+                    $scope.activos = empresasActividad["empresasConActividad"];
+                    $scope.activosPorcentaje = empresasActividad["empresasConActividadPorcentaje"];
+                    $scope.noActivos = empresasActividad["empresasSinActividad"];
+                    $scope.inactivosPorcentaje = empresasActividad["empresasSinActividadPorcentaje"];
+
+                    $('#empresasConActividad.js-easy-pie-chart').data('easyPieChart').update(empresasActividad["empresasConActividadPorcentaje"]);
+                    $('#empresasSinActividad.js-easy-pie-chart').data('easyPieChart').update(empresasActividad["empresasSinActividadPorcentaje"]);
 
                   } else {
                       toastr["warning"](response.data.description, "");
