@@ -381,6 +381,8 @@
 
         $scope.totalEmpresas = response.data.data.length;
 
+        functions.generarGraficaEmpresas(response.data.data);
+
         console.log(response.data.data);
 
         dataArray = functions.PlanesVencidosVigenciasCalc(response.data.data);

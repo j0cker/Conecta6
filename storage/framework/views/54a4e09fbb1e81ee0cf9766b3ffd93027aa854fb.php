@@ -284,6 +284,9 @@
                                                 </div>
                                             </div>
                                             <div id="flotVisit" style="width:100%; height:208px;"></div>
+                                            <center>
+                                                últimos 30 días
+                                            </center>
                                         </div>
                                     </div>
                                 </div>
@@ -892,10 +895,6 @@
         
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
         
-        
-        
-        
-        
         <script src="js/easypiechart.bundle.js"></script>
         <script src="js/flot.bundle.js"></script>        
         
@@ -1262,98 +1261,6 @@
                 });*/
                 /* flot area -- end */
 
-                var flotVisit = $.plot('#flotVisit', [
-                /*
-                {   
-                    data: [
-                        [3, 0],
-                        [4, 1],
-                        [5, 3],
-                        [6, 3],
-                        [7, 10],
-                        [8, 11],
-                        [9, 12],
-                        [10, 9],
-                        [11, 12],
-                        [12, 8],
-                        [13, 5]
-                    ],
-                    color: myapp_get_color.success_200
-                },*/
-                {
-                    data: [
-                        [1, 0],
-                        [11, 5]
-                    ],
-                    color: myapp_get_color.info_200
-                }],
-                {
-                    series:
-                    {
-                        shadowSize: 0,
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 2,
-                            fill: true,
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0
-                                },
-                                {
-                                    opacity: 0.12
-                                }]
-                            }
-                        }
-                    },
-                    grid:
-                    {
-                        borderWidth: 0
-                    },
-                    yaxis:
-                    {
-                        min: 0,
-                        max: 15,
-                        tickColor: '#ddd',
-                        ticks: [
-                            [0, ''],
-                            [5, '100K'],
-                            [10, '200K'],
-                            [15, '300K']
-                        ],
-                        font:
-                        {
-                            color: '#444',
-                            size: 10
-                        }
-                    },
-                    xaxis:
-                    {
-
-                        tickColor: '#eee',
-                        ticks: [
-                            [2, '2am'],
-                            [3, '3am'],
-                            [4, '4am'],
-                            [5, '5am'],
-                            [6, '6am'],
-                            [7, '7am'],
-                            [8, '8am'],
-                            [9, '9am'],
-                            [10, '1pm'],
-                            [11, '2pm'],
-                            [12, '3pm'],
-                            [13, '4pm']
-                        ],
-                        font:
-                        {
-                            color: '#999',
-                            size: 9
-                        }
-                    }
-                });
 
 
             });
