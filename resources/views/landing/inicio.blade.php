@@ -82,8 +82,8 @@
         https://boogapp.info/perfilTrabajadores/pass
         https://boogapp.info/registros
         https://boogapp.info/historial
-        
 
+        
         API's con Prejijo api/
  
         //Ingresar Trabajadores
@@ -159,11 +159,11 @@
         https://boogapp.info/salidas/modificar?id=1 (ejemplo de editar salidas)
 
         API's con Prejijo api/
-                
+
         //Ingresar Empresas
         Route::get('/empresas/ingresar', 'APIEmpresas@Ingresar');
 
-        //get empresa
+        //get empresa by id empresas
         Route::get('/empresas/obtener', 'APIEmpresas@GetEmpresa');
 
         //get all empresas
@@ -232,6 +232,8 @@
         //borrar salidas por id empresas y id salidas
         Route::post('/empresas/salidas/borrar', 'APIEmpresas@DelSalidas');
 
+        //Recuperar Contraseñas de empresas
+        Route::post('/empresas/recuperarPass', 'APIEmpresas@RecuperarPass');
 
 
 
@@ -258,6 +260,7 @@
         https://boogapp.info/administradores/modificar?id=1 (ejemplo de editar administrador)
 
         API's con Prejijo api/
+
 
         //Ingresar Administradores
         Route::get('/pAdmin/ingresar', 'APIAdmin@Ingresar');
@@ -292,12 +295,20 @@
         //Borrar Empresa por id_empresas
         Route::post('/pAdmin/empresas/eliminar', 'APIAdmin@deleteEmpresas');
 
+        //Recuperar Contraseñas de administradores
+        Route::post('/pAdmin/recuperarPass', 'APIAdmin@RecuperarPass');
 
+        //Actualizar Zonas Horaria de Administrador
+        Route::post('/pAdmin/zonasHorarias', 'APIAdmin@ZonasHorarias');
 
-
+        //Get Zona Horaria de Administrador
+        Route::get('/pAdmin/zonasHorarias', 'APIAdmin@GetZonasHorarias');
 
 
         /****IOS en proceso de construcción****/
+
+
+        /****Android en proceso de construcción****/
 
         
 
