@@ -1185,6 +1185,7 @@
                     plotNow()
                 }
                 flot_toggle();
+                
                 /* flot toggle example -- end*/
 
                 /* flot area

@@ -430,12 +430,99 @@
         });
 
       },
-      generarGraficaEmpresas: function(){
+      generarGraficaEmpresas: function(empresas, fecha){
         /*
         Últimos 30 días
         */
 
         console.log("[factory][generarGraficaEmpresas]");
+
+        console.log(fecha);
+
+        var dataArray = Array();
+        var mes = Array();
+                
+        var hhora = fecha.getHours(),
+            hminutos = fecha.getMinutes(),
+            hsegundos = fecha.getSeconds(),
+            hdiaSemana = fecha.getDay(),
+            hdia = fecha.getDate(),
+            hmes = fecha.getMonth(),
+            hanio = fecha.getFullYear(),
+            hampm;
+
+        console.log("hmes: " + hmes + "  hanio: " + hanio);
+
+        console.log(diasEnUnMes(hmes+1, hanio));
+
+        console.log(empresas);
+
+        //inicializa arreglo con ceros
+        for(var i=1; i<=diasEnUnMes(hmes+1, hanio); i++){
+            mes[i-1] = 0;
+        }
+
+        //calcular cuales empresas entraron en el mes actual
+        for(var x=0; x<empresas.length; x++){
+
+          var fecha2 = empresas[x].created_at;
+
+          var fecha2 = new Date(moment(fecha2).format('YYYY-MM-DD HH:mm:ss'));
+
+          console.log("Created_at: " + fecha2);
+                
+          var rhora = fecha2.getHours(),
+              rminutos = fecha2.getMinutes(),
+              rsegundos = fecha2.getSeconds(),
+              rdiaSemana = fecha2.getDay(),
+              rdia = fecha2.getDate(),
+              rmes = fecha2.getMonth(),
+              ranio = fecha2.getFullYear(),
+              rampm;
+
+          console.log("rdia: " + rdia + " rmes:  " + rmes + " ranio: " + ranio);
+
+          for(var i=1; i<=diasEnUnMes(hmes+1, hanio); i++){
+
+            if(parseInt(i)==parseInt(rdia) && 
+                parseInt(hmes)==parseInt(rmes) && 
+                parseInt(hanio)==parseInt(ranio)){
+              
+              mes[i-1] = parseInt(mes[i-1]) + 1;
+
+            } else {
+
+              mes[i-1] = parseInt(mes[i-1]);
+
+            }
+
+          }
+
+          console.log(mes);
+          
+          var ticksFechas = Array();
+          var dataValores = Array();
+
+          for(var i=1; i<=diasEnUnMes(hmes+1, hanio); i++){
+
+            dataValores[i-1] = Array();
+            dataValores[i-1][0] = i;
+            dataValores[i-1][1] = mes[i-1];
+
+            if(i%2==0){
+
+              ticksFechas[i-1] = Array();
+              ticksFechas[i-1][0] = i;
+              ticksFechas[i-1][1] = i + "-" + hmes + "-" + hanio + "";
+
+            }
+
+          }
+
+        }
+
+        console.log(dataValores);
+        console.log(ticksFechas);
         
        var flotVisit = $.plot('#flotVisit', [
         /*
@@ -456,19 +543,7 @@
             color: myapp_get_color.success_200
         },*/
         {
-            data: [
-                [1, 0],
-                [2, 0],
-                [3, 1],
-                [4, 2],
-                [5, 2],
-                [6, 5],
-                [7, 8],
-                [8, 12],
-                [9, 9],
-                [10, 11],
-                [11, 5]
-            ],
+            data: dataValores,
             color: myapp_get_color.info_200
         }],
         {
@@ -502,10 +577,10 @@
                 max: 15,
                 tickColor: '#ddd',
                 ticks: [
-                    [0, ''],
-                    [5, '100K'],
-                    [10, '200K'],
-                    [15, '300K']
+                    [0, '0'],
+                    [5, '5'],
+                    [10, '10'],
+                    [15, '15']
                 ],
                 font:
                 {
@@ -517,20 +592,7 @@
             {
 
                 tickColor: '#eee',
-                ticks: [
-                    [2, '2am'],
-                    [3, '3am'],
-                    [4, '4am'],
-                    [5, '5am'],
-                    [6, '6am'],
-                    [7, '7am'],
-                    [8, '8am'],
-                    [9, '9am'],
-                    [10, '1pm'],
-                    [11, '2pm'],
-                    [12, '3pm'],
-                    [13, '4pm']
-                ],
+                ticks: ticksFechas,
                 font:
                 {
                     color: '#999',

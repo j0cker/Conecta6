@@ -72,7 +72,7 @@
                       <i class="fa fa-sign-in" aria-hidden="true"></i>
                     </button>
 
-                    <a style="margin-bottom: 40px;" href="#">
+                    <a style="margin-bottom: 40px;">
                       <p class="resaltar"><a href="<?php echo e(url('/'.$subdominio.'/recuperar')); ?>">¿Olvidaste tu Contraseña?</a></p>
                     </a>
                     

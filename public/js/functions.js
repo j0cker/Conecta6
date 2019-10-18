@@ -232,7 +232,10 @@ function tiempoRelativo(time_value) {
   }
 }
 function diasEnUnMes(mes, año) {
-  /** total de días que tiene un mes */
+  /** total de días que tiene un mes 
+   *  parece ser que hay al mes hay que mandarlo como 12=diciembre 1=enero.
+   * 
+  */
 	return new Date(año, mes, 0).getDate();
 }
 function getSign(num){

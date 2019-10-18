@@ -381,7 +381,7 @@
 
         $scope.totalEmpresas = response.data.data.length;
 
-        functions.generarGraficaEmpresas(response.data.data);
+        $scope.empresasArray = response.data.data;
 
         console.log(response.data.data);
 
@@ -441,6 +441,8 @@
                     var empresasActividad = functions.empresasActividad(historialCampoDinamico, $scope.totalEmpresas, fecha);
         
                     console.log(empresasActividad);    
+
+                    functions.generarGraficaEmpresas($scope.empresasArray, fecha);
                     
                     empresasActividad["empresasConActividadPorcentaje"] = (empresasActividad["empresasConActividad"]*100)/$scope.totalEmpresas;
                     empresasActividad["empresasSinActividadPorcentaje"] = (empresasActividad["empresasSinActividad"]*100)/$scope.totalEmpresas;
