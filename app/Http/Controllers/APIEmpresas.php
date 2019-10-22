@@ -233,7 +233,7 @@ class APIEmpresas extends Controller
 
         //token_expired
     
-        Log::info('[APIEmpresas][Inicio] Token error: token_expired');
+        Log::info('[APIEmpresas][GetByIdPlantillas] Token error: token_expired');
 
         return redirect('/');
   
@@ -241,7 +241,7 @@ class APIEmpresas extends Controller
 
         //token_invalid
     
-        Log::info('[APIEmpresas][Inicio] Token error: token_invalid');
+        Log::info('[APIEmpresas][GetByIdPlantillas] Token error: token_invalid');
 
         return redirect('/');
   
@@ -249,7 +249,7 @@ class APIEmpresas extends Controller
 
         //token_absent
     
-        Log::info('[APIEmpresas][Inicio] Token error: token_absent');
+        Log::info('[APIEmpresas][GetByIdPlantillas] Token error: token_absent');
 
         return redirect('/');
   
@@ -257,7 +257,7 @@ class APIEmpresas extends Controller
 
         //Errores
     
-        Log::info('[APIEmpresas][Inicio] ' . $e);
+        Log::info('[APIEmpresas][GetByIdPlantillas] ' . $e);
 
         return redirect('/');
 
@@ -3540,6 +3540,86 @@ class APIEmpresas extends Controller
 
   }
 
+  public function GetIdiomaObtener(Request $request){
+  
+    Log::info('[APIEmpresas][GetIdiomaObtener]');
+
+    Log::info("[APIEmpresas][GetIdiomaObtener] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('GET')) {
+
+      
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required',
+        'id_empresas' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+      $id_empresas = $request->input('id_empresas');
+
+      Log::info("[APIEmpresas][GetIdiomaObtener] Token: ". $token);
+      Log::info("[APIEmpresas][GetIdiomaObtener] id_empresas: ". $id_empresas);
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        $Idiomas = Idiomas::addNewEnterprise($id_empresas);
+        
+        Log::info($Idiomas);
+
+        if(count($Idiomas)>0){
+          
+          $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Idiomas));
+          $responseJSON->data = $Idiomas;
+          return json_encode($responseJSON);
+
+        } else {
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Idiomas));
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
+        }
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][GetIdiomaObtener] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][GetIdiomaObtener] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][GetIdiomaObtener] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
   public function AltaEmpresa(Request $request){
   
     Log::info('[APIEmpresas][AltaEmpresa]');
@@ -3557,7 +3637,7 @@ class APIEmpresas extends Controller
         
       $token = $request->input('token');
 
-      Log::info("[APIEmpresas][Inicio] Token: ". $token);
+      Log::info("[APIEmpresas][GetIdiomaObtener] Token: ". $token);
 
       try {
 

@@ -4562,7 +4562,7 @@
 
               console.log(response.data.data);
 
-              window.redirect = "";
+              window.location = "";
 
               toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
 
@@ -4652,6 +4652,37 @@
 
     functions.loading();
 
+    
+    
+    functions.getAllIdiomas().then(function (response) {
+
+        if(response.data.success == "TRUE"){
+
+          console.log("[idiomas][getAllIdiomas]");
+
+          console.log(response.data.data);
+
+          var data = Array();
+
+          var choices = Array();
+          choices = ["id_idiomas", "nombre", "code"];
+          
+          data = addKeyToArray(data, response.data.data, choices);
+          
+          $('#dt-basic-example').dataTable().fnClearTable();
+          $('#dt-basic-example').dataTable().fnAddData(data); 
+
+        } else {
+            toastr["warning"](response.data.description, "");
+            functions.loadingEndWait();
+        }
+
+    }, function (response) {
+      /*ERROR*/
+      toastr["error"]("Inténtelo de nuevo más tarde", "");
+      functions.loadingEndWait();
+
+    });/*fin getAllIdiomas*/
 
   });//fin controller idiomas
 

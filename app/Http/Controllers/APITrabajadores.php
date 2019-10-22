@@ -1589,6 +1589,7 @@ class APITrabajadores extends Controller
           }
 
           $Registros = Registros::addRegistroEntrada($id_trabajadores, $comentarios, $date);
+          //Log::info(Registros::addRegistroEntrada($id_trabajadores, $comentarios, $date)->toSql());
         
           if($Registros[0]->save==1){
 

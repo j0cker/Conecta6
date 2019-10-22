@@ -9,6 +9,7 @@ use App\Library\DAO\Trabajadores;
 use App\Library\DAO\Admin;
 use App\Library\DAO\Permisos_inter;
 use App\Library\DAO\Empresas;
+use App\Library\DAO\Idiomas;
 use Auth;
 use carbon\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -1852,6 +1853,85 @@ class APIAdmin extends Controller
       }
   
     }
+
+    public function GetIdiomasAllObtener(Request $request){
+    
+      Log::info('[APIEmpresas][GetIdiomasAllObtener]');
+  
+      Log::info("[APIEmpresas][GetIdiomasAllObtener] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('GET')) {
+  
+        
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIEmpresas][GetIdiomasAllObtener] Token: ". $token);
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+  
+          $Idiomas = Idiomas::getAllIdiomas();
+          
+          Log::info($Idiomas);
+  
+          if(count($Idiomas)>0){
+            
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Idiomas));
+            $responseJSON->data = $Idiomas;
+            return json_encode($responseJSON);
+  
+          } else {
+  
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Idiomas));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+  
+          }
+  
+  
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIEmpresas][GetIdiomasAllObtener] Token error: token_expired');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIEmpresas][GetIdiomasAllObtener] Token error: token_invalid');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIEmpresas][GetIdiomasAllObtener] Token error: token_absent');
+  
+          return redirect('/');
+    
+        }
+  
+  
+      } else {
+        abort(404);
+      }
+  
+    }
+
+
     public function RecuperarPass(Request $request){
       
       Log::info('[APIAdmin][RecuperarPass]');

@@ -4383,6 +4383,17 @@
         return $http.post(url, {cache: false, id_trabajadores:id_trabajadores, comentarios:comentarios, date:date, id_salidas:id_salidas, geoLocation:geoLocation });
 
       },
+      getAllIdiomas: function(){
+
+        console.log("[factory][getAllIdiomas]");
+
+        var url = '/api/pAdmin/idiomas/obtenerAll';
+        return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
+
+      },
       getZonaHoraria: function(id_empresas) {
 
         console.log("[factory][getZonasHoraria]");

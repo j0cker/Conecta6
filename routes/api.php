@@ -151,6 +151,9 @@ Route::post('/empresas/salidas/borrar', 'APIEmpresas@DelSalidas');
 //Recuperar Contraseñas de empresas
 Route::post('/empresas/recuperarPass', 'APIEmpresas@RecuperarPass');
 
+//Get Idioma by id_empresas
+Route::get('/empresas/idiomas/obtener', 'APIEmpresas@GetIdiomaObtener');
+
 /*
 *******Admin******
 */
@@ -197,3 +200,5 @@ Route::post('/pAdmin/zonasHorarias', 'APIAdmin@ZonasHorarias');
 //Get Zona Horaria de Administrador
 Route::get('/pAdmin/zonasHorarias', 'APIAdmin@GetZonasHorarias');
 
+//Get All Idiomas
+Route::get('/pAdmin/idiomas/obtenerAll', 'APIAdmin@GetIdiomasAllObtener');

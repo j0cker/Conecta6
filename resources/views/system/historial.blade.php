@@ -747,7 +747,6 @@
                     var start = arrayDatePicker[0];
                     var end = arrayDatePicker[1];
                     
-
                     getHistorialEntradas("{{ $user['usr']->id_trabajadores }}", start, end);
 
                 });

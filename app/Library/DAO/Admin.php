@@ -4,6 +4,7 @@ namespace App\Library\DAO;
 use Config;
 use App;
 use Log;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 /*

@@ -93,30 +93,17 @@
                                                     <tr>
                                                         <th>ID</th>
                                                         <th>Idioma</th>
+                                                        <th>Código</th>
                                                         <th>Opciones</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Español</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Inglés</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Catalán</td>
-                                                        <td></td>
-                                                    </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
                                                         <th>ID</th>
                                                         <th>Idioma</th>
+                                                        <th>Código</th>
                                                         <th>Opciones</th>
                                                     </tr>
                                                 </tfoot>
