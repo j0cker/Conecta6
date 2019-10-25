@@ -61,6 +61,75 @@ class Functions
         return $result;
     }
 
+    public static function openArchiveAndReadIt($fichero){
+
+        /*
+        parametro ruta completo del fichero
+        */
+
+        $fp = fopen($fichero, "r");
+        $contenido = fread ($fp, filesize ($fichero));
+        fclose($fp);
+
+        return $contenido;
+
+    }
+    
+    public static function deleteFolder($ruta){
+
+        /*
+            
+            ruta a carpeta
+
+        */
+
+        if (!file_exists($ruta)) {
+            return true;
+        }
+    
+        if (!is_dir($ruta)) {
+            return unlink($ruta);
+        }
+    
+        foreach (scandir($ruta) as $item) {
+            if ($item == '.' || $item == '..') {
+                continue;
+            }
+    
+            if (!self::deleteFolder($ruta . DIRECTORY_SEPARATOR . $item)) {
+                return false;
+            }
+    
+        }
+
+        return rmdir($ruta);
+
+    }
+
+    public static function copyArchive($rutaCopiar, $rutaPegar){
+
+        /*
+            ambos no pueden ser directorios, tiene que ser rutas hacia archivos
+        */
+
+        $return = -1;
+
+        $return = copy($rutaCopiar, $rutaPegar);
+
+        return $return;
+    }
+
+    public static function createFolder($ruta){
+
+        $return = -1;
+
+        if (!file_exists($ruta)) {
+            $return = mkdir($ruta, 0777, true);
+        }
+
+        return $return;
+    }
+
     public static function createArchive($nombre_archivo, $body)
     {
         /*

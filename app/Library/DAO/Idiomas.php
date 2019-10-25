@@ -44,6 +44,99 @@ class Idiomas extends Model
 
     }
 
+    //eliminar idioma
+    public function scopeEliminarIdioma($query, $id){
+
+      Log::info("[Idiomas][scopeAddIdioma]");
+
+      //activar log query
+      DB::connection()->enableQueryLog();
+
+      $sql = $query->where([
+        ['id_idiomas', '=', $id]
+      ])->delete(); //return true in the other one return 1
+
+      //log query
+      $queries = DB::getQueryLog();
+      $last_query = end($queries);
+      Log::info($last_query);
+
+      return $sql;
+
+    }
+
+    //Agregar un Idioma
+    public function scopeAddIdioma($query, $codigo, $nombre){
+
+      Log::info("[Idiomas][scopeAddIdioma]");
+
+      //activar log query
+      DB::connection()->enableQueryLog();
+
+      $idiomas = new Idiomas;
+      $idiomas->nombre = $nombre;
+      $idiomas->code = $codigo;
+
+      $obj = array();
+      $obj[0] = new \stdClass();
+      $obj[0]->save = $idiomas->save(); //return true in the other one return 1
+      $obj[0]->id = $idiomas->id;
+      
+      //return true in the other one return 1
+
+      //log query
+      $queries = DB::getQueryLog();
+      $last_query = end($queries);
+      Log::info($last_query);
+
+      return $obj;
+
+    }
+
+    //Find idioma by id
+    public function scopeGetIdiomasById($query, $id){
+
+      Log::info("[Idiomas][scopeGetIdiomasById]");
+
+      //activar log query
+      DB::connection()->enableQueryLog();
+
+      $sql =  $query->where([['id_idiomas', '=', $id]
+                            ])->get();
+        
+      //return true in the other one return 1
+
+      //log query
+      $queries = DB::getQueryLog();
+      $last_query = end($queries);
+      Log::info($last_query);
+
+      return $sql;
+
+    }
+
+    //Find idioma by code
+    public function scopeGetIdiomaByCode($query, $code){
+
+      Log::info("[Idiomas][scopeGetIdiomaByCode]");
+
+      //activar log query
+      DB::connection()->enableQueryLog();
+
+      $sql =  $query->where([['code', '=', $code]
+                            ])->get();
+        
+      //return true in the other one return 1
+
+      //log query
+      $queries = DB::getQueryLog();
+      $last_query = end($queries);
+      Log::info($last_query);
+
+      return $sql;
+
+    }
+
     //Get All Idiomas
     public function scopeGetAllIdiomas($query){
 

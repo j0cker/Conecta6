@@ -86,11 +86,11 @@
                                             <div class="row">
 
                                                 <div class="col-md-6">
-                                                    <input class="form-control" type="text" placeholder="Nuevo idioma" />
+                                                    <a href="/idiomas/agregar">
+                                                        <button style="margin-bottom: 20px;" class="btn btn-primary">Agregar</button>
+                                                    </a>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <button style="margin-bottom: 20px;" class="btn btn-primary">Agregar</button>
-                                                </div>
+
                                             </div>
                                             
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
@@ -735,7 +735,6 @@
 
             $(document).ready(function()
             {
-
                 
                 /* init datatables */
                var table = $('#dt-basic-example').dataTable(
@@ -781,10 +780,19 @@
                     "columnDefs": [ {
                         "targets": -1,
                         "data": null,
-                        "defaultContent": `<center>
-                                                <button class="btn btn-primary fal fa-edit"></button>
-                                                <button class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
-                                            </center>`
+                        "render": function ( data, type, row, meta ) {
+                            if(row[0]!=1 &&  row[0]!=2){
+                                return  `<center>
+                                            <button onclick="editPlantilla(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
+                                            <button onclick="delPlantilla(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
+                                        </center>`;
+                            } else {
+                                return  `<center>
+                                            <button onclick="editPlantilla(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
+                                        </center>`;
+                            }
+                        }
+                    
                     } ]
 
                 });
@@ -796,9 +804,15 @@
                     console.log($(this)[0].attributes[0].value); //class
                     var data = table.DataTable().row( $(this).parents('tr') ).data();
                     if($(this)[0].attributes[0].value.indexOf("edit")!=-1){
-                        alert("Editar" + data[0]);
+                        //alert("Editar" + data[0]);
+
+                        window.location = "/idiomas/modificar?id=" + data[0];
+
                     } else {
-                        alert("Eliminar" + data[0]);
+                        //alert("Eliminar" + data[0]);
+
+                        eliminarIdiomaClick(data[0]);
+
                     }
                 });
 
@@ -841,7 +855,7 @@
         
         <script>
             $(document).ready(function()
-            {
+            {  
 
                 $('#js-page-content').smartPanel(); 
             });

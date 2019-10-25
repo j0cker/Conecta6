@@ -392,10 +392,41 @@
           }
           data[x].push(domingo);
 
-    
+
         }
 
         return data;
+
+      },
+      getIdiomaById: function(id){
+
+        console.log("[factory][postIngresar]");
+
+        console.log("id: " + id);
+
+        var url = '/api/pAdmin/idiomas/obtenerById';
+        return $http.get(url,{
+          params: { cache: false, id:id },
+          cache: false
+        });
+
+      },
+      agregarIdioma: function(nombre, codigo){
+
+        console.log("[factory][agregarIdioma]");
+
+        var url = '/api/pAdmin/idiomas/agregar';
+
+        return $http.post(url, {cache: false, nombre:nombre, codigo:codigo });
+
+      },
+      eliminarIdioma: function(id){
+
+        console.log("[factory][eliminarIdioma]");
+
+        var url = '/api/pAdmin/idiomas/eliminar';
+
+        return $http.post(url, {cache: false, id:id });
 
       },
       delPlantilla: function(id_plantillas) {

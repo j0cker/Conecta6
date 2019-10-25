@@ -109,6 +109,12 @@ Route::get('/empresas/nueva', 'APIAdmin@NuevaEmpresa');
 //Idiomas
 Route::get('/idiomas', 'APIAdmin@Idiomas');
 
+//Modificar Idiomas
+Route::get('/idiomas/modificar', 'APIAdmin@ModIdiomasFront');
+
+//Agregar idioma
+Route::get('/idiomas/agregar', 'APIAdmin@AgregarIdiomaFront');
+
 //Administradores
 Route::get('/administradores', 'APIAdmin@Administradores');
 

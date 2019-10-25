@@ -202,3 +202,12 @@ Route::get('/pAdmin/zonasHorarias', 'APIAdmin@GetZonasHorarias');
 
 //Get All Idiomas
 Route::get('/pAdmin/idiomas/obtenerAll', 'APIAdmin@GetIdiomasAllObtener');
+
+//Get idioma by id
+Route::get('/pAdmin/idiomas/obtenerById', 'APIAdmin@GetIdiomaById');
+
+//Agregar idioma
+Route::post('/pAdmin/idiomas/agregar', 'APIAdmin@AgregarIdioma');
+
+//Eliminar idioma
+Route::post('/pAdmin/idiomas/eliminar', 'APIAdmin@EliminarIdioma');

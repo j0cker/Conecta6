@@ -1850,7 +1850,6 @@
 
     $(".profile-image").attr("src","img/conecta6_blanco.png");
 
-    
     $scope.postActiveEmpresaClick = function(id_empresas, active){
 
       console.log("[empresas] ");
@@ -4644,7 +4643,110 @@
 
 
 
-  });//fin controller idiomas
+  });//fin controller modificarSalida
+
+
+  app.controller('modIdioma', function($scope, functions, $window) {
+
+    console.log("[modIdioma]");
+
+    functions.loading();
+
+    $(".profile-image").attr("src","../img/conecta6_blanco.png");
+
+    $scope.getIdiomaByIdClick = function(id){
+
+      console.log("[getIdiomaByIdClick]");
+
+      console.log("[getIdiomaByIdClick] id: " + id);
+
+      functions.getIdiomaById(id).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][agregarIdioma]");
+          
+          console.log(response.data.data);
+
+          $("#nombreIdioma").val(response.data.data[0].nombre);
+          $("#codigo").val(response.data.data[0].code);
+          $("#contenido").val(response.data.data[0].contenido);
+
+          functions.loadingEndWait();
+          
+        } else {
+
+            toastr["error"](response.data.description, "");
+            functions.loadingEndWait();
+        }
+
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin agregarIdioma*/
+
+    }; //fin agregarIdiomaClick
+
+    getIdiomaByIdClick = $scope.getIdiomaByIdClick;
+    
+
+  });//fin controller modIdioma
+
+  app.controller('nuevoIdioma', function($scope, functions, $window) {
+
+    console.log("[nuevoIdioma]");
+
+    functions.loading();
+
+    $(".profile-image").attr("src","../img/conecta6_blanco.png");
+
+    $scope.agregarIdiomaClick = function(){
+
+      console.log("[agregarIdiomaClick]");
+
+      var nombre = "";
+      var codigo = "";
+
+      nombre = $("#nombreIdioma").val();
+      codigo = $("#codigo").val();
+
+      console.log("[idiomas] Nombre: " + nombre);
+      console.log("[idiomas] Código: " + codigo);
+
+      functions.agregarIdioma(nombre, codigo).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][agregarIdioma]");
+          
+          console.log(response.data.data);
+
+          toastr["success"]("Se ha agregado Correctamente.", "");
+
+          window.location = "/idiomas";
+
+          functions.loadingEndWait();
+          
+        } else {
+
+            toastr["error"](response.data.description, "");
+            functions.loadingEndWait();
+        }
+
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin agregarIdioma*/
+
+    }; //fin agregarIdiomaClick
+
+    agregarIdiomaClick = $scope.agregarIdiomaClick;
+
+  });//fin controller nuevoIdioma
 
   app.controller('idiomas', function($scope, functions, $window) {
 
@@ -4652,8 +4754,8 @@
 
     functions.loading();
 
-    
-    
+    $(".profile-image").attr("src","img/conecta6_blanco.png");
+
     functions.getAllIdiomas().then(function (response) {
 
         if(response.data.success == "TRUE"){
@@ -4683,6 +4785,43 @@
       functions.loadingEndWait();
 
     });/*fin getAllIdiomas*/
+
+    $scope.eliminarIdiomaClick = function(id){
+
+      console.log("[agregarIdiomaClick]");
+
+      console.log("[idiomas] id: " + id);
+
+      functions.eliminarIdioma(id).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][eliminarIdioma]");
+          
+          console.log(response.data.data);
+
+          toastr["success"]("Se ha eliminado Correctamente.", "");
+
+          window.location = "/idiomas";
+
+          functions.loadingEndWait();
+          
+        } else {
+
+            toastr["error"](response.data.data.description, "");
+            functions.loadingEndWait();
+        }
+
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin agregarIdioma*/
+
+    }; //fin agregarIdiomaClick
+
+    eliminarIdiomaClick = $scope.eliminarIdiomaClick;
 
   });//fin controller idiomas
 

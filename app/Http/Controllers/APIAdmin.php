@@ -1854,11 +1854,442 @@ class APIAdmin extends Controller
   
     }
 
+    public function ModIdiomasFront(Request $request){
+      
+      Log::info('[APIAdmin][ModIdiomasFront]');
+  
+      Log::info("[APIAdmin][ModIdiomasFront] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('GET')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIAdmin][ModIdiomasFront] Token: ". $token);
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+          if(in_array("1", $token_decrypt["permisos"])==1){
+            
+            return view('system.modIdioma',["title" => config('app.name'), 
+                                          "lang" => "es", 
+                                          "user" => $token_decrypt, 
+                                          "color" => $token_decrypt['color'], 
+                                          "colorHex" => $token_decrypt['colorHex'],
+                                          "subdominio" => $token_decrypt['subdominio'],
+                                        ]
+                                );
+  
+          } else {
+            
+            return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+            
+          }
+  
+          //print_r($token_decrypt["id"]);
+  
+          //print_r($token_decrypt);
+  
+          
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][ModIdiomasFront] Token error: token_expired');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][ModIdiomasFront] Token error: token_invalid');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][ModIdiomasFront] Token error: token_absent');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        }
+  
+  
+  
+      } else {
+        abort(404);
+      }
+  
+
+    }
+
+    public function AgregarIdiomaFront(Request $request){
+      
+      Log::info('[APIAdmin][AgregarIdiomaFront]');
+  
+      Log::info("[APIAdmin][AgregarIdiomaFront] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('GET')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIAdmin][AgregarIdiomaFront] Token: ". $token);
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+          if(in_array("1", $token_decrypt["permisos"])==1){
+            
+            return view('system.nuevoidioma',["title" => config('app.name'), 
+                                          "lang" => "es", 
+                                          "user" => $token_decrypt, 
+                                          "color" => $token_decrypt['color'], 
+                                          "colorHex" => $token_decrypt['colorHex'],
+                                          "subdominio" => $token_decrypt['subdominio'],
+                                        ]
+                                );
+  
+          } else {
+            
+            return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+            
+          }
+  
+          //print_r($token_decrypt["id"]);
+  
+          //print_r($token_decrypt);
+  
+          
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][AgregarIdiomaFront] Token error: token_expired');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][AgregarIdiomaFront] Token error: token_invalid');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][AgregarIdiomaFront] Token error: token_absent');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        }
+  
+  
+  
+      } else {
+        abort(404);
+      }
+  
+
+    }
+
+    public function EliminarIdioma(Request $request){
+      
+      Log::info('[APIAdmin][EliminarIdioma]');
+  
+      Log::info("[APIAdmin][EliminarIdioma] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('POST')) {
+
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required',
+          'id' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIAdmin][EliminarIdioma] Token: ". $token);
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+    
+          $id = $request->input('id');
+
+          $Idiomas = Idiomas::getIdiomasById($id);
+
+          if(count($Idiomas)>0){
+  
+            Log::info("[APIAdmin][EliminarIdioma] Code: ". $Idiomas[0]->code);
+    
+            $delete = Functions::deleteFolder(dirname(__FILE__). "/../../../resources/lang/".$Idiomas[0]->code);
+
+            Log::info("[APIAdmin][EliminarIdioma] Delete: ". $delete);
+
+            $Idiomas = Idiomas::eliminarIdioma($id);
+
+          } else {
+            $Idiomas=-1;
+          }
+
+          if($Idiomas==1){
+    
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Idiomas));
+            $responseJSON->data = $Idiomas;
+            return json_encode($responseJSON);
+    
+          } else {
+    
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Idiomas));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+    
+          }
+  
+  
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][EliminarIdioma] Token error: token_expired');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][EliminarIdioma] Token error: token_invalid');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][EliminarIdioma] Token error: token_absent');
+  
+          return redirect('/');
+    
+        }
+  
+      } else {
+        abort(404);
+      }
+
+    }
+    
+    public function AgregarIdioma(Request $request){
+      
+      Log::info('[APIAdmin][AgregarIdioma]');
+  
+      Log::info("[APIAdmin][AgregarIdioma] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('POST')) {
+
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required',
+          'codigo' => 'required',
+          'nombre' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIAdmin][AgregarIdioma] Token: ". $token);
+
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+    
+          $codigo = strtolower($request->input('codigo'));
+          $nombre = $request->input('nombre');
+  
+          Log::info("[APIAdmin][AgregarIdioma] codigo: ". $codigo);
+          Log::info("[APIAdmin][AgregarIdioma] nombre: ". $nombre);
+
+          $repetidos = Idiomas::getIdiomaByCode($codigo);
+
+          if(count($repetidos)==0){
+      
+            $Idiomas = Idiomas::addIdioma($codigo, $nombre);
+      
+            if($Idiomas[0]->save==1){
+
+              $folder = Functions::createFolder(dirname(__FILE__). "/../../../resources/lang/".$codigo);
+              $copy = Functions::copyArchive(dirname(__FILE__). "/../../../resources/lang/es/messages.php", dirname(__FILE__). "/../../../resources/lang/".$codigo."/messages.php");
+      
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'), Lang::get('messages.BDsuccess'), count($Idiomas));
+              $responseJSON->data = $Idiomas;
+              return json_encode($responseJSON);
+      
+            } else {
+      
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'), Lang::get('messages.errorsBD'), count($Idiomas));
+              $responseJSON->data = [];
+              return json_encode($responseJSON);
+      
+            }
+
+          } else {
+
+            Log::info("[APIAdmin][AgregarIdioma] ya existe ese lenguaje");
+            
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'), Lang::get('messages.yaExisteEseCodigo'), count($repetidos));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+  
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][AgregarIdioma] Token error: token_expired');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][AgregarIdioma] Token error: token_invalid');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][AgregarIdioma] Token error: token_absent');
+  
+          return redirect('/');
+    
+        }
+  
+      } else {
+        abort(404);
+      }
+  
+    }
+
+    public function GetIdiomaById(Request $request){
+    
+      Log::info('[APIAdmin][GetIdiomaById]');
+  
+      Log::info("[APIAdmin][GetIdiomaById] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('GET')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required',
+          'id' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+        $id = $request->input('id');
+  
+        Log::info("[APIAdmin][GetIdiomaById] Token: ". $token);
+        Log::info("[APIAdmin][GetIdiomaById] id: ". $id);
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+  
+          $Idiomas = Idiomas::getIdiomasById($id);
+          
+          Log::info($Idiomas);
+
+          $Idiomas[0]["contenido"] = Functions::openArchiveAndReadIt(dirname(__FILE__). "/../../../resources/lang/".$Idiomas[0]->code."/messages.php");
+  
+          if(count($Idiomas)>0){
+            
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Idiomas));
+            $responseJSON->data = $Idiomas;
+            return json_encode($responseJSON);
+  
+          } else {
+  
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Idiomas));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+  
+          }
+  
+  
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][GetIdiomaById] Token error: token_expired');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][GetIdiomaById] Token error: token_invalid');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][GetIdiomaById] Token error: token_absent');
+  
+          return redirect('/');
+    
+        }
+  
+  
+      } else {
+        abort(404);
+      }
+
+    }
+
     public function GetIdiomasAllObtener(Request $request){
     
-      Log::info('[APIEmpresas][GetIdiomasAllObtener]');
+      Log::info('[APIAdmin][AgregarIdioma]');
   
-      Log::info("[APIEmpresas][GetIdiomasAllObtener] Método Recibido: ". $request->getMethod());
+      Log::info("[APIAdmin][AgregarIdioma] Método Recibido: ". $request->getMethod());
   
       if($request->isMethod('GET')) {
   
@@ -1871,7 +2302,7 @@ class APIAdmin extends Controller
           
         $token = $request->input('token');
   
-        Log::info("[APIEmpresas][GetIdiomasAllObtener] Token: ". $token);
+        Log::info("[APIAdmin][AgregarIdioma] Token: ". $token);
   
         try {
   
@@ -1902,7 +2333,7 @@ class APIAdmin extends Controller
   
           //token_expired
       
-          Log::info('[APIEmpresas][GetIdiomasAllObtener] Token error: token_expired');
+          Log::info('[APIAdmin][AgregarIdioma] Token error: token_expired');
   
           return redirect('/');
     
@@ -1910,7 +2341,7 @@ class APIAdmin extends Controller
   
           //token_invalid
       
-          Log::info('[APIEmpresas][GetIdiomasAllObtener] Token error: token_invalid');
+          Log::info('[APIAdmin][AgregarIdioma] Token error: token_invalid');
   
           return redirect('/');
     
@@ -1918,7 +2349,7 @@ class APIAdmin extends Controller
   
           //token_absent
       
-          Log::info('[APIEmpresas][GetIdiomasAllObtener] Token error: token_absent');
+          Log::info('[APIAdmin][AgregarIdioma] Token error: token_absent');
   
           return redirect('/');
     
@@ -2050,7 +2481,7 @@ class APIAdmin extends Controller
   
           //token_expired
       
-          Log::info('[APITrabajadores][Logout] Token error: token_expired');
+          Log::info('[APIAdmin][Logout] Token error: token_expired');
   
           $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),"Token Expirado", 0);
           return json_encode($responseJSON);
@@ -2059,7 +2490,7 @@ class APIAdmin extends Controller
   
           //token_invalid
       
-          Log::info('[APITrabajadores][Logout] Token error: token_invalid');
+          Log::info('[APIAdmin][Logout] Token error: token_invalid');
   
           $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),"Token Inválido", 0);
           return json_encode($responseJSON);
@@ -2068,7 +2499,7 @@ class APIAdmin extends Controller
   
           //token_absent
       
-          Log::info('[APITrabajadores][Logout] Token error: token_absent');
+          Log::info('[APIAdmin][Logout] Token error: token_absent');
   
           $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),"Token Ausente", 0);
           return json_encode($responseJSON);

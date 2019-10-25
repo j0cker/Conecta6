@@ -730,8 +730,6 @@
 
         <script>
 
-            
-
             function checkboxActive(id_empresas){
 
                 console.log("[checkboxActive]");
