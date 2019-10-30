@@ -105,6 +105,22 @@ class Functions
         return rmdir($ruta);
 
     }
+    
+    public static function deleteFile($ruta){
+
+        /*
+            ruta a carpeta
+        */
+
+        $return = -1;
+    
+        if (!is_dir($ruta)) {
+            return unlink($ruta);
+        }
+
+        return $return;
+
+    }
 
     public static function copyArchive($rutaCopiar, $rutaPegar){
 

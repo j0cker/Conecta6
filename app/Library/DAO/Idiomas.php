@@ -65,6 +65,18 @@ class Idiomas extends Model
 
     }
 
+    //Modificar Idioma
+    public function scopeModificarIdioma($query, $id, $nombreIdioma, $contenido){
+
+      Log::info("[Idiomas][ModificarIdioma]");
+
+      return $query->where([['id_idiomas', '=', $id],
+                           ])->update(
+                             ['nombre' => $nombreIdioma]
+                           ); //return true in the other one return 1
+
+    }
+
     //Agregar un Idioma
     public function scopeAddIdioma($query, $codigo, $nombre){
 

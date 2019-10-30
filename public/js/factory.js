@@ -420,6 +420,15 @@
         return $http.post(url, {cache: false, nombre:nombre, codigo:codigo });
 
       },
+      modificarIdioma: function(id, nombreIdioma, contenido){
+
+        console.log("[factory][postModificarIdioma]");
+
+        var url = '/api/pAdmin/idiomas/modificar';
+
+        return $http.post(url, {cache: false, id:id, nombreIdioma:nombreIdioma, contenido:contenido });
+
+      },
       eliminarIdioma: function(id){
 
         console.log("[factory][eliminarIdioma]");

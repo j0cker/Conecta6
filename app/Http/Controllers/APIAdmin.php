@@ -2007,12 +2007,110 @@ class APIAdmin extends Controller
     
         }
   
-  
-  
       } else {
         abort(404);
       }
   
+
+    }
+
+    public function ModificarIdioma(Request $request){
+      
+      Log::info('[APIAdmin][ModificarIdioma]');
+  
+      Log::info("[APIAdmin][ModificarIdioma] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('POST')) {
+
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required',
+          'id' => 'required',
+          'nombreIdioma' => 'required',
+          'contenido' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+        $id = $request->input('id');
+        $nombreIdioma = $request->input('nombreIdioma');
+        $contenido = $request->input('contenido');
+  
+        Log::info("[APIAdmin][ModificarIdioma] Token: ". $token);
+        Log::info("[APIAdmin][ModificarIdioma] id: ". $id);
+        Log::info("[APIAdmin][ModificarIdioma] nombreIdioma: ". $nombreIdioma);
+        Log::info("[APIAdmin][ModificarIdioma] contenido: ". $contenido);
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+          $Idiomas = Idiomas::getIdiomasById($id);
+
+          if(count($Idiomas)>0){
+  
+            Log::info("[APIAdmin][ModificarIdioma] Code: ". $Idiomas[0]->code);
+    
+            $delete = Functions::deleteFile(dirname(__FILE__). "/../../../resources/lang/".$Idiomas[0]->code."/messages.php");
+
+            Log::info("[APIAdmin][ModificarIdioma] Delete: ". $delete);
+
+            $create = Functions::createArchive(dirname(__FILE__). "/../../../resources/lang/".$Idiomas[0]->code."/messages.php", $contenido);
+
+            Log::info("[APIAdmin][ModificarIdioma] create: ". $create);
+
+            $Idiomas = Idiomas::ModificarIdioma($id, $nombreIdioma, $contenido);
+
+          } else {
+            $Idiomas=-1;
+          }
+
+          if($Idiomas==1){
+    
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Idiomas));
+            $responseJSON->data = $Idiomas;
+            return json_encode($responseJSON);
+    
+          } else {
+    
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Idiomas));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+    
+          }
+  
+  
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][ModificarIdioma] Token error: token_expired');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][ModificarIdioma] Token error: token_invalid');
+  
+          return redirect('/');
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][ModificarIdioma] Token error: token_absent');
+  
+          return redirect('/');
+    
+        }
+  
+      } else {
+        abort(404);
+      }
 
     }
 

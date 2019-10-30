@@ -206,8 +206,11 @@ Route::get('/pAdmin/idiomas/obtenerAll', 'APIAdmin@GetIdiomasAllObtener');
 //Get idioma by id
 Route::get('/pAdmin/idiomas/obtenerById', 'APIAdmin@GetIdiomaById');
 
-//Agregar idioma
+//Agregar Idioma
 Route::post('/pAdmin/idiomas/agregar', 'APIAdmin@AgregarIdioma');
+
+//Modificar Idioma
+Route::post('pAdmin/idiomas/modificar', 'APIAdmin@ModificarIdioma');
 
 //Eliminar idioma
 Route::post('/pAdmin/idiomas/eliminar', 'APIAdmin@EliminarIdioma');

@@ -4654,6 +4654,45 @@
 
     $(".profile-image").attr("src","../img/conecta6_blanco.png");
 
+    $scope.modificarIdiomaClick = function(id){
+
+      console.log("[modificarIdiomaClick]");
+      
+      var nombreIdioma = $("#nombreIdioma").val();
+      //$("#codigo").val();
+      var contenido = $("#contenido").val();
+
+      console.log("[modificarIdiomaClick] id: " + id);
+      console.log("[modificarIdiomaClick] nombreIdioma: " + nombreIdioma);
+      console.log("[modificarIdiomaClick] contenido: " + contenido);
+
+      functions.modificarIdioma(id, nombreIdioma, contenido).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][modificarIdiomaClick]");
+          
+          console.log(response.data.data);
+
+          functions.loadingEndWait();
+          
+        } else {
+
+            toastr["error"](response.data.description, "");
+            functions.loadingEndWait();
+        }
+
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin postModificarIdioma*/
+
+    }; //fin modificarIdiomaClick
+
+    modificarIdiomaClick = $scope.modificarIdiomaClick;
+
     $scope.getIdiomaByIdClick = function(id){
 
       console.log("[getIdiomaByIdClick]");

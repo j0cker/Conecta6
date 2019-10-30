@@ -179,7 +179,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a ng-click="modificarIdiomaClick()" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
+                                                                <a ng-click="modificarIdiomaClick('<?PHP echo $_GET["id"]; ?>')" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
                                                             </div>
                                                         </div>
 
@@ -841,6 +841,8 @@
                 // Handler for .ready() called.
             
                 getIdiomaByIdClick("<?PHP echo $_GET["id"]; ?>");
+
+
                 
                 
             });
