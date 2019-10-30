@@ -4674,6 +4674,8 @@
           
           console.log(response.data.data);
 
+          window.location = "/idiomas";
+
           functions.loadingEndWait();
           
         } else {
