@@ -3253,9 +3253,9 @@
           
           console.log("[controllers][configuraciones][validarSubdominio]");
 
-          $(".fal.fa-check-circle").css("display","");
+          $(".fal.fa-check-circle.subdominio").css("display","");
 
-          $(".fal.fa-times-circle").css("display","none");
+          $(".fal.fa-times-circle.subdominio").css("display","none");
 
           functions.loadingEndWait();
 
@@ -3263,9 +3263,9 @@
           
         } else {
 
-          $(".fal.fa-check-circle").css("display","none");
+          $(".fal.fa-check-circle.subdominio").css("display","none");
 
-          $(".fal.fa-times-circle").css("display","");
+          $(".fal.fa-times-circle.subdominio").css("display","");
 
             functions.loadingEndWait();
 
@@ -4403,9 +4403,9 @@
           
           console.log("[controllers][nuevoempresa][validarSubdominio]");
 
-          $(".fal.fa-check-circle").css("display","");
+          $(".fal.fa-check-circle.subdominio").css("display","");
 
-          $(".fal.fa-times-circle").css("display","none");
+          $(".fal.fa-times-circle.subdominio").css("display","none");
 
           functions.loadingEndWait();
 
@@ -4413,9 +4413,9 @@
           
         } else {
 
-          $(".fal.fa-check-circle").css("display","none");
+          $(".fal.fa-check-circle.subdominio").css("display","none");
 
-          $(".fal.fa-times-circle").css("display","");
+          $(".fal.fa-times-circle.subdominio").css("display","");
 
             functions.loadingEndWait();
 

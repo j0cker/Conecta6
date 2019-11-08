@@ -1228,6 +1228,7 @@
         <script src="{{ url('js/slider.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/jquery.mask.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/jquery.masknumber.js?v='.cache("js_version_number").'') }}"></script>
+        <script type="text/javascript" src="{{ url('js/inputMask.js?v='.cache("js_version_number").'') }}" charset="utf-8"></script>
         
         <script>
             $( document ).ready(function() {

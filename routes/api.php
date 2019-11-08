@@ -23,6 +23,9 @@ Route::get('/zonasHorarias', 'APIGeneral@ZonasHorarias');
 //Lanzador de Correos Electrónicos
 Route::get('/mailsLauncher', 'MailsLauncher@mailsLauncher');
 
+//Obtener IP Pública del servidor Permisos (Empresas y admin)
+Route::get('/ipPublica', 'APIGeneral@IpPublica');
+
 /*
 *******Trabajadores******
 */

@@ -882,6 +882,7 @@
             {
 
                 $('#js-page-content').smartPanel(); 
+                
             });
         </script>
 

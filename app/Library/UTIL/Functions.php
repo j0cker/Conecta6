@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Log;
 use Config;
 use App;
 use carbon\Carbon;
+use Ixudra\Curl\Facades\Curl;
+use Illuminate\Http\Request;
 
 class Functions
 {
@@ -144,6 +146,20 @@ class Functions
         }
 
         return $return;
+    }
+
+    public static function getServerIp(){
+
+        Log::info('[Functions][getServerIp]');
+        
+        //linux nativo, en windows hay que agregar el comando dig en terminal.
+        //$ip = trim(shell_exec("dig +short myip.opendns.com @resolver1.opendns.com"));
+        //request()->ip().
+
+        $response = json_decode(Curl::to('https://api6.ipify.org?format=json')->get());
+
+        return $response->ip;
+
     }
 
     public static function createArchive($nombre_archivo, $body)

@@ -329,7 +329,42 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Subdominio: <i style="color: green; display: none;" class="fal fa-check-circle"></i><i style="color: red; display: none;" class="fal fa-times-circle"></i>
+                                                                    Dominio: <i style="color: green; display: none;" class="fal fa-check-circle dominio"></i><i style="color: red; display: none;" class="fal fa-times-circle dominio"></i>
+
+                                                                </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        <div style="margin-top: 10px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                            <div class="input-group mb-3 col-md-4">
+
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text" id="basic-addon2">www. <i style="margin-left: 15px; color: green; display: none;" class="fal fa-check-circle dominio"></i><i style="margin-left: 15px; color: red; display: none;" class="fal fa-times-circle dominio"></i></span>
+                                                                </div>
+
+                                                                <input id="dominio" type="text" class="form-control" placeholder="dominio.com" aria-label="Dominio" aria-describedby="basic-addon2" />
+                                                                
+                                                            </div>
+
+                                                            <div class="col-md-4"></div>
+
+                                                        </div>
+
+                                                        
+                                                        <div style="" class="text-center">Apuntar a: 192.168.0.1</div>
+
+                                                        <div style="margin-top: 25px;" class="row">
+
+                                                            <div class="col-md-4"></div>
+
+                                                                <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                                
+                                                                    Subdominio: <i style="color: green; display: none;" class="fal fa-check-circle subdominio"></i><i style="color: red; display: none;" class="fal fa-times-circle subdominio"></i>
 
                                                                 </div>
 
@@ -344,7 +379,7 @@
                                                             <div class="input-group mb-3 col-md-4">
                                                                 <input id="subdominio" type="text" class="form-control" placeholder="Nombre de la Empresa" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                                                 <div class="input-group-append">
-                                                                    <span class="input-group-text" id="basic-addon2">.dominio.com <i style="margin-left: 15px; color: green; display: none;" class="fal fa-check-circle"></i><i style="margin-left: 15px; color: red; display: none;" class="fal fa-times-circle"></i></span>
+                                                                    <span class="input-group-text" id="basic-addon2">.dominio.com <i style="margin-left: 15px; color: green; display: none;" class="fal fa-check-circle subdominio"></i><i style="margin-left: 15px; color: red; display: none;" class="fal fa-times-circle subdominio"></i></span>
                                                                 </div>
                                                             </div>
 
@@ -1081,6 +1116,7 @@
         <script src="{{ url('js/datepicker.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/jquery.mask.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/jquery.masknumber.js?v='.cache("js_version_number").'') }}"></script>
+        <script type="text/javascript" src="{{ url('js/inputMask.js?v='.cache("js_version_number").'') }}" charset="utf-8"></script>
         
         <script>
             $( document ).ready(function() {
@@ -1123,11 +1159,48 @@
             $(document).ready(function()
             {
 
+                $('#subdominio').mask('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', {
+                    translation: {
+                        "A": { pattern: /[a-zA-Z0-9]/ }
+                    }
+                });
+
+                $('#dominio').mask('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', {
+                    translation: {
+                        "A": { pattern: /[a-zA-Z0-9.]/ }
+                    }
+                });
+
                 $('#subdominio').on('change', function() {
                     console.log("[nuevaempresa.php][subdominio] changes");
 
+                    //Valida en API
                     validarSubdominio($("#subdominio").val());
                     
+                });
+                
+                $('#dominio').on('change', function() {
+
+                    console.log("[nuevaempresa.php][dominio] change");
+
+                    if($("#dominio").val().indexOf(".")!="-1"){
+                        
+
+                        $(".fal.fa-check-circle.dominio").css("display","");
+
+                        $(".fal.fa-times-circle.dominio").css("display","none");
+
+                        //mandar a función de obtener ip public y mostrarla
+
+                        // api/ipPublica
+
+                    } else {
+
+
+                        $(".fal.fa-check-circle.dominio").css("display","none");
+
+                        $(".fal.fa-times-circle.dominio").css("display","");
+                    }
 
                 });
 
