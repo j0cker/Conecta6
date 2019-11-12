@@ -110,6 +110,9 @@ Route::get('/empresas', 'APIAdmin@Empresas');
 //Agregar Nueva Empresa
 Route::get('/empresas/nueva', 'APIAdmin@NuevaEmpresa');
 
+//Modificar Empresa
+Route::get('/empresas/modificar', 'APIAdmin@ModificarEmpresa');
+
 //Idiomas
 Route::get('/idiomas', 'APIAdmin@Idiomas');
 

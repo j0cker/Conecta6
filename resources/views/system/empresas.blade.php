@@ -745,6 +745,8 @@
             function edit(valor){
                 
                 console.log(valor);
+
+                window.location = "/empresas/modificar?id=" + valor;
             }
 
             function del(valor){

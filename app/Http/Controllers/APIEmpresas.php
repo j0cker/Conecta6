@@ -3756,6 +3756,7 @@ class APIEmpresas extends Controller
         $datepicker = $request->input('datepicker');
         $empleadosPermitidos = $request->input('empleadosPermitidos');
         $activa = $request->input('activa');
+        $dominio = $request->input('dominio');
         $subdominio = $request->input('subdominio');
         $contrasena = $request->input('contrasena');
         $color = $request->input('color');
@@ -3768,11 +3769,12 @@ class APIEmpresas extends Controller
         Log::info("[APIEmpresas][AltaEmpresa] datepicker: " .$datepicker);
         Log::info("[APIEmpresas][AltaEmpresa] empleadosPermitidos: " .$empleadosPermitidos);
         Log::info("[APIEmpresas][AltaEmpresa] activa: " .$activa);
+        Log::info("[APIEmpresas][AltaEmpresa] dominio: " .$dominio);
         Log::info("[APIEmpresas][AltaEmpresa] subdominio: " .$subdominio);
         Log::info("[APIEmpresas][AltaEmpresa] contrasena: " .$contrasena);
         Log::info("[APIEmpresas][AltaEmpresa] color: " .$color);
 
-        $empresas = Empresas::addNewEnterprise($nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $subdominio, $contrasena, $color);
+        $empresas = Empresas::addNewEnterprise($nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $contrasena, $color);
         
         Log::info($empresas);
 

@@ -4383,13 +4383,42 @@
 
     var validarSubdominioBD = 0;
 
-
     $scope.color = (colorClicked) => {
       console.log("[nuevoempresa][altaEmpresa] " + colorClicked);
 
       color = colorClicked;
 
     }
+
+    $scope.getPublicIpClick = function(){
+
+      console.log("[controllers][nuevoempresa][getPublicIpClick]");
+      
+      functions.getPublicIp(subdominio).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][nuevoempresa][getPublicIp]");
+
+          $("#ip").html(response.data.ip);
+          $("#apuntarIp").css("display","");
+
+          functions.loadingEndWait();
+
+        } else {
+
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin validarSubdominio*/
+      
+    };
+    
+    getPublicIp = $scope.getPublicIpClick;
 
     $scope.validarSubdominio = function(subdominio){
 
@@ -4445,6 +4474,7 @@
       var datepicker = ""; //vigencia
       var empleadosPermitidos = "";
       var activa = ""; //gra-0 cuenta activa/desactiva
+      var dominio = "";
       var subdominio = "";
       var contrasena = "";
       var valContrasena = "";
@@ -4458,6 +4488,7 @@
       datepicker = $("#datepicker").val();
       empleadosPermitidos = $("#empleadosPermitidos").val();
       activa = $("#gra-0").prop('checked');
+      dominio = $("#dominio").val();
       subdominio = $("#subdominio").val();
       contrasena = $("#contrasena").val();
       valContrasena = $("#valContrasena").val();
@@ -4471,6 +4502,7 @@
       console.log("[nuevoempresa][altaEmpresa] datepicker: " + datepicker);
       console.log("[nuevoempresa][altaEmpresa] empleadosPermitidos: " + empleadosPermitidos);
       console.log("[nuevoempresa][altaEmpresa] activa: " + activa);
+      console.log("[nuevoempresa][altaEmpresa] dominio: " + dominio);
       console.log("[nuevoempresa][altaEmpresa] subdominio: " + subdominio);
       console.log("[nuevoempresa][altaEmpresa] contrasena: " + contrasena);
       console.log("[nuevoempresa][altaEmpresa] valContrasena: " + valContrasena);
@@ -4505,7 +4537,7 @@
 
       } else {
 
-        functions.altaEmpresa(nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, subdominio, contrasena, color).then(function (response) {
+        functions.altaEmpresa(nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, dominio, subdominio, contrasena, color).then(function (response) {
 
                 if(response.data.success == "TRUE"){
                   console.log("[nuevoempresa][altaEmpresa]");
@@ -4534,6 +4566,51 @@
 
 
   });//fin controller nuevoempresa
+
+  
+
+  app.controller('modempresa', function($scope, functions, $window) {
+
+    console.log("[modempresa]");
+
+    functions.loading();
+
+    $(".profile-image").attr("src","../img/conecta6_blanco.png");
+
+    var theme = $("#mytheme").attr("href").split("cust-theme-");
+    theme = theme[1].split(".css");
+
+    var color = theme[0];
+
+    $scope.getEmpresaClick = function(id_empresas){
+
+      console.log("[getEmpresa] ");
+
+      console.log("id_empresas: " + id_empresas);
+
+      functions.getEmpresa(id_empresas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[modempresa][getEmpresa]");
+
+              console.log(response.data.data);
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin getEmpresa*/
+
+    }; //fin getEmpresaClick
+
+    getEmpresa = $scope.getEmpresaClick;
+
+  });//fin controller modempresa
 
   app.controller('modificarsalida', function($scope, functions, $window) {
 

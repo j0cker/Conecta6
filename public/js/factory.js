@@ -4265,12 +4265,12 @@
         });
 
       },
-      altaEmpresa: function(nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, subdominio, contrasena, color) {
+      altaEmpresa: function(nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, dominio, subdominio, contrasena, color) {
 
         console.log("[factory][altaEmpresa]");
 
         var url = '/api/empresas/altaEmpresa';
-		  	return $http.post(url, {cache: false, nombreEmpresa:nombreEmpresa, nombreSolicitante:nombreSolicitante, correoElectronico:correoElectronico, telefonoFijo:telefonoFijo, celular:celular, datepicker:datepicker, empleadosPermitidos:empleadosPermitidos, activa:activa, subdominio:subdominio, contrasena:contrasena, color:color });
+		  	return $http.post(url, {cache: false, nombreEmpresa:nombreEmpresa, nombreSolicitante:nombreSolicitante, correoElectronico:correoElectronico, telefonoFijo:telefonoFijo, celular:celular, datepicker:datepicker, empleadosPermitidos:empleadosPermitidos, activa:activa, dominio:dominio, subdominio:subdominio, contrasena:contrasena, color:color });
 
       },
       validarSubdominio: function(subdominio) {
@@ -4395,6 +4395,17 @@
           cache: false
         });
 
+      },
+      getPublicIp: function(){
+
+        console.log("[factory][getPublicIp]");
+
+        var url = '/api/ipPublica';
+        return $http.get(url,{
+          params: { cache: false },
+          cache: false
+        });
+        
       },
       getAllZonasHorarias: function() {
 

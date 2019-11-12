@@ -98,7 +98,7 @@ class Empresas extends Model
   }
 
     //agrega nueva empresa
-    public function scopeAddNewEnterprise($query, $nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $subdominio, $contrasena, $color)
+    public function scopeAddNewEnterprise($query, $nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $contrasena, $color)
     {
 
         Log::info("[Empresas][scopeAddNewEnterprise]");
@@ -112,6 +112,7 @@ class Empresas extends Model
         $empresas->vigencia = $datepicker;
         $empresas->empleados_permitidos = $empleadosPermitidos;
         $empresas->activo = $activa;
+        $empresas->dominio = $dominio;
         $empresas->subdominio = $subdominio;
         $empresas->pass = hash("sha256", $contrasena);
         $empresas->color = $color;

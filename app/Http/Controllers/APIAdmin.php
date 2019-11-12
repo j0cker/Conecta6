@@ -1555,6 +1555,9 @@ class APIAdmin extends Controller
           $token_decrypt = JWTAuth::getPayload($token)->toArray();
 
           if(in_array("1", $token_decrypt["permisos"])==1){
+
+  
+            Log::info("[APIAdmin][NuevaEmpresa] Hay permisos");
             
             return view('system.nuevaempresa',["title" => config('app.name'), 
                                               "lang" => "es", 
@@ -1567,6 +1570,9 @@ class APIAdmin extends Controller
   
 
           } else {
+
+  
+            Log::info("[APIAdmin][NuevaEmpresa] No Hay permisos");
             
             return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
             
@@ -1609,6 +1615,94 @@ class APIAdmin extends Controller
         abort(404);
       }
   
+    }
+
+    public function ModificarEmpresa(Request $request){
+      
+      Log::info('[APIAdmin][ModificarEmpresa]');
+  
+      Log::info("[APIAdmin][ModificarEmpresa] Método Recibido: ". $request->getMethod());
+  
+      if($request->isMethod('GET')) {
+  
+        $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+  
+        $this->validate($request, [
+          'token' => 'required'
+        ]);
+          
+        $token = $request->input('token');
+  
+        Log::info("[APIAdmin][ModificarEmpresa] Token: ". $token);
+  
+        try {
+  
+          // attempt to verify the credentials and create a token for the user
+          $token = JWTAuth::getToken();
+          $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+          if(in_array("1", $token_decrypt["permisos"])==1){
+
+  
+            Log::info("[APIAdmin][ModificarEmpresa] Hay permisos");
+            
+            return view('system.modEmpresa',["title" => config('app.name'), 
+                                              "lang" => "es", 
+                                              "user" => $token_decrypt, 
+                                              "color" => $token_decrypt['color'], 
+                                              "colorHex" => $token_decrypt['colorHex'],
+                                              "subdominio" => $token_decrypt['subdominio'],
+                                            ]
+                                    );
+  
+
+          } else {
+
+  
+            Log::info("[APIAdmin][ModificarEmpresa] No Hay permisos");
+            
+            return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+            
+          }
+  
+          //print_r($token_decrypt["id"]);
+  
+          //print_r($token_decrypt);
+  
+          
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+  
+          //token_expired
+      
+          Log::info('[APIAdmin][ModificarEmpresa] Token error: token_expired');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+  
+          //token_invalid
+      
+          Log::info('[APIAdmin][ModificarEmpresa] Token error: token_invalid');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+  
+          //token_absent
+      
+          Log::info('[APIAdmin][ModificarEmpresa] Token error: token_absent');
+    
+          return view('admin.login',["title" => config('app.name'), "lang" => "es"]);
+    
+        }
+  
+  
+  
+      } else {
+        abort(404);
+      }
+  
+
     }
 
     public function Administradores(Request $request){

@@ -31,7 +31,6 @@
 @section('raiz3','Nueva Empresa')
 @section('raiz3Url','/nuevaempresa')
 
-
 {{-- Angular Controller --}}
 
 @section('controller','nuevoempresa')
@@ -356,7 +355,7 @@
                                                         </div>
 
                                                         
-                                                        <div style="" class="text-center">Apuntar a: 192.168.0.1</div>
+                                                        <div id="apuntarIp" style="display: none;" class="text-center">Apuntar a: <span id="ip"></span></div>
 
                                                         <div style="margin-top: 25px;" class="row">
 
@@ -1159,6 +1158,8 @@
             $(document).ready(function()
             {
 
+                
+
                 $('#subdominio').mask('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', {
                     translation: {
                         "A": { pattern: /[a-zA-Z0-9]/ }
@@ -1191,8 +1192,7 @@
                         $(".fal.fa-times-circle.dominio").css("display","none");
 
                         //mandar a función de obtener ip public y mostrarla
-
-                        // api/ipPublica
+                        getPublicIp();
 
                     } else {
 
