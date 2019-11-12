@@ -1,844 +1,483 @@
-<?php $__env->startSection('lang'); ?><?php echo e($lang); ?><?php $__env->stopSection(); ?>
-
-
-
-<?php $__env->startSection('title'); ?><?php echo e($title); ?><?php $__env->stopSection(); ?>
-
-
-
-<?php $__env->startSection('Content-Type','text/html; charset=UTF-8'); ?>
-<?php $__env->startSection('x-ua-compatible','ie=edge'); ?>
-<?php $__env->startSection('keywords',''); ?>
-<?php $__env->startSection('description',''); ?>
-<?php $__env->startSection('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1'); ?>
-<?php $__env->startSection('idiomaLang','es-mx'); ?>
-
-
-
-<!--Menu Transparente
-<?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
--->
-<?php $__env->startSection('menuActive','historialRegistros'); ?>
-
-<?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
-<?php $__env->startSection('raiz1Url', '/inicio'); ?>
-<?php $__env->startSection('raiz2','Trabajadores'); ?>
-<?php $__env->startSection('raiz2Url','/inicio'); ?>
-<?php $__env->startSection('raiz3','Historial de Entradas y Salidas'); ?>
-<?php $__env->startSection('raiz3Url','/historial'); ?>
-
-
-
-<?php $__env->startSection('controller','historial'); ?>
-
-
-
-<?php $__env->startSection('content'); ?>
-
-        <!-- BEGIN Page Wrapper -->
-        <div class="page-wrapper">
-            <div class="page-inner">
-                <!-- BEGIN Left Aside -->
-                        
-                    <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
-                <!-- END Left Aside -->
-                <div class="page-content-wrapper">
-                    <!-- BEGIN Page Header -->
-                        
-                    <?php echo $__env->make('system.menu2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-                    
-                    <!-- END Page Header -->
-                    <!-- BEGIN Page Content -->
-                    <!-- the #js-page-content id is needed for some plugins to initialize -->
-                    <main id="js-page-content" role="main" class="page-content">
-                    
-                        <?php echo $__env->make('system.menu3', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
-                        <div class="subheader">
-                            <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-history'></i> Historial Entradas y Salidas <span class='fw-300'>Dashboard</span>
-                            </h1>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-12 sortable-grid ui-sortable">
-                                <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
-                                    <div class="panel-hdr" role="heading">
-                                        <h2>
-                                            Historial Entradas y Salidas
-                                        </h2>
-                                        <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
-                                            <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
-                                            <a href="#" class="btn btn-panel hover-effect-dot js-panel-fullscreen waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></a>
-                                        </div>
-                                        <div class="panel-toolbar" role="menu"><a href="#" class="btn btn-toolbar-master waves-effect waves-themed" data-toggle="dropdown"><i class="fal fa-ellipsis-v"></i></a><div class="dropdown-menu dropdown-menu-animated dropdown-menu-right p-0">
-                                        <div class="dropdown-multilevel dropdown-multilevel-left"><div class="dropdown-item"><span data-i18n="drpdwn.panelcolor">Panel Style</span>	</div><div class="dropdown-menu d-flex flex-wrap" style="min-width: 9.5rem; width: 9.5rem; padding: 0.5rem"><a href="#" class="btn d-inline-block bg-primary-700 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-700 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-primary-500 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-500 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-primary-600 bg-primary-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-primary-600 bg-primary-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-600 bg-primray-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-600 bg-primray-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-600 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-600 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-info-700 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-info-700 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-900 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-900 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-700 bg-primary-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-700 bg-primary-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-success-600 bg-success-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-success-600 bg-success-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-danger-900 bg-info-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-danger-900 bg-info-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-fusion-400 bg-fusion-gradient width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-fusion-400 bg-fusion-gradient" style="margin:1px;"></a> <a href="#" class="btn d-inline-block bg-faded width-2 height-2 p-0 rounded-0 js-panel-color hover-effect-dot waves-effect waves-themed" data-panel-setstyle="bg-faded" style="margin:1px;"></a></div>										</div>  <div class="dropdown-divider m-0"></div>
-                                        </div></div>
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content">
-
-                                            
-                                            <div class="form-group row">
-                                                <div class="col-12">
-                                                    <div style="margin-top: 10px; !important" class="input-group">
-                                                        <input type="text" class="form-control" placeholder="Select date" id="datepicker-2">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text fs-xl">
-                                                                <i class="fal fa-calendar"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
-                                            <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
-                                                <thead class="bg-warning-200">
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Fecha y Hora</th>
-                                                        <th>Entrada/Salida</th>
-                                                        <th>Comentarios</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="historialTable">
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Fecha y Hora</th>
-                                                        <th>Entrada/Salida</th>
-                                                        <td>Comentarios</td>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-                                            <!-- datatable end -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div><!-- fin row -->
-
-                    </main>
-                    <!-- this overlay is activated only when mobile menu is triggered -->
-                    <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
-                    <!-- BEGIN Page Footer -->
-                    
-                    <?php echo $__env->make('system.footer2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
-                    <!-- END Page Footer -->
-                    <!-- BEGIN Shortcuts -->
-                    <!-- modal shortcut -->
-                    <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <ul class="app-list w-auto h-auto p-0 text-left">
-                                        <li>
-                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
-                                                <div class="icon-stack">
-                                                    <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
-                                                    <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
-                                                    <i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
-                                                </div>
-                                                <span class="app-list-name">
-                                                    Home
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
-                                                <div class="icon-stack">
-                                                    <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
-                                                    <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
-                                                    <i class="ni ni-envelope icon-stack-1x text-white"></i>
-                                                </div>
-                                                <span class="app-list-name">
-                                                    Inbox
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
-                                                <div class="icon-stack">
-                                                    <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
-                                                    <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
-                                                </div>
-                                                <span class="app-list-name">
-                                                    Add More
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- END Shortcuts -->
-                </div>
-            </div>
-        </div>
-        <!-- END Page Wrapper -->
-        <!-- BEGIN Quick Menu -->
-        <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-        <?php echo $__env->make('system.toolbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-        <!-- END Quick Menu -->
-        <!-- BEGIN Messenger -->
-        <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-right">
-                <div class="modal-content h-100">
-                    <div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
-                        <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
-                            <span class="mr-2">
-                                <span class="rounded-circle profile-image d-block" style="background-image:url('img/avatar-d.png'); background-size: cover;"></span>
-                            </span>
-                            <div class="info-card-text">
-                                <a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white" data-toggle="dropdown" aria-expanded="false">
-                                    Tracey Chang
-                                    <i class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Send Email</a>
-                                    <a class="dropdown-item" href="#">Create Appointment</a>
-                                    <a class="dropdown-item" href="#">Block User</a>
-                                </div>
-                                <span class="text-truncate text-truncate-md opacity-80">IT Director</span>
-                            </div>
-                        </div>
-                        <button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
-                        </button>
-                    </div>
-                    <div class="modal-body p-0 h-100 d-flex">
-                        <!-- BEGIN msgr-list -->
-                        <div class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
-                            <div>
-                                <div class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
-                                    <i class="fal fa-search"></i>
-                                </div>
-                                <input type="text" class="form-control bg-white" id="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FriendSearch" data-listfilter="#js-msgr-listfilter">
-                            </div>
-                            <div class="flex-1 h-100 custom-scroll">
-                                <div class="w-100">
-                                    <ul id="js-msgr-listfilter" class="list-unstyled m-0">
-                                        <li>
-                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="tracey chang online">
-                                                <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-d.png'); background-size: cover;"></span>
-                                                </div>
-                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
-                                                    <div class="text-truncate text-truncate-md">
-                                                        Tracey Chang
-                                                        <small class="d-block font-italic text-success fs-xs">
-                                                            Online
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="oliver kopyuv online">
-                                                <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-b.png'); background-size: cover;"></span>
-                                                </div>
-                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
-                                                    <div class="text-truncate text-truncate-md">
-                                                        Oliver Kopyuv
-                                                        <small class="d-block font-italic text-success fs-xs">
-                                                            Online
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="dr john cook phd away">
-                                                <div class="d-table-cell align-middle status status-warning status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-e.png'); background-size: cover;"></span>
-                                                </div>
-                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
-                                                    <div class="text-truncate text-truncate-md">
-                                                        Dr. John Cook PhD
-                                                        <small class="d-block font-italic fs-xs">
-                                                            Away
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney online">
-                                                <div class="d-table-cell align-middle status status-success status-sm ">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-g.png'); background-size: cover;"></span>
-                                                </div>
-                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
-                                                    <div class="text-truncate text-truncate-md">
-                                                        Ali Amdaney
-                                                        <small class="d-block font-italic fs-xs text-success">
-                                                            Online
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="sarah mcbrook online">
-                                                <div class="d-table-cell align-middle status status-success status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-h.png'); background-size: cover;"></span>
-                                                </div>
-                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
-                                                    <div class="text-truncate text-truncate-md">
-                                                        Sarah McBrook
-                                                        <small class="d-block font-italic fs-xs text-success">
-                                                            Online
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
-                                                <div class="d-table-cell align-middle status status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-a.png'); background-size: cover;"></span>
-                                                </div>
-                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
-                                                    <div class="text-truncate text-truncate-md">
-                                                        oliver.kopyuv@gotbootstrap.com
-                                                        <small class="d-block font-italic fs-xs">
-                                                            Offline
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney busy">
-                                                <div class="d-table-cell align-middle status status-danger status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-j.png'); background-size: cover;"></span>
-                                                </div>
-                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
-                                                    <div class="text-truncate text-truncate-md">
-                                                        oliver.kopyuv@gotbootstrap.com
-                                                        <small class="d-block font-italic fs-xs text-danger">
-                                                            Busy
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney offline">
-                                                <div class="d-table-cell align-middle status status-sm">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-c.png'); background-size: cover;"></span>
-                                                </div>
-                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
-                                                    <div class="text-truncate text-truncate-md">
-                                                        oliver.kopyuv@gotbootstrap.com
-                                                        <small class="d-block font-italic fs-xs">
-                                                            Offline
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white" data-filter-tags="ali amdaney inactive">
-                                                <div class="d-table-cell align-middle">
-                                                    <span class="profile-image-md rounded-circle d-block" style="background-image:url('img/avatar-m.png'); background-size: cover;"></span>
-                                                </div>
-                                                <div class="d-table-cell w-100 align-middle pl-2 pr-2">
-                                                    <div class="text-truncate text-truncate-md">
-                                                        +714651347790
-                                                        <small class="d-block font-italic fs-xs opacity-50">
-                                                            Missed Call
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="filter-message js-filter-message"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <a class="fs-xl d-flex align-items-center p-3">
-                                    <i class="fal fa-cogs"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- END msgr-list -->
-                        <!-- BEGIN msgr -->
-                        <div class="msgr d-flex h-100 flex-column bg-white">
-                            <!-- BEGIN custom-scroll -->
-                            <div class="custom-scroll flex-1 h-100">
-                                <div id="chat_container" class="w-100 p-4">
-                                    <!-- start .chat-segment -->
-                                    <div class="chat-segment">
-                                        <div class="time-stamp text-center mb-2 fw-400">
-                                            Jun 19
-                                        </div>
-                                    </div>
-                                    <!--  end .chat-segment -->
-                                    <!-- start .chat-segment -->
-                                    <div class="chat-segment chat-segment-sent">
-                                        <div class="chat-message">
-                                            <p>
-                                                Hey Ching, did you get my files?
-                                            </p>
-                                        </div>
-                                        <div class="text-right fw-300 text-muted mt-1 fs-xs">
-                                            3:00 pm
-                                        </div>
-                                    </div>
-                                    <!--  end .chat-segment -->
-                                    <!-- start .chat-segment -->
-                                    <div class="chat-segment chat-segment-get">
-                                        <div class="chat-message">
-                                            <p>
-                                                Hi
-                                            </p>
-                                            <p>
-                                                Sorry going through a busy time in office. Yes I analyzed the solution.
-                                            </p>
-                                            <p>
-                                                It will require some resource, which I could not manage.
-                                            </p>
-                                        </div>
-                                        <div class="fw-300 text-muted mt-1 fs-xs">
-                                            3:24 pm
-                                        </div>
-                                    </div>
-                                    <!--  end .chat-segment -->
-                                    <!-- start .chat-segment -->
-                                    <div class="chat-segment chat-segment-sent chat-start">
-                                        <div class="chat-message">
-                                            <p>
-                                                Okay
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!--  end .chat-segment -->
-                                    <!-- start .chat-segment -->
-                                    <div class="chat-segment chat-segment-sent chat-end">
-                                        <div class="chat-message">
-                                            <p>
-                                                Sending you some dough today, you can allocate the resources to this project.
-                                            </p>
-                                        </div>
-                                        <div class="text-right fw-300 text-muted mt-1 fs-xs">
-                                            3:26 pm
-                                        </div>
-                                    </div>
-                                    <!--  end .chat-segment -->
-                                    <!-- start .chat-segment -->
-                                    <div class="chat-segment chat-segment-get chat-start">
-                                        <div class="chat-message">
-                                            <p>
-                                                Perfect. Thanks a lot!
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!--  end .chat-segment -->
-                                    <!-- start .chat-segment -->
-                                    <div class="chat-segment chat-segment-get">
-                                        <div class="chat-message">
-                                            <p>
-                                                I will have them ready by tonight.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!--  end .chat-segment -->
-                                    <!-- start .chat-segment -->
-                                    <div class="chat-segment chat-segment-get chat-end">
-                                        <div class="chat-message">
-                                            <p>
-                                                Cheers
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!--  end .chat-segment -->
-                                    <!-- start .chat-segment for timestamp -->
-                                    <div class="chat-segment">
-                                        <div class="time-stamp text-center mb-2 fw-400">
-                                            Jun 20
-                                        </div>
-                                    </div>
-                                    <!--  end .chat-segment for timestamp -->
-                                </div>
-                            </div>
-                            <!-- END custom-scroll  -->
-                            <!-- BEGIN msgr__chatinput -->
-                            <div class="d-flex flex-column">
-                                <div class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
-                                    <div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
-                                        <div id="msgr_input" contenteditable="true" data-placeholder="Type your message here..." class="height-10 form-content-editable"></div>
-                                    </div>
-                                </div>
-                                <div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1" data-toggle="tooltip" data-original-title="More options" data-placement="top">
-                                        <i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
-                                    </a>
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Attach files" data-placement="top">
-                                        <i class="fal fa-paperclip color-fusion-300"></i>
-                                    </a>
-                                    <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip" data-original-title="Insert photo" data-placement="top">
-                                        <i class="fal fa-camera color-fusion-300"></i>
-                                    </a>
-                                    <div class="ml-auto">
-                                        <a href="javascript:void(0);" class="btn btn-info">Send</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END msgr__chatinput -->
-                        </div>
-                        <!-- END msgr -->
-                    </div>
-                </div>
-            </div>
-        </div> <!-- END Messenger -->
-        <!-- BEGIN Page Settings -->
-        <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-right modal-md">
-                <div class="modal-content">
-                    <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
-                        <h4 class="m-0 text-center color-white">
-                            Layout Settings
-                            <small class="mb-0 opacity-80">User Interface Settings</small>
-                        </h4>
-                        <button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
-                        </button>
-                    </div>
-                    <div class="modal-body p-0">
-                        <div class="settings-panel">
-                            <div class="mt-4 d-table w-100 px-5">
-                                <div class="d-table-cell align-middle">
-                                    <h5 class="p-0">
-                                        App Layout
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="list" id="fh">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="header-function-fixed"></a>
-                                <span class="onoffswitch-title">Fixed Header</span>
-                                <span class="onoffswitch-title-desc">header is in a fixed at all times</span>
-                            </div>
-                            <div class="list" id="nff">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-function-fixed"></a>
-                                <span class="onoffswitch-title">Fixed Navigation</span>
-                                <span class="onoffswitch-title-desc">left panel is fixed</span>
-                            </div>
-                            <div class="list" id="nfm">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-function-minify"></a>
-                                <span class="onoffswitch-title">Minify Navigation</span>
-                                <span class="onoffswitch-title-desc">Skew nav to maximize space</span>
-                            </div>
-                            <div class="list" id="nfh">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-function-hidden"></a>
-                                <span class="onoffswitch-title">Hide Navigation</span>
-                                <span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
-                            </div>
-                            <div class="list" id="nft">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-function-top"></a>
-                                <span class="onoffswitch-title">Top Navigation</span>
-                                <span class="onoffswitch-title-desc">Relocate left pane to top</span>
-                            </div>
-                            <div class="list" id="mmb">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-main-boxed"></a>
-                                <span class="onoffswitch-title">Boxed Layout</span>
-                                <span class="onoffswitch-title-desc">Encapsulates to a container</span>
-                            </div>
-                            <div class="expanded">
-                                <ul class="">
-                                    <li>
-                                        <div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
-                                    </li>
-                                    <li>
-                                        <div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
-                                    </li>
-                                    <li>
-                                        <div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
-                                    </li>
-                                    <li>
-                                        <div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
-                                    </li>
-                                </ul>
-                                <div class="list" id="mbgf">
-                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-fixed-bg"></a>
-                                    <span class="onoffswitch-title">Fixed Background</span>
-                                </div>
-                            </div>
-                            <div class="mt-4 d-table w-100 px-5">
-                                <div class="d-table-cell align-middle">
-                                    <h5 class="p-0">
-                                        Mobile Menu
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="list" id="nmp">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-mobile-push"></a>
-                                <span class="onoffswitch-title">Push Content</span>
-                                <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
-                            </div>
-                            <div class="list" id="nmno">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-mobile-no-overlay"></a>
-                                <span class="onoffswitch-title">No Overlay</span>
-                                <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
-                            </div>
-                            <div class="list" id="sldo">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-mobile-slide-out"></a>
-                                <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
-                                <span class="onoffswitch-title-desc">Content overlaps menu</span>
-                            </div>
-                            <div class="mt-4 d-table w-100 px-5">
-                                <div class="d-table-cell align-middle">
-                                    <h5 class="p-0">
-                                        Accessibility
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="list" id="mbf">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-bigger-font"></a>
-                                <span class="onoffswitch-title">Bigger Content Font</span>
-                                <span class="onoffswitch-title-desc">content fonts are bigger for readability</span>
-                            </div>
-                            <div class="list" id="mhc">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-high-contrast"></a>
-                                <span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
-                                <span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
-                            </div>
-                            <div class="list" id="mcb">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-color-blind"></a>
-                                <span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
-                                <span class="onoffswitch-title-desc">color vision deficiency</span>
-                            </div>
-                            <div class="list" id="mpc">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-pace-custom"></a>
-                                <span class="onoffswitch-title">Preloader Inside</span>
-                                <span class="onoffswitch-title-desc">preloader will be inside content</span>
-                            </div>
-                            <div class="mt-4 d-table w-100 px-5">
-                                <div class="d-table-cell align-middle">
-                                    <h5 class="p-0">
-                                        Global Modifications
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="list" id="mcbg">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-clean-page-bg"></a>
-                                <span class="onoffswitch-title">Clean Page Background</span>
-                                <span class="onoffswitch-title-desc">adds more whitespace</span>
-                            </div>
-                            <div class="list" id="mhni">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-hide-nav-icons"></a>
-                                <span class="onoffswitch-title">Hide Navigation Icons</span>
-                                <span class="onoffswitch-title-desc">invisible navigation icons</span>
-                            </div>
-                            <div class="list" id="dan">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-disable-animation"></a>
-                                <span class="onoffswitch-title">Disable CSS Animation</span>
-                                <span class="onoffswitch-title-desc">Disables CSS based animations</span>
-                            </div>
-                            <div class="list" id="mhic">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-hide-info-card"></a>
-                                <span class="onoffswitch-title">Hide Info Card</span>
-                                <span class="onoffswitch-title-desc">Hides info card from left panel</span>
-                            </div>
-                            <div class="list" id="mlph">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-lean-subheader"></a>
-                                <span class="onoffswitch-title">Lean Subheader</span>
-                                <span class="onoffswitch-title-desc">distinguished page header</span>
-                            </div>
-                            <div class="list" id="mnl">
-                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-nav-link"></a>
-                                <span class="onoffswitch-title">Hierarchical Navigation</span>
-                                <span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
-                            </div>
-                            <div class="list mt-1">
-                                <span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
-                                <div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
-                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-sm" data-target="html">
-                                        <input type="radio" name="changeFrontSize"> SM
-                                    </label>
-                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text" data-target="html">
-                                        <input type="radio" name="changeFrontSize" checked=""> MD
-                                    </label>
-                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-lg" data-target="html">
-                                        <input type="radio" name="changeFrontSize"> LG
-                                    </label>
-                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-xl" data-target="html">
-                                        <input type="radio" name="changeFrontSize"> XL
-                                    </label>
-                                </div>
-                                <span class="onoffswitch-title-desc d-block mb-g">Change <strong>root</strong> font size to effect rem values</span>
-                            </div>
-                            <div class="mt-2 d-table w-100 pl-5 pr-3">
-                                <div class="d-table-cell align-middle">
-                                    <h5 class="p-0">
-                                        Theme colors <small>(overlays base css)</small>
-                                    </h5>
-                                    <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
-                                        <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Due to network latency and CPU utilization, you may experience a brief flickering effect on page load which may show the intial applied theme for a split second. Setting the prefered style/theme in the header will prevent this from happening.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="expanded theme-colors pl-5 pr-3">
-                                <ul class="m-0">
-                                    <li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme="" data-toggle="tooltip" data-placement="top" title="Wisteria (base css)" data-original-title="Wisteria (base css)"></a></li>
-                                    <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
-                                    <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
-                                    <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
-                                    <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a></li>
-                                    <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
-                                    <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
-                                    <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
-                                    <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="Chetwode Blue" data-original-title="Chetwode Blue"></a></li>
-                                    <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
-                                    <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a></li>
-                                    <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a></li>
-                                    <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="Wild Blue Yonder" data-original-title="Wild Blue Yonder"></a></li>
-                                    <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
-                                </ul>
-                            </div>
-                            <hr class="mb-0 mt-4">
-                            <div class="pl-5 pr-3 py-3 bg-faded">
-                                <div class="row no-gutters">
-                                    <div class="col-6 pr-1">
-                                        <a href="#" class="btn btn-outline-danger fw-500 btn-block" data-action="app-reset">Reset Settings</a>
-                                    </div>
-                                    <div class="col-6 pl-1">
-                                        <a href="#" class="btn btn-danger fw-500 btn-block" data-action="factory-reset">Factory Reset</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <span id="saving"></span>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- END Page Settings -->
-        
-        <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
-        
-        <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
-    
-        <script src="<?php echo e(url('js/datatables.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/moment.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/daterangepicker.js?v='.cache("js_version_number").'')); ?>"></script>
-        
-        <script>
-            $( document ).ready(function() {
-                // Handler for .ready() called.
-
-                $('#datepicker-2').change(function(){
-
-                    console.log("[datepicker]");
-
-                    var arrayDatePicker = $('#datepicker-2').val().split(" - ");
-                    var start = arrayDatePicker[0];
-                    var end = arrayDatePicker[1];
-                    
-
-                    getHistorialEntradas("<?php echo e($user['usr']->id_trabajadores); ?>", start, end);
-
-                });
-
-            });
-        </script>
-
-        <script>
-
-            $(document).ready(function()
-            {
-
-                
-                /* init datatables */
-               var table = $('#dt-basic-example').dataTable(
-                {
-                    "aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
-                    "iDisplayLength": 25,
-                    "pageLength": 20,
-                    "ordering": true,
-                    responsive: true,
-                    dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421" ] ],
-                    buttons: [
-                        {
-                            extend: 'colvis',
-                            text: 'Column Visibility',
-                            titleAttr: 'Col visibility',
-                            className: 'btn-outline-default'
-                        },
-                        {
-                            extend: 'csvHtml5',
-                            text: 'CSV',
-                            titleAttr: 'Generate CSV',
-                            className: 'btn-outline-default'
-                        },
-                        {
-                            extend: 'copyHtml5',
-                            text: 'Copy',
-                            titleAttr: 'Copy to clipboard',
-                            className: 'btn-outline-default'
-                        },
-                        {
-                            extend: 'print',
-                            text: '<i class="fal fa-print"></i>',
-                            titleAttr: 'Print Table',
-                            className: 'btn-outline-default'
-                        }
-
-                    ]
-
-                });
-
-                
-
-                //array
-                //https://datatables.net/examples/ajax/simple.html
-                //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ] ],
-
-                
-
-
-            });
-
-        </script>
-
-
-        <!-- Toastr-->
-        <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
-
-        <!--Angular-->
-        
-        <script src="<?php echo e(url('js/angular.min.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/sanitize.min.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/module.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/controllers.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
-
-        <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/moment.js?v='.cache("js_version_number").'')); ?>"></script>
-
-        <script>
-            $(document).ready(function()
-            {
-
-                $('#js-page-content').smartPanel(); 
-                getZonaHorariaFront("<?php echo e($user['usr']->id_empresas); ?>", "<?php echo e($user['usr']->id_trabajadores); ?>");
-                getImageEmpresa("<?php echo e($user['usr']->id_empresas); ?>");
-
-            });
-        </script>
-
-        <script src="https://momentjs.com/downloads/moment-timezone-with-data-1970-2030.js"></script>
-
-
-    <?php $__env->stopSection(); ?>
-<?php echo $__env->make('system.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+-0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:21,707 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:21,746 -0600 INFO pid=12500 16488:RunAsync-RecordActionAsync-60606 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:21,763 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:21,983 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:21,983 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:22,019 -0600 INFO pid=12500 11236:RunAsync-RecordActionAsync-60607 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:22,039 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:22,259 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:22,259 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:22,296 -0600 INFO pid=12500 18064:RunAsync-RecordActionAsync-60608 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:22,312 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:22,532 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:22,536 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:22,562 -0600 INFO pid=12500 14244:RunAsync-RecordActionAsync-60609 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:22,581 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:22,801 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:22,805 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:22,838 -0600 INFO pid=12500 15472:RunAsync-RecordActionAsync-60610 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:22,854 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:23,085 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:23,086 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:23,105 -0600 INFO pid=12500 16524:RunAsync-RecordActionAsync-60611 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:23,118 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:23,342 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:23,342 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:23,377 -0600 INFO pid=12500 6196:RunAsync-RecordActionAsync-60612 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:23,388 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:23,602 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:23,602 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:23,627 -0600 INFO pid=12500 9276:RunAsync-RecordActionAsync-60613 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:23,641 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:23,857 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:23,857 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:23,878 -0600 INFO pid=12500 15628:RunAsync-RecordActionAsync-60614 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:23,892 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:24,108 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:24,108 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:24,130 -0600 INFO pid=12500 844:RunAsync-RecordActionAsync-60615 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:24,141 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:24,369 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:24,369 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:24,403 -0600 INFO pid=12500 4644:RunAsync-RecordActionAsync-60616 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:24,421 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:24,634 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:24,638 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:24,661 -0600 INFO pid=12500 10604:RunAsync-RecordActionAsync-60617 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:24,678 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:24,900 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:24,900 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:24,941 -0600 INFO pid=12500 19408:RunAsync-RecordActionAsync-60618 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:24,960 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:25,184 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:25,184 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:25,220 -0600 INFO pid=12500 7960:RunAsync-RecordActionAsync-60619 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:25,236 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:25,459 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:25,459 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:25,496 -0600 INFO pid=12500 8104:RunAsync-RecordActionAsync-60620 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:25,513 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:25,734 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:25,734 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:25,770 -0600 INFO pid=12500 20336:RunAsync-RecordActionAsync-60621 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:25,788 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:26,007 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:26,007 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:26,042 -0600 INFO pid=12500 18292:RunAsync-RecordActionAsync-60622 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:26,072 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:26,292 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:26,292 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:26,328 -0600 INFO pid=12500 11548:RunAsync-RecordActionAsync-60623 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:26,341 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:26,558 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:26,558 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:26,568 -0600 INFO pid=12500 16820:RunAsync-RecordActionAsync-60624 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:26,585 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:26,806 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:26,806 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:26,831 -0600 INFO pid=12500 14224:RunAsync-RecordActionAsync-60625 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:26,845 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:27,075 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:27,075 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:27,095 -0600 INFO pid=12500 15376:RunAsync-RecordActionAsync-60626 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:27,109 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:27,329 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:27,329 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:27,361 -0600 INFO pid=12500 10392:RunAsync-RecordActionAsync-60627 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:27,377 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:27,592 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:27,592 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:27,614 -0600 INFO pid=12500 16136:RunAsync-RecordActionAsync-60628 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:27,631 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:27,854 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:27,854 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:27,884 -0600 INFO pid=12500 19624:RunAsync-RecordActionAsync-60629 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:27,901 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:28,125 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:28,125 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:28,154 -0600 INFO pid=12500 12960:RunAsync-RecordActionAsync-60630 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:28,167 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:28,398 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:28,398 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:28,421 -0600 INFO pid=12500 1444:RunAsync-RecordActionAsync-60631 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:28,437 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:28,664 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:28,665 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:28,691 -0600 INFO pid=12500 17896:RunAsync-RecordActionAsync-60632 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:28,714 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:28,944 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:28,946 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:28,979 -0600 INFO pid=12500 15848:RunAsync-RecordActionAsync-60633 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:29,003 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:29,226 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:29,226 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:29,260 -0600 INFO pid=12500 8524:RunAsync-RecordActionAsync-60634 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:29,282 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:29,506 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:29,506 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:29,542 -0600 INFO pid=12500 15272:RunAsync-RecordActionAsync-60635 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:29,556 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:29,779 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:29,779 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:29,815 -0600 INFO pid=12500 3108:RunAsync-RecordActionAsync-60636 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:29,832 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:30,058 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:30,058 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:30,078 -0600 INFO pid=12500 10044:RunAsync-RecordActionAsync-60637 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:30,089 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:30,311 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:30,311 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:30,342 -0600 INFO pid=12500 8060:RunAsync-RecordActionAsync-60638 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:30,361 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:30,575 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:30,575 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:30,598 -0600 INFO pid=12500 19336:RunAsync-RecordActionAsync-60639 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:30,608 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:30,832 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:30,832 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:30,871 -0600 INFO pid=12500 17256:RunAsync-RecordActionAsync-60640 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:30,890 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:31,107 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:31,107 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:31,125 -0600 INFO pid=12500 18164:RunAsync-RecordActionAsync-60641 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:31,138 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:31,358 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:31,358 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:31,395 -0600 INFO pid=12500 18708:RunAsync-RecordActionAsync-60642 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:31,411 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:31,624 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:31,624 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:31,641 -0600 INFO pid=12500 12636:RunAsync-RecordActionAsync-60643 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:31,655 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:31,877 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:31,877 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:31,918 -0600 INFO pid=12500 17824:RunAsync-RecordActionAsync-60644 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:31,930 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:32,153 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:32,153 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:32,187 -0600 INFO pid=12500 19464:RunAsync-RecordActionAsync-60645 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:32,204 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:32,430 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:32,430 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:32,464 -0600 INFO pid=12500 18884:RunAsync-RecordActionAsync-60646 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:32,483 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:32,706 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:32,706 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:32,739 -0600 INFO pid=12500 18112:RunAsync-RecordActionAsync-60647 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:32,757 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:32,983 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:32,983 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:33,016 -0600 INFO pid=12500 8492:RunAsync-RecordActionAsync-60648 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:33,026 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:33,255 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:33,255 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:33,293 -0600 INFO pid=12500 19568:RunAsync-RecordActionAsync-60649 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:33,313 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:33,536 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:33,536 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:33,563 -0600 INFO pid=12500 3100:RunAsync-RecordActionAsync-60650 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:33,576 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:33,796 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:33,801 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:33,829 -0600 INFO pid=12500 7000:RunAsync-RecordActionAsync-60651 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:33,845 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:34,073 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:34,075 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:34,108 -0600 INFO pid=12500 16656:RunAsync-RecordActionAsync-60652 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:34,134 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:34,355 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:34,355 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:34,391 -0600 INFO pid=12500 9920:RunAsync-RecordActionAsync-60653 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:34,411 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:34,632 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:34,632 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:34,653 -0600 INFO pid=12500 17252:RunAsync-RecordActionAsync-60654 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:34,670 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:34,891 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:34,891 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:34,931 -0600 INFO pid=12500 1900:RunAsync-RecordActionAsync-60655 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:34,946 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:35,167 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:35,167 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:35,206 -0600 INFO pid=12500 16464:RunAsync-RecordActionAsync-60656 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:35,220 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:35,444 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:35,444 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:35,477 -0600 INFO pid=12500 12964:RunAsync-RecordActionAsync-60657 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:35,499 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:35,727 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:35,727 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:35,753 -0600 INFO pid=12500 13644:RunAsync-RecordActionAsync-60658 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:35,772 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:36,000 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:36,000 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:36,029 -0600 INFO pid=12500 11180:RunAsync-RecordActionAsync-60659 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:36,042 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:36,273 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:36,275 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:36,295 -0600 INFO pid=12500 20324:RunAsync-RecordActionAsync-60660 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:36,309 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:36,538 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:36,538 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:36,559 -0600 INFO pid=12500 18808:RunAsync-RecordActionAsync-60661 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:36,575 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:36,799 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:36,799 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:36,828 -0600 INFO pid=12500 15104:RunAsync-RecordActionAsync-60662 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:36,842 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:37,075 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:37,078 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:37,111 -0600 INFO pid=12500 13952:RunAsync-RecordActionAsync-60663 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:37,141 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:37,377 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:37,384 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:37,436 -0600 INFO pid=12500 17364:RunAsync-RecordActionAsync-60664 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:37,469 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:37,677 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:37,677 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:37,684 -0600 INFO pid=12500 9272:RunAsync-RecordActionAsync-60665 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:37,694 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:37,940 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:37,941 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:38,010 -0600 INFO pid=12500 19600:RunAsync-RecordActionAsync-60666 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:38,039 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:38,270 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:38,272 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:38,321 -0600 INFO pid=12500 10252:RunAsync-RecordActionAsync-60667 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:38,358 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:38,602 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:38,602 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:38,638 -0600 INFO pid=12500 6296:RunAsync-RecordActionAsync-60668 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:38,676 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:38,907 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:38,913 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:38,953 -0600 INFO pid=12500 18592:RunAsync-RecordActionAsync-60669 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:38,993 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:39,227 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:39,229 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:39,265 -0600 INFO pid=12500 18228:RunAsync-RecordActionAsync-60670 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:39,302 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:39,552 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:39,562 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:39,592 -0600 INFO pid=12500 15648:RunAsync-RecordActionAsync-60671 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:39,601 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:39,816 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:39,816 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:39,829 -0600 INFO pid=12500 19804:RunAsync-RecordActionAsync-60672 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:39,844 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:40,082 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:40,082 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:40,102 -0600 INFO pid=12500 6668:RunAsync-RecordActionAsync-60673 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:40,115 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:40,331 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:40,331 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:40,355 -0600 INFO pid=12500 10200:RunAsync-RecordActionAsync-60674 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:40,394 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:40,608 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:40,608 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:40,618 -0600 INFO pid=12500 3312:RunAsync-RecordActionAsync-60675 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:40,631 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:40,868 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:40,868 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:40,884 -0600 INFO pid=12500 18604:RunAsync-RecordActionAsync-60676 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:40,903 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:41,115 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:41,115 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:41,137 -0600 INFO pid=12500 19680:RunAsync-RecordActionAsync-60677 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:41,157 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:41,463 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:41,463 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:41,490 -0600 INFO pid=12500 15560:RunAsync-RecordActionAsync-60678 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:41,516 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:41,739 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:41,740 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:41,766 -0600 INFO pid=12500 1740:RunAsync-RecordActionAsync-60679 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:41,786 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:42,010 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:42,010 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:42,042 -0600 INFO pid=12500 6148:RunAsync-RecordActionAsync-60680 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:42,082 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:42,354 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:42,354 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:42,407 -0600 INFO pid=12500 2416:RunAsync-RecordActionAsync-60681 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:42,430 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:42,651 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:42,651 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:42,694 -0600 INFO pid=12500 14096:RunAsync-RecordActionAsync-60682 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:42,724 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:42,953 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:42,957 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:42,989 -0600 INFO pid=12500 17828:RunAsync-RecordActionAsync-60683 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:43,019 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:43,243 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:43,243 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:43,269 -0600 INFO pid=12500 18460:RunAsync-RecordActionAsync-60684 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:43,296 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:43,523 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:43,523 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:43,559 -0600 INFO pid=12500 12724:RunAsync-RecordActionAsync-60685 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:43,589 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:43,811 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:43,812 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:43,828 -0600 INFO pid=12500 6288:RunAsync-RecordActionAsync-60686 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:43,842 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:44,058 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:44,058 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:44,082 -0600 INFO pid=12500 14240:RunAsync-RecordActionAsync-60687 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:44,101 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:44,329 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:44,329 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:44,367 -0600 INFO pid=12500 10352:RunAsync-RecordActionAsync-60688 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:44,394 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:44,608 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:44,608 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:44,625 -0600 INFO pid=12500 17060:RunAsync-RecordActionAsync-60689 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:44,635 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:44,861 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:44,865 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:44,901 -0600 INFO pid=12500 6336:RunAsync-RecordActionAsync-60690 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:44,927 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:45,151 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:45,153 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:45,177 -0600 INFO pid=12500 9964:RunAsync-RecordActionAsync-60691 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:45,197 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:45,418 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:45,418 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:45,454 -0600 INFO pid=12500 13580:RunAsync-RecordActionAsync-60692 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:45,474 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:45,696 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:45,696 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:45,723 -0600 INFO pid=12500 11004:RunAsync-RecordActionAsync-60693 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:45,740 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:45,963 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:45,963 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:46,003 -0600 INFO pid=12500 19916:RunAsync-RecordActionAsync-60694 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:46,019 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:46,246 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:46,246 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:46,280 -0600 INFO pid=12500 8320:RunAsync-RecordActionAsync-60695 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:46,296 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:46,516 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:46,516 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:46,552 -0600 INFO pid=12500 3372:RunAsync-RecordActionAsync-60696 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:46,579 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:46,801 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:46,801 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:46,836 -0600 INFO pid=12500 15136:RunAsync-RecordActionAsync-60697 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:46,851 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:47,073 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:47,073 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:47,085 -0600 INFO pid=12500 14212:RunAsync-RecordActionAsync-60698 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:47,102 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:47,323 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:47,323 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:47,357 -0600 INFO pid=12500 6348:RunAsync-RecordActionAsync-60699 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:47,375 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:47,608 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:47,608 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:47,625 -0600 INFO pid=12500 17500:RunAsync-RecordActionAsync-60700 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:47,637 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:47,871 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:47,875 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:47,901 -0600 INFO pid=12500 17152:RunAsync-RecordActionAsync-60701 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:47,920 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:48,147 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:48,147 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:48,167 -0600 INFO pid=12500 13876:RunAsync-RecordActionAsync-60702 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:48,180 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:48,394 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:48,394 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:48,414 -0600 INFO pid=12500 10780:RunAsync-RecordActionAsync-60703 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:48,430 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:48,664 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:48,664 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:48,687 -0600 INFO pid=12500 7976:RunAsync-RecordActionAsync-60704 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:48,700 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:48,927 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:48,931 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:48,966 -0600 INFO pid=12500 17480:RunAsync-RecordActionAsync-60705 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:48,982 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:49,200 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:49,200 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:49,226 -0600 INFO pid=12500 14200:RunAsync-RecordActionAsync-60706 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:49,243 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:49,464 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:49,464 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:49,496 -0600 INFO pid=12500 20328:RunAsync-RecordActionAsync-60707 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:49,516 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:49,736 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:49,736 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:49,772 -0600 INFO pid=12500 18436:RunAsync-RecordActionAsync-60708 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:49,782 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:50,012 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:50,012 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:50,039 -0600 INFO pid=12500 19564:RunAsync-RecordActionAsync-60709 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:50,055 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:50,279 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:50,283 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:50,313 -0600 INFO pid=12500 6692:RunAsync-RecordActionAsync-60710 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:50,332 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:50,553 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:50,553 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:50,582 -0600 INFO pid=12500 9988:RunAsync-RecordActionAsync-60711 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:50,595 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:50,821 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:50,821 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:50,855 -0600 INFO pid=12500 17512:RunAsync-RecordActionAsync-60712 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:50,871 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:51,098 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:51,099 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:51,119 -0600 INFO pid=12500 6380:RunAsync-RecordActionAsync-60713 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:51,137 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:51,361 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:51,361 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:51,387 -0600 INFO pid=12500 15980:RunAsync-RecordActionAsync-60714 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:51,398 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:51,618 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:51,618 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:51,640 -0600 INFO pid=12500 13816:RunAsync-RecordActionAsync-60715 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:51,654 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:51,878 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:51,878 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:51,917 -0600 INFO pid=12500 12320:RunAsync-RecordActionAsync-60716 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:51,930 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:52,154 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:52,154 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:52,177 -0600 INFO pid=12500 4816:RunAsync-RecordActionAsync-60717 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:52,190 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:52,413 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:52,413 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:52,450 -0600 INFO pid=12500 16012:RunAsync-RecordActionAsync-60718 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:52,467 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:52,680 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:52,680 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:52,703 -0600 INFO pid=12500 17516:RunAsync-RecordActionAsync-60719 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:52,717 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:52,938 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:52,938 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:52,966 -0600 INFO pid=12500 8808:RunAsync-RecordActionAsync-60720 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:52,980 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:53,207 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:53,207 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:53,226 -0600 INFO pid=12500 19436:RunAsync-RecordActionAsync-60721 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:53,240 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:53,463 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:53,463 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:53,503 -0600 INFO pid=12500 17700:RunAsync-RecordActionAsync-60722 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:53,519 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:53,740 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:53,740 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:53,782 -0600 INFO pid=12500 14112:RunAsync-RecordActionAsync-60723 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:53,796 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:54,017 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:54,017 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:54,052 -0600 INFO pid=12500 9996:RunAsync-RecordActionAsync-60724 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:54,066 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:54,293 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:54,298 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:54,322 -0600 INFO pid=12500 16864:RunAsync-RecordActionAsync-60725 sync_client_thread.py:139 Execute cleanup callback 'CleanupAsyncReference'
+2019-11-07 23:56:54,341 -0600 INFO pid=12500 8732:Batcher         batcher.py:188 Batcher is done.
+2019-11-07 23:56:54,555 -0600 INFO pid=12500 8732:Batcher         missing_root_helper.py:221 Notifying user of root folder missing.
+2019-11-07 23:56:54,555 -0600 INFO pid=12500 8732:Batcher         sync_client_thread.py:91 AddCleanupCallback CleanupAsyncReference
+2019-11-07 23:56:54,575 -0600 INFO pid=12500 17760:RunAsync-RecordActionAsync-60726 sync_client_thread.py:139 Execute cleanup callback 'Cleanu

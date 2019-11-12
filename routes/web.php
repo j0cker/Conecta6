@@ -11,6 +11,10 @@
 |
 */
 
+
+//tests laravel php
+Route::get('/test', 'APITest@Test');
+
 /*
 **********Landing*********
 */
@@ -144,8 +148,4 @@ Route::get('/{any}/recuperar', 'APITrabajadores@Recuperar');
 
 //recuperar contraseña empresas
 Route::get('/{any}/pAdmin/recuperar', 'APIEmpresas@Recuperar');
-
-
-//tests laravel php
-Route::get('/test', 'APITest@Test');
 
