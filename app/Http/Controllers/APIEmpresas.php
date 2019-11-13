@@ -3849,6 +3849,216 @@ class APIEmpresas extends Controller
 
   }
 
+  public function DeleteEmpresa(Request $request){
+  
+    Log::info('[APIEmpresas][DeleteEmpresa]');
+
+    Log::info("[APIEmpresas][DeleteEmpresa] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required',
+        'id_empresa' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+      $id_empresa = $request->input('id_empresa');
+
+      Log::info("[APIEmpresas][DeleteEmpresa] Token: ". $token);
+      Log::info("[APIEmpresas][DeleteEmpresa] id_empresa: ". $id_empresa);
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        $Empresas = Empresas::delByIdEmpresas($id_empresa);
+        
+        Log::info($Empresas);
+
+        if($Empresas==1){
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
+          $responseJSON->data = $Empresas;
+          return json_encode($responseJSON);
+
+        } else {
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
+        }
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][DeleteEmpresa] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][DeleteEmpresa] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][DeleteEmpresa] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+
+    } else {
+      abort(404);
+    }
+
+
+
+  }
+
+  public function ModEmpresa(Request $request){
+  
+    Log::info('[APIEmpresas][ModEmpresa]');
+
+    Log::info("[APIEmpresas][ModEmpresa] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][GetIdiomaObtener] Token: ". $token);
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        
+        $nombreEmpresa = $request->input('nombreEmpresa');
+        $nombreSolicitante = $request->input('nombreSolicitante');
+        $correoElectronico = $request->input('correoElectronico');
+        $telefonoFijo = $request->input('telefonoFijo');
+        $celular = $request->input('celular');
+        $datepicker = $request->input('datepicker');
+        $empleadosPermitidos = $request->input('empleadosPermitidos');
+        $activa = $request->input('activa');
+        $dominio = $request->input('dominio');
+        $subdominio = $request->input('subdominio');
+        $contrasena = $request->input('contrasena');
+        $color = $request->input('color');
+
+        Log::info("[APIEmpresas][ModEmpresa] nombreEmpresa: " .$nombreEmpresa);
+        Log::info("[APIEmpresas][ModEmpresa] nombreSolicitante: " .$nombreSolicitante);
+        Log::info("[APIEmpresas][ModEmpresa] correoElectronico: " .$correoElectronico);
+        Log::info("[APIEmpresas][ModEmpresa] telefonoFijo: " .$telefonoFijo);
+        Log::info("[APIEmpresas][ModEmpresa] celular: " .$celular);
+        Log::info("[APIEmpresas][ModEmpresa] datepicker: " .$datepicker);
+        Log::info("[APIEmpresas][ModEmpresa] empleadosPermitidos: " .$empleadosPermitidos);
+        Log::info("[APIEmpresas][ModEmpresa] activa: " .$activa);
+        Log::info("[APIEmpresas][ModEmpresa] dominio: " .$dominio);
+        Log::info("[APIEmpresas][ModEmpresa] subdominio: " .$subdominio);
+        Log::info("[APIEmpresas][ModEmpresa] contrasena: " .$contrasena);
+        Log::info("[APIEmpresas][ModEmpresa] color: " .$color);
+
+        $empresas = Empresas::addNewEnterprise($nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $contrasena, $color);
+        
+        Log::info($empresas);
+
+        $Permisos_inter = Permisos_inter::addNewEmpresa($empresas[0]->id);
+
+        if($empresas[0]->save==1 && $Permisos_inter[0]->save==1){
+          
+          $result = Functions::cPanelAddSubdomain(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), $subdominio, env('CPANEL_DOMAIN'));
+          
+          $body = "<?PHP
+                     header('Location: ".env('APP_URL')."/".$subdominio."');
+                   ?>";
+
+          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../public_html/'.$subdominio.'/index.php', $body);
+
+          Log::info("[APIEmpresas][ModEmpresa] Cpanel API");
+          Log::info($result);
+
+          if($result_archive==1){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($empresas));
+            $responseJSON->data = $empresas;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($empresas));
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        } else {
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($empresas));
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
+        }
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][ModEmpresa] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][ModEmpresa] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][ModEmpresa] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+
+    } else {
+      abort(404);
+    }
+
+
+  }
+
   public function NuevaPlantilla(Request $request){
     
     Log::info('[APIEmpresas][NuevaPlantilla]');

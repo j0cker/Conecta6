@@ -95,7 +95,7 @@ class Empresas extends Model
           ['id_empresas', '=', $id_empresas],
         ])->delete(); //return true in the other one return 1
 
-  }
+    }
 
     //agrega nueva empresa
     public function scopeAddNewEnterprise($query, $nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $contrasena, $color)

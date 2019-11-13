@@ -1850,9 +1850,84 @@
 
     $(".profile-image").attr("src","img/conecta6_blanco.png");
 
+
+    
+    
+    $scope.eliminarEmpresaClick = function(id_empresa){
+
+      console.log("[controllers][empresas][eliminarEmpresaClick]");
+      
+      console.log("[controllers][empresas][eliminarEmpresaClick] id_empresa: " + id_empresa);
+      
+      functions.eliminarEmpresa(id_empresa).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][empresas][eliminarEmpresaClick]");
+
+          functions.loadingEndWait();  
+          
+                
+          functions.getAllEmpresas().then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              
+              console.log("[controllers][nuevoempresa][getAllEmpresas]");
+
+              functions.loadingEndWait();
+
+              console.log(response.data.data);
+
+              var data = Array();
+
+              var choices = Array();
+              choices = ["id_empresas", "nombre_empresa", "empleados_permitidos", "activo", "vigencia"];
+              
+              data = addKeyToArray(data, response.data.data, choices);
+              data = functions.fechasRestarArray(data);
+
+              console.log(data);
+
+              $('#dt-basic-example').dataTable().fnClearTable();
+              $('#dt-basic-example').dataTable().fnAddData(data);
+
+              functions.empresasSwitches(response.data.data);
+              
+            } else {
+
+                functions.loadingEndWait();
+            }
+          }, function (response) {
+            /*ERROR*/
+            toastr["error"]("Inténtelo de nuevo más tarde", "");
+            functions.loadingEndWait();
+
+          });/*fin getAllEmpresas*/
+          
+        } else {
+
+          console.log("id_empresa: " + id_empresa);
+
+          functions.loadingEndWait();
+
+        }
+
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin eliminarEmpresa*/
+
+    };/*fin eliminarEmpresaClick*/
+
+    postEliminarEmpresa = $scope.eliminarEmpresaClick;
+
+
     $scope.postActiveEmpresaClick = function(id_empresas, active){
 
       console.log("[empresas] ");
+
 
       functions.postActiveEmpresa(id_empresas, active).then(function (response) {
 
@@ -4582,6 +4657,76 @@
 
     var color = theme[0];
 
+    $scope.color = (colorClicked) => {
+      console.log("[modempresa][altaEmpresa] " + colorClicked);
+
+      color = colorClicked;
+
+    }
+
+    var validarSubdominioBD = 0;
+    
+    $scope.validarSubdominio = function(subdominio, id_empresa){
+
+      console.log("[controllers][configuraciones][validarSubdominio]");
+      
+      console.log("[controllers][configuraciones][validarSubdominio] subdominio: " + subdominio);
+      
+      functions.validarSubdominio(subdominio).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][configuraciones][validarSubdominio]");
+
+          $(".fal.fa-check-circle.subdominio").css("display","");
+
+          $(".fal.fa-times-circle.subdominio").css("display","none");
+
+          functions.loadingEndWait();
+
+          
+          validarSubdominioBD = 1;
+        
+          
+        } else {
+
+          console.log("id_empresa: " + id_empresa);
+
+          functions.loadingEndWait();
+
+          
+          validarSubdominioBD = -1;
+
+          $(".fal.fa-check-circle.subdominio").css("display","none");
+
+          $(".fal.fa-times-circle.subdominio").css("display","");
+
+          //nunca va a tener dos subdominios con el mismo nombre al mismo tiempo
+          if(response.data.data[0].id_empresas!=undefined && response.data.data[0].id_empresas==id_empresa){
+
+            console.log("Id empresas: " + response.data.data[0].id_empresas);
+
+            validarSubdominioBD = 1;
+            
+
+            $(".fal.fa-check-circle.subdominio").css("display","");
+
+            $(".fal.fa-times-circle.subdominio").css("display","none");
+          
+          }
+
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin validarSubdominio*/
+
+    };/*fin validarSubdominio*/
+
+    validarSubdominio = $scope.validarSubdominio;
+
     $scope.getEmpresaClick = function(id_empresas){
 
       console.log("[getEmpresa] ");
@@ -4594,6 +4739,36 @@
               console.log("[modempresa][getEmpresa]");
 
               console.log(response.data.data);
+
+              $("#nombreEmpresa").val(response.data.data[0].nombre_empresa);
+              $("#nombreSolicitante").val(response.data.data[0].nombre_solicitante);
+              $("#correoElectronico").val(response.data.data[0].correo);
+              $("#telefonoFijo").val(response.data.data[0].telefono_fijo);
+              $("#celular").val(response.data.data[0].celular);
+              $("#datepicker").val(response.data.data[0].vigencia);
+              $("#empleadosPermitidos").val(response.data.data[0].empleados_permitidos);
+              $("#contrasena").val(response.data.data[0].pass);
+              $("#valContrasena").val(response.data.data[0].pass);
+
+              if(response.data.data[0].activo == 1){
+
+                console.log("Checked True Activo");
+                $("#gra-0").prop('checked', true);
+
+              } else {
+
+                console.log("Checked False Activo");
+
+                $("#gra-0").prop('checked', false);
+
+              }
+              $("#dominio").val(response.data.data[0].dominio);
+              $("#subdominio").val(response.data.data[0].subdominio);
+              $("#contrasena").val(response.data.data[0].pass);
+              $("#valContrasena").val(response.data.data[0].pass);
+
+              validarSubdominioBD = 1;
+
 
             } else {
                 toastr["warning"](response.data.description, "");
@@ -4609,6 +4784,141 @@
     }; //fin getEmpresaClick
 
     getEmpresa = $scope.getEmpresaClick;
+
+    $scope.getPublicIpClick = function(){
+
+      console.log("[controllers][nuevoempresa][getPublicIpClick]");
+      
+      functions.getPublicIp(subdominio).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][nuevoempresa][getPublicIp]");
+
+          $("#ip").html(response.data.ip);
+          $("#apuntarIp").css("display","");
+
+          functions.loadingEndWait();
+
+        } else {
+
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin validarSubdominio*/
+      
+    };
+    
+    getPublicIp = $scope.getPublicIpClick;
+
+    $scope.modEmpresa = function(id_empresa){
+
+      console.log("[nuevoempresa][modEmpresa]");
+
+      functions.loadingWait();
+
+      var nombreEmpresa = "";
+      var nombreSolicitante = "";
+      var correoElectronico = "";
+      var telefonoFijo = "";
+      var celular = "";
+      var datepicker = ""; //vigencia
+      var empleadosPermitidos = "";
+      var activa = ""; //gra-0 cuenta activa/desactiva
+      var dominio = "";
+      var subdominio = "";
+      var contrasena = "";
+      var valContrasena = "";
+      color = color;
+
+      nombreEmpresa = $("#nombreEmpresa").val();
+      nombreSolicitante = $("#nombreSolicitante").val();
+      correoElectronico = $("#correoElectronico").val();
+      telefonoFijo = $("#telefonoFijo").val();
+      celular = $("#celular").val();
+      datepicker = $("#datepicker").val();
+      empleadosPermitidos = $("#empleadosPermitidos").val();
+      activa = $("#gra-0").prop('checked');
+      dominio = $("#dominio").val();
+      subdominio = $("#subdominio").val();
+      contrasena = $("#contrasena").val();
+      valContrasena = $("#valContrasena").val();
+      color = color;
+
+      console.log("[nuevoempresa][modEmpresa] nombreEmpresa: " + nombreEmpresa);
+      console.log("[nuevoempresa][modEmpresa] nombreSolicitante: " + nombreSolicitante);
+      console.log("[nuevoempresa][modEmpresa] correoElectronico: " + correoElectronico);
+      console.log("[nuevoempresa][modEmpresa] telefonoFijo: " + telefonoFijo);
+      console.log("[nuevoempresa][modEmpresa] celular: " + celular);
+      console.log("[nuevoempresa][modEmpresa] datepicker: " + datepicker);
+      console.log("[nuevoempresa][modEmpresa] empleadosPermitidos: " + empleadosPermitidos);
+      console.log("[nuevoempresa][modEmpresa] activa: " + activa);
+      console.log("[nuevoempresa][modEmpresa] dominio: " + dominio);
+      console.log("[nuevoempresa][modEmpresa] subdominio: " + subdominio);
+      console.log("[nuevoempresa][modEmpresa] contrasena: " + contrasena);
+      console.log("[nuevoempresa][modEmpresa] valContrasena: " + valContrasena);
+      console.log("[nuevoempresa][modEmpresa] color: " + color);
+
+      if(nombreEmpresa==""){
+        toastr["error"]("Llena correctamente<br /> el nombre de la Empresa", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(nombreSolicitante==""){
+        toastr["error"]("Llena correctamente<br /> el nombre del Solicitante", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(correoElectronico.indexOf("@")=="-1" || correoElectronico.indexOf(".")=="-1" || correoElectronico.indexOf(" ")!="-1" || correoElectronico.indexOf(",")!="-1"){
+        toastr["error"]("Llena correctamente<br /> tu correo electrónico", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+        $("#agregar").effect( "shake" );
+      } else if(telefonoFijo=="" || celular=="" || datepicker=="" || empleadosPermitidos=="" || activa=="" || subdominio=="" || contrasena=="" || valContrasena=="" || color==""){
+        toastr["error"]("Llena correctamente<br /> todos los campos", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+      } else if(valContrasena!=contrasena){
+        toastr["error"]("Contraseñas no<br /> coinciden", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+        
+      } else if (validarSubdominioBD!=1) {
+        toastr["error"]("Subdominio no<br /> Disponible", "");
+        functions.loadingEndWait();
+        $("#agregar").effect( "shake" );
+
+      } else {
+
+        functions.modEmpresa(nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, dominio, subdominio, contrasena, color).then(function (response) {
+
+                if(response.data.success == "TRUE"){
+                  console.log("[nuevoempresa][modEmpresa]");
+
+                  toastr["success"]("Tu solicitud se<br /> ha enviado correctamente", "");
+                  functions.loadingEndWait();
+
+                  alert("Tu subdominio estará listo hasta un máximo de 48 horas debido, a la propagación de DNS, mientras puedes entrar a tu nueva empresa agregando /"+subdominio);
+
+                  $window.location.href = "/empresas";
+
+                } else {
+                    toastr["warning"](response.data.description, "");
+                    functions.loadingEndWait();
+                }
+            }, function (response) {
+              /*ERROR*/
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+
+        });/*fin postSubscriber*/
+      
+      }// fin else
+      
+    }//modEmpresa
+
 
   });//fin controller modempresa
 

@@ -492,7 +492,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a id="agregar" ng-click="altaEmpresa();" style="width: 200px;" href="#" class="btn btn-danger btn-block waves-effect waves-themed">Agregar</a>
+                                                                <a id="modificar" ng-click="modEmpresa(<?PHP echo $_GET['id'] ?>);" style="width: 200px;" href="#" class="btn btn-danger btn-block waves-effect waves-themed">Modificar</a>
                                                             </div>
                                                         </div>
 
@@ -1171,7 +1171,7 @@
                     console.log("[nuevaempresa.php][subdominio] changes");
 
                     //Valida en API
-                    validarSubdominio($("#subdominio").val());
+                    validarSubdominio($("#subdominio").val(), "<?PHP echo $_GET['id']; ?>");
                     
                 });
                 

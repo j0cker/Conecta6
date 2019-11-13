@@ -4273,6 +4273,22 @@
 		  	return $http.post(url, {cache: false, nombreEmpresa:nombreEmpresa, nombreSolicitante:nombreSolicitante, correoElectronico:correoElectronico, telefonoFijo:telefonoFijo, celular:celular, datepicker:datepicker, empleadosPermitidos:empleadosPermitidos, activa:activa, dominio:dominio, subdominio:subdominio, contrasena:contrasena, color:color });
 
       },
+      modEmpresa: function(nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, dominio, subdominio, contrasena, color) {
+
+        console.log("[factory][modEmpresa]");
+
+        var url = '/api/empresas/modEmpresa';
+		  	return $http.post(url, {cache: false, nombreEmpresa:nombreEmpresa, nombreSolicitante:nombreSolicitante, correoElectronico:correoElectronico, telefonoFijo:telefonoFijo, celular:celular, datepicker:datepicker, empleadosPermitidos:empleadosPermitidos, activa:activa, dominio:dominio, subdominio:subdominio, contrasena:contrasena, color:color });
+
+      },
+      eliminarEmpresa: function(id_empresa){
+
+        console.log("[factory][modEmpresa]");
+
+        var url = '/api/empresas/eliminar';
+		  	return $http.post(url, {cache: false, id_empresa:id_empresa });
+
+      },
       validarSubdominio: function(subdominio) {
 
         console.log("[factory][postIngresarAdmin]");

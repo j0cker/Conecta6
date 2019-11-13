@@ -1154,6 +1154,8 @@
             $(document).ready(function()
             {
 
+                
+
                 $('#subdominio').mask('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', {
                     translation: {
                         "A": { pattern: /[a-zA-Z0-9]/ }

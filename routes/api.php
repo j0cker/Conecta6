@@ -91,6 +91,12 @@ Route::get('/empresas/obtener/all', 'APIEmpresas@GetAllEmpresas');
 //Alta de nueva Empresa
 Route::post('/empresas/altaEmpresa', 'APIEmpresas@AltaEmpresa');
 
+//Modificar la Nueva Empresa
+Route::post('/empresas/modEmpresa', 'APIEmpresas@ModEmpresa');
+
+//Borrar Empresa por id_empresas
+Route::post('/empresas/eliminar', 'APIEmpresas@DeleteEmpresa');
+
 //validar que no exista ese subdominio solicitado
 Route::get('/empresas/subdominioValidar', 'APIEmpresas@SubdominioValidar');
 
@@ -190,9 +196,6 @@ Route::post('/pAdmin/administradores/eliminar', 'APIAdmin@DeleteAdmin');
 
 //Edit activo/inactivo empresa by id_empresa
 Route::post('/pAdmin/empresas/modificar/activo', 'APIAdmin@modActiveEmpresas');
-
-//Borrar Empresa por id_empresas
-Route::post('/pAdmin/empresas/eliminar', 'APIAdmin@deleteEmpresas');
 
 //Recuperar Contraseñas de administradores
 Route::post('/pAdmin/recuperarPass', 'APIAdmin@RecuperarPass');
