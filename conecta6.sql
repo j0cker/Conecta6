@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2019 a las 20:09:19
+-- Tiempo de generación: 21-11-2019 a las 20:13:39
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.1.33
 
@@ -155,16 +155,18 @@ CREATE TABLE `fotos_inter` (
 CREATE TABLE `idiomas` (
   `id_idiomas` int(11) NOT NULL,
   `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
-  `code` varchar(2) NOT NULL
+  `code` varchar(2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `idiomas`
 --
 
-INSERT INTO `idiomas` (`id_idiomas`, `nombre`, `code`) VALUES
-(1, 'Inglés', 'en'),
-(2, 'Español', 'es');
+INSERT INTO `idiomas` (`id_idiomas`, `nombre`, `code`, `created_at`, `updated_at`) VALUES
+(1, 'Inglés', 'en', '2019-11-21 19:11:50', NULL),
+(2, 'Español', 'es', '2019-11-21 19:11:50', NULL);
 
 -- --------------------------------------------------------
 
