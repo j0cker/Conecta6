@@ -667,13 +667,13 @@ class APIEmpresas extends Controller
 
           if($Empresas==1){
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Empresas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
             $responseJSON->data = $Empresas;
             return json_encode($responseJSON);
 
           } else {
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Empresas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
             $responseJSON->data = [];
             return json_encode($responseJSON);
 
@@ -1552,13 +1552,13 @@ class APIEmpresas extends Controller
           
           if($Empresas==1){
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Empresas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
             $responseJSON->data = $Empresas;
             return json_encode($responseJSON);
 
           } else {
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Empresas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
             $responseJSON->data = [];
             return json_encode($responseJSON);
 
@@ -2004,14 +2004,14 @@ class APIEmpresas extends Controller
           
           if($Plantillas==1){
           
-            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Plantillas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
             $responseJSON->data = $Plantillas;
             return json_encode($responseJSON);
 
 
           } else {
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Plantillas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
             $responseJSON->data = [];
             return json_encode($responseJSON);
 
@@ -2111,14 +2111,14 @@ class APIEmpresas extends Controller
           
           if($Salidas==1){
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Salidas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
             $responseJSON->data = $Salidas;
             return json_encode($responseJSON);
 
 
           } else {
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Salidas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
             $responseJSON->data = [];
             return json_encode($responseJSON);
 

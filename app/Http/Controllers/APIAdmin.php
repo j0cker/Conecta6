@@ -336,13 +336,13 @@ class APIAdmin extends Controller
             
             if($Administradores==1){
 
-              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Administradores));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
               $responseJSON->data = $Administradores;
               return json_encode($responseJSON);
 
             } else {
 
-              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Administradores));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
               $responseJSON->data = [];
               return json_encode($responseJSON);
 
@@ -581,13 +581,13 @@ class APIAdmin extends Controller
   
             if($Administradores==1){
   
-              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Administradores));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
               $responseJSON->data = $Administradores;
               return json_encode($responseJSON);
   
             } else {
   
-              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Administradores));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
               $responseJSON->data = [];
               return json_encode($responseJSON);
   
@@ -1045,13 +1045,13 @@ class APIAdmin extends Controller
           
             if($Empresas==1){
   
-              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Empresas));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
               $responseJSON->data = $Empresas;
               return json_encode($responseJSON);
   
             } else {
   
-              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Empresas));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
               $responseJSON->data = [];
               return json_encode($responseJSON);
   
@@ -1148,13 +1148,13 @@ class APIAdmin extends Controller
           
             if($Trabajadores==1){
   
-              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Trabajadores));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
               $responseJSON->data = $Trabajadores;
               return json_encode($responseJSON);
   
             } else {
   
-              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Trabajadores));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
               $responseJSON->data = [];
               return json_encode($responseJSON);
   
@@ -1248,13 +1248,13 @@ class APIAdmin extends Controller
           
             if($Admin==1 && $Permisos_inter==1){
   
-              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Admin));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
               $responseJSON->data = $Admin;
               return json_encode($responseJSON);
   
             } else {
   
-              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Admin));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
               $responseJSON->data = [];
               return json_encode($responseJSON);
   
@@ -1364,13 +1364,13 @@ class APIAdmin extends Controller
 
             if($Admin==1 && $pass==1){
   
-              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Admin));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
               $responseJSON->data = $Admin;
               return json_encode($responseJSON);
   
             } else {
   
-              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Admin));
+              $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
               $responseJSON->data = [];
               return json_encode($responseJSON);
   
