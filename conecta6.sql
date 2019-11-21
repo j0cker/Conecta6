@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2019 a las 19:31:09
+-- Tiempo de generación: 21-11-2019 a las 20:00:24
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.1.33
 
@@ -144,6 +144,19 @@ CREATE TABLE `fotos_inter` (
   `id_trabajadores` int(11) NOT NULL DEFAULT 0,
   `id_administradores` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `idiomas`
+--
+
+CREATE TABLE `idiomas` (
+  `id_idiomas` int(11) NOT NULL,
+  `id_empresas` int(11) NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `code` varchar(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -958,6 +971,12 @@ ALTER TABLE `fotos_inter`
   ADD PRIMARY KEY (`foto_inter_id`);
 
 --
+-- Indices de la tabla `idiomas`
+--
+ALTER TABLE `idiomas`
+  ADD PRIMARY KEY (`id_idiomas`);
+
+--
 -- Indices de la tabla `permisos`
 --
 ALTER TABLE `permisos`
@@ -1032,6 +1051,12 @@ ALTER TABLE `fotos`
 --
 ALTER TABLE `fotos_inter`
   MODIFY `foto_inter_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `idiomas`
+--
+ALTER TABLE `idiomas`
+  MODIFY `id_idiomas` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
