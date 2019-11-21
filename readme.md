@@ -14,3 +14,7 @@ Installation:
 Domains And Subdomains:
 
 - There is a vh.sh file inside public which is the creator of virtualhosts inside apache2.
+
+Database Mysql:
+
+- Is in the main directory "conecta6.sql"
