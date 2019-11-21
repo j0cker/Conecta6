@@ -1211,7 +1211,7 @@ class APITrabajadores extends Controller
         
           if(true){
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Entradas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
             $responseJSON->data = [];
             $responseJSON->entradas = $Entradas;
             $responseJSON->salidas = $Salidas;
@@ -1219,7 +1219,7 @@ class APITrabajadores extends Controller
 
           } else {
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Entradas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
             $responseJSON->data = [];
             return json_encode($responseJSON);
 
