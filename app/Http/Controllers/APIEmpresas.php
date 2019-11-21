@@ -3793,9 +3793,9 @@ class APIEmpresas extends Controller
                      header('Location: ".env('APP_URL')."/".$subdominio."');
                    ?>";
 
-          $result_folder = Functions::createFolder(dirname(__FILE__).'/../../../'.$subdominio, $body);
+          $result_folder = Functions::createFolder(dirname(__FILE__).'/../../../../'.$subdominio, $body);
 
-          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../'.$subdominio.'/index.php', $body);
+          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$subdominio.'/index.php', $body);
 
           if($result_archive==1 && $result_folder==1){
 
@@ -4005,7 +4005,7 @@ class APIEmpresas extends Controller
                      header('Location: ".env('APP_URL')."/".$subdominio."');
                    ?>";
 
-          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../'.$subdominio.'/index.php', $body);
+          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$subdominio.'/index.php', $body);
 
           if($result_archive==1){
 
