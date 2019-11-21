@@ -2253,13 +2253,13 @@ class APIAdmin extends Controller
 
           if($Idiomas==1){
     
-            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Idiomas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
             $responseJSON->data = $Idiomas;
             return json_encode($responseJSON);
     
           } else {
     
-            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Idiomas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
             $responseJSON->data = [];
             return json_encode($responseJSON);
     
