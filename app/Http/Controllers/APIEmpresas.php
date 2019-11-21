@@ -3791,14 +3791,12 @@ class APIEmpresas extends Controller
 
           /* Apache2 Is Enabled */
           $exec = exec("/var/www/html/Conecta6/vh.sh create ".$subdominio.".".env('VIRTUAL_HOST_DOMAIN')." /var/www/html/".$subdominio."");
-
           Log::info($exec);
+          $result_folder = Functions::createFolder(dirname(__FILE__).'/../../../../'.$subdominio);
 
           $body = "<?PHP
                      header('Location: ".env('APP_URL')."/".$subdominio."');
                    ?>";
-
-          $result_folder = Functions::createFolder(dirname(__FILE__).'/../../../../'.$subdominio, $body);
 
           $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$subdominio.'/index.php', $body);
 
