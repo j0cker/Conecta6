@@ -3789,6 +3789,11 @@ class APIEmpresas extends Controller
           Log::info($result);
           */
 
+          /* Apache2 Is Enabled */
+          $exec = exec("/var/www/html/Conecta6/vh.sh create ".$subdominio.".".env('VIRTUAL_HOST_DOMAIN')." /var/www/html/".$subdominio."");
+
+          Log::info($exec);
+
           $body = "<?PHP
                      header('Location: ".env('APP_URL')."/".$subdominio."');
                    ?>";
