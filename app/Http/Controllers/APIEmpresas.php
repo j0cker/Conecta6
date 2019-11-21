@@ -3782,18 +3782,22 @@ class APIEmpresas extends Controller
 
         if($empresas[0]->save==1 && $Permisos_inter[0]->save==1){
           
+          /*Cpanel is disable
           $result = Functions::cPanelAddSubdomain(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), $subdominio, env('CPANEL_DOMAIN'));
           
+          Log::info("[APIEmpresas][AltaEmpresa] Cpanel API");
+          Log::info($result);
+          */
+
           $body = "<?PHP
                      header('Location: ".env('APP_URL')."/".$subdominio."');
                    ?>";
 
-          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../public_html/'.$subdominio.'/index.php', $body);
+          $result_folder = Functions::createFolder(dirname(__FILE__).'/../../../'.$subdominio, $body);
 
-          Log::info("[APIEmpresas][AltaEmpresa] Cpanel API");
-          Log::info($result);
+          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../'.$subdominio.'/index.php', $body);
 
-          if($result_archive==1){
+          if($result_archive==1 && $result_folder==1){
 
             $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($empresas));
             $responseJSON->data = $empresas;
@@ -3991,16 +3995,17 @@ class APIEmpresas extends Controller
 
         if($empresas[0]->save==1 && $Permisos_inter[0]->save==1){
           
+          /*cpanel is disabled
           $result = Functions::cPanelAddSubdomain(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), $subdominio, env('CPANEL_DOMAIN'));
-          
+          Log::info("[APIEmpresas][ModEmpresa] Cpanel API");
+          Log::info($result);
+          */
+
           $body = "<?PHP
                      header('Location: ".env('APP_URL')."/".$subdominio."');
                    ?>";
 
-          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../public_html/'.$subdominio.'/index.php', $body);
-
-          Log::info("[APIEmpresas][ModEmpresa] Cpanel API");
-          Log::info($result);
+          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../'.$subdominio.'/index.php', $body);
 
           if($result_archive==1){
 
