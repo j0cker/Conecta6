@@ -3938,6 +3938,21 @@ class APIEmpresas extends Controller
         /* Apache2 Is Enabled */
         try {
 
+          if($Empresas[0]->dominio!=""){
+
+            $result_folder_dominio = Functions::deleteFolder(dirname(__FILE__).'/../../../../'.$Empresas[0]->dominio);
+
+            SSH::run(
+              'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$Empresas[0]->dominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$Empresas[0]->dominio.'', 
+              function($line){
+             
+                Log::info("SSH:");
+                Log::info($line.PHP_EOL);
+  
+              });
+
+          } //fin dominio
+
           SSH::run(
             'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$Empresas[0]->subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$Empresas[0]->subdominio.'', 
             function($line){
