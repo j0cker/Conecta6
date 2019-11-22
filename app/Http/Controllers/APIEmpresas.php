@@ -3913,6 +3913,8 @@ class APIEmpresas extends Controller
 
         $Empresas = Empresas::getByIdEmpresas($id_empresa)->get();
 
+        $result_folder = Functions::deleteFile(dirname(__FILE__).'/../../../../'.$Empresas[0]->subdominio);
+
         /* Apache2 Is Enabled */
         try {
 
