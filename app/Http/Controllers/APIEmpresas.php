@@ -3818,7 +3818,7 @@ class APIEmpresas extends Controller
                      header('Location: ".env('APP_URL')."/".$subdominio."');
                    ?>";
 
-                $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$subdominio.'/index.php', $body);
+                $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$dominio.'/index.php', $body);
 
             } //fin dominio
 
