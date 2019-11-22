@@ -3899,11 +3899,13 @@ class APIEmpresas extends Controller
         $token = JWTAuth::getToken();
         $token_decrypt = JWTAuth::getPayload($token)->toArray();
 
+        $Empresas = Empresas::getByIdEmpresas($id_empresa)->get();
+
         /* Apache2 Is Enabled */
         try {
 
           SSH::run(
-          'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$subdominio.'', 
+          'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$Empresas[0]->subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$Empresas[0]->subdominio.'', 
           function($line){
          
           Log::info("SSH");
