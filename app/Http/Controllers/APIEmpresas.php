@@ -3806,7 +3806,7 @@ class APIEmpresas extends Controller
             if($dominio!=""){
 
               SSH::run(
-                'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh create '.$dominio.' /var/www/html/'.$subdominio.'', 
+                'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh create '.$dominio.' /var/www/html/'.$dominio.'', 
                 function($line){
                
                   Log::info("SSH:");
@@ -3815,10 +3815,10 @@ class APIEmpresas extends Controller
                 });
 
                 $body = "<?PHP
-                     header('Location: ".env('APP_URL')."/".$dominio."');
+                     header('Location: ".env('APP_URL')."/".$subdominio."');
                    ?>";
 
-                $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$dominio.'/index.php', $body);
+                $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$subdominio.'/index.php', $body);
 
             } //fin dominio
 
@@ -3943,7 +3943,7 @@ class APIEmpresas extends Controller
             $result_folder_dominio = Functions::deleteFolder(dirname(__FILE__).'/../../../../'.$Empresas[0]->dominio);
 
             SSH::run(
-              'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$Empresas[0]->dominio.' /var/www/html/'.$Empresas[0]->subdominio.'', 
+              'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$Empresas[0]->dominio.' /var/www/html/'.$Empresas[0]->dominio.'', 
               function($line){
              
                 Log::info("SSH:");
