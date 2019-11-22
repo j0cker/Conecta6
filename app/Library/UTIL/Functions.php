@@ -139,9 +139,14 @@ class Functions
 
     public static function createFolder($ruta){
 
+        Log::info('[Functions][createFolder]');
+
         $return = -1;
 
         if (!file_exists($ruta)) {
+
+            Log::info('[Functions][createFolder] file_exists no');
+
             $return = mkdir($ruta, 0777, true);
         }
 

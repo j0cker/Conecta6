@@ -3803,6 +3803,25 @@ class APIEmpresas extends Controller
           /* Apache2 Is Enabled */
           try {
 
+            if($dominio!=""){
+
+              SSH::run(
+                'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh create '.$dominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$dominio.'', 
+                function($line){
+               
+                  Log::info("SSH:");
+                  Log::info($line.PHP_EOL);
+    
+                });
+
+                $body = "<?PHP
+                     header('Location: ".env('APP_URL')."/".$dominio."');
+                   ?>";
+
+                $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$dominio.'/index.php', $body);
+
+            } //fin dominio
+
             SSH::run(
             'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh create '.$subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$subdominio.'', 
             function($line){
@@ -3819,7 +3838,8 @@ class APIEmpresas extends Controller
 
           }
 
-          $result_folder = Functions::createFolder(dirname(__FILE__).'/../../../../'.$subdominio);
+          //no hay que crear carpeta, vh.sh ya lo hace.
+          //$result_folder = Functions::createFolder(dirname(__FILE__).'/../../../../'.$subdominio);
 
           $body = "<?PHP
                      header('Location: ".env('APP_URL')."/".$subdominio."');
@@ -3827,7 +3847,7 @@ class APIEmpresas extends Controller
 
           $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$subdominio.'/index.php', $body);
 
-          if($result_archive==1 && $result_folder==1){
+          if($result_archive==1){
 
             $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($empresas));
             $responseJSON->data = $empresas;
@@ -3913,7 +3933,7 @@ class APIEmpresas extends Controller
 
         $Empresas = Empresas::getByIdEmpresas($id_empresa)->get();
 
-        $result_folder = Functions::deleteFile(dirname(__FILE__).'/../../../../'.$Empresas[0]->subdominio);
+        $result_folder = Functions::deleteFolder(dirname(__FILE__).'/../../../../'.$Empresas[0]->subdominio);
 
         /* Apache2 Is Enabled */
         try {
@@ -3922,14 +3942,14 @@ class APIEmpresas extends Controller
             'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$Empresas[0]->subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$Empresas[0]->subdominio.'', 
             function($line){
           
-            Log::info("SSH");
+            Log::info("[APIEmpresas][DeleteEmpresa] SSH:");
             Log::info($line.PHP_EOL);
 
           });
          
         } catch(\Exception $e) {
         
-          Log::info("Error SSH: ");
+          Log::info("[APIEmpresas][DeleteEmpresa] Error SSH: ");
           Log::info($e);
         }
 

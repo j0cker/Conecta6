@@ -129,7 +129,7 @@ if [ "$action" == 'create' ]
 		a2ensite $domain
 
 		### restart Apache
-		#/etc/init.d/apache2 reload
+		/etc/init.d/apache2 reload
 
 		### show the finished message
 		echo -e $"Complete! \nYou now have a new Virtual Host \nYour new host is: http://$domain \nAnd its located at $rootDir"
@@ -155,7 +155,7 @@ if [ "$action" == 'create' ]
 			a2dissite $domain
 
 			### restart Apache
-			#/etc/init.d/apache2 reload
+			/etc/init.d/apache2 reload
 
 			### Delete virtual host rules files
 			rm $sitesAvailabledomain
