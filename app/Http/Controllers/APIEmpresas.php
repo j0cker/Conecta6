@@ -3806,7 +3806,7 @@ class APIEmpresas extends Controller
             if($dominio!=""){
 
               SSH::run(
-                'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh create '.$dominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$dominio.'', 
+                'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh create '.$dominio.' /var/www/html/'.$dominio.'', 
                 function($line){
                
                   Log::info("SSH:");
@@ -3943,7 +3943,7 @@ class APIEmpresas extends Controller
             $result_folder_dominio = Functions::deleteFolder(dirname(__FILE__).'/../../../../'.$Empresas[0]->dominio);
 
             SSH::run(
-              'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$Empresas[0]->dominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$Empresas[0]->dominio.'', 
+              'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$Empresas[0]->dominio.' /var/www/html/'.$Empresas[0]->dominio.'', 
               function($line){
              
                 Log::info("SSH:");
