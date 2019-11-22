@@ -3775,6 +3775,16 @@ class APIEmpresas extends Controller
         Log::info("[APIEmpresas][AltaEmpresa] contrasena: " .$contrasena);
         Log::info("[APIEmpresas][AltaEmpresa] color: " .$color);
 
+        $subdominios_array = Empresas::lookForBySubdominio($subdominio)->get();
+
+        if(count($subdominios_array)>0){  
+          
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.subdominioyaexistente'), 0);
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
+        }
+
         $empresas = Empresas::addNewEnterprise($nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $contrasena, $color);
         
         Log::info($empresas);
@@ -3803,8 +3813,10 @@ class APIEmpresas extends Controller
             });
            
           } catch(\Exception $e) {
-          
+        
+            Log::info("Error SSH: ");
             Log::info($e);
+
           }
 
           $result_folder = Functions::createFolder(dirname(__FILE__).'/../../../../'.$subdominio);
@@ -3905,15 +3917,17 @@ class APIEmpresas extends Controller
         try {
 
           SSH::run(
-          'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$Empresas[0]->subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$Empresas[0]->subdominio.'', 
-          function($line){
-         
-          Log::info("SSH");
-          Log::info($line.PHP_EOL);
+            'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$Empresas[0]->subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$Empresas[0]->subdominio.'', 
+            function($line){
+          
+            Log::info("SSH");
+            Log::info($line.PHP_EOL);
+
           });
          
         } catch(\Exception $e) {
         
+          Log::info("Error SSH: ");
           Log::info($e);
         }
 
@@ -4022,6 +4036,16 @@ class APIEmpresas extends Controller
         Log::info("[APIEmpresas][ModEmpresa] subdominio: " .$subdominio);
         Log::info("[APIEmpresas][ModEmpresa] contrasena: " .$contrasena);
         Log::info("[APIEmpresas][ModEmpresa] color: " .$color);
+
+        $subdominios_array = Empresas::lookForBySubdominio($subdominio)->get();
+
+        if(count($subdominios_array)>0){  
+          
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.subdominioyaexistente'), 0);
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
+        }
 
         $empresas = Empresas::addNewEnterprise($nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $contrasena, $color);
         

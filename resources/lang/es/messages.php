@@ -46,6 +46,7 @@ return [
     'emailPrioridad5' => "Baja",
 
     //textos
+    'subdominioyaexistente' => 'El subdominio ya existe.',
     'ipnocoincide' => 'La IP No coincide.',
     'geonocoincide' => 'Te encuentres en un zona fuera de tolerancia del lugar de registro de asistencia.',
     'geonohabilitado' => 'Favor de habilitar la geolocalización.',
