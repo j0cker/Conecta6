@@ -3790,8 +3790,22 @@ class APIEmpresas extends Controller
           */
 
           /* Apache2 Is Enabled */
-          $exec = exec("/var/www/html/Conecta6/vh.sh create ".$subdominio.".".env('VIRTUAL_HOST_DOMAIN')." /var/www/html/".$subdominio."");
-          Log::info($exec);
+          try {
+
+            SSH::run(
+            'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh create '.$subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$subdominio.'', 
+            function($line){
+           
+              Log::info("SSH:");
+              Log::info($line.PHP_EOL);
+
+            });
+           
+          } catch(\Exception $e) {
+          
+            Log::info($e);
+          }
+
           $result_folder = Functions::createFolder(dirname(__FILE__).'/../../../../'.$subdominio);
 
           $body = "<?PHP
@@ -3883,6 +3897,22 @@ class APIEmpresas extends Controller
         // attempt to verify the credentials and create a token for the user
         $token = JWTAuth::getToken();
         $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        /* Apache2 Is Enabled */
+        try {
+
+          SSH::run(
+          'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$subdominio.'', 
+          function($line){
+         
+          Log::info("SSH");
+          Log::info($line.PHP_EOL);
+          });
+         
+        } catch(\Exception $e) {
+        
+          Log::info($e);
+        }
 
         $Empresas = Empresas::delByIdEmpresas($id_empresa);
         
