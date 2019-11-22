@@ -22,6 +22,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Session;
 use Validator;
 use App\Library\CLASSES\QueueMails;
+use SSH;
 
 class APIEmpresas extends Controller
 {
