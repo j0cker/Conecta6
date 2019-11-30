@@ -1646,7 +1646,7 @@ class APIAdmin extends Controller
   
             Log::info("[APIAdmin][ModificarEmpresa] Hay permisos");
             
-            return view('system.modEmpresa',["title" => config('app.name'), 
+            return view('system.modempresa',["title" => config('app.name'), 
                                               "lang" => "es", 
                                               "user" => $token_decrypt, 
                                               "color" => $token_decrypt['color'], 

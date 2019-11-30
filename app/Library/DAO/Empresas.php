@@ -4,6 +4,7 @@ namespace App\Library\DAO;
 use Config;
 use App;
 use Log;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 /*
@@ -127,6 +128,25 @@ class Empresas extends Model
     }
 
     
+
+    //update empresa
+    public function scopemodEnterprise($query, $id_empresas, $nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $contrasena, $color){
+
+      Log::info("[Empresas][scopeUpdateImage] id_empresas: ". $id_empresas);
+
+      //activar log query
+      DB::connection()->enableQueryLog();
+
+      $sql =  $query->where('id_empresas', $id_empresas)->update(['foto_base64' => $profileImg]); //return true in the other one return 1
+
+      //log query
+      $queries = DB::getQueryLog();
+      $last_query = end($queries);
+     
+      return $sql;
+
+
+    }
 
     //get enterprise
     public function scopeGetByIdEmpresas($query, $id_empresas){

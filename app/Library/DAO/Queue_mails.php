@@ -3,7 +3,7 @@
 namespace App\Library\DAO;
 use Config;
 use App;
-
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 /*

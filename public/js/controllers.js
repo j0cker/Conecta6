@@ -4815,7 +4815,7 @@
     
     getPublicIp = $scope.getPublicIpClick;
 
-    $scope.modEmpresa = function(id_empresa){
+    $scope.modEmpresa = function(id_empresas){
 
       console.log("[nuevoempresa][modEmpresa]");
 
@@ -4849,6 +4849,8 @@
       valContrasena = $("#valContrasena").val();
       color = color;
 
+      
+      console.log("[nuevoempresa][modEmpresa] id_empresas: " + id_empresas);
       console.log("[nuevoempresa][modEmpresa] nombreEmpresa: " + nombreEmpresa);
       console.log("[nuevoempresa][modEmpresa] nombreSolicitante: " + nombreSolicitante);
       console.log("[nuevoempresa][modEmpresa] correoElectronico: " + correoElectronico);
@@ -4892,7 +4894,7 @@
 
       } else {
 
-        functions.modEmpresa(nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, dominio, subdominio, contrasena, color).then(function (response) {
+        functions.modEmpresa(id_empresas, nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, dominio, subdominio, contrasena, color).then(function (response) {
 
                 if(response.data.success == "TRUE"){
                   console.log("[nuevoempresa][modEmpresa]");

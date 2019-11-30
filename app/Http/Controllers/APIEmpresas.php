@@ -4048,6 +4048,7 @@ class APIEmpresas extends Controller
         $token_decrypt = JWTAuth::getPayload($token)->toArray();
 
         
+        $id_empresas = $request->input('id_empresas');
         $nombreEmpresa = $request->input('nombreEmpresa');
         $nombreSolicitante = $request->input('nombreSolicitante');
         $correoElectronico = $request->input('correoElectronico');
@@ -4061,6 +4062,7 @@ class APIEmpresas extends Controller
         $contrasena = $request->input('contrasena');
         $color = $request->input('color');
 
+        Log::info("[APIEmpresas][ModEmpresa] id_empresas: " .$id_empresas);
         Log::info("[APIEmpresas][ModEmpresa] nombreEmpresa: " .$nombreEmpresa);
         Log::info("[APIEmpresas][ModEmpresa] nombreSolicitante: " .$nombreSolicitante);
         Log::info("[APIEmpresas][ModEmpresa] correoElectronico: " .$correoElectronico);
@@ -4076,7 +4078,7 @@ class APIEmpresas extends Controller
 
         $subdominios_array = Empresas::lookForBySubdominio($subdominio)->get();
 
-        if(count($subdominios_array)>0){  
+        if($subdominios_array[0]->id_empresas!=$id_empresas){  
           
           $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.subdominioyaexistente'), 0);
           $responseJSON->data = [];
@@ -4084,13 +4086,47 @@ class APIEmpresas extends Controller
 
         }
 
-        $empresas = Empresas::addNewEnterprise($nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $contrasena, $color);
+        $empresas = Empresas::modEnterprise($id_empresas, $nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $contrasena, $color);
         
         Log::info($empresas);
 
-        $Permisos_inter = Permisos_inter::addNewEmpresa($empresas[0]->id);
+        //delete folder of subdomains
+        $result_folder = Functions::deleteFolder(dirname(__FILE__).'/../../../../'.$subdominio);
 
-        if($empresas[0]->save==1 && $Permisos_inter[0]->save==1){
+        /* Apache2 Is Enabled */
+        try {
+
+          if($dominio!=""){
+
+            $result_folder_dominio = Functions::deleteFolder(dirname(__FILE__).'/../../../../'.$dominio);
+
+            SSH::run(
+              'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$dominio.' /var/www/html/'.$dominio.'', 
+              function($line){
+             
+                Log::info("SSH:");
+                Log::info($line.PHP_EOL);
+  
+              });
+
+          } //fin dominio
+
+          SSH::run(
+            'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$subdominio.'', 
+            function($line){
+          
+            Log::info("[APIEmpresas][DeleteEmpresa] SSH:");
+            Log::info($line.PHP_EOL);
+
+          });
+         
+        } catch(\Exception $e) {
+        
+          Log::info("[APIEmpresas][DeleteEmpresa] Error SSH: ");
+          Log::info($e);
+        }
+
+        if($empresas[0]->save==1){
           
           /*cpanel is disabled
           $result = Functions::cPanelAddSubdomain(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), $subdominio, env('CPANEL_DOMAIN'));
