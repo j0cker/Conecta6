@@ -130,14 +130,24 @@ class Empresas extends Model
     
 
     //update empresa
-    public function scopemodEnterprise($query, $id_empresas, $nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $contrasena, $color){
+    public function scopeModEnterprise($query, $id_empresas, $nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $color){
 
       Log::info("[Empresas][scopeUpdateImage] id_empresas: ". $id_empresas);
 
       //activar log query
       DB::connection()->enableQueryLog();
 
-      $sql =  $query->where('id_empresas', $id_empresas)->update(['foto_base64' => $profileImg]); //return true in the other one return 1
+      $sql =  $query->where('id_empresas', $id_empresas)->update(['nombre_empresa' => $nombreEmpresa,
+                                                                  'nombre_solicitante' => $nombreSolicitante,
+                                                                  'correo' => $correoElectronico,
+                                                                  'telefono_fijo' => $telefonoFijo,
+                                                                  'celular' => $celular,
+                                                                  'vigencia' => $datepicker,
+                                                                  'empleados_permitidos' => $empleadosPermitidos,
+                                                                  'activo' => $activa,
+                                                                  'dominio' => $dominio,
+                                                                  'subdominio' => $subdominio,
+                                                                  'color' => $color]); //return true in the other one return 1
 
       //log query
       $queries = DB::getQueryLog();

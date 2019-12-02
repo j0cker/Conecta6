@@ -407,6 +407,7 @@
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
                                                                     <input id="contrasena" type="password" class="form-control" placeholder="Contraseña" />
+                                                                    <input style="display: none;" id="tmpPass" type="password" class="form-control" placeholder="Contraseña" />
 
                                                                 </div>
 

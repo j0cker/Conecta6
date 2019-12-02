@@ -4833,6 +4833,7 @@
       var subdominio = "";
       var contrasena = "";
       var valContrasena = "";
+      var tmpPass = "";
       color = color;
 
       nombreEmpresa = $("#nombreEmpresa").val();
@@ -4847,6 +4848,7 @@
       subdominio = $("#subdominio").val();
       contrasena = $("#contrasena").val();
       valContrasena = $("#valContrasena").val();
+      tmpPass = $("#tmpPass").val();
       color = color;
 
       
@@ -4863,6 +4865,7 @@
       console.log("[nuevoempresa][modEmpresa] subdominio: " + subdominio);
       console.log("[nuevoempresa][modEmpresa] contrasena: " + contrasena);
       console.log("[nuevoempresa][modEmpresa] valContrasena: " + valContrasena);
+      console.log("[nuevoempresa][modEmpresa] tmpPass: " + tmpPass);
       console.log("[nuevoempresa][modEmpresa] color: " + color);
 
       if(nombreEmpresa==""){
@@ -4894,7 +4897,7 @@
 
       } else {
 
-        functions.modEmpresa(id_empresas, nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, dominio, subdominio, contrasena, color).then(function (response) {
+        functions.modEmpresa(id_empresas, nombreEmpresa, nombreSolicitante, correoElectronico, telefonoFijo, celular, datepicker, empleadosPermitidos, activa, dominio, subdominio, tmpPass, contrasena, color).then(function (response) {
 
                 if(response.data.success == "TRUE"){
                   console.log("[nuevoempresa][modEmpresa]");

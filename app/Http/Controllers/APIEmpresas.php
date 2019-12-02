@@ -4034,7 +4034,21 @@ class APIEmpresas extends Controller
       $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
 
       $this->validate($request, [
-        'token' => 'required'
+        'token' => 'required',
+        'id_empresas' => 'required',
+        'nombreEmpresa' => 'required',
+        'nombreSolicitante' => 'required',
+        'correoElectronico' => 'required',
+        'telefonoFijo' => 'required',
+        'celular' => 'required',
+        'datepicker' => 'required',
+        'empleadosPermitidos' => 'required',
+        'activa' => 'required',
+        'dominio' => 'required',
+        'subdominio' => 'required',
+        'contrasena' => 'required',
+        'tmpPass' => 'required',
+        'color' => 'required',
       ]);
         
       $token = $request->input('token');
@@ -4060,6 +4074,7 @@ class APIEmpresas extends Controller
         $dominio = $request->input('dominio');
         $subdominio = $request->input('subdominio');
         $contrasena = $request->input('contrasena');
+        $tmpPass = $request->input('tmpPass');
         $color = $request->input('color');
 
         Log::info("[APIEmpresas][ModEmpresa] id_empresas: " .$id_empresas);
@@ -4074,6 +4089,7 @@ class APIEmpresas extends Controller
         Log::info("[APIEmpresas][ModEmpresa] dominio: " .$dominio);
         Log::info("[APIEmpresas][ModEmpresa] subdominio: " .$subdominio);
         Log::info("[APIEmpresas][ModEmpresa] contrasena: " .$contrasena);
+        Log::info("[APIEmpresas][ModEmpresa] tmpPass: " .$tmpPass);
         Log::info("[APIEmpresas][ModEmpresa] color: " .$color);
 
         $subdominios_array = Empresas::lookForBySubdominio($subdominio)->get();
@@ -4086,8 +4102,16 @@ class APIEmpresas extends Controller
 
         }
 
-        $empresas = Empresas::modEnterprise($id_empresas, $nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $contrasena, $color);
+        $empresas = Empresas::modEnterprise($id_empresas, $nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $color);
         
+        $passC = 1;
+        if($contrasena != $tmpPass){
+          
+          Log::info("[APIEmpresas][ModEmpresa] cambiar pass");
+          $passC = Empresas::modPass($id_empresas, $contrasena);
+
+        }
+
         Log::info($empresas);
 
         //delete folder of subdomains
