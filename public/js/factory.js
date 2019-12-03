@@ -4461,6 +4461,17 @@
         });
 
       },
+      getObtenerIdiomasByIdEmpresa: function(id_empresas){
+
+        console.log("[factory][getObtenerIdiomasByIdEmpresa]");
+
+        var url = '/api/empresas/idiomas/obtenerByIdEmpresa';
+        return $http.get(url,{
+          params: { cache: false, id_empresas:id_empresas },
+          cache: false
+        });
+
+      },
       getZonaHoraria: function(id_empresas) {
 
         console.log("[factory][getZonasHoraria]");

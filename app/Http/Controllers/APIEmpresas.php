@@ -3651,7 +3651,6 @@ class APIEmpresas extends Controller
 
     if($request->isMethod('GET')) {
 
-      
       $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
 
       $this->validate($request, [
@@ -3671,7 +3670,7 @@ class APIEmpresas extends Controller
         $token = JWTAuth::getToken();
         $token_decrypt = JWTAuth::getPayload($token)->toArray();
 
-        $Idiomas = Idiomas::addNewEnterprise($id_empresas);
+        $Idiomas = Idiomas::getIdiomaByIdEmpresas($id_empresas);
         
         Log::info($Idiomas);
 
@@ -4044,7 +4043,6 @@ class APIEmpresas extends Controller
         'datepicker' => 'required',
         'empleadosPermitidos' => 'required',
         'activa' => 'required',
-        'dominio' => 'required',
         'subdominio' => 'required',
         'contrasena' => 'required',
         'tmpPass' => 'required',
@@ -4053,7 +4051,7 @@ class APIEmpresas extends Controller
         
       $token = $request->input('token');
 
-      Log::info("[APIEmpresas][GetIdiomaObtener] Token: ". $token);
+      Log::info("[APIEmpresas][ModEmpresa] Token: ". $token);
 
       try {
 

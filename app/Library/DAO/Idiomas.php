@@ -32,7 +32,7 @@ class Idiomas extends Model
       DB::connection()->enableQueryLog();
 
       $sql =  $query->where('id_empresas', '=', $id_empresas)->get();
-        
+      
       //return true in the other one return 1
 
       //log query

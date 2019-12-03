@@ -161,7 +161,7 @@ Route::post('/empresas/salidas/borrar', 'APIEmpresas@DelSalidas');
 Route::post('/empresas/recuperarPass', 'APIEmpresas@RecuperarPass');
 
 //Get Idioma by id_empresas
-Route::get('/empresas/idiomas/obtener', 'APIEmpresas@GetIdiomaObtener');
+Route::get('/empresas/idiomas/obtenerByIdEmpresa', 'APIEmpresas@GetIdiomaObtener');
 
 /*
 *******Admin******

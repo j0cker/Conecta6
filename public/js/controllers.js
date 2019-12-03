@@ -1855,6 +1855,8 @@
     
     $scope.eliminarEmpresaClick = function(id_empresa){
 
+      functions.loading();
+
       console.log("[controllers][empresas][eliminarEmpresaClick]");
       
       console.log("[controllers][empresas][eliminarEmpresaClick] id_empresa: " + id_empresa);
@@ -1864,8 +1866,6 @@
         if(response.data.success == "TRUE"){
           
           console.log("[controllers][empresas][eliminarEmpresaClick]");
-
-          functions.loadingEndWait();  
           
                 
           functions.getAllEmpresas().then(function (response) {
