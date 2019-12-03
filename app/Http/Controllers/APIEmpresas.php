@@ -4115,17 +4115,17 @@ class APIEmpresas extends Controller
         Log::info($empresas);
 
         //delete folder of subdomains
-        $result_folder = Functions::deleteFolder(dirname(__FILE__).'/../../../../'.$subdominio);
+        $result_folder = Functions::deleteFolder(dirname(__FILE__).'/../../../../'.$subdominios_array[0]->subdominio);
 
         /* Apache2 Is Enabled */
         try {
 
-          if($dominio!=""){
+          if($subdominios_array[0]->dominio!=""){
 
-            $result_folder_dominio = Functions::deleteFolder(dirname(__FILE__).'/../../../../'.$dominio);
+            $result_folder_dominio = Functions::deleteFolder(dirname(__FILE__).'/../../../../'.$subdominios_array[0]->dominio);
 
             SSH::run(
-              'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$dominio.' /var/www/html/'.$dominio.'', 
+              'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$subdominios_array[0]->dominio.' /var/www/html/'.$subdominios_array[0]->dominio.'', 
               function($line){
              
                 Log::info("SSH:");
@@ -4136,7 +4136,7 @@ class APIEmpresas extends Controller
           } //fin dominio
 
           SSH::run(
-            'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$subdominio.'', 
+            'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$subdominios_array[0]->subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$subdominios_array[0]->subdominio.'', 
             function($line){
           
             Log::info("[APIEmpresas][DeleteEmpresa] SSH:");
@@ -4150,13 +4150,55 @@ class APIEmpresas extends Controller
           Log::info($e);
         }
 
-        if($empresas[0]->save==1){
+        if($empresas==1){
           
-          /*cpanel is disabled
+          /*Cpanel is disable
           $result = Functions::cPanelAddSubdomain(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), $subdominio, env('CPANEL_DOMAIN'));
-          Log::info("[APIEmpresas][ModEmpresa] Cpanel API");
+          
+          Log::info("[APIEmpresas][AltaEmpresa] Cpanel API");
           Log::info($result);
           */
+
+          /* Apache2 Is Enabled */
+          try {
+
+            if($dominio!=""){
+
+              SSH::run(
+                'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh create '.$dominio.' /var/www/html/'.$dominio.'', 
+                function($line){
+               
+                  Log::info("SSH:");
+                  Log::info($line.PHP_EOL);
+    
+                });
+
+                $body = "<?PHP
+                     header('Location: ".env('APP_URL')."/".$subdominio."');
+                   ?>";
+
+                $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$dominio.'/index.php', $body);
+
+            } //fin dominio
+
+            SSH::run(
+            'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh create '.$subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$subdominio.'', 
+            function($line){
+           
+              Log::info("SSH:");
+              Log::info($line.PHP_EOL);
+
+            });
+           
+          } catch(\Exception $e) {
+        
+            Log::info("Error SSH: ");
+            Log::info($e);
+
+          }
+
+          //no hay que crear carpeta, vh.sh ya lo hace.
+          //$result_folder = Functions::createFolder(dirname(__FILE__).'/../../../../'.$subdominio);
 
           $body = "<?PHP
                      header('Location: ".env('APP_URL')."/".$subdominio."');
