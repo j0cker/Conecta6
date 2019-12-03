@@ -4749,6 +4749,7 @@
               $("#empleadosPermitidos").val(response.data.data[0].empleados_permitidos);
               $("#contrasena").val(response.data.data[0].pass);
               $("#valContrasena").val(response.data.data[0].pass);
+              $("#tmpPass").val(response.data.data[0].pass);
 
               if(response.data.data[0].activo == 1){
 
