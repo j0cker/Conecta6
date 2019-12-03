@@ -4208,13 +4208,13 @@ class APIEmpresas extends Controller
 
           if($result_archive==1){
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($empresas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
             $responseJSON->data = $empresas;
             return json_encode($responseJSON);
 
           } else {
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($empresas));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
             $responseJSON->data = [];
             return json_encode($responseJSON);
 
@@ -4222,7 +4222,7 @@ class APIEmpresas extends Controller
 
         } else {
 
-          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($empresas));
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
           $responseJSON->data = [];
           return json_encode($responseJSON);
 
