@@ -3644,6 +3644,86 @@ class APIEmpresas extends Controller
 
   }
 
+  public function ModIdiomaEmpresa(Request $request){
+  
+    Log::info('[APIEmpresas][ModIdiomaEmpresa]');
+
+    Log::info("[APIEmpresas][ModIdiomaEmpresa] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required',
+        'id_empresas' => 'required',
+        'id_idiomas' => 'required'
+      ]);
+        
+      $token = $request->input('token');
+      $id_empresas = $request->input('id_empresas');
+      $id_idiomas = $request->input('id_idiomas');
+
+      Log::info("[APIEmpresas][ModIdiomaEmpresa] Token: ". $token);
+      Log::info("[APIEmpresas][ModIdiomaEmpresa] id_empresas: ". $id_empresas);
+      Log::info("[APIEmpresas][ModIdiomaEmpresa] id_idiomas: ". $id_idiomas);
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        $Idiomas = Empresas::modIdiomaByIdEmpresa($id_empresas, $id_idiomas);
+
+        if($Idiomas==1){
+          
+          $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
+        } else {
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
+        }
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][ModIdiomaEmpresa] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][ModIdiomaEmpresa] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][ModIdiomaEmpresa] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
   public function GetIdiomaObtener(Request $request){
   
     Log::info('[APIEmpresas][GetIdiomaObtener]');

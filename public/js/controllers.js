@@ -3317,9 +3317,37 @@
 
     functions.loading();
 
-    $scope.zonasHorarias = "";
+    $scope.postModIdiomaEmpresaClick = function(id_empresas, id_idiomas){
 
-    $scope.getAllIdiomasClick = function(id_empresas){
+      console.log("[getZonasHorariasClick] ");
+      console.log("[getZonasHorariasClick] id_empresas: " + id_empresas);
+      console.log("[getZonasHorariasClick] id_idiomas: " + id_idiomas);
+
+      functions.postModIdiomaEmpresa(id_empresas, id_idiomas).then(function (response) {
+
+            if(response.data.success == "TRUE"){
+              console.log("[configuraciones][postModIdiomaEmpresa]");
+
+              console.log(response.data.data);
+
+              toastr["success"]("Idioma Modificado Correctamente!.", "");
+
+            } else {
+                toastr["warning"](response.data.description, "");
+                functions.loadingEndWait();
+            }
+        }, function (response) {
+          /*ERROR*/
+          toastr["error"]("Inténtelo de nuevo más tarde", "");
+          functions.loadingEndWait();
+
+        });/*fin postModIdiomaEmpresa*/
+
+    }; //fin postModIdiomaEmpresaClick
+
+    postModIdiomaEmpresaClick = $scope.postModIdiomaEmpresaClick;
+
+    $scope.getAllIdiomasClick = function(id_empresas, id_idiomas){
 
       functions.getAllIdiomas(id_empresas).then(function (response) {
 
@@ -3329,11 +3357,13 @@
 
             console.log(response.data.data);
 
-            $scope.idiomas = response.data.data;
+            $scope.idiomas2 = response.data.data;
 
             functions.getObtenerIdiomasByIdEmpresa(id_empresas).then(function (response) {
 
               if(response.data.success == "TRUE"){
+
+                $scope.idiomas = $scope.idiomas2;
                 
                 $scope.$watch('idiomas', function() {
                   //cuando cargue en front los idiomas
@@ -3341,10 +3371,15 @@
                   console.log("Cargar idiomas Seleccionada");
                   
                   for(var i=0; i<$scope.idiomas.length; i++){
-                    if($scope.idiomas[i].id_idiomas==response.data.data[0].id_idiomas){
-                      console.log("encontramos");
-                      document.getElementById("single-label").selectedIndex = i+1;
+                    
+                    if($scope.idiomas[i].id_idiomas==id_idiomas){
                       
+                      console.log("Se encontró");
+                      
+                      //mejora
+                      //hay que cambiar el id_idiomas desde el front php blade (configuraciones) con el id_idiomas actual modificado.
+                      document.getElementById("single-label").selectedIndex = i+1;
+                          
                     }
                   }
 
@@ -3833,7 +3868,7 @@
 
     }; //fin postZonasHorariasClick
 
-    
+    $scope.zonasHorarias = "";
 
     $scope.getZonasHorariasClick = function(id_zona_horaria){
 
@@ -3855,7 +3890,10 @@
                 
                 for(var i=0; i<$scope.zonasHorarias.length; i++){
                   if($scope.zonasHorarias[i].id_zonas_horarias==id_zona_horaria){
-                    console.log("entcontramos");
+                    console.log("encontramos");
+                    
+                    //mejora
+                    //hay que cambiar el id_zonashorarias desde el front php blade (configuraciones) con el id_zonashorarias actual modificado.
                     document.getElementById("single-default").selectedIndex = i+1;
                     
                   }

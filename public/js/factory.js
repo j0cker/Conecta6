@@ -4461,6 +4461,16 @@
         });
 
       },
+      postModIdiomaEmpresa: function(id_empresas, id_idiomas){
+
+        console.log("[factory][postModIdiomaEmpresa]");
+
+        var url = '/api/empresas/idiomas/modIdiomaEmpresa';
+
+        return $http.post(url, {cache: false, id_empresas:id_empresas, id_idiomas:id_idiomas });
+
+
+      },
       getObtenerIdiomasByIdEmpresa: function(id_empresas){
 
         console.log("[factory][getObtenerIdiomasByIdEmpresa]");

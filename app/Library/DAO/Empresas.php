@@ -23,6 +23,27 @@ class Empresas extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
+    public function scopeModIdiomaByIdEmpresa($query, $id_empresas, $id_idiomas){
+
+      Log::info("[Empresas][scopeModIdiomaByIdEmpresa]");
+
+      //activar log query
+      DB::connection()->enableQueryLog();
+
+      $sql = $query->where([['id_empresas', '=', $id_empresas],
+                           ])->update(['id_idiomas' => $id_idiomas]); 
+                           
+      //return true in the other one return 1
+
+      //log query
+      $queries = DB::getQueryLog();
+      $last_query = end($queries);
+      Log::info($last_query);
+
+      return $sql;
+
+    }
+
     //Get Idiomas By IdEmpresas
     public function scopeGetIdiomaByIdEmpresas($query, $id_empresas){
 

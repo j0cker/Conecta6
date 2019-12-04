@@ -168,7 +168,7 @@
                                                                 
                                                                 <select class="select2 form-control w-100" id="single-label">
                                                                     <option value="default">Selecciona un Idioma</option>
-                                                                    <option ng-repeat="(key, idioma) in idiomas" value="<% idioma.id_idiomas %>"><% idioma.nombre %></option>
+                                                                    <option ng-repeat="(key, idioma) in idiomas" value="<% idioma.id_idiomas %>"><% idioma.nombre %> (<% idioma.code %>)</option>
                                                                 </select>
 
                                                             </div>
@@ -1273,6 +1273,17 @@
                 });
                 
 
+                $(document).on('change', '#single-label', function () {
+                    
+                    console.log("[Inglés]");
+
+                    console.log($("#single-label").val());
+
+                    postModIdiomaEmpresaClick("{{ $user['usr']->id_empresas }}", $("#single-label").val());
+
+                });
+
+
                 $(document).on('change', '#single-default', function () {
                     
                     console.log("[Zonas Horarias]");
@@ -1296,7 +1307,7 @@
                 angular.element('body').scope().getZonasHorariasClick("{{ $user['usr']->id_zona_horaria }}");
                 angular.element('body').scope().getEmpresaClick("{{ $user['usr']->id_empresas }}");
                 getSalidasClick("{{ $user['usr']->id_empresas }}");
-                getAllIdiomasClick("{{ $user['usr']->id_empresas }}");
+                getAllIdiomasClick("{{ $user['usr']->id_empresas }}", "{{ $user['usr']->id_idiomas }}");
                 
             });
         </script>
