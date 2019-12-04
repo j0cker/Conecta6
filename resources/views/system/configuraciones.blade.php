@@ -168,8 +168,7 @@
                                                                 
                                                                 <select class="select2 form-control w-100" id="single-label">
                                                                     <option value="default">Selecciona un Idioma</option>
-                                                                    <option ng-repeat="(key, plantilla) in plantillas" value="<% plantilla.id_plantillas %>"><% plantilla.nombrePlantilla %></option>
-                                                                    <option value="Crear Nueva Plantilla">Crear Nuevo Idioma</option>
+                                                                    <option ng-repeat="(key, idioma) in idiomas" value="<% idioma.id_idiomas %>"><% idioma.nombre %></option>
                                                                 </select>
 
                                                             </div>
@@ -1297,6 +1296,7 @@
                 angular.element('body').scope().getZonasHorariasClick("{{ $user['usr']->id_zona_horaria }}");
                 angular.element('body').scope().getEmpresaClick("{{ $user['usr']->id_empresas }}");
                 getSalidasClick("{{ $user['usr']->id_empresas }}");
+                getAllIdiomasClick("{{ $user['usr']->id_empresas }}");
                 
             });
         </script>

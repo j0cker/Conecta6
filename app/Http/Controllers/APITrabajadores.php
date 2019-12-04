@@ -1698,7 +1698,9 @@ class APITrabajadores extends Controller
 
           } else {
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($Registros));
+            //cuando no hayan registros igualmente tiene que mostrar en pantalla algo y no un error, puesto que no es un error.
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), count($Registros));
             $responseJSON->data = [];
             return json_encode($responseJSON);
 

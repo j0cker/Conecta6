@@ -23,27 +23,6 @@ class Idiomas extends Model
     const UPDATED_AT = 'updated_at';
     //public $attributes;
 
-    //Get Idiomas By IdEmpresas
-    public function scopeGetIdiomaByIdEmpresas($query, $id_empresas){
-
-      Log::info("[Idiomas][scopeGetIdiomaByIdEmpresas]");
-
-      //activar log query
-      DB::connection()->enableQueryLog();
-
-      $sql =  $query->where('id_empresas', '=', $id_empresas)->get();
-      
-      //return true in the other one return 1
-
-      //log query
-      $queries = DB::getQueryLog();
-      $last_query = end($queries);
-      Log::info($last_query);
-
-      return $sql;
-
-    }
-
     //eliminar idioma
     public function scopeEliminarIdioma($query, $id){
 

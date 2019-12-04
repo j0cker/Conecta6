@@ -11,6 +11,7 @@ use App\Library\DAO\Empresas;
 use App\Library\DAO\Plantillas;
 use App\Library\DAO\Colores;
 use App\Library\DAO\Salidas;
+use App\Library\DAO\Idiomas;
 use App\Library\UTIL\Functions;
 use Auth;
 use carbon\Carbon;
@@ -3670,7 +3671,7 @@ class APIEmpresas extends Controller
         $token = JWTAuth::getToken();
         $token_decrypt = JWTAuth::getPayload($token)->toArray();
 
-        $Idiomas = Idiomas::getIdiomaByIdEmpresas($id_empresas);
+        $Idiomas = Empresas::getIdiomaByIdEmpresas($id_empresas);
         
         Log::info($Idiomas);
 

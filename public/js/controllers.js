@@ -1609,6 +1609,11 @@
               functions.getHistorialEntradasByIdEmpresas(id_empresas, start, end).then(function (registros) {
 
                   if(registros.data.success == "TRUE"){
+
+                    //improvements
+                    //cuando es un día 3 de diciembre por ejemplo, y está vacío el arreglo la información debería de mostrar
+                    //todos los trabajadores en 0 puesto que no hay información.
+
                     console.log("[inicioEmpresa][getHistorialEntradasByIdEmpresas]");
 
                     console.log(registros.data.data);
@@ -3313,6 +3318,67 @@
     functions.loading();
 
     $scope.zonasHorarias = "";
+
+    $scope.getAllIdiomasClick = function(id_empresas){
+
+      functions.getAllIdiomas(id_empresas).then(function (response) {
+
+          if(response.data.success == "TRUE"){
+
+            console.log("[configuraciones][getAllIdiomas]");
+
+            console.log(response.data.data);
+
+            $scope.idiomas = response.data.data;
+
+            functions.getObtenerIdiomasByIdEmpresa(id_empresas).then(function (response) {
+
+              if(response.data.success == "TRUE"){
+                
+                $scope.$watch('idiomas', function() {
+                  //cuando cargue en front los idiomas
+
+                  console.log("Cargar idiomas Seleccionada");
+                  
+                  for(var i=0; i<$scope.idiomas.length; i++){
+                    if($scope.idiomas[i].id_idiomas==response.data.data[0].id_idiomas){
+                      console.log("encontramos");
+                      document.getElementById("single-label").selectedIndex = i+1;
+                      
+                    }
+                  }
+
+                });//fin watch
+
+                functions.loadingEndWait();
+                
+              } else {
+
+                  functions.loadingEndWait();
+              }
+            }, function (response) {
+              /*ERROR*/
+              toastr["error"]("Inténtelo de nuevo más tarde", "");
+              functions.loadingEndWait();
+
+            });/*fin getObtenerIdiomasByIdEmpresa*/
+
+
+          } else {
+              toastr["warning"](response.data.description, "");
+              functions.loadingEndWait();
+          }
+
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin getAllIdiomas*/
+
+    };/*fin validarSubdominio*/
+
+    getAllIdiomasClick = $scope.getAllIdiomasClick;
 
     var validarSubdominioBD = 0;
     
