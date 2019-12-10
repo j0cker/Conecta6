@@ -219,6 +219,9 @@ class Functions
               App::setLocale($idioma);
           }
         } catch(Exception $e){
+
+            
+
         }
         return $idioma;
         //return "es";

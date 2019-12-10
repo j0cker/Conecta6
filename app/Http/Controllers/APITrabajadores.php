@@ -10,6 +10,7 @@ use App\Library\DAO\Permisos_inter;
 use App\Library\DAO\Colores;
 use App\Library\DAO\Empresas;
 use App\Library\DAO\Registros;
+use App\Library\DAO\Idiomas;
 use App\Library\UTIL\Functions;
 use Browser;
 use Auth;
@@ -133,8 +134,12 @@ class APITrabajadores extends Controller
         
         $jwt_token = JWTAuth::encode($payload);
         Log::info("[APITrabajadores][ingresar] new token: ". $jwt_token->get());
-        Log::info("[APIAdmin][ingresar] Permisos: ");
+        Log::info("[APITrabajadores][ingresar] Permisos: ");
         Log::info($permisos_inter);
+
+        $Idiomas = Idiomas::getIdiomasById($empresa[0]->id_idiomas);
+        App::setLocale($Idiomas[0]->code);
+        Log::info("[APITrabajadores][ingresar] getLocale: ". App::getLocale());
 
         $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDdata'), count($trabajador));
         $responseJSON->data = $trabajador;

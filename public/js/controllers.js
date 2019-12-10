@@ -304,6 +304,8 @@
                   functions.loadingEndWait();
                   
                 } else {
+                  
+                    $("#updating-chart").css("display","none");
                     toastr["success"]("No hay Registros en esos Intervalos", "");
                     
                     $('#dt-basic-example').dataTable().fnClearTable();

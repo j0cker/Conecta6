@@ -36,7 +36,7 @@
                                 </a>
                             </div>
 
-                            <!-- app notification -->
+                            <!-- app notification 
                             <div>
                                 <a href="#" class="header-icon" data-toggle="dropdown" title="You got 11 notifications">
                                     <i class="fal fa-bell"></i>
@@ -127,7 +127,6 @@
                                                     <li>
                                                         <a href="#" class="d-flex align-items-center">
                                                             <span class="status status-success mr-2">
-                                                                <!-- <img src="img/avatar-m.png" data-src="img/avatar-h.png" class="profile-image rounded-circle" alt="Sarah McBrook" /> -->
                                                                 <span class="profile-image rounded-circle d-inline-block" style="background-image:url('img/avatar-h.png')"></span>
                                                             </span>
                                                             <span class="d-flex flex-column flex-1 ml-1">
@@ -197,7 +196,6 @@
                                                     </li>
                                                     <li>
                                                         <div class="d-flex align-items-center show-child-on-hover">
-                                                            <!--<img src="img/avatar-m.png" data-src="img/avatar-k.png" class="profile-image rounded-circle" alt="k" />-->
                                                             <div class="d-flex flex-column flex-1">
                                                                 <span class="name">
                                                                     Troy Norman'<span class="fw-300">s new connections</span>
@@ -220,7 +218,6 @@
                                                     </li>
                                                     <li>
                                                         <div class="d-flex align-items-center show-child-on-hover">
-                                                            <!--<img src="img/avatar-m.png" data-src="img/avatar-e.png" class="profile-image-sm rounded-circle align-self-start mt-1" alt="k" />-->
                                                             <div class="d-flex flex-column flex-1">
                                                                 <span class="name">Dr John Cook <span class="fw-300">sent a <span class="text-danger">new signal</span></span></span>
                                                                 <span class="msg-a fs-sm mt-2">Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</span>
@@ -258,7 +255,6 @@
                                                     </li>
                                                     <li>
                                                         <div class="d-flex align-items-center show-child-on-hover">
-                                                            <!--<img src="img/avatar-m.png" data-src="img/avatar-h.png" class="profile-image rounded-circle align-self-start mt-1" alt="k" />-->
                                                             <div class="d-flex flex-column flex-1">
                                                                 <div class="name mb-2">
                                                                     Lisa Lamar<span class="fw-300"> updated project</span>
@@ -393,6 +389,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            -->
 
                             <?php if(in_array("3", $user["permisos"])): ?>
                             

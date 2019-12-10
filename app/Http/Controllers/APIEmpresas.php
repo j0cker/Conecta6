@@ -150,6 +150,10 @@ class APIEmpresas extends Controller
         Log::info("[APIEmpresas][ingresar] Permisos: ");
         Log::info($permisos_inter);
 
+        $Idiomas = Idiomas::getIdiomasById($empresa[0]->id_idiomas);
+        App::setLocale($Idiomas[0]->code);
+        Log::info("[APIEmpresas][ingresar] getLocale: ". App::getLocale());
+
         $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDdata'), count($empresa));
         $responseJSON->data = $empresa;
         $responseJSON->token = $jwt_token->get();
@@ -158,6 +162,7 @@ class APIEmpresas extends Controller
         
 
       } else {
+
         $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBDFail'), count($empresa));
         $responseJSON->data = $empresa;
         return json_encode($responseJSON);
@@ -3573,7 +3578,6 @@ class APIEmpresas extends Controller
 
       Log::info("[APIEmpresas][Configuraciones] Token: ". $token);
 
-
       try {
 
         // attempt to verify the credentials and create a token for the user
@@ -3677,6 +3681,12 @@ class APIEmpresas extends Controller
         $Idiomas = Empresas::modIdiomaByIdEmpresa($id_empresas, $id_idiomas);
 
         if($Idiomas==1){
+
+          $Idiomas = Idiomas::getIdiomasById($id_idiomas);
+
+          App::setLocale($Idiomas[0]->code);
+
+          Log::info("[APIEmpresas][ModIdiomaEmpresa] getLocale: ". App::getLocale());
           
           $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
           $responseJSON->data = [];

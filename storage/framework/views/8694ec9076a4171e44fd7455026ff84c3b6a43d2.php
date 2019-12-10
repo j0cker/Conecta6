@@ -171,6 +171,7 @@
                                                 <div class="col-lg-7 col-xl-8">
                                                     <div class="position-relative">
                                                         <div id="updating-chart" style="height: 450px; padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;" width="966" height="302"></canvas><canvas class="flot-overlay" width="966" height="302" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;"></canvas></div>
+                                                        <div id="no-updating-chart">No hay Datos</div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-5 col-xl-4 pl-lg-3">
