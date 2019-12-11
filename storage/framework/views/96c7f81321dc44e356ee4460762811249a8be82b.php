@@ -177,7 +177,7 @@
                                 <?php endif; ?>
                                 <a href="#" title="Application Intel" data-filter-tags="application intel">
                                     <i class="fal fa-info-circle"></i>
-                                    <span class="nav-link-text" data-i18n="nav.application_intel">Empresas Administración</span>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel"><?php echo e(Lang::get('messages.textoEmpresasMenuLateralTitulo')); ?></span>
                                 </a>
                                 <ul>
                                 <?php if($__env->yieldContent('menuActive')=="inicioEmpresa"): ?>
@@ -185,8 +185,8 @@
                                 <?php else: ?>
                                     <li class="">
                                 <?php endif; ?>
-                                        <a href="<?php echo e(url('/inicioEmpresa')); ?>" title="inicio Analytics Dashboard" data-filter-tags="application intel inicio analytics dashboard">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Inicio</span>
+                                        <a href="<?php echo e(url('/inicioEmpresa')); ?>" title="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralInicio')); ?>" data-filter-tags="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralInicio')); ?>">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard"><?php echo e(Lang::get('messages.textoEmpresasMenuLateralInicio')); ?></span>
                                         </a>
                                     </li>
                                 <?php if($__env->yieldContent('menuActive')=="perfilEmpresas"): ?>
@@ -194,8 +194,8 @@
                                 <?php else: ?>
                                     <li class="">
                                 <?php endif; ?>
-                                        <a href="<?php echo e(url('/perfilEmpresas')); ?>" title="Perfil" data-filter-tags="perfil">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Perfil</span>
+                                        <a href="<?php echo e(url('/perfilEmpresas')); ?>" title="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralPerfil')); ?>" data-filter-tags="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralPerfil')); ?>">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard"><?php echo e(Lang::get('messages.textoEmpresasMenuLateralPerfil')); ?></span>
                                         </a>
                                     </li>
                                 <?php if($__env->yieldContent('menuActive')=="trabajadores"): ?>
@@ -203,8 +203,8 @@
                                 <?php else: ?>
                                     <li class="">
                                 <?php endif; ?>
-                                        <a href="<?php echo e(url('/trabajadores')); ?>" title="Trabajadores" data-filter-tags="Trabajadores">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Trabajadores</span>
+                                        <a href="<?php echo e(url('/trabajadores')); ?>" title="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralTrabajadores')); ?>" data-filter-tags="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralTrabajadores')); ?>">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard"><?php echo e(Lang::get('messages.textoEmpresasMenuLateralTrabajadores')); ?></span>
                                         </a>
                                     </li>
                                 <?php if($__env->yieldContent('menuActive')=="consultaDeInformes"): ?>
@@ -212,8 +212,8 @@
                                 <?php else: ?>
                                     <li class="">
                                 <?php endif; ?>
-                                        <a href="<?php echo e(url('/informes')); ?>" title="Consulta de Informes" data-filter-tags="Consulta de Informes">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Consulta de Informes</span>
+                                        <a href="<?php echo e(url('/informes')); ?>" title="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralConsultaDeInformes')); ?>" data-filter-tags="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralConsultaDeInformes')); ?>">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard"><?php echo e(Lang::get('messages.textoEmpresasMenuLateralConsultaDeInformes')); ?></span>
                                         </a>
                                     </li>
                                 <?php if($__env->yieldContent('menuActive')=="historialEntradasYSalidasPorEmpresa"): ?>
@@ -221,8 +221,8 @@
                                 <?php else: ?>
                                     <li class="">
                                 <?php endif; ?>
-                                        <a href="<?php echo e(url('/historialEntradasEmpresa')); ?>" title="Historial de Entradas y Salidas" data-filter-tags="Historial de Entradas y Salidas">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Historial de Entradas y Salidas</span>
+                                        <a href="<?php echo e(url('/historialEntradasEmpresa')); ?>" title="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralHistorialDeEntradasYSalidas')); ?>" data-filter-tags="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralHistorialDeEntradasYSalidas')); ?>">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard"><?php echo e(Lang::get('messages.textoEmpresasMenuLateralHistorialDeEntradasYSalidas')); ?></span>
                                         </a>
                                     </li>
                                 <?php if($__env->yieldContent('menuActive')=="configuraciones"): ?>
@@ -230,13 +230,13 @@
                                 <?php else: ?>
                                     <li class="">
                                 <?php endif; ?>
-                                        <a href="<?php echo e(url('/configuraciones')); ?>" title="Configuraciones" data-filter-tags="Configuraciones">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Configuraciones</span>
+                                        <a href="<?php echo e(url('/configuraciones')); ?>" title="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralConfiguraciones')); ?>" data-filter-tags="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralConfiguraciones')); ?>">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard"><?php echo e(Lang::get('messages.textoEmpresasMenuLateralConfiguraciones')); ?></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" ng-click="logout()" title="Salir" data-filter-tags="salir">
-                                            <span class="nav-link-text" data-i18n="nav.pages_chat">Salir</span>
+                                        <a href="#" ng-click="logout()" title="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralSalir')); ?>" data-filter-tags="<?php echo e(Lang::get('messages.textoEmpresasMenuLateralSalir')); ?>">
+                                            <span class="nav-link-text" data-i18n="nav.pages_chat"><?php echo e(Lang::get('messages.textoEmpresasMenuLateralSalir')); ?></span>
                                         </a>
                                     </li>
                             </li>

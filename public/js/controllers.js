@@ -1278,7 +1278,6 @@
     console.log("[historialEntradasYSalidasPorEmpresa]");
 
     functions.loading();
-
         
     $scope.getZonaHorariaFrontClick = function(id_empresas){
 
@@ -1366,19 +1365,31 @@
 
           console.log(response.data.data);
 
-          var data = Array();
+          console.log("Logitud: " + response.data.data.length);
 
-          var choices = Array();
-          choices = ["id_registros", "nombre", "apellido", "fecha", "tipo", "comentarios"];
+          if(response.data.data.length>0){
 
-          var data_registros = response.data.data;
-          
-          data = addKeyToArray(data, data_registros, choices);
+            var data = Array();
 
-          console.log(data);
+            var choices = Array();
+            choices = ["id_registros", "nombre", "apellido", "fecha", "tipo", "comentarios"];
 
-          $('#dt-basic-example').dataTable().fnClearTable();
-          $('#dt-basic-example').dataTable().fnAddData(data);
+            var data_registros = response.data.data;
+            
+            data = addKeyToArray(data, data_registros, choices);
+
+            console.log(data);
+
+            $('#dt-basic-example').dataTable().fnClearTable();
+            $('#dt-basic-example').dataTable().fnAddData(data);
+
+          } else {
+
+            toastr["success"]("No hay Registros en esos Intervalos", "");
+
+            $('#dt-basic-example').dataTable().fnClearTable();
+
+          }
           
           functions.loadingEndWait();
           

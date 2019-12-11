@@ -48,6 +48,10 @@ class APIEmpresas extends Controller
 
       Log::info($subdominio);
 
+      $Idiomas = Idiomas::getIdiomasById($subdominio[0]->id_idiomas);
+      App::setLocale($Idiomas[0]->code);
+      Log::info("[APIEmpresas][SignInPersonalizado] getLocale: ". App::getLocale());
+
       if(count($subdominio)>0){
 
         $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDData'), count($subdominio));

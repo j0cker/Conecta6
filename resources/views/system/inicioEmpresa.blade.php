@@ -62,7 +62,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-chart-area'></i> Analytics <span class='fw-300'>Dashboard</span>
+                                <i class='subheader-icon fal fa-chart-area'></i> {!! Lang::get('messages.textoEmpresasInicioInicioDashboard') !!}
                                 <small>
                                 </small>
                             </h1>
@@ -77,7 +77,7 @@
 
                                 </div>
                                 <div>
-                                    <label class="fs-sm mb-0 mt-2 mt-md-0">Trabajadores con Actividad</label>
+                                    <label class="fs-sm mb-0 mt-2 mt-md-0">{{ Lang::get('messages.textoEmpresasInicioTrabajadoresConActividad') }}</label>
                                     <h4 class="font-weight-bold mb-0"><% activos %> - <% conActividad %>%</h4>
                                 </div>
 
@@ -94,7 +94,7 @@
                                 </div>
 
                                 <div>
-                                    <label class="fs-sm mb-0 mt-2 mt-md-0">Trabajadores sin Actividad</label>
+                                    <label class="fs-sm mb-0 mt-2 mt-md-0">{{ Lang::get('messages.textoEmpresasInicioTrabajadoresSinActividad') }}</label>
                                     <h4 class="font-weight-bold mb-0"><% noActivos %> - <% sinActividad %>%</h4>
                                 </div>
 
@@ -106,7 +106,7 @@
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             0
-                                            <small class="m-0 l-h-n">Plan Próximo a Vencer (días)</small>
+                                            <small class="m-0 l-h-n">{{ Lang::get('messages.textoEmpresasInicioPlanProximoAVencer') }}</small>
                                         </h3>
                                     </div>
                                     <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
@@ -117,7 +117,7 @@
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             <% totalTrabajadores %>
-                                            <small class="m-0 l-h-n">Total de Trabajadores</small>
+                                            <small class="m-0 l-h-n">{{ Lang::get('messages.textoEmpresasInicioTotalDeTrabajadores') }}</small>
                                         </h3>
                                     </div>
                                     <i class="fal fa-gem position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
@@ -128,7 +128,7 @@
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             <% entradasTotales %>
-                                            <small class="m-0 l-h-n">Entradas Totales</small>
+                                            <small class="m-0 l-h-n">{{ Lang::get('messages.textoEmpresasInicioEntradasTotales') }}</small>
                                         </h3>
                                     </div>
                                     <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
@@ -139,7 +139,7 @@
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                         <% salidasTotales %>
-                                            <small class="m-0 l-h-n">Salidas Totales</small>
+                                            <small class="m-0 l-h-n">{{ Lang::get('messages.textoEmpresasInicioSalidasTotales') }}</small>
                                         </h3>
                                     </div>
                                     <i class="fal fa-globe position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
@@ -274,7 +274,7 @@
 
                                     <div class="panel-hdr">
                                         <h2>
-                                            Resumen del Mes Actual  <span style="padding-left: 5px;" id="mesActual"></span>
+                                            {{ Lang::get('messages.textoEmpresasInicioResumenDelMesActual') }} <span style="padding-left: 5px;" id="mesActual"></span>
                                         </h2>
                                     </div>
 
@@ -283,7 +283,7 @@
 
                                             <div class="row container">
                                                 <div style="font-size: 20px; margin: .66667rem;" class="col-md-12 text-center">
-                                                    Los Más Impuntuales del Mes
+                                                    {{ Lang::get('messages.textoEmpresasInicioLosMasImpuntualesDelMes') }}
                                                 </div>
                                             </div>
 
@@ -296,10 +296,10 @@
 
                                                         <thead style="background-color: var(--theme-primary-300);">
                                                             <tr>
-                                                                <th scope="col"># de <br />Impuntualidades</th>
-                                                                <th scope="col"># de  <br />Asistencias Totales</th>
-                                                                <th scope="col">Nombre</th>
-                                                                <th scope="col">Apellido</th>
+                                                                <th scope="col">{!! Lang::get('messages.textoEmpresasInicioNumDeImpuntualidades') !!}</th>
+                                                                <th scope="col">{!! Lang::get('messages.textoEmpresasInicioNumDeAsistentesTotales') !!}</th>
+                                                                <th scope="col">{{ Lang::get('messages.textoEmpresasInicioNombre') }}</th>
+                                                                <th scope="col">{{ Lang::get('messages.textoEmpresasInicioApellido') }}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="thead-light">
@@ -318,7 +318,7 @@
                                                 
                                                 <div ng-if="imputuales.length == 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-center">
 
-                                                    No hay Datos
+                                                    {{ Lang::get('messages.textoEmpresasInicioNoHayDatos') }}
 
                                                 </div>
 
@@ -330,7 +330,9 @@
 
                                             <div class="row container">
                                                 <div style="font-size: 20px; margin: .66667rem;" class="col-md-12 text-center">
-                                                    Trabajadores con Más Faltas de Asistencias del Mes
+                                                    
+                                                    {{ Lang::get('messages.textoEmpresasInicioTrabajadoresConMasFaltas') }}
+
                                                 </div>
                                             </div>
 
@@ -341,10 +343,10 @@
 
                                                         <thead style="background-color: var(--theme-primary-300)">
                                                             <tr>
-                                                                <th scope="col"># de <br />Faltas</th>
-                                                                <th scope="col">Asistencias Fuera<br />de Plantilla</th>
-                                                                <th scope="col">Nombre</th>
-                                                                <th scope="col">Apellido</th>
+                                                                <th scope="col">{!! Lang::get('messages.textoEmpresasInicioNumDeFaltas') !!}</th>
+                                                                <th scope="col">{!! Lang::get('messages.textoEmpresasInicioAsistenciasFueraDePlantilla') !!}</th>
+                                                                <th scope="col">{{ Lang::get('messages.textoEmpresasInicioNombre') }}</th>
+                                                                <th scope="col">{{ Lang::get('messages.textoEmpresasInicioApellido') }}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="thead-light">
@@ -363,7 +365,7 @@
                                                 
                                                 <div ng-if="faltantes.length == 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-center">
 
-                                                    No hay Datos
+                                                    {{ Lang::get('messages.textoEmpresasInicioNoHayDatos') }}
 
                                                 </div>
 
@@ -377,7 +379,7 @@
 
                                             <div class="row container">
                                                 <div style="font-size: 20px; margin: .66667rem;" class="col-md-12 text-center">
-                                                    Los Más Puntuales del Mes
+                                                    {{ Lang::get('messages.textoEmpresasInicioLosMasPuntualesDelMes') }}
                                                 </div>
                                             </div>
 
@@ -390,10 +392,10 @@
 
                                                         <thead style="background-color: var(--theme-primary-300);">
                                                             <tr>
-                                                                <th scope="col"># de <br />Puntualidades</th>
-                                                                <th scope="col"># de  <br />Asistencias Totales</th>
-                                                                <th scope="col">Nombre</th>
-                                                                <th scope="col">Apellido</th>
+                                                                <th scope="col">{{ Lang::get('messages.textoEmpresasInicioNumDePuntualidades') }}</th>
+                                                                <th scope="col">{!! Lang::get('messages.textoEmpresasInicioNumDeAsistentesTotales') !!}</th>
+                                                                <th scope="col">{{ Lang::get('messages.textoEmpresasInicioNombre') }}</th>
+                                                                <th scope="col">{{ Lang::get('messages.textoEmpresasInicioApellido') }}</th>
                                                             </tr>
                                                         </thead>
 
@@ -413,7 +415,7 @@
                                                 
                                                 <div ng-if="puntuales.length == 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-center">
 
-                                                    No hay Datos
+                                                    {{ Lang::get('messages.textoEmpresasInicioNoHayDatos') }}
 
                                                 </div>
 
@@ -436,10 +438,10 @@
 
                                                         <thead style="background-color: var(--theme-primary-300)">
                                                             <tr>
-                                                                <th scope="col">Asistencias dentro <br/>de Plantilla</th>
-                                                                <th scope="col">Asistencias Fuera<br />de Plantilla</th>
-                                                                <th scope="col">Nombre</th>
-                                                                <th scope="col">Apellido</th>
+                                                                <th scope="col">{{ Lang::get('messages.textoEmpresasInicioAsistenciasDentroDePlantilla') }}</th>
+                                                                <th scope="col">{{ Lang::get('messages.textoEmpresasInicioAsistenciasFueraDePlantilla') }}</th>
+                                                                <th scope="col">{{ Lang::get('messages.textoEmpresasInicioNombre') }}</th>
+                                                                <th scope="col">{{ Lang::get('messages.textoEmpresasInicioApellido') }}</th>
                                                             </tr>
                                                         </thead>
 
@@ -459,7 +461,7 @@
                                                 
                                                 <div ng-if="faltantes.length == 0" style="height: 250px; overflow-y: scroll; margin: .66667rem;" class="col-md-12 text-center">
 
-                                                    No hay Datos
+                                                    {{ Lang::get('messages.textoEmpresasInicioNoHayDatos') }}
 
                                                 </div>
 

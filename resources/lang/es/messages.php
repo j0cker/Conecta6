@@ -45,7 +45,68 @@ return [
     'emailPrioridad3' => "Media",
     'emailPrioridad5' => "Baja",
 
-    //textos
+    /* EMPRESAS */
+
+    //Login Empresas
+    'TextoEmpresasLoginBienvenida' => 'Bienvenido a :nombre por favor ingrese su usuario y contraseña',
+    'textoEmpresasLoginCorreoElectronico' => 'Correo Electrónico',
+    'textoEmpresasLoginContrasena' => 'Contraseña',
+    'textoEmpresasLoginIngresar' => 'INGRESAR',
+    'textoEmpresasLoginOlvidaste' => '¿Olvidaste tu Contraseña?',
+
+    //olvidaste contraseña Empresas
+    'textoEmpresasOlvidasteBienvenida' => 'Ingresa tu correo para Recuperar tu Contraseña',
+    'textoEmpresasOlvidasteCorreoElectronico' => 'Correo Electrónico',
+    'textoEmpresasOlvidasteRecuperar' => 'RECUPERAR',
+    'textoEmpresasOlvidasteIniciarSesion' => 'Iniciar Sesión',
+
+    //Inicio Empresas
+    'textoEmpresasInicioInicioDashboard' => 'Inicio <span class="fw-300">Dashboard</span>',
+    'textoEmpresasInicioTrabajadoresConActividad' => 'Trabajadores con Actividad',
+    'textoEmpresasInicioTrabajadoresSinActividad' => 'Trabajadores sin Actividad',
+    'textoEmpresasInicioPlanProximoAVencer' => 'Plan Próximo a Vencer (días)',
+    'textoEmpresasInicioTotalDeTrabajadores' => 'Total de Trabajadores',
+    'textoEmpresasInicioEntradasTotales' => 'Entradas Totales',
+    'textoEmpresasInicioSalidasTotales' => 'Salidas Totales',
+    'textoEmpresasInicioResumenDelMesActual' => 'Resumen del Mes Actual',
+    'textoEmpresasInicioLosMasImpuntualesDelMes' => 'Los Más Impuntuales del Mes',
+    'textoEmpresasInicioNumDeImpuntualidades' => '# de <br />Impuntualidades',
+    'textoEmpresasInicioNumDeAsistentesTotales' => '# de  <br />Asistencias Totales',
+    'textoEmpresasInicioNombre' => 'Nombre',
+    'textoEmpresasInicioApellido' => 'Apellido',
+    'textoEmpresasInicioNoHayDatos' => 'No Hay Datos',
+    'textoEmpresasInicioTrabajadoresConMasFaltas' => 'Trabajadores con Más Faltas de Asistencias del Mes',
+    'textoEmpresasInicioNumDeFaltas' => '# de <br />Faltas',
+    'textoEmpresasInicioAsistenciasFueraDePlantilla' => 'Asistencias Fuera<br />de Plantilla',
+    'textoEmpresasInicioLosMasPuntualesDelMes' => 'Los Más Puntuales del Mes',
+    'textoEmpresasInicioNumDePuntualidades' => '# de <br />Puntualidades',
+    'textoEmpresasInicioAsistenciasDentroDePlantilla' => 'Asistencias dentro <br/>de Plantilla',
+
+    //Menu Empresas
+    'textoEmpresasMenuLateralTitulo' => 'Empresas Administración',
+    'textoEmpresasMenuLateralInicio' => 'Inicio',
+    'textoEmpresasMenuLateralPerfil' => 'Perfil',
+    'textoEmpresasMenuLateralTrabajadores' => 'Trabajadores',
+    'textoEmpresasMenuLateralConsultaDeInformes' => 'Consulta de Informes',
+    'textoEmpresasMenuLateralHistorialDeEntradasYSalidas' => 'Historial de Entradas y Salidas',
+    'textoEmpresasMenuLateralConfiguraciones' => 'Configuraciones',
+    'textoEmpresasMenuLateralSalir' => 'Salir',
+
+    //Perfil Empresas
+    'textoEmpresasPerfilPerfil' => 'Perfil',
+    'textoEmpresasPerfilNombreEmpresa' => 'Nombre de la Empresa:',
+    'textoEmpresasPerfil' => '',
+    'textoEmpresasPerfil' => '',
+    'textoEmpresasPerfil' => '',
+    'textoEmpresasPerfil' => '',
+    'textoEmpresasPerfil' => '',
+    'textoEmpresasPerfil' => '',
+    'textoEmpresasPerfil' => '',
+
+
+    /* Fin Empresas */
+
+    //textos responses
     'subdominioyaexistente' => 'El subdominio ya existe.',
     'ipnocoincide' => 'La IP No coincide.',
     'geonocoincide' => 'Te encuentres en un zona fuera de tolerancia del lugar de registro de asistencia.',

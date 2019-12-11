@@ -175,7 +175,7 @@
                                 @endif
                                 <a href="#" title="Application Intel" data-filter-tags="application intel">
                                     <i class="fal fa-info-circle"></i>
-                                    <span class="nav-link-text" data-i18n="nav.application_intel">Empresas Administración</span>
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">{{ Lang::get('messages.textoEmpresasMenuLateralTitulo') }}</span>
                                 </a>
                                 <ul>
                                 @if ($__env->yieldContent('menuActive')=="inicioEmpresa")
@@ -183,8 +183,8 @@
                                 @else
                                     <li class="">
                                 @endif
-                                        <a href="{{ url('/inicioEmpresa') }}" title="inicio Analytics Dashboard" data-filter-tags="application intel inicio analytics dashboard">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Inicio</span>
+                                        <a href="{{ url('/inicioEmpresa') }}" title="{{ Lang::get('messages.textoEmpresasMenuLateralInicio') }}" data-filter-tags="{{ Lang::get('messages.textoEmpresasMenuLateralInicio') }}">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">{{ Lang::get('messages.textoEmpresasMenuLateralInicio') }}</span>
                                         </a>
                                     </li>
                                 @if ($__env->yieldContent('menuActive')=="perfilEmpresas")
@@ -192,8 +192,8 @@
                                 @else
                                     <li class="">
                                 @endif
-                                        <a href="{{ url('/perfilEmpresas') }}" title="Perfil" data-filter-tags="perfil">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Perfil</span>
+                                        <a href="{{ url('/perfilEmpresas') }}" title="{{ Lang::get('messages.textoEmpresasMenuLateralPerfil') }}" data-filter-tags="{{ Lang::get('messages.textoEmpresasMenuLateralPerfil') }}">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">{{ Lang::get('messages.textoEmpresasMenuLateralPerfil') }}</span>
                                         </a>
                                     </li>
                                 @if ($__env->yieldContent('menuActive')=="trabajadores")
@@ -201,8 +201,8 @@
                                 @else
                                     <li class="">
                                 @endif
-                                        <a href="{{ url('/trabajadores') }}" title="Trabajadores" data-filter-tags="Trabajadores">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Trabajadores</span>
+                                        <a href="{{ url('/trabajadores') }}" title="{{ Lang::get('messages.textoEmpresasMenuLateralTrabajadores') }}" data-filter-tags="{{ Lang::get('messages.textoEmpresasMenuLateralTrabajadores') }}">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">{{ Lang::get('messages.textoEmpresasMenuLateralTrabajadores') }}</span>
                                         </a>
                                     </li>
                                 @if ($__env->yieldContent('menuActive')=="consultaDeInformes")
@@ -210,8 +210,8 @@
                                 @else
                                     <li class="">
                                 @endif
-                                        <a href="{{ url('/informes') }}" title="Consulta de Informes" data-filter-tags="Consulta de Informes">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Consulta de Informes</span>
+                                        <a href="{{ url('/informes') }}" title="{{ Lang::get('messages.textoEmpresasMenuLateralConsultaDeInformes') }}" data-filter-tags="{{ Lang::get('messages.textoEmpresasMenuLateralConsultaDeInformes') }}">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">{{ Lang::get('messages.textoEmpresasMenuLateralConsultaDeInformes') }}</span>
                                         </a>
                                     </li>
                                 @if ($__env->yieldContent('menuActive')=="historialEntradasYSalidasPorEmpresa")
@@ -219,8 +219,8 @@
                                 @else
                                     <li class="">
                                 @endif
-                                        <a href="{{ url('/historialEntradasEmpresa') }}" title="Historial de Entradas y Salidas" data-filter-tags="Historial de Entradas y Salidas">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Historial de Entradas y Salidas</span>
+                                        <a href="{{ url('/historialEntradasEmpresa') }}" title="{{ Lang::get('messages.textoEmpresasMenuLateralHistorialDeEntradasYSalidas') }}" data-filter-tags="{{ Lang::get('messages.textoEmpresasMenuLateralHistorialDeEntradasYSalidas') }}">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">{{ Lang::get('messages.textoEmpresasMenuLateralHistorialDeEntradasYSalidas') }}</span>
                                         </a>
                                     </li>
                                 @if ($__env->yieldContent('menuActive')=="configuraciones")
@@ -228,13 +228,13 @@
                                 @else
                                     <li class="">
                                 @endif
-                                        <a href="{{ url('/configuraciones') }}" title="Configuraciones" data-filter-tags="Configuraciones">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Configuraciones</span>
+                                        <a href="{{ url('/configuraciones') }}" title="{{ Lang::get('messages.textoEmpresasMenuLateralConfiguraciones') }}" data-filter-tags="{{ Lang::get('messages.textoEmpresasMenuLateralConfiguraciones') }}">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">{{ Lang::get('messages.textoEmpresasMenuLateralConfiguraciones') }}</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" ng-click="logout()" title="Salir" data-filter-tags="salir">
-                                            <span class="nav-link-text" data-i18n="nav.pages_chat">Salir</span>
+                                        <a href="#" ng-click="logout()" title="{{ Lang::get('messages.textoEmpresasMenuLateralSalir') }}" data-filter-tags="{{ Lang::get('messages.textoEmpresasMenuLateralSalir') }}">
+                                            <span class="nav-link-text" data-i18n="nav.pages_chat">{{ Lang::get('messages.textoEmpresasMenuLateralSalir') }}</span>
                                         </a>
                                     </li>
                             </li>

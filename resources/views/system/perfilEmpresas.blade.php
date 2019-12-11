@@ -65,7 +65,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-user"></i> Perfil
+                                <i class="subheader-icon fal fa-user"></i> {{ Lang::get('messages.textoEmpresasPerfilPerfil') }}
                                 <small>
                                 </small>
                             </h1>
@@ -77,7 +77,7 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Perfil
+                                            {{ Lang::get('messages.textoEmpresasPerfilPerfil') }}
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -126,7 +126,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Nombre de la Empresa:
+                                                                     {{ Lang::get('messages.textoEmpresasPerfilNombreEmpresa') }}
 
                                                                 </div>
 
