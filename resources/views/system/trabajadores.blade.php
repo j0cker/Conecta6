@@ -62,7 +62,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-briefcase'></i> Trabajadores <span class='fw-300'>Dashboard</span>
+                                <i class='subheader-icon fal fa-briefcase'></i> {!! Lang::get('messages.textoEmpresasTrabajadoresTitulo') !!}
                             </h1>
                         </div>
                         <div class="row">
@@ -70,7 +70,7 @@
                                 <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr" role="heading">
                                         <h2>
-                                        Trabajadores
+                                            {{ Lang::get('messages.textoEmpresasTrabajadoresTrabajadores') }}
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -84,30 +84,30 @@
                                         <div class="panel-content">
 
                                             <a href="/trabajadores/nuevo">
-                                                <button style="margin-bottom: 20px;" class="btn btn-primary">Alta</button>
+                                                <button style="margin-bottom: 20px;" class="btn btn-primary">{{ Lang::get('messages.textoEmpresasTrabajadoresAlta') }}</button>
                                             </a>
                                             
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
-                                                        <th>ID</th>
-                                                        <th>Nombre</th>
-                                                        <th>Apellido</th>
-                                                        <th>Correo</th>
-                                                        <th>Teléfono</th>
-                                                        <th>Opciones</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasTrabajadoresID') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasTrabajadoresNombre') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasTrabajadoresApellido') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasTrabajadoresCorreo') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasTrabajadoresTelefono') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasTrabajadoresOpciones') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>ID</th>
-                                                        <th>Nombre</th>
-                                                        <th>Apellido</th>
-                                                        <th>Correo</th>
-                                                        <th>Teléfono</th>
-                                                        <th>Opciones</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasTrabajadoresID') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasTrabajadoresNombre') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasTrabajadoresApellido') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasTrabajadoresCorreo') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasTrabajadoresTelefono') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasTrabajadoresOpciones') }}</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>

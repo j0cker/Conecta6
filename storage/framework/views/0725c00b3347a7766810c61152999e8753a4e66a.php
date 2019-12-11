@@ -125,7 +125,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                     <?php echo e(Lang::get('messages.textoEmpresasPerfilNombreEmpresa')); ?>
+                                                                     <?php echo e(Lang::get('messages.textoEmpresasPerfilNombreDeLaEmpresa')); ?>
 
 
                                                                 </div>
@@ -146,13 +146,14 @@
 
                                                                 <div ng-if="empresaPerfil.nombre_empresa==''" style="font-size: 20px;" class="nombreEmpresaNoEdit col-md-4">
 
-                                                                    No Especificado
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasPerfilNoEspecificado')); ?>
+
 
                                                                 </div>
 
                                                                 <div style="font-size: 20px; display: none;" class="nombreEmpresaEdit col-md-4">
 
-                                                                    <input id="nombre_empresa" type="text" class="form-control" value="<% empresaPerfil.nombre_empresa %>" placeholder="Nombre Empresa" />
+                                                                    <input id="nombre_empresa" type="text" class="form-control" value="<% empresaPerfil.nombre_empresa %>" placeholder="<?php echo e(Lang::get('messages.textoEmpresasPerfilNombreEmpresa')); ?>" />
 
                                                                 </div>
                                                                     
@@ -166,7 +167,8 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Correo:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasPerfilCorreo')); ?>
+
 
                                                                 </div>
 
@@ -186,13 +188,14 @@
 
                                                                 <div ng-if="empresaPerfil.correo==''" style="font-size: 20px;" class="correoNoEdit col-md-4">
 
-                                                                    No Especificado
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasPerfilNoEspecificado')); ?>
+
 
                                                                 </div>
 
                                                                 <div style="font-size: 20px; display: none;" class="correoEdit col-md-4">
 
-                                                                    <input id="correo" type="text" class="form-control" value="<% empresaPerfil.correo %>" placeholder="Correo Elctrónicos" />
+                                                                    <input id="correo" type="text" class="form-control" value="<% empresaPerfil.correo %>" placeholder="<?php echo e(Lang::get('messages.textoEmpresasPerfilCorreoElectronicos')); ?>" />
 
                                                                 </div>
 
@@ -206,7 +209,8 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Solicitante:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasPerfilSolicitante')); ?>
+
 
                                                                 </div>
 
@@ -227,7 +231,8 @@
 
                                                             <div ng-if="empresaPerfil.nombre_solicitante==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                No Especificado
+                                                                <?php echo e(Lang::get('messages.textoEmpresasPerfilNoEspecificado')); ?>
+
 
                                                             </div>
 
@@ -241,7 +246,8 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Vigencia de la Licencia (mm/dd/YYYY):
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasPerfilVigenciaDeLaLicencia')); ?>
+
 
                                                                 </div>
 
@@ -261,7 +267,8 @@
 
                                                             <div ng-if="empresaPerfil.vigencia==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                No Especificado
+                                                                <?php echo e(Lang::get('messages.textoEmpresasPerfilNoEspecificado')); ?>
+
 
                                                             </div>
 
@@ -275,7 +282,8 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Trabajadores Permitidos:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasPerfilTrabajadoresPermitidos')); ?>
+
 
                                                                 </div>
 
@@ -295,7 +303,8 @@
 
                                                             <div ng-if="empresaPerfil.empleados_permitidos==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                No Especificado
+                                                                <?php echo e(Lang::get('messages.textoEmpresasPerfilNoEspecificado')); ?>
+
 
                                                             </div>
 
@@ -309,7 +318,8 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Teléfono Fijo:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasPerfilTelefonoFijo')); ?>
+
 
                                                                 </div>
 
@@ -329,7 +339,8 @@
 
                                                                 <div ng-if="empresaPerfil.telefono_fijo==''" style="font-size: 20px;" class="telefonoFijoNoEdit col-md-4">
 
-                                                                    No Especificado
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasPerfilNoEspecificado')); ?>
+
 
                                                                 </div>
 
@@ -349,7 +360,8 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Celular:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasPerfilCelular')); ?>
+
 
                                                                 </div>
 
@@ -369,7 +381,8 @@
 
                                                                 <div ng-if="empresaPerfil.celular==''" style="font-size: 20px;" class="celularNoEdit col-md-4">
 
-                                                                    No Especificado
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasPerfilNoEspecificado')); ?>
+
 
                                                                 </div>
 
@@ -389,7 +402,8 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Fecha de Creación:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasPerfilFechaDeCreacion')); ?>
+
 
                                                                 </div>
 
@@ -409,7 +423,8 @@
 
                                                             <div ng-if="empresaPerfil.created_at==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                No Especificado
+                                                                <?php echo e(Lang::get('messages.textoEmpresasPerfilNoEspecificado')); ?>
+
 
                                                             </div>
 
@@ -422,16 +437,19 @@
                                                             <div class="col-md-4"></div>
 
                                                             <button id="editarPerfil" style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                Editar
+                                                                <?php echo e(Lang::get('messages.textoEmpresasPerfilEditar')); ?>
+
                                                             </button>
 
                                                             <button id="guardarEditarPerfil" style="display: none; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                Guardar
+                                                                <?php echo e(Lang::get('messages.textoEmpresasPerfilGuardar')); ?>
+
                                                             </button>
 
                                                             <a href="perfilEmpresas/pass">
                                                                 <button style="margin-left: 25px; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                    Cambiar Contraseña
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasPerfilCambiarContrasena')); ?>
+
                                                                 </button>
                                                             </a>
 
