@@ -4,6 +4,13 @@ return [
     //footer
     'Copyright' => "Copyright &copy; ".date('Y')." ".Config::get('app.name').". All Rights Reserved.",
 
+    //General Tables
+    'tableSearch' => 'Buscar',
+    'tableColumnasVisibles' => 'Columnas Visibles',
+    'tableCopiar' => 'Copiar',
+    'tableBuscar' => 'Buscar',
+    'tableRenglones' => 'Renglones',
+
     //verification
     'notVerified' => "El número de verificación no existe",
     'verified' => "Tu cuenta ha sido verificada",
@@ -126,8 +133,8 @@ return [
     'textoEmpresasTrabajadoresCorreo' => 'Correo',
     'textoEmpresasTrabajadoresTelefono' => 'Teléfono',
     'textoEmpresasTrabajadoresOpciones' => 'Opciones',
-    'textoEmpresasTrabajadores' => '',
-    'textoEmpresasTrabajadores' => '',
+    'textoEmpresasTrabajadoresNuevoTrabajador' => 'Nuevo Trabajador',
+    'textoEmpresasTrabajadoresNombre2' => 'Nombre',
     'textoEmpresasTrabajadores' => '',
 
 
