@@ -125,7 +125,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Apellido:
+                                                                <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresApellido2')); ?>:
 
                                                                 </div>
 
@@ -139,7 +139,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="apellido" type="text" class="form-control" placeholder="Apellido" />
+                                                                    <input id="apellido" type="text" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasTrabajadoresApellido2')); ?>" />
 
                                                                 </div>
 
@@ -153,7 +153,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Correo Electrónico:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresCorreoElectronico')); ?>:
 
                                                                 </div>
 
@@ -167,7 +167,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="correo" type="text" class="form-control" placeholder="Correo Electrónico" />
+                                                                    <input id="correo" type="text" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasTrabajadoresCorreoElectronico')); ?>" />
 
                                                                 </div>
 
@@ -181,7 +181,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Teléfono Fijo:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresTelefonoFijo')); ?>:
 
                                                                 </div>
 
@@ -195,7 +195,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="tel" type="text" class="form-control" placeholder="Teléfono Fijo" />
+                                                                    <input id="tel" type="text" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasTrabajadoresTelefonoFijo')); ?>" />
 
                                                                 </div>
 
@@ -209,7 +209,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Celular:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresCelular')); ?>:
 
                                                                 </div>
 
@@ -223,7 +223,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="cel" type="text" class="form-control" placeholder="Celular" />
+                                                                    <input id="cel" type="text" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasTrabajadoresCelular')); ?>" />
 
                                                                 </div>
 
@@ -237,7 +237,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Cargo:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresCargo')); ?>:
 
                                                                 </div>
 
@@ -251,7 +251,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="cargo" type="text" class="form-control" placeholder="Cargo" />
+                                                                    <input id="cargo" type="text" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasTrabajadoresCargo')); ?>" />
 
                                                                 </div>
 
@@ -265,7 +265,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Número DNI:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresNumeroDNI')); ?>:
 
                                                                 </div>
 
@@ -279,7 +279,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="numDNI" type="text" class="form-control" placeholder="Número DNI" />
+                                                                    <input id="numDNI" type="text" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasTrabajadoresNumeroDNI')); ?>" />
 
                                                                 </div>
 
@@ -293,7 +293,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Nº Seguro Social:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresNSeguroSocial')); ?>:
 
                                                                 </div>
 
@@ -307,7 +307,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="numSS" type="text" class="form-control" placeholder="Nº Seguro Social" />
+                                                                    <input id="numSS" type="text" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasTrabajadoresNSeguroSocial')); ?>" />
 
                                                                 </div>
 
@@ -321,7 +321,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Configuración de la plantilla de Horarios:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresConfiguracionPlantillaHorarios')); ?>:
 
                                                                 </div>
 
@@ -331,7 +331,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="/plantilla/nueva" class="btn btn-primary btn-block waves-effect waves-themed">Agregar Nueva Plantilla</a>
+                                                                <a style="width: 200px;" href="/plantilla/nueva" class="btn btn-primary btn-block waves-effect waves-themed"><?php echo e(Lang::get('messages.textoEmpresasTrabajadoresAgregarNuevaPlantilla')); ?></a>
                                                             </div>
                                                         </div>
 
@@ -370,30 +370,30 @@
 
                                                                         <div style="margin-top: 20px;" class="caption">
 
-                                                                            <h3>Geolocalización</h3>
+                                                                            <h3><?php echo e(Lang::get('messages.textoEmpresasTrabajadoresGeolocalizacion')); ?></h3>
                                                                             
                                                                             <div class="custom-control custom-switch text-center">
                                                                                 <input type="checkbox" class="custom-control-input" id="geoActivated">
-                                                                                <label class="custom-control-label" for="geoActivated">¿Activar Geolocalización?</label><br /><br />
+                                                                                <label class="custom-control-label" for="geoActivated"><?php echo e(Lang::get('messages.textoEmpresasTrabajadoresActivarGeolocalizacion')); ?></label><br /><br />
                                                                             </div>
 
                                                                             <div style="display: none;" id="showGeo">
 
-                                                                                <input data-error="deAddress calle" class="form-control hidden-xs" id="deAddressCalle" data-toggle="modal" data-target="#addressCalleModal" placeholder="Agregar dirección de la Empresa" type="text" name="deAddress" readonly="readonly">
-                                                                                <input id="pac-input2" type="text" class="form-control hidden-sm hidden-md hidden-lg" placeholder="Agregar dirección de la Empresa">
+                                                                                <input data-error="deAddress calle" class="form-control hidden-xs" id="deAddressCalle" data-toggle="modal" data-target="#addressCalleModal" placeholder="<?php echo e(Lang::get('messages.textoEmpresasTrabajadoresAgregarDireccionDeLaEmpresa')); ?>" type="text" name="deAddress" readonly="readonly">
+                                                                                <input id="pac-input2" type="text" class="form-control hidden-sm hidden-md hidden-lg" placeholder="<?php echo e(Lang::get('messages.textoEmpresasTrabajadoresAgregarDireccionDeLaEmpresa')); ?>">
                                                                                 <div id="deAddressMapaCustomer" style="font-size: 10px; margin-top: 10px; display: none;"></div><br /><br />
 
 
                                                                                 <div class="panel-content">
                                                                                     <div class="panel-tag">
-                                                                                        Metros permitidos a la redonda:
+                                                                                        <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresMetrosPermitidosALaRedonda')); ?>:
                                                                                     </div>
                                                                                     <input id="metros" type="text" value="" class="d-none" tabindex="-1" readonly="">
                                                                                 </div>
 
                                                                                 <div class="custom-control custom-switch text-center">
                                                                                     <input type="checkbox" class="custom-control-input" id="registroApp">
-                                                                                    <label class="custom-control-label" for="registroApp">¿Activar registro automático por APPS?</label><br /><br />
+                                                                                    <label class="custom-control-label" for="registroApp"><?php echo e(Lang::get('messages.textoEmpresasTrabajadoresActivarRegistroAutomaticoPorApps')); ?></label><br /><br />
                                                                                 </div>
 
                                                                             </div>
@@ -414,7 +414,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Agregar IP:<br /><br />
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresAgregarIp')); ?>:<br /><br />
 
                                                                 </div>
 
@@ -430,7 +430,7 @@
 
                                                                     <div class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="ipActivated">
-                                                                        <label class="custom-control-label" for="ipActivated">¿Activar y personalizar IP?</label><br /><br />
+                                                                        <label class="custom-control-label" for="ipActivated"><?php echo e(Lang::get('messages.textoEmpresasTrabajadoresActivarYPersonalizarIP')); ?></label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -459,7 +459,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Tipos de Dispositivos:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresTiposDeDispositivos')); ?>:
 
                                                                 </div>
 
@@ -477,17 +477,17 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="pcActivated">
-                                                                        <label class="custom-control-label" for="pcActivated">PC/MAC/Laptop</label><br /><br />
+                                                                        <label class="custom-control-label" for="pcActivated"><?php echo e(Lang::get('messages.textoEmpresasTrabajadoresPcMacLaptop')); ?></label><br /><br />
                                                                     </div>
 
                                                                     <div style="margin-top: 15px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="tabletasActivated">
-                                                                        <label class="custom-control-label" for="tabletasActivated">Tabletas</label><br /><br />
+                                                                        <label class="custom-control-label" for="tabletasActivated"><?php echo e(Lang::get('messages.textoEmpresasTrabajadoresTabletas')); ?></label><br /><br />
                                                                     </div>
 
                                                                     <div style="margin-top: 15px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="movilesActivated">
-                                                                        <label class="custom-control-label" for="movilesActivated">Móviles</label><br /><br />
+                                                                        <label class="custom-control-label" for="movilesActivated"><?php echo e(Lang::get('messages.textoEmpresasTrabajadoresMoviles')); ?></label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -504,7 +504,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Contraseña:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresContrasena')); ?>:
 
                                                                 </div>
 
@@ -518,7 +518,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="pass" type="password" class="form-control" placeholder="Contraseña" />
+                                                                    <input id="pass" type="password" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasTrabajadoresContrasena')); ?>" />
 
                                                                 </div>
 
@@ -532,7 +532,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Comprobar Contraseña:
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasTrabajadoresComprobarContrasena')); ?>:
 
                                                                 </div>
 
@@ -546,7 +546,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="confPass" type="password" class="form-control" placeholder="Comprobar Contraseña" />
+                                                                    <input id="confPass" type="password" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasTrabajadoresComprobarContrasena')); ?>" />
 
                                                                 </div>
 
@@ -556,7 +556,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="#" ng-click="agregarNuevoTrabajadorClick('<?php echo e($user['usr']->id_empresas); ?>');" class="btn btn-primary btn-block waves-effect waves-themed">Agregar</a>
+                                                                <a style="width: 200px;" href="#" ng-click="agregarNuevoTrabajadorClick('<?php echo e($user['usr']->id_empresas); ?>');" class="btn btn-primary btn-block waves-effect waves-themed"><?php echo e(Lang::get('messages.textoEmpresasTrabajadoresAgregar')); ?></a>
                                                             </div>
                                                         </div>
 

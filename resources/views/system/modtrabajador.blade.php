@@ -65,7 +65,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-user"></i> Modificar Trabajador
+                                <i class="subheader-icon fal fa-user"></i> {{ Lang::get('messages.textoEmpresasTrabajadoresModificarTrabajador') }}
                                 <small>
                                 </small>
                             </h1>
@@ -77,7 +77,7 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Modificar Trabajador
+                                            {{ Lang::get('messages.textoEmpresasTrabajadoresModificarTrabajador') }}
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -99,7 +99,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Nombre:
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresNombre2') }}:
 
                                                                 </div>
 
@@ -113,7 +113,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="nombre" type="text" class="form-control" placeholder="Nombre" />
+                                                                    <input id="nombre" type="text" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasTrabajadoresNombre2') }}" />
 
                                                                 </div>
 
@@ -127,7 +127,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Apellido:
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresApellido2') }}:
 
                                                                 </div>
 
@@ -141,7 +141,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="apellido" type="text" class="form-control" placeholder="Apellido" />
+                                                                    <input id="apellido" type="text" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasTrabajadoresApellido2') }}" />
 
                                                                 </div>
 
@@ -155,7 +155,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Correo Electrónico:
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresCorreoElectronico') }}:
 
                                                                 </div>
 
@@ -169,7 +169,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="correo" type="text" class="form-control" placeholder="Correo Electrónico" />
+                                                                    <input id="correo" type="text" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasTrabajadoresCorreoElectronico') }}" />
 
                                                                 </div>
 
@@ -183,7 +183,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Teléfono Fijo:
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresTelefonoFijo') }}:
 
                                                                 </div>
 
@@ -197,7 +197,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="tel" type="text" class="form-control" placeholder="Teléfono Fijo" />
+                                                                    <input id="tel" type="text" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasTrabajadoresTelefonoFijo') }}" />
 
                                                                 </div>
 
@@ -211,7 +211,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Celular:
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresCelular') }}:
 
                                                                 </div>
 
@@ -225,7 +225,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="cel" type="text" class="form-control" placeholder="Celular" />
+                                                                    <input id="cel" type="text" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasTrabajadoresCelular') }}" />
 
                                                                 </div>
 
@@ -239,7 +239,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Cargo:
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresCargo') }}:
 
                                                                 </div>
 
@@ -253,7 +253,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="cargo" type="text" class="form-control" placeholder="Cargo" />
+                                                                    <input id="cargo" type="text" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasTrabajadoresCargo') }}" />
 
                                                                 </div>
 
@@ -267,7 +267,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Número DNI:
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresNumeroDNI') }}:
 
                                                                 </div>
 
@@ -281,7 +281,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="numDNI" type="text" class="form-control" placeholder="Número DNI" />
+                                                                    <input id="numDNI" type="text" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasTrabajadoresNumeroDNI') }}" />
 
                                                                 </div>
 
@@ -295,7 +295,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Nº Seguro Social:
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresNSeguroSocial') }}:
 
                                                                 </div>
 
@@ -309,7 +309,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="numSS" type="text" class="form-control" placeholder="Nº Seguro Social" />
+                                                                    <input id="numSS" type="text" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasTrabajadoresNSeguroSocial') }}" />
 
                                                                 </div>
 
@@ -323,7 +323,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Configuración de la plantilla de Horarios:
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresConfiguracionPlantillaHorarios') }}:
 
                                                                 </div>
 
@@ -333,7 +333,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="/plantilla/nueva" class="btn btn-primary btn-block waves-effect waves-themed">Agregar Nueva Plantilla</a>
+                                                                <a style="width: 200px;" href="/plantilla/nueva" class="btn btn-primary btn-block waves-effect waves-themed">{{ Lang::get('messages.textoEmpresasTrabajadoresAgregarNuevaPlantilla') }}</a>
                                                             </div>
                                                         </div>
 
@@ -372,30 +372,30 @@
 
                                                                         <div style="margin-top: 20px;" class="caption">
 
-                                                                            <h3>Geolocalización</h3>
+                                                                            <h3>{{ Lang::get('messages.textoEmpresasTrabajadoresGeolocalizacion') }}</h3>
                                                                             
                                                                             <div class="custom-control custom-switch text-center">
                                                                                 <input type="checkbox" class="custom-control-input" id="geoActivated">
-                                                                                <label class="custom-control-label" for="geoActivated">¿Activar Geolocalización?</label><br /><br />
+                                                                                <label class="custom-control-label" for="geoActivated">{{ Lang::get('messages.textoEmpresasTrabajadoresActivarGeolocalizacion') }}</label><br /><br />
                                                                             </div>
 
                                                                             <div style="display: none;" id="showGeo">
 
-                                                                                <input data-error="deAddress calle" class="form-control hidden-xs" id="deAddressCalle" data-toggle="modal" data-target="#addressCalleModal" placeholder="Agregar dirección de la Empresa" type="text" name="deAddress" readonly="readonly">
-                                                                                <input id="pac-input2" type="text" class="form-control hidden-sm hidden-md hidden-lg" placeholder="Agregar dirección de la Empresa">
+                                                                                <input data-error="deAddress calle" class="form-control hidden-xs" id="deAddressCalle" data-toggle="modal" data-target="#addressCalleModal" placeholder="{{ Lang::get('messages.textoEmpresasTrabajadoresAgregarDireccionDeLaEmpresa') }}" type="text" name="deAddress" readonly="readonly">
+                                                                                <input id="pac-input2" type="text" class="form-control hidden-sm hidden-md hidden-lg" placeholder="{{ Lang::get('messages.textoEmpresasTrabajadoresAgregarDireccionDeLaEmpresa') }}">
                                                                                 <div id="deAddressMapaCustomer" style="font-size: 10px; margin-top: 10px; display: none;"></div><br /><br />
 
 
                                                                                 <div class="panel-content">
                                                                                     <div class="panel-tag">
-                                                                                        Metros permitidos a la redonda:
+                                                                                        {{ Lang::get('messages.textoEmpresasTrabajadoresMetrosPermitidosALaRedonda') }}:
                                                                                     </div>
                                                                                     <input id="metros" type="text" value="" class="d-none" tabindex="-1" readonly="">
                                                                                 </div>
 
                                                                                 <div class="custom-control custom-switch text-center">
                                                                                     <input type="checkbox" class="custom-control-input" id="registroApp">
-                                                                                    <label class="custom-control-label" for="registroApp">¿Activar registro automático por APPS?</label><br /><br />
+                                                                                    <label class="custom-control-label" for="registroApp">{{ Lang::get('messages.textoEmpresasTrabajadoresActivarRegistroAutomaticoPorApps') }}</label><br /><br />
                                                                                 </div>
 
                                                                             </div>
@@ -416,7 +416,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Agregar IP:<br /><br />
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresAgregarIp') }}:<br /><br />
 
                                                                 </div>
 
@@ -432,7 +432,7 @@
 
                                                                     <div class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="ipActivated">
-                                                                        <label class="custom-control-label" for="ipActivated">¿Activar y personalizar IP?</label><br /><br />
+                                                                        <label class="custom-control-label" for="ipActivated">{{ Lang::get('messages.textoEmpresasTrabajadoresActivarYPersonalizarIP') }}</label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -461,7 +461,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Tipos de Dispositivos:
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresTiposDeDispositivos') }}:
 
                                                                 </div>
 
@@ -479,17 +479,17 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="pcActivated">
-                                                                        <label class="custom-control-label" for="pcActivated">PC/MAC/Laptop</label><br /><br />
+                                                                        <label class="custom-control-label" for="pcActivated">{{ Lang::get('messages.textoEmpresasTrabajadoresPcMacLaptop') }}</label><br /><br />
                                                                     </div>
 
                                                                     <div style="margin-top: 15px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="tabletasActivated">
-                                                                        <label class="custom-control-label" for="tabletasActivated">Tabletas</label><br /><br />
+                                                                        <label class="custom-control-label" for="tabletasActivated">{{ Lang::get('messages.textoEmpresasTrabajadoresTabletas') }}</label><br /><br />
                                                                     </div>
 
                                                                     <div style="margin-top: 15px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="movilesActivated">
-                                                                        <label class="custom-control-label" for="movilesActivated">Móviles</label><br /><br />
+                                                                        <label class="custom-control-label" for="movilesActivated">{{ Lang::get('messages.textoEmpresasTrabajadoresMoviles') }}</label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -504,7 +504,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Contraseña:
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresContrasena') }}:
 
                                                                 </div>
 
@@ -518,7 +518,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="pass" type="password" class="form-control" placeholder="Contraseña" />
+                                                                    <input id="pass" type="password" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasTrabajadoresContrasena') }}" />
 
                                                                 </div>
 
@@ -532,7 +532,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Comprobar Contraseña:
+                                                                    {{ Lang::get('messages.textoEmpresasTrabajadoresComprobarContrasena') }}:
 
                                                                 </div>
 
@@ -546,7 +546,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="confPass" type="password" class="form-control" placeholder="Comprobar Contraseña" />
+                                                                    <input id="confPass" type="password" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasTrabajadoresComprobarContrasena') }}" />
                                                                     <input id="tmpPass" type="hidden" class="form-control" placeholder="Comprobar Contraseña" />
 
                                                                 </div>
@@ -557,7 +557,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a style="width: 200px;" href="#" ng-click="modTrabajadorClick('<?PHP echo $_GET['id_trabajadores']; ?>', '{{ $user['usr']->id_empresas }}');" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
+                                                                <a style="width: 200px;" href="#" ng-click="modTrabajadorClick('<?PHP echo $_GET['id_trabajadores']; ?>', '{{ $user['usr']->id_empresas }}');" class="btn btn-primary btn-block waves-effect waves-themed">{{ Lang::get('messages.textoEmpresasTrabajadoresModificar') }}</a>
                                                             </div>
                                                         </div>
 
