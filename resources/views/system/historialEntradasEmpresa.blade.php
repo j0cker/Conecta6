@@ -62,7 +62,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-history'></i> Historial Entradas y Salidas <span class='fw-300'>Dashboard</span>
+                                <i class='subheader-icon fal fa-history'></i> {!! Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasTitle') !!}
                             </h1>
                         </div>
 
@@ -71,7 +71,7 @@
                                 <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr" role="heading">
                                         <h2>
-                                            Historial Entradas y Salidas
+                                            {{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasHistorial') }}
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -87,12 +87,12 @@
                                             <div class="form-group row">
 
                                                 <div class="col-md-6">
-                                                    <button style="margin-top: 10px;" class="btn btn-primary">Importar</button>
+                                                    <button style="margin-top: 10px;" class="btn btn-primary">{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasImportar') }}</button>
                                                 </div>
                                             
                                                 <div class="col-6">
                                                     <div style="margin-top: 10px; !important" class="input-group">
-                                                        <input type="text" class="form-control" placeholder="Select date" id="datepicker-2">
+                                                        <input type="text" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasSeleccionaUnaFecha') }}" id="datepicker-2">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text fs-xl">
                                                                 <i class="fal fa-calendar"></i>
@@ -107,24 +107,24 @@
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
-                                                        <th>ID</th>
-                                                        <th>Nombre</th>
-                                                        <th>Apellido</th>
-                                                        <th>Fecha y Hora</th>
-                                                        <th>Entrada/Salida</th>
-                                                        <th>Comentarios</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasID') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasNombre') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasApellido') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasFechaYHora') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasEntradaSalida') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasComentarios') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>ID</th>
-                                                        <th>Nombre</th>
-                                                        <th>Apellido</th>
-                                                        <th>Fecha y Hora</th>
-                                                        <th>Entrada/Salida</th>
-                                                        <th>Comentarios</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasID') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasNombre') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasApellido') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasFechaYHora') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasEntradaSalida') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasComentarios') }}</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -780,6 +780,9 @@
                     "pageLength": 25,   
                     "ordering": true,
                     responsive: true,
+                    language: {
+                        searchPlaceholder: '{{ Lang::get("messages.tableBuscar") }}'
+                    },
                     dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
@@ -787,11 +790,12 @@
                     buttons: [
                         {
                             extend: 'pageLength',
+                            text: '{{ Lang::get("messages.tableRenglones") }}',
                             className: 'btn-outline-default'
                         },
                         {
                             extend: 'colvis',
-                            text: 'Column Visibility',
+                            text: '{{ Lang::get("messages.tableColumnasVisibles") }}',
                             titleAttr: 'Col visibility',
                             className: 'btn-outline-default'
                         },
@@ -829,7 +833,7 @@
                         },
                         {
                             extend: 'copyHtml5',
-                            text: 'Copy',
+                            text: '{{ Lang::get("messages.tableCopiar") }}',
                             titleAttr: 'Copy to clipboard',
                             className: 'btn-outline-default'
                         },

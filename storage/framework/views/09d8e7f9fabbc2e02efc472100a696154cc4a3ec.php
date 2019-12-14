@@ -1,44 +1,40 @@
-@extends('system.master')
+<?php $__env->startSection('lang'); ?><?php echo e($lang); ?><?php $__env->stopSection(); ?>
 
-{{-- lang html tag --}}
 
-@section('lang'){{$lang}}@stop
 
-{{-- Title Head --}}
+<?php $__env->startSection('title'); ?><?php echo e($title); ?><?php $__env->stopSection(); ?>
 
-@section('title'){{$title}}@stop
 
-{{-- Metatag Head --}}
 
-@section('Content-Type','text/html; charset=UTF-8')
-@section('x-ua-compatible','ie=edge')
-@section('keywords','')
-@section('description','')
-@section('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1')
-@section('idiomaLang','es-mx')
+<?php $__env->startSection('Content-Type','text/html; charset=UTF-8'); ?>
+<?php $__env->startSection('x-ua-compatible','ie=edge'); ?>
+<?php $__env->startSection('keywords',''); ?>
+<?php $__env->startSection('description',''); ?>
+<?php $__env->startSection('viewport','width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1'); ?>
+<?php $__env->startSection('idiomaLang','es-mx'); ?>
 
-{{-- Menu --}}
+
 
 <!--Menu Transparente
-@section('menuCSS','css/menu/menu.css?v='.cache("js_version_number").'')
+<?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-@section('menuActive','configuraciones')
+<?php $__env->startSection('menuActive','configuraciones'); ?>
 
-@section('raiz1', @Config::get('app.name'))
-@section('raiz1Url', '/inicio')
-@section('raiz2','Empresas')
-@section('raiz2Url','/inicioEmpresa')
-@section('raiz3','Modificar Plantilla')
-@section('raiz3Url','/plantilla/mod')
+<?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
+<?php $__env->startSection('raiz1Url', '/inicio'); ?>
+<?php $__env->startSection('raiz2','Empresas'); ?>
+<?php $__env->startSection('raiz2Url','/inicioEmpresa'); ?>
+<?php $__env->startSection('raiz3','Modificar Salida'); ?>
+<?php $__env->startSection('raiz3Url','/salida/modificar'); ?>
 
 
-{{-- Angular Controller --}}
 
-@section('controller','modplantilla')
 
-{{-- Body --}}
+<?php $__env->startSection('controller','modificarsalida'); ?>
 
-@section('content')
+
+
+<?php $__env->startSection('content'); ?>
 
 
 <div class="page-wrapper">
@@ -46,7 +42,7 @@
                 
                 <!-- BEGIN Left Aside -->
                         
-                        @include('system.menu')
+                        <?php echo $__env->make('system.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         
                 <!-- END Left Aside -->
 
@@ -54,18 +50,19 @@
                     <!-- BEGIN Page Header -->
                     
                         
-                    @include('system.menu2')
+                    <?php echo $__env->make('system.menu2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                     
                     <!-- END Page Header -->
                     <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
                     <main id="js-page-content" role="main" class="page-content">
                     
-                        @include('system.menu3')
+                        <?php echo $__env->make('system.menu3', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-clock"></i> {{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaModificarplantillaDeHorarios') }}
+                                <i class="subheader-icon fal fa-door-open"></i> <?php echo e(Lang::get("messages.textoEmpresasConfiguracionesSalidasModificarSalidaTitle")); ?>
+
                                 <small>
                                 </small>
                             </h1>
@@ -77,7 +74,8 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            {{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaModificarplantillaDeHorarios') }}
+                                            <?php echo e(Lang::get("messages.textoEmpresasConfiguracionesSalidasModificarSalida")); ?>
+
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -99,7 +97,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                {{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:
+                                                                    <?php echo e(Lang::get("messages.textoEmpresasConfiguracionesSalidasNombreSalida")); ?>:
 
                                                                 </div>
 
@@ -113,7 +111,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="nombrePlantilla" type="text" class="form-control" placeholder="Nombre de la Plantilla" />
+                                                                    <input id="nombreSalida" type="text" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesSalidasNombreDeLaSalida')); ?>" />
 
                                                                 </div>
 
@@ -121,13 +119,13 @@
 
                                                         </div>
 
-                                                        <div style="margin-top: 25px;" class="row">
+                                                        <div style="margin-top: 25px; text-align: left;" class="row">
 
                                                             <div class="col-md-4"></div>
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Días Laborales y Horas Laborales (formato 12Hrs):
+                                                                    <?php echo e(Lang::get("messages.textoEmpresasConfiguracionesSalidasComputarizar")); ?>:<br /><br />
 
                                                                 </div>
 
@@ -141,320 +139,10 @@
 
                                                                 <div style="text-align: left; color: black;" class="col-md-4">
 
-                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
-                                                                        <input type="checkbox" class="custom-control-input" id="lunesActivated">
-                                                                        <label class="custom-control-label" for="lunesActivated">Lunes</label><br /><br />
+                                                                    <div class="custom-control custom-switch text-left">
+                                                                        <input type="checkbox" class="custom-control-input" id="descanzoActivated">
+                                                                        <label class="custom-control-label" for="descanzoActivated"><?php echo e(Lang::get("messages.textoEmpresasConfiguracionesSalidasDescanzoComputable")); ?></label><br /><br />
                                                                     </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 lunesActivated">
-                                                                
-                                                                    <select class="select2 form-control w-100" id="lunesTurno">
-                                                                        <option value="default">Selecciona un Turno</option>
-                                                                        <option value="0">Matutino/Vespertino</option>
-                                                                        <option value="1">Nocturno</option>
-                                                                    </select>
-
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Lunes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Lunes" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Lunes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Lunes" placeholder="18:30AM" />
-                                                                   
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-                                                        
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: left; color: black;" class="col-md-4">
-
-                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
-                                                                        <input type="checkbox" class="custom-control-input" id="martesActivated">
-                                                                        <label class="custom-control-label" for="martesActivated">Martes</label><br /><br />
-                                                                    </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 martesActivated">
-                                                                
-                                                                    <select class="select2 form-control w-100" id="martesTurno">
-                                                                        <option value="default">Selecciona un Turno</option>
-                                                                        <option value="0">Matutino/Vespertino</option>
-                                                                        <option value="1">Nocturno</option>
-                                                                    </select>
-
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Martes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Martes" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Martes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Martes" placeholder="18:30AM" />
-                                                                   
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: left; color: black;" class="col-md-4">
-
-                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
-                                                                        <input type="checkbox" class="custom-control-input" id="miercolesActivated">
-                                                                        <label class="custom-control-label" for="miercolesActivated">Miercoles</label><br /><br />
-                                                                    </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 miercolesActivated">
-                                                                
-                                                                    <select class="select2 form-control w-100" id="miercolesTurno">
-                                                                        <option value="default">Selecciona un Turno</option>
-                                                                        <option value="0">Matutino/Vespertino</option>
-                                                                        <option value="1">Nocturno</option>
-                                                                    </select>
-
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Miercoles" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Miercoles" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Miercoles" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Miercoles" placeholder="18:30AM" />
-                                                                   
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: left; color: black;" class="col-md-4">
-
-                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
-                                                                        <input type="checkbox" class="custom-control-input" id="juevesActivated">
-                                                                        <label class="custom-control-label" for="juevesActivated">Jueves</label><br /><br />
-                                                                    </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 juevesActivated">
-                                                                
-                                                                    <select class="select2 form-control w-100" id="juevesTurno">
-                                                                        <option value="default">Selecciona un Turno</option>
-                                                                        <option value="0">Matutino/Vespertino</option>
-                                                                        <option value="1">Nocturno</option>
-                                                                    </select>
-
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Jueves" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Jueves" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Jueves" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Jueves" placeholder="18:30AM" />
-                                                                   
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: left; color: black;" class="col-md-4">
-
-                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
-                                                                        <input type="checkbox" class="custom-control-input" id="viernesActivated">
-                                                                        <label class="custom-control-label" for="viernesActivated">Viernes</label><br /><br />
-                                                                    </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 viernesActivated">
-                                                                
-                                                                    <select class="select2 form-control w-100" id="viernesTurno">
-                                                                        <option value="default">Selecciona un Turno</option>
-                                                                        <option value="0">Matutino/Vespertino</option>
-                                                                        <option value="1">Nocturno</option>
-                                                                    </select>
-
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Viernes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Viernes" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Viernes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Viernes" placeholder="18:30AM" />
-                                                                   
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: left; color: black;" class="col-md-4">
-
-                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
-                                                                        <input type="checkbox" class="custom-control-input" id="sabadoActivated">
-                                                                        <label class="custom-control-label" for="sabadoActivated">Sábado</label><br /><br />
-                                                                    </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 sabadoActivated">
-                                                                
-                                                                    <select class="select2 form-control w-100" id="sabadoTurno">
-                                                                        <option value="default">Selecciona un Turno</option>
-                                                                        <option value="0">Matutino/Vespertino</option>
-                                                                        <option value="1">Nocturno</option>
-                                                                    </select>
-
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Sabado" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Sabado" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Sabado" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Sabado" placeholder="18:30AM" />
-                                                                   
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: left; color: black;" class="col-md-4">
-
-                                                                    <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
-                                                                        <input type="checkbox" class="custom-control-input" id="domingoActivated">
-                                                                        <label class="custom-control-label" for="domingoActivated">Domingo</label><br /><br />
-                                                                    </div>
-
-                                                                </div>
-
-                                                            <div class="col-md-4"></div>
-
-                                                        </div>
-
-                                                        <div style="" class="row">
-
-                                                            <div class="col-md-4"></div>
-
-                                                                <div style="text-align: center; color: black; display: none;" class="col-md-4 domingoActivated">
-                                                                
-                                                                    <select class="select2 form-control w-100" id="domingoTurno">
-                                                                        <option value="default">Selecciona un Turno</option>
-                                                                        <option value="0">Matutino/Vespertino</option>
-                                                                        <option value="1">Nocturno</option>
-                                                                    </select>
-
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Domingo" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Domingo" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Domingo" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Domingo" placeholder="18:30AM" />
-                                                                   
 
                                                                 </div>
 
@@ -464,7 +152,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a ng-click="send('<?PHP echo $_GET["id_plantilla"] ?>')" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
+                                                                <a ng-click="modificarSalida('<?php echo e($user['usr']->id_empresas); ?>', '<?PHP echo $_GET["id"]; ?>')" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed"><?php echo e(Lang::get("messages.textoEmpresasConfiguracionesSalidasModificar")); ?></a>
                                                             </div>
                                                         </div>
 
@@ -481,7 +169,7 @@
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
                     
-                    @include('system.footer2')
+                    <?php echo $__env->make('system.footer2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
@@ -537,7 +225,7 @@
         <!-- END Page Wrapper -->
         <!-- BEGIN Quick Menu -->
         <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
-        @include('system.toolbar')
+        <?php echo $__env->make('system.toolbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <!-- END Quick Menu -->
         <!-- BEGIN Messenger -->
         <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1075,43 +763,23 @@
         </div> <!-- END Page Settings -->
 
         
-        <script src="{{ url('js/vendors.bundle.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/app.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
-    
-        <script src="{{ url('js/selects.js?v='.cache("js_version_number").'') }}"></script>
      
-        <script src="{{ url('js/moment.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/datepicker.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/timepicker.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/moment.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/datepicker.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/timepicker.js?v='.cache("js_version_number").'')); ?>"></script>
         
         <script>
             $( document ).ready(function() {
-                // Handler for .ready() called.
-                $('.timepicker').mdtimepicker({
-                    
-	 	            twelveHour: false,
-                }); //Initializes the time picker
-
+               
             });
         </script>
 
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
-
-                var controls = {
-                    leftArrow: '<i class="fal fa-angle-left" style="font-size: 1.25rem"></i>',
-                    rightArrow: '<i class="fal fa-angle-right" style="font-size: 1.25rem"></i>'
-                }
-
-                // minimum setup
-                $('#datepicker').datepicker(
-                {
-                    todayHighlight: true,
-                    orientation: "bottom left",
-                    templates: controls
-                });
 
 
             });
@@ -1120,68 +788,9 @@
         <script>
             $(document).ready(function()
             {
-
-                //selects
-                $('.select2').select2();
                 
                 $('#agregar').click(function() {
                     
-
-                });
-
-                $('#lunesActivated').click(function() {
-                    if($('#lunesActivated').prop("checked"))
-                        $('.lunesActivated').css("display","");
-                    else
-                        $('.lunesActivated').css("display","none");
-
-                });
-
-                $('#martesActivated').click(function() {
-                    if($('#martesActivated').prop("checked"))
-                        $('.martesActivated').css("display","");
-                    else
-                        $('.martesActivated').css("display","none");
-
-                });
-
-                $('#miercolesActivated').click(function() {
-                    if($('#miercolesActivated').prop("checked"))
-                        $('.miercolesActivated').css("display","");
-                    else
-                        $('.miercolesActivated').css("display","none");
-
-                });
-
-                $('#juevesActivated').click(function() {
-                    if($('#juevesActivated').prop("checked"))
-                        $('.juevesActivated').css("display","");
-                    else
-                        $('.juevesActivated').css("display","none");
-
-                });
-
-                $('#viernesActivated').click(function() {
-                    if($('#viernesActivated').prop("checked"))
-                        $('.viernesActivated').css("display","");
-                    else
-                        $('.viernesActivated').css("display","none");
-
-                });
-
-                $('#sabadoActivated').click(function() {
-                    if($('#sabadoActivated').prop("checked"))
-                        $('.sabadoActivated').css("display","");
-                    else
-                        $('.sabadoActivated').css("display","none");
-
-                });
-
-                $('#domingoActivated').click(function() {
-                    if($('#domingoActivated').prop("checked"))
-                        $('.domingoActivated').css("display","");
-                    else
-                        $('.domingoActivated').css("display","none");
 
                 });
 
@@ -1192,26 +801,30 @@
 
 
         <!-- Toastr-->
-        <script src="{{ url('js/toastr.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <!--Angular-->
 
-        <script src="{{ url('js/angular.min.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/sanitize.min.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/module.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/controllers.js?v='.cache("js_version_number").'') }}"></script>
-        <script src="{{ url('js/factory.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/angular.min.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/sanitize.min.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/module.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/controllers.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
 
-        <script src="{{ url('js/functions.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
+
 
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
                 
-                angular.element('body').scope().getImageEmpresaClick("{{ $user['usr']->id_empresas }}");
-                getIdPlantillasClick("<?PHP echo $_GET['id_plantilla']; ?>");
+                angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                
+                getSalidaByIdClick("<?PHP echo $_GET["id"]; ?>");
 
             });
         </script>
 
-    @stop
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('system.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -62,7 +62,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-sliders-v-square'></i> Configuraciones <span class='fw-300'>Dashboard</span>
+                                <i class='subheader-icon fal fa-sliders-v-square'></i> {!! Lang::get('messages.textoEmpresasConfiguracionesTitle') !!}
                             </h1>
                         </div>
                         <div class="row">
@@ -70,7 +70,7 @@
                                 <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr" role="heading">
                                         <h2>
-                                        Configuraciones
+                                            {{ Lang::get('messages.textoEmpresasConfiguracionesConfiguraciones') }}
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -89,7 +89,7 @@
 
                                                     <div style="font-size: 25px; color: black;" class="text-center col-md-4">
                                                     
-                                                        Configuraciones
+                                                        {{ Lang::get('messages.textoEmpresasConfiguracionesConfiguraciones') }}
 
                                                     </div>
 
@@ -103,7 +103,7 @@
 
                                                     <div style="font-size: 25px; color: black;" class="text-center col-md-6">
                                                     
-                                                        Configuración de las opciones de salida.
+                                                        {{ Lang::get('messages.textoEmpresasConfiguracionesConfiguracionesDeLasOpcionesDeSalida') }}.
 
                                                     </div>
 
@@ -114,30 +114,30 @@
                                             <div style="margin-top: 50px;" class="text-center row">
 
                                                 <div class="col-md-6">
-                                                    <input id="nombreSalida" class="form-control" type="text" placeholder="Nueva Salida" />
+                                                    <input id="nombreSalida" class="form-control" type="text" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaSalida') }}" />
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <button ng-click="agregarSalidaClick('{{ $user['usr']->id_empresas }}');" style="margin-bottom: 20px;" class="btn btn-primary">Agregar</button>
+                                                    <button ng-click="agregarSalidaClick('{{ $user['usr']->id_empresas }}');" style="margin-bottom: 20px;" class="btn btn-primary">{{ Lang::get('messages.textoEmpresasConfiguracionesAgregar') }}</button>
                                                 </div>
                                             </div>
 
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
-                                                        <th>ID</th>
-                                                        <th>Nombre de la Salida</th>
-                                                        <th>Descanso Computable</th>
-                                                        <th>Opciones</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesIDSalida') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesNombreDeLaSalida') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesDescansoComputable') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesOpcionesSalida') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>ID</th>
-                                                        <th>Nombre de la Salida</th>
-                                                        <th>Descanso Computable</th>
-                                                        <th>Opciones</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesIDSalida') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesNombreDeLaSalida') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesDescansoComputable') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesOpcionesSalida') }}</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -149,7 +149,7 @@
 
                                                     <div style="font-size: 25px; color: black;" class="text-center col-md-6">
                                                     
-                                                        Selecciona el idioma que verán tus usuarios.
+                                                        {{ Lang::get('messages.textoEmpresasConfiguracionesSeleccionaElIdiomaQueVeranTusUsuarios') }}.
 
                                                     </div>
 
@@ -187,7 +187,7 @@
 
                                                     <div style="font-size: 25px; color: black;" class="text-center col-md-6">
                                                     
-                                                        Nombre de la Empresa.
+                                                        {{ Lang::get('messages.textoEmpresasConfiguracionesNombreDeLaEmpresa') }}.
 
                                                     </div>
 
@@ -200,8 +200,8 @@
                                                 <div class="col-md-3"></div>
 
                                                 <div style="display:inline-block;" class="col-md-6">
-                                                    <input id="nombreEmpresa" style="width: 300px; display:inline-block;" class="form-control" type="text" placeholder="Nombre de la Empresa" />
-                                                    <button style="margin-top: 20px; margin-left: 20px; margin-bottom: 20px; display: inline-block;" class="btn btn-primary">Modificar</button>
+                                                    <input id="nombreEmpresa" style="width: 300px; display:inline-block;" class="form-control" type="text" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNombreDeLaEmpresa') }}" />
+                                                    <button style="margin-top: 20px; margin-left: 20px; margin-bottom: 20px; display: inline-block;" class="btn btn-primary">{{ Lang::get('messages.textoEmpresasConfiguracionesModificar') }}</button>
                                                 </div>
 
                                                 <div class="col-md-3"></div>
@@ -214,7 +214,7 @@
 
                                                     <div style="font-size: 25px; color: black;" class="col-md-4">
                                                     
-                                                        Subdominio: <i style="color: green; display: none;" class="fal fa-check-circle subdominio"></i><i style="color: red; display: none;" class="fal fa-times-circle subdominio"></i>
+                                                        {{ Lang::get('messages.textoEmpresasConfiguracionesSubdominio') }}: <i style="color: green; display: none;" class="fal fa-check-circle subdominio"></i><i style="color: red; display: none;" class="fal fa-times-circle subdominio"></i>
 
                                                     </div>
 
@@ -227,7 +227,7 @@
                                                 <div class="col-md-4"></div>
 
                                                 <div class="input-group mb-3 col-md-4">
-                                                    <input id="subdominio" type="text" class="form-control" placeholder="Nombre de la Empresa" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                    <input id="subdominio" type="text" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesSubdominio2') }}" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="basic-addon2">.dominio.com <i style="margin-left: 15px; color: green; display: none;" class="fal fa-check-circle subdominio"></i><i style="margin-left: 15px; color: red; display: none;" class="fal fa-times-circle subdominio"></i></span>
                                                     </div>
@@ -241,7 +241,7 @@
 
                                                 <div class="col-md-12">
                                                     <a href="/plantilla/nueva">
-                                                        <button style="margin-bottom: 20px;" class="text-center btn btn-primary">Modificar subdominio</button>
+                                                        <button style="margin-bottom: 20px;" class="text-center btn btn-primary">{{ Lang::get('messages.textoEmpresasConfiguracionesModificarSubdominio') }}</button>
                                                     </a>
                                                 </div>
 
@@ -253,7 +253,7 @@
 
                                                     <div style="font-size: 25px; color: black;" class="text-center col-md-6">
                                                     
-                                                        Logotipo que verán tus usuarios:
+                                                        {{ Lang::get('messages.textoEmpresasConfiguracionesLogotipoQueVeranTusUsuarios') }}:
 
                                                     </div>
 
@@ -294,7 +294,7 @@
 
                                                     <div style="font-size: 25px; color: black;" class="text-center col-md-6">
                                                     
-                                                        Configuración de la Zona Horaria:
+                                                        {{ Lang::get('messages.textoEmpresasConfiguracionesConfiguracionDeLaZonaHoraria') }}:
 
                                                     </div>
 
@@ -332,7 +332,7 @@
 
                                                     <div style="font-size: 25px; color: black;" class="text-center col-md-6">
                                                     
-                                                        Configuración de las Plantillas:
+                                                        {{ Lang::get('messages.textoEmpresasConfiguracionesConfiguracionDeLasPlantillas') }}:
 
                                                     </div>
 
@@ -344,7 +344,7 @@
 
                                                 <div class="col-md-12">
                                                     <a href="/plantilla/nueva">
-                                                        <button style="margin-bottom: 20px;" class="text-center btn btn-primary">Agregar Nueva Plantilla</button>
+                                                        <button style="margin-bottom: 20px;" class="text-center btn btn-primary">{{ Lang::get('messages.textoEmpresasConfiguracionesAgregarNuevaPlantilla') }}</button>
                                                     </a>
                                                 </div>
 
@@ -353,32 +353,32 @@
                                             <table id="plantillas" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
-                                                        <th>ID</th>
-                                                        <th>Nombre de la Plantilla</th>
-                                                        <th>Lunes</th>
-                                                        <th>Martes</th>
-                                                        <th>Miercoles</th>
-                                                        <th>Jueves</th>
-                                                        <th>Viernes</th>
-                                                        <th>Sábado</th>
-                                                        <th>Domingo</th>
-                                                        <th>Opciones</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaID') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaNombreDeLaPlantilla') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaLunes') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaMartes') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaMiercoles') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaJueves') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaViernes') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaSabado') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaDomingo') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaOpciones') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>ID</th>
-                                                        <th>Nombre de la Plantilla</th>
-                                                        <th>Lunes</th>
-                                                        <th>Martes</th>
-                                                        <th>Miercoles</th>
-                                                        <th>Jueves</th>
-                                                        <th>Viernes</th>
-                                                        <th>Sábado</th>
-                                                        <th>Domingo</th>
-                                                        <th>Opciones</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaID') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaNombreDeLaPlantilla') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaLunes') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaMartes') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaMiercoles') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaJueves') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaViernes') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaSabado') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaDomingo') }}</th>
+                                                        <th>{{ Lang::get('messages.textoEmpresasConfiguracionesPlantillaOpciones') }}</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -1075,6 +1075,9 @@
                     "pageLength": 25,
                     "ordering": true,
                     responsive: true,
+                    language: {
+                        searchPlaceholder: '{{ Lang::get("messages.tableBuscar") }}'
+                    },
                     dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
@@ -1082,11 +1085,12 @@
                     buttons: [
                         {
                             extend: 'pageLength',
+                            text: '{{ Lang::get("messages.tableRenglones") }}',
                             className: 'btn-outline-default'
                         },
                         {
                             extend: 'colvis',
-                            text: 'Column Visibility',
+                            text: '{{ Lang::get("messages.tableColumnasVisibles") }}',
                             titleAttr: 'Col visibility',
                             className: 'btn-outline-default'
                         },
@@ -1098,7 +1102,7 @@
                         },
                         {
                             extend: 'copyHtml5',
-                            text: 'Copy',
+                            text: '{{ Lang::get("messages.tableCopiar") }}',
                             titleAttr: 'Copy to clipboard',
                             className: 'btn-outline-default'
                         },
@@ -1145,6 +1149,9 @@
                     "pageLength": 25,
                     "ordering": true,
                     responsive: true,
+                    language: {
+                        searchPlaceholder: '{{ Lang::get("messages.tableBuscar") }}'
+                    },
                     dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
@@ -1152,11 +1159,12 @@
                     buttons: [
                         {
                             extend: 'pageLength',
+                            text: '{{ Lang::get("messages.tableRenglones") }}',
                             className: 'btn-outline-default'
                         },
                         {
                             extend: 'colvis',
-                            text: 'Column Visibility',
+                            text: '{{ Lang::get("messages.tableColumnasVisibles") }}',
                             titleAttr: 'Col visibility',
                             className: 'btn-outline-default'
                         },
@@ -1168,7 +1176,7 @@
                         },
                         {
                             extend: 'copyHtml5',
-                            text: 'Copy',
+                            text: '{{ Lang::get("messages.tableCopiar") }}',
                             titleAttr: 'Copy to clipboard',
                             className: 'btn-outline-default'
                         },

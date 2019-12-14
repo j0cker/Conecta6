@@ -65,7 +65,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-door-open"></i> Modificar Salida
+                                <i class="subheader-icon fal fa-door-open"></i> {{ Lang::get("messages.textoEmpresasConfiguracionesSalidasModificarSalidaTitle") }}
                                 <small>
                                 </small>
                             </h1>
@@ -77,7 +77,7 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Modificar Salida
+                                            {{ Lang::get("messages.textoEmpresasConfiguracionesSalidasModificarSalida") }}
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -99,7 +99,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Nombre Salida:
+                                                                    {{ Lang::get("messages.textoEmpresasConfiguracionesSalidasNombreSalida") }}:
 
                                                                 </div>
 
@@ -113,7 +113,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="nombreSalida" type="text" class="form-control" placeholder="Nombre de la Salida" />
+                                                                    <input id="nombreSalida" type="text" class="form-control" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesSalidasNombreDeLaSalida') }}" />
 
                                                                 </div>
 
@@ -127,7 +127,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Computarizar:<br /><br />
+                                                                    {{ Lang::get("messages.textoEmpresasConfiguracionesSalidasComputarizar") }}:<br /><br />
 
                                                                 </div>
 
@@ -143,7 +143,7 @@
 
                                                                     <div class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="descanzoActivated">
-                                                                        <label class="custom-control-label" for="descanzoActivated">¿Descanzo Computable?</label><br /><br />
+                                                                        <label class="custom-control-label" for="descanzoActivated">{{ Lang::get("messages.textoEmpresasConfiguracionesSalidasDescanzoComputable") }}</label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -154,7 +154,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a ng-click="modificarSalida('{{ $user['usr']->id_empresas }}', '<?PHP echo $_GET["id"]; ?>')" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
+                                                                <a ng-click="modificarSalida('{{ $user['usr']->id_empresas }}', '<?PHP echo $_GET["id"]; ?>')" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">{{ Lang::get("messages.textoEmpresasConfiguracionesSalidasModificar") }}</a>
                                                             </div>
                                                         </div>
 

@@ -20,6 +20,7 @@
                                 <i class="ni ni-menu"></i>
                             </a>
                         </div>
+                        <!-- 
                         <div class="search">
                             <form class="app-forms hidden-xs-down" role="search" action="page_search.html" autocomplete="off">
                                 <input type="text" id="search-field" placeholder="Search for anything" class="form-control" tabindex="1">
@@ -28,6 +29,7 @@
                                 </a>
                             </form>
                         </div>
+                         -->
                         <div class="ml-auto d-flex">
                             <!-- activate app search icon (mobile) -->
                             <div class="hidden-sm-up">

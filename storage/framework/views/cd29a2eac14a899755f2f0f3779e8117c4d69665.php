@@ -18,18 +18,18 @@
 <!--Menu Transparente
 <?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-<?php $__env->startSection('menuActive','consultaDeInformes'); ?>
+<?php $__env->startSection('menuActive','configuraciones'); ?>
 
 <?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
 <?php $__env->startSection('raiz1Url', '/inicio'); ?>
 <?php $__env->startSection('raiz2','Empresas'); ?>
-<?php $__env->startSection('raiz2Url','/inicioEmpresas'); ?>
-<?php $__env->startSection('raiz3','Consulta de Informes'); ?>
-<?php $__env->startSection('raiz3Url','/informes'); ?>
+<?php $__env->startSection('raiz2Url','/inicio'); ?>
+<?php $__env->startSection('raiz3','Configuraciones'); ?>
+<?php $__env->startSection('raiz3Url','/configuraciones'); ?>
 
 
 
-<?php $__env->startSection('controller','consultaDeInformes'); ?>
+<?php $__env->startSection('controller','configuraciones'); ?>
 
 
 
@@ -57,7 +57,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-chart-area'></i> <?php echo Lang::get('messages.textoEmpresasConsultaDeInformesInformesDashboard'); ?>
+                                <i class='subheader-icon fal fa-sliders-v-square'></i> <?php echo Lang::get('messages.textoEmpresasConfiguracionesTitle'); ?>
 
                             </h1>
                         </div>
@@ -66,7 +66,7 @@
                                 <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr" role="heading">
                                         <h2>
-                                            <?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesInformes')); ?>
+                                            <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesConfiguraciones')); ?>
 
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
@@ -80,62 +80,310 @@
                                     <div class="panel-container show">
                                         <div class="panel-content">
 
-                                            <div class="form-group row">
+                                            <div style="margin-top: 50px;" class="row">
 
-                                                <div class="col-md-12">
-                                                    <div style="margin-top: 10px; !important" class="input-group">
-                                                        <input type="text" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesSeleccionaUnaFecha')); ?>" id="datepicker-2">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text fs-xl">
-                                                                <i class="fal fa-calendar"></i>
-                                                            </span>
-                                                        </div>
+                                                <div class="col-md-4"></div>
+
+                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-4">
+                                                    
+                                                        <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesConfiguraciones')); ?>
+
+
                                                     </div>
-                                                </div>
+
+                                                <div class="col-md-4"></div>
 
                                             </div>
-                                            
+
+                                            <div style="margin-top: 50px;" class="row">
+
+                                                <div class="col-md-3"></div>
+
+                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
+                                                    
+                                                        <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesConfiguracionesDeLasOpcionesDeSalida')); ?>.
+
+                                                    </div>
+
+                                                <div class="col-md-3"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="text-center row">
+
+                                                <div class="col-md-6">
+                                                    <input id="nombreSalida" class="form-control" type="text" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaSalida')); ?>" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button ng-click="agregarSalidaClick('<?php echo e($user['usr']->id_empresas); ?>');" style="margin-bottom: 20px;" class="btn btn-primary"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesAgregar')); ?></button>
+                                                </div>
+                                            </div>
+
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesID')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesNombre')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesApellido')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesTotalHorasTrabajadores')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesFaltas')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesHorasExtras')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesDescanzosTotales')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesSalidas')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesAsistenciasTotales')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesAsistenciasFueraDePlantilla')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesAsistenciasDentroDePlantilla')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesPuntualidades')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesImpuntualidades')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesDiasNoLaborales')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesIDSalida')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNombreDeLaSalida')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesDescansoComputable')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesOpcionesSalida')); ?></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesID')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesNombre')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesApellido')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesTotalHorasTrabajadores')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesFaltas')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesHorasExtras')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesDescanzosTotales')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesSalidas')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesAsistenciasTotales')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesAsistenciasFueraDePlantilla')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesAsistenciasDentroDePlantilla')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesPuntualidades')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesImpuntualidades')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesDiasNoLaborales')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesIDSalida')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNombreDeLaSalida')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesDescansoComputable')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesOpcionesSalida')); ?></th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
                                             <!-- datatable end -->
+
+                                            <div style="margin-top: 50px;" class="row">
+
+                                                <div class="col-md-3"></div>
+
+                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
+                                                    
+                                                        <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesSeleccionaElIdiomaQueVeranTusUsuarios')); ?>.
+
+                                                    </div>
+
+                                                <div class="col-md-3"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 25px;" class="row">
+
+                                                <div class="col-md-4"></div>
+
+                                                    <div style="" class="col-md-4">
+                                                    
+                                                        <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
+                                                            <div class="panel-content text-center">
+                                                                
+                                                                <select class="select2 form-control w-100" id="single-label">
+                                                                    <option value="default">Selecciona un Idioma</option>
+                                                                    <option ng-repeat="(key, idioma) in idiomas" value="<% idioma.id_idiomas %>"><% idioma.nombre %> (<% idioma.code %>)</option>
+                                                                </select>
+
+                                                            </div>
+                                                            
+                                                        </div>
+
+                                                    </div>
+
+                                                <div class="col-md-4"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="row">
+
+                                                <div class="col-md-3"></div>
+
+                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
+                                                    
+                                                        <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNombreDeLaEmpresa')); ?>.
+
+                                                    </div>
+
+                                                <div class="col-md-3"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="text-center row">
+
+                                                <div class="col-md-3"></div>
+
+                                                <div style="display:inline-block;" class="col-md-6">
+                                                    <input id="nombreEmpresa" style="width: 300px; display:inline-block;" class="form-control" type="text" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNombreDeLaEmpresa')); ?>" />
+                                                    <button style="margin-top: 20px; margin-left: 20px; margin-bottom: 20px; display: inline-block;" class="btn btn-primary"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesModificar')); ?></button>
+                                                </div>
+
+                                                <div class="col-md-3"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 25px;" class="row">
+
+                                                <div class="col-md-4"></div>
+
+                                                    <div style="font-size: 25px; color: black;" class="col-md-4">
+                                                    
+                                                        <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesSubdominio')); ?>: <i style="color: green; display: none;" class="fal fa-check-circle subdominio"></i><i style="color: red; display: none;" class="fal fa-times-circle subdominio"></i>
+
+                                                    </div>
+
+                                                <div class="col-md-4"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 10px;" class="row">
+
+                                                <div class="col-md-4"></div>
+
+                                                <div class="input-group mb-3 col-md-4">
+                                                    <input id="subdominio" type="text" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesSubdominio2')); ?>" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">.dominio.com <i style="margin-left: 15px; color: green; display: none;" class="fal fa-check-circle subdominio"></i><i style="margin-left: 15px; color: red; display: none;" class="fal fa-times-circle subdominio"></i></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="text-center row">
+
+                                                <div class="col-md-12">
+                                                    <a href="/plantilla/nueva">
+                                                        <button style="margin-bottom: 20px;" class="text-center btn btn-primary"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesModificarSubdominio')); ?></button>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="row">
+
+                                                <div class="col-md-3"></div>
+
+                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
+                                                    
+                                                        <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesLogotipoQueVeranTusUsuarios')); ?>:
+
+                                                    </div>
+
+                                                <div class="col-md-3"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="row">
+
+                                                <div class="col-md-4"></div>
+
+                                                    <div class="col-md-4 text-center">
+                                                    
+                                                        
+                                                        <form method="post" action="<?php echo e(url('/api/empresas/profile/image')); ?>" enctype="multipart/form-data" id="FrmProfilePicture">
+                                                            <?php echo e(method_field('POST')); ?>
+
+
+                                                            <label for="profileimg" class="figure">
+                                                                <input type="file" id="profileimg" hidden name="profileimg">
+                                                                <img class="profile-image  rounded-circle" onerror="this.src='<?php echo e(url('img/profile-image.png')); ?>'" style="width: 120px; height: 120px;" src="<?php echo e(url('img/profile-image.png')); ?>" alt="<?php echo e($user['usr']->nombre_empresa); ?>" id="userProfilePicture">
+                                                            </label>
+
+                                                        </form>
+
+                                                        <center>
+                                                        150x150
+                                                        </center>
+
+                                                    </div>
+
+                                                <div class="col-md-4"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="row">
+
+                                                <div class="col-md-3"></div>
+
+                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
+                                                    
+                                                        <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesConfiguracionDeLaZonaHoraria')); ?>:
+
+                                                    </div>
+
+                                                <div class="col-md-3"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 25px;" class="row">
+
+                                                <div class="col-md-4"></div>
+
+                                                    <div style="" class="col-md-4">
+                                                    
+                                                        <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
+                                                            <div class="panel-content text-center">
+                                                                
+                                                                <select class="select2 form-control w-100" id="single-default">
+                                                                    <option value="default">Selecciona una Zona Horaria</option>
+                                                                    <option ng-repeat="(key, zonaHoraria) in zonasHorarias" value="<% zonaHoraria.id_zonas_horarias %>"><% zonaHoraria.nombre %> (<% zonaHoraria.utc %>) </option>
+                                                                </select>
+
+                                                            </div>
+                                                            
+                                                        </div>
+
+                                                    </div>
+
+                                                <div class="col-md-4"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="row">
+
+                                                <div class="col-md-3"></div>
+
+                                                    <div style="font-size: 25px; color: black;" class="text-center col-md-6">
+                                                    
+                                                        <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesConfiguracionDeLasPlantillas')); ?>:
+
+                                                    </div>
+
+                                                <div class="col-md-3"></div>
+
+                                            </div>
+
+                                            <div style="margin-top: 50px;" class="text-center row">
+
+                                                <div class="col-md-12">
+                                                    <a href="/plantilla/nueva">
+                                                        <button style="margin-bottom: 20px;" class="text-center btn btn-primary"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesAgregarNuevaPlantilla')); ?></button>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+
+                                            <table id="plantillas" class="table table-bordered table-hover table-striped w-100">
+                                                <thead class="bg-warning-200">
+                                                    <tr>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaID')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaNombreDeLaPlantilla')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaLunes')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaMartes')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaMiercoles')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaJueves')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaViernes')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaSabado')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaDomingo')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaOpciones')); ?></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="historialTable">
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaID')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaNombreDeLaPlantilla')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaLunes')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaMartes')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaMiercoles')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaJueves')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaViernes')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaSabado')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaDomingo')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesPlantillaOpciones')); ?></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <!-- datatable end -->
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -739,10 +987,14 @@
             </div>
         </div> <!-- END Page Settings -->
         
-        <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="js/vendors.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="js/app.bundle.js?v='.cache("js_version_number").'') }}"></script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
-        <script src="<?php echo e(url('js/datatables.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+    
+        <script src="<?php echo e(url('js/selects.js?v='.cache("js_version_number").'')); ?>"></script>
+
+        <script src="js/datatables.bundle.js?v='.cache("js_version_number").'') }}"></script>
+        <script src="<?php echo e(url('js/jquery.mask.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <script>
             $( document ).ready(function() {
@@ -752,23 +1004,64 @@
 
         <script>
 
-            
+            function checkboxSalida(id_salidas, nombre){
 
-            function checkbox(valor){
+                console.log("[checkboxSalida]");
+
+                var computable = $("#gra-"+id_salidas+"").prop("checked");
                 
-                console.log(valor);
+                console.log("[checkboxSalida] id_salidas: " + id_salidas);
+                console.log("[checkboxSalida] nombre: " + nombre);
+                console.log("[checkboxSalida] computable: " + computable);
 
-                console.log("entro: " + $("#gra-" + valor).prop('checked'));
+                changeComputableSalidaClick("<?php echo e($user['usr']->id_empresas); ?>", id_salidas, nombre, computable);
+
+                
             }
 
-            function edit(valor){
-                
-                console.log(valor);
+            function editSalida(id_salidas){
+
+                console.log("[editSalida]");
+
+                window.location = "/salidas/modificar?id=" + id_salidas;
+
             }
 
-            function del(valor){
+            function delSalida(id_salidas){
                 
-                console.log(valor);
+                if(confirm("Confirme que ninguno de sus empleados esté usando esta salida.")==1){
+
+                    console.log("[editSalida]");
+
+                    console.log("[checkboxSalida] id_salidas: " + id_salidas);
+
+                    delSalidaClick("<?php echo e($user['usr']->id_empresas); ?>", id_salidas);
+
+                }
+
+            }
+
+            function editPlantilla(id_plantillas){
+
+                console.log("[editPlantilla]");
+                
+                console.log(id_plantillas);
+
+                window.location = "/plantilla/mod?id_plantilla=" + id_plantillas;
+            }
+
+            function delPlantilla(id_plantillas){
+
+                
+                if(confirm("Confirme que ninguno de sus empleados esté usando esta plantilla.")==1){
+
+                console.log("[delPlantilla]");
+                
+                console.log(id_plantillas);
+
+                delPlantillaClick(id_plantillas);
+
+                }
             }
 
             $(document).ready(function()
@@ -819,38 +1112,99 @@
                             className: 'btn-outline-default'
                         }
 
-                    ]
-                    /*
+                    ],
                     "columnDefs": [ {
                         "targets": -1,
                         "data": null,
                         "render": function ( data, type, row, meta ) {
                             return  `<center>
-                                        <button onclick="edit(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
-                                        <button onclick="del(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
+                                        <button onclick="editSalida(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
+                                        <button onclick="delSalida(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
                                     </center>`;
+                        }
+                    
+                    },{
+                        "targets": -2,
+                        "data": null,
+                        "render": function ( data, type, row, meta ) {
+                            
+                            return `<center>
+                                    <div class="custom-control custom-switch mr-2">
+                                        <input type="checkbox" class="custom-control-input" onclick="checkboxSalida('`+row[0]+`', '`+row[1]+`');" name="gra-`+row[0]+`" id="gra-`+row[0]+`" checked="checked">
+                                        <label class="custom-control-label" for="gra-`+row[0]+`"></label>
+                                    </div>
+                                </center>`;
+
                         }
                     
                     } 
                 
-                    ]*/
+                    ]
 
                 });
+                /* init datatables */
+               var table = $('#plantillas').dataTable(
+                {
+                    "pageLength": 25,
+                    "ordering": true,
+                    responsive: true,
+                    language: {
+                        searchPlaceholder: '<?php echo e(Lang::get("messages.tableBuscar")); ?>'
+                    },
+                    dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tigerr Nixon", "System Architect", "Edinburgh", "5421" ] ],
+                    buttons: [
+                        {
+                            extend: 'pageLength',
+                            text: '<?php echo e(Lang::get("messages.tableRenglones")); ?>',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'colvis',
+                            text: '<?php echo e(Lang::get("messages.tableColumnasVisibles")); ?>',
+                            titleAttr: 'Col visibility',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: '<?php echo e(Lang::get("messages.tableCopiar")); ?>',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-default'
+                        },
+                        {
+                            extend: 'print',
+                            text: '<i class="fal fa-print"></i>',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-default'
+                        }
 
+                    ],
+                    "columnDefs": [ {
+                        "targets": -1,
+                        "data": null,
+                        "render": function ( data, type, row, meta ) {
+                            return  `<center>
+                                        <button onclick="editPlantilla(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
+                                        <button onclick="delPlantilla(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
+                                    </center>`;
+                        }
+                    
+                    }
                 
-
-                $('#datepicker-2').change(function(){
-
-                    console.log("[datepicker]");
-
-                    var arrayDatePicker = $('#datepicker-2').val().split(" - ");
-                    var start = arrayDatePicker[0];
-                    var end = arrayDatePicker[1];
-
-
-                    getTrabajadoresAndStats("<?php echo e($user['usr']->id_empresas); ?>", start, end);
+                    ]
 
                 });
+
+                //selects
+                $('.select2').select2();
 
                 /* no sirve
 
@@ -893,6 +1247,7 @@
         <!-- Toastr-->
         <script src="<?php echo e(url('js/toastr.js?v='.cache("js_version_number").'')); ?>"></script>
 
+
         <!--Angular-->
         
         <script src="<?php echo e(url('js/angular.min.js?v='.cache("js_version_number").'')); ?>"></script>
@@ -902,21 +1257,67 @@
         <script src="<?php echo e(url('js/factory.js?v='.cache("js_version_number").'')); ?>"></script>
 
         <script src="<?php echo e(url('js/functions.js?v='.cache("js_version_number").'')); ?>"></script>
-        <script src="<?php echo e(url('js/moment.js?v='.cache("js_version_number").'')); ?>"></script>
 
+        
+        
         <script>
             $(document).ready(function()
             {
 
-                $('#js-page-content').smartPanel(); 
+                $('#subdominio').mask("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", {
+                    translation: {
+                        "A": {pattern: /[a-zA-Z0-9]/}
+                    }
+                });
 
-                getZonaHorariaFront("<?php echo e($user['usr']->id_empresas); ?>");
+
+                $('#subdominio').on('change', function() {
+                    console.log("[nuevaempresa.php][subdominio] changes");
+
+                    validarSubdominio($("#subdominio").val());
+                    
+                    
+                });
+                
+
+                $(document).on('change', '#single-label', function () {
+                    
+                    console.log("[Inglés]");
+
+                    console.log($("#single-label").val());
+
+                    postModIdiomaEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>", $("#single-label").val());
+
+                });
+
+
+                $(document).on('change', '#single-default', function () {
+                    
+                    console.log("[Zonas Horarias]");
+
+                    console.log($("#single-default").val());
+
+                    angular.element('body').scope().postZonaHorariaClick(""+$("#single-default").val()+"");
+
+                });
+
+                $(document).on('change', '#profileimg', function () {
+                    
+                    console.log("[Perfil]");
+
+                    startLoading();
+                    $('#FrmProfilePicture').submit();
+                });
+
+                $('#js-page-content').smartPanel();
+                angular.element('body').scope().getImageEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                angular.element('body').scope().getZonasHorariasClick("<?php echo e($user['usr']->id_zona_horaria); ?>");
+                angular.element('body').scope().getEmpresaClick("<?php echo e($user['usr']->id_empresas); ?>");
+                getSalidasClick("<?php echo e($user['usr']->id_empresas); ?>");
+                getAllIdiomasClick("<?php echo e($user['usr']->id_empresas); ?>", "<?php echo e($user['usr']->id_idiomas); ?>");
+                
             });
         </script>
-
-        <script src="https://momentjs.com/downloads/moment-timezone-with-data-1970-2030.js"></script>
-        
-        <script src="<?php echo e(url('js/daterangepicker.js?v='.cache("js_version_number").'')); ?>"></script>
 
 
     <?php $__env->stopSection(); ?>

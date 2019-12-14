@@ -18,18 +18,18 @@
 <!--Menu Transparente
 <?php $__env->startSection('menuCSS','css/menu/menu.css?v='.cache("js_version_number").''); ?>
 -->
-<?php $__env->startSection('menuActive','consultaDeInformes'); ?>
+<?php $__env->startSection('menuActive','historialEntradasYSalidasPorEmpresa'); ?>
 
 <?php $__env->startSection('raiz1', @Config::get('app.name')); ?>
-<?php $__env->startSection('raiz1Url', '/inicio'); ?>
+<?php $__env->startSection('raiz1Url', '/inicioEmpresa'); ?>
 <?php $__env->startSection('raiz2','Empresas'); ?>
-<?php $__env->startSection('raiz2Url','/inicioEmpresas'); ?>
-<?php $__env->startSection('raiz3','Consulta de Informes'); ?>
-<?php $__env->startSection('raiz3Url','/informes'); ?>
+<?php $__env->startSection('raiz2Url','/inicioEmpresa'); ?>
+<?php $__env->startSection('raiz3','Historial de Entradas y Salidas'); ?>
+<?php $__env->startSection('raiz3Url','/historial'); ?>
 
 
 
-<?php $__env->startSection('controller','consultaDeInformes'); ?>
+<?php $__env->startSection('controller','historialEntradasYSalidasPorEmpresa'); ?>
 
 
 
@@ -57,16 +57,17 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-chart-area'></i> <?php echo Lang::get('messages.textoEmpresasConsultaDeInformesInformesDashboard'); ?>
+                                <i class='subheader-icon fal fa-history'></i> <?php echo Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasTitle'); ?>
 
                             </h1>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-12 sortable-grid ui-sortable">
                                 <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr" role="heading">
                                         <h2>
-                                            <?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesInformes')); ?>
+                                            <?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasHistorial')); ?>
 
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
@@ -82,9 +83,13 @@
 
                                             <div class="form-group row">
 
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <button style="margin-top: 10px;" class="btn btn-primary"><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasImportar')); ?></button>
+                                                </div>
+                                            
+                                                <div class="col-6">
                                                     <div style="margin-top: 10px; !important" class="input-group">
-                                                        <input type="text" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesSeleccionaUnaFecha')); ?>" id="datepicker-2">
+                                                        <input type="text" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasSeleccionaUnaFecha')); ?>" id="datepicker-2">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text fs-xl">
                                                                 <i class="fal fa-calendar"></i>
@@ -92,46 +97,31 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            
+
+
+
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesID')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesNombre')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesApellido')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesTotalHorasTrabajadores')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesFaltas')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesHorasExtras')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesDescanzosTotales')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesSalidas')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesAsistenciasTotales')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesAsistenciasFueraDePlantilla')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesAsistenciasDentroDePlantilla')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesPuntualidades')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesImpuntualidades')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesDiasNoLaborales')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasID')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasNombre')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasApellido')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasFechaYHora')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasEntradaSalida')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasComentarios')); ?></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesID')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesNombre')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesApellido')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesTotalHorasTrabajadores')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesFaltas')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesHorasExtras')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesDescanzosTotales')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesSalidas')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesAsistenciasTotales')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesAsistenciasFueraDePlantilla')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesAsistenciasDentroDePlantilla')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesPuntualidades')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesImpuntualidades')); ?></th>
-                                                        <th><?php echo e(Lang::get('messages.textoEmpresasConsultaDeInformesDiasNoLaborales')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasID')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasNombre')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasApellido')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasFechaYHora')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasEntradaSalida')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoEmpresasHistorialDeEntradasYSalidasComentarios')); ?></th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -140,7 +130,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+                        </div><!-- fin row -->
+
                     </main>
                     <!-- this overlay is activated only when mobile menu is triggered -->
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
@@ -741,44 +733,48 @@
         
         <script src="<?php echo e(url('js/vendors.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
         <script src="<?php echo e(url('js/app.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
+    
         <script src="<?php echo e(url('js/datatables.bundle.js?v='.cache("js_version_number").'')); ?>"></script>
+        
+	    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+	    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
 
+        <script src="<?php echo e(url('js/moment.js?v='.cache("js_version_number").'')); ?>"></script>
+        <script src="<?php echo e(url('js/daterangepicker.js?v='.cache("js_version_number").'')); ?>"></script>
+        
         <script>
             $( document ).ready(function() {
                 // Handler for .ready() called.
+
+                $('#datepicker-2').change(function(){
+
+                    console.log("[datepicker]");
+
+                    var arrayDatePicker = $('#datepicker-2').val().split(" - ");
+                    var start = arrayDatePicker[0];
+                    var end = arrayDatePicker[1];
+                    
+
+                    getHistorialEntradasByIdEmpresas("<?php echo e($user['usr']->id_empresas); ?>", start, end);
+
+                });
+
             });
         </script>
 
         <script>
 
-            
-
-            function checkbox(valor){
-                
-                console.log(valor);
-
-                console.log("entro: " + $("#gra-" + valor).prop('checked'));
-            }
-
-            function edit(valor){
-                
-                console.log(valor);
-            }
-
-            function del(valor){
-                
-                console.log(valor);
-            }
-
             $(document).ready(function()
             {
 
-                
                 /* init datatables */
                var table = $('#dt-basic-example').dataTable(
                 {
-                    "pageLength": 25,
+                    "pageLength": 25,   
                     "ordering": true,
                     responsive: true,
                     language: {
@@ -800,11 +796,37 @@
                             titleAttr: 'Col visibility',
                             className: 'btn-outline-default'
                         },
-                        {
-                            extend: 'csvHtml5',
-                            text: 'CSV',
-                            titleAttr: 'Generate CSV',
-                            className: 'btn-outline-default'
+                        {   
+                            extend: 'collection',
+                            text: 'Export',
+                            buttons: [ 
+                                {   //meter librería jszip
+                                    extend: 'excelHtml5',
+                                    text: 'Excel',
+                                    orientation: 'landscape',
+                                    titleAttr: 'Generate Excel',
+                                    className: 'btn-outline-default'
+                                }, 
+                                {
+                                    extend: 'csvHtml5',
+                                    text: 'CSV',
+                                    titleAttr: 'Generate CSV',
+                                    className: 'btn-outline-default'
+                                }, 
+                                {
+                                    //se debe incluir libreria pdf maker
+                                    extend: 'pdfHtml5',
+                                    text: 'PDF',
+                                    titleAttr: 'PDF',
+                                    customize: function(doc) {
+                                        //pageMargins [left, top, right, bottom] 
+                                        doc.pageMargins = [ 20, 20, 20, 20 ];
+                                    },
+                                    className: 'btn-outline-default'
+                                } 
+                            ],
+                            className: 'btn-outline-default'       
+
                         },
                         {
                             extend: 'copyHtml5',
@@ -820,70 +842,17 @@
                         }
 
                     ]
-                    /*
-                    "columnDefs": [ {
-                        "targets": -1,
-                        "data": null,
-                        "render": function ( data, type, row, meta ) {
-                            return  `<center>
-                                        <button onclick="edit(`+row[0]+`);" class="btn btn-primary fal fa-edit"></button>
-                                        <button onclick="del(`+row[0]+`);" class="btn btn-primary fal fa-trash-alt" style="margin-left: 10px;"></button>
-                                    </center>`;
-                        }
                     
-                    } 
-                
-                    ]*/
-
                 });
 
                 
-
-                $('#datepicker-2').change(function(){
-
-                    console.log("[datepicker]");
-
-                    var arrayDatePicker = $('#datepicker-2').val().split(" - ");
-                    var start = arrayDatePicker[0];
-                    var end = arrayDatePicker[1];
-
-
-                    getTrabajadoresAndStats("<?php echo e($user['usr']->id_empresas); ?>", start, end);
-
-                });
-
-                /* no sirve
-
-                $('#dt-basic-example tbody').on( 'click', 'button', function () {
-                    console.log("[dt-basic-example tbody] click");
-                    console.log($(this));
-                    console.log($(this)[0].innerHTML); //html
-                    console.log($(this)[0].attributes[0].value); //class
-                    var data = table.DataTable().row( $(this).parents('tr') ).data();
-                    if($(this)[0].attributes[0].value.indexOf("edit")!=-1){
-                        alert("Editar" + data[0]);
-                    } else {
-                        alert("Eliminar" + data[0]);
-                    }
-                });
-
-                $('#dt-basic-example tbody').on( 'change', 'input', function () {
-                    console.log("[dt-basic-example tbody] change");
-                    console.log($(this)[0].checked); //checked
-                    var data = table.DataTable().row( $(this).parents('tr') ).data();
-                    if($(this)[0].checked==true){
-                        alert("Activado " + data[0]);
-                    } else {
-                        alert("Desactivado " + data[0]);
-
-                    }
-
-                });
-                */
 
                 //array
                 //https://datatables.net/examples/ajax/simple.html
                 //data: [ [ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ],[ "Tiger Nixon", "System Architect", "Edinburgh", "5421" ] ],
+
+                
+
 
             });
 
@@ -909,15 +878,13 @@
             {
 
                 $('#js-page-content').smartPanel(); 
-
                 getZonaHorariaFront("<?php echo e($user['usr']->id_empresas); ?>");
+                getImageEmpresa("<?php echo e($user['usr']->id_empresas); ?>");
+
             });
         </script>
 
         <script src="https://momentjs.com/downloads/moment-timezone-with-data-1970-2030.js"></script>
         
-        <script src="<?php echo e(url('js/daterangepicker.js?v='.cache("js_version_number").'')); ?>"></script>
-
-
     <?php $__env->stopSection(); ?>
 <?php echo $__env->make('system.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
