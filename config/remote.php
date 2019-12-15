@@ -31,7 +31,7 @@ return [
             'host'      => env('SSH_HOST'),
             'username'  => env('SSH_USERNAME'),
             'password'  => env('SSH_PASSWORD'),
-            'key'       => '',
+            'key'       => env('SSH_KEY',''),
             'keytext'   => '',
             'keyphrase' => '',
             'agent'     => '',
