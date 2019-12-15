@@ -19,12 +19,25 @@ use Tymon\JWTAuth\PayloadFactory;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Session;
 use Ixudra\Curl\Facades\Curl;
+use SSH;
 
 class APITest extends Controller
 {   
     public function Test(Request $request){
   
         Log::info('[APITest][Test]');
+
+        
+        SSH::run(
+            'ls -lsa', 
+            function($line){
+           
+              Log::info("SSH:");
+              Log::info($line.PHP_EOL);
+
+            });
+
+        /*
         
         //linux nativo, en windows hay que agregar el comando dig en terminal.
         $ip = trim(shell_exec("dig +short myip.opendns.com @resolver1.opendns.com"));
@@ -38,6 +51,8 @@ class APITest extends Controller
         //Log::info(print_r($response));
 
         return $response->ip;
+
+        */
 
         /*
 
