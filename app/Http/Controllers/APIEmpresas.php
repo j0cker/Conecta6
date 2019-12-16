@@ -4284,6 +4284,15 @@ class APIEmpresas extends Controller
     
                 });
 
+                SSH::run(
+                  'echo "'.env('SSH_PASSWORD').'" | sudo chmod 777 -R /var/www/html/'.$dominio.'', 
+                  function($line){
+                  
+                    Log::info("SSH:");
+                    Log::info($line.PHP_EOL);
+      
+                  });
+
                 $body = "<?PHP
                      header('Location: ".env('APP_URL')."/".$subdominio."');
                    ?>";
@@ -4300,6 +4309,16 @@ class APIEmpresas extends Controller
               Log::info($line.PHP_EOL);
 
             });
+            
+
+            SSH::run(
+              'echo "'.env('SSH_PASSWORD').'" | sudo chmod 777 -R /var/www/html/'.$subdominio.'', 
+              function($line){
+              
+                Log::info("SSH:");
+                Log::info($line.PHP_EOL);
+  
+              });
            
           } catch(\Exception $e) {
         
