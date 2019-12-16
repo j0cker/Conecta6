@@ -3908,11 +3908,20 @@ class APIEmpresas extends Controller
     
                 });
 
-                $body = "<?PHP
-                     header('Location: ".env('APP_URL')."/".$subdominio."');
-                   ?>";
+              SSH::run(
+                'echo "'.env('SSH_PASSWORD').'" | sudo chmod 777 -R /var/www/html/'.$dominio.'', 
+                function($line){
+                
+                  Log::info("SSH:");
+                  Log::info($line.PHP_EOL);
+    
+                });
 
-                $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$dominio.'/index.php', $body);
+              $body = "<?PHP
+                    header('Location: ".env('APP_URL')."/".$subdominio."');
+                  ?>";
+
+              $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$dominio.'/index.php', $body);
 
             } //fin dominio
 
@@ -3924,6 +3933,15 @@ class APIEmpresas extends Controller
               Log::info($line.PHP_EOL);
 
             });
+
+            SSH::run(
+              'echo "'.env('SSH_PASSWORD').'" | sudo chmod 777 -R /var/www/html/'.$subdominio.'', 
+              function($line){
+              
+                Log::info("SSH:");
+                Log::info($line.PHP_EOL);
+  
+              });
            
           } catch(\Exception $e) {
         
