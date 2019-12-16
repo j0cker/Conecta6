@@ -290,6 +290,7 @@ return [
     'errorsBDRepeatMail' => "Ese correo electrónica ya existe. Intenta recuperar tu contraseña.",
     'errorFormat' => "El archivo que desea cargar tiene un formato no válido.",
     'BDsentMail' => "Te hemos enviado un correo electrónico con tu nueva contraseña..",
+    'noHayTrabajadores' => "No Hay Trabajadores Agregados.",
 
     //contraseñas
     'NotFoundMail' => "No encontramos el correo electrónico",

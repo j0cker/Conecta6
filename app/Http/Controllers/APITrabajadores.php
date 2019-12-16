@@ -807,7 +807,7 @@ class APITrabajadores extends Controller
 
           } else {
 
-            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), count($trabajadores));
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.noHayTrabajadores'), count($trabajadores));
             $responseJSON->data = [];
             return json_encode($responseJSON);
 
