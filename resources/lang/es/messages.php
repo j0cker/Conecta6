@@ -207,6 +207,8 @@ return [
     'textoEmpresasConfiguracionesSeleccionaElIdiomaQueVeranTusUsuarios' => 'Selecciona el idioma que verán tus usuarios',
     'textoEmpresasConfiguracionesNombreDeLaEmpresa' => 'Nombre de la Empresa',
     'textoEmpresasConfiguracionesModificar' => 'Modificar',
+    'textoEmpresasConfiguracionesDominio' => 'Dominio',
+    'textoEmpresasConfiguracionesDominio2' => 'dominio.com',
     'textoEmpresasConfiguracionesSubdominio' => 'Subdominio',
     'textoEmpresasConfiguracionesSubdominio2' => 'Nombre de la Empresa',
     'textoEmpresasConfiguracionesModificarSubdominio' => 'Modificar subdominio',

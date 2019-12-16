@@ -1331,7 +1331,7 @@ class APIEmpresas extends Controller
 
   }
 
-  public function  ModTrabajador(Request $request){
+  public function ModTrabajador(Request $request){
     
     Log::info('[APIEmpresas][ModTrabajador]');
 
@@ -3243,7 +3243,6 @@ class APIEmpresas extends Controller
 
   }
 
-  
   public function HistorialEntradasEmpresa(Request $request){
     
     Log::info('[APIEmpresas][HistorialEntradasEmpresa]');
@@ -3318,7 +3317,6 @@ class APIEmpresas extends Controller
     }
 
   }
-
 
   public function GetPlantillas(Request $request){
     
@@ -4250,14 +4248,14 @@ class APIEmpresas extends Controller
             'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$subdominios_array[0]->subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$subdominios_array[0]->subdominio.'', 
             function($line){
           
-            Log::info("[APIEmpresas][DeleteEmpresa] SSH:");
+            Log::info("[APIEmpresas][ModEmpresa] SSH:");
             Log::info($line.PHP_EOL);
 
           });
          
         } catch(\Exception $e) {
         
-          Log::info("[APIEmpresas][DeleteEmpresa] Error SSH: ");
+          Log::info("[APIEmpresas][ModEmpresa] Error SSH: ");
           Log::info($e);
         }
 
@@ -4380,6 +4378,361 @@ class APIEmpresas extends Controller
         //token_absent
     
         Log::info('[APIEmpresas][ModEmpresa] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+
+    } else {
+      abort(404);
+    }
+
+
+  }
+
+  public function ModEmpresaSubdominio(Request $request){
+  
+    Log::info('[APIEmpresas][ModEmpresaSubdominio]');
+
+    Log::info("[APIEmpresas][ModEmpresaSubdominio] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+
+      
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required',
+        'id_empresas' => 'required',
+        'subdominio' => 'required',
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][ModEmpresaSubdominio] Token: ". $token);
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        
+        $id_empresas = $request->input('id_empresas');
+        $subdominio = $request->input('subdominio');
+
+        Log::info("[APIEmpresas][ModEmpresaSubdominio] id_empresas: " .$id_empresas);
+        Log::info("[APIEmpresas][ModEmpresaSubdominio] subdominio: " .$subdominio);
+
+        $subdominios_array = Empresas::lookForBySubdominio($subdominio)->get();
+
+        if($subdominios_array[0]->id_empresas!=$id_empresas){  
+          
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.subdominioyaexistente'), 0);
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
+        }
+
+        $empresas = Empresas::modSubdominioEnterprise($id_empresas, $subdominio);
+        
+        Log::info($empresas);
+
+        //delete folder of subdomains
+        $result_folder = Functions::deleteFolder(dirname(__FILE__).'/../../../../'.$subdominios_array[0]->subdominio);
+
+        /* Apache2 Is Enabled */
+        try {
+
+          SSH::run(
+            'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$subdominios_array[0]->subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$subdominios_array[0]->subdominio.'', 
+            function($line){
+          
+            Log::info("[APIEmpresas][ModEmpresaSubdominio] SSH:");
+            Log::info($line.PHP_EOL);
+
+          });
+         
+        } catch(\Exception $e) {
+        
+          Log::info("[APIEmpresas][ModEmpresaSubdominio] Error SSH: ");
+          Log::info($e);
+        }
+
+        if($empresas==1){
+          
+          /*Cpanel is disable
+          $result = Functions::cPanelAddSubdomain(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), $subdominio, env('CPANEL_DOMAIN'));
+          
+          Log::info("[APIEmpresas][AltaEmpresa] Cpanel API");
+          Log::info($result);
+          */
+
+          /* Apache2 Is Enabled*/
+          try {
+
+
+            SSH::run(
+            'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh create '.$subdominio.'.'.env('VIRTUAL_HOST_DOMAIN').' /var/www/html/'.$subdominio.'', 
+            function($line){
+           
+              Log::info("SSH:");
+              Log::info($line.PHP_EOL);
+
+            });
+            
+
+            SSH::run(
+              'echo "'.env('SSH_PASSWORD').'" | sudo chmod 777 -R /var/www/html/'.$subdominio.'', 
+              function($line){
+              
+                Log::info("SSH:");
+                Log::info($line.PHP_EOL);
+  
+              });
+           
+          } catch(\Exception $e) {
+        
+            Log::info("Error SSH: ");
+            Log::info($e);
+
+          }
+          
+
+          //no hay que crear carpeta, vh.sh ya lo hace.
+          //$result_folder = Functions::createFolder(dirname(__FILE__).'/../../../../'.$subdominio);
+
+          $body = "<?PHP
+                     header('Location: ".env('APP_URL')."/".$subdominio."');
+                   ?>";
+
+          $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$subdominio.'/index.php', $body);
+
+          if($result_archive==1){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
+            $responseJSON->data = $empresas;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        } else {
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
+        }
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][ModEmpresaSubdominio] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][ModEmpresaSubdominio] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][ModEmpresaSubdominio] Token error: token_absent');
+
+        return redirect('/');
+  
+      }
+
+
+    } else {
+      abort(404);
+    }
+
+  }
+
+  public function ModEmpresaDominio(Request $request){
+  
+    Log::info('[APIEmpresas][ModEmpresaDominio]');
+
+    Log::info("[APIEmpresas][ModEmpresaDominio] Método Recibido: ". $request->getMethod());
+
+    if($request->isMethod('POST')) {
+      
+      $request->merge(['token' => isset($_COOKIE["token"])? $_COOKIE["token"] : 'FALSE']);
+
+      $this->validate($request, [
+        'token' => 'required',
+        'id_empresas' => 'required',
+        'dominio' => 'required',
+      ]);
+        
+      $token = $request->input('token');
+
+      Log::info("[APIEmpresas][ModEmpresaDominio] Token: ". $token);
+
+      try {
+
+        // attempt to verify the credentials and create a token for the user
+        $token = JWTAuth::getToken();
+        $token_decrypt = JWTAuth::getPayload($token)->toArray();
+
+        
+        $id_empresas = $request->input('id_empresas');
+        $dominio = $request->input('dominio');
+
+        Log::info("[APIEmpresas][ModEmpresaDominio] id_empresas: " .$id_empresas);
+        Log::info("[APIEmpresas][ModEmpresaDominio] dominio: " .$dominio);
+
+        $dominios_array = Empresas::lookForByDominio($dominio)->get();
+
+        if($dominios_array[0]->id_empresas!=$id_empresas){  
+          
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.dominioyaexistente'), 0);
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
+        }
+
+        $empresas = Empresas::modDominioEnterprise($id_empresas, $dominio);
+        
+        Log::info($empresas);
+
+        /* Apache2 Is Enabled */
+        try {
+
+          if($subdominios_array[0]->dominio!=""){
+
+            $result_folder_dominio = Functions::deleteFolder(dirname(__FILE__).'/../../../../'.$subdominios_array[0]->dominio);
+
+            SSH::run(
+              'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh delete '.$subdominios_array[0]->dominio.' /var/www/html/'.$subdominios_array[0]->dominio.'', 
+              function($line){
+             
+                Log::info("SSH:");
+                Log::info($line.PHP_EOL);
+  
+              });
+
+          } //fin dominio
+
+         
+        } catch(\Exception $e) {
+        
+          Log::info("[APIEmpresas][ModEmpresaDominio] Error SSH: ");
+          Log::info($e);
+        }
+          
+        if($empresas==1){
+          
+          /*Cpanel is disable
+          $result = Functions::cPanelAddSubdomain(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), $subdominio, env('CPANEL_DOMAIN'));
+          
+          Log::info("[APIEmpresas][AltaEmpresa] Cpanel API");
+          Log::info($result);
+          */
+
+          /* Apache2 Is Enabled*/
+          try {
+
+            if($dominio!=""){
+
+              SSH::run(
+                'echo "'.env('SSH_PASSWORD').'" | sudo -S /var/www/html/Conecta6/vh.sh create '.$dominio.' /var/www/html/'.$dominio.'', 
+                function($line){
+               
+                  Log::info("SSH:");
+                  Log::info($line.PHP_EOL);
+    
+                });
+
+                SSH::run(
+                  'echo "'.env('SSH_PASSWORD').'" | sudo chmod 777 -R /var/www/html/'.$dominio.'', 
+                  function($line){
+                  
+                    Log::info("SSH:");
+                    Log::info($line.PHP_EOL);
+      
+                  });
+
+                $body = "<?PHP
+                     header('Location: ".env('APP_URL')."/".$subdominio."');
+                   ?>";
+
+                $result_archive = Functions::createArchive(dirname(__FILE__).'/../../../../'.$dominio.'/index.php', $body);
+
+            } //fin dominio
+
+           
+          } catch(\Exception $e) {
+        
+            Log::info("Error SSH: ");
+            Log::info($e);
+
+          }
+          
+
+          //no hay que crear carpeta, vh.sh ya lo hace.
+          //$result_folder = Functions::createFolder(dirname(__FILE__).'/../../../../'.$subdominio);
+
+          if($result_archive==1){
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successTrue'),Lang::get('messages.BDsuccess'), 0);
+            $responseJSON->data = $empresas;
+            return json_encode($responseJSON);
+
+          } else {
+
+            $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
+            $responseJSON->data = [];
+            return json_encode($responseJSON);
+
+          }
+
+        } else {
+
+          $responseJSON = new ResponseJSON(Lang::get('messages.successFalse'),Lang::get('messages.errorsBD'), 0);
+          $responseJSON->data = [];
+          return json_encode($responseJSON);
+
+        }
+
+
+      } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+        //token_expired
+    
+        Log::info('[APIEmpresas][ModEmpresaDominio] Token error: token_expired');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+        //token_invalid
+    
+        Log::info('[APIEmpresas][ModEmpresaDominio] Token error: token_invalid');
+
+        return redirect('/');
+  
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+        //token_absent
+    
+        Log::info('[APIEmpresas][ModEmpresaDominio] Token error: token_absent');
 
         return redirect('/');
   
@@ -4639,7 +4992,6 @@ class APIEmpresas extends Controller
 
   }
   
-
   public function SubdominioValidar(Request $request){
   
     Log::info('[APIEmpresas][SubdominioValidar]');

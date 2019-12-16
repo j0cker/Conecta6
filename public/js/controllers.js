@@ -3786,6 +3786,18 @@
 
     getSalidasClick = $scope.getSalidasClick;
 
+    $scope.dominioModEmpresa = function(){
+    
+      console.log("[dominioModEmpresa]");
+
+    }
+
+    $scope.subdominioModEmpresa = function(){
+    
+      console.log("[subdominioModEmpresa]");
+      
+    }
+    
     $scope.getEmpresaClick = function(id_empresas){
     
       functions.getEmpresa(id_empresas).then(function (response) {
@@ -3796,7 +3808,7 @@
 
           console.log(response.data.data);
 
-          $("#nombreEmpresa").val(response.data.data[0].nombre_empresa);
+          $("#dominio").val(response.data.data[0].dominio);
 
           $("#subdominio").val(response.data.data[0].subdominio);
 

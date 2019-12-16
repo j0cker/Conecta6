@@ -187,7 +187,7 @@
 
                                                     <div style="font-size: 25px; color: black;" class="text-center col-md-6">
                                                     
-                                                        {{ Lang::get('messages.textoEmpresasConfiguracionesNombreDeLaEmpresa') }}.
+                                                        {{ Lang::get('messages.textoEmpresasConfiguracionesDominio') }}.
 
                                                     </div>
 
@@ -200,8 +200,8 @@
                                                 <div class="col-md-3"></div>
 
                                                 <div style="display:inline-block;" class="col-md-6">
-                                                    <input id="nombreEmpresa" style="width: 300px; display:inline-block;" class="form-control" type="text" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNombreDeLaEmpresa') }}" />
-                                                    <button style="margin-top: 20px; margin-left: 20px; margin-bottom: 20px; display: inline-block;" class="btn btn-primary">{{ Lang::get('messages.textoEmpresasConfiguracionesModificar') }}</button>
+                                                    <input id="dominio" style="width: 300px; display:inline-block;" class="form-control" type="text" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesDominio2') }}" />
+                                                    <button ng-click="dominioModEmpresa" style="margin-top: 20px; margin-left: 20px; margin-bottom: 20px; display: inline-block;" class="btn btn-primary">{{ Lang::get('messages.textoEmpresasConfiguracionesModificar') }}</button>
                                                 </div>
 
                                                 <div class="col-md-3"></div>
@@ -240,9 +240,8 @@
                                             <div style="margin-top: 50px;" class="text-center row">
 
                                                 <div class="col-md-12">
-                                                    <a href="/plantilla/nueva">
-                                                        <button style="margin-bottom: 20px;" class="text-center btn btn-primary">{{ Lang::get('messages.textoEmpresasConfiguracionesModificarSubdominio') }}</button>
-                                                    </a>
+                                                    <button ng-click="subdominioModEmpresa" style="margin-bottom: 20px;" class="text-center btn btn-primary">{{ Lang::get('messages.textoEmpresasConfiguracionesModificarSubdominio') }}</button>
+                                                    
                                                 </div>
 
                                             </div>
