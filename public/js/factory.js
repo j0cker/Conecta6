@@ -4711,6 +4711,24 @@
 
 
       },
+      modEmpresaSubdominio: function(id_empresas, subdominio) {
+
+        console.log("[factory][modEmpresaSubdominio]");
+
+        var url = '/api/empresas/configuraciones/modEmpresaSubdominio';
+        return $http.post(url, {cache: false, id_empresas:id_empresas, subdominio:subdominio });
+
+
+      },
+      modEmpresaDominio: function(id_empresas, dominio) {
+
+        console.log("[factory][modEmpresaDominio]");
+
+        var url = '/api/empresas/configuraciones/modEmpresaDominio';
+        return $http.post(url, {cache: false, id_empresas:id_empresas, dominio:dominio });
+
+
+      },
     };
   });
 

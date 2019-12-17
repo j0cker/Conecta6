@@ -166,6 +166,12 @@ Route::get('/empresas/idiomas/obtenerByIdEmpresa', 'APIEmpresas@GetIdiomaObtener
 //Mod Idioma by id_empresas
 Route::post('/empresas/idiomas/modIdiomaEmpresa', 'APIEmpresas@ModIdiomaEmpresa');
 
+//Configuraciones Modificar subdominio
+Route::post('/empresas/configuraciones/modEmpresaSubdominio', 'APIEmpresas@ModEmpresaSubdominio');
+
+//Configuraciones Modificar dominio
+Route::post('/empresas/configuraciones/modEmpresaDominio', 'APIEmpresas@ModEmpresaDominio');
+
 /*
 *******Admin******
 */

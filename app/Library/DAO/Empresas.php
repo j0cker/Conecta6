@@ -187,6 +187,24 @@ class Empresas extends Model
 
     }
 
+    //update empresa suddominio
+    public function scopeModDominioEnterprise($query, $id_empresas, $dominio){
+      
+      Log::info("[Empresas][scopeModSubdominioEnterprise] id_empresas: ". $id_empresas);
+
+      //activar log query
+      DB::connection()->enableQueryLog();
+
+      $sql =  $query->where('id_empresas', $id_empresas)->update(['dominio' => $dominio]); //return true in the other one return 1
+
+      //log query
+      $queries = DB::getQueryLog();
+      $last_query = end($queries);
+     
+      return $sql;
+
+    }
+
     //update empresa
     public function scopeModEnterprise($query, $id_empresas, $nombreEmpresa, $nombreSolicitante, $correoElectronico, $telefonoFijo, $celular, $datepicker, $empleadosPermitidos, $activa, $dominio, $subdominio, $color){
 

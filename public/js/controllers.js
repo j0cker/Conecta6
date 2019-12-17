@@ -3786,15 +3786,65 @@
 
     getSalidasClick = $scope.getSalidasClick;
 
-    $scope.dominioModEmpresa = function(){
+    $scope.dominioModEmpresa = function(id_empresas){
     
       console.log("[dominioModEmpresa]");
+      console.log("[dominioModEmpresa] id_empresas: " + id_empresas);
+
+      var dominio = $("#dominio").val();
+
+      console.log("[dominioModEmpresa] dominio: " + dominio);
+    
+      functions.modEmpresaDominio(id_empresas, dominio).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][dominioModEmpresa][modEmpresaDominio]");
+          toastr["success"]("Tu dominio estará listo hasta un máximo de 48 horas debido, a la propagación de DNS, mientras puedes entrar a tu nueva empresa agregando /"+subdominio, "");
+
+          functions.loadingEndWait();
+          
+        } else {
+
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin modEmpresaDominio*/
 
     }
 
-    $scope.subdominioModEmpresa = function(){
+    $scope.subdominioModEmpresa = function(id_empresas){
     
       console.log("[subdominioModEmpresa]");
+      console.log("[subdominioModEmpresa] id_empresas: " + id_empresas);
+
+      var subdominio = $("#subdominio").val();
+
+      console.log("[subdominioModEmpresa] subdominio: " + subdominio);
+    
+      functions.modEmpresaSubdominio(id_empresas, subdominio).then(function (response) {
+
+        if(response.data.success == "TRUE"){
+          
+          console.log("[controllers][subdominioModEmpresa][subdominioModEmpresa]");
+          toastr["success"]("Tu subdominio estará listo hasta un máximo de 48 horas debido, a la propagación de DNS, mientras puedes entrar a tu nueva empresa agregando /"+subdominio, "");
+
+          functions.loadingEndWait();
+          
+        } else {
+
+            functions.loadingEndWait();
+        }
+      }, function (response) {
+        /*ERROR*/
+        toastr["error"]("Inténtelo de nuevo más tarde", "");
+        functions.loadingEndWait();
+
+      });/*fin modEmpresaSubdominio*/
       
     }
     
