@@ -127,7 +127,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Días Laborales y Horas Laborales (formato 12Hrs):
+                                                                    {{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDiasLaboralesYHorasLaborales') }}:
 
                                                                 </div>
 
@@ -143,7 +143,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="lunesActivated">
-                                                                        <label class="custom-control-label" for="lunesActivated">Lunes</label><br /><br />
+                                                                        <label class="custom-control-label" for="lunesActivated">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaLunes') }}</label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -164,15 +164,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Lunes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Lunes" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Lunes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Lunes" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Lunes" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora1') }}" /> 
+                                                                    <p style="display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Lunes" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora2') }}" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaY') }}</p>
+                                                                    <p style="display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Lunes" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora3') }}" /> 
+                                                                    <p style="display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Lunes" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora4') }}" />
                                                                    
 
                                                                 </div>
@@ -189,7 +189,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="martesActivated">
-                                                                        <label class="custom-control-label" for="martesActivated">Martes</label><br /><br />
+                                                                        <label class="custom-control-label" for="martesActivated">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaMartes') }}</label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -210,15 +210,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Martes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Martes" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Martes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Martes" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Martes" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora1') }}" /> 
+                                                                    <p style="display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Martes" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora2') }}" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaY') }}</p>
+                                                                    <p style="display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Martes" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora3') }}" /> 
+                                                                    <p style="display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Martes" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora4') }}" />
                                                                    
 
                                                                 </div>
@@ -236,7 +236,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="miercolesActivated">
-                                                                        <label class="custom-control-label" for="miercolesActivated">Miercoles</label><br /><br />
+                                                                        <label class="custom-control-label" for="miercolesActivated">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaMiercoles') }}</label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -257,15 +257,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Miercoles" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Miercoles" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Miercoles" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Miercoles" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Miercoles" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora1') }}" /> 
+                                                                    <p style="display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Miercoles" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora2') }}" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaY') }}</p>
+                                                                    <p style="display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Miercoles" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora3') }}" /> 
+                                                                    <p style="display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Miercoles" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora4') }}" />
                                                                    
 
                                                                 </div>
@@ -283,7 +283,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="juevesActivated">
-                                                                        <label class="custom-control-label" for="juevesActivated">Jueves</label><br /><br />
+                                                                        <label class="custom-control-label" for="juevesActivated">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaJueves') }}</label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -304,15 +304,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Jueves" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Jueves" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Jueves" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Jueves" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Jueves" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora1') }}" /> 
+                                                                    <p style="display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Jueves" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora2') }}" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaY') }}</p>
+                                                                    <p style="display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Jueves" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora3') }}" /> 
+                                                                    <p style="display: inline-block;">{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Jueves" placeholder="{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora4') }}" />
                                                                    
 
                                                                 </div>
@@ -330,7 +330,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="viernesActivated">
-                                                                        <label class="custom-control-label" for="viernesActivated">Viernes</label><br /><br />
+                                                                        <label class="custom-control-label" for="viernesActivated">Viernes{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}</label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -351,15 +351,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Viernes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Viernes" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Viernes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Viernes" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;">De{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Viernes" placeholder="10:30AM{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}" /> 
+                                                                    <p style="display: inline-block;">a{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Viernes" placeholder="18:30AM{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}</p>
+                                                                    <p style="display: inline-block;">De{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Viernes" placeholder="10:30AM{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}" /> 
+                                                                    <p style="display: inline-block;">a{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Viernes" placeholder="18:30AM{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}" />
                                                                    
 
                                                                 </div>
@@ -377,7 +377,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="sabadoActivated">
-                                                                        <label class="custom-control-label" for="sabadoActivated">Sábado</label><br /><br />
+                                                                        <label class="custom-control-label" for="sabadoActivated">Sábado{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}</label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -398,15 +398,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Sabado" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Sabado" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Sabado" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Sabado" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;">De{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Sabado" placeholder="10:30AM{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}" /> 
+                                                                    <p style="display: inline-block;">a{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Sabado" placeholder="18:30AM{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}</p>
+                                                                    <p style="display: inline-block;">De{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Sabado" placeholder="10:30AM{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}" /> 
+                                                                    <p style="display: inline-block;">a{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Sabado" placeholder="18:30AM{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}" />
                                                                    
 
                                                                 </div>
@@ -424,7 +424,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="domingoActivated">
-                                                                        <label class="custom-control-label" for="domingoActivated">Domingo</label><br /><br />
+                                                                        <label class="custom-control-label" for="domingoActivated">Domingo{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}</label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -445,15 +445,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Domingo" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Domingo" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Domingo" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Domingo" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;">De{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Domingo" placeholder="10:30AM{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}" /> 
+                                                                    <p style="display: inline-block;">a{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Domingo" placeholder="18:30AM{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}</p>
+                                                                    <p style="display: inline-block;">De{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Domingo" placeholder="10:30AM{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}" /> 
+                                                                    <p style="display: inline-block;">a{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Domingo" placeholder="18:30AM{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}" />
                                                                    
 
                                                                 </div>
