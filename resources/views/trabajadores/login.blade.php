@@ -53,16 +53,16 @@
 
                   <div class="col-md-8 resaltar">
 
-                    <p class="resaltar">Bienvenido a {{ $nombre }} por favor ingrese su usuario y contraseña</p>
+                    <p class="resaltar">{{ Lang::get('messages.TextoTrabajadoresLoginBienvenida', ['nombre' => $nombre]) }}</p>
 
                     <div class="input-group resaltar">
                       <span class="input-group-addon "><span class="fa fa-user"></span></span>
-                      <input id="correo" type="text" placeholder="Correo Electrónico" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
+                      <input id="correo" type="text" placeholder="{{ Lang::get('messages.textoTrabajadoresLoginCorreoElectronico') }}" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
                     </div>
 
                     <div class="input-group resaltar">
                       <span class="input-group-addon"><span class="fa fa-lock"></span></span>
-                      <input id="contPass" type="password" placeholder="Contraseña" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
+                      <input id="contPass" type="password" placeholder="{{ Lang::get('messages.textoTrabajadoresLoginContrasena') }}" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
 
                       <input id="color" value="{{ $color }}" style="display: none;" type="hidden">
                       <input id="colorHex" value="{{ $colorHex }}" style="display: none;" type="hidden">
@@ -70,12 +70,12 @@
 
                     </div>
 
-                    <button ng-click="send()" id="ingresarButton" style="margin-top: 40px; margin-bottom: 40px;" class="btn waves-effect waves-light resaltar" type="submit" name="action">Ingresar
+                    <button ng-click="send()" id="ingresarButton" style="margin-top: 40px; margin-bottom: 40px;" class="btn waves-effect waves-light resaltar" type="submit" name="action">{{ Lang::get('messages.textoTrabajadoresLoginIngresar') }}
                       <i class="fa fa-sign-in" aria-hidden="true"></i>
                     </button>
 
                     <a style="margin-bottom: 40px;" href="#">
-                      <p class="resaltar"><a href="{{ url('/'.$subdominio.'/recuperar') }}">¿Olvidaste tu Contraseña?</a></p>
+                      <p class="resaltar"><a href="{{ url('/'.$subdominio.'/recuperar') }}">{{ Lang::get('messages.textoTrabajadoresLoginOlvidaste') }}</a></p>
                     </a>
                     
                   </div>

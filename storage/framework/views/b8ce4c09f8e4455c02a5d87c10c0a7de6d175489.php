@@ -51,19 +51,20 @@
 
                   <div class="col-md-8 resaltar">
 
-                    <p class="resaltar">Ingresa tu correo para Recuperar tu Contraseña</p>
+                    <p class="resaltar"><?php echo e(Lang::get('messages.textoTrabajadoresOlvidasteBienvenida')); ?></p>
 
                     <div class="input-group resaltar">
                       <span class="input-group-addon "><span class="fa fa-user"></span></span>
-                      <input id="correo" type="text" placeholder="Correo Electrónico" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
+                      <input id="correo" type="text" placeholder="<?php echo e(Lang::get('messages.textoTrabajadoresOlvidasteCorreoElectronico')); ?>" class="form-control bootstrap-normal-input" aria-label="Amount (to the nearest dollar)">
                     </div>
 
-                    <button ng-click="postRecuperarClick()" id="ingresarButton" style="margin-top: 40px; margin-bottom: 40px;" class="btn waves-effect waves-light resaltar" type="submit" name="action">Recuperar
+                    <button ng-click="postRecuperarClick()" id="ingresarButton" style="margin-top: 40px; margin-bottom: 40px;" class="btn waves-effect waves-light resaltar" type="submit" name="action"><?php echo e(Lang::get('messages.textoTrabajadoresOlvidasteRecuperar')); ?>
+
                       <i class="fa fa-sign-in" aria-hidden="true"></i>
                     </button>
 
                     <a style="margin-bottom: 40px;" href="#">
-                      <p class="resaltar"><a href="<?php echo e(url('/'.$subdominio.'/')); ?>">Iniciar Sesión</a></p>
+                      <p class="resaltar"><a href="<?php echo e(url('/'.$subdominio.'/')); ?>"><?php echo e(Lang::get('messages.textoTrabajadoresOlvidasteIniciarSesion')); ?></a></p>
                     </a>
                     
                   </div>

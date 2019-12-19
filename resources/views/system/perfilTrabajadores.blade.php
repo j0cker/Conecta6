@@ -65,7 +65,7 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-user"></i> Perfil
+                                <i class="subheader-icon fal fa-user"></i> {{ Lang::get('messages.textoTrabajadoresPerfilTitle') }}
                                 <small>
                                 </small>
                             </h1>
@@ -77,7 +77,7 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Perfil
+                                            Perfil{{ Lang::get('messages.textoTrabajadoresPerfilPerfil') }}
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -128,7 +128,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Nombre:
+                                                                    {{ Lang::get('messages.textoTrabajadoresPerfilNombre') }}:
 
                                                                 </div>
 
@@ -148,7 +148,7 @@
 
                                                             <div ng-if="getTrabajadores.nombre==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                No Especificado
+                                                                {{ Lang::get('messages.textoTrabajadoresPerfilNoEspecificado') }}
 
                                                             </div>
 
@@ -162,7 +162,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Apellido:
+                                                                    {{ Lang::get('messages.textoTrabajadoresPerfilApellido') }}:
 
                                                                 </div>
 
@@ -182,7 +182,7 @@
 
                                                             <div ng-if="getTrabajadores.apellido==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                No Especificado
+                                                                {{ Lang::get('messages.textoTrabajadoresPerfilNoEspecificado') }}
 
                                                             </div>
 
@@ -196,7 +196,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Correo:
+                                                                    {{ Lang::get('messages.textoTrabajadoresPerfilCorreo') }}:
 
                                                                 </div>
 
@@ -216,13 +216,13 @@
 
                                                             <div ng-if="getTrabajadores.correo==''" style="font-size: 20px;" class="correoNoEdit col-md-4">
 
-                                                                No Especificado
+                                                                {{ Lang::get('messages.textoTrabajadoresPerfilNoEspecificado') }}
 
                                                             </div>
 
                                                             <div style="font-size: 20px; display: none;" class="correoEdit col-md-4">
 
-                                                                <input id="correo" type="text" class="form-control" value="<% getTrabajadores.correo %>" placeholder="Correo" />
+                                                                <input id="correo" type="text" class="form-control" value="<% getTrabajadores.correo %>" placeholder="{{ Lang::get('messages.textoTrabajadoresPerfilCorreo') }}" />
 
                                                             </div>
 
@@ -236,7 +236,7 @@
 
                                                             <div style="font-size: 25px; color: black;" class="col-md-4">
                                                             
-                                                                Cargo:
+                                                                Cargo{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:
 
                                                             </div>
 
@@ -256,7 +256,7 @@
 
                                                             <div ng-if="getTrabajadores.cargo==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                No Especificado
+                                                                No Especificado{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}
 
                                                             </div>
 
@@ -270,7 +270,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Teléfono Fijo:
+                                                                    Teléfono Fijo{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:
 
                                                                 </div>
 
@@ -290,13 +290,13 @@
 
                                                             <div ng-if="getTrabajadores.telefono_fijo==''" style="font-size: 20px;" class="telefonoFijoNoEdit col-md-4">
 
-                                                                No Especificado
+                                                                No Especificado{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}
 
                                                             </div>
 
                                                             <div style="font-size: 20px; display: none;" class="telefonoFijoEdit col-md-4">
 
-                                                                <input id="telefono_fijo" type="text" class="form-control" value="<% getTrabajadores.telefono_fijo %>" placeholder="Teléfono Fijo" />
+                                                                <input id="telefono_fijo" type="text" class="form-control" value="<% getTrabajadores.telefono_fijo %>" placeholder="Teléfono Fijo{{ Lang::get('messages.textoTrabajadoresPerfilNoEspecificado') }}" />
 
                                                             </div>
 
@@ -310,7 +310,7 @@
 
                                                             <div style="font-size: 25px; color: black;" class="col-md-4">
                                                             
-                                                                Celular:
+                                                                Celular{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:
 
                                                             </div>
 
@@ -330,13 +330,13 @@
 
                                                             <div ng-if="getTrabajadores.celular==''" style="font-size: 20px;" class="celularNoEdit col-md-4">
 
-                                                                No Especificado
+                                                                No Especificado{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}
 
                                                             </div>
 
                                                             <div style="font-size: 20px; display: none;" class="celularEdit col-md-4">
 
-                                                                <input id="celular" type="text" class="form-control" value="<% getTrabajadores.celular %>" placeholder="Celular" />
+                                                                <input id="celular" type="text" class="form-control" value="<% getTrabajadores.celular %>" placeholder="Celular{{ Lang::get('messages.textoTrabajadoresPerfilNoEspecificado') }}" />
 
                                                             </div>
 
@@ -350,7 +350,7 @@
 
                                                             <div style="font-size: 25px; color: black;" class="col-md-4">
                                                             
-                                                                Fecha de Creación:
+                                                                Fecha de Creación{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:
 
                                                             </div>
 
@@ -370,7 +370,7 @@
 
                                                             <div ng-if="getTrabajadores.created_at==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                No Especificado
+                                                                No Especificado{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}
 
                                                             </div>
 
@@ -384,7 +384,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    DNI:
+                                                                    DNI{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:
 
                                                                 </div>
 
@@ -404,7 +404,7 @@
 
                                                             <div ng-if="getTrabajadores.dni_num==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                No Especificado
+                                                                No Especificado{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}
 
                                                             </div>
 
@@ -418,7 +418,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Seguro Social:
+                                                                    Seguro Social{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}:
 
                                                                 </div>
 
@@ -438,7 +438,7 @@
 
                                                             <div ng-if="getTrabajadores.seguro_social==''" style="font-size: 20px;" class="col-md-4">
 
-                                                                No Especificado
+                                                                No Especificado{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}
 
                                                             </div>
 
@@ -451,16 +451,16 @@
                                                             <div class="col-md-4"></div>
 
                                                             <button id="editarPerfil" style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                Editar
+                                                                Editar{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}
                                                             </button>
 
                                                             <button id="guardarEditarPerfil" style="display: none; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                Guardar
+                                                                Guardar{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}
                                                             </button>
 
                                                             <a href="/perfilTrabajadores/pass">
                                                                 <button style="margin-left: 25px; margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                                    Cambiar Contraseña
+                                                                    Cambiar Contraseña{{ Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla') }}
                                                                 </button>
                                                             </a>
 

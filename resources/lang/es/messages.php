@@ -11,6 +11,10 @@ return [
     'tableBuscar' => 'Buscar',
     'tableRenglones' => 'Renglones',
 
+    //Header Menu
+    'headerMenuIrAPerfil' => 'Ir al perfil',
+    'headerMenuSalir' => 'Salir',
+
     //verification
     'notVerified' => "El número de verificación no existe",
     'verified' => "Tu cuenta ha sido verificada",
@@ -257,6 +261,59 @@ return [
 
     /******************/
     /* FIN EMPRESAS */
+    /*****************/
+
+    /******************/
+    /* TRABAJADORES */
+    /*****************/
+
+    //Login Empresas
+    'TextoTrabajadoresLoginBienvenida' => 'Bienvenido a :nombre por favor ingrese su usuario y contraseña',
+    'textoTrabajadoresLoginCorreoElectronico' => 'Correo Electrónico',
+    'textoTrabajadoresLoginContrasena' => 'Contraseña',
+    'textoTrabajadoresLoginIngresar' => 'INGRESAR',
+    'textoTrabajadoresLoginOlvidaste' => '¿Olvidaste tu Contraseña?',
+
+    //olvidaste contraseña Empresas
+    'textoTrabajadoresOlvidasteBienvenida' => 'Ingresa tu correo para Recuperar tu Contraseña',
+    'textoTrabajadoresOlvidasteCorreoElectronico' => 'Correo Electrónico',
+    'textoTrabajadoresOlvidasteRecuperar' => 'RECUPERAR',
+    'textoTrabajadoresOlvidasteIniciarSesion' => 'Iniciar Sesión',
+
+    //inicio trabajadores
+    'textoTrabajadoresInicioTitle' => 'Inicio <span class="fw-300">Dashboard</span>',
+    'textoTrabajadoresInicioTotalEntradas' => 'Total Entradas',
+    'textoTrabajadoresInicioTotalSalidas' => 'Total Salidas',
+    'textoTrabajadoresInicioResumenDelMesActual' => 'Resumen del Mes Actual',
+    'textoTrabajadoresInicioPeriodo' => 'Periodo',
+    'textoTrabajadoresInicioHorasTrabajadas' => 'Horas Trabajadas',
+    'textoTrabajadoresInicioHorasExtras' => 'Horas Extras',
+    'textoTrabajadoresInicioDiario' => 'Diario',
+    'textoTrabajadoresInicioSemanal' => 'Semanal',
+    'textoTrabajadoresInicioMensual' => 'Mensual',
+    'textoTrabajadoresInicioEstadisticaDeTuTrabajo' => 'Estadísticas de tu Trabajo',
+    'textoTrabajadoresInicioNoHayDatos' => 'No hay Datos',
+    'textoTrabajadoresInicioTotalDeEntradasYSalidas' => 'Total de Entradas y Salidas',
+    'textoTrabajadoresInicioTotalEntradas2' => 'Total Entradas',
+    'textoTrabajadoresInicioTotalSalidas2' => 'Total Salidas',
+    'textoTrabajadoresInicioTotalEntradasEfectivas' => 'Total Entradas Efectivas',
+    'textoTrabajadoresInicioTotalSalidasEfectivas' => 'Total Salidas Efectivas',
+    'textoTrabajadoresInicioEntradas' => 'Entradas',
+    'textoTrabajadoresInicioSalidas' => 'Salidas',
+
+    //Perfil Trabajadores
+    'textoTrabajadoresPerfilTitle' => 'Perfil',
+    'textoTrabajadoresPerfilPerfil' => 'Perfil',
+    'textoTrabajadoresPerfilNombre' => 'Nombre',
+    'textoTrabajadoresPerfilNoEspecificado' => 'No Especificado',
+    'textoTrabajadoresPerfilApellido' => 'Apellido',
+    'textoTrabajadoresPerfilCorreo' => 'Correo',
+    'textoTrabajadoresPerfil' => '',
+    'textoTrabajadoresPerfil' => '',
+    'textoTrabajadoresPerfil' => '',
+
+    /******************/
+    /* FIN TRABAJADORES */
     /*****************/
 
     //textos responses

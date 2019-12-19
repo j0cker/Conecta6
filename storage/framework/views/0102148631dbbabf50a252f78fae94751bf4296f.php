@@ -419,11 +419,11 @@
                                         </div>
                                         <div class="dropdown-divider m-0"></div>
                                         <a href="<?php echo e(url('/perfilTrabajadores')); ?>" class="dropdown-item">
-                                            <span data-i18n="drpdwn.reset_layout">Ir al perfil</span>
+                                            <span data-i18n="drpdwn.reset_layout"><?php echo e(Lang::get('messages.headerMenuIrAPerfil')); ?></span>
                                         </a>
                                         <div class="dropdown-divider m-0"></div>
                                         <a ng-click="logout()" class="dropdown-item fw-500 pt-3 pb-3" href="#">
-                                            <span data-i18n="drpdwn.page-logout">Logout</span>
+                                            <span data-i18n="drpdwn.page-logout"><?php echo e(Lang::get('messages.headerMenuSalir')); ?></span>
                                         </a>
                                     </div>
                                 </div>

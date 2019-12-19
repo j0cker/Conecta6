@@ -61,7 +61,8 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-clock"></i> Plantilla de Horarios Nueva
+                                <i class="subheader-icon fal fa-clock"></i> <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaModificarplantillaDeHorarios')); ?>
+
                                 <small>
                                 </small>
                             </h1>
@@ -73,7 +74,8 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Plantilla de Horarios Nueva
+                                            <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaModificarplantillaDeHorarios')); ?>
+
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -95,7 +97,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Nombre Plantilla:
+                                                                <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaNombrePlantilla')); ?>:
 
                                                                 </div>
 
@@ -123,7 +125,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Días Laborales y Horas Laborales (formato 12Hrs):
+                                                                    <?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDiasLaboralesYHorasLaborales')); ?>:
 
                                                                 </div>
 
@@ -139,7 +141,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="lunesActivated">
-                                                                        <label class="custom-control-label" for="lunesActivated">Lunes</label><br /><br />
+                                                                        <label class="custom-control-label" for="lunesActivated"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaLunes')); ?></label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -160,15 +162,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Lunes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Lunes" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Lunes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Lunes" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Lunes" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora1')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Lunes" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora2')); ?>" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaY')); ?></p>
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Lunes" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora3')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Lunes" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora4')); ?>" />
                                                                    
 
                                                                 </div>
@@ -185,7 +187,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="martesActivated">
-                                                                        <label class="custom-control-label" for="martesActivated">Martes</label><br /><br />
+                                                                        <label class="custom-control-label" for="martesActivated"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaMartes')); ?></label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -206,15 +208,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Martes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Martes" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Martes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Martes" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Martes" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora1')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Martes" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora2')); ?>" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaY')); ?></p>
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Martes" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora3')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Martes" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora4')); ?>" />
                                                                    
 
                                                                 </div>
@@ -232,7 +234,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="miercolesActivated">
-                                                                        <label class="custom-control-label" for="miercolesActivated">Miercoles</label><br /><br />
+                                                                        <label class="custom-control-label" for="miercolesActivated"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaMiercoles')); ?></label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -253,15 +255,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Miercoles" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Miercoles" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Miercoles" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Miercoles" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Miercoles" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora1')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Miercoles" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora2')); ?>" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaY')); ?></p>
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Miercoles" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora3')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Miercoles" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora4')); ?>" />
                                                                    
 
                                                                 </div>
@@ -279,7 +281,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="juevesActivated">
-                                                                        <label class="custom-control-label" for="juevesActivated">Jueves</label><br /><br />
+                                                                        <label class="custom-control-label" for="juevesActivated"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaJueves')); ?></label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -300,15 +302,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Jueves" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Jueves" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Jueves" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Jueves" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Jueves" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora1')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Jueves" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora2')); ?>" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaY')); ?></p>
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Jueves" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora3')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Jueves" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora4')); ?>" />
                                                                    
 
                                                                 </div>
@@ -326,7 +328,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="viernesActivated">
-                                                                        <label class="custom-control-label" for="viernesActivated">Viernes</label><br /><br />
+                                                                        <label class="custom-control-label" for="viernesActivated"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaViernes')); ?></label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -347,15 +349,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Viernes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Viernes" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Viernes" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Viernes" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Viernes" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora1')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Viernes" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora2')); ?>" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaY')); ?></p>
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Viernes" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora3')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Viernes" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora4')); ?>" />
                                                                    
 
                                                                 </div>
@@ -373,7 +375,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="sabadoActivated">
-                                                                        <label class="custom-control-label" for="sabadoActivated">Sábado</label><br /><br />
+                                                                        <label class="custom-control-label" for="sabadoActivated"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaSabado')); ?></label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -394,15 +396,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Sabado" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Sabado" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Sabado" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Sabado" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Sabado" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora1')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Sabado" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora2')); ?>" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaY')); ?></p>
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Sabado" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora3')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Sabado" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora4')); ?>" />
                                                                    
 
                                                                 </div>
@@ -420,7 +422,7 @@
 
                                                                     <div style="margin-top: 30px;" class="custom-control custom-switch text-left">
                                                                         <input type="checkbox" class="custom-control-input" id="domingoActivated">
-                                                                        <label class="custom-control-label" for="domingoActivated">Domingo</label><br /><br />
+                                                                        <label class="custom-control-label" for="domingoActivated"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDomingo')); ?></label><br /><br />
                                                                     </div>
 
                                                                 </div>
@@ -441,15 +443,15 @@
                                                                         <option value="1">Nocturno</option>
                                                                     </select>
 
-                                                                    <p style="margin-top: 30px; display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Domingo" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Domingo" placeholder="18:30AM" />
-                                                                    <p style="margin-top: 1rem !important; text-align: center;">Y</p>
-                                                                    <p style="display: inline-block;">De:</p> 
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Domingo" placeholder="10:30AM" /> 
-                                                                    <p style="display: inline-block;">a:</p>
-                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Domingo" placeholder="18:30AM" />
+                                                                    <p style="margin-top: 30px; display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de1Domingo" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora1')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a1Domingo" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora2')); ?>" />
+                                                                    <p style="margin-top: 1rem !important; text-align: center;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaY')); ?></p>
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaDe')); ?>:</p> 
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="de2Domingo" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora3')); ?>" /> 
+                                                                    <p style="display: inline-block;"><?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaA')); ?>:</p>
+                                                                    <input style="width: 100px; display: inline-block;" class="form-control timepicker" type="text" id="a2Domingo" placeholder="<?php echo e(Lang::get('messages.textoEmpresasConfiguracionesNuevaPlantillaHora4')); ?>" />
                                                                    
 
                                                                 </div>

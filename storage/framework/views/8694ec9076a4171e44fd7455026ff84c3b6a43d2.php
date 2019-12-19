@@ -61,14 +61,15 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-chart-area"></i> Inicio <span class="fw-300">Dashboard</span>
+                                <i class="subheader-icon fal fa-chart-area"></i> <?php echo Lang::get('messages.textoTrabajadoresInicioTitle'); ?>
+
                                 <small>
                                 </small>
                             </h1>
                             <div class="subheader-block d-lg-flex align-items-center">
                                 <div class="d-inline-flex flex-column justify-content-center mr-3">
                                     <span class="fw-300 fs-xs d-block opacity-50">
-                                        <small>Total Entradas</small>
+                                        <small><?php echo e(Lang::get('messages.textoTrabajadoresInicioTotalEntradas')); ?></small>
                                     </span>
                                     <span class="fw-500 fs-xl d-block color-primary-500">
                                         <% entradas %>
@@ -79,7 +80,7 @@
                             <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                 <div class="d-inline-flex flex-column justify-content-center mr-3">
                                     <span class="fw-300 fs-xs d-block opacity-50">
-                                        <small>Total Salidas</small>
+                                        <small><?php echo e(Lang::get('messages.textoTrabajadoresInicioTotalSalidas')); ?></small>
                                     </span>
                                     <span class="fw-500 fs-xl d-block color-danger-500">
                                         <% salidas %>
@@ -95,7 +96,7 @@
                                 <div id="panel-4" class="panel data-panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr" role="heading">
                                         <h2>
-                                            Resumen del Mes Actual  <span style="padding-left: 5px;" id="mesActual"></span>
+                                            <?php echo e(Lang::get('messages.textoTrabajadoresInicioResumenDelMesActual')); ?>  <span style="padding-left: 5px;" id="mesActual"></span>
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -112,33 +113,33 @@
                                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-warning-200">
                                                     <tr>
-                                                        <th>Periodo</th>
-                                                        <th>Horas Trabajadas</th>
-                                                        <th>Horas Extras</th>
+                                                        <th><?php echo e(Lang::get('messages.textoTrabajadoresInicioPeriodo')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoTrabajadoresInicioHorasTrabajadas')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoTrabajadoresInicioHorasExtras')); ?></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="historialTable">
                                                     <tr>
-                                                        <th>Diario</th>
+                                                        <th><?php echo e(Lang::get('messages.textoTrabajadoresInicioDiario')); ?></th>
                                                         <th></th>
                                                         <th></th>
                                                     </tr>
                                                     <tr>
-                                                        <th>Semanal</th>
+                                                        <th><?php echo e(Lang::get('messages.textoTrabajadoresInicioSemanal')); ?></th>
                                                         <th></th>
                                                         <th></th>
                                                     </tr>
                                                     <tr>
-                                                        <th>Mensual</th>
+                                                        <th><?php echo e(Lang::get('messages.textoTrabajadoresInicioMensual')); ?></th>
                                                         <th></th>
                                                         <th></th>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>Periodo</th>
-                                                        <th>Horas Trabajadas</th>
-                                                        <th>Horas Extras</th>
+                                                        <th><?php echo e(Lang::get('messages.textoTrabajadoresInicioPeriodo')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoTrabajadoresInicioHorasTrabajadas')); ?></th>
+                                                        <th><?php echo e(Lang::get('messages.textoTrabajadoresInicioHorasExtras')); ?></th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -155,7 +156,8 @@
                                 <div id="panel-1" class="panel panel-locked panel-sortable" role="widget">
                                     <div class="panel-hdr" role="heading">
                                         <h2 class="ui-sortable-handle">
-                                            Estadísticas de tu Trabajo
+                                            <?php echo e(Lang::get('messages.textoTrabajadoresInicioEstadisticaDeTuTrabajo')); ?>
+
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -171,33 +173,37 @@
                                                 <div class="col-lg-7 col-xl-8">
                                                     <div class="position-relative">
                                                         <div id="updating-chart" style="height: 450px; padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;" width="966" height="302"></canvas><canvas class="flot-overlay" width="966" height="302" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 773.325px; height: 242px;"></canvas></div>
-                                                        <div id="no-updating-chart">No hay Datos</div>
+                                                        <div style="text-align: center;" id="no-updating-chart"><?php echo e(Lang::get('messages.textoTrabajadoresInicioNoHayDatos')); ?></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-5 col-xl-4 pl-lg-3">
                                                     <div class="d-flex mt-2">
-                                                        Total de Entradas y Salidas
+                                                        <?php echo e(Lang::get('messages.textoTrabajadoresInicioTotalDeEntradasYSalidas')); ?>
+
                                                         <span class="d-inline-block ml-auto"><% totalEntradasSalidas %></span>
                                                     </div>
                                                     <div class="progress progress-sm mb-3">
                                                         <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 100%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <div class="d-flex">
-                                                        Total Entradas
+                                                        <?php echo e(Lang::get('messages.textoTrabajadoresInicioTotalEntradas2')); ?>
+
                                                         <span class="d-inline-block ml-auto"><% entradas %></span>
                                                     </div>
                                                     <div class="progress progress-sm mb-3">
                                                         <div class="progress-bar bg-success-500" role="progressbar" style="width: <% entradasPorcentaje %>%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <div class="d-flex">
-                                                        Total Salidas
+                                                        <?php echo e(Lang::get('messages.textoTrabajadoresInicioTotalSalidas2')); ?>
+
                                                         <span class="d-inline-block ml-auto"><% salidas %></span>
                                                     </div>
                                                     <div class="progress progress-sm mb-3">
                                                         <div class="progress-bar bg-info-400" role="progressbar" style="width: <% salidasPorcentaje %>%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <div class="d-flex">
-                                                        Total Entradas Efectivas
+                                                        <?php echo e(Lang::get('messages.textoTrabajadoresInicioTotalEntradasEfectivas')); ?>
+
                                                         <span class="d-inline-block ml-auto"><% entradasYSalidasEfectivas %></span>
                                                     </div>
                                                     <div class="progress progress-sm mb-3">
@@ -205,7 +211,8 @@
                                                     </div>
 
                                                     <div class="d-flex">
-                                                        Total Salidas Efectivas
+                                                        <?php echo e(Lang::get('messages.textoTrabajadoresInicioTotalSalidasEfectivas')); ?>
+
                                                         <span class="d-inline-block ml-auto"><% entradasYSalidasEfectivas %></span>
                                                     </div>
                                                     <div class="progress progress-sm mb-3">
@@ -220,7 +227,8 @@
                                                                 </div>
                                                             </div>
                                                             <span class="d-inline-block ml-2 text-muted">
-                                                                Entradas
+                                                                <?php echo e(Lang::get('messages.textoTrabajadoresInicioEntradas')); ?>
+
                                                                 <i class="fal fa-caret-up color-danger-500 ml-1"></i>
                                                             </span>
                                                             <div class="ml-auto d-inline-flex align-items-center">
@@ -241,7 +249,8 @@
                                                                 </div>
                                                             </div>
                                                             <span class="d-inline-block ml-2 text-muted">
-                                                                Salidas
+                                                                <?php echo e(Lang::get('messages.textoTrabajadoresInicioSalidas')); ?>
+
                                                                 <i class="fal fa-caret-up color-danger-500 ml-1"></i>
                                                             </span>
                                                             <div class="ml-auto d-inline-flex align-items-center">
