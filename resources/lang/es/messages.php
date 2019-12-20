@@ -308,9 +308,46 @@ return [
     'textoTrabajadoresPerfilNoEspecificado' => 'No Especificado',
     'textoTrabajadoresPerfilApellido' => 'Apellido',
     'textoTrabajadoresPerfilCorreo' => 'Correo',
-    'textoTrabajadoresPerfil' => '',
-    'textoTrabajadoresPerfil' => '',
-    'textoTrabajadoresPerfil' => '',
+    'textoTrabajadoresPerfilCargo' => 'Cargo',
+    'textoTrabajadoresPerfilTelefonoFijo' => 'Teléfono Fijo',
+    'textoTrabajadoresPerfilCelular' => 'Celular',
+    'textoTrabajadoresPerfilFechaDeCreacion' => 'Fecha de Creación',
+    'textoTrabajadoresPerfilDNI' => 'DNI',
+    'textoTrabajadoresPerfilSeguroSocial' => 'Seguro Social',
+    'textoTrabajadoresPerfilEditar' => 'Editar',
+    'textoTrabajadoresPerfilGuardar' => 'Guardar',
+    'textoTrabajadoresPerfilCambiarContrasena' => 'Cambiar Contraseña',
+    'textoTrabajadoresPerfilPassTitle' => 'Modificar Contraseña',
+    'textoTrabajadoresPerfilModificarContrasena' => 'Modificar Contraseña',
+    'textoTrabajadoresPerfilContrasenaActual' => 'Contraseña Actual',
+    'textoTrabajadoresPerfilContrasenaNueva' => 'Contraseña Nueva',
+    'textoTrabajadoresPerfilNuevaContrasena' => 'Nueva Contraseña',
+    'textoTrabajadoresPerfilConfirmarContrasenaNueva' => 'Confirmar Contraseña Nueva',
+    'textoTrabajadoresPerfilConfirmarNuevaContrasena' => 'Confirmar Nueva Contraseña',
+    'textoTrabajadoresPerfilModificar' => 'Modificar',
+
+    //Registros Trabajadores
+    'textoTrabajadoresRegistrosTitle' => 'Entradas y Salidas <span class="fw-300">Dashboard</span>',
+    'textoTrabajadoresRegistrosReloj' => 'Reloj',
+    'textoTrabajadoresRegistrosDe' => 'de',
+    'textoTrabajadoresRegistrosDel' => 'del',
+    'textoTrabajadoresRegistrosRegistrar' => 'Registrar',
+    'textoTrabajadoresRegistrosEntrada' => 'Entrada',
+    'textoTrabajadoresRegistrosRegistrar' => 'Registrar',
+    'textoTrabajadoresRegistrosAgregarComentario' => 'Agregar Comentario',
+    'textoTrabajadoresRegistrosSalida' => 'Salida',
+    'textoTrabajadoresRegistrosAgregarComentario2' => 'Agregar Comentario',
+    'textoTrabajadoresRegistrosRegistrar2' => 'Registrar',
+
+    //Historial Trabajadores
+
+    'textoTrabajadoresHistorialTitle' => 'Historial Entradas y Salidas <span class="fw-300">Dashboard</span>',
+    'textoTrabajadoresHistorialHistorial' => 'Historial Entradas y Salidas',
+    'textoTrabajadoresHistorialID' => 'ID',
+    'textoTrabajadoresHistorialFechaYHora' => 'Fecha y Hora',
+    'textoTrabajadoresHistorialEntradaSalida' => 'Entrada/Salida',
+    'textoTrabajadoresHistorialComentarios' => 'Comentarios',
+
 
     /******************/
     /* FIN TRABAJADORES */

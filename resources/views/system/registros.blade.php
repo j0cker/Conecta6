@@ -64,7 +64,7 @@
                         
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-clipboard-list'></i> Entradas y Salidas <span class='fw-300'>Dashboard</span>
+                                <i class='subheader-icon fal fa-clipboard-list'></i> {!! Lang::get('messages.textoTrabajadoresRegistrosTitle') !!}
                                 <small>
                                 </small>
                             </h1>
@@ -76,7 +76,7 @@
                                 <div id="panel-1" class="panel panel-sortable panel-locked" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="true" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr">
                                         <h2>
-                                            Reloj
+                                            {{ Lang::get('messages.textoTrabajadoresRegistrosReloj') }}
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -92,9 +92,9 @@
                                             <div class="fecha">
                                                 <p id="diaSemana" class="diaSemana"></p>
                                                 <p id="dia" class="dia"></p>
-                                                <p>de</p>
+                                                <p>{{ Lang::get('messages.textoTrabajadoresRegistrosDe') }}</p>
                                                 <p id="mes" class="mes"></p>
-                                                <p>del</p>
+                                                <p>{{ Lang::get('messages.textoTrabajadoresRegistrosDel') }}</p>
                                                 <p id="anio" class="anio"></p>
                                             </div>
 
@@ -108,7 +108,7 @@
                                 
                                 <div id="panel-2" class="panel panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="false" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr" role="heading">
-                                        <h2 class="ui-sortable-handle">Entrada</h2>
+                                        <h2 class="ui-sortable-handle">{{ Lang::get('messages.textoTrabajadoresRegistrosEntrada') }}</h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-fullscreen waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></a> 
@@ -123,10 +123,10 @@
                                     <div class="panel-container show" role="content"><div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
                                         <div class="panel-content text-center">
 
-                                            <textarea id="comentariosEntrada" class="form-control" placeholder="Agregar Comentario"></textarea>
+                                            <textarea id="comentariosEntrada" class="form-control" placeholder="{{ Lang::get('messages.textoTrabajadoresRegistrosAgregarComentario') }}"></textarea>
                                             
                                             <button id="registrarEntrada" style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                Registrar
+                                                {{ Lang::get('messages.textoTrabajadoresRegistrosRegistrar') }}
                                             </button>
                                         </div>
                                     </div>
@@ -137,7 +137,7 @@
                                 
                                 <div id="panel-3" class="panel panel-sortable" data-panel-lock="false" data-panel-close="false" data-panel-fullscreen="false" data-panel-collapsed="false" data-panel-color="false" data-panel-locked="false" data-panel-refresh="false" data-panel-reset="false" role="widget">
                                     <div class="panel-hdr" role="heading">
-                                        <h2 class="ui-sortable-handle">Salida</h2>
+                                        <h2 class="ui-sortable-handle">{{ Lang::get('messages.textoTrabajadoresRegistrosSalida') }}</h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-fullscreen waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></a> 
@@ -157,10 +157,10 @@
                                                                                 
                                             </select>
 
-                                            <textarea id="comentariosSalida" style="margin-top: 25px;" class="form-control" placeholder="Agregar Comentario"></textarea>
+                                            <textarea id="comentariosSalida" style="margin-top: 25px;" class="form-control" placeholder="{{ Lang::get('messages.textoTrabajadoresRegistrosAgregarComentario2') }}"></textarea>
                                             
                                             <button id="registrarSalida" style="margin-top: 25px;" class="btn btn-primary btn-sm waves-effect waves-themed text-center">
-                                                Registrar
+                                                {{ Lang::get('messages.textoTrabajadoresRegistrosRegistrar2') }}
                                             </button>
 
                                         </div>

@@ -1876,6 +1876,8 @@ class APITrabajadores extends Controller
         //print_r($token_decrypt);
 
         if(in_array("3", $token_decrypt["permisos"])==1){
+    
+          Log::info('[APITrabajadores][Historial] View');
             
           return view('system.historial',["title" => config('app.name'), 
                                           "lang" => "es", 

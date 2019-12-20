@@ -915,6 +915,9 @@
                     "pageLength": 25,
                     "ordering": false,
                     responsive: true,
+                    language: {
+                        searchPlaceholder: '{{ Lang::get("messages.tableBuscar") }}'
+                    },
                     dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
@@ -922,11 +925,12 @@
                     buttons: [
                         {
                             extend: 'pageLength',
+                            text: '{{ Lang::get("messages.tableRenglones") }}',
                             className: 'btn-outline-default'
                         },
                         {
                             extend: 'colvis',
-                            text: 'Column Visibility',
+                            text: '{{ Lang::get("messages.tableColumnasVisibles") }}',
                             titleAttr: 'Col visibility',
                             className: 'btn-outline-default'
                         },
@@ -938,7 +942,7 @@
                         },
                         {
                             extend: 'copyHtml5',
-                            text: 'Copy',
+                            text: '{{ Lang::get("messages.tableCopiar") }}',
                             titleAttr: 'Copy to clipboard',
                             className: 'btn-outline-default'
                         },

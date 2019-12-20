@@ -61,7 +61,8 @@
 
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                <i class="subheader-icon fal fa-key"></i> Modificar Contraseña
+                                <i class="subheader-icon fal fa-key"></i> <?php echo e(Lang::get('messages.textoTrabajadoresPerfilPassTitle')); ?>
+
                                 <small>
                                 </small>
                             </h1>
@@ -73,7 +74,8 @@
 
                                     <div class="panel-hdr">
                                         <h2 class="ui-sortable-handle">
-                                            Modificar Contraseña
+                                            <?php echo e(Lang::get('messages.textoTrabajadoresPerfilModificarContrasena')); ?>
+
                                         </h2>
                                         <div class="panel-saving mr-2" style="display:none"><i class="fal fa-spinner-third fa-spin-4x fs-xl"></i></div><div class="panel-toolbar" role="menu">
                                             <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse waves-effect waves-themed" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></a> 
@@ -95,7 +97,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Contraseña Actual:
+                                                                    <?php echo e(Lang::get('messages.textoTrabajadoresPerfilContrasenaActual')); ?>:
 
                                                                 </div>
 
@@ -109,7 +111,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="contActual" type="password" class="form-control" placeholder="Contraseña Actual" />
+                                                                    <input id="contActual" type="password" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoTrabajadoresPerfilContrasenaActual')); ?>" />
 
                                                                 </div>
 
@@ -123,7 +125,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Contraseña Nueva:
+                                                                    <?php echo e(Lang::get('messages.textoTrabajadoresPerfilContrasenaNueva')); ?>:
 
                                                                 </div>
 
@@ -137,7 +139,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    <input id="contNueva" type="password" class="form-control" placeholder="Nueva Contraseña" />
+                                                                    <input id="contNueva" type="password" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoTrabajadoresPerfilNuevaContrasena')); ?>" />
 
                                                                 </div>
 
@@ -151,7 +153,7 @@
 
                                                                 <div style="font-size: 25px; color: black;" class="col-md-4">
                                                                 
-                                                                    Confirmar Contraseña Nueva :
+                                                                    <?php echo e(Lang::get('messages.textoTrabajadoresPerfilConfirmarContrasenaNueva')); ?>:
 
                                                                 </div>
 
@@ -165,7 +167,7 @@
 
                                                             <div style="font-size: 25px; color: black;" class="col-md-4">
                                                             
-                                                                <input id="contConf" type="password" class="form-control" placeholder="Confirmar Nueva Contraseña" />
+                                                                <input id="contConf" type="password" class="form-control" placeholder="<?php echo e(Lang::get('messages.textoTrabajadoresPerfilConfirmarNuevaContrasena')); ?>" />
 
                                                             </div>
 
@@ -175,7 +177,7 @@
 
                                                         <div style="margin-top: 25px; margin-bottom: 25px;" class="row text-center">
                                                             <div class="col-12 text-center">
-                                                                <a ng-click="postContChangeClick('<?php echo e($user['usr']->pass); ?>', '<?php echo e($user['usr']->id_empresas); ?>');" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed">Modificar</a>
+                                                                <a ng-click="postContChangeClick('<?php echo e($user['usr']->pass); ?>', '<?php echo e($user['usr']->id_empresas); ?>');" style="width: 200px;" href="#" class="btn btn-primary btn-block waves-effect waves-themed"><?php echo e(Lang::get('messages.textoTrabajadoresPerfilModificar')); ?></a>
                                                             </div>
                                                         </div>
 
