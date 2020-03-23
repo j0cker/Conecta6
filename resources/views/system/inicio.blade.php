@@ -915,6 +915,7 @@
                     "pageLength": 25,
                     "ordering": false,
                     responsive: true,
+                    select : true,
                     language: {
                         searchPlaceholder: '{{ Lang::get("messages.tableBuscar") }}'
                     },

@@ -1074,6 +1074,7 @@
                     "pageLength": 25,
                     "ordering": true,
                     responsive: true,
+                    select : true,
                     language: {
                         searchPlaceholder: '{{ Lang::get("messages.tableBuscar") }}'
                     },
@@ -1148,6 +1149,7 @@
                     "pageLength": 25,
                     "ordering": true,
                     responsive: true,
+                    select : true,
                     language: {
                         searchPlaceholder: '{{ Lang::get("messages.tableBuscar") }}'
                     },
