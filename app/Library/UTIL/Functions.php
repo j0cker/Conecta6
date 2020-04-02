@@ -335,8 +335,12 @@ class Functions
     public function mifechagmt($fecha_timestamp,$gmt=0){
         /*
         USO:
+            
             $horarioP = substr($row["horario"],3,strlen($row["horario"])-5);
-        strtotime(mifechagmt(time(),$horarioP))>=strtotime($row["fecha"])
+            strtotime(mifechagmt(time(),$horarioP))>=strtotime($row["fecha"])
+        
+        Fin USO
+
         $usohorario: GMT (-0600)
         $row["fecha"]: strtotime('2013-01-19 01:23:42') ('Y-m-d H:i:s')
             date('d-m-Y', strtotime('27-05-2015 +30 Days'))
