@@ -732,6 +732,7 @@
     
         <script src="{{ url('js/datatables.bundle.js?v='.cache("js_version_number").'') }}"></script>
         <script src="{{ url('js/moment.js?v='.cache("js_version_number").'') }}"></script>
+        <!--daterangepicker requires moment-->
         <script src="{{ url('js/daterangepicker.js?v='.cache("js_version_number").'') }}"></script>
         
         <script>

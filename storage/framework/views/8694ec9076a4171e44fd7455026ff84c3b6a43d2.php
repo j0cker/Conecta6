@@ -920,6 +920,7 @@
                     "pageLength": 25,
                     "ordering": false,
                     responsive: true,
+                    select : true,
                     language: {
                         searchPlaceholder: '<?php echo e(Lang::get("messages.tableBuscar")); ?>'
                     },
